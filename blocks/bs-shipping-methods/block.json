@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bootstrap-theme/shipping-methods",
+  "title": "Bootstrap Shipping Methods",
+  "category": "bootstrap-blocks",
+  "icon": "cart",
+  "description": "Muestra los métodos de envío disponibles de WooCommerce",
+  "keywords": ["shipping", "envío", "métodos", "woocommerce", "bootstrap"],
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "attributes": {
+    "displayType": {
+      "type": "string",
+      "default": "radio",
+      "enum": ["radio", "select"]
+    },
+    "showIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "title": {
+      "type": "string",
+      "default": "Métodos de envío"
+    },
+    "alignment": {
+      "type": "string",
+      "default": ""
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "bootstrap-theme",
+  "editorScript": "file:./editor.js"
+}

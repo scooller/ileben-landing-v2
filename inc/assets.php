@@ -1,0 +1,248 @@
+<?php
+/**
+ * Asset loading and helpers.
+ */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+function ileben_find_asset($pattern)
+{
+    $dist_path = ILEBEN_THEME_DIR . '/dist/assets/';
+    if (!is_dir($dist_path)) {
+        return null;
+    }
+
+    $files = glob($dist_path . $pattern);
+    if (!empty($files)) {
+        return ILEBEN_THEME_URI . '/dist/assets/' . basename($files[0]);
+    }
+
+    return null;
+}
+
+function ileben_google_font_family()
+{
+    if (function_exists('get_field')) {
+        $family = get_field('google_font_family', 'option');
+        if ($family) {
+            return $family;
+        }
+    }
+    return 'Open Sans:wght@400;600;700';
+}
+
+add_action('wp_enqueue_scripts', function () {
+    // Find compiled CSS file
+    $css_file = ileben_find_asset('style-*.css');
+    if ($css_file) {
+        wp_enqueue_style('ileben-style', $css_file, [], ILEBEN_THEME_VERSION, 'all');
+    }
+
+    // Find compiled JS file (IIFE bundle)
+    $js_file = ileben_find_asset('main-*.js');
+    if ($js_file) {
+        wp_enqueue_script('ileben-main', $js_file, [], ILEBEN_THEME_VERSION, true);
+
+        // Localize global Swiper config from ACF Options
+        if (function_exists('get_field')) {
+            $breakpoints_raw = get_field('swiper_breakpoints', 'option');
+            $breakpoints = null;
+            if (is_string($breakpoints_raw) && $breakpoints_raw !== '') {
+                $decoded = json_decode($breakpoints_raw, true);
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $breakpoints = $decoded;
+                }
+            }
+            if (!$breakpoints) {
+                $breakpoints = [
+                    768 => ['slidesPerView' => 1.5],
+                    1024 => ['slidesPerView' => 2.2],
+                ];
+            }
+
+            $swiper_config = [
+                'enableNavigation' => (bool) get_field('swiper_enable_navigation', 'option'),
+                'enablePagination' => (bool) get_field('swiper_enable_pagination', 'option'),
+                'loop' => (bool) get_field('swiper_loop', 'option'),
+                'speed' => (int) (get_field('swiper_speed', 'option') ?: 500),
+                'autoplay' => (bool) get_field('swiper_autoplay', 'option'),
+                'autoplayDelay' => (int) (get_field('swiper_autoplay_delay', 'option') ?: 4000),
+                'spaceBetween' => (int) (get_field('swiper_space_between', 'option') ?: 16),
+                'slidesPerView' => (float) (get_field('swiper_slides_per_view', 'option') ?: 1.1),
+                'breakpoints' => $breakpoints,
+            ];
+            wp_localize_script('ileben-main', 'ILEBEN_SWIPER', $swiper_config);
+        }
+    }
+
+    // Google Fonts enqueue
+    $family = ileben_google_font_family();
+    $google_url = sprintf('https://fonts.googleapis.com/css2?family=%s&display=swap', rawurlencode($family));
+    wp_enqueue_style('ileben-google-fonts', $google_url, [], null);
+
+    // Font Awesome
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', [], '6.4.0');
+
+    // Theme base stylesheet
+    wp_enqueue_style('ileben-theme-style', ILEBEN_THEME_URI . '/style.css', [], ILEBEN_THEME_VERSION);
+});
+
+/**
+ * Inject Bootstrap CSS variables from ACF options
+ */
+add_action('wp_head', function () {
+    if (!function_exists('get_field')) {
+        return;
+    }
+
+    $colors = [
+        // Base colors
+        'blue' => get_field('color_blue', 'option') ?: '#0d6efd',
+        'indigo' => get_field('color_indigo', 'option') ?: '#6610f2',
+        'purple' => get_field('color_purple', 'option') ?: '#6f42c1',
+        'pink' => get_field('color_pink', 'option') ?: '#d63384',
+        'red' => get_field('color_red', 'option') ?: '#dc3545',
+        'orange' => get_field('color_orange', 'option') ?: '#fd7e14',
+        'yellow' => get_field('color_yellow', 'option') ?: '#ffc107',
+        'green' => get_field('color_green', 'option') ?: '#198754',
+        'teal' => get_field('color_teal', 'option') ?: '#20c997',
+        'cyan' => get_field('color_cyan', 'option') ?: '#0dcaf0',
+        'black' => get_field('color_black', 'option') ?: '#000',
+        'white' => get_field('color_white', 'option') ?: '#fff',
+        'gray' => get_field('color_gray', 'option') ?: '#6c757d',
+        'gray-dark' => get_field('color_gray_dark', 'option') ?: '#343a40',
+        
+        // Gray scale
+        'gray-100' => get_field('color_gray_100', 'option') ?: '#f8f9fa',
+        'gray-200' => get_field('color_gray_200', 'option') ?: '#e9ecef',
+        'gray-300' => get_field('color_gray_300', 'option') ?: '#dee2e6',
+        'gray-400' => get_field('color_gray_400', 'option') ?: '#ced4da',
+        'gray-500' => get_field('color_gray_500', 'option') ?: '#adb5bd',
+        'gray-600' => get_field('color_gray_600', 'option') ?: '#6c757d',
+        'gray-700' => get_field('color_gray_700', 'option') ?: '#495057',
+        'gray-800' => get_field('color_gray_800', 'option') ?: '#343a40',
+        'gray-900' => get_field('color_gray_900', 'option') ?: '#212529',
+        
+        // Theme colors
+        'primary' => get_field('color_primary', 'option') ?: '#0d6efd',
+        'secondary' => get_field('color_secondary', 'option') ?: '#6c757d',
+        'success' => get_field('color_success', 'option') ?: '#198754',
+        'info' => get_field('color_info', 'option') ?: '#0dcaf0',
+        'warning' => get_field('color_warning', 'option') ?: '#ffc107',
+        'danger' => get_field('color_danger', 'option') ?: '#dc3545',
+        'light' => get_field('color_light', 'option') ?: '#f8f9fa',
+        'dark' => get_field('color_dark', 'option') ?: '#212529',
+        
+        // Body colors
+        'body-color' => get_field('color_body', 'option') ?: '#212529',
+        'body-bg' => get_field('color_body_bg', 'option') ?: '#fff',
+        
+        // Link colors
+        'link-color' => get_field('color_link', 'option') ?: '#0d6efd',
+        'link-hover-color' => get_field('color_link_hover', 'option') ?: '#0a58ca',
+        
+        // Border
+        'border-color' => get_field('color_border', 'option') ?: '#dee2e6',
+        
+        // System colors
+        'emphasis-color' => get_field('color_emphasis', 'option') ?: '#000',
+        'secondary-color' => get_field('color_secondary_color', 'option') ?: '#212529',
+        'secondary-bg' => get_field('color_secondary_bg', 'option') ?: '#e9ecef',
+        'tertiary-color' => get_field('color_tertiary_color', 'option') ?: '#212529',
+        'tertiary-bg' => get_field('color_tertiary_bg', 'option') ?: '#f8f9fa',
+        'code-color' => get_field('color_code', 'option') ?: '#d63384',
+        'highlight-color' => get_field('color_highlight', 'option') ?: '#212529',
+        'highlight-bg' => get_field('color_highlight_bg', 'option') ?: '#fff3cd',
+    ];
+
+    // Borders
+    $borders = [
+        'border-width' => get_field('border_width', 'option') ?: '1px',
+        'border-style' => get_field('border_style', 'option') ?: 'solid',
+        'border-radius' => get_field('border_radius', 'option') ?: '0.375rem',
+        'border-radius-sm' => get_field('border_radius_sm', 'option') ?: '0.25rem',
+        'border-radius-lg' => get_field('border_radius_lg', 'option') ?: '0.5rem',
+        'border-radius-xl' => get_field('border_radius_xl', 'option') ?: '1rem',
+        'border-radius-xxl' => get_field('border_radius_xxl', 'option') ?: '2rem',
+        'border-radius-pill' => get_field('border_radius_pill', 'option') ?: '50rem',
+    ];
+
+    // Box shadows
+    $shadows = [
+        'box-shadow' => get_field('box_shadow', 'option') ?: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+        'box-shadow-sm' => get_field('box_shadow_sm', 'option') ?: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
+        'box-shadow-lg' => get_field('box_shadow_lg', 'option') ?: '0 1rem 3rem rgba(0, 0, 0, 0.175)',
+        'box-shadow-inset' => get_field('box_shadow_inset', 'option') ?: 'inset 0 1px 2px rgba(0, 0, 0, 0.075)',
+    ];
+
+    // Focus ring
+    $focus = [
+        'focus-ring-width' => get_field('focus_ring_width', 'option') ?: '0.25rem',
+        'focus-ring-opacity' => get_field('focus_ring_opacity', 'option') ?: '0.25',
+    ];
+    $focus_ring_color = get_field('focus_ring_color', 'option') ?: '#0d6efd';
+
+    // Typography
+    $font_name = get_field('google_font_name', 'option') ?: '"Open Sans", sans-serif';
+    $font_size = get_field('body_font_size', 'option') ?: '1rem';
+    $font_size_mobile = get_field('body_font_size_mobile', 'option') ?: '14px';
+    $font_weight = get_field('body_font_weight', 'option') ?: '400';
+
+    ob_start();
+    ?>
+
+    <style id="ileben-bootstrap-colors">:root {
+    <?php
+    // Colors
+    foreach ($colors as $name => $value) :
+        if ($value) :
+            ?>
+              --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+            <?php
+        endif;
+    endforeach;
+    
+    // Borders
+    foreach ($borders as $name => $value) :
+        if ($value) :
+            ?>
+              --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+            <?php
+        endif;
+    endforeach;
+    
+    // Box Shadows
+    foreach ($shadows as $name => $value) :
+        if ($value) :
+            ?>
+              --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+            <?php
+        endif;
+    endforeach;
+    
+    // Focus Ring
+    foreach ($focus as $name => $value) :
+        if ($value) :
+            ?>
+              --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+            <?php
+        endif;
+    endforeach;
+    ?>
+              --bs-focus-ring-color: <?php echo $focus_ring_color; ?>;
+    <?php
+    // Typography
+    ?>    
+    --bs-body-font-family: <?php echo $font_name; ?>;
+    --bs-body-font-size: <?php echo $font_size; ?>;
+    --bs-body-font-weight: <?php echo $font_weight; ?>;
+    @media (min-width: 768px){
+        --bs-body-font-size: <?php echo $font_size_mobile; ?>;
+    }
+    
+    }</style>
+    <?php
+    ob_end_flush();
+}, 20);

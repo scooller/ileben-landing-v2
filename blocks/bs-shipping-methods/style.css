@@ -1,0 +1,61 @@
+.bs-shipping-methods {
+    margin-bottom: 1.5rem;
+}
+
+.bs-shipping-methods .shipping-title {
+    font-weight: 600;
+    color: var(--bs-body-color);
+}
+
+.bs-shipping-methods .shipping-method-option {
+    padding: 0.75rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.bs-shipping-methods .shipping-method-option:hover {
+    background-color: var(--bs-light);
+    border-color: var(--bs-primary);
+}
+
+.bs-shipping-methods .shipping-method-option .form-check-input:checked ~ .form-check-label {
+    color: var(--bs-primary);
+}
+
+.bs-shipping-methods .shipping-method-name {
+    display: flex;
+    align-items: center;
+}
+
+.bs-shipping-methods .shipping-method-name .icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.bs-shipping-methods .shipping-method-cost {
+    color: var(--bs-success);
+    font-size: 1.1rem;
+}
+
+.bs-shipping-methods .shipping-select-wrapper .form-select {
+    padding: 0.75rem;
+    border: 1px solid var(--bs-border-color);
+}
+
+.bs-shipping-methods .shipping-select-wrapper .form-select:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Editor styles */
+.wp-block-bootstrap-theme-shipping-methods .alert-info {
+    margin: 1rem 0;
+}
+
+.wp-block-bootstrap-theme-shipping-methods .form-check-input:disabled,
+.wp-block-bootstrap-theme-shipping-methods .form-select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

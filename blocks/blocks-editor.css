@@ -1,0 +1,632 @@
+/**
+ * Bootstrap Blocks - Editor Styles
+ * Estilos específicos para el editor de Gutenberg
+ */
+
+/* Bootstrap Grid Essentials (Editor-only)
+     Nota: Gutenberg usa un iframe para el canvas. No siempre carga Bootstrap completo.
+     Estas reglas mínimas emulan el grid de Bootstrap dentro del editor para que
+     las filas/columnas se vean correctamente sin depender del CSS externo. */
+.editor-styles-wrapper .row {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: calc(-1 * var(--bs-gutter-y));
+        margin-right: calc(-0.5 * var(--bs-gutter-x));
+        margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+.editor-styles-wrapper .row > * {
+        box-sizing: border-box;
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 100%;
+        padding-right: calc(var(--bs-gutter-x) * .5);
+        padding-left: calc(var(--bs-gutter-x) * .5);
+        margin-top: var(--bs-gutter-y);
+}
+
+/* Col auto and fixed widths */
+.editor-styles-wrapper .col { flex: 1 0 0%; }
+.editor-styles-wrapper .col-auto { flex: 0 0 auto; width: auto; }
+.editor-styles-wrapper .col-1  { flex: 0 0 auto; width: 8.33333333%; }
+.editor-styles-wrapper .col-2  { flex: 0 0 auto; width: 16.66666667%; }
+.editor-styles-wrapper .col-3  { flex: 0 0 auto; width: 25%; }
+.editor-styles-wrapper .col-4  { flex: 0 0 auto; width: 33.33333333%; }
+.editor-styles-wrapper .col-5  { flex: 0 0 auto; width: 41.66666667%; }
+.editor-styles-wrapper .col-6  { flex: 0 0 auto; width: 50%; }
+.editor-styles-wrapper .col-7  { flex: 0 0 auto; width: 58.33333333%; }
+.editor-styles-wrapper .col-8  { flex: 0 0 auto; width: 66.66666667%; }
+.editor-styles-wrapper .col-9  { flex: 0 0 auto; width: 75%; }
+.editor-styles-wrapper .col-10 { flex: 0 0 auto; width: 83.33333333%; }
+.editor-styles-wrapper .col-11 { flex: 0 0 auto; width: 91.66666667%; }
+.editor-styles-wrapper .col-12 { flex: 0 0 auto; width: 100%; }
+
+/* Gutters (subset used in el bloque) */
+.editor-styles-wrapper .g-0 { --bs-gutter-x: 0; --bs-gutter-y: 0; }
+.editor-styles-wrapper .g-1 { --bs-gutter-x: .25rem; --bs-gutter-y: .25rem; }
+.editor-styles-wrapper .g-3 { --bs-gutter-x: 1rem; --bs-gutter-y: 1rem; }
+.editor-styles-wrapper .g-5 { --bs-gutter-x: 3rem; --bs-gutter-y: 3rem; }
+
+/* Offsets */
+.editor-styles-wrapper .offset-1  { margin-left: 8.33333333%; }
+.editor-styles-wrapper .offset-2  { margin-left: 16.66666667%; }
+.editor-styles-wrapper .offset-3  { margin-left: 25%; }
+.editor-styles-wrapper .offset-4  { margin-left: 33.33333333%; }
+.editor-styles-wrapper .offset-5  { margin-left: 41.66666667%; }
+.editor-styles-wrapper .offset-6  { margin-left: 50%; }
+.editor-styles-wrapper .offset-7  { margin-left: 58.33333333%; }
+.editor-styles-wrapper .offset-8  { margin-left: 66.66666667%; }
+.editor-styles-wrapper .offset-9  { margin-left: 75%; }
+.editor-styles-wrapper .offset-10 { margin-left: 83.33333333%; }
+.editor-styles-wrapper .offset-11 { margin-left: 91.66666667%; }
+
+/* Justify / Align helpers on row */
+.editor-styles-wrapper .justify-content-start   { justify-content: flex-start; }
+.editor-styles-wrapper .justify-content-center  { justify-content: center; }
+.editor-styles-wrapper .justify-content-end     { justify-content: flex-end; }
+.editor-styles-wrapper .justify-content-between { justify-content: space-between; }
+.editor-styles-wrapper .justify-content-around  { justify-content: space-around; }
+.editor-styles-wrapper .justify-content-evenly  { justify-content: space-evenly; }
+.editor-styles-wrapper .align-items-start       { align-items: flex-start; }
+.editor-styles-wrapper .align-items-center      { align-items: center; }
+.editor-styles-wrapper .align-items-end         { align-items: flex-end; }
+.editor-styles-wrapper .align-items-baseline    { align-items: baseline; }
+.editor-styles-wrapper .align-items-stretch     { align-items: stretch; }
+
+/* Breakpoints for responsive cols */
+@media (min-width: 576px) {
+    .editor-styles-wrapper .col-sm { flex: 1 0 0%; }
+    .editor-styles-wrapper .col-sm-1  { flex: 0 0 auto; width: 8.33333333%; }
+    .editor-styles-wrapper .col-sm-2  { flex: 0 0 auto; width: 16.66666667%; }
+    .editor-styles-wrapper .col-sm-3  { flex: 0 0 auto; width: 25%; }
+    .editor-styles-wrapper .col-sm-4  { flex: 0 0 auto; width: 33.33333333%; }
+    .editor-styles-wrapper .col-sm-5  { flex: 0 0 auto; width: 41.66666667%; }
+    .editor-styles-wrapper .col-sm-6  { flex: 0 0 auto; width: 50%; }
+    .editor-styles-wrapper .col-sm-7  { flex: 0 0 auto; width: 58.33333333%; }
+    .editor-styles-wrapper .col-sm-8  { flex: 0 0 auto; width: 66.66666667%; }
+    .editor-styles-wrapper .col-sm-9  { flex: 0 0 auto; width: 75%; }
+    .editor-styles-wrapper .col-sm-10 { flex: 0 0 auto; width: 83.33333333%; }
+    .editor-styles-wrapper .col-sm-11 { flex: 0 0 auto; width: 91.66666667%; }
+    .editor-styles-wrapper .col-sm-12 { flex: 0 0 auto; width: 100%; }
+}
+@media (min-width: 768px) {
+    .editor-styles-wrapper .col-md { flex: 1 0 0%; }
+    .editor-styles-wrapper .col-md-1  { flex: 0 0 auto; width: 8.33333333%; }
+    .editor-styles-wrapper .col-md-2  { flex: 0 0 auto; width: 16.66666667%; }
+    .editor-styles-wrapper .col-md-3  { flex: 0 0 auto; width: 25%; }
+    .editor-styles-wrapper .col-md-4  { flex: 0 0 auto; width: 33.33333333%; }
+    .editor-styles-wrapper .col-md-5  { flex: 0 0 auto; width: 41.66666667%; }
+    .editor-styles-wrapper .col-md-6  { flex: 0 0 auto; width: 50%; }
+    .editor-styles-wrapper .col-md-7  { flex: 0 0 auto; width: 58.33333333%; }
+    .editor-styles-wrapper .col-md-8  { flex: 0 0 auto; width: 66.66666667%; }
+    .editor-styles-wrapper .col-md-9  { flex: 0 0 auto; width: 75%; }
+    .editor-styles-wrapper .col-md-10 { flex: 0 0 auto; width: 83.33333333%; }
+    .editor-styles-wrapper .col-md-11 { flex: 0 0 auto; width: 91.66666667%; }
+    .editor-styles-wrapper .col-md-12 { flex: 0 0 auto; width: 100%; }
+}
+@media (min-width: 992px) {
+    .editor-styles-wrapper .col-lg { flex: 1 0 0%; }
+    .editor-styles-wrapper .col-lg-1  { flex: 0 0 auto; width: 8.33333333%; }
+    .editor-styles-wrapper .col-lg-2  { flex: 0 0 auto; width: 16.66666667%; }
+    .editor-styles-wrapper .col-lg-3  { flex: 0 0 auto; width: 25%; }
+    .editor-styles-wrapper .col-lg-4  { flex: 0 0 auto; width: 33.33333333%; }
+    .editor-styles-wrapper .col-lg-5  { flex: 0 0 auto; width: 41.66666667%; }
+    .editor-styles-wrapper .col-lg-6  { flex: 0 0 auto; width: 50%; }
+    .editor-styles-wrapper .col-lg-7  { flex: 0 0 auto; width: 58.33333333%; }
+    .editor-styles-wrapper .col-lg-8  { flex: 0 0 auto; width: 66.66666667%; }
+    .editor-styles-wrapper .col-lg-9  { flex: 0 0 auto; width: 75%; }
+    .editor-styles-wrapper .col-lg-10 { flex: 0 0 auto; width: 83.33333333%; }
+    .editor-styles-wrapper .col-lg-11 { flex: 0 0 auto; width: 91.66666667%; }
+    .editor-styles-wrapper .col-lg-12 { flex: 0 0 auto; width: 100%; }
+}
+@media (min-width: 1200px) {
+    .editor-styles-wrapper .col-xl { flex: 1 0 0%; }
+    .editor-styles-wrapper .col-xl-1  { flex: 0 0 auto; width: 8.33333333%; }
+    .editor-styles-wrapper .col-xl-2  { flex: 0 0 auto; width: 16.66666667%; }
+    .editor-styles-wrapper .col-xl-3  { flex: 0 0 auto; width: 25%; }
+    .editor-styles-wrapper .col-xl-4  { flex: 0 0 auto; width: 33.33333333%; }
+    .editor-styles-wrapper .col-xl-5  { flex: 0 0 auto; width: 41.66666667%; }
+    .editor-styles-wrapper .col-xl-6  { flex: 0 0 auto; width: 50%; }
+    .editor-styles-wrapper .col-xl-7  { flex: 0 0 auto; width: 58.33333333%; }
+    .editor-styles-wrapper .col-xl-8  { flex: 0 0 auto; width: 66.66666667%; }
+    .editor-styles-wrapper .col-xl-9  { flex: 0 0 auto; width: 75%; }
+    .editor-styles-wrapper .col-xl-10 { flex: 0 0 auto; width: 83.33333333%; }
+    .editor-styles-wrapper .col-xl-11 { flex: 0 0 auto; width: 91.66666667%; }
+    .editor-styles-wrapper .col-xl-12 { flex: 0 0 auto; width: 100%; }
+}
+@media (min-width: 1400px) {
+    .editor-styles-wrapper .col-xxl { flex: 1 0 0%; }
+    .editor-styles-wrapper .col-xxl-1  { flex: 0 0 auto; width: 8.33333333%; }
+    .editor-styles-wrapper .col-xxl-2  { flex: 0 0 auto; width: 16.66666667%; }
+    .editor-styles-wrapper .col-xxl-3  { flex: 0 0 auto; width: 25%; }
+    .editor-styles-wrapper .col-xxl-4  { flex: 0 0 auto; width: 33.33333333%; }
+    .editor-styles-wrapper .col-xxl-5  { flex: 0 0 auto; width: 41.66666667%; }
+    .editor-styles-wrapper .col-xxl-6  { flex: 0 0 auto; width: 50%; }
+    .editor-styles-wrapper .col-xxl-7  { flex: 0 0 auto; width: 58.33333333%; }
+    .editor-styles-wrapper .col-xxl-8  { flex: 0 0 auto; width: 66.66666667%; }
+    .editor-styles-wrapper .col-xxl-9  { flex: 0 0 auto; width: 75%; }
+    .editor-styles-wrapper .col-xxl-10 { flex: 0 0 auto; width: 83.33333333%; }
+    .editor-styles-wrapper .col-xxl-11 { flex: 0 0 auto; width: 91.66666667%; }
+    .editor-styles-wrapper .col-xxl-12 { flex: 0 0 auto; width: 100%; }
+}
+
+/* Categoría de bloques Bootstrap */
+.block-editor-block-types-list .editor-block-list-item-bootstrap-blocks {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+/* Estilos del editor para contenedores */
+.wp-block-bootstrap-theme-bs-container {
+    border: 2px dashed #6c757d;
+    padding: 20px;
+    margin: 10px 0;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.wp-block-bootstrap-theme-bs-container::before {
+    content: "Bootstrap Container";
+    font-size: 12px;
+    color: #6c757d;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Estilos del editor para filas */
+.wp-block-bootstrap-theme-bs-row {
+    border: 1px dashed #198754;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: rgba(25, 135, 84, 0.05);
+}
+
+.wp-block-bootstrap-theme-bs-row::before {
+    content: "Bootstrap Row";
+    font-size: 11px;
+    color: #198754;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* Estilos del editor para columnas */
+.wp-block-bootstrap-theme-bs-column {
+    border: 1px solid #ffc107;
+    padding: 15px;
+    margin: 5px;
+    background-color: rgba(255, 193, 7, 0.1);
+    min-height: 60px;
+}
+
+.wp-block-bootstrap-theme-bs-column::before {
+    content: "Bootstrap Column";
+    font-size: 10px;
+    color: #856404;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* Estilos del editor para cards */
+.wp-block-bootstrap-theme-bs-card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    margin: 15px 0;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.wp-block-bootstrap-theme-bs-card .card-body {
+    padding: 1rem;
+}
+
+.wp-block-bootstrap-theme-bs-card .card-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.wp-block-bootstrap-theme-bs-card .card-subtitle {
+    margin-bottom: 0.5rem;
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* Estilos del editor para botones */
+.wp-block-bootstrap-theme-bs-button {
+    margin: 10px 0;
+}
+
+.wp-block-bootstrap-theme-bs-button .btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.375rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Variantes de botones en el editor */
+.wp-block-bootstrap-theme-bs-button .btn-primary {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.wp-block-bootstrap-theme-bs-button .btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.wp-block-bootstrap-theme-bs-button .btn-success {
+    color: #fff;
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.wp-block-bootstrap-theme-bs-button .btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.wp-block-bootstrap-theme-bs-button .btn-warning {
+    color: #000;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+/* Estilos outline para botones */
+.wp-block-bootstrap-theme-bs-button .btn-outline-primary {
+    color: #0d6efd;
+    border-color: #0d6efd;
+    background-color: transparent;
+}
+
+.wp-block-bootstrap-theme-bs-button .btn-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+    background-color: transparent;
+}
+
+/* Panel del inspector */
+.components-panel__body .components-base-control {
+    margin-bottom: 16px;
+}
+
+.components-panel__body .components-base-control__label {
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #1e1e1e;
+}
+
+/* Indicadores visuales para bloques anidados */
+.wp-block-bootstrap-theme-bs-container .wp-block-bootstrap-theme-bs-row {
+    border-color: #28a745;
+}
+
+.wp-block-bootstrap-theme-bs-row .wp-block-bootstrap-theme-bs-column {
+    border-color: #fd7e14;
+}
+
+/* Placeholder text styling */
+.block-editor-default-block-appender textarea.block-editor-default-block-appender__content {
+    font-style: italic;
+    color: #757575;
+}
+
+/* Responsive indicators */
+@media (max-width: 768px) {
+    .wp-block-bootstrap-theme-bs-container::after {
+        content: " (Mobile View)";
+        font-size: 10px;
+        color: #dc3545;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .wp-block-bootstrap-theme-bs-container::after {
+        content: " (Tablet View)";
+        font-size: 10px;
+        color: #ffc107;
+    }
+}
+
+/* Bootstrap Alert Block */
+.wp-block-bootstrap-theme-bs-alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+}
+
+.wp-block-bootstrap-theme-bs-alert .alert-heading {
+    color: inherit;
+    margin-bottom: 0.5rem;
+}
+
+.wp-block-bootstrap-theme-bs-alert .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0.9375rem 1.25rem;
+    pointer-events: none; /* Prevent clicks in editor */
+}
+
+/* Alert variants */
+.wp-block-bootstrap-theme-bs-alert.alert-primary {
+    color: #084298;
+    background-color: #cfe2ff;
+    border-color: #b6d4fe;
+}
+
+.wp-block-bootstrap-theme-bs-alert.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+
+.wp-block-bootstrap-theme-bs-alert.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+.wp-block-bootstrap-theme-bs-alert.alert-warning {
+    color: #664d03;
+    background-color: #fff3cd;
+    border-color: #ffecb5;
+}
+
+/* Bootstrap Badge Block */
+.wp-block-bootstrap-theme-bs-badge {
+    display: inline-block;
+    margin: 5px 0;
+}
+
+.wp-block-bootstrap-theme-bs-badge .badge {
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.375rem;
+}
+
+.wp-block-bootstrap-theme-bs-badge .badge.rounded-pill {
+    border-radius: 10rem;
+}
+
+/* Badge variants */
+.wp-block-bootstrap-theme-bs-badge .bg-primary {
+    background-color: #0d6efd !important;
+}
+
+.wp-block-bootstrap-theme-bs-badge .bg-success {
+    background-color: #198754 !important;
+}
+
+.wp-block-bootstrap-theme-bs-badge .bg-danger {
+    background-color: #dc3545 !important;
+}
+
+/* Bootstrap Accordion Block */
+.wp-block-bootstrap-theme-bs-accordion {
+    margin: 1rem 0;
+}
+
+.wp-block-bootstrap-theme-bs-accordion .accordion-item {
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+    margin-bottom: 5px;
+}
+
+.wp-block-bootstrap-theme-bs-accordion .accordion-header {
+    margin-bottom: 0;
+}
+
+.wp-block-bootstrap-theme-bs-accordion .accordion-collapse {
+    background: #f8f9fa;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+
+.wp-block-bootstrap-theme-bs-accordion .accordion-body {
+    padding: 1rem 1.25rem;
+}
+
+/* Bootstrap Breadcrumb Block */
+.wp-block-bootstrap-theme-bs-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #e9ecef;
+    border-radius: 0.375rem;
+}
+
+.wp-block-bootstrap-theme-bs-breadcrumb .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    border: 1px dashed #ccc;
+    margin: 2px;
+    background: #fff;
+}
+
+.wp-block-bootstrap-theme-bs-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    color: #6c757d;
+    margin: 0 0.5rem;
+}
+
+/* Bootstrap Carousel Block */
+.wp-block-bootstrap-theme-bs-carousel {
+    position: relative;
+    margin: 1rem 0;
+}
+
+.wp-block-bootstrap-theme-bs-carousel .carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.wp-block-bootstrap-theme-bs-carousel .carousel-item {
+    position: relative;
+    display: none;
+    float: left;
+    width: 100%;
+    margin-right: -100%;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease-in-out;
+}
+
+.wp-block-bootstrap-theme-bs-carousel .carousel-item.active {
+    display: block;
+}
+
+.wp-block-bootstrap-theme-bs-carousel .carousel-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    color: #6c757d;
+}
+
+/* Bootstrap List Group Block */
+.wp-block-bootstrap-theme-bs-list-group {
+    margin: 1rem 0;
+}
+
+.wp-block-bootstrap-theme-bs-list-group .list-group {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    border-radius: 0.375rem;
+}
+
+.wp-block-bootstrap-theme-bs-list-group .list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+/* Bootstrap Progress Block */
+.wp-block-bootstrap-theme-bs-progress {
+    margin: 1rem 0;
+}
+
+.wp-block-bootstrap-theme-bs-progress .progress {
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    font-size: 0.75rem;
+    background-color: #e9ecef;
+    border-radius: 0.375rem;
+}
+
+.wp-block-bootstrap-theme-bs-progress .progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #0d6efd;
+    transition: width 0.6s ease;
+}
+
+/* Bootstrap Spinner Block */
+.wp-block-bootstrap-theme-bs-spinner {
+    margin: 1rem 0;
+}
+
+.wp-block-bootstrap-theme-bs-spinner .spinner-border,
+.wp-block-bootstrap-theme-bs-spinner .spinner-grow {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: -0.125em;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+}
+
+.wp-block-bootstrap-theme-bs-spinner .spinner-grow {
+    background-color: currentColor;
+    border: 0;
+    opacity: 0;
+    animation: spinner-grow 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes spinner-grow {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Make InnerBlocks wrappers transparent to layout inside Row so columns become direct flex items */
+.editor-styles-wrapper .wp-block-bootstrap-theme-bs-row > .block-editor-inner-blocks,
+.editor-styles-wrapper .wp-block-bootstrap-theme-bs-row > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    display: contents;
+}
+
+/* Also flatten each child BlockListBlock wrapper inside the Row so cols act as flex items */
+.editor-styles-wrapper .wp-block-bootstrap-theme-bs-row .block-editor-block-list__layout > .block-editor-block-list__block {
+    display: contents;
+}
+
+/* Recursively flatten Gutenberg wrappers under Row except the actual .col elements */
+.editor-styles-wrapper .wp-block-bootstrap-theme-bs-row .block-editor-block-list__block:not(.col) {
+    display: contents;
+}
+
+/* Ensure direct children that are columns receive grid item padding */
+.editor-styles-wrapper .wp-block-bootstrap-theme-bs-row > .col,
+.editor-styles-wrapper .wp-block-bootstrap-theme-bs-row > [class*="col-"] {
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+}
