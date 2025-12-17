@@ -62,7 +62,7 @@ function bootstrap_theme_block_editor_assets() {
         'bs-carousel-item', 'bs-column', 'bs-container', 'bs-dropdown', 'bs-dropdown-divider',
         'bs-dropdown-item', 'bs-list-group', 'bs-list-group-item', 'bs-menu', 'bs-modal', 
         'bs-offcanvas', 'bs-pagination', 'bs-pagination-item', 'bs-progress', 'bs-row', 
-        'bs-spinner', 'bs-tab-pane', 'bs-tabs', 'bs-toast'
+        'bs-spinner', 'bs-tab-pane', 'bs-tabs', 'bs-toast', 'bs-iframe', 'bs-plantas-slider'
     ];
     
     // Add WooCommerce blocks only if WooCommerce is active
@@ -76,13 +76,36 @@ function bootstrap_theme_block_editor_assets() {
     foreach ($blocks_with_editors as $block_name) {
         $editor_file = get_template_directory() . "/blocks/{$block_name}/editor.js";
         if (file_exists($editor_file)) {
+            $handle = "bootstrap-theme-{$block_name}-editor";
             wp_enqueue_script(
-                "bootstrap-theme-{$block_name}-editor",
+                $handle,
                 get_template_directory_uri() . "/blocks/{$block_name}/editor.js",
                 array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data'),
                 ILEBEN_THEME_VERSION,
                 true
             );
+
+            // Pass options for plantas slider (dormitorios/banos) to the editor script
+            if ($block_name === 'bs-plantas-slider' && function_exists('get_field')) {
+                $build_choices = function($field_name) {
+                    $choices = [];
+                    $rows = get_field($field_name, 'option');
+                    if (is_array($rows)) {
+                        foreach ($rows as $row) {
+                            $active = !empty($row['activo']);
+                            $text = isset($row['texto']) ? trim(wp_strip_all_tags($row['texto'])) : '';
+                            if ($active && $text !== '') {
+                                $choices[] = $text;
+                            }
+                        }
+                    }
+                    return $choices;
+                };
+                wp_add_inline_script($handle, 'window.BOOTSTRAP_THEME_PLANTAS_OPTIONS = ' . wp_json_encode([
+                    'dorms' => $build_choices('dormitorios'),
+                    'banos' => $build_choices('banos'),
+                ]) . ';', 'before');
+            }
         }
     }
 

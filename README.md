@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.2  
+**Versión:** 0.1.3  
 **Compatibilidad:** PHP 8.2+, WordPress 6.0+, ACF Pro
 
 ---
@@ -15,6 +15,7 @@ Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing
 - **GSAP** – Animaciones suaves y de alto rendimiento
 - **Swiper.js** – Carouseles y sliders responsive
 - **Fancybox** – Galerías de imágenes elegantes con modal lightbox
+- **Bloque bs-plantas-slider** – Slider con filtros en cliente (dormitorios/baños), Fancybox, navegación, paginación múltiple y efectos Swiper
 - **Preloader** – Cargador de sitio visible antes del renderizado inicial
 - **Lazy Loading** – Carga perezosa de imágenes con IntersectionObserver fallback
 - **Iframe Facade** – Click-to-load para iframes con Bootstrap Placeholders (sin imágenes)
@@ -125,6 +126,9 @@ npm run build
 
 # Preview de build local
 npm run preview
+
+# Estilos del editor (Gutenberg)
+npm run build:back-css
 ```
 
 ---
@@ -182,6 +186,29 @@ Notas:
 
 ### Google Fonts
 
+---
+
+## 🔧 Shortcodes disponibles
+
+Usa los helpers directamente en el editor clásico o bloques de shortcode.
+
+- lazyload de imagen:
+
+```
+[lazy_image id="123" size="large" class="img-fluid" alt="Texto alternativo" loading="lazy"]
+```
+
+- Facade de iframe (YouTube/Vimeo u otros `embed_url`):
+
+```
+[iframe_facade embed_url="https://www.youtube.com/embed/VIDEO_ID" button_label="Reproducir" title="Video" ratio="16x9"]
+```
+
+Notas:
+- `id` debe ser el ID de adjunto de la imagen en WordPress.
+- Los atributos `class`, `alt`, `width`, `height`, `loading` son opcionales.
+- `ratio` se mapea a utilidades Bootstrap (ej: 16x9, 4x3, 1x1).
+
 Configura la fuente en ACF Opciones con el valor por defecto:
 ```
 Open Sans:wght@400;600;700
@@ -233,28 +260,20 @@ Se renderiza automáticamente en `front-page.php`. El loader se oculta cuando la
 ---
 
 ## ⚡ Optimizaciones de rendimiento
-
 - **Preloader visible** – Mejora la percepción de velocidad
 - **Lazy loading nativo** – `loading="lazy"` en imágenes + IntersectionObserver fallback
-- **Fachadas de iframe** – Solo se cargan iframes cuando el usuario interactúa
 - **Bundle optimizado** – Vite genera chunks con hashing automático
 - **CSS variables** – Theming instantáneo sin recompilar Sass
 - **Animaciones GSAP** – GPU-aceleradas para mejor rendimiento
-
 ---
 
 ## 🔗 ACF Pro Integration
+ Loader (preloader del sitio):
 
 Campos gestionados vía JSON en `acf-json/` y consumidos con `get_field('...', 'option')`.
 
 ### Group: Opciones de Tema
-- Tipografía: familia (`google_font_name`), tamaño (`body_font_size`, `body_font_size_mobile`), peso (`body_font_weight`)
-- Colores y Extras BS: tabs internos para colores, grises, temáticos, sistema, bordes/radios, sombras y focus-ring
-- Social y generales: contactos/redes, analytics y ajustes varios
-
 ---
-
-## 🐛 Soporte y Desarrollo
 
 El tema está listo para:
 - Extender con nuevas secciones

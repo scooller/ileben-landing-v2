@@ -7,6 +7,40 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+function ileben_hex_to_rgb($hex)
+{
+    $hex = ltrim($hex, '#');
+    if (strlen($hex) === 3) {
+        $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+    }
+    $int = hexdec($hex);
+    return [
+        ($int >> 16) & 255,
+        ($int >> 8) & 255,
+        $int & 255,
+    ];
+}
+
+function ileben_adjust_color($hex, $factor)
+{
+    [$r, $g, $b] = ileben_hex_to_rgb($hex);
+    $adj = function ($c) use ($factor) {
+        $v = (int) round($c * $factor);
+        return max(0, min(255, $v));
+    };
+    return sprintf('#%02x%02x%02x', $adj($r), $adj($g), $adj($b));
+}
+
+function ileben_rgb_string($hex, $factor = 1.0)
+{
+    [$r, $g, $b] = ileben_hex_to_rgb($hex);
+    $adj = function ($c) use ($factor) {
+        $v = (int) round($c * $factor);
+        return max(0, min(255, $v));
+    };
+    return $adj($r) . ', ' . $adj($g) . ', ' . $adj($b);
+}
+
 function ileben_find_asset($pattern)
 {
     $dist_path = ILEBEN_THEME_DIR . '/dist/assets/';
@@ -90,71 +124,89 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 /**
- * Inject Bootstrap CSS variables from ACF options
+ * Enqueue Block Editor Styles (Gutenberg)
  */
-add_action('wp_head', function () {
+add_action('enqueue_block_editor_assets', function () {
+    $editor_css = ILEBEN_THEME_URI . '/dist/assets/editor.css';
+    if (file_exists(ILEBEN_THEME_DIR . '/dist/assets/editor.css')) {
+        wp_enqueue_style('ileben-editor-styles', $editor_css, ['wp-edit-blocks'], ILEBEN_THEME_VERSION);
+    }
+});
+
+/**
+ * Inject Bootstrap CSS variables from ACF options as inline style (head)
+ */
+add_action('wp_enqueue_scripts', function () {
     if (!function_exists('get_field')) {
         return;
     }
 
     $colors = [
         // Base colors
-        'blue' => get_field('color_blue', 'option') ?: '#0d6efd',
-        'indigo' => get_field('color_indigo', 'option') ?: '#6610f2',
-        'purple' => get_field('color_purple', 'option') ?: '#6f42c1',
-        'pink' => get_field('color_pink', 'option') ?: '#d63384',
-        'red' => get_field('color_red', 'option') ?: '#dc3545',
-        'orange' => get_field('color_orange', 'option') ?: '#fd7e14',
-        'yellow' => get_field('color_yellow', 'option') ?: '#ffc107',
-        'green' => get_field('color_green', 'option') ?: '#198754',
-        'teal' => get_field('color_teal', 'option') ?: '#20c997',
-        'cyan' => get_field('color_cyan', 'option') ?: '#0dcaf0',
-        'black' => get_field('color_black', 'option') ?: '#000',
-        'white' => get_field('color_white', 'option') ?: '#fff',
-        'gray' => get_field('color_gray', 'option') ?: '#6c757d',
-        'gray-dark' => get_field('color_gray_dark', 'option') ?: '#343a40',
-        
+        'base' => [
+            'blue' => get_field('color_blue', 'option') ?: '#0d6efd',
+            'indigo' => get_field('color_indigo', 'option') ?: '#6610f2',
+            'purple' => get_field('color_purple', 'option') ?: '#6f42c1',
+            'pink' => get_field('color_pink', 'option') ?: '#d63384',
+            'red' => get_field('color_red', 'option') ?: '#dc3545',
+            'orange' => get_field('color_orange', 'option') ?: '#fd7e14',
+            'yellow' => get_field('color_yellow', 'option') ?: '#ffc107',
+            'green' => get_field('color_green', 'option') ?: '#198754',
+            'teal' => get_field('color_teal', 'option') ?: '#20c997',
+            'cyan' => get_field('color_cyan', 'option') ?: '#0dcaf0',
+            'black' => get_field('color_black', 'option') ?: '#000',
+            'white' => get_field('color_white', 'option') ?: '#fff',
+            'gray' => get_field('color_gray', 'option') ?: '#6c757d',
+            'gray-dark' => get_field('color_gray_dark', 'option') ?: '#343a40',
+        ],
         // Gray scale
-        'gray-100' => get_field('color_gray_100', 'option') ?: '#f8f9fa',
-        'gray-200' => get_field('color_gray_200', 'option') ?: '#e9ecef',
-        'gray-300' => get_field('color_gray_300', 'option') ?: '#dee2e6',
-        'gray-400' => get_field('color_gray_400', 'option') ?: '#ced4da',
-        'gray-500' => get_field('color_gray_500', 'option') ?: '#adb5bd',
-        'gray-600' => get_field('color_gray_600', 'option') ?: '#6c757d',
-        'gray-700' => get_field('color_gray_700', 'option') ?: '#495057',
-        'gray-800' => get_field('color_gray_800', 'option') ?: '#343a40',
-        'gray-900' => get_field('color_gray_900', 'option') ?: '#212529',
-        
+        'gray-scale' => [
+            'gray-100' => get_field('color_gray_100', 'option') ?: '#f8f9fa',
+            'gray-200' => get_field('color_gray_200', 'option') ?: '#e9ecef',
+            'gray-300' => get_field('color_gray_300', 'option') ?: '#dee2e6',
+            'gray-400' => get_field('color_gray_400', 'option') ?: '#ced4da',
+            'gray-500' => get_field('color_gray_500', 'option') ?: '#adb5bd',
+            'gray-600' => get_field('color_gray_600', 'option') ?: '#6c757d',
+            'gray-700' => get_field('color_gray_700', 'option') ?: '#495057',
+            'gray-800' => get_field('color_gray_800', 'option') ?: '#343a40',
+            'gray-900' => get_field('color_gray_900', 'option') ?: '#212529',
+        ],
         // Theme colors
-        'primary' => get_field('color_primary', 'option') ?: '#0d6efd',
-        'secondary' => get_field('color_secondary', 'option') ?: '#6c757d',
-        'success' => get_field('color_success', 'option') ?: '#198754',
-        'info' => get_field('color_info', 'option') ?: '#0dcaf0',
-        'warning' => get_field('color_warning', 'option') ?: '#ffc107',
-        'danger' => get_field('color_danger', 'option') ?: '#dc3545',
-        'light' => get_field('color_light', 'option') ?: '#f8f9fa',
-        'dark' => get_field('color_dark', 'option') ?: '#212529',
-        
+        'theme-colors' => [
+            'primary' => get_field('color_primary', 'option') ?: '#0d6efd',
+            'secondary' => get_field('color_secondary', 'option') ?: '#6c757d',
+            'success' => get_field('color_success', 'option') ?: '#198754',
+            'info' => get_field('color_info', 'option') ?: '#0dcaf0',
+            'warning' => get_field('color_warning', 'option') ?: '#ffc107',
+            'danger' => get_field('color_danger', 'option') ?: '#dc3545',
+            'light' => get_field('color_light', 'option') ?: '#f8f9fa',
+            'dark' => get_field('color_dark', 'option') ?: '#212529',
+        ],
         // Body colors
-        'body-color' => get_field('color_body', 'option') ?: '#212529',
-        'body-bg' => get_field('color_body_bg', 'option') ?: '#fff',
-        
+        'body-colors' => [
+            'body-color' => get_field('color_body', 'option') ?: '#212529',
+            'body-bg' => get_field('color_body_bg', 'option') ?: '#fff',
+        ],
         // Link colors
-        'link-color' => get_field('color_link', 'option') ?: '#0d6efd',
-        'link-hover-color' => get_field('color_link_hover', 'option') ?: '#0a58ca',
-        
+        'link-colors' => [
+            'link-color' => get_field('color_link', 'option') ?: '#0d6efd',
+            'link-hover-color' => get_field('color_link_hover', 'option') ?: '#0a58ca',
+        ],
         // Border
-        'border-color' => get_field('color_border', 'option') ?: '#dee2e6',
-        
+        'border' => [
+            'border-color' => get_field('color_border', 'option') ?: '#dee2e6',
+        ],
         // System colors
-        'emphasis-color' => get_field('color_emphasis', 'option') ?: '#000',
-        'secondary-color' => get_field('color_secondary_color', 'option') ?: '#212529',
-        'secondary-bg' => get_field('color_secondary_bg', 'option') ?: '#e9ecef',
-        'tertiary-color' => get_field('color_tertiary_color', 'option') ?: '#212529',
-        'tertiary-bg' => get_field('color_tertiary_bg', 'option') ?: '#f8f9fa',
-        'code-color' => get_field('color_code', 'option') ?: '#d63384',
-        'highlight-color' => get_field('color_highlight', 'option') ?: '#212529',
-        'highlight-bg' => get_field('color_highlight_bg', 'option') ?: '#fff3cd',
+        'system-colors' => [
+            'emphasis-color' => get_field('color_emphasis', 'option') ?: '#000',
+            'secondary-color' => get_field('color_secondary_color', 'option') ?: '#212529',
+            'secondary-bg' => get_field('color_secondary_bg', 'option') ?: '#e9ecef',
+            'tertiary-color' => get_field('color_tertiary_color', 'option') ?: '#212529',
+            'tertiary-bg' => get_field('color_tertiary_bg', 'option') ?: '#f8f9fa',
+            'code-color' => get_field('color_code', 'option') ?: '#d63384',
+            'highlight-color' => get_field('color_highlight', 'option') ?: '#212529',
+            'highlight-bg' => get_field('color_highlight_bg', 'option') ?: '#fff3cd',
+        ],
     ];
 
     // Borders
@@ -190,59 +242,76 @@ add_action('wp_head', function () {
     $font_size_mobile = get_field('body_font_size_mobile', 'option') ?: '14px';
     $font_weight = get_field('body_font_weight', 'option') ?: '400';
 
+    // Build CSS with output buffering, then attach inline for deterministic order
     ob_start();
     ?>
-
-    <style id="ileben-bootstrap-colors">:root {
-    <?php
+:root {
+<?php
     // Colors
-    foreach ($colors as $name => $value) :
-        if ($value) :
-            ?>
-              --bs-<?php echo $name; ?>: <?php echo $value; ?>;
-            <?php
-        endif;
+    foreach ($colors as $category => $colorGroup) :
+        foreach ($colorGroup as $name => $value) :
+            if ($value) :
+                ?>  --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+<?php       endif;
+        endforeach;
     endforeach;
-    
     // Borders
     foreach ($borders as $name => $value) :
         if ($value) :
-            ?>
-              --bs-<?php echo $name; ?>: <?php echo $value; ?>;
-            <?php
-        endif;
+            ?>  --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+<?php   endif;
     endforeach;
-    
     // Box Shadows
     foreach ($shadows as $name => $value) :
         if ($value) :
-            ?>
-              --bs-<?php echo $name; ?>: <?php echo $value; ?>;
-            <?php
-        endif;
+            ?>  --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+<?php   endif;
     endforeach;
-    
     // Focus Ring
     foreach ($focus as $name => $value) :
         if ($value) :
-            ?>
-              --bs-<?php echo $name; ?>: <?php echo $value; ?>;
-            <?php
-        endif;
+            ?>  --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+<?php   endif;
     endforeach;
-    ?>
-              --bs-focus-ring-color: <?php echo $focus_ring_color; ?>;
-    <?php
-    // Typography
-    ?>    
-    --bs-body-font-family: <?php echo $font_name; ?>;
-    --bs-body-font-size: <?php echo $font_size; ?>;
-    --bs-body-font-weight: <?php echo $font_weight; ?>;
-    @media (min-width: 768px){
-        --bs-body-font-size: <?php echo $font_size_mobile; ?>;
-    }
-    
-    }</style>
-    <?php
-    ob_end_flush();
+?>  --bs-focus-ring-color: <?php echo $focus_ring_color; ?>;
+  --bs-body-font-family: <?php echo $font_name; ?>;
+  --bs-body-font-size: <?php echo $font_size; ?>;
+  --bs-body-font-weight: <?php echo $font_weight; ?>;
+  --swiper-theme-color: var(--bs-primary);
+  --swiper-pagination-bullet-border-radius: var(--bs-border-radius-pill);
+  --swiper-pagination-bullet-opacity: 1;
+  --swiper-pagination-bullet-inactive-opacity: var(--bs-secondary-opacity);
+}
+<?php
+// Btns colors
+        foreach ($colors['theme-colors'] as $theme => $value) :
+                $base = $value ?: '#0d6efd';
+                $hover_bg = ileben_adjust_color($base, 0.93);
+                $hover_border = ileben_adjust_color($base, 0.9);
+                $active_bg = ileben_adjust_color($base, 0.9);
+                $active_border = ileben_adjust_color($base, 0.87);
+                $focus_rgb = ileben_rgb_string($base, 1.3);
+                ?>
+.btn-<?php echo $theme; ?> {
+    --bs-btn-bg: <?php echo $base; ?>;
+    --bs-btn-border-color: <?php echo $base; ?>;
+    --bs-btn-hover-bg: <?php echo $hover_bg; ?>;
+    --bs-btn-hover-border-color: <?php echo $hover_border; ?>;
+    --bs-btn-focus-shadow-rgb: <?php echo $focus_rgb; ?>;
+    --bs-btn-active-bg: <?php echo $active_bg; ?>;
+    --bs-btn-active-border-color: <?php echo $active_border; ?>;
+    --bs-btn-disabled-bg: <?php echo $base; ?>;
+    --bs-btn-disabled-border-color: <?php echo $base; ?>;
+}
+<?php
+        endforeach;
+?>
+/* Dark mode support */
+[data-bs-theme=dark]{--bs-body-color:var(--bs-white);--bs-body-color-rgb:var(--bs-light-rgb);--bs-body-bg:var(--bs-dark);--bs-body-bg-rgb:var(--bs-dark-rgb);}
+[data-bs-theme=light]{--bs-body-color:var(--bs-black);--bs-body-color-rgb:var(--bs-dark-rgb);--bs-body-bg:var(--bs-light);--bs-body-bg-rgb:var(--bs-light-rgb);}
+@media (min-width:768px){--bs-body-font-size: <?php echo $font_size_mobile; ?>;}
+<?php
+    $css = ob_get_clean();
+    wp_add_inline_style('ileben-theme-style', $css);
 }, 20);
+

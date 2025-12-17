@@ -15,7 +15,10 @@
         icon: 'editor-table',
         category: 'ileben-landing',
         keywords: [__('container'), __('bootstrap'), __('layout')],
-        
+        supports: {
+            html: false,
+            anchor: true
+        },
         attributes: {
             type: {
                 type: 'string',

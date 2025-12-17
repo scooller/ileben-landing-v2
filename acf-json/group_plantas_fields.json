@@ -1,0 +1,95 @@
+{
+	"key": "group_plantas_fields",
+	"title": "Plantas - Campos",
+	"fields": [
+		{
+			"key": "field_cotizador_activo",
+			"label": "Cotizador activo",
+			"name": "cotizador_activo",
+			"type": "true_false",
+			"instructions": "Define si el botón de cotizador está activo.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {"width": "25","class": "","id": ""},
+			"message": "Activo",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "Activo",
+			"ui_off_text": "Desactivado"
+		},
+		{
+			"key": "field_link_cotizador",
+			"label": "Link Cotizador",
+			"name": "link_cotizador",
+			"type": "url",
+			"instructions": "URL del cotizador externo.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "75",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "https://...",
+			"maxlength": "",
+			"readonly": 0,
+			"disabled": 0
+		},
+		{
+			"key": "field_planta_dormitorio",
+			"label": "Dormitorios",
+			"name": "planta_dormitorio",
+			"type": "select",
+			"instructions": "Selecciona la cantidad de dormitorios (configurado en Opciones de Tema → Otros).",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {"width": "50","class": "","id": ""},
+			"choices": {},
+			"default_value": "",
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 2,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": "Selecciona dormitorios"
+		},
+		{
+			"key": "field_planta_bano",
+			"label": "Baños",
+			"name": "planta_bano",
+			"type": "select",
+			"instructions": "Selecciona la cantidad de baños (configurado en Opciones de Tema → Otros).",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {"width": "50","class": "","id": ""},
+			"choices": {},
+			"default_value": "",
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 2,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": "Selecciona baños"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "plantas"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": true,
+	"description": "Campos personalizados para el CPT Plantas.",
+	"show_in_rest": 1,
+	"modified": 1765843200
+}

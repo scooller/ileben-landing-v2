@@ -1,4 +1,5 @@
 import Swiper from 'swiper';
+import { Navigation, Pagination, Scrollbar, EffectFade, EffectCube, EffectCoverflow, EffectFlip, EffectCards } from 'swiper/modules';
 
 function ensureSwiperStructure(container) {
   // Ensure wrapper exists
@@ -28,6 +29,14 @@ export function initSliders() {
 
   const sliders = document.querySelectorAll('.js-swiper');
   sliders.forEach((container) => {
+    // Skip plantas sliders (they're handled by initPlantasSlider)
+    let parent = container.parentElement;
+    while (parent) {
+      if (parent.querySelector('.bs-plantas-filters')) {
+        return; // Skip this container
+      }
+      parent = parent.parentElement;
+    }
     ensureSwiperStructure(container);
 
     const ds = container.dataset;
@@ -56,6 +65,7 @@ export function initSliders() {
     } : false;
 
     const config = {
+      modules: [Navigation, Pagination, Scrollbar, EffectFade, EffectCube, EffectCoverflow, EffectFlip, EffectCards],
       slidesPerView: (readNum(ds.swiperSlides) ?? Number(globals.slidesPerView)) || 1.1,
       spaceBetween: (readNum(ds.swiperSpace) ?? Number(globals.spaceBetween)) || 16,
       loop: (readBool(ds.swiperLoop) ?? !!globals.loop),

@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ILEBEN_THEME_VERSION', '0.1.0');
+define('ILEBEN_THEME_VERSION', '0.1.3');
 define('ILEBEN_THEME_DIR', get_template_directory());
 define('ILEBEN_THEME_URI', get_template_directory_uri());
 
@@ -20,7 +20,10 @@ $theme_includes = [
     '/inc/setup.php',
     '/inc/assets.php',
     '/inc/acf.php',
+    '/inc/acf-hooks.php',
+    '/inc/cpt-plantas.php',
     '/inc/template-tags.php',
+    '/inc/shortcodes.php',
     '/inc/bootstrap-navwalker.php',
     '/inc/color-scheme-switcher.php',
     '/inc/blocks-helpers.php',

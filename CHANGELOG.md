@@ -2,11 +2,23 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.3] - 2025-12-16
+
+### ✨ Nuevas funciones
+- Bloque `bs-plantas-slider`: slider con filtros en cliente (dormitorios/baños), Fancybox, navegación, paginaciones múltiples (bullets, fraction, progressbar, scrollbar, none), efectos Swiper (slide, fade, cube, coverflow, flip, cards) y slides per view por viewport (mobile/tablet/desktop).
+- Filtrado instantáneo sin AJAX usando `data-dorm`/`data-bano`, con alerta de "sin resultados" y re-render de Swiper.
+
+### 🔧 Cambios
+- Build dividido: `npm run build` (frontend Vite) y `npm run build:back-css` (Sass para editor) generan `dist/assets/style-*.css`, `main-*.js` y `editor.css`.
+- `inc/assets.php` ahora encola `editor.css` directamente en Gutenberg.
+
 ## [0.1.2] - 2025-12-16
 
 ### ✨ Nuevas funciones
 - Bloque `bs-container`: Opción de Fondo → Tipo "Imagen" con selector, tamaño, posición, repetición y attachment. Renderiza estilos en línea validados.
 - Swiper: Configuración global desde ACF (tab "Otros") y overrides por bloque en `bs-container` (paginación, navegación, loop, speed, autoplay, delay, slidesPerView, spaceBetween).
+ - Shortcodes: `[lazy_image]` para imágenes con lazyload basado en placeholder y `[iframe_facade]` para facades de iframes.
+ - Shortcode adicional: `[loader]` para renderizar el preloader del sitio en cualquier contenido.
 
 ### 🔧 Correcciones
 - Editor (`blocks/bs-container/editor.js`): Limpieza de paneles; controles de imagen movidos a "Background". Arreglo de arrays y imports para eliminar errores de sintaxis.
@@ -14,6 +26,8 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
 ### 📚 Docs
 - README: Instrucciones para usar `bs-container` como Swiper y cómo configurar Fondo → Imagen.
+ - README: Sección de Shortcodes con ejemplos de `[lazy_image]`, `[iframe_facade]` y `[loader]`.
+ - Licencia: Aclarado en README el uso de GNU GPL v3.0.
 
 ## [0.1.1] - 2025-12-16
 

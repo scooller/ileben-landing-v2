@@ -16,6 +16,7 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
     $type = $attributes['type'] ?? 'container';
     $fluid = $attributes['fluid'] ?? false;
     $breakpoint = $attributes['breakpoint'] ?? '';
+    $anchor = isset($attributes['anchor']) ? sanitize_title($attributes['anchor']) : '';
     $backgroundColor = $attributes['backgroundColor'] ?? '';
     $textColor = $attributes['textColor'] ?? '';
     $padding = $attributes['padding'] ?? '';
@@ -156,7 +157,8 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
         }
     }
 
-    $output = '<div class="' . esc_attr($class_string) . '"' . $style_string . $data_attrs . '>';
+    $id_attr = $anchor ? ' id="' . esc_attr($anchor) . '"' : '';
+    $output = '<div class="' . esc_attr($class_string) . '"' . $id_attr . $style_string . $data_attrs . '>';
     
     // Add content from InnerBlocks
     if (!empty($content)) {
@@ -193,6 +195,10 @@ function bootstrap_theme_register_bs_container_block() {
                 'default' => false
             ),
             'breakpoint' => array(
+                'type' => 'string',
+                'default' => ''
+            ),
+            'anchor' => array(
                 'type' => 'string',
                 'default' => ''
             ),

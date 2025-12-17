@@ -4,6 +4,8 @@ import { initPreloader } from './preloader';
 import { initLazyload } from './lazyload';
 import { initFacade } from './facade';
 import { initSliders } from './sliders';
+import { initPlantasSlider } from './plantas-slider';
+import { initPlantasFilter } from './plantas-filter';
 import { initFancybox } from './fancybox';
 import { initNav } from './nav';
 
@@ -20,6 +22,12 @@ function init() {
   initFacade();
   initFancybox();
   initNav();
+  // Init general sliders, then plantas-specific (block-scoped) sliders
   initSliders();
+  initPlantasSlider();
+  initPlantasFilter();
   initRouter();
 }
+
+// Make initPlantasSlider globally accessible for reinitializing after AJAX
+window.initPlantasSlider = initPlantasSlider;
