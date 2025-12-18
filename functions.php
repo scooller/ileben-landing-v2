@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ILEBEN_THEME_VERSION', '0.1.3');
+define('ILEBEN_THEME_VERSION', '0.1.4');
 define('ILEBEN_THEME_DIR', get_template_directory());
 define('ILEBEN_THEME_URI', get_template_directory_uri());
 
@@ -44,7 +44,7 @@ add_editor_style( array(
 ) );
 
 function add_custom_logo_class( $html ) {
-    $html = str_replace( 'class="custom-logo"', 'class="custom-logo img-fluid"', $html );
+    $html = str_replace( 'class="custom-logo"', 'class="custom-logo mx-auto"', $html );
     return $html;
 }
 add_filter( 'get_custom_logo', 'add_custom_logo_class' );

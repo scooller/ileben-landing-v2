@@ -185,6 +185,9 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
 function bootstrap_theme_register_bs_container_block() {
     register_block_type('bootstrap-theme/bs-container', array(
         'render_callback' => 'bootstrap_theme_render_bs_container_block',
+        'supports' => array(
+            'anchor' => true,
+        ),
         'attributes' => array(
             'type' => array(
                 'type' => 'string',

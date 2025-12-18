@@ -20,6 +20,10 @@
             anchor: true
         },
         attributes: {
+            anchor: {
+                type: 'string',
+                default: ''
+            },
             type: {
                 type: 'string',
                 default: 'container'

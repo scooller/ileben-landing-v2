@@ -132,55 +132,7 @@
         }
     });
 
-    // Bootstrap Container Block
-    registerBlockType('bootstrap-theme/bs-container', {
-        title: __('Bootstrap Container', 'bootstrap-theme'),
-        description: __('A responsive Bootstrap container', 'bootstrap-theme'),
-        icon: 'editor-table',
-        category: 'ileben-landing',
-        keywords: [__('container'), __('bootstrap'), __('layout')],
-        
-        edit: function(props) {
-            const { attributes, setAttributes } = props;
-            
-            return createElement(Fragment, {},
-                createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Container Settings', 'bootstrap-theme') },
-                        createElement(ToggleControl, {
-                            label: __('Fluid Container', 'bootstrap-theme'),
-                            checked: attributes.fluid,
-                            onChange: (value) => setAttributes({ fluid: value })
-                        }),
-                        createElement(SelectControl, {
-                            label: __('Breakpoint', 'bootstrap-theme'),
-                            value: attributes.breakpoint,
-                            options: [
-                                { label: 'None', value: '' },
-                                { label: 'SM', value: 'sm' },
-                                { label: 'MD', value: 'md' },
-                                { label: 'LG', value: 'lg' },
-                                { label: 'XL', value: 'xl' },
-                                { label: 'XXL', value: 'xxl' }
-                            ],
-                            onChange: (value) => setAttributes({ breakpoint: value })
-                        })
-                    )
-                ),
-                createElement('div', {
-                    className: `${attributes.fluid ? 'container-fluid' : 'container'} wp-block-bootstrap-theme-bs-container`,
-                    style: { border: '2px dashed #ddd', padding: '20px', minHeight: '100px' }
-                },
-                    createElement(InnerBlocks, {
-                        placeholder: __('Add content to your container...', 'bootstrap-theme')
-                    })
-                )
-            );
-        },
 
-        save: function() {
-            return createElement(InnerBlocks.Content);
-        }
-    });
 
     // Bootstrap Row Block
     registerBlockType('bootstrap-theme/bs-row', {

@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
     <div class="col-md-3 mb-2 mb-md-0 px-3">
         <a href="/" class="btn btn-primary">Home</a>
     </div>
-    <div class="col-md-3 mb-2 mb-md-0">
+    <div class="col-md-3 mb-2 mb-md-0 text-center">
         <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
             <?php
             if (function_exists('the_custom_logo') && has_custom_logo()) {

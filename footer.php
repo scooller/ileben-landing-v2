@@ -13,6 +13,7 @@ if (!defined('ABSPATH')) {
     </div>
 </footer>
 <script>
+var $ = jQuery.noConflict();
 <?php the_field('extra_code', 'option'); ?>
 </script>
 <?php wp_footer(); ?>

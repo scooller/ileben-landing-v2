@@ -1,6 +1,12 @@
 const routes = {
   common() {
-    // Common scripts for all pages.
+    //on scroll add class to nav
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('#site-header');
+      if (nav) {
+        nav.classList.toggle('scrolled', window.scrollY > 0);
+      }
+    });
   },
   front_page() {
     // Animations handled externally

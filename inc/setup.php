@@ -30,6 +30,99 @@ add_action('after_setup_theme', function () {
     if (!isset($GLOBALS['content_width'])) {
         $GLOBALS['content_width'] = 1200;
     }
+
+    // Add support for editor color palette from ACF Options
+    $colors = [
+        // Base colors
+        'base' => [
+            'blue' => get_field('color_blue', 'option') ?: '#0d6efd',
+            'indigo' => get_field('color_indigo', 'option') ?: '#6610f2',
+            'purple' => get_field('color_purple', 'option') ?: '#6f42c1',
+            'pink' => get_field('color_pink', 'option') ?: '#d63384',
+            'red' => get_field('color_red', 'option') ?: '#dc3545',
+            'orange' => get_field('color_orange', 'option') ?: '#fd7e14',
+            'yellow' => get_field('color_yellow', 'option') ?: '#ffc107',
+            'green' => get_field('color_green', 'option') ?: '#198754',
+            'teal' => get_field('color_teal', 'option') ?: '#20c997',
+            'cyan' => get_field('color_cyan', 'option') ?: '#0dcaf0',
+            'black' => get_field('color_black', 'option') ?: '#000',
+            'white' => get_field('color_white', 'option') ?: '#fff',
+            'gray' => get_field('color_gray', 'option') ?: '#6c757d',
+            'gray-dark' => get_field('color_gray_dark', 'option') ?: '#343a40',
+        ],
+        // Gray scale
+        'gray-scale' => [
+            'gray-100' => get_field('color_gray_100', 'option') ?: '#f8f9fa',
+            'gray-200' => get_field('color_gray_200', 'option') ?: '#e9ecef',
+            'gray-300' => get_field('color_gray_300', 'option') ?: '#dee2e6',
+            'gray-400' => get_field('color_gray_400', 'option') ?: '#ced4da',
+            'gray-500' => get_field('color_gray_500', 'option') ?: '#adb5bd',
+            'gray-600' => get_field('color_gray_600', 'option') ?: '#6c757d',
+            'gray-700' => get_field('color_gray_700', 'option') ?: '#495057',
+            'gray-800' => get_field('color_gray_800', 'option') ?: '#343a40',
+            'gray-900' => get_field('color_gray_900', 'option') ?: '#212529',
+        ],
+        // Theme colors
+        'theme-colors' => [
+            'primary' => get_field('color_primary', 'option') ?: '#0d6efd',
+            'secondary' => get_field('color_secondary', 'option') ?: '#6c757d',
+            'success' => get_field('color_success', 'option') ?: '#198754',
+            'info' => get_field('color_info', 'option') ?: '#0dcaf0',
+            'warning' => get_field('color_warning', 'option') ?: '#ffc107',
+            'danger' => get_field('color_danger', 'option') ?: '#dc3545',
+            'light' => get_field('color_light', 'option') ?: '#f8f9fa',
+            'dark' => get_field('color_dark', 'option') ?: '#212529',
+        ],
+        // Body colors
+        'body-colors' => [
+            'body-color' => get_field('color_body', 'option') ?: '#212529',
+            'body-bg' => get_field('color_body_bg', 'option') ?: '#fff',
+        ],
+        // Link colors
+        'link-colors' => [
+            'link-color' => get_field('color_link', 'option') ?: '#0d6efd',
+            'link-hover-color' => get_field('color_link_hover', 'option') ?: '#0a58ca',
+        ],
+        // Border
+        'border' => [
+            'border-color' => get_field('color_border', 'option') ?: '#dee2e6',
+        ],
+        // System colors
+        'system-colors' => [
+            'emphasis-color' => get_field('color_emphasis', 'option') ?: '#000',
+            'secondary-color' => get_field('color_secondary_color', 'option') ?: '#212529',
+            'secondary-bg' => get_field('color_secondary_bg', 'option') ?: '#e9ecef',
+            'tertiary-color' => get_field('color_tertiary_color', 'option') ?: '#212529',
+            'tertiary-bg' => get_field('color_tertiary_bg', 'option') ?: '#f8f9fa',
+            'code-color' => get_field('color_code', 'option') ?: '#d63384',
+            'highlight-color' => get_field('color_highlight', 'option') ?: '#212529',
+            'highlight-bg' => get_field('color_highlight_bg', 'option') ?: '#fff3cd',
+        ],
+    ];
+    
+    
+    $color_palette = [];
+    foreach ($colors as $group => $colors) {
+        foreach ($colors as $name => $color) {
+            $color_palette[] = [
+                'name'  => ucfirst($name),
+                'slug'  => $name,
+                'color' => $color,
+            ];
+        }
+    }
+
+    add_theme_support('editor-color-palette', $color_palette);
+
+    //custom theme font sizes rem
+    add_theme_support( 'custom-font-sizes', [
+        'small' => 12,
+        'medium' => 16,
+        'large' => 20,
+        'x-large' => 24,
+    ]);
+    add_theme_support( 'custom-units', 'rem', 'px' );
+    
 });
 
 /**

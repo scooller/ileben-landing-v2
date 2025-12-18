@@ -551,6 +551,107 @@
             "append": ""
         },
         {
+            "key": "field_tab_gsap",
+            "label": "GSAP",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_enable_gsap",
+            "label": "Habilitar GSAP Core",
+            "name": "enable_gsap",
+            "type": "true_false",
+            "instructions": "Habilita la librería GSAP (GreenSock Animation Platform) globalmente.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Activado",
+            "ui_off_text": "Desactivado"
+        },
+        {
+            "key": "field_enable_scrolltrigger",
+            "label": "Habilitar ScrollTrigger",
+            "name": "enable_scrolltrigger",
+            "type": "true_false",
+            "instructions": "Habilita el plugin ScrollTrigger de GSAP.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_gsap",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Activado",
+            "ui_off_text": "Desactivado"
+        },
+        {
+            "key": "field_enable_scrollto",
+            "label": "Habilitar ScrollToPlugin",
+            "name": "enable_scrollto",
+            "type": "true_false",
+            "instructions": "Habilita el plugin ScrollToPlugin de GSAP.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_gsap",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "default_value": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_enable_draggable",
+            "label": "Habilitar Draggable",
+            "name": "enable_draggable",
+            "type": "true_false",
+            "instructions": "Habilita el plugin Draggable de GSAP.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_gsap",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "default_value": 0,
+            "ui": 1
+        },
+        {
             "key": "field_69406c4e2ed62",
             "label": "Otros",
             "name": "",

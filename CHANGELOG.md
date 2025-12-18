@@ -2,6 +2,16 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.4] - 2025-12-17
+
+### 🔧 Correcciones
+- Bloque `bs-container`: el anclaje se guarda correctamente; se eliminó un registro duplicado en `blocks/blocks.js` y se añadió soporte explícito de `anchor` en PHP y editor.
+
+### ✨ Nuevas funciones
+- GSAP: pestaña en opciones del tema (ACF JSON) para habilitar GSAP y plugins.
+- Inicializador `assets/js/gsap-loader.js` e importación en `assets/js/main.js`.
+- `inc/assets.php`: se expone `window.ILEBEN_GSAP` con configuración desde ACF; los scripts de footer (`extra_code`) pueden usar `gsap` y `ScrollTrigger`.
+
 ## [0.1.3] - 2025-12-16
 
 ### ✨ Nuevas funciones

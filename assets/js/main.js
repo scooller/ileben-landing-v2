@@ -8,6 +8,7 @@ import { initPlantasSlider } from './plantas-slider';
 import { initPlantasFilter } from './plantas-filter';
 import { initFancybox } from './fancybox';
 import { initNav } from './nav';
+import { initGsap } from './gsap-loader';
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
@@ -17,6 +18,7 @@ if (document.readyState === 'loading') {
 }
 
 function init() {
+  initGsap(); // Init GSAP first so it's available globally
   initPreloader();
   initLazyload();
   initFacade();

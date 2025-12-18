@@ -91,7 +91,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
             'centered' => $centered,
             'effect' => $effect
          ])); ?>">
-        <form class="bs-plantas-filters row g-3 mb-3" data-ajax-filter>
+        <form class="bs-plantas-filters row g-3 mb-3 text-center text-md-start" data-ajax-filter>
             <div class="col-12 col-md-6">
                 <label class="form-label"><?php echo esc_html__('Dormitorios', 'bootstrap-theme'); ?></label>
                 <select class="form-select" name="planta_dormitorio" data-filter-select>

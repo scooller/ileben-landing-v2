@@ -68,6 +68,9 @@ function ileben_google_font_family()
 }
 
 add_action('wp_enqueue_scripts', function () {
+    // Enqueue jQuery
+    wp_enqueue_script('jquery');
+
     // Find compiled CSS file
     $css_file = ileben_find_asset('style-*.css');
     if ($css_file) {
@@ -108,12 +111,23 @@ add_action('wp_enqueue_scripts', function () {
                 'breakpoints' => $breakpoints,
             ];
             wp_localize_script('ileben-main', 'ILEBEN_SWIPER', $swiper_config);
+
+            // Localize GSAP config from ACF Options
+            $gsap_config = [
+                'enableGsap' => (bool) get_field('enable_gsap', 'option'),
+                'enableScrollTrigger' => (bool) get_field('enable_scrolltrigger', 'option'),
+                'enableScrollTo' => (bool) get_field('enable_scrollto', 'option'),
+                'enableDraggable' => (bool) get_field('enable_draggable', 'option'),
+            ];
+            wp_localize_script('ileben-main', 'ILEBEN_GSAP', $gsap_config);
         }
     }
 
     // Google Fonts enqueue
     $family = ileben_google_font_family();
-    $google_url = sprintf('https://fonts.googleapis.com/css2?family=%s&display=swap', rawurlencode($family));
+    // Normalize family string: remove quotes, replace + with space
+    $family = trim(str_replace('+', ' ', $family), " \t\n\r\0\x0B\"'");
+    $google_url = sprintf('https://fonts.googleapis.com/css2?family=%s&display=swap', urlencode($family));
     wp_enqueue_style('ileben-google-fonts', $google_url, [], null);
 
     // Font Awesome
@@ -281,6 +295,12 @@ add_action('wp_enqueue_scripts', function () {
   --swiper-pagination-bullet-border-radius: var(--bs-border-radius-pill);
   --swiper-pagination-bullet-opacity: 1;
   --swiper-pagination-bullet-inactive-opacity: var(--bs-secondary-opacity);
+  /* Wp Block Editor */
+  --wp-block-font-size: 1rem;
+   --wp--preset--font-size--small: 12px;
+   --wp--preset--font-size--medium: 16px;
+   --wp--preset--font-size--large: 20px;
+   --wp--preset--font-size--x-large: 24px;
 }
 <?php
 // Btns colors
@@ -303,13 +323,53 @@ add_action('wp_enqueue_scripts', function () {
     --bs-btn-disabled-bg: <?php echo $base; ?>;
     --bs-btn-disabled-border-color: <?php echo $base; ?>;
 }
+.btn-<?php echo $theme; ?> {
+    --bs-btn-bg: <?php echo $base; ?>;
+    --bs-btn-border-color: <?php echo $base; ?>;
+    --bs-btn-hover-bg: <?php echo $hover_bg; ?>;
+    --bs-btn-hover-border-color: <?php echo $hover_border; ?>;
+    --bs-btn-focus-shadow-rgb: <?php echo $focus_rgb; ?>;
+    --bs-btn-active-bg: <?php echo $active_bg; ?>;
+    --bs-btn-active-border-color: <?php echo $active_border; ?>;
+    --bs-btn-disabled-bg: <?php echo $base; ?>;
+    --bs-btn-disabled-border-color: <?php echo $base; ?>;
+}
+.btn-outline-<?php echo $theme; ?> {
+  --bs-btn-color: <?php echo $base; ?>;
+  --bs-btn-border-color: <?php echo $base; ?>;
+  --bs-btn-hover-bg: <?php echo $hover_bg; ?>;
+  --bs-btn-hover-border-color: <?php echo $hover_border; ?>;
+  --bs-btn-focus-shadow-rgb: <?php echo $focus_rgb; ?>;
+  --bs-btn-active-bg: <?php echo $active_bg; ?>;
+  --bs-btn-active-border-color: <?php echo $active_border; ?>;
+  --bs-btn-disabled-color: <?php echo $base; ?>;
+  --bs-btn-disabled-border-color: <?php echo $base; ?>;
+}
 <?php
         endforeach;
 ?>
+/* inyect all colors from $colors with .has-X-color and .has-X-background-color */
+<?php
+    foreach ($colors as $category => $colorGroup) :
+        foreach ($colorGroup as $name => $value) :
+            if ($value) :
+                ?>  
+                .has-<?php echo $name; ?>-color{
+                    color: <?php echo $value; ?>;
+                }
+                .has-<?php echo $name; ?>-background-color{
+                    background-color: <?php echo $value; ?>;
+                }
+<?php       endif;
+        endforeach;
+    endforeach;
+?>
+
+
 /* Dark mode support */
 [data-bs-theme=dark]{--bs-body-color:var(--bs-white);--bs-body-color-rgb:var(--bs-light-rgb);--bs-body-bg:var(--bs-dark);--bs-body-bg-rgb:var(--bs-dark-rgb);}
 [data-bs-theme=light]{--bs-body-color:var(--bs-black);--bs-body-color-rgb:var(--bs-dark-rgb);--bs-body-bg:var(--bs-light);--bs-body-bg-rgb:var(--bs-light-rgb);}
-@media (min-width:768px){--bs-body-font-size: <?php echo $font_size_mobile; ?>;}
+@media (max-width:768px){html{font-size: <?php echo $font_size_mobile; ?>;}}
 <?php
     $css = ob_get_clean();
     wp_add_inline_style('ileben-theme-style', $css);

@@ -49,15 +49,12 @@ function ileben_theme_render_color_scheme_switcher() {
     <div id="bs-color-scheme-switcher-mobile" class="position-fixed bottom-0 start-0 m-3 d-flex d-md-none z-3">
         <div class="dropdown">
             <button class="btn btn-secondary btn-sm dropdown-toggle shadow" type="button" id="bsColorSchemeMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="me-1"><?php esc_attr_e('Tema','ileben-theme'); ?></span>
-                <span id="bsColorSchemeIconSvg">
-                    <svg class="icon" width="20" height="20"><use xlink:href="#fa-cloud-sun"></use></svg>
-                </span>
+                <i class="fa-solid fa-cloud-sun"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="bsColorSchemeMenu" style="--bs-dropdown-min-width: auto;">
-                <li><button class="dropdown-item" type="button" data-bs-theme-value="light"><svg class="icon" width="20" height="20"><use xlink:href="#fa-sun"></use></svg></button></li>
-                <li><button class="dropdown-item" type="button" data-bs-theme-value="dark"><svg class="icon" width="20" height="20"><use xlink:href="#fa-moon"></use></svg></button></li>
-                <li><button class="dropdown-item" type="button" data-bs-theme-value="auto"><svg class="icon" width="20" height="20"><use xlink:href="#fa-cloud-sun"></use></svg></button></li>
+                <li><button class="dropdown-item" type="button" data-bs-theme-value="light"><i class="fa-solid fa-sun"></i></button></li>
+                <li><button class="dropdown-item" type="button" data-bs-theme-value="dark"><i class="fa-solid fa-moon"></i></button></li>
+                <li><button class="dropdown-item" type="button" data-bs-theme-value="auto"><i class="fa-solid fa-cloud-sun"></i></button></li>
             </ul>
         </div>
     </div>

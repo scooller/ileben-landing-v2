@@ -85,7 +85,13 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
             }else {
                 $link_classes[] = 'nav-link w-md-auto w-100';
             }
-            $link_class = ' class="' . implode(' ', $link_classes) . '"';
+            
+            // Add custom classes from WordPress menu to the link/button
+            if (!empty($item->classes)) {
+                $link_classes = array_merge($link_classes, (array) $item->classes);
+            }
+
+            $link_class = ' class="' . implode(' ', array_unique($link_classes)) . '"';
             $item_output = isset($args->before) ? $args->before : '';
             $item_output .= '<a' . $attributes . $link_class . '>';
             if ($icon) {
