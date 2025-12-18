@@ -76,9 +76,12 @@ function ileben_render_loader()
 {
     ?>
     <div id="site-loader" class="site-loader" aria-hidden="true">
-        <div class="loader-inner">
-            <div class="loader-spinner"></div>
-            <p class="loader-label"><?php esc_html_e('Cargando', 'ileben-landing-v2'); ?></p>
+        <div class="loader-inner text-center">
+            <img src="https://ileben.cl/wp-content/uploads/2022/02/logo-leben-solo.svg" alt="<?php esc_attr_e('Ileben', 'ileben-landing-v2'); ?>" class="img-logo">
+            <br>
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
     </div>
     <noscript>

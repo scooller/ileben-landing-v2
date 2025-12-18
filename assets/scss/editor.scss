@@ -34,6 +34,10 @@
     border-left-color: #6c757d;
     background: rgba(108, 117, 125, 0.05);
   }
+  .block-editor-block-list__layout{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 }
 
 /* Column block */
@@ -224,6 +228,9 @@
     font-family: 'Open Sans', sans-serif;
     .position-absolute{
       z-index: 2;
+    }
+    .text-center{
+      text-align: center;
     }
     .container{
       max-width: 100% !important;

@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Draggable } from 'gsap/Draggable';
+import { SplitText } from 'gsap/SplitText';
 
 export function initGsap() {
   const config = window.ILEBEN_GSAP || {};
@@ -22,6 +23,12 @@ export function initGsap() {
 
     if (config.enableDraggable) {
       gsap.registerPlugin(Draggable);
+      window.Draggable = Draggable;
+    }
+
+    if (config.enableSplitText) {
+      gsap.registerPlugin(SplitText);
+      window.SplitText = SplitText;
     }
 
     console.log('GSAP initialized with config:', config);

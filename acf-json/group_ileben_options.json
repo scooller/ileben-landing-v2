@@ -30,7 +30,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "50%",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -50,7 +50,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "50%",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -619,6 +619,25 @@
             "name": "enable_scrollto",
             "type": "true_false",
             "instructions": "Habilita el plugin ScrollToPlugin de GSAP.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_gsap",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "default_value": 0,
+            "ui": 1
+        },
+         {
+            "key": "field_enable_textplugin",
+            "label": "Habilitar SplitTextPlugin",
+            "name": "enable_splittext",
+            "type": "true_false",
+            "instructions": "Habilita el plugin SplitTextPlugin de GSAP.",
             "required": 0,
             "conditional_logic": [
                 [

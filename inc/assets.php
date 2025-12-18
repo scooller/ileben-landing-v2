@@ -117,6 +117,7 @@ add_action('wp_enqueue_scripts', function () {
                 'enableGsap' => (bool) get_field('enable_gsap', 'option'),
                 'enableScrollTrigger' => (bool) get_field('enable_scrolltrigger', 'option'),
                 'enableScrollTo' => (bool) get_field('enable_scrollto', 'option'),
+                'enableSplitText' => (bool) get_field('enable_splittext', 'option'),
                 'enableDraggable' => (bool) get_field('enable_draggable', 'option'),
             ];
             wp_localize_script('ileben-main', 'ILEBEN_GSAP', $gsap_config);
@@ -264,30 +265,32 @@ add_action('wp_enqueue_scripts', function () {
     // Colors
     foreach ($colors as $category => $colorGroup) :
         foreach ($colorGroup as $name => $value) :
-            if ($value) :
-                ?>  --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+            if ($value) : ?>
+                --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+                --bs-<?php echo $name; ?>-rgb: <?php echo ileben_rgb_string($value); ?>;
 <?php       endif;
         endforeach;
     endforeach;
     // Borders
     foreach ($borders as $name => $value) :
-        if ($value) :
-            ?>  --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+        if ($value) : ?>  
+                --bs-<?php echo $name; ?>: <?php echo $value; ?>;
 <?php   endif;
     endforeach;
     // Box Shadows
     foreach ($shadows as $name => $value) :
-        if ($value) :
-            ?>  --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+        if ($value) : ?>
+                --bs-<?php echo $name; ?>: <?php echo $value; ?>;
 <?php   endif;
     endforeach;
     // Focus Ring
     foreach ($focus as $name => $value) :
-        if ($value) :
-            ?>  --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+        if ($value) : ?>
+                --bs-<?php echo $name; ?>: <?php echo $value; ?>;
 <?php   endif;
-    endforeach;
-?>  --bs-focus-ring-color: <?php echo $focus_ring_color; ?>;
+    endforeach;    
+?>  
+  --bs-focus-ring-color: <?php echo $focus_ring_color; ?>;
   --bs-body-font-family: <?php echo $font_name; ?>;
   --bs-body-font-size: <?php echo $font_size; ?>;
   --bs-body-font-weight: <?php echo $font_weight; ?>;

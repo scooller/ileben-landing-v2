@@ -5,9 +5,6 @@
 
 get_header();
 ?>
-
-<?php if (function_exists('ileben_render_loader')) { ileben_render_loader(); } ?>
-
 <main id="primary" class="site-main">
     <div class="container-fluid g-0">           
         <?php

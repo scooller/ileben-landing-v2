@@ -168,6 +168,7 @@ add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $
         'btn-outline-info' => 'Outline Info',
         'btn-outline-light' => 'Outline Claro',
         'btn-outline-dark' => 'Outline Oscuro',
+        'icon-link' => 'Link con Icono',
     );
     echo '<p class="field-button-style description description-wide">
         <label for="edit-menu-item-button-style-' . $item_id . '">' . esc_html__('Estilo de botón Bootstrap', 'bootstrap-theme') . '<br />
