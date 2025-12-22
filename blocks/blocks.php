@@ -59,7 +59,7 @@ function bootstrap_theme_block_editor_assets() {
     $blocks_with_editors = [
         'bs-accordion', 'bs-accordion-item', 'bs-alert', 'bs-badge', 'bs-breadcrumb',
         'bs-breadcrumb-item', 'bs-button', 'bs-button-group', 'bs-card', 'bs-carousel',
-        'bs-carousel-item', 'bs-column', 'bs-container', 'bs-dropdown', 'bs-dropdown-divider',
+        'bs-carousel-item', 'bs-column', 'bs-container', 'bs-divider', 'bs-dropdown', 'bs-dropdown-divider',
         'bs-dropdown-item', 'bs-list-group', 'bs-list-group-item', 'bs-menu', 'bs-modal', 
         'bs-offcanvas', 'bs-pagination', 'bs-pagination-item', 'bs-progress', 'bs-row', 
         'bs-spinner', 'bs-tab-pane', 'bs-tabs', 'bs-toast', 'bs-iframe', 'bs-plantas-slider'

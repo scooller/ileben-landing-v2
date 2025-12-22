@@ -146,6 +146,9 @@ add_action('enqueue_block_editor_assets', function () {
     if (file_exists(ILEBEN_THEME_DIR . '/dist/assets/editor.css')) {
         wp_enqueue_style('ileben-editor-styles', $editor_css, ['wp-edit-blocks'], ILEBEN_THEME_VERSION);
     }
+    
+    // Font Awesome for Editor
+    wp_enqueue_style('font-awesome-editor', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', [], '6.4.0');
 });
 
 /**
