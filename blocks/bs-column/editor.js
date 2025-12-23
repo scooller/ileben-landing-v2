@@ -128,7 +128,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Column Settings', 'bootstrap-theme') },
                         createElement(SelectControl, {
-                            label: __('XS (Mobile)', 'bootstrap-theme'),
+                            label: __('XS (Mobile/All)', 'bootstrap-theme'),
                             value: attributes.colXs,
                             options: columnOptions,
                             onChange: (value) => setAttributes({ colXs: value })

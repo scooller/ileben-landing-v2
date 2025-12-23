@@ -13,43 +13,42 @@ if (!defined('ABSPATH')) {
  * Render Bootstrap Column Block
  */
 function bootstrap_theme_render_bs_column_block($attributes, $content, $block) {
-    $sm = $attributes['sm'] ?? '';
-    $md = $attributes['md'] ?? '';
-    $lg = $attributes['lg'] ?? '';
-    $xl = $attributes['xl'] ?? '';
-    $xxl = $attributes['xxl'] ?? '';
-    $auto = $attributes['auto'] ?? false;
+    // Align attribute names with editor.js (colXs, colSm, ...)
+    $xs = $attributes['colXs'] ?? '';
+    $sm = $attributes['colSm'] ?? '';
+    $md = $attributes['colMd'] ?? '';
+    $lg = $attributes['colLg'] ?? '';
+    $xl = $attributes['colXl'] ?? '';
+    $xxl = $attributes['colXxl'] ?? '';
     $offset = $attributes['offset'] ?? '';
     $order = $attributes['order'] ?? '';
-    $alignSelf = $attributes['alignSelf'] ?? '';
     
     // Build column classes
     $classes = array();
     
-    if ($auto) {
+    // Build bootstrap column sizes
+    
+    if (!empty($xs)) {
+        $classes[] = 'col-' . $xs;
+    }else{
         $classes[] = 'col-auto';
-    } else {
-        $classes[] = 'col';
-        
-        if (!empty($sm)) {
-            $classes[] = 'col-sm-' . $sm;
-        }
-        
-        if (!empty($md)) {
-            $classes[] = 'col-md-' . $md;
-        }
-        
-        if (!empty($lg)) {
-            $classes[] = 'col-lg-' . $lg;
-        }
-        
-        if (!empty($xl)) {
-            $classes[] = 'col-xl-' . $xl;
-        }
-        
-        if (!empty($xxl)) {
-            $classes[] = 'col-xxl-' . $xxl;
-        }
+    }
+    if (!empty($sm)) {
+        $classes[] = 'col-sm-' . $sm;
+    }
+    if (!empty($md)) {
+        $classes[] = 'col-md-' . $md;
+    }else{
+        $classes[] = 'col-md-auto';
+    }
+    if (!empty($lg)) {
+        $classes[] = 'col-lg-' . $lg;
+    }
+    if (!empty($xl)) {
+        $classes[] = 'col-xl-' . $xl;
+    }
+    if (!empty($xxl)) {
+        $classes[] = 'col-xxl-' . $xxl;
     }
     
     if (!empty($offset)) {
@@ -60,23 +59,17 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block) {
         $classes[] = $order;
     }
     
-    if (!empty($alignSelf)) {
-        $classes[] = 'align-self-' . $alignSelf;
-    }
-    
-    // Add custom CSS classes from Advanced panel
-    if (!empty($attributes['className'])) {
-        $classes[] = $attributes['className'];
-    }
-    
-    // Alternative way to get custom classes from block object
-    if (isset($block->attributes['className']) && !empty($block->attributes['className'])) {
-        $classes[] = $block->attributes['className'];
-    }
-    
+    // Compose final class string
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<div class="' . esc_attr($class_string) . '">';
+    // Use block wrapper attributes to ensure Advanced className and other supports are included
+    if (function_exists('get_block_wrapper_attributes')) {
+        $wrapper_attributes = get_block_wrapper_attributes(array('class' => $class_string));
+        $output = '<div ' . $wrapper_attributes . '>';
+    } else {
+        // Fallback for older WP versions
+        $output = '<div class="' . esc_attr($class_string) . '">';
+    }
     
     // Add content from InnerBlocks
     if (!empty($content)) {
@@ -97,39 +90,35 @@ function bootstrap_theme_register_bs_column_block() {
     register_block_type('bootstrap-theme/bs-column', array(
         'render_callback' => 'bootstrap_theme_render_bs_column_block',
         'attributes' => array(
-            'sm' => array(
+            'colXs' => array(
                 'type' => 'string',
                 'default' => ''
             ),
-            'md' => array(
+            'colSm' => array(
                 'type' => 'string',
                 'default' => ''
             ),
-            'lg' => array(
+            'colMd' => array(
                 'type' => 'string',
                 'default' => ''
             ),
-            'xl' => array(
+            'colLg' => array(
                 'type' => 'string',
                 'default' => ''
             ),
-            'xxl' => array(
+            'colXl' => array(
                 'type' => 'string',
                 'default' => ''
             ),
-            'auto' => array(
-                'type' => 'boolean',
-                'default' => false
+            'colXxl' => array(
+                'type' => 'string',
+                'default' => ''
             ),
             'offset' => array(
                 'type' => 'string',
                 'default' => ''
             ),
             'order' => array(
-                'type' => 'string',
-                'default' => ''
-            ),
-            'alignSelf' => array(
                 'type' => 'string',
                 'default' => ''
             ),

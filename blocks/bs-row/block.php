@@ -28,11 +28,11 @@ function bootstrap_theme_render_bs_row_block($attributes, $content, $block) {
     }
     
     if (!empty($alignItems)) {
-        $classes[] = 'align-items-' . $alignItems;
+        $classes[] = $alignItems;
     }
     
     if (!empty($justifyContent)) {
-        $classes[] = 'justify-content-' . $justifyContent;
+        $classes[] = $justifyContent;
     }
     
     // Add custom CSS classes from Advanced panel

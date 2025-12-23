@@ -20,7 +20,16 @@ if (!defined('ABSPATH')) {
 <?php wp_body_open(); ?>
 <header id="site-header" class="site-header d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 fixed-top top-0 shadow-sm">
     <div class="col-md-3 mb-2 mb-md-0 px-3">
-        <a href="/" class="btn btn-primary">Home</a>
+        <?php
+        wp_nav_menu([
+            'theme_location'  => 'header-menu',
+            'menu_class'      => 'navbar-nav ms-auto',
+            'container'       => false,
+            'fallback_cb'     => false,
+            'depth'           => 2,
+            'walker'          => new WP_Bootstrap_Navwalker(),
+        ]);
+        ?>
     </div>
     <div class="col-md-3 mb-2 mb-md-0 text-center">
         <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
