@@ -1,0 +1,40 @@
+:root{
+    --swiper-navigation-sides-offset: -3rem;
+    --swiper-navigation-top-offset: 50%;
+    --swiper-navigation-color: var(--bs-primary);
+    --swiper-pagination-color: var(--bs-primary);
+    --swiper-pagination-bullet-horizontal-gap: 4px;
+    --swiper-pagination-bullet-width: 8px;
+    --swiper-pagination-bullet-height: 8px;
+    --swiper-pagination-bullet-size: 8px;
+    --swiper-pagination-bullet-inactive-color: var(--bs-gray-400);
+    --swiper-pagination-bullet-inactive-opacity: 0.2;
+    --swiper-pagination-top: auto;
+    --swiper-pagination-bottom: 10px;
+}
+/* Swiper Navigation Outside Container */
+.bs-plantas-slider-container {
+  position: relative;
+  
+  .swiper-pagination {
+    position: relative;
+    margin-top: 1rem;
+  }
+  
+  .swiper-button-prev,
+  .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    margin-top: calc(-1rem - 10px); // Adjust for pagination height
+  }
+  
+  .swiper-button-prev {
+    left: var(--swiper-navigation-sides-offset, 10px);
+  }
+  
+  .swiper-button-next {
+    right: var(--swiper-navigation-sides-offset, 10px);
+  }
+}

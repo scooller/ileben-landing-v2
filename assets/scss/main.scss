@@ -1,14 +1,12 @@
 @import "bootstrap/scss/bootstrap";
-@import "swiper/css";
-@import "swiper/css/navigation";
-@import "swiper/css/pagination";
-@import "swiper/css/scrollbar";
-@import "swiper/css/effect-fade";
-@import "swiper/css/effect-cube";
-@import "swiper/css/effect-coverflow";
-@import "swiper/css/effect-flip";
-@import "swiper/css/effect-cards";
+@import "cf7";
+@import "swiper/swiper-bundle.css"; // Un solo import con todo
+@import "swiper";
 
+html, body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 a{
   color: var(--color-primary);
   text-decoration: none;
@@ -67,6 +65,12 @@ strong{
     height: 100%;
   }
 }
+#menu-logo-head .logo{
+  height: 40px;
+  @include media-breakpoint-down(md) {
+    height: 20px;
+  }
+}
 #site-header{
     backdrop-filter: blur(10px);
     img.custom-logo{
@@ -75,7 +79,11 @@ strong{
       @include media-breakpoint-down(md) {
         height: 50px;
       }
-    }    
+    }
+    a.custom-logo-link{
+      display: inline-block;
+      width: 151px;
+    }  
     div[class^="col-"]{
       z-index: 2;
     }

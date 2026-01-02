@@ -29,6 +29,12 @@ export function initGsap() {
     if (config.enableSplitText) {
       gsap.registerPlugin(SplitText);
       window.SplitText = SplitText;
+    } else if (!window.SplitText) {
+      // Provide a safe stub so inline scripts referencing SplitText do not break when disabled
+      window.SplitText = function splitTextFallback() {
+        console.warn('SplitText requested but the plugin is disabled. Returning empty segments.');
+        return { lines: [], words: [], chars: [] };
+      };
     }
 
     console.log('GSAP initialized with config:', config);

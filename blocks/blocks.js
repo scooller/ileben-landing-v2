@@ -234,66 +234,6 @@
         }
     });
 
-    // Bootstrap Card Block
-    registerBlockType('bootstrap-theme/bs-card', {
-        title: __('Bootstrap Card', 'bootstrap-theme'),
-        description: __('A flexible Bootstrap card component', 'bootstrap-theme'),
-        icon: 'id-alt',
-        category: 'ileben-landing',
-        keywords: [__('card'), __('bootstrap'), __('content')],
-        
-        edit: function(props) {
-            const { attributes, setAttributes } = props;
-            
-            return createElement(Fragment, {},
-                createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Card Settings', 'bootstrap-theme') },
-                        createElement(TextControl, {
-                            label: __('Card Title', 'bootstrap-theme'),
-                            value: attributes.title,
-                            onChange: (value) => setAttributes({ title: value })
-                        }),
-                        createElement(TextControl, {
-                            label: __('Card Subtitle', 'bootstrap-theme'),
-                            value: attributes.subtitle,
-                            onChange: (value) => setAttributes({ subtitle: value })
-                        }),
-                        createElement(MediaUpload, {
-                            onSelect: (media) => setAttributes({ 
-                                image: media.url,
-                                imageAlt: media.alt 
-                            }),
-                            allowedTypes: ['image'],
-                            value: attributes.image,
-                            render: ({ open }) => createElement(Button, {
-                                onClick: open,
-                                className: attributes.image ? 'image-button' : 'button button-large'
-                            }, attributes.image ? __('Change Image', 'bootstrap-theme') : __('Select Image', 'bootstrap-theme'))
-                        })
-                    )
-                ),
-                createElement('div', { className: 'card wp-block-bootstrap-theme-bs-card' },
-                    attributes.image && createElement('img', {
-                        src: attributes.image,
-                        className: 'card-img-top',
-                        alt: attributes.imageAlt
-                    }),
-                    createElement('div', { className: 'card-body' },
-                        attributes.title && createElement('h5', { className: 'card-title' }, attributes.title),
-                        attributes.subtitle && createElement('h6', { className: 'card-subtitle mb-2 text-muted' }, attributes.subtitle),
-                        createElement(InnerBlocks, {
-                            placeholder: __('Add card content...', 'bootstrap-theme')
-                        })
-                    )
-                )
-            );
-        },
-
-        save: function() {
-            return createElement(InnerBlocks.Content);
-        }
-    });
-
     // Bootstrap Alert Block
     registerBlockType('bootstrap-theme/bs-alert', {
         title: __('Bootstrap Alert', 'bootstrap-theme'),

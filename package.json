@@ -1,13 +1,15 @@
 {
   "name": "ileben-landing-v2",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:back-css": "sass assets/scss/editor.scss dist/assets/editor.css"
+    "build:back-css": "sass assets/scss/editor.scss dist/assets/editor.css",
+    "build:css": "sass assets/scss/main.scss dist/assets/main.css && postcss dist/assets/main.css -o dist/assets/main.css",
+    "build:all": "npm run build && npm run build:back-css"
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",

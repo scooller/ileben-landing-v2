@@ -1,0 +1,167 @@
+// CF7 multistep styles extracted from JS for maintainability
+.cf7-step-animated {
+  --cf7-step-duration: 0.25s;
+  --cf7-step-easing: ease;
+  --cf7-step-offset: 12px;
+
+  .wpcf7-step {
+    transition: opacity var(--cf7-step-duration, 0.25s) var(--cf7-step-easing, ease),
+      transform var(--cf7-step-duration, 0.25s) var(--cf7-step-easing, ease);
+
+    &[hidden] {
+      display: none !important;
+    }
+
+    &.is-entering {
+      opacity: 0;
+      transform: translateX(var(--cf7-step-offset, 12px));
+    }
+
+    &.is-leaving {
+      opacity: 0;
+      transform: translateX(calc(var(--cf7-step-offset, 12px) * -1));
+    }
+  }
+
+  &.cf7-step-animate-fade .wpcf7-step {
+    &.is-entering,
+    &.is-leaving {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  &.cf7-step-animate-slide .wpcf7-step {
+    &.is-entering {
+      opacity: 0;
+      transform: translateX(var(--cf7-step-offset, 12px));
+    }
+    &.is-leaving {
+      opacity: 0;
+      transform: translateX(calc(var(--cf7-step-offset, 12px) * -1));
+    }
+  }
+
+  &.cf7-step-animate-lift .wpcf7-step {
+    &.is-entering {
+      opacity: 0;
+      transform: translateY(var(--cf7-step-offset, 12px));
+    }
+    &.is-leaving {
+      opacity: 0;
+      transform: translateY(calc(var(--cf7-step-offset, 12px) * -1));
+    }
+  }
+
+  &.cf7-step-animate-zoom .wpcf7-step {
+    &.is-entering,
+    &.is-leaving {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+}
+
+.cf7-progress-wrapper {
+  margin-bottom: 12px;
+}
+
+.cf7-progress {
+  height: 6px;
+
+  .progress-bar {
+    transition: width 0.2s ease;
+  }
+}
+
+.cf7-step-indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .cf7-step-indicator-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .cf7-step-indicator-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: inherit;
+
+    .cf7-step-label {
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+
+  .cf7-step-dot {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-weight: 700;
+    border: 1px solid var(--bs-border-color, rgba(0, 0, 0, 0.15));
+    transition: all 0.6s ease;
+  }
+
+  .cf7-step-connector {
+    flex: 1;
+    height: 2px;
+    background: var(--bs-border-color, rgba(0, 0, 0, 0.08));
+
+    &.is-complete {
+      background: var(--bs-success, #198754);
+      opacity: 0.6;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .cf7-step-indicator .cf7-step-indicator-list {
+    gap: 6px;
+  }
+
+  .cf7-step-indicator .cf7-step-indicator-item .cf7-step-label {
+    font-size: 0.9rem;
+  }
+}
+
+/* CF7 → Bootstrap helpers formerly inline in PHP */
+.wpcf7 form label { display: block; font-weight: 600; margin-bottom: 4px; }
+.wpcf7 .wpcf7-form-control-wrap { display: block; margin-bottom: 1rem; }
+.wpcf7 .wpcf7-list-item { display: block; margin-bottom: 0.35rem; }
+.wpcf7 .wpcf7-list-item label { display: flex; align-items: center; gap: 8px; margin: 0; }
+.wpcf7 .wpcf7-form-control:not(textarea) { height: auto; }
+.wpcf7 .wpcf7-not-valid { border-color: var(--bs-danger, #dc3545); }
+.wpcf7 .wpcf7-not-valid-tip { color: var(--bs-danger, #dc3545); margin-top: 4px; font-size: 0.9rem; display: block; width: 100%; }
+.wpcf7 .wpcf7-not-valid-tip::before { content: ""; }
+.wpcf7 .wpcf7-response-output { margin-top: 1rem; }
+.wpcf7 .wpcf7-response-output.wpcf7-mail-sent-ok { color: var(--bs-success, #198754); border-color: var(--bs-success, #198754); }
+.wpcf7 .wpcf7-response-output.wpcf7-validation-errors,
+.wpcf7 .wpcf7-response-output.wpcf7-mail-sent-ng { color: var(--bs-danger, #dc3545); border-color: var(--bs-danger, #dc3545); }
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.payment-required .wpcf7-response-output { border-color: inherit !important; }
+.wpcf7 form .wpcf7-response-output {
+  margin: inherit;
+  margin-bottom: var(--bs-alert-margin-bottom);
+  padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+  border: var(--bs-alert-border);
+}
+.wpcf7 .wpcf7-not-valid-tip {
+  color: var(--bs-form-invalid-color);
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+}

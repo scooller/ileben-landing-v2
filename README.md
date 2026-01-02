@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.4  
+**Versión:** 0.1.5  
 **Compatibilidad:** PHP 8.2+, WordPress 6.0+, ACF Pro
 
 ---
@@ -256,6 +256,76 @@ echo ileben_iframe_facade([
 ### Cargador
 
 Se renderiza automáticamente en `front-page.php`. El loader se oculta cuando la página se ha cargado completamente o después de 5 segundos (failsafe).
+
+---
+
+## 🎬 Bloques con Animaciones GSAP
+
+El tema incluye un sistema completo de animaciones GSAP integrado en los bloques. Cada bloque con soporte de animaciones expone un panel "Animation" en el inspector de Gutenberg.
+
+### Bloques con Soporte de Animaciones
+
+#### ✅ **bs-card** – Tarjetas animadas
+- Tipos de animación: Fade, Slide, Scale, Rotate, Bounce, Elastic, Flip, Pulse
+- Triggers: On Load, On Scroll, On Hover, On Click
+- Configuración: Duration, Delay, Easing, Distance, Rotation, Scale, Parallax Speed
+- Ideal para: Cards en galería, portafolio, listados de productos
+
+#### 📦 Próximos (Usar template en `blocks/animation-controls.js`):
+- **bs-container** – Contenedores fluidos
+- **bs-column** – Columnas Bootstrap
+- **bs-list-group** – Listas con items
+- **bs-badge** – Badges pequeños
+
+### Tipos de Animación (19)
+
+**Fade (5)**: fadeIn, fadeInUp, fadeInDown, fadeInLeft, fadeInRight  
+**Slide (4)**: slideUp, slideDown, slideLeft, slideRight  
+**Scale (3)**: scaleIn, scaleUp, scaleDown  
+**Rotate (2)**: rotate, rotateFast  
+**Effects (5)**: bounce, elastic, flip, flipX, pulse  
+
+### Triggers (4)
+
+- **on-load** – Ejecuta al cargar la página
+- **on-scroll** – ScrollTrigger (elemento entra en viewport)
+- **on-hover** – Efectos interactivos con mouse
+- **on-click** – Animación al hacer clic
+
+### Configuraciones
+
+```
+Timing:    Duration (0.1-3s), Delay (0-5s), Repeat (0-5), Yoyo
+Easing:    10 opciones (linear, power1-4, back, elastic, bounce, etc.)
+Parameters: Distance (px), Rotation (°), Scale (0.1-2), Parallax Speed
+Effects:    Hover (scale, brightness, shadow, lift, glow)
+Mobile:     Toggle para habilitar/deshabilitar en móvil
+```
+
+### Uso en Editor
+
+1. Selecciona un bloque compatible (ej: Card)
+2. Inspector → Expande "Animation"
+3. Configura: Type, Trigger, Duration, Delay, Ease y parámetros específicos
+4. ¡Listo! Se guarda automáticamente
+
+### Ejemplo: Card con Fade In Up
+
+```
+Animation Type: fadeInUp
+Trigger: on-scroll
+Duration: 0.6s
+Delay: 0s
+Easing: power2.inOut
+Distance: 40px
+```
+
+### Archivos Relacionados
+
+- **assets/js/animations.js** – Gestor GSAP (GSAPAnimationManager)
+- **blocks/animation-controls.js** – Componentes Gutenberg reutilizables
+- **inc/blocks-helpers.php** – Helper PHP para data attributes
+- **inc/animations.php** – Enqueue de GSAP, ScrollTrigger y scripts
 
 ---
 

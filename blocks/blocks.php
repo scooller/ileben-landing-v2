@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bootstrap Blocks Registration
  * 
@@ -11,7 +12,8 @@ if (!defined('ABSPATH')) {
 
 // Polyfill for str_starts_with when running under PHP < 8 (defensive, theme targets PHP 8+)
 if (!function_exists('str_starts_with')) {
-    function str_starts_with($haystack, $needle) {
+    function str_starts_with($haystack, $needle)
+    {
         return strncmp($haystack, $needle, strlen($needle)) === 0;
     }
 }
@@ -30,20 +32,20 @@ if (file_exists($class_fix_file)) {
 $blocks_dir = get_template_directory() . '/blocks';
 if (is_dir($blocks_dir)) {
     $blocks = array_filter(glob($blocks_dir . '/*'), 'is_dir');
-    
+
     foreach ($blocks as $block) {
         $block_name = basename($block);
         // Skip non-block directories
         if (!str_starts_with($block_name, 'bs-')) {
             continue;
         }
-        
+
         // Skip WooCommerce blocks if WooCommerce is not active
         $woocommerce_blocks = ['bs-cart', 'bs-wc-products', 'bs-checkout-custom-fields', 'bs-shipping-methods'];
         if (in_array($block_name, $woocommerce_blocks, true) && !class_exists('WooCommerce')) {
             continue;
         }
-        
+
         $block_file = $block . '/block.php';
         if (file_exists($block_file)) {
             require_once $block_file;
@@ -54,17 +56,45 @@ if (is_dir($blocks_dir)) {
 /**
  * Enqueue block editor assets
  */
-function bootstrap_theme_block_editor_assets() {
+function bootstrap_theme_block_editor_assets()
+{
     // List of all Bootstrap blocks that need editor.js loaded
     $blocks_with_editors = [
-        'bs-accordion', 'bs-accordion-item', 'bs-alert', 'bs-badge', 'bs-breadcrumb',
-        'bs-breadcrumb-item', 'bs-button', 'bs-button-group', 'bs-card', 'bs-carousel',
-        'bs-carousel-item', 'bs-column', 'bs-container', 'bs-divider', 'bs-dropdown', 'bs-dropdown-divider',
-        'bs-dropdown-item', 'bs-list-group', 'bs-list-group-item', 'bs-menu', 'bs-modal', 
-        'bs-offcanvas', 'bs-pagination', 'bs-pagination-item', 'bs-progress', 'bs-row', 
-        'bs-spinner', 'bs-tab-pane', 'bs-tabs', 'bs-toast', 'bs-iframe', 'bs-plantas-slider'
+        'bs-accordion',
+        'bs-accordion-item',
+        'bs-alert',
+        'bs-badge',
+        'bs-breadcrumb',
+        'bs-breadcrumb-item',
+        'bs-button',
+        'bs-button-group',
+        'bs-card',
+        'bs-carousel',
+        'bs-carousel-item',
+        'bs-column',
+        'bs-container',
+        'bs-divider',
+        'bs-dropdown',
+        'bs-dropdown-divider',
+        'bs-dropdown-item',
+        'bs-list-group',
+        'bs-list-group-item',
+        'bs-menu',
+        'bs-modal',
+        'bs-offcanvas',
+        'bs-pagination',
+        'bs-pagination-item',
+        'bs-progress',
+        'bs-row',
+        'bs-spinner',
+        'bs-tab-pane',
+        'bs-tabs',
+        'bs-toast',
+        'bs-iframe',
+        'bs-plantas-slider',
+        'bs-cf7'
     ];
-    
+
     // Add WooCommerce blocks only if WooCommerce is active
     if (class_exists('WooCommerce')) {
         $blocks_with_editors[] = 'bs-cart';
@@ -80,14 +110,14 @@ function bootstrap_theme_block_editor_assets() {
             wp_enqueue_script(
                 $handle,
                 get_template_directory_uri() . "/blocks/{$block_name}/editor.js",
-                array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data'),
+                array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-api-fetch'),
                 ILEBEN_THEME_VERSION,
                 true
             );
 
             // Pass options for plantas slider (dormitorios/banos) to the editor script
             if ($block_name === 'bs-plantas-slider' && function_exists('get_field')) {
-                $build_choices = function($field_name) {
+                $build_choices = function ($field_name) {
                     $choices = [];
                     $rows = get_field($field_name, 'option');
                     if (is_array($rows)) {
@@ -145,11 +175,34 @@ function bootstrap_theme_block_editor_assets() {
         );
     }
 
+    // Enqueue animation controls utility
+    $animation_controls_js = ILEBEN_THEME_DIR . '/blocks/animation-controls.js';
+    if (file_exists($animation_controls_js)) {
+        wp_enqueue_script(
+            'bootstrap-theme-animation-controls',
+            ILEBEN_THEME_URI . '/blocks/animation-controls.js',
+            array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n'),
+            ILEBEN_THEME_VERSION,
+            true
+        );
+    }
+
+    // Enqueue core blocks extension (adds animation to core/heading and core/paragraph)
+    $core_blocks_extension_js = ILEBEN_THEME_DIR . '/blocks/core-blocks-extension.js';
+    if (file_exists($core_blocks_extension_js)) {
+        wp_enqueue_script(
+            'bootstrap-theme-core-blocks-extension',
+            ILEBEN_THEME_URI . '/blocks/core-blocks-extension.js',
+            array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-hooks', 'wp-compose', 'bootstrap-theme-animation-controls'),
+            ILEBEN_THEME_VERSION,
+            true
+        );
+    }
 }
 add_action('enqueue_block_editor_assets', 'bootstrap_theme_block_editor_assets');
 
 // Fallback: force-load the master blocks script in the post editor screen in case another plugin/theme stops the standard hook
-add_action('admin_enqueue_scripts', function($hook) {
+add_action('admin_enqueue_scripts', function ($hook) {
     if ($hook !== 'post.php' && $hook !== 'post-new.php') {
         return;
     }
@@ -169,7 +222,8 @@ add_action('admin_enqueue_scripts', function($hook) {
 /**
  * Register Ileben-landing block category
  */
-function bootstrap_theme_register_block_category($categories) {
+function bootstrap_theme_register_block_category($categories)
+{
     // Add Ileben-landing category at the beginning for better visibility
     array_unshift($categories, array(
         'slug'  => 'ileben-landing',
@@ -184,7 +238,8 @@ add_filter('block_categories_all', 'bootstrap_theme_register_block_category');
 /**
  * Enqueue block frontend assets
  */
-function bootstrap_theme_enqueue_block_assets() {
+function bootstrap_theme_enqueue_block_assets()
+{
     // Enqueue Bootstrap CSS for blocks frontend
     wp_enqueue_style(
         'bootstrap-theme-blocks-frontend',
@@ -202,7 +257,7 @@ function bootstrap_theme_enqueue_block_assets() {
             array(),
             ILEBEN_THEME_VERSION
         );
-        
+
         // Enqueue cart block JavaScript
         wp_enqueue_script(
             'bootstrap-theme-cart-handler',
@@ -211,7 +266,7 @@ function bootstrap_theme_enqueue_block_assets() {
             ILEBEN_THEME_VERSION,
             true
         );
-        
+
         // Localize script with AJAX URL
         wp_localize_script('bootstrap-theme-cart-handler', 'bootstrapThemeCart', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),

@@ -234,3 +234,25 @@
         transform: none;
     }
 }
+/* SplitText Animation Support */
+.word-anim,
+.char-anim {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+.word-anim {
+    white-space: nowrap;
+}
+
+/* Core blocks with animation support */
+.wp-block-heading[data-animate-type],
+.wp-block-paragraph[data-animate-type] {
+    will-change: transform, opacity;
+}
+
+/* Preserve text formatting during SplitText */
+.wp-block-heading[data-split-text='true'],
+.wp-block-paragraph[data-split-text='true'] {
+    overflow: visible;
+}

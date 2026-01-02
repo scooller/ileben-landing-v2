@@ -2,6 +2,32 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.5] - 2025-12-31
+
+### ✨ Nuevas funciones
+- **CF7 Multistep:** Sistema completo de formularios multipaso con Contact Form 7.
+  - Parsing robusto de marcadores `[step_break label="Paso X"]` incluso cuando están envueltos en `<p>` u otros elementos.
+  - Validación por campo con toasts de Bootstrap personalizables (mensaje configurable desde ACF).
+  - Indicador de pasos horizontal con badges (`badge rounded-circle` para números/checkmarks, `badge rounded-pill` para etiquetas).
+  - Estados visuales: completado (verde con ✓), actual (azul primario), próximo (gris secundario).
+  - Barra de progreso opcional configurable desde ACF.
+  - Títulos de paso opcionales con dos modos: mostrar etiqueta personalizada o número de paso.
+  - Animaciones configurables: fade, slide, lift, zoom o sin animación.
+  - Duración y easing de animación personalizables desde ACF.
+  - Navegación con botones "Anterior" y "Siguiente" con etiquetas configurables.
+  - Todos los elementos visuales respetan configuración ACF (toggles para títulos, barra de progreso, indicador de pasos).
+
+### 🔧 Correcciones
+- **CF7 Config:** Corregido casting de booleans desde ACF para evitar que valores vacíos (`''`) se interpreten como `true`.
+- **CF7 Indicador:** Cuando el modo de título es "número", solo se muestra el círculo con número, sin etiqueta adicional.
+- **CF7 Estilos:** Migración completa de estilos inline a SCSS (`_cf7.scss`) para mejor mantenimiento.
+
+### 📚 Archivos modificados
+- `assets/js/cf7-bootstrap.js`: Parser de pasos, validación, animaciones, indicador y barra de progreso.
+- `assets/scss/_cf7.scss`: Estilos completos para multistep (animaciones, indicador, progress bar, toasts).
+- `inc/assets.php`: Localización de configuración CF7 desde ACF a JavaScript.
+- `acf-json/group_ileben_options.json`: Nuevos campos ACF para configuración CF7 multistep.
+
 ## [0.1.4] - 2025-12-17
 
 ### 🔧 Correcciones

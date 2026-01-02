@@ -40,20 +40,21 @@ export function initSliders() {
     ensureSwiperStructure(container);
 
     const ds = container.dataset;
+    const sliderId = ds.sliderId; // Get unique slider ID
     const readNum = (v) => (v !== undefined && v !== '' && !Number.isNaN(Number(v)) ? Number(v) : undefined);
     const readBool = (v) => (v === 'true' ? true : v === 'false' ? false : undefined);
 
     const localNav = readBool(ds.swiperNavigation);
     const enableNav = localNav !== undefined ? localNav : !!globals.enableNavigation;
     const nav = enableNav ? {
-      nextEl: container.querySelector('.swiper-button-next'),
-      prevEl: container.querySelector('.swiper-button-prev'),
+      nextEl: sliderId ? `.swiper-button-next-${sliderId}` : container.querySelector('.swiper-button-next'),
+      prevEl: sliderId ? `.swiper-button-prev-${sliderId}` : container.querySelector('.swiper-button-prev'),
     } : undefined;
 
     const localPag = readBool(ds.swiperPagination);
     const enablePag = localPag !== undefined ? localPag : !!globals.enablePagination;
     const pagination = enablePag ? {
-      el: container.querySelector('.swiper-pagination'),
+      el: sliderId ? `.swiper-pagination-${sliderId}` : container.querySelector('.swiper-pagination'),
       clickable: true,
     } : undefined;
 

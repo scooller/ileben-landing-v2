@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Asset loading and helpers.
  */
@@ -121,6 +122,25 @@ add_action('wp_enqueue_scripts', function () {
                 'enableDraggable' => (bool) get_field('enable_draggable', 'option'),
             ];
             wp_localize_script('ileben-main', 'ILEBEN_GSAP', $gsap_config);
+
+            // Localize CF7 multistep config
+            $show_step_titles = get_field('wpcf7_show_step_titles', 'option');
+            $show_progress_bar = get_field('wpcf7_show_progress_bar', 'option');
+
+            $cf7_config = [
+                'nextButtonLabel' => (string) (get_field('wpcf7_next_button_label', 'option') ?: 'Siguiente'),
+                'prevButtonLabel' => (string) (get_field('wpcf7_prev_button_label', 'option') ?: 'Anterior'),
+                'stepAnimation' => (string) (get_field('wpcf7_step_animation', 'option') ?: 'fade'),
+                'stepAnimationDuration' => (int) (get_field('wpcf7_step_animation_duration', 'option') ?: 250),
+                'stepAnimationEasing' => (string) (get_field('wpcf7_step_animation_easing', 'option') ?: 'ease'),
+                'toastMessage' => (string) (get_field('wpcf7_toast_message', 'option') ?: 'Por favor completa los campos requeridos.'),
+                'rutFormat' => (string) (get_field('wpcf7_rut_format', 'option') ?: 'plain'),
+                'rutErrorMessage' => (string) (get_field('wpcf7_rut_error_message', 'option') ?: 'RUT inválido'),
+                'showStepTitles' => (bool) $show_step_titles && $show_step_titles !== '0',
+                'stepTitleMode' => (string) (get_field('wpcf7_step_title_mode', 'option') ?: 'label'),
+                'showProgressBar' => (bool) $show_progress_bar && $show_progress_bar !== '0',
+            ];
+            wp_localize_script('ileben-main', 'ILEBEN_CF7', $cf7_config);
         }
     }
 
@@ -146,7 +166,7 @@ add_action('enqueue_block_editor_assets', function () {
     if (file_exists(ILEBEN_THEME_DIR . '/dist/assets/editor.css')) {
         wp_enqueue_style('ileben-editor-styles', $editor_css, ['wp-edit-blocks'], ILEBEN_THEME_VERSION);
     }
-    
+
     // Font Awesome for Editor
     wp_enqueue_style('font-awesome-editor', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', [], '6.4.0');
 });
@@ -262,122 +282,123 @@ add_action('wp_enqueue_scripts', function () {
 
     // Build CSS with output buffering, then attach inline for deterministic order
     ob_start();
-    ?>
-:root {
-<?php
+?>
+    :root {
+    <?php
     // Colors
     foreach ($colors as $category => $colorGroup) :
         foreach ($colorGroup as $name => $value) :
             if ($value) : ?>
                 --bs-<?php echo $name; ?>: <?php echo $value; ?>;
                 --bs-<?php echo $name; ?>-rgb: <?php echo ileben_rgb_string($value); ?>;
-<?php       endif;
+            <?php endif;
         endforeach;
     endforeach;
     // Borders
     foreach ($borders as $name => $value) :
-        if ($value) : ?>  
-                --bs-<?php echo $name; ?>: <?php echo $value; ?>;
-<?php   endif;
+        if ($value) : ?>
+            --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+        <?php endif;
     endforeach;
     // Box Shadows
     foreach ($shadows as $name => $value) :
         if ($value) : ?>
-                --bs-<?php echo $name; ?>: <?php echo $value; ?>;
-<?php   endif;
+            --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+        <?php endif;
     endforeach;
     // Focus Ring
     foreach ($focus as $name => $value) :
         if ($value) : ?>
-                --bs-<?php echo $name; ?>: <?php echo $value; ?>;
-<?php   endif;
-    endforeach;    
-?>  
-  --bs-focus-ring-color: <?php echo $focus_ring_color; ?>;
-  --bs-body-font-family: <?php echo $font_name; ?>;
-  --bs-body-font-size: <?php echo $font_size; ?>;
-  --bs-body-font-weight: <?php echo $font_weight; ?>;
-  --swiper-theme-color: var(--bs-primary);
-  --swiper-pagination-bullet-border-radius: var(--bs-border-radius-pill);
-  --swiper-pagination-bullet-opacity: 1;
-  --swiper-pagination-bullet-inactive-opacity: var(--bs-secondary-opacity);
-  /* Wp Block Editor */
-  --wp-block-font-size: 1rem;
-   --wp--preset--font-size--small: 12px;
-   --wp--preset--font-size--medium: 16px;
-   --wp--preset--font-size--large: 20px;
-   --wp--preset--font-size--x-large: 24px;
-}
-<?php
-// Btns colors
-        foreach ($colors['theme-colors'] as $theme => $value) :
-                $base = $value ?: '#0d6efd';
-                $hover_bg = ileben_adjust_color($base, 0.93);
-                $hover_border = ileben_adjust_color($base, 0.9);
-                $active_bg = ileben_adjust_color($base, 0.9);
-                $active_border = ileben_adjust_color($base, 0.87);
-                $focus_rgb = ileben_rgb_string($base, 1.3);
-                ?>
-.btn-<?php echo $theme; ?> {
-    --bs-btn-bg: <?php echo $base; ?>;
-    --bs-btn-border-color: <?php echo $base; ?>;
-    --bs-btn-hover-bg: <?php echo $hover_bg; ?>;
-    --bs-btn-hover-border-color: <?php echo $hover_border; ?>;
-    --bs-btn-focus-shadow-rgb: <?php echo $focus_rgb; ?>;
-    --bs-btn-active-bg: <?php echo $active_bg; ?>;
-    --bs-btn-active-border-color: <?php echo $active_border; ?>;
-    --bs-btn-disabled-bg: <?php echo $base; ?>;
-    --bs-btn-disabled-border-color: <?php echo $base; ?>;
-}
-.btn-<?php echo $theme; ?> {
-    --bs-btn-bg: <?php echo $base; ?>;
-    --bs-btn-border-color: <?php echo $base; ?>;
-    --bs-btn-hover-bg: <?php echo $hover_bg; ?>;
-    --bs-btn-hover-border-color: <?php echo $hover_border; ?>;
-    --bs-btn-focus-shadow-rgb: <?php echo $focus_rgb; ?>;
-    --bs-btn-active-bg: <?php echo $active_bg; ?>;
-    --bs-btn-active-border-color: <?php echo $active_border; ?>;
-    --bs-btn-disabled-bg: <?php echo $base; ?>;
-    --bs-btn-disabled-border-color: <?php echo $base; ?>;
-}
-.btn-outline-<?php echo $theme; ?> {
-  --bs-btn-color: <?php echo $base; ?>;
-  --bs-btn-border-color: <?php echo $base; ?>;
-  --bs-btn-hover-bg: <?php echo $hover_bg; ?>;
-  --bs-btn-hover-border-color: <?php echo $hover_border; ?>;
-  --bs-btn-focus-shadow-rgb: <?php echo $focus_rgb; ?>;
-  --bs-btn-active-bg: <?php echo $active_bg; ?>;
-  --bs-btn-active-border-color: <?php echo $active_border; ?>;
-  --bs-btn-disabled-color: <?php echo $base; ?>;
-  --bs-btn-disabled-border-color: <?php echo $base; ?>;
-}
-<?php
-        endforeach;
-?>
-/* inyect all colors from $colors with .has-X-color and .has-X-background-color */
-<?php
+            --bs-<?php echo $name; ?>: <?php echo $value; ?>;
+    <?php endif;
+    endforeach;
+    ?>
+    --bs-focus-ring-color: <?php echo $focus_ring_color; ?>;
+    --bs-body-font-family: <?php echo $font_name; ?>;
+    --bs-body-font-size: <?php echo $font_size; ?>;
+    --bs-body-font-weight: <?php echo $font_weight; ?>;
+    --swiper-theme-color: var(--bs-primary);
+    --swiper-pagination-bullet-border-radius: var(--bs-border-radius-pill);
+    --swiper-pagination-bullet-opacity: 1;
+    --swiper-pagination-bullet-inactive-opacity: var(--bs-secondary-opacity);
+    --bs-form-invalid-color: var(--bs-danger);
+    --bs-form-invalid-border-color: var(--bs-danger);
+    /* Wp Block Editor */
+    --wp-block-font-size: 1rem;
+    --wp--preset--font-size--small: 12px;
+    --wp--preset--font-size--medium: 16px;
+    --wp--preset--font-size--large: 20px;
+    --wp--preset--font-size--x-large: 24px;
+    }
+    <?php
+    // Btns colors
+    foreach ($colors['theme-colors'] as $theme => $value) :
+        $base = $value ?: '#0d6efd';
+        $hover_bg = ileben_adjust_color($base, 0.93);
+        $hover_border = ileben_adjust_color($base, 0.9);
+        $active_bg = ileben_adjust_color($base, 0.9);
+        $active_border = ileben_adjust_color($base, 0.87);
+        $focus_rgb = ileben_rgb_string($base, 1.3);
+    ?>
+        .btn-<?php echo $theme; ?> {
+        --bs-btn-bg: <?php echo $base; ?>;
+        --bs-btn-border-color: <?php echo $base; ?>;
+        --bs-btn-hover-bg: <?php echo $hover_bg; ?>;
+        --bs-btn-hover-border-color: <?php echo $hover_border; ?>;
+        --bs-btn-focus-shadow-rgb: <?php echo $focus_rgb; ?>;
+        --bs-btn-active-bg: <?php echo $active_bg; ?>;
+        --bs-btn-active-border-color: <?php echo $active_border; ?>;
+        --bs-btn-disabled-bg: <?php echo $base; ?>;
+        --bs-btn-disabled-border-color: <?php echo $base; ?>;
+        }
+        .btn-<?php echo $theme; ?> {
+        --bs-btn-bg: <?php echo $base; ?>;
+        --bs-btn-border-color: <?php echo $base; ?>;
+        --bs-btn-hover-bg: <?php echo $hover_bg; ?>;
+        --bs-btn-hover-border-color: <?php echo $hover_border; ?>;
+        --bs-btn-focus-shadow-rgb: <?php echo $focus_rgb; ?>;
+        --bs-btn-active-bg: <?php echo $active_bg; ?>;
+        --bs-btn-active-border-color: <?php echo $active_border; ?>;
+        --bs-btn-disabled-bg: <?php echo $base; ?>;
+        --bs-btn-disabled-border-color: <?php echo $base; ?>;
+        }
+        .btn-outline-<?php echo $theme; ?> {
+        --bs-btn-color: <?php echo $base; ?>;
+        --bs-btn-border-color: <?php echo $base; ?>;
+        --bs-btn-hover-bg: <?php echo $hover_bg; ?>;
+        --bs-btn-hover-border-color: <?php echo $hover_border; ?>;
+        --bs-btn-focus-shadow-rgb: <?php echo $focus_rgb; ?>;
+        --bs-btn-active-bg: <?php echo $active_bg; ?>;
+        --bs-btn-active-border-color: <?php echo $active_border; ?>;
+        --bs-btn-disabled-color: <?php echo $base; ?>;
+        --bs-btn-disabled-border-color: <?php echo $base; ?>;
+        }
+    <?php
+    endforeach;
+    ?>
+    /* inyect all colors from $colors with .has-X-color and .has-X-background-color */
+    <?php
     foreach ($colors as $category => $colorGroup) :
         foreach ($colorGroup as $name => $value) :
             if ($value) :
-                ?>  
+    ?>
                 .has-<?php echo $name; ?>-color{
-                    color: <?php echo $value; ?>;
+                color: <?php echo $value; ?>;
                 }
                 .has-<?php echo $name; ?>-background-color{
-                    background-color: <?php echo $value; ?>;
+                background-color: <?php echo $value; ?>;
                 }
-<?php       endif;
+    <?php endif;
         endforeach;
     endforeach;
-?>
+    ?>
 
 
-/* Dark mode support */
-[data-bs-theme=dark]{--bs-body-color:var(--bs-white);--bs-body-color-rgb:var(--bs-light-rgb);--bs-body-bg:var(--bs-dark);--bs-body-bg-rgb:var(--bs-dark-rgb);}
-[data-bs-theme=light]{--bs-body-color:var(--bs-black);--bs-body-color-rgb:var(--bs-dark-rgb);--bs-body-bg:var(--bs-light);--bs-body-bg-rgb:var(--bs-light-rgb);}
-@media (max-width:768px){html{font-size: <?php echo $font_size_mobile; ?>;}}
+    /* Dark mode support */
+    [data-bs-theme=dark]{--bs-body-color:var(--bs-white);--bs-body-color-rgb:var(--bs-light-rgb);--bs-body-bg:var(--bs-dark);--bs-body-bg-rgb:var(--bs-dark-rgb);}
+    [data-bs-theme=light]{--bs-body-color:var(--bs-black);--bs-body-color-rgb:var(--bs-dark-rgb);--bs-body-bg:var(--bs-light);--bs-body-bg-rgb:var(--bs-light-rgb);}
+    @media (max-width:768px){html{font-size: <?php echo $font_size_mobile; ?>;}}
 <?php
     $css = ob_get_clean();
     wp_add_inline_style('ileben-theme-style', $css);
 }, 20);
-

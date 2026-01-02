@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bootstrap Container Block
  * 
@@ -12,7 +13,8 @@ if (!defined('ABSPATH')) {
 /**
  * Render Bootstrap Container Block
  */
-function bootstrap_theme_render_bs_container_block($attributes, $content, $block) {
+function bootstrap_theme_render_bs_container_block($attributes, $content, $block)
+{
     $type = $attributes['type'] ?? 'container';
     $fluid = $attributes['fluid'] ?? false;
     $breakpoint = $attributes['breakpoint'] ?? '';
@@ -37,10 +39,10 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
     $swiperAutoplayDelay = isset($attributes['swiperAutoplayDelay']) ? $attributes['swiperAutoplayDelay'] : '';
     $swiperPagination = isset($attributes['swiperPagination']) ? (bool)$attributes['swiperPagination'] : null;
     $swiperNavigation = isset($attributes['swiperNavigation']) ? (bool)$attributes['swiperNavigation'] : null;
-    
+
     // Build container classes
     $classes = array();
-    
+
     if ($fluid) {
         $classes[] = 'container-fluid';
     } else if (!empty($breakpoint)) {
@@ -48,34 +50,34 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
     } else {
         $classes[] = 'container';
     }
-    
+
     // Add utility classes
     if (!empty($backgroundColor)) {
         $classes[] = $backgroundColor;
     }
-    
+
     if (!empty($textColor)) {
         $classes[] = $textColor;
     }
-    
+
     if (!empty($padding)) {
         $classes[] = $padding;
     }
-    
+
     if (!empty($margin)) {
         $classes[] = $margin;
     }
-    
+
     // Add custom CSS classes from Advanced panel
     if (!empty($attributes['className'])) {
         $classes[] = $attributes['className'];
     }
-    
+
     // Alternative way to get custom classes from block object
     if (isset($block->attributes['className']) && !empty($block->attributes['className'])) {
         $classes[] = $block->attributes['className'];
     }
-    
+
     if ($isSwiper) {
         // Add Swiper classes to container
         $classes[] = 'swiper';
@@ -86,7 +88,7 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
 
     // Build inline styles for custom background
     $styles = array();
-    $sanitize_color = function($color) {
+    $sanitize_color = function ($color) {
         $color = trim($color);
         if ($color === '') return '';
         // Accept hex (#RGB or #RRGGBB)
@@ -106,7 +108,7 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
     } elseif ($bgType === 'gradient') {
         $from = $sanitize_color($bgGradientFrom);
         $to = $sanitize_color($bgGradientTo);
-        $dir = in_array($bgGradientDirection, array('to right','to left','to bottom','to top','45deg','135deg'), true) ? $bgGradientDirection : 'to right';
+        $dir = in_array($bgGradientDirection, array('to right', 'to left', 'to bottom', 'to top', '45deg', '135deg'), true) ? $bgGradientDirection : 'to right';
         if ($from && $to) {
             $styles['background-image'] = 'linear-gradient(' . $dir . ', ' . $from . ', ' . $to . ')';
         }
@@ -119,10 +121,10 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
             $repeat = isset($attributes['bgImageRepeat']) ? $attributes['bgImageRepeat'] : 'no-repeat';
             $attach = isset($attributes['bgImageAttachment']) ? $attributes['bgImageAttachment'] : 'scroll';
 
-            $allowed_sizes = array('cover','contain','auto');
-            $allowed_positions = array('center center','center top','center bottom','left center','right center');
-            $allowed_repeats = array('no-repeat','repeat','repeat-x','repeat-y');
-            $allowed_attach = array('scroll','fixed');
+            $allowed_sizes = array('cover', 'contain', 'auto');
+            $allowed_positions = array('center center', 'center top', 'center bottom', 'left center', 'right center');
+            $allowed_repeats = array('no-repeat', 'repeat', 'repeat-x', 'repeat-y');
+            $allowed_attach = array('scroll', 'fixed');
 
             $styles['background-size'] = in_array($size, $allowed_sizes, true) ? $size : 'cover';
             $styles['background-position'] = in_array($pos, $allowed_positions, true) ? $pos : 'center center';
@@ -157,16 +159,19 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
         }
     }
 
+    // Get animation data attributes
+    $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
+
     $id_attr = $anchor ? ' id="' . esc_attr($anchor) . '"' : '';
-    $output = '<div class="' . esc_attr($class_string) . '"' . $id_attr . $style_string . $data_attrs . '>';
-    
+    $output = '<div class="' . esc_attr($class_string) . '"' . $id_attr . $style_string . $data_attrs . $animation_attrs . '>';
+
     // Add content from InnerBlocks
     if (!empty($content)) {
         $output .= $content;
     } else {
         $output .= '<p>' . __('Add content to your container.', 'bootstrap-theme') . '</p>';
     }
-    
+
     // Render default Swiper controls (can be enabled via JS config)
     if ($isSwiper) {
         $output .= '<div class="swiper-pagination"></div>';
@@ -175,14 +180,15 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
     }
 
     $output .= '</div>';
-    
+
     return $output;
 }
 
 /**
  * Register Bootstrap Container Block
  */
-function bootstrap_theme_register_bs_container_block() {
+function bootstrap_theme_register_bs_container_block()
+{
     register_block_type('bootstrap-theme/bs-container', array(
         'render_callback' => 'bootstrap_theme_render_bs_container_block',
         'supports' => array(
@@ -308,6 +314,49 @@ function bootstrap_theme_register_bs_container_block() {
             'className' => array(
                 'type' => 'string',
                 'default' => ''
+            ),
+            // Animation attributes
+            'animationType' => array(
+                'type' => 'string'
+            ),
+            'animationTrigger' => array(
+                'type' => 'string'
+            ),
+            'animationDuration' => array(
+                'type' => 'number'
+            ),
+            'animationDelay' => array(
+                'type' => 'number'
+            ),
+            'animationEase' => array(
+                'type' => 'string'
+            ),
+            'animationRepeat' => array(
+                'type' => 'number'
+            ),
+            'animationRepeatDelay' => array(
+                'type' => 'number'
+            ),
+            'animationYoyo' => array(
+                'type' => 'boolean'
+            ),
+            'animationDistance' => array(
+                'type' => 'string'
+            ),
+            'animationRotation' => array(
+                'type' => 'number'
+            ),
+            'animationScale' => array(
+                'type' => 'string'
+            ),
+            'animationParallaxSpeed' => array(
+                'type' => 'number'
+            ),
+            'animationHoverEffect' => array(
+                'type' => 'string'
+            ),
+            'animationMobileEnabled' => array(
+                'type' => 'boolean'
             )
         )
     ));

@@ -114,71 +114,73 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
         </form>
 
         <div class="bs-plantas-slider-container">
-    <div class="<?php echo esc_attr($class_string); ?>"<?php echo $data_attrs; ?>>
-        <div class="swiper-wrapper">
-        <?php 
-        while ($q->have_posts()) :
-            $q->the_post();
-            $cotizador_activo_raw = function_exists('get_field') ? get_field('cotizador_activo', get_the_ID()) : null;
-            $cotizador_activo = is_null($cotizador_activo_raw) ? true : (bool)$cotizador_activo_raw;
-            $link_cotizador = function_exists('get_field') ? get_field('link_cotizador', get_the_ID()) : '';
-            $content_html = apply_filters('the_content', get_the_content(null, false, get_the_ID()));
-            $planta_dorm = function_exists('get_field') ? get_field('planta_dormitorio', get_the_ID()) : '';
-            $planta_bano = function_exists('get_field') ? get_field('planta_bano', get_the_ID()) : '';
-        ?>
-        <div data-post-id="<?php echo esc_attr(get_the_ID()); ?>" data-bano="<?php echo esc_attr($planta_bano); ?>" data-dorm="<?php echo esc_attr($planta_dorm); ?>" class="swiper-slide">
-            <article class="card h-100">
-                <?php
-                if ($showThumbnail && has_post_thumbnail()) :
-                    $thumbnail_id = get_post_thumbnail_id();
-                    $full_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
-                    $thumb_html = get_the_post_thumbnail(get_the_ID(), 'medium_large', ['class' => 'img-fluid w-100']);
-                    if ($full_url) :
-                        ?>
-                        <div class="card-img-top">
-                            <a href="<?php echo esc_url($full_url); ?>" data-fancybox="<?php echo esc_attr($gallery_id); ?>" data-caption="<?php echo esc_attr(get_the_title()); ?>">
-                                <?php echo $thumb_html; ?>
-                            </a>
-                        </div>
-                        <?php
-                    else :
-                        ?>
-                        <div class="card-img-top"><?php echo $thumb_html; ?></div>
-                        <?php
-                    endif;
-                endif;
+            <div class="<?php echo esc_attr($class_string); ?>"<?php echo $data_attrs; ?> data-slider-id="<?php echo esc_attr($gallery_id); ?>">
+                <div class="swiper-wrapper">
+                <?php 
+                while ($q->have_posts()) :
+                    $q->the_post();
+                    $cotizador_activo_raw = function_exists('get_field') ? get_field('cotizador_activo', get_the_ID()) : null;
+                    $cotizador_activo = is_null($cotizador_activo_raw) ? true : (bool)$cotizador_activo_raw;
+                    $link_cotizador = function_exists('get_field') ? get_field('link_cotizador', get_the_ID()) : '';
+                    $content_html = apply_filters('the_content', get_the_content(null, false, get_the_ID()));
+                    $planta_dorm = function_exists('get_field') ? get_field('planta_dormitorio', get_the_ID()) : '';
+                    $planta_bano = function_exists('get_field') ? get_field('planta_bano', get_the_ID()) : '';
                 ?>
-        <div class="card-body text-center">
-            <h3 class="card-title"><?php echo esc_html(get_the_title()); ?></h3>
-            <div class="card-text">
-                <?php echo wp_kses_post($content_html); ?>
-            </div>
-            <?php
-            if (!$cotizador_activo) :
-            ?>
-                <button class="btn btn-secondary" type="button" disabled aria-disabled="true"><?php echo esc_html($disabledButtonLabel); ?></button>
-            <?php
-            elseif ($link_cotizador) :
-            ?>
-                <a class="btn btn-primary" href="<?php echo esc_url($link_cotizador); ?>" target="_blank" rel="noopener"><?php echo esc_html($buttonLabel); ?></a>
-            <?php
-            endif;
-        ?>
-        </div>
-        </article>
-        </div>
-        <?php
-    endwhile;
-    wp_reset_postdata();
-    ?>
-        </div>
-        <div class="swiper-pagination"></div>
-        <?php if ($navigationArrows) : ?>
-        <div class="swiper-button-prev"></div><div class="swiper-button-next"></div>
-        <?php endif; ?>
-    </div>
-        </div>
-    </div>
+                    <div data-post-id="<?php echo esc_attr(get_the_ID()); ?>" data-bano="<?php echo esc_attr($planta_bano); ?>" data-dorm="<?php echo esc_attr($planta_dorm); ?>" class="swiper-slide">
+                        <article class="card h-100">
+                            <?php
+                            if ($showThumbnail && has_post_thumbnail()) :
+                                $thumbnail_id = get_post_thumbnail_id();
+                                $full_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
+                                $thumb_html = get_the_post_thumbnail(get_the_ID(), 'medium_large', ['class' => 'img-fluid w-100']);
+                                if ($full_url) :
+                                    ?>
+                                    <div class="card-img-top">
+                                        <a href="<?php echo esc_url($full_url); ?>" data-fancybox="<?php echo esc_attr($gallery_id); ?>" data-caption="<?php echo esc_attr(get_the_title()); ?>">
+                                            <?php echo $thumb_html; ?>
+                                        </a>
+                                    </div>
+                                    <?php
+                                else :
+                                    ?>
+                                    <div class="card-img-top"><?php echo $thumb_html; ?></div>
+                                    <?php
+                                endif;
+                            endif;
+                            ?>
+                            <div class="card-body text-center">
+                                <h3 class="card-title"><?php echo esc_html(get_the_title()); ?></h3>
+                                <div class="card-text">
+                                    <?php echo wp_kses_post($content_html); ?>
+                                </div>
+                                <?php
+                                if (!$cotizador_activo) :
+                                ?>
+                                    <button class="btn btn-secondary" type="button" disabled aria-disabled="true"><?php echo esc_html($disabledButtonLabel); ?></button>
+                                <?php
+                                elseif ($link_cotizador) :
+                                ?>
+                                    <a class="btn btn-primary" href="<?php echo esc_url($link_cotizador); ?>" target="_blank" rel="noopener"><?php echo esc_html($buttonLabel); ?></a>
+                                <?php
+                                endif;
+                                ?>
+                            </div>
+                        </article>
+                    </div>
+                    <?php
+                    endwhile;
+                    wp_reset_postdata();
+                    ?>
+                </div><!-- .swiper-wrapper -->
+            </div><!-- .swiper -->
+            <!-- Add Pagination and Navigation outside swiper -->
+            <div class="swiper-pagination swiper-pagination-<?php echo esc_attr($gallery_id); ?>"></div>
+            <?php if ($navigationArrows) : ?>
+            <div class="swiper-button-prev swiper-button-prev-<?php echo esc_attr($gallery_id); ?>"></div>
+            <div class="swiper-button-next swiper-button-next-<?php echo esc_attr($gallery_id); ?>"></div>
+            <?php endif; ?>
+        </div><!-- .bs-plantas-slider-container -->
+    </div><!-- .bs-plantas-filters-wrapper -->
     <?php
     return ob_get_clean();
 }
