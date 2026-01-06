@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ILEBEN_THEME_VERSION', '0.1.4');
+define('ILEBEN_THEME_VERSION', rand()); // For development, change to static version for production
 define('ILEBEN_THEME_DIR', get_template_directory());
 define('ILEBEN_THEME_URI', get_template_directory_uri());
 
@@ -41,10 +41,10 @@ foreach ($theme_includes as $file) {
     }
 }
 
-// Include theme editor styles, our blocks editor styles, and Bootstrap CSS so grid/components preview correctly.
+// Include theme editor styles, our blocks editor styles (compiled from SCSS), and Bootstrap CSS so grid/components preview correctly.
 add_editor_style(array(
     'assets/css/editor-style.css',
-    'blocks/blocks-editor.css',
+    'blocks/blocks-editor.css', // Compiled from blocks-editor.scss
 ));
 
 function add_custom_logo_class($html)
@@ -53,6 +53,16 @@ function add_custom_logo_class($html)
     return $html;
 }
 add_filter('get_custom_logo', 'add_custom_logo_class');
+
+/**
+ * Add admin CSS
+ */
+function ileben_admin_custom_css() {
+    echo '<style>
+        #side-sortables { position: fixed; }
+    </style>';
+}
+add_action('admin_head', 'ileben_admin_custom_css');
 
 // check if ACF is active
 if (function_exists('get_field')) {

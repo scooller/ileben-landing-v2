@@ -64,6 +64,7 @@ function bootstrap_theme_block_editor_assets()
         'bs-accordion-item',
         'bs-alert',
         'bs-badge',
+        'bs-asesores',
         'bs-breadcrumb',
         'bs-breadcrumb-item',
         'bs-button',
@@ -77,6 +78,8 @@ function bootstrap_theme_block_editor_assets()
         'bs-dropdown',
         'bs-dropdown-divider',
         'bs-dropdown-item',
+        'bs-fa-icon',
+        'bs-gallery',
         'bs-list-group',
         'bs-list-group-item',
         'bs-menu',
@@ -87,6 +90,8 @@ function bootstrap_theme_block_editor_assets()
         'bs-progress',
         'bs-row',
         'bs-spinner',
+        'bs-step-item',
+        'bs-steps',
         'bs-tab-pane',
         'bs-tabs',
         'bs-toast',
@@ -240,12 +245,21 @@ add_filter('block_categories_all', 'bootstrap_theme_register_block_category');
  */
 function bootstrap_theme_enqueue_block_assets()
 {
-    // Enqueue Bootstrap CSS for blocks frontend
+    // Enqueue Bootstrap CSS for blocks frontend (compiled from SCSS)
     wp_enqueue_style(
         'bootstrap-theme-blocks-frontend',
         get_template_directory_uri() . '/blocks/blocks-frontend.css',
         array(),
         ILEBEN_THEME_VERSION
+    );
+
+    // Enqueue Steps animation script
+    wp_enqueue_script(
+        'bootstrap-theme-steps-animation',
+        get_template_directory_uri() . '/blocks/bs-steps/steps-animation.js',
+        array(),
+        ILEBEN_THEME_VERSION,
+        true
     );
 
     // Enqueue WooCommerce block assets only if WooCommerce is active

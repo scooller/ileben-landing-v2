@@ -313,6 +313,8 @@ add_action('wp_enqueue_scripts', function () {
     <?php endif;
     endforeach;
     ?>
+    --bs-nav-link-color: var(--bs-link-color);
+    --bs-nav-link-hover-color: var(--bs-link-hover-color);
     --bs-focus-ring-color: <?php echo $focus_ring_color; ?>;
     --bs-body-font-family: <?php echo $font_name; ?>;
     --bs-body-font-size: <?php echo $font_size; ?>;
@@ -373,6 +375,11 @@ add_action('wp_enqueue_scripts', function () {
         --bs-btn-disabled-color: <?php echo $base; ?>;
         --bs-btn-disabled-border-color: <?php echo $base; ?>;
         }
+        .bg-outline-<?php echo $theme; ?> {
+            border: var(--bs-border-width) var(--bs-border-style) <?php echo $base; ?>;
+            color: <?php echo $base; ?>;
+            background-color: transparent;
+        }
     <?php
     endforeach;
     ?>
@@ -392,7 +399,10 @@ add_action('wp_enqueue_scripts', function () {
         endforeach;
     endforeach;
     ?>
-
+    .navbar-nav {
+        --bs-nav-link-color: var(--bs-link-color);
+        --bs-nav-link-hover-color: var(--bs-link-hover-color);
+    }
 
     /* Dark mode support */
     [data-bs-theme=dark]{--bs-body-color:var(--bs-white);--bs-body-color-rgb:var(--bs-light-rgb);--bs-body-bg:var(--bs-dark);--bs-body-bg-rgb:var(--bs-dark-rgb);}

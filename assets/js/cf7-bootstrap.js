@@ -181,7 +181,6 @@ function showCf7Step(form, targetIndex, animation = 'fade') {
     const currentStep = steps[currentIndex];
     const nextStep = steps[targetIndex];
     if (!nextStep) return;
-    console.log('[CF7] show step', { from: currentIndex, to: targetIndex, total: steps.length, animation });
 
     if (animation !== 'none') {
         form.classList.add('cf7-step-animated');
@@ -332,8 +331,6 @@ function buildCf7Steps(form) {
     if (currentNodes.length) {
            steps.push({ label: currentLabel, nodes: currentNodes });
     }
-    console.log('[CF7] submit nodes found:', submitNodes.length, 'label:', submitLabel);
-    console.log('[CF7] steps parsed:', steps.map(step => step.label));
     if (steps.length <= 1) {
         return;
     }
@@ -341,8 +338,6 @@ function buildCf7Steps(form) {
     form.innerHTML = '';
 
     const cfg = getCf7Config();
-    console.log('[CF7] config raw from ILEBEN_CF7:', { showStepTitles: window.ILEBEN_CF7.showStepTitles, showProgressBar: window.ILEBEN_CF7.showProgressBar });
-    console.log('[CF7] config parsed:', { showStepTitles: cfg.showStepTitles, showProgressBar: cfg.showProgressBar });
     const animation = cfg.stepAnimation;
     const animDurationMs = Math.max(0, Number(cfg.stepAnimationDuration || 0));
 
@@ -387,7 +382,6 @@ function buildCf7Steps(form) {
 
         indicator.appendChild(indicatorList);
         form.appendChild(indicator);
-        console.log('[CF7] step indicator rendered (showStepTitles=true)');
     }
 
     // Optional progress bar
@@ -406,7 +400,6 @@ function buildCf7Steps(form) {
         progress.appendChild(bar);
         progressWrapper.appendChild(progress);
         form.appendChild(progressWrapper);
-        console.log('[CF7] progress bar rendered (showProgressBar=true)');
     }
 
     steps.forEach((step, index) => {
@@ -445,7 +438,6 @@ function buildCf7Steps(form) {
             prev.innerHTML = cfg.prevButtonLabel;
             prev.addEventListener('click', () => {
                 const current = Number(form.dataset.cf7CurrentStep || '0');
-                console.log('[CF7] prev click', { current });
                 showCf7Step(form, Math.max(current - 1, 0), animation);
             });
             nav.appendChild(prev);
@@ -459,9 +451,7 @@ function buildCf7Steps(form) {
             next.addEventListener('click', () => {
                 const current = Number(form.dataset.cf7CurrentStep || '0');
                 const currentStepEl = form.querySelector('.wpcf7-step.active') || form.querySelector(`.wpcf7-step[data-step-index="${current}"]`);
-                console.log('[CF7] next click', { current });
                 if (currentStepEl && !validateCf7Step(currentStepEl)) {
-                    console.log('[CF7] validation failed on step', current);
                     applyBootstrapClasses();
                     return;
                 }
@@ -490,9 +480,6 @@ function buildCf7Steps(form) {
     if (indicatorList) {
         updateStepIndicator(form, 0);
     }
-
-    const stepDebug = Array.from(form.querySelectorAll('.wpcf7-step')).map((step, idx) => ({ idx, hidden: step.hidden, label: step.dataset.stepLabel, active: step.classList.contains('active') }));
-    console.log('[CF7] Steps built:', steps.length, 'animation:', animation, 'prev label:', cfg.prevButtonLabel, 'next label:', cfg.nextButtonLabel, 'state:', stepDebug);
 }
 
 function initCf7Multistep() {

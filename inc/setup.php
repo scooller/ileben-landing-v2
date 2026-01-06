@@ -18,6 +18,7 @@ add_action('after_setup_theme', function () {
     register_nav_menus([
         'primary' => __('Primary Menu', 'ileben-landing-v2'),
         'header-menu' => __('Header Menu', 'ileben-landing-v2'),
+        'footer-menu' => __('Footer Menu', 'ileben-landing-v2'),
     ]);
 
     add_image_size('banner', 1200, 900, true);

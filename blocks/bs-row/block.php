@@ -24,6 +24,7 @@ function bootstrap_theme_render_bs_row_block($attributes, $content, $block) {
     if ($noGutters) {
         $classes[] = 'g-0';
     } else if (!empty($gutters)) {
+        $classes[] = 'g-2';
         $classes[] = $gutters;
     }
     

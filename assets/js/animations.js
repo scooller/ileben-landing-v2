@@ -622,7 +622,9 @@ class GSAPAnimationManager {
    * Limpia todas las animaciones
    */
   cleanup() {
-    gsap.killAll();
+    // Kill all GSAP tweens and timelines
+    gsap.globalTimeline.clear();
+    gsap.globalTimeline.kill();
     this.scrollTriggers.forEach(trigger => trigger.kill());
     this.hoverObservers.forEach(observer => observer.disconnect?.());
     this.clickObservers.forEach(observer => observer.disconnect?.());

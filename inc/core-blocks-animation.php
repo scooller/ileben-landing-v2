@@ -20,6 +20,10 @@ if (!defined('ABSPATH')) {
  * Add animation attributes to core blocks on render
  */
 function ileben_add_animation_to_core_blocks($block_content, $block) {
+    // Debug: see incoming attrs for core blocks
+    /*if (in_array($block['blockName'], ['core/heading', 'core/paragraph'], true)) {
+        error_log('[core-anim] ' . $block['blockName'] . ' attrs: ' . json_encode($block['attrs'] ?? []));
+    }*/
     // Only process heading and paragraph blocks
     if (!in_array($block['blockName'], ['core/heading', 'core/paragraph'])) {
         return $block_content;
@@ -110,20 +114,20 @@ function ileben_add_animation_to_core_blocks($block_content, $block) {
         $data_attrs_string .= sprintf(' %s="%s"', esc_attr($key), esc_attr($value));
     }
 
-    // Find the opening tag and add attributes
-    // For heading: <h1, <h2, etc.
-    // For paragraph: <p
+    // Find the opening tag and add attributes (allow leading whitespace/newlines)
     if ($block['blockName'] === 'core/heading') {
         $block_content = preg_replace(
-            '/^<h([1-6])([^>]*)>/',
+            '/\s*<h([1-6])([^>]*)>/i',
             '<h$1$2' . $data_attrs_string . '>',
-            $block_content
+            $block_content,
+            1
         );
     } elseif ($block['blockName'] === 'core/paragraph') {
         $block_content = preg_replace(
-            '/^<p([^>]*)>/',
+            '/\s*<p([^>]*)>/i',
             '<p$1' . $data_attrs_string . '>',
-            $block_content
+            $block_content,
+            1
         );
     }
 

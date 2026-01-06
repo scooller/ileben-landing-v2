@@ -52,9 +52,9 @@
             const gutterOptions = [
                 { label: 'Default', value: '' },
                 { label: 'No Gutters', value: 'g-0' },
-                { label: 'Small Gutters', value: 'g-1' },
-                { label: 'Medium Gutters', value: 'g-3' },
-                { label: 'Large Gutters', value: 'g-5' }
+                { label: 'Small Gutters', value: 'g-md-1' },
+                { label: 'Medium Gutters', value: 'g-md-3' },
+                { label: 'Large Gutters', value: 'g-md-5' }
             ];
 
             const justifyOptions = [

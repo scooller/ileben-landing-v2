@@ -21,45 +21,6 @@
             "selected": 0
         },
         {
-            "key": "field_contact_phone",
-            "label": "Teléfono",
-            "name": "contact_phone",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_contact_email",
-            "label": "Correo",
-            "name": "contact_email",
-            "aria-label": "",
-            "type": "email",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_contact_address",
             "label": "Dirección",
             "name": "contact_address",
@@ -97,6 +58,89 @@
             "default_value": "",
             "placeholder": "",
             "mode": "text\/html",
+            "lines": 1,
+            "indent_unit": 4,
+            "maxlength": "",
+            "rows": 10,
+            "max_rows": "",
+            "return_format": [],
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "tab_footer",
+            "label": "Footer",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_footer_logo",
+            "label": "Logo Footer",
+            "name": "footer_logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Logo opcional para el footer.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_footer_legal_text",
+            "label": "Texto Legal Footer",
+            "name": "footer_legal_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Texto legal que se muestra en el footer del sitio.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "",
+            "acfe_textarea_code": 0,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_69404b557cc04",
+            "label": "Código Extra",
+            "name": "extra_code",
+            "aria-label": "",
+            "type": "acfe_code_editor",
+            "instructions": "Código Javascript. No agregar etiquetas script, esta etiqueta se agregará en el footer.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "mode": "javascript",
             "lines": 1,
             "indent_unit": 4,
             "maxlength": "",
@@ -292,31 +336,6 @@
             "search_placeholder": ""
         },
         {
-            "key": "field_69404b557cc04",
-            "label": "Extra Code",
-            "name": "extra_code",
-            "aria-label": "",
-            "type": "acfe_code_editor",
-            "instructions": "codigo Javascript.. no agregar etiquetas script, esta etiqueta se agregara en el footer",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "mode": "javascript",
-            "lines": 1,
-            "indent_unit": 4,
-            "maxlength": "",
-            "rows": 10,
-            "max_rows": "",
-            "return_format": [],
-            "allow_in_bindings": 0
-        },
-        {
             "key": "tab_social",
             "label": "Asesores y RRSS",
             "name": "",
@@ -451,29 +470,6 @@
                     "prepend": "",
                     "append": "",
                     "parent_repeater": "field_69415b7a6a89d"
-                },
-                {
-                    "key": "field_69415c4d6a8a2",
-                    "label": "Texto Whatsapp",
-                    "name": "texto_de_whatsapp",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "acfe_textarea_code": 0,
-                    "maxlength": "",
-                    "allow_in_bindings": 0,
-                    "rows": "",
-                    "placeholder": "",
-                    "new_lines": "",
-                    "parent_repeater": "field_69415b7a6a89d"
                 }
             ]
         },
@@ -527,28 +523,6 @@
             },
             "default_value": "",
             "placeholder": ""
-        },
-        {
-            "key": "field_social_whatsapp",
-            "label": "WhatsApp",
-            "name": "social_whatsapp",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "No Anteponer +56. Ejemplos: 912345678",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "prepend": "+56",
-            "placeholder": 912345678,
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "step": "",
-            "append": ""
         },
         {
             "key": "field_tab_gsap",
@@ -1829,6 +1803,31 @@
             "aria-label": "",
             "type": "color_picker",
             "instructions": "",
+            "name": "color_gray_300",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#dee2e6",
+            "enable_opacity": 0,
+            "return_format": "string",
+            "custom_palette_source": "",
+            "palette_colors": "",
+            "show_color_wheel": true
+        },
+        {
+            "key": "field_color_gray_400",
+            "label": "Gray 400",
+            "name": "color_gray_400",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -1935,7 +1934,7 @@
             "type": "color_picker",
             "instructions": "",
             "required": false,
-            "conditional_logic": false,
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "25",
                 "class": "",
@@ -2395,7 +2394,7 @@
             "placeholder": "2rem",
             "maxlength": "",
             "prepend": "",
-            "append": ""
+                       "append": ""
         },
         {
             "key": "field_border_radius_pill",

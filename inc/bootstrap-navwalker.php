@@ -52,7 +52,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
             }
             $indent = ($depth) ? str_repeat($t, $depth) : '';
             $classes = empty($item->classes) ? array() : (array) $item->classes;
-            $classes[] = 'nav-item';
+            $classes[] = 'nav-item me-2';
             $has_children = in_array('menu-item-has-children', $classes);
             if ($has_children && $depth === 0) {
                 $classes[] = 'dropdown';

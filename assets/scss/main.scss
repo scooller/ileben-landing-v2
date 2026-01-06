@@ -125,6 +125,11 @@ strong{
       }
     }
 }
+@include media-breakpoint-down(md) {
+  #site-header .navbar-collapse {
+    background: rgba(var(--bs-dark-rgb), .9);
+  }
+}
 .img-gradient{
     position: relative;
     overflow: hidden;
@@ -143,4 +148,24 @@ strong{
         pointer-events: none;
         z-index: 1;
     }
+}
+.nav{
+  .logo{
+    height: 50px;
+    @include media-breakpoint-down(md) {
+      height: 30px;
+    }
+  }
+}
+footer{
+  .footer-logo{
+    height: 40px;
+    @include media-breakpoint-down(md) {
+      height: 20px;
+    }
+  }
+}
+.legal{
+  font-size: 0.8rem;
+  line-height: 1.4;
 }

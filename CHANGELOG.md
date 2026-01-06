@@ -2,6 +2,52 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.7] - 2026-01-06
+
+### ✨ Nuevas funciones
+- **Bloque bs-asesores:** Nuevo bloque dinámico que carga asesores desde ACF options.
+  - Configuración de columnas por breakpoint (MD/LG).
+  - Layout horizontal (foto + datos) o vertical (foto arriba).
+  - Avatar en forma redonda o completa (card-img-top).
+  - Modo de contenido: mostrar texto, botones o ambos.
+  - Botón WhatsApp con enlace wa.me (código país 56 por defecto).
+  - Botón Email con mailto.
+  - Estilos card con hover y responsive.
+- **Bloque bs-steps:** Mejoras en animación de barra de progreso.
+  - Animación con GSAP (gsap.fromTo) en lugar de requestAnimationFrame.
+  - Cálculo pixel-perfect de posición usando getBoundingClientRect().
+  - Soporte para layout vertical y horizontal.
+  - Toggle para activar/desactivar animación.
+
+### 🔧 Cambios
+- **ACF Options:** Eliminados campos WhatsApp del tab "Asesores y RRSS".
+  - Removido subcampo "Texto Whatsapp" del repeater de asesores.
+  - Removido campo global "WhatsApp" de redes sociales.
+- **ACF Options:** Añadido campo "Logo Footer" en el tab Footer.
+  - Campo tipo imagen con return format URL.
+  - Opcional para personalizar logo en pie de página.
+
+### 📚 Archivos nuevos
+- `blocks/bs-asesores/block.php`: Renderizado dinámico del bloque.
+- `blocks/bs-asesores/editor.js`: Controles y preview del editor.
+- CSS: Estilos para `.bs-asesor-card` y `.bs-asesor-avatar` en blocks-frontend.css y blocks-editor.css.
+
+### 📚 Archivos modificados
+- `blocks/bs-steps/steps-animation.js`: Reescrito para usar GSAP y cálculo DOM preciso.
+- `blocks/blocks.php`: Registrado bs-asesores en $blocks_with_editors.
+- `acf-json/group_ileben_options.json`: Estructura actualizada con nuevo campo footer_logo.
+
+## [0.1.6] - 2025-01-01
+
+### 🔧 Cambios
+- **ACF Options:** Reorganización de campos en "Configuración del tema".
+  - Nuevo tab "Footer" con campos: "Texto Legal Footer" y "Código Extra" (movido desde General).
+  - Eliminados campos "Teléfono" y "Correo" del tab General.
+  - El código extra ahora se gestiona exclusivamente desde el tab Footer.
+
+### 📚 Archivos modificados
+- `acf-json/group_ileben_options.json`: Estructura actualizada de tabs y campos.
+
 ## [0.1.5] - 2025-12-31
 
 ### ✨ Nuevas funciones

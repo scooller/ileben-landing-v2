@@ -31,7 +31,7 @@ if (!defined('ABSPATH')) {
         ]);
         ?>
     </div>
-    <div class="col-md-3 mb-2 mb-md-0 text-center">
+    <div class="col-md-4 mb-2 mb-md-0 text-center">
         <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
             <?php
             if (function_exists('the_custom_logo') && has_custom_logo()) {
@@ -42,7 +42,7 @@ if (!defined('ABSPATH')) {
             ?>
         </a>
     </div>
-    <div class="col-md-3 text-end">
+    <div class="col-md-5 text-end">
         <?php get_template_part('template-parts/header/navbar'); ?>
     </div>
 </header>

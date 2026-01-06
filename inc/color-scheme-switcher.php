@@ -25,9 +25,6 @@ function ileben_theme_render_color_scheme_switcher() {
         $show = get_field('color_scheme_switcher', 'option');
     }
     $show = apply_filters( 'ileben_theme_show_color_scheme_switcher', $show );
-    if ( ! $show ) {
-        return;
-    }
     
     // Get default color scheme from ACF
     $default_scheme = 'auto';
@@ -36,6 +33,8 @@ function ileben_theme_render_color_scheme_switcher() {
     }
 
     // Markup: a vertical pill with three buttons. Minimal inline style; prefers ileben utilities.
+    // Only render the HTML if switcher is enabled
+    if ( $show ) :
     ?>
     <!-- Desktop switcher (md and up) -->
     <div id="bs-color-scheme-switcher" class="position-fixed start-0 top-50 translate-middle-y d-none d-md-flex flex-column gap-1 bg-body border rounded-end shadow p-2 z-3"
@@ -58,53 +57,48 @@ function ileben_theme_render_color_scheme_switcher() {
             </ul>
         </div>
     </div>
-
+    <?php
+    endif; // End switcher HTML
+    ?>
+    
+    <!-- Theme application script (always runs, even if switcher is hidden) -->
     <script>
     (function(){
     const STORAGE_KEY = 'ileben-theme-color-scheme';
     const htmlEl = document.documentElement;
     const desk = document.getElementById('bs-color-scheme-switcher');
     const mobile = document.getElementById('bs-color-scheme-switcher-mobile');
-    const mobileIconSvg = document.getElementById('bsColorSchemeIconSvg');
-    if (!desk && !mobile) return;
 
         // Apply the theme to <html data-bs-theme="...">
         function applyTheme(mode) {
             if (mode === 'auto') {
-                htmlEl.setAttribute('data-bs-theme', 'auto');
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 htmlEl.setAttribute('data-bs-theme', prefersDark ? 'dark' : 'light');
             } else {
                 htmlEl.setAttribute('data-bs-theme', mode);
             }
 
-            // Update active visual state across both UIs
-            function setActiveIn(container) {
-                if (!container) return;
-                const buttons = container.querySelectorAll('[data-bs-theme-value]');
-                buttons.forEach(el => {
-                    const isActive = el.getAttribute('data-bs-theme-value') === mode;
-                    // Desktop buttons styling
-                    if (el.classList.contains('btn')) {
-                        el.classList.toggle('btn-primary', isActive);
-                        el.classList.toggle('text-white', isActive);
-                        el.classList.toggle('btn-outline-secondary', !isActive);
-                    }
-                    // Dropdown items styling
-                    if (el.classList.contains('dropdown-item')) {
-                        el.classList.toggle('active', isActive);
-                    }
-                });
-            }
-            setActiveIn(desk);
-            setActiveIn(mobile);
-
-            // Cambia el icono SVG en mobile según el tema seleccionado
-            if (mobileIconSvg) {
-                let iconId = '#fa-cloud-sun';
-                if (mode === 'light') iconId = '#fa-sun';
-                else if (mode === 'dark') iconId = '#fa-moon';
-                mobileIconSvg.innerHTML = `<svg class="icon" width="20" height="20"><use xlink:href="${iconId}"></use></svg>`;
+            // Update active visual state across both UIs (only if switcher exists)
+            if (desk || mobile) {
+                function setActiveIn(container) {
+                    if (!container) return;
+                    const buttons = container.querySelectorAll('[data-bs-theme-value]');
+                    buttons.forEach(el => {
+                        const isActive = el.getAttribute('data-bs-theme-value') === mode;
+                        // Desktop buttons styling
+                        if (el.classList.contains('btn')) {
+                            el.classList.toggle('btn-primary', isActive);
+                            el.classList.toggle('text-white', isActive);
+                            el.classList.toggle('btn-outline-secondary', !isActive);
+                        }
+                        // Dropdown items styling
+                        if (el.classList.contains('dropdown-item')) {
+                            el.classList.toggle('active', isActive);
+                        }
+                    });
+                }
+                setActiveIn(desk);
+                setActiveIn(mobile);
             }
         }
 
@@ -117,26 +111,28 @@ function ileben_theme_render_color_scheme_switcher() {
         // React to system changes when in auto
         const mql = window.matchMedia('(prefers-color-scheme: dark)');
         function onSystemChange(e){
-            const mode = localStorage.getItem(STORAGE_KEY) || 'auto';
+            const mode = localStorage.getItem(STORAGE_KEY) || '<?php echo esc_js($default_scheme); ?>';
             if (mode === 'auto') {
                 htmlEl.setAttribute('data-bs-theme', e.matches ? 'dark' : 'light');
             }
         }
         if (mql && mql.addEventListener) mql.addEventListener('change', onSystemChange);
 
-        // Handle clicks
-        function handleClick(container){
-            if (!container) return;
-            container.addEventListener('click', function(e){
-                const el = e.target.closest('[data-bs-theme-value]');
-                if (!el) return;
-                const value = el.getAttribute('data-bs-theme-value');
-                localStorage.setItem(STORAGE_KEY, value);
-                applyTheme(value);
-            });
+        // Handle clicks (only if switcher UI exists)
+        if (desk || mobile) {
+            function handleClick(container){
+                if (!container) return;
+                container.addEventListener('click', function(e){
+                    const el = e.target.closest('[data-bs-theme-value]');
+                    if (!el) return;
+                    const value = el.getAttribute('data-bs-theme-value');
+                    localStorage.setItem(STORAGE_KEY, value);
+                    applyTheme(value);
+                });
+            }
+            handleClick(desk);
+            handleClick(mobile);
         }
-        handleClick(desk);
-        handleClick(mobile);
     })();
     </script>
     <?php

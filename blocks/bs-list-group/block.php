@@ -15,8 +15,7 @@ if (!defined('ABSPATH')) {
 function bootstrap_theme_render_bs_list_group_block($attributes, $content, $block) {
     $flush = $attributes['flush'] ?? false;
     $numbered = $attributes['numbered'] ?? false;
-    $horizontal = $attributes['horizontal'] ?? false;
-    $breakpoint = $attributes['breakpoint'] ?? '';
+    $horizontal = $attributes['horizontal'] ?? '';
     
     // Build list group classes
     $classes = array('list-group');
@@ -29,12 +28,8 @@ function bootstrap_theme_render_bs_list_group_block($attributes, $content, $bloc
         $classes[] = 'list-group-numbered';
     }
     
-    if ($horizontal) {
-        if (!empty($breakpoint)) {
-            $classes[] = 'list-group-horizontal-' . $breakpoint;
-        } else {
-            $classes[] = 'list-group-horizontal';
-        }
+    if (!empty($horizontal)) {
+        $classes[] = 'list-group-' . $horizontal;
     }
     
     // Add custom CSS classes from Advanced panel
@@ -42,7 +37,7 @@ function bootstrap_theme_render_bs_list_group_block($attributes, $content, $bloc
     
     $class_string = implode(' ', array_unique($classes));
     
-    $tag = $numbered ? 'ol' : 'div';
+    $tag = $numbered ? 'ol' : 'ul';
     
     $output = '<' . $tag . ' class="' . esc_attr($class_string) . '">';
     
@@ -78,10 +73,6 @@ function bootstrap_theme_register_bs_list_group_block() {
                 'default' => false
             ),
             'horizontal' => array(
-                'type' => 'boolean',
-                'default' => false
-            ),
-            'breakpoint' => array(
                 'type' => 'string',
                 'default' => ''
             ),

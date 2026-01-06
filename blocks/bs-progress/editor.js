@@ -182,37 +182,8 @@
         },
 
         save: function(props) {
-            const { attributes } = props;
-            const blockProps = useBlockProps.save();
-            
-            const percentage = Math.round(((attributes.value - attributes.min) / (attributes.max - attributes.min)) * 100);
-            
-            const progressBarClasses = [
-                'progress-bar',
-                `bg-${attributes.variant}`,
-                attributes.striped ? 'progress-bar-striped' : '',
-                attributes.animated ? 'progress-bar-animated' : ''
-            ].filter(Boolean).join(' ');
-
-            const progressStyle = attributes.height ? { height: attributes.height } : {};
-
-            return createElement('div', blockProps,
-                createElement('div', {
-                    className: 'progress',
-                    style: progressStyle
-                },
-                    createElement('div', {
-                        className: progressBarClasses,
-                        role: 'progressbar',
-                        style: { width: `${percentage}%` },
-                        'aria-valuenow': attributes.value,
-                        'aria-valuemin': attributes.min,
-                        'aria-valuemax': attributes.max
-                    },
-                        attributes.showLabel && (attributes.label || `${percentage}%`)
-                    )
-                )
-            );
+            // Return null to make this a dynamic block that uses PHP render_callback
+            return null;
         }
     });
 

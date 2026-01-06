@@ -13,6 +13,7 @@ if (!defined('ABSPATH')) {
  * Render Bootstrap Progress Block
  */
 function bootstrap_theme_render_bs_progress_block($attributes, $content, $block) {
+
     $value = $attributes['value'] ?? 0;
     $min = $attributes['min'] ?? 0;
     $max = $attributes['max'] ?? 100;
@@ -20,6 +21,7 @@ function bootstrap_theme_render_bs_progress_block($attributes, $content, $block)
     $variant = $attributes['variant'] ?? '';
     $striped = $attributes['striped'] ?? false;
     $animated = $attributes['animated'] ?? false;
+    $showLabel = $attributes['showLabel'] ?? false;
     $height = $attributes['height'] ?? '';
     
     // Build progress bar classes
@@ -61,10 +63,11 @@ function bootstrap_theme_render_bs_progress_block($attributes, $content, $block)
     
     $output .= '<div class="' . esc_attr($bar_class_string) . '" role="progressbar" style="width: ' . esc_attr($percentage) . '%;" aria-valuenow="' . esc_attr($value) . '" aria-valuemin="' . esc_attr($min) . '" aria-valuemax="' . esc_attr($max) . '">';
     
+    // Show label if configured
     if (!empty($label)) {
         $output .= esc_html($label);
-    } elseif ($value > 0) {
-        $output .= esc_html($percentage . '%');
+    } elseif ($showLabel) {
+        $output .= esc_html(round($percentage) . '%');
     }
     
     $output .= '</div>';
@@ -82,7 +85,7 @@ function bootstrap_theme_register_bs_progress_block() {
         'attributes' => array(
             'value' => array(
                 'type' => 'number',
-                'default' => 0
+                'default' => 50
             ),
             'min' => array(
                 'type' => 'number',
@@ -98,7 +101,7 @@ function bootstrap_theme_register_bs_progress_block() {
             ),
             'variant' => array(
                 'type' => 'string',
-                'default' => ''
+                'default' => 'primary'
             ),
             'striped' => array(
                 'type' => 'boolean',
@@ -111,6 +114,10 @@ function bootstrap_theme_register_bs_progress_block() {
             'height' => array(
                 'type' => 'string',
                 'default' => ''
+            ),
+            'showLabel' => array(
+                'type' => 'boolean',
+                'default' => false
             ),
             'className' => array(
                 'type' => 'string',
