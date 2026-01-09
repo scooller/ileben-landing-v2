@@ -122,13 +122,16 @@
                 type: 'string'
             },
             animationTrigger: {
-                type: 'string'
+                type: 'string',
+                default: 'on-scroll'
             },
             animationDuration: {
-                type: 'number'
+                type: 'number',
+                default: 0.8
             },
             animationDelay: {
-                type: 'number'
+                type: 'number',
+                default: 0
             },
             animationEase: {
                 type: 'string'
@@ -137,7 +140,8 @@
                 type: 'number'
             },
             animationRepeatDelay: {
-                type: 'number'
+                type: 'number',
+                default: 0
             },
             animationYoyo: {
                 type: 'boolean'

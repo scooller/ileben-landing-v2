@@ -2,6 +2,31 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.8] - 2026-01-08
+
+### ✨ Nuevas funciones
+- **Animaciones en bloques:** Sistema de animaciones extendido a múltiples bloques.
+  - Bloque `bs-column`: Soporte para animaciones (tipo, trigger, duración, delay, easing).
+  - Bloque `bs-step-item`: Animaciones por item en pasos.
+  - Bloque `bs-list-group-item`: Animaciones en ítems de listas.
+  - Bloque `bs-asesores`: Animaciones en tarjetas con delay escalonado por índice.
+  - Trigger `on-scroll`: Soporte de delay con ScrollTrigger de GSAP.
+
+### 🔧 Cambios
+- **Función helper `bootstrap_theme_get_animation_attributes()`:** Ahora siempre emite valores por defecto para trigger, duración, delay y easing cuando se establece el tipo de animación.
+- **Animaciones en scroll:** Modificada función `animateOnScroll()` en `assets/js/animations.js` para soportar delay explícito en configuración GSAP.
+- **Renderizado dinámico:** Bloque `bs-list-group` ahora renderiza sus items internos dinámicamente para preservar atributos de animación.
+
+### 📚 Archivos modificados
+- `inc/blocks-helpers.php`: Mejorada lógica de `bootstrap_theme_get_animation_attributes()`.
+- `blocks/bs-column/editor.js` y `blocks/bs-column/block.php`: Añadido soporte de animaciones.
+- `blocks/bs-step-item/editor.js`: Panel de animación para items.
+- `blocks/bs-steps/block.php`: Renderizado de animaciones en pasos.
+- `blocks/bs-list-group-item/editor.js` y `blocks/bs-list-group-item/block.php`: Sistema dinámico de renderizado.
+- `blocks/bs-list-group/block.php`: Uso de `$inner_block->render()` para renderizado dinámico de items.
+- `blocks/bs-asesores/editor.js` y `blocks/bs-asesores/block.php`: Animaciones en tarjetas de asesores con delay escalonado.
+- `assets/js/animations.js`: Soporte de delay en `animateOnScroll()`.
+
 ## [0.1.7] - 2026-01-06
 
 ### ✨ Nuevas funciones

@@ -157,6 +157,13 @@ strong{
     }
   }
 }
+.list-group-unstyled{
+  border-radius: 0;
+  &>.list-group-item {
+    border-width: 0 0 0;
+    --bs-list-group-item-padding-x: 0;
+  }
+}
 footer{
   .footer-logo{
     height: 40px;

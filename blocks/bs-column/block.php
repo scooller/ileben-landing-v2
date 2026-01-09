@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bootstrap Column Block
  * 
@@ -12,7 +13,8 @@ if (!defined('ABSPATH')) {
 /**
  * Render Bootstrap Column Block
  */
-function bootstrap_theme_render_bs_column_block($attributes, $content, $block) {
+function bootstrap_theme_render_bs_column_block($attributes, $content, $block)
+{
     // Align attribute names with editor.js (colXs, colSm, ...)
     $xs = $attributes['colXs'] ?? '';
     $sm = $attributes['colSm'] ?? '';
@@ -22,15 +24,15 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block) {
     $xxl = $attributes['colXxl'] ?? '';
     $offset = $attributes['offset'] ?? '';
     $order = $attributes['order'] ?? '';
-    
+
     // Build column classes
     $classes = array();
-    
+
     // Build bootstrap column sizes
-    
+
     if (!empty($xs)) {
         $classes[] = 'col-' . $xs;
-    }else{
+    } else {
         $classes[] = 'col-auto';
     }
     if (!empty($sm)) {
@@ -38,7 +40,7 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block) {
     }
     if (!empty($md)) {
         $classes[] = 'col-md-' . $md;
-    }else{
+    } else {
         $classes[] = 'col-md-auto';
     }
     if (!empty($lg)) {
@@ -50,43 +52,46 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block) {
     if (!empty($xxl)) {
         $classes[] = 'col-xxl-' . $xxl;
     }
-    
+
     if (!empty($offset)) {
         $classes[] = $offset;
     }
-    
+
     if (!empty($order)) {
         $classes[] = $order;
     }
-    
+
     // Compose final class string
     $class_string = implode(' ', array_unique($classes));
-    
-    // Use block wrapper attributes to ensure Advanced className and other supports are included
-    if (function_exists('get_block_wrapper_attributes')) {
-        $wrapper_attributes = get_block_wrapper_attributes(array('class' => $class_string));
-        $output = '<div ' . $wrapper_attributes . '>';
-    } else {
-        // Fallback for older WP versions
-        $output = '<div class="' . esc_attr($class_string) . '">';
+
+    // Add custom CSS classes from Advanced panel
+    if (!empty($attributes['className'])) {
+        $class_string .= ' ' . $attributes['className'];
     }
-    
+
+    // Get animation data attributes
+    $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
+
+    // Build the output manually to ensure animation attributes are properly included
+    $output = '<div class="' . esc_attr($class_string) . '"' . $animation_attrs . '>';
+
     // Add content from InnerBlocks
     if (!empty($content)) {
         $output .= $content;
     } else {
         $output .= '<p>' . __('Add content to your column.', 'bootstrap-theme') . '</p>';
     }
-    
+
     $output .= '</div>';
-    
+
     return $output;
 }
 
 /**
  * Register Bootstrap Column Block
  */
-function bootstrap_theme_register_bs_column_block() {
+function bootstrap_theme_register_bs_column_block()
+{
     register_block_type('bootstrap-theme/bs-column', array(
         'render_callback' => 'bootstrap_theme_render_bs_column_block',
         'attributes' => array(
@@ -125,6 +130,49 @@ function bootstrap_theme_register_bs_column_block() {
             'className' => array(
                 'type' => 'string',
                 'default' => ''
+            ),
+            // Animation attributes
+            'animationType' => array(
+                'type' => 'string'
+            ),
+            'animationTrigger' => array(
+                'type' => 'string'
+            ),
+            'animationDuration' => array(
+                'type' => 'number'
+            ),
+            'animationDelay' => array(
+                'type' => 'number'
+            ),
+            'animationEase' => array(
+                'type' => 'string'
+            ),
+            'animationRepeat' => array(
+                'type' => 'number'
+            ),
+            'animationRepeatDelay' => array(
+                'type' => 'number'
+            ),
+            'animationYoyo' => array(
+                'type' => 'boolean'
+            ),
+            'animationDistance' => array(
+                'type' => 'string'
+            ),
+            'animationRotation' => array(
+                'type' => 'number'
+            ),
+            'animationScale' => array(
+                'type' => 'string'
+            ),
+            'animationParallaxSpeed' => array(
+                'type' => 'number'
+            ),
+            'animationHoverEffect' => array(
+                'type' => 'string'
+            ),
+            'animationMobileEnabled' => array(
+                'type' => 'boolean'
             )
         )
     ));

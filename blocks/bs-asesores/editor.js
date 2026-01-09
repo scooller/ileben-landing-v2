@@ -19,6 +19,53 @@
             avatarShape: { type: 'string', default: 'card' }, // 'card' | 'round'
             layout: { type: 'string', default: 'horizontal' }, // 'horizontal' | 'vertical'
             contentMode: { type: 'string', default: 'both' }, // 'both' | 'text' | 'buttons'
+            // Animation attributes
+            animationType: {
+                type: 'string'
+            },
+            animationTrigger: {
+                type: 'string',
+                default: 'on-scroll'
+            },
+            animationDuration: {
+                type: 'number',
+                default: 0.8
+            },
+            animationDelay: {
+                type: 'number',
+                default: 0
+            },
+            animationEase: {
+                type: 'string'
+            },
+            animationRepeat: {
+                type: 'number'
+            },
+            animationRepeatDelay: {
+                type: 'number',
+                default: 0
+            },
+            animationYoyo: {
+                type: 'boolean'
+            },
+            animationDistance: {
+                type: 'string'
+            },
+            animationRotation: {
+                type: 'number'
+            },
+            animationScale: {
+                type: 'string'
+            },
+            animationParallaxSpeed: {
+                type: 'number'
+            },
+            animationHoverEffect: {
+                type: 'string'
+            },
+            animationMobileEnabled: {
+                type: 'boolean'
+            },
         },
         supports: {
             html: true,
@@ -28,6 +75,56 @@
             const { attributes, setAttributes } = props;
             const { columnsMd, columnsLg, showImage, showPhone, showEmail, avatarShape, layout, contentMode } = attributes;
             const blockProps = useBlockProps({ className: 'bs-asesores-editor' });
+
+            const animationTypes = [
+                { label: __('None', 'bootstrap-theme'), value: '' },
+                { label: __('--- Fade ---', 'bootstrap-theme'), value: '' },
+                { label: __('Fade In', 'bootstrap-theme'), value: 'fadeIn' },
+                { label: __('Fade In Up', 'bootstrap-theme'), value: 'fadeInUp' },
+                { label: __('Fade In Down', 'bootstrap-theme'), value: 'fadeInDown' },
+                { label: __('Fade In Left', 'bootstrap-theme'), value: 'fadeInLeft' },
+                { label: __('Fade In Right', 'bootstrap-theme'), value: 'fadeInRight' },
+                { label: __('--- Slide ---', 'bootstrap-theme'), value: '' },
+                { label: __('Slide Up', 'bootstrap-theme'), value: 'slideUp' },
+                { label: __('Slide Down', 'bootstrap-theme'), value: 'slideDown' },
+                { label: __('Slide Left', 'bootstrap-theme'), value: 'slideLeft' },
+                { label: __('Slide Right', 'bootstrap-theme'), value: 'slideRight' },
+                { label: __('--- Scale ---', 'bootstrap-theme'), value: '' },
+                { label: __('Scale In', 'bootstrap-theme'), value: 'scaleIn' },
+                { label: __('Scale Up', 'bootstrap-theme'), value: 'scaleUp' },
+                { label: __('Scale Down', 'bootstrap-theme'), value: 'scaleDown' },
+                { label: __('--- Rotate ---', 'bootstrap-theme'), value: '' },
+                { label: __('Rotate', 'bootstrap-theme'), value: 'rotate' },
+                { label: __('Rotate Fast', 'bootstrap-theme'), value: 'rotateFast' },
+                { label: __('--- Effects ---', 'bootstrap-theme'), value: '' },
+                { label: __('Bounce', 'bootstrap-theme'), value: 'bounce' },
+                { label: __('Elastic', 'bootstrap-theme'), value: 'elastic' },
+                { label: __('Flip', 'bootstrap-theme'), value: 'flip' },
+                { label: __('Flip X', 'bootstrap-theme'), value: 'flipX' },
+                { label: __('Pulse', 'bootstrap-theme'), value: 'pulse' },
+            ];
+
+            const animationTriggers = [
+                { label: __('On Load', 'bootstrap-theme'), value: 'on-load' },
+                { label: __('On Scroll', 'bootstrap-theme'), value: 'on-scroll' },
+                { label: __('On Hover', 'bootstrap-theme'), value: 'on-hover' },
+                { label: __('On Click', 'bootstrap-theme'), value: 'on-click' },
+            ];
+
+            const easeOptions = [
+                { label: __('Linear', 'bootstrap-theme'), value: 'linear' },
+                { label: __('Power 1 In Out', 'bootstrap-theme'), value: 'power1.inOut' },
+                { label: __('Power 2 In Out', 'bootstrap-theme'), value: 'power2.inOut' },
+                { label: __('Power 3 In Out', 'bootstrap-theme'), value: 'power3.inOut' },
+                { label: __('Power 4 In Out', 'bootstrap-theme'), value: 'power4.inOut' },
+                { label: __('Back Out', 'bootstrap-theme'), value: 'back.out' },
+                { label: __('Elastic Out', 'bootstrap-theme'), value: 'elastic.out' },
+                { label: __('Bounce Out', 'bootstrap-theme'), value: 'bounce.out' },
+                { label: __('Circ In Out', 'bootstrap-theme'), value: 'circ.inOut' },
+                { label: __('Sine In Out', 'bootstrap-theme'), value: 'sine.inOut' },
+            ];
+
+            const animationType = attributes.animationType || '';
 
             const sample = [
                 { name: 'Ejemplo 1', email: 'correo@ejemplo.com', phone: '+56 9 1234 5678' },
@@ -103,6 +200,58 @@
                                 ],
                                 onChange: (value) => setAttributes({ contentMode: value })
                             })
+                        ),
+                        wp.element.createElement(PanelBody, { title: __('Animación', 'bootstrap-theme'), initialOpen: false },
+                            wp.element.createElement(SelectControl, {
+                                label: __('Tipo de animación', 'bootstrap-theme'),
+                                value: animationType,
+                                options: animationTypes,
+                                onChange: (value) => {
+                                    const updates = { animationType: value };
+                                    if (value && value !== '') {
+                                        if (!attributes.animationDuration || attributes.animationDuration === '') updates.animationDuration = 0.6;
+                                        if (!attributes.animationDelay || attributes.animationDelay === '') updates.animationDelay = 0;
+                                        if (!attributes.animationTrigger || attributes.animationTrigger === '') updates.animationTrigger = 'on-scroll';
+                                        if (!attributes.animationEase || attributes.animationEase === '') updates.animationEase = 'power2.inOut';
+                                    }
+                                    setAttributes(updates);
+                                }
+                            }),
+                            animationType && wp.element.createElement(Fragment, null,
+                                wp.element.createElement(SelectControl, {
+                                    label: __('Disparador', 'bootstrap-theme'),
+                                    value: attributes.animationTrigger,
+                                    options: animationTriggers,
+                                    onChange: (value) => setAttributes({ animationTrigger: value })
+                                }),
+                                wp.element.createElement(RangeControl, {
+                                    label: __('Duración (s)', 'bootstrap-theme'),
+                                    value: attributes.animationDuration,
+                                    min: 0.1,
+                                    max: 3,
+                                    step: 0.1,
+                                    onChange: (value) => setAttributes({ animationDuration: value })
+                                }),
+                                wp.element.createElement(RangeControl, {
+                                    label: __('Delay (s)', 'bootstrap-theme'),
+                                    value: attributes.animationDelay,
+                                    min: 0,
+                                    max: 5,
+                                    step: 0.1,
+                                    onChange: (value) => setAttributes({ animationDelay: value })
+                                }),
+                                wp.element.createElement(SelectControl, {
+                                    label: __('Easing', 'bootstrap-theme'),
+                                    value: attributes.animationEase,
+                                    options: easeOptions,
+                                    onChange: (value) => setAttributes({ animationEase: value })
+                                }),
+                                wp.element.createElement(ToggleControl, {
+                                    label: __('Habilitar en móvil', 'bootstrap-theme'),
+                                    checked: attributes.animationMobileEnabled !== false,
+                                    onChange: (value) => setAttributes({ animationMobileEnabled: value })
+                                })
+                            )
                         )
                     ),
                     wp.element.createElement('div', { ...blockProps },

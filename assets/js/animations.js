@@ -186,6 +186,10 @@ class GSAPAnimationManager {
 
     gsap.fromTo(element, fromVars, {
       ...toVars,
+      delay: config.delay,
+      repeat: config.repeat,
+      repeatDelay: config.repeatDelay,
+      yoyo: config.yoyo,
       scrollTrigger: {
         trigger: element,
         start: 'top 80%',
@@ -327,13 +331,13 @@ class GSAPAnimationManager {
         break;
 
       case 'flip':
-        fromVars = { rotationY: 0 };
-        toVars = { ...toVars, rotationY: 360 };
+        fromVars = { rotationY: 90 };
+        toVars = { ...toVars, rotationY: 0 };
         break;
 
       case 'flipX':
-        fromVars = { rotationX: 0 };
-        toVars = { ...toVars, rotationX: 360 };
+        fromVars = { rotationX: 90 };
+        toVars = { ...toVars, rotationX: 0 };
         break;
 
       case 'pulse':

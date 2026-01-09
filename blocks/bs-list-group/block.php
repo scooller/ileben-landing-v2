@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bootstrap List Group Block
  * 
@@ -12,38 +13,43 @@ if (!defined('ABSPATH')) {
 /**
  * Render Bootstrap List Group Block
  */
-function bootstrap_theme_render_bs_list_group_block($attributes, $content, $block) {
+function bootstrap_theme_render_bs_list_group_block($attributes, $content, $block)
+{
     $flush = $attributes['flush'] ?? false;
     $numbered = $attributes['numbered'] ?? false;
     $horizontal = $attributes['horizontal'] ?? '';
-    
+
     // Build list group classes
     $classes = array('list-group');
-    
+
     if ($flush) {
         $classes[] = 'list-group-flush';
     }
-    
+
     if ($numbered) {
         $classes[] = 'list-group-numbered';
     }
-    
+
     if (!empty($horizontal)) {
         $classes[] = 'list-group-' . $horizontal;
     }
-    
+
     // Add custom CSS classes from Advanced panel
     $classes = bootstrap_theme_add_custom_classes($classes, $attributes, $block);
-    
+
     $class_string = implode(' ', array_unique($classes));
-    
+
     $tag = $numbered ? 'ol' : 'ul';
-    
+
     $output = '<' . $tag . ' class="' . esc_attr($class_string) . '">';
-    
-    // Process the InnerBlocks content (list group items)
-    if (!empty($content)) {
-        // The content should already be processed HTML from InnerBlocks.Content
+
+    // Render inner blocks so dynamic children (with animation) are preserved
+    if (!empty($block->inner_blocks)) {
+        foreach ($block->inner_blocks as $inner_block) {
+            $output .= $inner_block->render();
+        }
+    } else if (!empty($content)) {
+        // Fallback to provided content if inner_blocks unavailable
         $output .= $content;
     } else {
         // Default content if no items
@@ -51,16 +57,17 @@ function bootstrap_theme_render_bs_list_group_block($attributes, $content, $bloc
         $output .= '<div class="list-group-item active">' . __('Second item', 'bootstrap-theme') . '</div>';
         $output .= '<div class="list-group-item">' . __('Third item', 'bootstrap-theme') . '</div>';
     }
-    
+
     $output .= '</' . $tag . '>';
-    
+
     return $output;
 }
 
 /**
  * Register Bootstrap List Group Block
  */
-function bootstrap_theme_register_bs_list_group_block() {
+function bootstrap_theme_register_bs_list_group_block()
+{
     register_block_type('bootstrap-theme/bs-list-group', array(
         'render_callback' => 'bootstrap_theme_render_bs_list_group_block',
         'attributes' => array(

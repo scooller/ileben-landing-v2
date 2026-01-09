@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Asesores Block
  *
@@ -42,9 +43,9 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
     $wrapper_classes = implode(' ', array_unique($classes));
 
     ob_start();
-    ?>
+?>
     <div class="<?php echo esc_attr($wrapper_classes); ?>">
-        <?php foreach ($asesores as $asesor) :
+        <?php foreach ($asesores as $index => $asesor) :
             $image = isset($asesor['imagen']) ? $asesor['imagen'] : '';
             $name = isset($asesor['nombre']) ? $asesor['nombre'] : '';
             $email = isset($asesor['email']) ? $asesor['email'] : '';
@@ -60,9 +61,18 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                 }
             }
             $mailto_href = $email !== '' ? 'mailto:' . sanitize_email($email) : '';
-            ?>
+            // Animation data attrs (shared across cards)
+            $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
+            // add delay based on index            
+            $delay = $index * ($attributes['animationDelay'] ?? 0);
+            $animation_attrs = preg_replace(
+                '/data-animate-delay="[^"]*"/',
+                'data-animate-delay="' . esc_attr($delay) . '"',
+                $animation_attrs
+            );
+        ?>
             <div class="col">
-                <div class="card h-100 bs-asesor-card text-center">
+                <div class="card h-100 bs-asesor-card text-center" <?php echo $animation_attrs; ?>>
                     <?php if ($layout === 'vertical') : ?>
                         <?php if ($show_image && $image) : ?>
                             <?php if ($avatar_shape === 'card') : ?>
@@ -103,21 +113,21 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                     <?php else : ?>
                         <div class="card-body">
                             <div class="row">
-                            <?php if ($show_image && $image) : ?>
-                                <div class="col">
-                                    <?php if ($avatar_shape === 'card') : ?>
-                                        <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($name); ?>" class="img-fluid card-img" loading="lazy" />
-                                    <?php else : ?>
-                                        <div class="bs-asesor-avatar">
-                                            <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($name); ?>" class="img-fluid rounded-circle" loading="lazy" />
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            <?php endif; ?>
+                                <?php if ($show_image && $image) : ?>
+                                    <div class="col">
+                                        <?php if ($avatar_shape === 'card') : ?>
+                                            <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($name); ?>" class="img-fluid card-img" loading="lazy" />
+                                        <?php else : ?>
+                                            <div class="bs-asesor-avatar">
+                                                <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($name); ?>" class="img-fluid rounded-circle" loading="lazy" />
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
                                 <div class="col d-flex align-items-center justify-content-center">
                                     <div class="content-wrapper">
                                         <?php if ($name !== '') : ?>
-                                        <div class="card-title mb-3"><?php echo esc_html($name); ?></div>
+                                            <div class="card-title mb-3"><?php echo esc_html($name); ?></div>
                                         <?php endif; ?>
                                         <div class="card-text">
                                             <?php if ($show_text && $show_phone && $phone !== '') : ?>
@@ -127,7 +137,7 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                                                 <div class="small mb-2"><?php echo esc_html($email); ?></div>
                                             <?php endif; ?>
                                             <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
-                                                <?php if ($show_actions && $show_phone && $wa_href !== '') : ?>                                        
+                                                <?php if ($show_actions && $show_phone && $wa_href !== '') : ?>
                                                     <a class="btn btn-success btn-sm" href="<?php echo esc_url($wa_href); ?>" target="_blank" rel="noopener noreferrer">
                                                         <i class="fa-brands fa-whatsapp"></i>
                                                         <?php esc_html_e('WhatsApp', 'bootstrap-theme'); ?>
@@ -150,7 +160,7 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
             </div>
         <?php endforeach; ?>
     </div>
-    <?php
+<?php
     return ob_get_clean();
 }
 
@@ -194,6 +204,21 @@ function bootstrap_theme_register_bs_asesores_block()
                 'type' => 'string',
                 'default' => 'both',
             ),
+            // Animation attributes
+            'animationType' => array('type' => 'string'),
+            'animationTrigger' => array('type' => 'string'),
+            'animationDuration' => array('type' => 'number'),
+            'animationDelay' => array('type' => 'number'),
+            'animationEase' => array('type' => 'string'),
+            'animationRepeat' => array('type' => 'number'),
+            'animationRepeatDelay' => array('type' => 'number'),
+            'animationYoyo' => array('type' => 'boolean'),
+            'animationDistance' => array('type' => 'string'),
+            'animationRotation' => array('type' => 'number'),
+            'animationScale' => array('type' => 'string'),
+            'animationParallaxSpeed' => array('type' => 'number'),
+            'animationHoverEffect' => array('type' => 'string'),
+            'animationMobileEnabled' => array('type' => 'boolean'),
             'className' => array(
                 'type' => 'string',
                 'default' => '',

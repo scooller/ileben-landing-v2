@@ -52,26 +52,30 @@ function bootstrap_theme_get_animation_attributes($attributes, $block)
     }
 
     // Core animation settings
-    $data_attrs .= ' data-animate-type="' . esc_attr($attributes['animationType']) . '"';    
+    $data_attrs .= ' data-animate-type="' . esc_attr($attributes['animationType']) . '"';
 
-    // Only add other attributes if they are explicitly set and not null/empty
-    if (isset($attributes['animationTrigger']) && $attributes['animationTrigger'] !== '' && $attributes['animationTrigger'] !== null) {
-        $data_attrs .= ' data-animate-trigger="' . esc_attr($attributes['animationTrigger']) . '"';
-    }
+    // Trigger - use default if not set
+    $trigger = isset($attributes['animationTrigger']) && $attributes['animationTrigger'] !== '' && $attributes['animationTrigger'] !== null
+        ? $attributes['animationTrigger']
+        : 'on-scroll'; // Default to on-scroll
+    $data_attrs .= ' data-animate-trigger="' . esc_attr($trigger) . '"';
 
-    // Timing settings - must be explicitly set and not null
-    if (isset($attributes['animationDuration']) && $attributes['animationDuration'] !== '' && $attributes['animationDuration'] !== null) {
-        $data_attrs .= ' data-animate-duration="' . esc_attr($attributes['animationDuration']) . '"';
-    }
+    // Timing settings - use defaults if not set
+    $duration = isset($attributes['animationDuration']) && $attributes['animationDuration'] !== '' && $attributes['animationDuration'] !== null
+        ? $attributes['animationDuration']
+        : 0.6;
+    $data_attrs .= ' data-animate-duration="' . esc_attr($duration) . '"';
 
-    if (isset($attributes['animationDelay']) && $attributes['animationDelay'] !== '' && $attributes['animationDelay'] !== null) {
-        $data_attrs .= ' data-animate-delay="' . esc_attr($attributes['animationDelay']) . '"';
-    }
+    $delay = isset($attributes['animationDelay']) && $attributes['animationDelay'] !== '' && $attributes['animationDelay'] !== null
+        ? $attributes['animationDelay']
+        : 0;
+    $data_attrs .= ' data-animate-delay="' . esc_attr($delay) . '"';
 
-    // Easing
-    if (isset($attributes['animationEase']) && $attributes['animationEase'] !== '' && $attributes['animationEase'] !== null) {
-        $data_attrs .= ' data-animate-ease="' . esc_attr($attributes['animationEase']) . '"';
-    }
+    // Easing - use default if not set
+    $ease = isset($attributes['animationEase']) && $attributes['animationEase'] !== '' && $attributes['animationEase'] !== null
+        ? $attributes['animationEase']
+        : 'linear';
+    $data_attrs .= ' data-animate-ease="' . esc_attr($ease) . '"';
 
     // Repeat settings
     if (isset($attributes['animationRepeat']) && $attributes['animationRepeat'] !== '' && $attributes['animationRepeat'] !== null) {
