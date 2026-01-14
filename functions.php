@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ILEBEN_THEME_VERSION', '0.1.9'); // Debe coincidir con Version en style.css
+define('ILEBEN_THEME_VERSION', '0.1.10'); // Debe coincidir con Version en style.css
 define('ILEBEN_THEME_DIR', get_template_directory());
 define('ILEBEN_THEME_URI', get_template_directory_uri());
 

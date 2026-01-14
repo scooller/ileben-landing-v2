@@ -44,6 +44,7 @@ ileben-landing-v2/
 │   ├── setup.php                # Setup del tema (soportes, menús, tamaños de imagen)
 │   ├── assets.php               # Enqueue de assets Vite + Google Fonts + Font Awesome
 │   ├── acf.php                  # Integración ACF Pro (JSON sync y options page)
+│   ├── github-updater.php       # GitHub Theme Updater (actualizaciones automáticas)
 │   ├── color-scheme-switcher.php# Widget flotante con selector claro/oscuro
 │   └── template-tags.php        # Helpers (lazy images, iframe facade con placeholders, loader)
 ├── template-parts/
@@ -112,6 +113,159 @@ npm run dev
   - Branding: Google Font, colores primario/secundario
   - Social: Facebook, Instagram, LinkedIn, WhatsApp (+56)
   - Selector de tema: mostrar/ocultar switcher y tema por defecto (auto/claro/oscuro)
+
+---
+
+## 🔄 Sistema de Actualizaciones desde GitHub
+
+El tema incluye un **GitHub Theme Updater** que permite actualizar el theme directamente desde el admin de WordPress sin necesidad de SSH, FTP o cPanel.
+
+### 📋 Cómo Funciona
+
+1. **Desarrollo Local:** Haces cambios en el código y compilas los assets con `npm run build`
+2. **Git Push:** Subes los cambios a GitHub (`git push origin main`)
+3. **GitHub Release:** Creas un Release con un tag que coincida con la versión (ej: `v0.2.0`)
+4. **WordPress Detecta:** El theme updater verifica automáticamente si hay nuevas versiones
+5. **Admin Notifica:** Se muestra "Actualizar ahora" en Apariencia → Temas
+6. **Un Clic:** Haces clic y se descarga e instala automáticamente
+
+### 🔧 Flujo Detallado de Actualización
+
+#### Paso 1: Actualizar Versión Localmente
+
+```bash
+# Edita style.css y functions.php con la nueva versión
+Version: 0.2.0
+```
+
+En `style.css`:
+```css
+/*
+Theme Name: ileben-landing-v2
+Version: 0.2.0
+...
+*/
+```
+
+En `functions.php`:
+```php
+define('ILEBEN_THEME_VERSION', '0.2.0');
+```
+
+#### Paso 2: Compilar y Hacer Commit
+
+```bash
+# Compila los assets
+npm run build
+
+# Haz commit de los cambios
+git add .
+git commit -m "Version bump to 0.2.0 - Add new features and fixes"
+git push origin main
+```
+
+#### Paso 3: Crear Release en GitHub
+
+1. Ve a https://github.com/scooller/ileben-landing-v2/releases
+2. Clic en **"Create a new release"**
+3. Completa los campos:
+   - **Tag version:** `v0.2.0` (IMPORTANTE: debe coincidir con Version en style.css)
+   - **Release title:** `Version 0.2.0`
+   - **Description:** (opcional) Describe los cambios realizados
+   - **Publish release:** Clic en botón
+
+#### Paso 4: Verificar en WordPress
+
+1. Ve a **WordPress Admin → Apariencia → Temas**
+2. Verás **"Actualizar ahora"** debajo de ileben-landing-v2 (puede tardar hasta 12 horas si el sitio no visita esa página)
+3. Clic en "Actualizar ahora"
+4. WordPress descargará e instalará automáticamente el ZIP desde GitHub
+
+### 📊 Diagrama del Flujo
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ DESARROLLO LOCAL                                                │
+│ ├─ Código + npm run build                                       │
+│ ├─ Actualizar Version en style.css y functions.php              │
+│ └─ git push origin main                                         │
+└────────────────────┬────────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ GITHUB                                                          │
+│ ├─ Code está en main                                            │
+│ └─ Crear Release con tag v0.2.0                                 │
+│    └─ Genera automáticamente ZIP (zipball_url)                  │
+└────────────────────┬────────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ WORDPRESS PRODUCTION                                            │
+│ ├─ inc/github-updater.php verifica GitHub API cada 12 horas     │
+│ ├─ Detecta nueva versión (0.2.0 > 0.1.9)                       │
+│ └─ Muestra "Actualizar ahora" en Apariencia → Temas             │
+└────────────────────┬────────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ ADMIN WORDPRESS                                                 │
+│ ├─ 1 clic en "Actualizar ahora"                                 │
+│ ├─ Descarga ZIP desde GitHub                                    │
+│ ├─ Descomprime en wp-content/themes/ileben-landing-v2/          │
+│ ├─ Ejecuta npm run build:all en servidor (opcional)             │
+│ └─ ✅ Theme actualizado                                          │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 🔍 Archivos Relacionados
+
+- **inc/github-updater.php** – Clase que verifica GitHub y proporciona datos de actualización
+- **style.css** – Header con Version (usado para comparación)
+- **functions.php** – Define `ILEBEN_THEME_VERSION` (debe coincidir con style.css)
+
+### ⚙️ Configuración del Updater
+
+En `inc/github-updater.php` puedes personalizar:
+
+```php
+private $github_user = 'scooller';      // Tu usuario de GitHub
+private $github_repo = 'ileben-landing-v2';  // Nombre del repo
+private $github_token = null;           // Token si es repo privado (null para público)
+private $cache_hours = 12;              // Cacheo de verificación
+```
+
+### 🔒 Para Repositorios Privados
+
+Si el repositorio es privado:
+
+1. Genera un **Personal Access Token** en GitHub:
+   - Ve a **Settings → Developer settings → Personal access tokens → Tokens (classic)**
+   - Crea un token con permisos `repo`
+
+2. En `inc/github-updater.php`, agrega tu token:
+```php
+private $github_token = 'ghp_xxxxxxxxxxxxxxxxxxxxx';
+```
+
+### ✅ Ventajas de este Sistema
+
+- ✅ **Sin SSH necesario** – Todo desde el admin de WordPress
+- ✅ **Versionado limpio** – Git + Semantic Versioning
+- ✅ **Rollback fácil** – Puedes volver a una versión anterior desde GitHub Releases
+- ✅ **Histórico visible** – Todos los cambios documentados en GitHub
+- ✅ **Seguro** – Usa API oficial de GitHub, sin confianza en terceros
+- ✅ **Automatizable** – Si integras CI/CD, puedes compilar y crear releases automáticamente
+
+### 🚀 Tips Adicionales
+
+**Para acelerar la verificación durante desarrollo:**
+- Elimina el transient en WordPress: `Plugins → Database → wp_transients` (busca `ileben_theme_update_check`)
+- O accede a Apariencia → Temas y WordPress verificará inmediatamente
+
+**Cambios sin publicar Release:**
+- Los cambios en `main` NO generan actualización hasta que crees un Release
+- Esto te permite mergear código sin afectar usuarios en producción
 
 ---
 

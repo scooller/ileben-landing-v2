@@ -2,6 +2,54 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.10] - 2026-01-14
+
+### 🔄 Sistema de Actualizaciones
+- **GitHub Theme Updater:** Nuevo sistema de actualizaciones automáticas desde GitHub Releases.
+  - Implementada clase `Ileben_GitHub_Theme_Updater` en `inc/github-updater.php`.
+  - WordPress detecta automáticamente nuevas versiones en GitHub Releases.
+  - Actualización con 1 clic desde Apariencia → Temas.
+  - Cacheo inteligente (12 horas) para minimizar peticiones a GitHub API.
+  - Soporte para repos públicos y privados (requiere GitHub token).
+  - Versionado semántico sincronizado con tags de Git (v0.1.10, etc.).
+
+### 🛡️ Seguridad y Robustez
+- **ACF Pro Dependency Check:** Sistema robusto de verificación de ACF Pro.
+  - Aviso prominente en admin si ACF no está instalado.
+  - Aviso de advertencia si solo está ACF gratuito (se requiere PRO).
+  - Protección contra errores fatales si ACF no está disponible.
+  - Verificaciones `function_exists('get_field')` en templates y configuración.
+  
+- **Protección de templates:** Todos los archivos PHP verifican disponibilidad de ACF.
+  - `header.php`: Protegida llamada a `the_field()` para analytics.
+  - `footer.php`: Protegidas todas las llamadas a get_field() y the_field().
+  - `inc/acf-hooks.php`: Return early si ACF no está disponible.
+  - `inc/setup.php`: Función helper `$get_color()` con fallbacks seguros.
+
+### 🔧 Cambios
+- **Version estática:** Cambio de `ILEBEN_THEME_VERSION` de random a '0.1.9' para versionado correcto.
+- **Actualización de versión:** Sincronización entre `style.css` y `functions.php`.
+- **Documentación extendida:** README.md incluye sección completa sobre flujo de actualizaciones.
+
+### 📚 Archivos nuevos
+- `inc/github-updater.php`: Clase principal para verificar y aplicar actualizaciones desde GitHub.
+
+### 📚 Archivos modificados
+- `functions.php`: Incluido github-updater.php, versión estática.
+- `header.php`: Protegida llamada a the_field().
+- `footer.php`: Protegidas llamadas a get_field() y the_field().
+- `inc/acf.php`: Mejorada verificación de ACF Pro.
+- `inc/acf-hooks.php`: Agregada verificación early return.
+- `inc/setup.php`: Función helper con fallbacks para colores.
+- `README.md`: Sección completa sobre GitHub Theme Updater y flujo de deployment.
+
+### 📋 Próximas Mejoras
+- [ ] Integración de CI/CD para compilación automática en deployment.
+- [ ] Sistema de rollback automático en caso de error.
+- [ ] Notificaciones por email de actualizaciones disponibles.
+
+---
+
 ## [0.1.9] - 2026-01-14
 
 ### 🔧 Optimizaciones
