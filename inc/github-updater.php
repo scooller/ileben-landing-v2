@@ -31,6 +31,9 @@ class Ileben_GitHub_Theme_Updater {
         
         // Hook para descargas desde repos privados (si es necesario)
         add_filter('http_request_args', array($this, 'add_auth_header'), 10, 2);
+
+        // Hook para renombrar el folder al descomprimir el ZIP de GitHub
+        add_filter('upgrader_source_selection', array($this, 'rename_github_source'), 10, 4);
     }
     
     /**
@@ -141,12 +144,57 @@ class Ileben_GitHub_Theme_Updater {
         }
         return $args;
     }
+
+    /**
+     * Renombra la carpeta descomprimida de GitHub (zipball) al slug del tema
+     * para evitar que WordPress rechace la actualización por nombre distinto.
+     */
+    public function rename_github_source($source, $remote_source, $upgrader, $hook_extra) {
+        // Solo aplica a temas y a nuestro slug
+        if (empty($hook_extra['theme']) || $hook_extra['theme'] !== $this->theme_slug) {
+            return $source;
+        }
+
+        // Buscar patrones típicos de zipball GitHub: scooller-ileben-landing-v2-* o owner-repo-*
+        $basename = basename($source);
+        if (strpos($basename, 'ileben-landing-v2') === false) {
+            return $source; // no es nuestro paquete
+        }
+
+        $new_source = trailingslashit(dirname($source)) . $this->theme_slug;
+
+        global $wp_filesystem;
+        if (!isset($wp_filesystem)) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+            WP_Filesystem();
+        }
+
+        // Si ya existe el destino, elimínalo antes de renombrar
+        if ($wp_filesystem->is_dir($new_source)) {
+            $wp_filesystem->delete($new_source, true);
+        }
+
+        // Renombrar
+        if ($wp_filesystem->move($source, $new_source, true)) {
+            return $new_source;
+        }
+
+        return $source; // fallback si falla
+    }
     
     /**
      * Limpia el caché cuando se actualiza el theme
      */
     public static function clear_cache() {
         delete_transient('ileben_theme_update_check');
+    }
+    
+    /**
+     * Debug: Endpoint para verificar el estado del updater
+     */
+    public static function debug_status() {
+        $updater = new self();
+        return $updater->get_latest_release();
     }
 }
 
@@ -159,3 +207,9 @@ add_action('upgrader_process_complete', function($upgrader, $options) {
         Ileben_GitHub_Theme_Updater::clear_cache();
     }
 }, 10, 2);
+
+// Auto-limpiar caché cuando se carga la pantalla de temas
+add_action('load-themes.php', function() {
+    delete_transient('ileben_theme_update_check');
+    wp_update_themes(); // fuerza verificación inmediata
+});
