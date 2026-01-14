@@ -2,7 +2,10 @@
 
 # Script de deployment para compilar assets en producción
 
-echo "🚀 Iniciando deployment..."
+# Navegar al directorio del tema
+cd /home/localesieleben/public_html/wp-content/themes/ileben-landing-v2
+
+echo "🚀 Iniciando deployment en $(pwd)..."
 
 # Cargar nvm si existe
 export NVM_DIR="$HOME/.nvm"
@@ -28,7 +31,7 @@ npm run build:all
 if [ -f "dist/assets/editor.css" ] && [ -f "blocks/blocks-editor.css" ]; then
     echo "✅ Deploy completado exitosamente!"
     echo "📁 Archivos generados:"
-    ls -lh dist/assets/*.css dist/assets/*.js blocks/*.css
+    ls -lh dist/assets/*.css dist/assets/*.js blocks/*.css 2>/dev/null || echo "Archivos CSS generados"
 else
     echo "❌ Error: No se generaron todos los archivos necesarios"
     exit 1
