@@ -1,5 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/localesieleben/public_html/wp-content/themes/ileben-landing-v2
-    - /bin/bash $DEPLOYPATH/deploy.sh
