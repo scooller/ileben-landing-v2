@@ -12,18 +12,18 @@ if (!defined('ABSPATH')) {
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?php echo esc_url(get_site_icon_url()); ?>" />
-    <?php the_field('analytics_code', 'option'); ?>
+    <?php if (function_exists('the_field')) { the_field('analytics_code', 'option'); } ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <?php if (function_exists('ileben_render_loader')) { ileben_render_loader(); } ?>
 <?php wp_body_open(); ?>
 <header id="site-header" class="site-header d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 fixed-top top-0 shadow-sm">
-    <div class="col-md-3 mb-2 mb-md-0 px-3">
+    <div class="col-md-5 col-3 mb-2 mb-md-0 px-3">
         <?php
         wp_nav_menu([
             'theme_location'  => 'header-menu',
-            'menu_class'      => 'navbar-nav ms-auto',
+            'menu_class'      => 'navbar-nav ms-auto text-center',
             'container'       => false,
             'fallback_cb'     => false,
             'depth'           => 2,
@@ -31,7 +31,7 @@ if (!defined('ABSPATH')) {
         ]);
         ?>
     </div>
-    <div class="col-md-4 mb-2 mb-md-0 text-center">
+    <div class="col-md-2 col-6 mb-2 mb-md-0 text-center">
         <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
             <?php
             if (function_exists('the_custom_logo') && has_custom_logo()) {
@@ -42,7 +42,7 @@ if (!defined('ABSPATH')) {
             ?>
         </a>
     </div>
-    <div class="col-md-5 text-end">
+    <div class="col-md-5 col-3 text-end">
         <?php get_template_part('template-parts/header/navbar'); ?>
     </div>
 </header>

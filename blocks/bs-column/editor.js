@@ -50,6 +50,10 @@
                 type: 'string',
                 default: ''
             },
+            orderMobile: {
+                type: 'string',
+                default: ''
+            },
             preview: {
                 type: 'boolean',
                 default: false
@@ -218,7 +222,11 @@
                 if (attributes.colXl) classes.push(`col-xl-${attributes.colXl}`);
                 if (attributes.colXxl) classes.push(`col-xxl-${attributes.colXxl}`);
                 if (attributes.offset) classes.push(attributes.offset);
-                if (attributes.order) classes.push(attributes.order);
+                if (attributes.orderMobile) classes.push(attributes.orderMobile);
+                if (attributes.order) {
+                    const desktopOrder = attributes.order.replace(/^order-/, 'order-md-');
+                    classes.push(desktopOrder);
+                }
                 return classes.join(' ');
             };
             return createElement(Fragment, {},
@@ -267,7 +275,13 @@
                             onChange: (value) => setAttributes({ offset: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Order', 'bootstrap-theme'),
+                            label: __('Order (Mobile)', 'bootstrap-theme'),
+                            value: attributes.orderMobile,
+                            options: orderOptions,
+                            onChange: (value) => setAttributes({ orderMobile: value })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Order (Desktop)', 'bootstrap-theme'),
                             value: attributes.order,
                             options: orderOptions,
                             onChange: (value) => setAttributes({ order: value })

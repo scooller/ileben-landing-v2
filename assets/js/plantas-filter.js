@@ -5,9 +5,9 @@ export function initPlantasFilter() {
     const form = wrapper.querySelector('[data-ajax-filter]');
     const container = wrapper.querySelector('.bs-plantas-slider-container');
     const swiperContainer = container?.querySelector('.swiper');
-    const selects = form.querySelectorAll('[data-filter-select]');
-    
+    // Guard against nulls before querying inside form
     if (!form || !container || !swiperContainer) return;
+    const selects = form.querySelectorAll('[data-filter-select]');
 
     // Get reference to all slides
     const allSlides = swiperContainer.querySelectorAll('.swiper-slide');
@@ -37,17 +37,39 @@ export function initPlantasFilter() {
         if (matchesDorm && matchesBano) {
           slide.style.display = '';
           slide.classList.remove('swiper-slide-hidden');
+          slide.classList.add('swiper-slide-visible');
           visibleCount++;
         } else {
           slide.style.display = 'none';
           slide.classList.add('swiper-slide-hidden');
+          slide.classList.remove('swiper-slide-visible');
         }
       });
 
-      // Find and update the Swiper instance
+      // Find and reinitialize the Swiper instance
+      // Using update() alone doesn't work with loop: true when slides are hidden
+      // We need to trigger re-initialization to recalculate indices
       if (swiperContainer.swiper) {
-        swiperContainer.swiper.update();
-        swiperContainer.swiper.slideTo(0);
+        // Destroy old instance to force proper recalculation
+        const wasDestroyed = swiperContainer.swiper.destroyed;
+        if (!wasDestroyed) {
+          swiperContainer.swiper.destroy(true, true);
+        }
+        
+        // Reinitialize Swiper (it will be picked up by the plantas-slider.js init)
+        // Manually trigger re-init since the swiper property was cleared
+        setTimeout(() => {
+          if (window.initPlantasSlider) {
+            window.initPlantasSlider();
+          } else {
+            console.warn('[Plantas Filter] initPlantasSlider not found, Swiper may need manual reinit');
+          }
+          
+          // Fallback: if Swiper instance is not restored, try to reinitialize it
+          if (swiperContainer.swiper) {
+            swiperContainer.swiper.slideTo(0, 0);
+          }
+        }, 50);
       }
 
       // Show message if no results

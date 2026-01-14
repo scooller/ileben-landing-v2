@@ -72,7 +72,8 @@
       display: flex;
       flex-wrap: wrap;
       
-      .block-editor-block-list__block{
+      /* Only apply flex/width styles to non-row blocks */
+      > .block-editor-block-list__block:not([data-type="bootstrap-theme/bs-row"]) {
         flex: 1 0 0;
         width: 100%;
         &:has(.col-1) {

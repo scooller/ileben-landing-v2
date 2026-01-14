@@ -24,6 +24,7 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block)
     $xxl = $attributes['colXxl'] ?? '';
     $offset = $attributes['offset'] ?? '';
     $order = $attributes['order'] ?? '';
+    $order_mobile = $attributes['orderMobile'] ?? '';
 
     // Build column classes
     $classes = array();
@@ -57,8 +58,14 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block)
         $classes[] = $offset;
     }
 
+    // Mobile order (no breakpoint)
+    if (!empty($order_mobile)) {
+        $classes[] = $order_mobile;
+    }
+
+    // Desktop order: map order-* to order-md-*
     if (!empty($order)) {
-        $classes[] = $order;
+        $classes[] = preg_replace('/^order-/', 'order-md-', $order);
     }
 
     // Compose final class string
@@ -124,6 +131,10 @@ function bootstrap_theme_register_bs_column_block()
                 'default' => ''
             ),
             'order' => array(
+                'type' => 'string',
+                'default' => ''
+            ),
+            'orderMobile' => array(
                 'type' => 'string',
                 'default' => ''
             ),

@@ -28,6 +28,8 @@
             paginationType: { type: 'string', default: 'bullets' },
             centered: { type: 'boolean', default: false },
             effect: { type: 'string', default: 'slide' },
+            loop: { type: 'boolean', default: true },
+            showFilters: { type: 'boolean', default: true },
             filterDormitorio: { type: 'string', default: '' },
             filterBano: { type: 'string', default: '' }
         },
@@ -110,7 +112,8 @@
                                 { label: __('Cube (cubo 3D)', 'bootstrap-theme'), value: 'cube' },
                                 { label: __('Coverflow (portadas)', 'bootstrap-theme'), value: 'coverflow' },
                                 { label: __('Flip (volteo)', 'bootstrap-theme'), value: 'flip' },
-                                { label: __('Cards (tarjetas)', 'bootstrap-theme'), value: 'cards' }
+                                { label: __('Cards (tarjetas)', 'bootstrap-theme'), value: 'cards' },
+                                { label: __('Creative (personalizado)', 'bootstrap-theme'), value: 'creative' }
                             ],
                             onChange: (value) => setAttributes({ effect: value })
                         }),
@@ -118,9 +121,20 @@
                             label: __('Centrar slide activo', 'bootstrap-theme'),
                             checked: !!attributes.centered,
                             onChange: (value) => setAttributes({ centered: value })
+                        }),
+                        createElement(ToggleControl, {
+                            label: __('Repetir infinitamente (loop)', 'bootstrap-theme'),
+                            checked: !!attributes.loop,
+                            onChange: (value) => setAttributes({ loop: value })
                         })
                     ),
                     createElement(PanelBody, { title: __('Filtros', 'bootstrap-theme'), initialOpen: false },
+                        createElement(ToggleControl, {
+                            label: __('Mostrar filtros de búsqueda', 'bootstrap-theme'),
+                            help: __('Mostrar u ocultar la barra de filtros (Dormitorios y Baños)', 'bootstrap-theme'),
+                            checked: !!attributes.showFilters,
+                            onChange: (value) => setAttributes({ showFilters: value })
+                        }),
                         createElement(SelectControl, {
                             label: __('Dormitorios', 'bootstrap-theme'),
                             value: attributes.filterDormitorio,

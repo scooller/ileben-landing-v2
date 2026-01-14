@@ -2,6 +2,8 @@
 @import "cf7";
 @import "swiper/swiper-bundle.css"; // Un solo import con todo
 @import "swiper";
+@import "parallax";
+@import "../../blocks/blocks-frontend";
 
 html, body {
   overflow-x: hidden;
@@ -58,11 +60,39 @@ strong{
     Others
 
 */
+.object-fit-contain{
+  img,video{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+}
 .object-fit-cover{
   img,video{
     object-fit: cover;
     width: 100%;
     height: 100%;
+  }
+}
+.object-fit-fill{
+  img,video{
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+  }
+}
+.object-fit-scale{
+  img,video{
+    object-fit: scale-down;
+    width: 100%;
+    height: 100%;
+  }
+}
+.object-fit-none{
+  img,video{
+    object-fit: none;
+    width: auto;
+    height: auto;
   }
 }
 #menu-logo-head .logo{
@@ -77,7 +107,8 @@ strong{
       width: auto;
       height: 100px;
       @include media-breakpoint-down(md) {
-        height: 50px;
+        height: auto;
+        width: 60%;
       }
     }
     a.custom-logo-link{
@@ -162,9 +193,24 @@ strong{
   &>.list-group-item {
     border-width: 0 0 0;
     --bs-list-group-item-padding-x: 0;
+    background-color: transparent;
   }
 }
+.list-group-numbered.list-dots>.list-group-item:before{
+  background-color: var(--bs-primary);
+    border-radius: var(--bs-border-radius-pill);
+    font-size: 0.8rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+    line-height: 2;
+    text-align: center;
+    margin-right: 1rem;
+    content: counters(section, ".");
+}
 footer{
+  background-color: var(--bs-black);
+  color: var(--bs-white);
   .footer-logo{
     height: 40px;
     @include media-breakpoint-down(md) {
@@ -175,4 +221,31 @@ footer{
 .legal{
   font-size: 0.8rem;
   line-height: 1.4;
+}
+/* bg patterns */
+.bg-pattern-diagonal-1{
+  background-color: var(--bs-dark);
+  opacity: 1;
+  background: repeating-linear-gradient( 45deg, rgba(var(--bs-gray-700-rgb),0.1), rgba(var(--bs-gray-700-rgb),0.1) 14.5px, var(--bs-dark) 14.5px, var(--bs-dark) 72.5px );
+}
+.bg-pattern-diagonal-3{
+  background-color: var(--bs-dark);
+  opacity: 1;
+  background-size: 29px 29px;
+  background-image: repeating-linear-gradient(45deg, rgba(var(--bs-gray-700-rgb),0.1) 0, rgba(var(--bs-gray-700-rgb),0.1) 2.9000000000000004px, var(--bs-dark) 0, var(--bs-dark) 50%);
+}
+.bg-pattern-polka{
+  background-color: var(--bs-dark);
+  opacity: 1;
+  background-image: radial-gradient(rgba(var(--bs-gray-700-rgb),0.1) 1.4500000000000002px, var(--bs-dark) 1.4500000000000002px);
+  background-size: 29px 29px;
+}
+.bg-pattern-crosshatch {
+  background-color: var(--bs-dark);
+  opacity: 1;
+  background-image: 
+    repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(var(--bs-gray-700-rgb), 0.06) 2px, rgba(var(--bs-gray-700-rgb), 0.06) 3px, transparent 3px, transparent 8px),
+    repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(var(--bs-gray-600-rgb), 0.05) 2px, rgba(var(--bs-gray-600-rgb), 0.05) 3px, transparent 3px, transparent 8px),
+    repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(var(--bs-gray-800-rgb), 0.04) 2px, rgba(var(--bs-gray-800-rgb), 0.04) 3px, transparent 3px, transparent 8px),
+    repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(var(--bs-gray-900-rgb), 0.03) 2px, rgba(var(--bs-gray-900-rgb), 0.03) 3px, transparent 3px, transparent 8px);
 }

@@ -14,11 +14,22 @@ if (!defined('ABSPATH')) {
  */
 function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block) {
     $carouselId = $attributes['carouselId'] ?? 'carousel-' . uniqid();
-    $showControls = $attributes['showControls'] ?? true;
-    $showIndicators = $attributes['showIndicators'] ?? true;
-    $autoplay = $attributes['autoplay'] ?? false;
-    $interval = $attributes['interval'] ?? 5000;
-    $fade = $attributes['fade'] ?? false;
+    
+    // Helper para convertir atributos booleanos correctamente
+    $to_bool = function($value, $default) {
+        if (!isset($value)) return $default;
+        if ($value === 'false' || $value === false || $value === 0 || $value === '0') return false;
+        if ($value === 'true' || $value === true || $value === 1 || $value === '1') return true;
+        return $default;
+    };
+    
+    $controls = $to_bool($attributes['controls'] ?? null, true);
+    $indicators = $to_bool($attributes['indicators'] ?? null, true);
+    $ride = $attributes['ride'] ?? 'carousel';
+    $interval = $attributes['interval'] ?? '5000';
+    $wrap = $to_bool($attributes['wrap'] ?? null, true);
+    $fade = $to_bool($attributes['fade'] ?? null, false);
+    $touch = $to_bool($attributes['touch'] ?? null, true);
     
     // Build carousel classes
     $classes = array('carousel', 'slide');
@@ -33,8 +44,10 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
     $class_string = implode(' ', array_unique($classes));
     
     $carousel_data = array(
-        'data-bs-ride' => $autoplay ? 'carousel' : 'false',
-        'data-bs-interval' => $interval
+        'data-bs-ride' => $ride,
+        'data-bs-interval' => $interval,
+        'data-bs-wrap' => $wrap ? 'true' : 'false',
+        'data-bs-touch' => $touch ? 'true' : 'false'
     );
     
     $data_attrs = '';
@@ -42,46 +55,41 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
         $data_attrs .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
     }
     
-    $output = '<div class="' . esc_attr($class_string) . '" id="' . esc_attr($carouselId) . '"' . $data_attrs . '>';
-    
-    // Indicators (opcional - pueden agregarse via JS si es necesario contar slides)
-    if ($showIndicators) {
-        $output .= '<div class="carousel-indicators" id="' . esc_attr($carouselId) . '-indicators"></div>';
-    }
-    
-    // Slides from InnerBlocks
-    $output .= '<div class="carousel-inner">';
-    
-    // Process the InnerBlocks content (carousel items)
-    if (!empty($content)) {
-        // The content should already be processed HTML from InnerBlocks.Content
-        $output .= $content;
-    } else {
-        // Default content if no items
-        $output .= '<div class="carousel-item active">';
-        $output .= '<div class="carousel-placeholder d-block w-100" style="height: 400px; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">';
-        $output .= '<span class="text-muted">' . __('Add carousel items...', 'bootstrap-theme') . '</span>';
-        $output .= '</div>';
-        $output .= '</div>';
-    }
-    $output .= '</div>';
-    
-    // Controls
-    if ($showControls) {
-        $output .= '<button class="carousel-control-prev" type="button" data-bs-target="#' . esc_attr($carouselId) . '" data-bs-slide="prev">';
-        $output .= '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-        $output .= '<span class="visually-hidden">' . __('Previous', 'bootstrap-theme') . '</span>';
-        $output .= '</button>';
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($class_string); ?>" id="<?php echo esc_attr($carouselId); ?>"<?php echo $data_attrs; ?>>
         
-        $output .= '<button class="carousel-control-next" type="button" data-bs-target="#' . esc_attr($carouselId) . '" data-bs-slide="next">';
-        $output .= '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-        $output .= '<span class="visually-hidden">' . __('Next', 'bootstrap-theme') . '</span>';
-        $output .= '</button>';
-    }
-    
-    $output .= '</div>';
-    
-    return $output;
+        <?php if ($indicators) : ?>
+            <div class="carousel-indicators" id="<?php echo esc_attr($carouselId); ?>-indicators"></div>
+        <?php endif; ?>
+        
+        <div class="carousel-inner">
+            <?php if (!empty($content)) : ?>
+                <?php echo $content; ?>
+            <?php else : ?>
+                <div class="carousel-item active">
+                    <div class="carousel-placeholder d-block w-100" style="height: 400px; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                        <span class="text-muted"><?php echo __('Add carousel items...', 'bootstrap-theme'); ?></span>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+        
+        <?php if ($controls) : ?>
+            <button class="carousel-control-prev" type="button" data-bs-target="#<?php echo esc_attr($carouselId); ?>" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"><?php echo __('Previous', 'bootstrap-theme'); ?></span>
+            </button>
+            
+            <button class="carousel-control-next" type="button" data-bs-target="#<?php echo esc_attr($carouselId); ?>" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"><?php echo __('Next', 'bootstrap-theme'); ?></span>
+            </button>
+        <?php endif; ?>
+        
+    </div>
+    <?php
+    return ob_get_clean();
 }
 
 /**
@@ -98,25 +106,33 @@ function bootstrap_theme_register_bs_carousel_block() {
                 'type' => 'string',
                 'default' => ''
             ),
-            'showControls' => array(
+            'controls' => array(
                 'type' => 'boolean',
                 'default' => true
             ),
-            'showIndicators' => array(
+            'indicators' => array(
                 'type' => 'boolean',
                 'default' => true
             ),
-            'autoplay' => array(
-                'type' => 'boolean',
-                'default' => false
+            'ride' => array(
+                'type' => 'string',
+                'default' => 'carousel'
             ),
             'interval' => array(
-                'type' => 'integer',
-                'default' => 5000
+                'type' => 'string',
+                'default' => '5000'
+            ),
+            'wrap' => array(
+                'type' => 'boolean',
+                'default' => true
             ),
             'fade' => array(
                 'type' => 'boolean',
                 'default' => false
+            ),
+            'touch' => array(
+                'type' => 'boolean',
+                'default' => true
             ),
             'className' => array(
                 'type' => 'string',

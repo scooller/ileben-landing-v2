@@ -27,6 +27,10 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
     // Effect and centering options
     $centered = !empty($attributes['centered']);
     $effect = isset($attributes['effect']) ? sanitize_text_field($attributes['effect']) : 'slide';
+    $loop = !empty($attributes['loop']);
+
+    // Show filters option
+    $showFilters = !empty($attributes['showFilters']);
 
     // Allow front-end filters via query params overriding block attributes
     $filterDormitorio = isset($_GET['planta_dormitorio']) ? sanitize_text_field(wp_unslash($_GET['planta_dormitorio'])) : (isset($attributes['filterDormitorio']) ? trim((string)$attributes['filterDormitorio']) : '');
@@ -52,12 +56,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
 
     $gallery_id = function_exists('wp_unique_id') ? wp_unique_id('plantas-slider-') : uniqid('plantas-slider-');
 
-    $container_classes = ['swiper','js-swiper'];
     // Add custom classes from block attributes (Gutenberg className)
-    if (!empty($attributes['className'])) {
-        $container_classes[] = $attributes['className'];
-    }
-    $class_string = implode(' ', $container_classes);
     $data_attrs = '';
     if ($slidesPerView !== '') {
         $data_attrs .= ' data-swiper-slides="' . esc_attr($slidesPerView) . '"';
@@ -72,6 +71,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
     // Pass effect and centering options
     $data_attrs .= ' data-swiper-effect="' . esc_attr($effect) . '"';
     $data_attrs .= ' data-swiper-centered="' . ($centered ? 'true' : 'false') . '"';
+    $data_attrs .= ' data-swiper-loop="' . ($loop ? 'true' : 'false') . '"';
 
     ob_start();
 
@@ -89,8 +89,10 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
             'navigationArrows' => $navigationArrows,
             'paginationType' => $paginationType,
             'centered' => $centered,
-            'effect' => $effect
+            'effect' => $effect,
+            'showFilters' => $showFilters
          ])); ?>">
+        <?php if ($showFilters) : ?>
         <form class="bs-plantas-filters row g-3 mb-3 text-center text-md-start" data-ajax-filter>
             <div class="col-12 col-md-6">
                 <label class="form-label"><?php echo esc_html__('Dormitorios', 'bootstrap-theme'); ?></label>
@@ -112,9 +114,10 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                 </select>
             </div>
         </form>
+        <?php endif; ?>
 
-        <div class="bs-plantas-slider-container">
-            <div class="<?php echo esc_attr($class_string); ?>"<?php echo $data_attrs; ?> data-slider-id="<?php echo esc_attr($gallery_id); ?>">
+        <div class="bs-plantas-slider-container <?php echo $attributes['className']; ?>">
+            <div class="swiper js-swiper"<?php echo $data_attrs; ?> data-slider-id="<?php echo esc_attr($gallery_id); ?>">
                 <div class="swiper-wrapper">
                 <?php 
                 while ($q->have_posts()) :
@@ -125,18 +128,21 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                     $content_html = apply_filters('the_content', get_the_content(null, false, get_the_ID()));
                     $planta_dorm = function_exists('get_field') ? get_field('planta_dormitorio', get_the_ID()) : '';
                     $planta_bano = function_exists('get_field') ? get_field('planta_bano', get_the_ID()) : '';
+                    // solo mostrar el numero de dormitorios y baños
+                    $planta_dorm_num = explode(' ', $planta_dorm)[0];
+                    $planta_bano_num = explode(' ', $planta_bano)[0];
                 ?>
                     <div data-post-id="<?php echo esc_attr(get_the_ID()); ?>" data-bano="<?php echo esc_attr($planta_bano); ?>" data-dorm="<?php echo esc_attr($planta_dorm); ?>" class="swiper-slide">
-                        <article class="card h-100">
+                        <article class="card h-100" style="backdrop-filter: blur(4px); background-color: inherit !important;">
                             <?php
                             if ($showThumbnail && has_post_thumbnail()) :
                                 $thumbnail_id = get_post_thumbnail_id();
                                 $full_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
-                                $thumb_html = get_the_post_thumbnail(get_the_ID(), 'medium_large', ['class' => 'img-fluid w-100']);
+                                $thumb_html = get_the_post_thumbnail(get_the_ID(), 'medium', ['class' => 'img-fluid w-100']);
                                 if ($full_url) :
                                     ?>
                                     <div class="card-img-top">
-                                        <a href="<?php echo esc_url($full_url); ?>" data-fancybox="<?php echo esc_attr($gallery_id); ?>" data-caption="<?php echo esc_attr(get_the_title()); ?>">
+                                        <a href="<?php echo esc_url($full_url); ?>" data-fancybox="<?php echo esc_attr($gallery_id); ?>" data-caption="<?php echo esc_html(get_the_title()); ?> | <?php echo esc_html($planta_dorm_num); ?>D-<?php echo esc_html($planta_bano_num); ?>B <?php echo esc_html(strip_tags($content_html)); ?>">
                                             <?php echo $thumb_html; ?>
                                         </a>
                                     </div>
@@ -149,18 +155,18 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                             endif;
                             ?>
                             <div class="card-body text-center">
-                                <h3 class="card-title"><?php echo esc_html(get_the_title()); ?></h3>
+                                <h3 class="card-title"><?php echo esc_html(get_the_title()); ?> | <?php echo esc_html($planta_dorm_num); ?>D-<?php echo esc_html($planta_bano_num); ?>B</h3>
                                 <div class="card-text">
                                     <?php echo wp_kses_post($content_html); ?>
                                 </div>
                                 <?php
                                 if (!$cotizador_activo) :
                                 ?>
-                                    <button class="btn btn-secondary" type="button" disabled aria-disabled="true"><?php echo esc_html($disabledButtonLabel); ?></button>
+                                    <button class="btn btn-secondary btn-cotiza" type="button" disabled aria-disabled="true"><?php echo esc_html($disabledButtonLabel); ?></button>
                                 <?php
                                 elseif ($link_cotizador) :
                                 ?>
-                                    <a class="btn btn-primary" href="<?php echo esc_url($link_cotizador); ?>" target="_blank" rel="noopener"><?php echo esc_html($buttonLabel); ?></a>
+                                    <a class="btn btn-primary btn-cotiza" href="<?php echo esc_url($link_cotizador); ?>" target="_blank" rel="noopener"><?php echo esc_html($buttonLabel); ?></a>
                                 <?php
                                 endif;
                                 ?>
@@ -173,8 +179,13 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                     ?>
                 </div><!-- .swiper-wrapper -->
             </div><!-- .swiper -->
-            <!-- Add Pagination and Navigation outside swiper -->
+            <!-- Add Pagination / Scrollbar and Navigation outside swiper -->
+            <?php if ($paginationType !== 'none' && $paginationType !== 'scrollbar') : ?>
             <div class="swiper-pagination swiper-pagination-<?php echo esc_attr($gallery_id); ?>"></div>
+            <?php endif; ?>
+            <?php if ($paginationType === 'scrollbar') : ?>
+            <div class="swiper-scrollbar swiper-scrollbar-<?php echo esc_attr($gallery_id); ?>"></div>
+            <?php endif; ?>
             <?php if ($navigationArrows) : ?>
             <div class="swiper-button-prev swiper-button-prev-<?php echo esc_attr($gallery_id); ?>"></div>
             <div class="swiper-button-next swiper-button-next-<?php echo esc_attr($gallery_id); ?>"></div>
@@ -201,6 +212,8 @@ function bootstrap_theme_register_bs_plantas_slider() {
             'paginationType' => array('type' => 'string', 'default' => 'bullets'),
             'centered' => array('type' => 'boolean', 'default' => false),
             'effect' => array('type' => 'string', 'default' => 'slide'),
+            'loop' => array('type' => 'boolean', 'default' => true),
+            'showFilters' => array('type' => 'boolean', 'default' => true),
             'filterDormitorio' => array('type' => 'string', 'default' => ''),
             'filterBano' => array('type' => 'string', 'default' => ''),
         )

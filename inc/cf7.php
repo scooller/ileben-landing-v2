@@ -93,7 +93,8 @@ function ileben_cf7_bootstrap_classes($tag)
 
     return $tag;
 }
-// Class injection disabled: keeping structure filter only; add Bootstrap classes directly in the CF7 form.
+// Enable class injection via CF7 filter so inputs get Bootstrap classes.
+add_filter('wpcf7_form_tag', 'ileben_cf7_bootstrap_classes', 10);
 
 /**
  * Massage CF7 rendered HTML to better match Bootstrap structure.
@@ -274,6 +275,36 @@ function ileben_cf7_bootstrap_structure($content)
             } else {
                 break;
             }
+        }
+    }
+
+    // Fallback: ensure Bootstrap classes on controls even if tag-level injection was skipped
+    // Inputs
+    foreach ($xpath->query('//input') as $input) {
+        if (!$input instanceof DOMElement) {
+            continue;
+        }
+        $type = strtolower($input->getAttribute('type'));
+        if (in_array($type, ['text', 'email', 'url', 'tel', 'number', 'date', 'password', 'search'], true)) {
+            $add_class($input, 'form-control');
+        } elseif (in_array($type, ['checkbox', 'radio'], true)) {
+            $add_class($input, 'form-check-input');
+        } elseif ($type === 'file') {
+            $add_class($input, 'form-control');
+        }
+    }
+
+    // Textareas
+    foreach ($xpath->query('//textarea') as $textarea) {
+        if ($textarea instanceof DOMElement) {
+            $add_class($textarea, 'form-control');
+        }
+    }
+
+    // Selects
+    foreach ($xpath->query('//select') as $select) {
+        if ($select instanceof DOMElement) {
+            $add_class($select, 'form-select');
         }
     }
 

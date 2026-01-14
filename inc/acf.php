@@ -9,13 +9,13 @@ if (!defined('ABSPATH')) {
 
 // Check for ACF Pro dependency
 function ileben_theme_check_acf_pro() {
-	if ( ! class_exists( 'ACF' ) || ! function_exists( 'acf_get_setting' ) ) {
+	if ( ! class_exists( 'ACF' ) && ! function_exists( 'get_field' ) ) {
 		add_action( 'admin_notices', 'ileben_theme_acf_missing_notice' );
 		return false;
 	}
 	
 	// Check if it's ACF Pro (has options page capability)
-	if ( ! function_exists( 'acf_add_options_page' ) ) {
+	if ( function_exists( 'get_field' ) && ! function_exists( 'acf_add_options_page' ) ) {
 		add_action( 'admin_notices', 'ileben_theme_acf_pro_missing_notice' );
 		return false;
 	}
@@ -25,16 +25,16 @@ function ileben_theme_check_acf_pro() {
 
 function ileben_theme_acf_missing_notice() {
 	?>
-	<div class="notice notice-error is-dismissible">
-		<p><strong><?php esc_html_e( 'Ileben Theme:', 'ileben-theme' ); ?></strong> <?php esc_html_e( 'Este tema requiere Advanced Custom Fields (ACF) para funcionar correctamente.', 'ileben-theme' ); ?> <a href="<?php echo esc_url( admin_url( 'plugin-install.php?s=advanced+custom+fields&tab=search&type=term' ) ); ?>"><?php esc_html_e( 'Instalar ACF', 'ileben-theme' ); ?></a></p>
+	<div class="notice notice-error">
+		<p><strong><?php esc_html_e( 'Ileben Theme - Error:', 'ileben-theme' ); ?></strong> <?php esc_html_e( 'Este tema requiere Advanced Custom Fields (ACF) PRO para funcionar correctamente. Por favor instala y activa ACF PRO.', 'ileben-theme' ); ?> <a href="<?php echo esc_url( admin_url( 'plugin-install.php?s=advanced+custom+fields&tab=search&type=term' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Instalar ACF', 'ileben-theme' ); ?></a></p>
 	</div>
 	<?php
 }
 
 function ileben_theme_acf_pro_missing_notice() {
 	?>
-	<div class="notice notice-error is-dismissible">
-		<p><strong><?php esc_html_e( 'Ileben Theme:', 'ileben-theme' ); ?></strong> <?php esc_html_e( 'Este tema requiere Advanced Custom Fields PRO para funcionar correctamente. La versión gratuita no es suficiente.', 'ileben-theme' ); ?> <a href="https://www.advancedcustomfields.com/pro/" target="_blank"><?php esc_html_e( 'Conseguir ACF Pro', 'ileben-theme' ); ?></a></p>
+	<div class="notice notice-warning">
+		<p><strong><?php esc_html_e( 'Ileben Theme - Advertencia:', 'ileben-theme' ); ?></strong> <?php esc_html_e( 'ACF está instalado pero este tema requiere Advanced Custom Fields PRO. La versión gratuita no incluye todas las funcionalidades necesarias.', 'ileben-theme' ); ?> <a href="https://www.advancedcustomfields.com/pro/" target="_blank" class="button button-primary"><?php esc_html_e( 'Conseguir ACF Pro', 'ileben-theme' ); ?></a></p>
 	</div>
 	<?php
 }

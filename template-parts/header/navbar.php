@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
             <?php
             wp_nav_menu([
                 'theme_location'  => 'primary',
-                'menu_class'      => 'navbar-nav ms-auto',
+                'menu_class'      => 'navbar-nav ms-auto text-center',
                 'container'       => false,
                 'fallback_cb'     => false,
                 'depth'           => 2,

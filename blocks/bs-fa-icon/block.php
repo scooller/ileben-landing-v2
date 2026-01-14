@@ -28,18 +28,25 @@ function bootstrap_theme_render_bs_fa_icon_block($attributes, $content, $block) 
     }
 
     // Allow custom classes from Advanced panel
-    $wrapper_classes = bootstrap_theme_add_custom_classes($wrapper_classes, $attributes, $block);
+    if (!empty($attributes['className'])) {
+        $wrapper_classes[] = $attributes['className'];
+    }
 
     $style_attr = '';
     if (!empty($color)) {
         $style_attr = ' style="color: ' . esc_attr($color) . ';"';
     }
 
-    $output  = '<div class="' . esc_attr(implode(' ', array_unique($wrapper_classes))) . '">';
-    $output .= '<i class="' . esc_attr(implode(' ', $icon_classes)) . '" aria-hidden="true"' . $style_attr . '></i>';
-    $output .= '</div>';
+    // Get animation data attributes
+    $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
 
-    return $output;
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr(implode(' ', array_unique($wrapper_classes))); ?>"<?php echo $animation_attrs; ?>>
+        <i class="<?php echo esc_attr(implode(' ', $icon_classes)); ?>" aria-hidden="true"<?php echo $style_attr; ?>></i>
+    </div>
+    <?php
+    return ob_get_clean();
 }
 
 function bootstrap_theme_register_bs_fa_icon_block() {
@@ -70,6 +77,21 @@ function bootstrap_theme_register_bs_fa_icon_block() {
                 'type' => 'string',
                 'default' => '',
             ],
+            // Animation attributes
+            'animationType' => array('type' => 'string'),
+            'animationTrigger' => array('type' => 'string'),
+            'animationDuration' => array('type' => 'number'),
+            'animationDelay' => array('type' => 'number'),
+            'animationEase' => array('type' => 'string'),
+            'animationRepeat' => array('type' => 'number'),
+            'animationRepeatDelay' => array('type' => 'number'),
+            'animationYoyo' => array('type' => 'boolean'),
+            'animationDistance' => array('type' => 'string'),
+            'animationRotation' => array('type' => 'number'),
+            'animationScale' => array('type' => 'string'),
+            'animationParallaxSpeed' => array('type' => 'number'),
+            'animationHoverEffect' => array('type' => 'string'),
+            'animationMobileEnabled' => array('type' => 'boolean'),
         ],
     ]);
 }

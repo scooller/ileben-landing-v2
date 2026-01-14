@@ -11,11 +11,13 @@ if (!defined('ABSPATH')) {
     <div class="container">
         <div class="row mb-3">
             <div class="col-12 text-center pb-3">
-                <small class="legal d-block"><?php the_field('footer_legal_text', 'option'); ?></small>
+                <small class="legal d-block"><?php if (function_exists('the_field')) { the_field('footer_legal_text', 'option'); } ?></small>
             </div>
             <hr>
             <div class="col d-flex text-center align-items-center justify-content-start">
-                <img src="<?php echo esc_url(get_field('footer_logo', 'option')); ?>" class="footer-logo" alt="<?php esc_attr_e('Ileben Logo', 'ileben-theme'); ?>">
+                <?php if (function_exists('get_field') && get_field('footer_logo', 'option')) : ?>
+                    <img src="<?php echo esc_url(get_field('footer_logo', 'option')); ?>" class="footer-logo" alt="<?php esc_attr_e('Ileben Logo', 'ileben-theme'); ?>">
+                <?php endif; ?>
             </div>
             <div class="col d-flex flex-column align-items-end justify-content-center">
                 <?php
@@ -30,21 +32,21 @@ if (!defined('ABSPATH')) {
                 ?>
                 <!-- RRSS ICONS -->
                 <ul class="social-icons list-unstyled d-flex mb-0">
-                    <?php if (get_field('facebook_url', 'option')) : ?>
+                    <?php if (function_exists('get_field') && get_field('facebook_url', 'option')) : ?>
                         <li class="ms-3">
                             <a href="<?php echo esc_url(get_field('facebook_url', 'option')); ?>" target="_blank" rel="noopener noreferrer">
                                 <i class="bi bi-facebook fs-4"></i>
                             </a>
                         </li>
                     <?php endif; ?>
-                    <?php if (get_field('instagram_url', 'option')) : ?>
+                    <?php if (function_exists('get_field') && get_field('instagram_url', 'option')) : ?>
                         <li class="ms-3">
                             <a href="<?php echo esc_url(get_field('instagram_url', 'option')); ?>" target="_blank" rel="noopener noreferrer">
                                 <i class="bi bi-instagram fs-4"></i>
                             </a>
                         </li>
                     <?php endif; ?>
-                    <?php if (get_field('linkedin_url', 'option')) : ?>
+                    <?php if (function_exists('get_field') && get_field('linkedin_url', 'option')) : ?>
                         <li class="ms-3">
                             <a href="<?php echo esc_url(get_field('linkedin_url', 'option')); ?>" target="_blank" rel="noopener noreferrer">
                                 <i class="bi bi-linkedin fs-4"></i>
@@ -61,7 +63,7 @@ if (!defined('ABSPATH')) {
 </footer>
 <script>
 var $ = jQuery.noConflict();
-<?php the_field('extra_code', 'option'); ?>
+<?php if (function_exists('the_field')) { the_field('extra_code', 'option'); } ?>
 </script>
 <?php wp_footer(); ?>
 </body>

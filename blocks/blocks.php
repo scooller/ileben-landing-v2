@@ -87,6 +87,7 @@ function bootstrap_theme_block_editor_assets()
         'bs-offcanvas',
         'bs-pagination',
         'bs-pagination-item',
+        'bs-parallax',
         'bs-progress',
         'bs-row',
         'bs-spinner',
@@ -245,14 +246,8 @@ add_filter('block_categories_all', 'bootstrap_theme_register_block_category');
  */
 function bootstrap_theme_enqueue_block_assets()
 {
-    // Enqueue Bootstrap CSS for blocks frontend (compiled from SCSS)
-    wp_enqueue_style(
-        'bootstrap-theme-blocks-frontend',
-        get_template_directory_uri() . '/blocks/blocks-frontend.css',
-        array(),
-        ILEBEN_THEME_VERSION
-    );
-
+    // Blocks frontend CSS is now included in the main compiled CSS (main.scss imports blocks-frontend.scss)
+    
     // Enqueue Steps animation script
     wp_enqueue_script(
         'bootstrap-theme-steps-animation',

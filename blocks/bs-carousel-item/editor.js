@@ -132,18 +132,7 @@
                     },
                         createElement('div', { className: 'text-center' },
                             createElement(InnerBlocks, {
-                                placeholder: __('Add slide content...', 'bootstrap-theme'),
-                                template: [
-                                    ['core/heading', { 
-                                        content: __('Slide Title', 'bootstrap-theme'),
-                                        level: 2,
-                                        textAlign: 'center'
-                                    }],
-                                    ['core/paragraph', { 
-                                        content: __('Add your slide description here.', 'bootstrap-theme'),
-                                        align: 'center'
-                                    }]
-                                ]
+                                placeholder: __('Add slide content (text, image, etc)...', 'bootstrap-theme')
                             })
                         )
                     )
@@ -158,7 +147,7 @@
             const itemClasses = `carousel-item${attributes.active ? ' active' : ''}`;
             
             const itemStyle = attributes.backgroundImage ? {
-                backgroundImage: `url(${attributes.backgroundImage})`,
+                backgroundImage: `url(${attributes.backgroundImage.url})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 minHeight: '400px'

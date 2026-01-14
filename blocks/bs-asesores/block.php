@@ -32,7 +32,7 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
     }
 
     // Build wrapper classes
-    $classes = ['bs-asesores', 'row', 'row-cols-1', 'g-3'];
+    $classes = ['bs-asesores', 'row', 'row-cols-1', 'g-3','justify-content-center'];
     if ($columns_md > 1) {
         $classes[] = 'row-cols-md-' . $columns_md;
     }

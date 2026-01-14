@@ -156,6 +156,15 @@ add_action('wp_enqueue_scripts', function () {
 
     // Theme base stylesheet
     wp_enqueue_style('ileben-theme-style', ILEBEN_THEME_URI . '/style.css', [], ILEBEN_THEME_VERSION);
+
+    // Parallax script - enqueued AFTER main bundle (GSAP)
+    wp_enqueue_script(
+        'ileben-parallax', 
+        ILEBEN_THEME_URI . '/assets/js/parallax.js', 
+        ['ileben-main'],  // Depend on main bundle which includes GSAP
+        ILEBEN_THEME_VERSION, 
+        true
+    );
 });
 
 /**

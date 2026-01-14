@@ -37,6 +37,6 @@ export function initGsap() {
       };
     }
 
-    console.log('GSAP initialized with config:', config);
+    //console.log('GSAP initialized with config:', config);
   }
 }

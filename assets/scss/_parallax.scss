@@ -1,0 +1,26 @@
+/**
+ * Parallax Styles
+ */
+
+/* Parallax container styles */
+[data-parallax="true"] {
+    --parallax-y: 0px;
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    
+    /* Apply parallax transform using CSS variable */
+    transform: translate3d(0, var(--parallax-y), 0);
+}
+
+/* Smooth transitions for parallax */
+[data-parallax="true"] {
+    transition: --parallax-y 0.1s ease-out;
+}
+
+/* Optimize for mobile */
+@media (max-width: 768px) {
+    [data-parallax="true"] {
+        will-change: auto;
+    }
+}

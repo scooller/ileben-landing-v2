@@ -157,6 +157,7 @@ class GSAPAnimationManager {
       delay: config.delay,
       repeat: config.repeat,
       repeatDelay: config.repeatDelay,
+      immediateRender: true,
       yoyo: config.yoyo
     });
   }
@@ -190,6 +191,7 @@ class GSAPAnimationManager {
       repeat: config.repeat,
       repeatDelay: config.repeatDelay,
       yoyo: config.yoyo,
+      immediateRender: true,
       scrollTrigger: {
         trigger: element,
         start: 'top 80%',
@@ -227,6 +229,7 @@ class GSAPAnimationManager {
       
       gsap.fromTo(element, fromVars, {
         ...toVars,
+        immediateRender: true,
         repeat: config.repeat,
         repeatDelay: config.repeatDelay,
         yoyo: config.yoyo
@@ -528,6 +531,7 @@ class GSAPAnimationManager {
       gsap.to(element, {
         ...hoverConfig,
         duration: 0.3,
+        immediateRender: true,
         ease: 'power2.out'
       });
     } else {
@@ -536,6 +540,7 @@ class GSAPAnimationManager {
         scale: 1,
         opacity: 1,
         duration: 0.3,
+        immediateRender: true,
         ease: 'power2.out'
       });
     }
@@ -688,6 +693,7 @@ class GSAPAnimationManager {
         start: 'top 80%',
         end: 'top 20%',
         toggleActions: 'play none none reverse',
+        immediateRender: true,
         markers: false
       };
     } else {

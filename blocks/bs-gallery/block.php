@@ -256,7 +256,7 @@ function ileben_render_bs_gallery( $attributes, $content, $block ) {
             <figure class="<?php echo esc_attr( implode( ' ', $item_classes ) ); ?>" style="<?php echo esc_attr( $figure_style ); ?>">
                 <?php if ( $lightbox ) : ?>
                     <a href="<?php echo esc_url( $full_url ); ?>" 
-                       class="d-block w-100" 
+                       class="d-block w-100 h-100" 
                        style="aspect-ratio: var(--a-ratio);"
                        data-fancybox="gallery"
                        <?php if ( $img_title ) : ?>data-caption="<?php echo esc_attr( $img_title ); ?>"<?php endif; ?>>

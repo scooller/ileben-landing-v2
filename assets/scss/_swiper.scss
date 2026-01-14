@@ -11,10 +11,16 @@
     --swiper-pagination-bullet-inactive-opacity: 0.2;
     --swiper-pagination-top: auto;
     --swiper-pagination-bottom: 10px;
+    @include media-breakpoint-down(md) {
+        --swiper-navigation-sides-offset: 1rem;
+    }
 }
-/* Swiper Navigation Outside Container */
 .bs-plantas-slider-container {
   position: relative;
+
+  .swiper-3d {
+    perspective: 1200px;
+  }
   
   .swiper-pagination {
     position: relative;
@@ -36,5 +42,34 @@
   
   .swiper-button-next {
     right: var(--swiper-navigation-sides-offset, 10px);
+  }
+}
+
+.bs-plantas-slider-container{
+  .swiper-wrapper{
+    .card-img-top{
+      img{
+        max-height: 600px;
+        object-fit: contain;
+        @include media-breakpoint-down(md) {
+          max-height: 250px;
+        }
+      }
+    }
+  }
+}
+.swiper{
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.swiper-3d .swiper-slide{
+  filter: blur(7px);
+  @include media-breakpoint-down(md) {
+    filter: blur(3px);
+  }
+  transition: all 0.3s ease;
+  &.swiper-slide-active{
+    filter: blur(0);
   }
 }

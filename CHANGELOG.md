@@ -2,6 +2,28 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.9] - 2026-01-14
+
+### 🔧 Optimizaciones
+- **Build system:** Integración de `blocks-frontend.scss` en el CSS principal.
+  - El archivo `blocks-frontend.scss` ahora se importa en `assets/scss/main.scss`.
+  - Se compila junto con el resto de estilos en un solo archivo `dist/assets/style-*.css`.
+  - Eliminado `wp_enqueue_style` separado para blocks-frontend.
+  - Mejora en rendimiento al reducir peticiones HTTP.
+- **Swiper:** Efecto de fade gradient horizontal en carouseles.
+  - Agregado `mask-image` con degradado lineal a `.carousel.slide`.
+  - Desvanecimiento suave en bordes izquierdo y derecho (0% → 10% → 90% → 100%).
+- **Parallax:** Soporte para contenedores `.container-fluid`.
+  - Actualizado `parallax.js` para buscar contenedores `.container` o `.container-fluid`.
+  - Mayor flexibilidad en layouts responsive.
+
+### 📚 Archivos modificados
+- `assets/scss/main.scss`: Importado `../../blocks/blocks-frontend`.
+- `assets/scss/_swiper.scss`: Agregado `mask-image` para fade gradient horizontal.
+- `assets/js/parallax.js`: Selector actualizado a `.container, .container-fluid`.
+- `blocks/blocks.php`: Eliminado enqueue separado de blocks-frontend.css.
+- `package.json`: Script `build:blocks-css` actualizado (solo compila blocks-editor.scss).
+
 ## [0.1.8] - 2026-01-08
 
 ### ✨ Nuevas funciones

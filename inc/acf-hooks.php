@@ -7,6 +7,11 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Only run if ACF is active
+if (!function_exists('get_field')) {
+    return;
+}
+
 /**
  * Helper: Build choices array from options repeater rows filtering by 'activo'
  */
