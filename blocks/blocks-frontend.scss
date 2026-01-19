@@ -317,25 +317,6 @@
     transition: width 0.3s ease;
 }
 
-/* === Gallery Block - Responsive Grid === */
-@media (max-width: 576px) {
-    .gallery-container {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-}
-
-@media (min-width: 768px) {
-    .gallery-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
-    }
-}
-
-@media (min-width: 1200px) {
-    .gallery-container {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-    }
-}
-
 /* === Asesores Block === */
 .bs-asesor-card {
     backdrop-filter: blur(4px);

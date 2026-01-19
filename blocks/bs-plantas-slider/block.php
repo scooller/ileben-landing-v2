@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Block: Plantas Slider (Swiper)
  */
@@ -7,7 +8,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block) {
+function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
+{
     $posts_per_page = isset($attributes['postsPerPage']) ? intval($attributes['postsPerPage']) : -1;
     $showThumbnail = !empty($attributes['showThumbnail']);
     $buttonLabel = isset($attributes['buttonLabel']) && $attributes['buttonLabel'] !== '' ? sanitize_text_field($attributes['buttonLabel']) : __('Cotizar', 'bootstrap-theme');
@@ -23,7 +25,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
     // Navigation options
     $navigationArrows = !empty($attributes['navigationArrows']);
     $paginationType = isset($attributes['paginationType']) ? sanitize_text_field($attributes['paginationType']) : 'bullets';
-    
+
     // Effect and centering options
     $centered = !empty($attributes['centered']);
     $effect = isset($attributes['effect']) ? sanitize_text_field($attributes['effect']) : 'slide';
@@ -47,7 +49,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
         'orderby' => 'date',
         'order' => 'DESC',
     );
-    
+
     // No aplicar filtros en el backend, se filtrarán en el frontend con JS
     $q = new WP_Query($args);
     if (!$q->have_posts()) {
@@ -76,103 +78,103 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
     ob_start();
 
     // Front-end filters UI
-    ?>
-    <div class="bs-plantas-filters-wrapper" 
-         data-block-attrs="<?php echo esc_attr(wp_json_encode([
-            'postsPerPage' => $posts_per_page,
-            'showThumbnail' => $showThumbnail,
-            'buttonLabel' => $buttonLabel,
-            'disabledButtonLabel' => $disabledButtonLabel,
-            'slidesPerViewMobile' => $slidesPerViewMobile,
-            'slidesPerViewTablet' => $slidesPerViewTablet,
-            'slidesPerViewDesktop' => $slidesPerViewDesktop,
-            'navigationArrows' => $navigationArrows,
-            'paginationType' => $paginationType,
-            'centered' => $centered,
-            'effect' => $effect,
-            'showFilters' => $showFilters
-         ])); ?>">
+?>
+    <div class="bs-plantas-filters-wrapper"
+        data-block-attrs="<?php echo esc_attr(wp_json_encode([
+                                'postsPerPage' => $posts_per_page,
+                                'showThumbnail' => $showThumbnail,
+                                'buttonLabel' => $buttonLabel,
+                                'disabledButtonLabel' => $disabledButtonLabel,
+                                'slidesPerViewMobile' => $slidesPerViewMobile,
+                                'slidesPerViewTablet' => $slidesPerViewTablet,
+                                'slidesPerViewDesktop' => $slidesPerViewDesktop,
+                                'navigationArrows' => $navigationArrows,
+                                'paginationType' => $paginationType,
+                                'centered' => $centered,
+                                'effect' => $effect,
+                                'showFilters' => $showFilters
+                            ])); ?>">
         <?php if ($showFilters) : ?>
-        <form class="bs-plantas-filters row g-3 mb-3 text-center text-md-start" data-ajax-filter>
-            <div class="col-12 col-md-6">
-                <label class="form-label"><?php echo esc_html__('Dormitorios', 'bootstrap-theme'); ?></label>
-                <select class="form-select" name="planta_dormitorio" data-filter-select>
-                    <option value=""><?php echo esc_html__('Todos', 'bootstrap-theme'); ?></option>
-                    <?php foreach ($dorm_choices as $value => $label) : ?>
-                        <option value="<?php echo esc_attr($value); ?>" <?php echo selected($filterDormitorio, $value, false); ?>><?php echo esc_html($label); ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <form class="bs-plantas-filters row g-3 mb-3 text-center text-md-start" data-ajax-filter>
+                <div class="col-12 col-md-6">
+                    <label class="form-label"><?php echo esc_html__('Dormitorios', 'bootstrap-theme'); ?></label>
+                    <select class="form-select" name="planta_dormitorio" data-filter-select>
+                        <option value=""><?php echo esc_html__('Todos', 'bootstrap-theme'); ?></option>
+                        <?php foreach ($dorm_choices as $value => $label) : ?>
+                            <option value="<?php echo esc_attr($value); ?>" <?php echo selected($filterDormitorio, $value, false); ?>><?php echo esc_html($label); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
-            <div class="col-12 col-md-6">
-                <label class="form-label"><?php echo esc_html__('Baños', 'bootstrap-theme'); ?></label>
-                <select class="form-select" name="planta_bano" data-filter-select>
-                    <option value=""><?php echo esc_html__('Todos', 'bootstrap-theme'); ?></option>
-                    <?php foreach ($bano_choices as $value => $label) : ?>
-                        <option value="<?php echo esc_attr($value); ?>" <?php echo selected($filterBano, $value, false); ?>><?php echo esc_html($label); ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-        </form>
+                <div class="col-12 col-md-6">
+                    <label class="form-label"><?php echo esc_html__('Baños', 'bootstrap-theme'); ?></label>
+                    <select class="form-select" name="planta_bano" data-filter-select>
+                        <option value=""><?php echo esc_html__('Todos', 'bootstrap-theme'); ?></option>
+                        <?php foreach ($bano_choices as $value => $label) : ?>
+                            <option value="<?php echo esc_attr($value); ?>" <?php echo selected($filterBano, $value, false); ?>><?php echo esc_html($label); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </form>
         <?php endif; ?>
 
         <div class="bs-plantas-slider-container <?php echo $attributes['className']; ?>">
-            <div class="swiper js-swiper"<?php echo $data_attrs; ?> data-slider-id="<?php echo esc_attr($gallery_id); ?>">
+            <div class="swiper js-swiper" <?php echo $data_attrs; ?> data-slider-id="<?php echo esc_attr($gallery_id); ?>">
                 <div class="swiper-wrapper">
-                <?php 
-                while ($q->have_posts()) :
-                    $q->the_post();
-                    $cotizador_activo_raw = function_exists('get_field') ? get_field('cotizador_activo', get_the_ID()) : null;
-                    $cotizador_activo = is_null($cotizador_activo_raw) ? true : (bool)$cotizador_activo_raw;
-                    $link_cotizador = function_exists('get_field') ? get_field('link_cotizador', get_the_ID()) : '';
-                    $content_html = apply_filters('the_content', get_the_content(null, false, get_the_ID()));
-                    $planta_dorm = function_exists('get_field') ? get_field('planta_dormitorio', get_the_ID()) : '';
-                    $planta_bano = function_exists('get_field') ? get_field('planta_bano', get_the_ID()) : '';
-                    // solo mostrar el numero de dormitorios y baños
-                    $planta_dorm_num = explode(' ', $planta_dorm)[0];
-                    $planta_bano_num = explode(' ', $planta_bano)[0];
-                ?>
-                    <div data-post-id="<?php echo esc_attr(get_the_ID()); ?>" data-bano="<?php echo esc_attr($planta_bano); ?>" data-dorm="<?php echo esc_attr($planta_dorm); ?>" class="swiper-slide">
-                        <article class="card h-100" style="backdrop-filter: blur(4px); background-color: inherit !important;">
-                            <?php
-                            if ($showThumbnail && has_post_thumbnail()) :
-                                $thumbnail_id = get_post_thumbnail_id();
-                                $full_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
-                                $thumb_html = get_the_post_thumbnail(get_the_ID(), 'medium', ['class' => 'img-fluid w-100']);
-                                if ($full_url) :
+                    <?php
+                    while ($q->have_posts()) :
+                        $q->the_post();
+                        $cotizador_activo_raw = function_exists('get_field') ? get_field('cotizador_activo', get_the_ID()) : null;
+                        $cotizador_activo = is_null($cotizador_activo_raw) ? true : (bool)$cotizador_activo_raw;
+                        $link_cotizador = function_exists('get_field') ? get_field('link_cotizador', get_the_ID()) : '';
+                        $content_html = apply_filters('the_content', get_the_content(null, false, get_the_ID()));
+                        $planta_dorm = function_exists('get_field') ? get_field('planta_dormitorio', get_the_ID()) : '';
+                        $planta_bano = function_exists('get_field') ? get_field('planta_bano', get_the_ID()) : '';
+                        // solo mostrar el numero de dormitorios y baños
+                        $planta_dorm_num = explode(' ', $planta_dorm)[0];
+                        $planta_bano_num = explode(' ', $planta_bano)[0];
+                    ?>
+                        <div data-post-id="<?php echo esc_attr(get_the_ID()); ?>" data-bano="<?php echo esc_attr($planta_bano); ?>" data-dorm="<?php echo esc_attr($planta_dorm); ?>" class="swiper-slide">
+                            <article class="card h-100">
+                                <?php
+                                if ($showThumbnail && has_post_thumbnail()) :
+                                    $thumbnail_id = get_post_thumbnail_id();
+                                    $full_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
+                                    $thumb_html = get_the_post_thumbnail(get_the_ID(), 'medium', ['class' => 'img-fluid w-100']);
+                                    if ($full_url) :
+                                ?>
+                                        <div class="card-img-top">
+                                            <a href="<?php echo esc_url($full_url); ?>" data-fancybox="<?php echo esc_attr($gallery_id); ?>" data-caption="<?php echo esc_html(get_the_title()); ?> | <?php echo esc_html($planta_dorm_num); ?>D-<?php echo esc_html($planta_bano_num); ?>B <?php echo esc_html(strip_tags($content_html)); ?>">
+                                                <?php echo $thumb_html; ?>
+                                            </a>
+                                        </div>
+                                    <?php
+                                    else :
                                     ?>
-                                    <div class="card-img-top">
-                                        <a href="<?php echo esc_url($full_url); ?>" data-fancybox="<?php echo esc_attr($gallery_id); ?>" data-caption="<?php echo esc_html(get_the_title()); ?> | <?php echo esc_html($planta_dorm_num); ?>D-<?php echo esc_html($planta_bano_num); ?>B <?php echo esc_html(strip_tags($content_html)); ?>">
-                                            <?php echo $thumb_html; ?>
-                                        </a>
+                                        <div class="card-img-top"><?php echo $thumb_html; ?></div>
+                                <?php
+                                    endif;
+                                endif;
+                                ?>
+                                <div class="card-body text-center">
+                                    <h3 class="card-title"><?php echo esc_html(get_the_title()); ?> | <?php echo esc_html($planta_dorm_num); ?>D-<?php echo esc_html($planta_bano_num); ?>B</h3>
+                                    <div class="card-text">
+                                        <?php echo wp_kses_post($content_html); ?>
                                     </div>
                                     <?php
-                                else :
+                                    if (!$cotizador_activo) :
                                     ?>
-                                    <div class="card-img-top"><?php echo $thumb_html; ?></div>
+                                        <button class="btn btn-secondary btn-cotiza" type="button" disabled aria-disabled="true"><?php echo esc_html($disabledButtonLabel); ?></button>
                                     <?php
-                                endif;
-                            endif;
-                            ?>
-                            <div class="card-body text-center">
-                                <h3 class="card-title"><?php echo esc_html(get_the_title()); ?> | <?php echo esc_html($planta_dorm_num); ?>D-<?php echo esc_html($planta_bano_num); ?>B</h3>
-                                <div class="card-text">
-                                    <?php echo wp_kses_post($content_html); ?>
+                                    elseif ($link_cotizador) :
+                                    ?>
+                                        <a class="btn btn-primary btn-cotiza" href="<?php echo esc_url($link_cotizador); ?>" target="_blank" rel="noopener"><?php echo esc_html($buttonLabel); ?></a>
+                                    <?php
+                                    endif;
+                                    ?>
                                 </div>
-                                <?php
-                                if (!$cotizador_activo) :
-                                ?>
-                                    <button class="btn btn-secondary btn-cotiza" type="button" disabled aria-disabled="true"><?php echo esc_html($disabledButtonLabel); ?></button>
-                                <?php
-                                elseif ($link_cotizador) :
-                                ?>
-                                    <a class="btn btn-primary btn-cotiza" href="<?php echo esc_url($link_cotizador); ?>" target="_blank" rel="noopener"><?php echo esc_html($buttonLabel); ?></a>
-                                <?php
-                                endif;
-                                ?>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
                     <?php
                     endwhile;
                     wp_reset_postdata();
@@ -181,22 +183,23 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
             </div><!-- .swiper -->
             <!-- Add Pagination / Scrollbar and Navigation outside swiper -->
             <?php if ($paginationType !== 'none' && $paginationType !== 'scrollbar') : ?>
-            <div class="swiper-pagination swiper-pagination-<?php echo esc_attr($gallery_id); ?>"></div>
+                <div class="swiper-pagination swiper-pagination-<?php echo esc_attr($gallery_id); ?>"></div>
             <?php endif; ?>
             <?php if ($paginationType === 'scrollbar') : ?>
-            <div class="swiper-scrollbar swiper-scrollbar-<?php echo esc_attr($gallery_id); ?>"></div>
+                <div class="swiper-scrollbar swiper-scrollbar-<?php echo esc_attr($gallery_id); ?>"></div>
             <?php endif; ?>
             <?php if ($navigationArrows) : ?>
-            <div class="swiper-button-prev swiper-button-prev-<?php echo esc_attr($gallery_id); ?>"></div>
-            <div class="swiper-button-next swiper-button-next-<?php echo esc_attr($gallery_id); ?>"></div>
+                <div class="swiper-button-prev swiper-button-prev-<?php echo esc_attr($gallery_id); ?>"></div>
+                <div class="swiper-button-next swiper-button-next-<?php echo esc_attr($gallery_id); ?>"></div>
             <?php endif; ?>
         </div><!-- .bs-plantas-slider-container -->
     </div><!-- .bs-plantas-filters-wrapper -->
-    <?php
+<?php
     return ob_get_clean();
 }
 
-function bootstrap_theme_register_bs_plantas_slider() {
+function bootstrap_theme_register_bs_plantas_slider()
+{
     register_block_type('bootstrap-theme/bs-plantas-slider', array(
         'render_callback' => 'bootstrap_theme_render_bs_plantas_slider',
         'attributes' => array(

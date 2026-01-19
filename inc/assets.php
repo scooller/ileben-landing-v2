@@ -156,15 +156,6 @@ add_action('wp_enqueue_scripts', function () {
 
     // Theme base stylesheet
     wp_enqueue_style('ileben-theme-style', ILEBEN_THEME_URI . '/style.css', [], ILEBEN_THEME_VERSION);
-
-    // Parallax script - enqueued AFTER main bundle (GSAP)
-    wp_enqueue_script(
-        'ileben-parallax', 
-        ILEBEN_THEME_URI . '/assets/js/parallax.js', 
-        ['ileben-main'],  // Depend on main bundle which includes GSAP
-        ILEBEN_THEME_VERSION, 
-        true
-    );
 });
 
 /**
@@ -385,9 +376,9 @@ add_action('wp_enqueue_scripts', function () {
         --bs-btn-disabled-border-color: <?php echo $base; ?>;
         }
         .bg-outline-<?php echo $theme; ?> {
-            border: var(--bs-border-width) var(--bs-border-style) <?php echo $base; ?>;
-            color: <?php echo $base; ?>;
-            background-color: transparent;
+        border: var(--bs-border-width) var(--bs-border-style) <?php echo $base; ?>;
+        color: <?php echo $base; ?>;
+        background-color: transparent;
         }
     <?php
     endforeach;
@@ -409,8 +400,8 @@ add_action('wp_enqueue_scripts', function () {
     endforeach;
     ?>
     .navbar-nav {
-        --bs-nav-link-color: var(--bs-link-color);
-        --bs-nav-link-hover-color: var(--bs-link-hover-color);
+    --bs-nav-link-color: var(--bs-link-color);
+    --bs-nav-link-hover-color: var(--bs-link-hover-color);
     }
 
     /* Dark mode support */

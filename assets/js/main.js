@@ -12,6 +12,7 @@ import { initGsap } from './gsap-loader';
 import GSAPAnimationManager from './animations';
 import { initRutValidation } from './rut';
 import { applyBootstrapClasses } from './cf7-bootstrap';
+import './parallax';
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {

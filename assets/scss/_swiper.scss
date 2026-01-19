@@ -62,7 +62,18 @@
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  article.card{
+    backdrop-filter: blur(4px);
+    @include media-breakpoint-up(md) {
+      background-color: inherit !important;
+    }    
+    @include media-breakpoint-down(md) {
+      background-color: rgba(var(--bs-dark-rgb), 0.95) !important;
+    }
+  }
 }
+/* 3D Effect Styles */
+/* se remueve por incompatibilidad con Firefox
 .swiper-3d .swiper-slide{
   filter: blur(7px);
   @include media-breakpoint-down(md) {
@@ -72,4 +83,4 @@
   &.swiper-slide-active{
     filter: blur(0);
   }
-}
+}*/

@@ -1,0 +1,134 @@
+/**
+ * CSS Grid Layout para Galería
+ * Sistema de layout tipo mosaico controlado con columnSpan y rowSpan
+ */
+
+.gallery-wrapper {
+    width: 100%;
+    max-width: 100%;
+}
+
+.gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.gallery-filter-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.gallery-filter-btn:hover,
+.gallery-filter-btn.active {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.gallery-grid-mode {
+    display: grid;
+    grid-template-columns: repeat(var(--gallery-columns, 3), 1fr);
+    gap: var(--gallery-gap, 1rem);
+    grid-auto-rows: auto;
+    grid-auto-flow: dense; /* Rellena espacios automáticamente */
+}
+
+.gallery-grid-mode .gallery-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 0; /* Importante para que funcione el grid */
+}
+
+.gallery-item-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gallery-item-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Overlay para hover effect */
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gallery-overlay-color, rgba(0, 0, 0, 0.5));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: var(--gallery-overlay-opacity, 0.5);
+}
+
+.gallery-overlay-content {
+    text-align: center;
+    color: #fff;
+    padding: 1rem;
+}
+
+.gallery-overlay-content h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.gallery-overlay-content p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* Caption debajo de la imagen */
+.gallery-caption {
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+}
+
+.gallery-caption h4 {
+    margin: 0 0 0.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.gallery-caption p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+    .gallery-grid-mode {
+        grid-template-columns: repeat(var(--gallery-columns-mobile, 2), 1fr) !important;
+    }
+    
+    .gallery-grid-mode .gallery-item {
+        /* En mobile, limitar los spans para que no se rompa el layout */
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+    }
+}

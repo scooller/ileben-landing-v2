@@ -289,13 +289,17 @@ npm run build:back-css
 
 ## 📦 Dependencias principales
 
-- **bootstrap** (^5.3.3) – Framework CSS
-- **gsap** (^3.12.5) – Animaciones
-- **swiper** (^11.1.4) – Carouseles/sliders
-- **@fancyapps/ui** (^5.0.36) – Galerías lightbox
-- **sass** – Preprocesador SCSS
-- **vite** – Bundler moderno
-- **autoprefixer** – Prefijos CSS automáticos
+### Dependencies
+- **bootstrap** (^5.3) – Framework CSS responsive y componentes
+- **gsap** (^3.14) – Animaciones de alto rendimiento
+- **swiper** (^12.0) – Carouseles y sliders modernos
+- **@fancyapps/ui** (^6.1) – Galerías lightbox con Fancybox
+
+### DevDependencies
+- **vite** (^5.4.8) – Bundler moderno ultra-rápido
+- **sass** (^1.79.4) – Preprocesador SCSS
+- **autoprefixer** (^10.4.20) – Prefijos CSS automáticos
+- **postcss** (^8.4.47) – Transformaciones CSS
 
 ---
 

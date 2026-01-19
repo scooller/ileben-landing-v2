@@ -92,7 +92,7 @@ function bootstrap_theme_render_bs_steps_block($attributes, $content, $block)
                     $title_classes[] = 'text-white';
                 }
             ?>
-                <div class="bs-step text-center position-relative flex-grow-1 mb-2 mb-md-0" <?php echo $anim_attrs; ?>>
+                <div class="bs-step text-center position-relative flex-grow-1 mb-3 mb-md-0" <?php echo $anim_attrs; ?>>
                     <div class="<?php echo esc_attr(implode(' ', $circle_classes)); ?>">
                         <?php echo esc_html($step_number); ?>
                     </div>

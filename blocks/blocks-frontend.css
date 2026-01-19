@@ -276,11 +276,6 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
   }
 }
-@media (min-width: 1200px) {
-  .gallery-container {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-  }
-}
 /* === Asesores Block === */
 .bs-asesor-card {
   backdrop-filter: blur(4px);
