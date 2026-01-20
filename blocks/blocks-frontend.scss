@@ -3,6 +3,13 @@
  * Estilos adicionales para los bloques en el frontend
  */
 
+/* Importar estilos de bloques específicos */
+@import 'bs-gallery/grid-layout';
+@import 'bs-gallery/hover-effects';
+@import 'bs-cart/cart-block';
+@import 'bs-shipping-methods/style';
+@import 'bs-wc-products/style';
+
 /* Estilos adicionales para bloques Bootstrap en frontend */
 .wp-block-bootstrap-theme-bs-container {
     /* Los estilos de Bootstrap container se aplicarán automáticamente */

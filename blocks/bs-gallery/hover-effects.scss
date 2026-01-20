@@ -1,0 +1,108 @@
+/**
+ * Gallery Block - Hover Effects Only
+ * CSS dedicado exclusivamente para efectos hover de galería
+ */
+
+/* === OVERLAY HOVER EFFECT === */
+.gallery-hover-overlay {
+    .gallery-overlay {
+        background-color: var(--gallery-overlay-color, #000000);
+        opacity: 0;
+        transition: opacity 0.3s ease-out;
+    }
+
+    figure:hover .gallery-overlay {
+        opacity: var(--gallery-overlay-opacity, 0.5) !important;
+    }
+}
+
+/* === ZOOM HOVER EFFECT === */
+.gallery-hover-zoom {
+    figure {
+        img {
+            transition: transform 0.3s ease-out;
+            transform: scale(1);
+        }
+
+        &:hover img {
+            transform: scale(1.1);
+            filter: blur(1px);
+            transition: all 0.3s ease-out;
+        }
+    }
+}
+
+/* === SLIDE HOVER EFFECT === */
+.gallery-hover-slide {
+    .gallery-overlay {
+        background-color: var(--gallery-overlay-color, #000000);
+        opacity: var(--gallery-overlay-opacity, 0.5);
+        transform: translateY(100%);
+        transition: transform 0.3s ease-out;
+    }
+
+    figure:hover .gallery-overlay {
+        transform: translateY(0);
+    }
+}
+
+/* === FADE HOVER EFFECT === */
+.gallery-hover-fade {
+    figure {
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--gallery-overlay-color, #000000);
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        &:hover::after {
+            opacity: var(--gallery-overlay-opacity, 0.5);
+        }
+
+        &:hover .gallery-overlay {
+            opacity: 1 !important;
+        }
+    }
+
+    .gallery-overlay {
+        opacity: 0;
+        transition: opacity 0.3s ease-out 0.1s;
+        z-index: 2;
+    }
+}
+
+/* === NONE HOVER EFFECT === */
+.gallery-hover-none {
+    .gallery-overlay {
+        display: none;
+    }
+}
+
+/* === RESPONSIVE ADJUSTMENTS === */
+@media (hover: none) {
+    /* En dispositivos táctiles, mostrar overlay siempre */
+    .gallery-hover-overlay .gallery-overlay,
+    .gallery-hover-fade figure::after {
+        opacity: 0.3 !important;
+    }
+    
+    .gallery-hover-slide .gallery-overlay {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-hover-zoom figure:hover img {
+        transform: scale(1);
+    }
+}

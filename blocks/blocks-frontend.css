@@ -3,6 +3,551 @@
  * Bootstrap Blocks - Frontend Styles
  * Estilos adicionales para los bloques en el frontend
  */
+/* Importar estilos de bloques específicos */
+/**
+ * CSS Grid Layout para Galería
+ * Sistema de layout tipo mosaico controlado con columnSpan y rowSpan
+ */
+.gallery-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.gallery-filter-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+.gallery-filter-btn:hover, .gallery-filter-btn.active {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.gallery-grid-mode {
+  display: grid;
+  grid-template-columns: repeat(var(--gallery-columns, 3), 1fr);
+  gap: var(--gallery-gap, 1rem);
+  grid-auto-rows: auto;
+  grid-auto-flow: dense; /* Rellena espacios automáticamente */
+}
+.gallery-grid-mode .gallery-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0; /* Importante para que funcione el grid */
+}
+.gallery-grid-mode .gallery-item:hover .gallery-overlay {
+  opacity: var(--gallery-overlay-opacity, 0.5);
+}
+
+.gallery-item-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.gallery-item-link::before {
+  content: var(--gallery-caption);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(var(--bs-black-rgb), 0.65);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  font-size: 0.8rem;
+  opacity: 0;
+}
+.gallery-item-link:hover::before {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay para hover effect */
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gallery-overlay-color, rgba(0, 0, 0, 0.5));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.gallery-overlay-content {
+  text-align: center;
+  color: #fff;
+  padding: 1rem;
+}
+.gallery-overlay-content h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.gallery-overlay-content p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Caption debajo de la imagen */
+.gallery-caption {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+}
+.gallery-caption h4 {
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+}
+.gallery-caption p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+  .gallery-grid-mode {
+    grid-template-columns: repeat(var(--gallery-columns-mobile, 2), 1fr) !important;
+  }
+  .gallery-grid-mode .gallery-item {
+    /* En mobile, limitar los spans para que no se rompa el layout */
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+}
+/**
+ * Gallery Block - Hover Effects Only
+ * CSS dedicado exclusivamente para efectos hover de galería
+ */
+/* === OVERLAY HOVER EFFECT === */
+.gallery-hover-overlay .gallery-overlay {
+  background-color: var(--gallery-overlay-color, #000000);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+.gallery-hover-overlay figure:hover .gallery-overlay {
+  opacity: var(--gallery-overlay-opacity, 0.5) !important;
+}
+
+/* === ZOOM HOVER EFFECT === */
+.gallery-hover-zoom figure img {
+  transition: transform 0.3s ease-out;
+  transform: scale(1);
+}
+.gallery-hover-zoom figure:hover img {
+  transform: scale(1.1);
+  filter: blur(1px);
+  transition: all 0.3s ease-out;
+}
+
+/* === SLIDE HOVER EFFECT === */
+.gallery-hover-slide .gallery-overlay {
+  background-color: var(--gallery-overlay-color, #000000);
+  opacity: var(--gallery-overlay-opacity, 0.5);
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+}
+.gallery-hover-slide figure:hover .gallery-overlay {
+  transform: translateY(0);
+}
+
+/* === FADE HOVER EFFECT === */
+.gallery-hover-fade figure {
+  position: relative;
+}
+.gallery-hover-fade figure::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--gallery-overlay-color, #000000);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+.gallery-hover-fade figure:hover::after {
+  opacity: var(--gallery-overlay-opacity, 0.5);
+}
+.gallery-hover-fade figure:hover .gallery-overlay {
+  opacity: 1 !important;
+}
+.gallery-hover-fade .gallery-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease-out 0.1s;
+  z-index: 2;
+}
+
+/* === NONE HOVER EFFECT === */
+.gallery-hover-none .gallery-overlay {
+  display: none;
+}
+
+/* === RESPONSIVE ADJUSTMENTS === */
+@media (hover: none) {
+  /* En dispositivos táctiles, mostrar overlay siempre */
+  .gallery-hover-overlay .gallery-overlay,
+  .gallery-hover-fade figure::after {
+    opacity: 0.3 !important;
+  }
+  .gallery-hover-slide .gallery-overlay {
+    transform: translateY(0);
+  }
+}
+@media (max-width: 576px) {
+  .gallery-hover-zoom figure:hover img {
+    transform: scale(1);
+  }
+}
+/**
+ * Bootstrap Cart Block Styles
+ * Using Bootstrap utility classes only
+ */
+.bs-cart {
+  margin-bottom: 1.5rem;
+}
+.bs-cart .cart-items-wrapper {
+  margin-bottom: 1rem;
+}
+.bs-cart {
+  /* List Group Styling */
+}
+.bs-cart .list-group {
+  border-radius: var(--bs-border-radius);
+  overflow: hidden;
+}
+.bs-cart .list-group-item {
+  border: 1px solid var(--bs-border-color);
+  padding: 1.25rem;
+  background-color: var(--bs-body-bg);
+  transition: all 0.2s ease;
+}
+.bs-cart .list-group-item:not(:last-child) {
+  border-bottom-width: 1px;
+}
+.bs-cart .list-group-item:hover {
+  background-color: var(--bs-gray-100);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+.bs-cart .list-group-item:hover .cart-item-info a,
+.bs-cart .list-group-item:hover .cart-item-price,
+.bs-cart .list-group-item:hover .text-muted {
+  color: var(--bs-black) !important;
+}
+.bs-cart {
+  /* Product Image */
+}
+.bs-cart .cart-item-image {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: var(--bs-border-radius);
+  background-color: var(--bs-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.bs-cart .cart-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bs-cart .cart-item-info a {
+  color: var(--bs-body-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.bs-cart .cart-item-info a:hover {
+  color: var(--bs-primary);
+}
+.bs-cart {
+  /* Quantity Controls */
+}
+.bs-cart .cart-item-quantity {
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius-sm);
+  background-color: var(--bs-body-bg);
+  gap: 0.5rem;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+.bs-cart .cart-item-quantity button {
+  color: var(--bs-body-color);
+  background: none;
+  border: none;
+  padding: 0.25rem 0.35rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.bs-cart .cart-item-quantity button:hover {
+  color: var(--bs-primary);
+  background-color: var(--bs-gray-200);
+  border-radius: var(--bs-border-radius-sm);
+}
+.bs-cart .qty-display {
+  font-weight: 600;
+  color: var(--bs-body-color);
+  font-size: 0.9rem;
+  min-width: 30px;
+  text-align: center;
+  flex-grow: 1;
+}
+.bs-cart {
+  /* Price */
+}
+.bs-cart .cart-item-price {
+  font-weight: 600;
+  color: var(--bs-body-color);
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+.bs-cart {
+  /* Remove Button */
+}
+.bs-cart .cart-remove-item {
+  transition: all 0.15s ease;
+}
+.bs-cart .cart-remove-item:hover {
+  opacity: 0.8;
+}
+.bs-cart {
+  /* Cart Totals Section */
+}
+.bs-cart .cart-totals {
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+.bs-cart .cart-totals .row {
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.bs-cart .cart-totals .row:last-child {
+  font-size: 1.15rem;
+  font-weight: 600;
+  border-top: 1px solid var(--bs-border-color);
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+}
+.bs-cart {
+  /* Empty Cart Alert */
+}
+.bs-cart .alert {
+  margin: 0;
+  padding: 1rem;
+  border-radius: var(--bs-border-radius);
+}
+.bs-cart .alert-info {
+  color: #004085;
+  background-color: #cff4fc;
+  border: 1px solid #b6effb;
+}
+.bs-cart {
+  /* Cart Buttons */
+}
+.bs-cart .cart-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--bs-border-color);
+}
+.bs-cart .cart-buttons .btn {
+  flex-grow: 1;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Responsive Design - Tablet */
+@media (max-width: 768px) {
+  .bs-cart .list-group-item {
+    padding: 1rem;
+  }
+  .bs-cart .cart-item-image {
+    width: 70px;
+    height: 70px;
+  }
+  .bs-cart .cart-buttons {
+    flex-direction: column;
+  }
+  .bs-cart .cart-buttons .btn {
+    width: 100%;
+  }
+  .bs-cart .cart-totals {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+/* Responsive Design - Mobile */
+@media (max-width: 576px) {
+  .bs-cart .list-group-item {
+    padding: 0.75rem;
+  }
+  .bs-cart .cart-item-image {
+    width: 60px;
+    height: 60px;
+  }
+  .bs-cart .qty-display {
+    min-width: 25px;
+    font-size: 0.8rem;
+  }
+  .bs-cart .cart-item-quantity {
+    padding: 0.2rem;
+    gap: 0.25rem;
+  }
+  .bs-cart .cart-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .bs-cart .cart-buttons .btn {
+    width: 100%;
+    padding: 0.65rem 1rem;
+  }
+  .bs-cart .cart-totals {
+    padding: 0.65rem;
+    font-size: 0.85rem;
+  }
+  .bs-cart .alert {
+    padding: 0.75rem;
+  }
+}
+.bs-shipping-methods {
+  margin-bottom: 1.5rem;
+}
+.bs-shipping-methods .shipping-title {
+  font-weight: 600;
+  color: var(--bs-body-color);
+}
+.bs-shipping-methods .shipping-method-option {
+  padding: 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+.bs-shipping-methods .shipping-method-option:hover {
+  background-color: var(--bs-light);
+  border-color: var(--bs-primary);
+}
+.bs-shipping-methods .shipping-method-option .form-check-input:checked ~ .form-check-label {
+  color: var(--bs-primary);
+}
+.bs-shipping-methods .shipping-method-name {
+  display: flex;
+  align-items: center;
+}
+.bs-shipping-methods .shipping-method-name .icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+.bs-shipping-methods .shipping-method-cost {
+  color: var(--bs-success);
+  font-size: 1.1rem;
+}
+.bs-shipping-methods .shipping-select-wrapper .form-select {
+  padding: 0.75rem;
+  border: 1px solid var(--bs-border-color);
+}
+.bs-shipping-methods .shipping-select-wrapper .form-select:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Editor styles */
+.wp-block-bootstrap-theme-shipping-methods .alert-info {
+  margin: 1rem 0;
+}
+.wp-block-bootstrap-theme-shipping-methods .form-check-input:disabled,
+.wp-block-bootstrap-theme-shipping-methods .form-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/**
+ * WooCommerce Products Block Styles
+ */
+.bs-wc-products {
+  /* Animaciones WOW para productos */
+}
+.bs-wc-products .wow {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+.bs-wc-products .animate__flipInX {
+  animation-name: flipInX;
+}
+.bs-wc-products {
+  /* Paginación activa */
+}
+.bs-wc-products .page-item.active .page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: #fff;
+}
+
+@keyframes flipInX {
+  from {
+    perspective: 400px;
+    animation-timing-function: ease-out;
+    opacity: 0;
+    transform: rotateY(-90deg);
+  }
+  40% {
+    animation-timing-function: ease-out;
+    transform: rotateY(10deg);
+  }
+  60% {
+    opacity: 1;
+    transform: rotateY(-10deg);
+  }
+  80% {
+    transform: rotateY(5deg);
+  }
+  to {
+    perspective: 400px;
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
 /* Estilos adicionales para bloques Bootstrap en frontend */
 .wp-block-bootstrap-theme-bs-container {
   /* Los estilos de Bootstrap container se aplicarán automáticamente */
@@ -265,17 +810,6 @@
   transition: width 0.3s ease;
 }
 
-/* === Gallery Block - Responsive Grid === */
-@media (max-width: 576px) {
-  .gallery-container {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-@media (min-width: 768px) {
-  .gallery-container {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
-  }
-}
 /* === Asesores Block === */
 .bs-asesor-card {
   backdrop-filter: blur(4px);

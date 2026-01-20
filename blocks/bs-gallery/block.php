@@ -18,18 +18,6 @@ function ileben_enqueue_gallery_assets()
         wp_get_theme()->get('Version'),
         true
     );
-    wp_enqueue_style(
-        'ileben-gallery-hover',
-        get_template_directory_uri() . '/blocks/bs-gallery/hover-effects.css',
-        array(),
-        wp_get_theme()->get('Version')
-    );
-    wp_enqueue_style(
-        'ileben-gallery-grid',
-        get_template_directory_uri() . '/blocks/bs-gallery/grid-layout.css',
-        array(),
-        rand(), // Forzar recarga durante el desarrollo
-    );
 }
 add_action('wp_enqueue_scripts', 'ileben_enqueue_gallery_assets');
 
@@ -217,6 +205,7 @@ function ileben_render_bs_gallery($attributes, $content, $block)
                             class="gallery-item-link"
                             data-fancybox="gallery"
                             data-thumb="<?php echo esc_url($img_thumb_url); ?>"
+                            style="--gallery-caption: '<?php echo esc_attr($custom_caption); ?>';"
                             <?php if ($img_title) : ?>data-caption="<?php echo esc_attr($custom_caption); ?>" <?php endif; ?>>
                         <?php endif; ?>
 

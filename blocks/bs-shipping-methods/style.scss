@@ -1,0 +1,65 @@
+.bs-shipping-methods {
+    margin-bottom: 1.5rem;
+
+    .shipping-title {
+        font-weight: 600;
+        color: var(--bs-body-color);
+    }
+
+    .shipping-method-option {
+        padding: 0.75rem;
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+        transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+        &:hover {
+            background-color: var(--bs-light);
+            border-color: var(--bs-primary);
+        }
+
+        .form-check-input:checked ~ .form-check-label {
+            color: var(--bs-primary);
+        }
+    }
+
+    .shipping-method-name {
+        display: flex;
+        align-items: center;
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+    }
+
+    .shipping-method-cost {
+        color: var(--bs-success);
+        font-size: 1.1rem;
+    }
+
+    .shipping-select-wrapper {
+        .form-select {
+            padding: 0.75rem;
+            border: 1px solid var(--bs-border-color);
+
+            &:focus {
+                border-color: var(--bs-primary);
+                box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+            }
+        }
+    }
+}
+
+/* Editor styles */
+.wp-block-bootstrap-theme-shipping-methods {
+    .alert-info {
+        margin: 1rem 0;
+    }
+
+    .form-check-input:disabled,
+    .form-select:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}

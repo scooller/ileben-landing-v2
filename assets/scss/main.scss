@@ -218,6 +218,10 @@ footer{
       height: 20px;
     }
   }
+  .nav-link{
+    --bs-nav-link-padding-x: 0;
+    --bs-nav-link-padding-y: 0;
+  }
 }
 .legal{
   font-size: 0.8rem;

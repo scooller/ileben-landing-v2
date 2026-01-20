@@ -170,54 +170,6 @@ function bootstrap_theme_render_bs_wc_products_block($attributes, $content, $blo
         'rand'       => __('Aleatorio', 'bootstrap-theme'),
     );
 
-    // Inject animation styles
-    wp_add_inline_style('woocommerce-layout', '
-        .wow {
-            animation-duration: 0.8s;
-            animation-fill-mode: both;
-        }
-        .animate__flipInX {
-            animation-name: flipInX;
-        }
-        @keyframes flipInX {
-            from {
-                -webkit-perspective: 400px;
-                perspective: 400px;
-                -webkit-animation-timing-function: ease-out;
-                animation-timing-function: ease-out;
-                opacity: 0;
-                -webkit-transform: rotateY(-90deg);
-                transform: rotateY(-90deg);
-            }
-            40% {
-                -webkit-animation-timing-function: ease-out;
-                animation-timing-function: ease-out;
-                -webkit-transform: rotateY(10deg);
-                transform: rotateY(10deg);
-            }
-            60% {
-                opacity: 1;
-                -webkit-transform: rotateY(-10deg);
-                transform: rotateY(-10deg);
-            }
-            80% {
-                -webkit-transform: rotateY(5deg);
-                transform: rotateY(5deg);
-            }
-            to {
-                -webkit-perspective: 400px;
-                perspective: 400px;
-                -webkit-transform: rotateY(0deg);
-                transform: rotateY(0deg);
-                opacity: 1;
-            }
-        }
-        .page-item.active .page-link {
-            background-color: #0d6efd;
-            border-color: #0d6efd;
-            color: #fff;
-        }
-    ');
     if ($cols <= 0) $cols = 4;
 
     ob_start();

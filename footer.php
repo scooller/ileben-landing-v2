@@ -12,9 +12,11 @@ if (!defined('ABSPATH')) {
     <div class="container">
         <div class="row mb-3">
             <div class="col-12 text-center pb-3" data-animate-type="fadeInUp" data-animate-trigger="on-scroll" data-animate-duration="0.8" data-animate-delay="0" data-animate-ease="linear">
-                <small class="legal d-block"><?php if (function_exists('the_field')) {
-                                                    the_field('footer_legal_text', 'option');
-                                                } ?></small>
+                <small class="legal d-block">
+                    <?php if (function_exists('the_field')) {
+                        the_field('footer_legal_text', 'option');
+                    } ?>
+                    </small>
             </div>
             <hr>
             <div class="col d-flex text-center align-items-center justify-content-start">

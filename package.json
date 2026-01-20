@@ -9,8 +9,9 @@
     "preview": "vite preview",
     "build:back-css": "sass assets/scss/editor.scss dist/assets/editor.css",
     "build:blocks-css": "sass blocks/blocks-editor.scss blocks/blocks-editor.css",
+    "build:blocks-frontend-css": "sass blocks/blocks-frontend.scss blocks/blocks-frontend.css",
     "build:css": "sass assets/scss/main.scss dist/assets/main.css && postcss dist/assets/main.css -o dist/assets/main.css",
-    "build:all": "npm run build && npm run build:back-css && npm run build:blocks-css",
+    "build:all": "npm run build && npm run build:back-css && npm run build:blocks-css && npm run build:blocks-frontend-css",
     "i18n:pot": "wp-pot --domain ileben-landing --src . --dest languages/ileben-landing.pot --ignore node_modules,dist,vendor"
   },
   "dependencies": {

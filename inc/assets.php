@@ -331,6 +331,7 @@ add_action('wp_enqueue_scripts', function () {
     --wp--preset--font-size--medium: 16px;
     --wp--preset--font-size--large: 20px;
     --wp--preset--font-size--x-large: 24px;
+    --bs-nav-link-font-size: 0.9rem;
     }
     <?php
     // Btns colors
