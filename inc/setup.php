@@ -15,10 +15,13 @@ add_action('after_setup_theme', function () {
     add_theme_support('custom-logo');
     add_theme_support('html5', ['script', 'style']);
 
+    // Load theme text domain
+    load_theme_textdomain('ileben-landing', get_template_directory() . '/languages');
+
     register_nav_menus([
-        'primary' => __('Primary Menu', 'ileben-landing-v2'),
-        'header-menu' => __('Header Menu', 'ileben-landing-v2'),
-        'footer-menu' => __('Footer Menu', 'ileben-landing-v2'),
+        'primary' => __('Primary Menu', 'ileben-landing'),
+        'header-menu' => __('Header Menu', 'ileben-landing'),
+        'footer-menu' => __('Footer Menu', 'ileben-landing'),
     ]);
 
     add_image_size('banner', 1200, 900, true);

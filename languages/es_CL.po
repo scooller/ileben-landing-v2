@@ -1,0 +1,115 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ileben-landing 0.1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-01-19 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish (Chile)\n"
+"Language: es_CL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GitHub Copilot\n"
+"X-Domain: ileben-landing\n"
+
+#: inc/setup.php:22
+msgid "Primary Menu"
+msgstr "Menú principal"
+
+#: inc/setup.php:23
+msgid "Header Menu"
+msgstr "Menú de cabecera"
+
+#: inc/setup.php:24
+msgid "Footer Menu"
+msgstr "Menú de pie de página"
+
+#: template-parts/header/navbar.php:12
+msgid "Toggle navigation"
+msgstr "Alternar navegación"
+
+#: index.php:12
+msgid "Content not found"
+msgstr "Contenido no encontrado"
+
+#: index.php:13
+msgid "This theme is intended for a custom landing page. Please configure front-page.php."
+msgstr "Este tema está destinado a una página de aterrizaje personalizada. Por favor configure front-page.php."
+
+#: inc/template-tags.php:43
+msgid "Abrir contenido"
+msgstr "Abrir contenido"
+
+#: inc/template-tags.php:45
+msgid "Reproducir"
+msgstr "Reproducir"
+
+#: inc/template-tags.php:80
+msgid "Ileben"
+msgstr "Ileben"
+
+#: footer.php:22
+msgid "Ileben Logo"
+msgstr "Logo de Ileben"
+
+#: inc/acf.php:51
+msgid "Configuración del tema"
+msgstr "Configuración del tema"
+
+#: inc/acf.php:52
+msgid "Ileben Config"
+msgstr "Configuración de Ileben"
+
+#: inc/acf.php:58
+msgid "Guardar cambios"
+msgstr "Guardar cambios"
+
+#: inc/acf.php:59
+msgid "Opciones guardadas"
+msgstr "Opciones guardadas"
+
+#: inc/acf.php:29
+msgid "Ileben Theme - Error:"
+msgstr "Ileben Theme - Error:"
+
+#: inc/acf.php:29
+msgid "Este tema requiere Advanced Custom Fields (ACF) PRO para funcionar correctamente. Por favor instala y activa ACF PRO."
+msgstr "Este tema requiere Advanced Custom Fields (ACF) PRO para funcionar correctamente. Por favor instala y activa ACF PRO."
+
+#: inc/acf.php:29
+msgid "Instalar ACF"
+msgstr "Instalar ACF"
+
+#: inc/acf.php:37
+msgid "Ileben Theme - Advertencia:"
+msgstr "Ileben Theme - Advertencia:"
+
+#: inc/acf.php:37
+msgid "ACF está instalado pero este tema requiere Advanced Custom Fields PRO. La versión gratuita no incluye todas las funcionalidades necesarias."
+msgstr "ACF está instalado pero este tema requiere Advanced Custom Fields PRO. La versión gratuita no incluye todas las funcionalidades necesarias."
+
+#: inc/acf.php:37
+msgid "Conseguir ACF Pro"
+msgstr "Conseguir ACF Pro"
+
+#: inc/color-scheme-switcher.php:42
+msgid "Claro"
+msgstr "Claro"
+
+#: inc/color-scheme-switcher.php:43
+msgid "Oscuro"
+msgstr "Oscuro"
+
+#: inc/color-scheme-switcher.php:44
+msgid "Automático"
+msgstr "Automático"
+
+#: blocks/bs-wc-products/block.json
+msgctxt "block title"
+msgid "WooCommerce Products (Bootstrap Loop)"
+msgstr "Productos de WooCommerce (Bucle Bootstrap)"
+
+#: blocks/bs-wc-products/block.json
+msgctxt "block description"
+msgid "Display WooCommerce products with Bootstrap styling"
+msgstr "Mostrar productos de WooCommerce con estilo Bootstrap"

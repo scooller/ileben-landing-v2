@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 ?>
 <nav class="navbar navbar-expand-lg">
     <div class="container">        
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryMenu" aria-controls="primaryMenu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'ileben-landing-v2'); ?>">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryMenu" aria-controls="primaryMenu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'ileben-landing'); ?>">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="primaryMenu">

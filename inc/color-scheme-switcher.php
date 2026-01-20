@@ -39,9 +39,9 @@ function ileben_theme_render_color_scheme_switcher() {
     <!-- Desktop switcher (md and up) -->
     <div id="bs-color-scheme-switcher" class="position-fixed start-0 top-50 translate-middle-y d-none d-md-flex flex-column gap-1 bg-body border rounded-end shadow p-2 z-3"
          style="--_offset: 8px; left: var(--_offset);">
-    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-theme-value="light" aria-label="Tema claro" title="<?php esc_attr_e('Claro','ileben-theme') ?>"><i class="fa-solid fa-sun"></i></button>
-    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-theme-value="dark" aria-label="Tema oscuro" title="<?php esc_attr_e('Oscuro','ileben-theme') ?>"><i class="fa-solid fa-moon"></i></button>
-    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-theme-value="auto" aria-label="Tema automático" title="<?php esc_attr_e('Automático','ileben-theme') ?>"><i class="fa-solid fa-cloud-sun"></i></button>
+    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-theme-value="light" aria-label="Tema claro" title="<?php esc_attr_e('Claro','ileben-landing') ?>"><i class="fa-solid fa-sun"></i></button>
+    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-theme-value="dark" aria-label="Tema oscuro" title="<?php esc_attr_e('Oscuro','ileben-landing') ?>"><i class="fa-solid fa-moon"></i></button>
+    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-theme-value="auto" aria-label="Tema automático" title="<?php esc_attr_e('Automático','ileben-landing') ?>"><i class="fa-solid fa-cloud-sun"></i></button>
     </div>
 
     <!-- Mobile switcher (below md) -->

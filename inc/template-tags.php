@@ -40,9 +40,9 @@ function ileben_lazy_image($image_id, $size = 'large', $attrs = [])
 function ileben_iframe_facade($args = [])
 {
     $defaults = [
-        'title' => __('Abrir contenido', 'ileben-landing-v2'),
+        'title' => __('Abrir contenido', 'ileben-landing'),
         'embed_url' => '',
-        'button_label' => __('Reproducir', 'ileben-landing-v2'),
+        'button_label' => __('Reproducir', 'ileben-landing'),
         'ratio' => '16x9', // Bootstrap ratio utility, e.g., 16x9, 4x3
     ];
 
@@ -77,7 +77,7 @@ function ileben_render_loader()
     ?>
     <div id="site-loader" class="site-loader" aria-hidden="true">
         <div class="loader-inner text-center">
-            <img src="https://ileben.cl/wp-content/uploads/2022/02/logo-leben-solo.svg" alt="<?php esc_attr_e('Ileben', 'ileben-landing-v2'); ?>" class="img-logo">
+            <img src="https://ileben.cl/wp-content/uploads/2022/02/logo-leben-solo.svg" alt="<?php esc_attr_e('Ileben', 'ileben-landing'); ?>" class="img-logo">
             <br>
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
