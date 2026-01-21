@@ -117,7 +117,7 @@ function init() {
 
     // Refresh ScrollTrigger when images load
     window.addEventListener('load', () => {
-        console.log('📷 Images loaded - refreshing ScrollTrigger');
+        //console.log('📷 Images loaded - refreshing ScrollTrigger');
         ScrollTrigger.refresh();
     });
 }

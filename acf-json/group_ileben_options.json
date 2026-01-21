@@ -173,7 +173,7 @@
             "name": "google_font_family",
             "aria-label": "",
             "type": "text",
-            "instructions": "Ejemplo: \"Open+Sans:ital,wght@0,300..800;1,300..800\"",
+            "instructions": "Ejemplo: \"family=Open+Sans:ital,wght@0,300..800;1,300..800\"",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -181,7 +181,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Open+Sans:ital,wght@0,300..800;1,300..800",
+            "default_value": "family=Open+Sans:ital,wght@0,300..800;1,300..800",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -193,7 +193,7 @@
             "name": "google_font_name",
             "aria-label": "",
             "type": "text",
-            "instructions": "Ejemplo: \"Open Sans\", sans-serif\"",
+            "instructions": "Ejemplo: \"Open Sans\", sans-serif\", se puede separar múltiples fuentes con ;",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -2623,5 +2623,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1765894462
+    "modified": 1686475122
 }

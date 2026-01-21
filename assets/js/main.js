@@ -12,6 +12,9 @@ import { initGsap } from './gsap-loader';
 import GSAPAnimationManager from './animations';
 import { initRutValidation } from './rut';
 import { applyBootstrapClasses } from './cf7-bootstrap';
+//import bootstrap JS components if needed
+import 'bootstrap/js/dist/carousel';
+import 'bootstrap/js/dist/collapse';
 import './parallax';
 
 // Initialize when DOM is ready

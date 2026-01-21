@@ -55,7 +55,7 @@
             }
             
             const itemClasses = [
-                'carousel-item',
+                'carousel-item h-100',
                 attributes.active ? 'active' : ''
             ].filter(Boolean).join(' ');
 
@@ -144,7 +144,7 @@
             const { attributes } = props;
             const blockProps = useBlockProps.save();
             
-            const itemClasses = `carousel-item${attributes.active ? ' active' : ''}`;
+            const itemClasses = `carousel-item h-100${attributes.active ? ' active' : ''}`;
             
             const itemStyle = attributes.backgroundImage ? {
                 backgroundImage: `url(${attributes.backgroundImage.url})`,

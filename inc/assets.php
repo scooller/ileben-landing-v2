@@ -65,7 +65,7 @@ function ileben_google_font_family()
             return $family;
         }
     }
-    return 'Open Sans:wght@400;600;700';
+    return 'family=Open+Sans:ital,wght@0,300..800;1,300..800';
 }
 
 add_action('wp_enqueue_scripts', function () {
@@ -146,9 +146,8 @@ add_action('wp_enqueue_scripts', function () {
 
     // Google Fonts enqueue
     $family = ileben_google_font_family();
-    // Normalize family string: remove quotes, replace + with space
-    $family = trim(str_replace('+', ' ', $family), " \t\n\r\0\x0B\"'");
-    $google_url = sprintf('https://fonts.googleapis.com/css2?family=%s&display=swap', urlencode($family));
+    $family = str_replace('&#038;', '&', $family); // Fix ACF encoding issue
+    $google_url = 'https://fonts.googleapis.com/css2?' . $family . '&display=swap';
     wp_enqueue_style('ileben-google-fonts', $google_url, [], null);
 
     // Font Awesome
@@ -275,7 +274,7 @@ add_action('wp_enqueue_scripts', function () {
     $focus_ring_color = get_field('focus_ring_color', 'option') ?: '#0d6efd';
 
     // Typography
-    $font_name = get_field('google_font_name', 'option') ?: '"Open Sans", sans-serif';
+    $fonts_name = get_field('google_font_name', 'option') ? explode(';', get_field('google_font_name', 'option')): array('"Open Sans", sans-serif');
     $font_size = get_field('body_font_size', 'option') ?: '1rem';
     $font_size_mobile = get_field('body_font_size_mobile', 'option') ?: '14px';
     $font_weight = get_field('body_font_weight', 'option') ?: '400';
@@ -316,7 +315,10 @@ add_action('wp_enqueue_scripts', function () {
     --bs-nav-link-color: var(--bs-link-color);
     --bs-nav-link-hover-color: var(--bs-link-hover-color);
     --bs-focus-ring-color: <?php echo $focus_ring_color; ?>;
-    --bs-body-font-family: <?php echo $font_name; ?>;
+    <?php foreach($fonts_name as $i => $font): ?>
+    --bs-font-family-<?php echo $i + 1; ?>: <?php echo $font; ?>;
+    <?php endforeach; ?>
+    --bs-body-font-family: var(--bs-font-family-1);
     --bs-body-font-size: <?php echo $font_size; ?>;
     --bs-body-font-weight: <?php echo $font_weight; ?>;
     --swiper-theme-color: var(--bs-primary);

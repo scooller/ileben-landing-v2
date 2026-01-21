@@ -63,12 +63,12 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
             <div class="carousel-indicators" id="<?php echo esc_attr($carouselId); ?>-indicators"></div>
         <?php endif; ?>
         
-        <div class="carousel-inner">
+        <div class="carousel-inner h-100">
             <?php if (!empty($content)) : ?>
                 <?php echo $content; ?>
             <?php else : ?>
                 <div class="carousel-item active">
-                    <div class="carousel-placeholder d-block w-100" style="height: 400px; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                    <div class="carousel-placeholder d-block w-100" style="min-height: 400px; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
                         <span class="text-muted"><?php echo __('Add carousel items...', 'bootstrap-theme'); ?></span>
                     </div>
                 </div>

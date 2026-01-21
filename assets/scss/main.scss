@@ -210,8 +210,6 @@ strong{
     content: counters(section, ".");
 }
 footer{
-  background-color: var(--bs-black);
-  color: var(--bs-white);
   .footer-logo{
     height: 40px;
     @include media-breakpoint-down(md) {
@@ -221,6 +219,18 @@ footer{
   .nav-link{
     --bs-nav-link-padding-x: 0;
     --bs-nav-link-padding-y: 0;
+  }
+}
+[data-bs-theme=light]{
+  footer{
+    color: var(--bs-dark);
+    background-color: rgba(var(--bs-white-rgb), 0.8);
+  }
+}
+[data-bs-theme=dark] {
+  footer{
+    color: var(--bs-light);
+    background-color: rgba(var(--bs-black-rgb), 0.8);
   }
 }
 .legal{
