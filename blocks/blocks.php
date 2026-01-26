@@ -113,11 +113,12 @@ function bootstrap_theme_block_editor_assets()
         $editor_file = get_template_directory() . "/blocks/{$block_name}/editor.js";
         if (file_exists($editor_file)) {
             $handle = "bootstrap-theme-{$block_name}-editor";
+            $editor_version = filemtime($editor_file) ?: ILEBEN_THEME_VERSION; // cache-bust when files change
             wp_enqueue_script(
                 $handle,
                 get_template_directory_uri() . "/blocks/{$block_name}/editor.js",
                 array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-api-fetch'),
-                ILEBEN_THEME_VERSION,
+                $editor_version,
                 true
             );
 
@@ -247,7 +248,7 @@ add_filter('block_categories_all', 'bootstrap_theme_register_block_category');
 function bootstrap_theme_enqueue_block_assets()
 {
     // Blocks frontend CSS is now included in the main compiled CSS (main.scss imports blocks-frontend.scss)
-    
+
     // Enqueue Steps animation script
     wp_enqueue_script(
         'bootstrap-theme-steps-animation',

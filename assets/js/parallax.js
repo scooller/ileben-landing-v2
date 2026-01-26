@@ -9,98 +9,108 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
-
 /**
- * Initialize parallax elements with CSS variables
- * This approach allows parallax to work independently from other animations
+ * Simple parallax implementation using GreenSock's best practices
+ * Similar to: https://codepen.io/GreenSock/pen/QWjjYEw
  */
 function initParallax() {
     const parallaxElements = document.querySelectorAll('[data-parallax="true"]');
-    // console.log(`🔍 Found ${parallaxElements.length} parallax elements`);
-
-        parallaxElements.forEach((element, index) => {
-        const speed = parseFloat(element.getAttribute('data-parallax-speed')) || 0.5;
-        console.log(`📦 Processing parallax element ${index + 1}, speed: ${speed}`);
-
-        // Find the parent container (closest .container or .container-fluid)
-        const container = element.closest('.container, .container-fluid');
-        if (!container) {
-            console.warn(`⚠️ Element ${index + 1} has no .container or .container-fluid parent - skipping`);
-            return;
-        }
-
-        // console.log(`✅ Found container for element ${index + 1}`);
-
-        // Initialize CSS variables for parallax
-        element.style.setProperty('--parallax-y', '0px');
-
-        // Create parallax animation using CSS variables
-        gsap.to(element, {
-            scrollTrigger: {
-                trigger: container,
-                start: 'top 80%',
-                end: 'bottom 20%',
-                onUpdate: (self) => {
-                    // Calculate parallax offset based on scroll progress
-                    const parallaxValue = self.progress() * 150 * speed;
-                    // Use CSS variable instead of direct transform
-                    element.style.setProperty('--parallax-y', parallaxValue + 'px');
-                    // console.log(`🎯 Element ${index + 1} parallax update - progress: ${(self.progress() * 100).toFixed(1)}%, Y: ${parallaxValue.toFixed(2)}px`);
-                },
-                markers: false,
-                invalidateOnRefresh: true
-            }
-        });
-        
-        // console.log(`✅ Parallax animation created for element ${index + 1}`);
-    });
-}
-
-/**
- * Alternative: Apply parallax directly with careful timing
- * Allows other animations to coexist by using dedicated properties
- */
-function initCompatibleParallax() {
-    const parallaxElements = document.querySelectorAll('[data-parallax="true"]');
-    // console.log(`🔍 [Compatible] Found ${parallaxElements.length} parallax elements`);
+    console.log('🔍 Found parallax elements:', parallaxElements.length);
 
     parallaxElements.forEach((element, index) => {
-        const speed = parseFloat(element.getAttribute('data-parallax-speed')) || 0.5;
-        const multiplier = parseFloat(element.getAttribute('data-parallax-multiplier')) || 120;
+        console.log(`\n📍 Processing parallax element ${index + 1}:`, element);
+        
+        // Find the container parent (.container or .container-fluid)
         const container = element.closest('.container, .container-fluid');
-
         if (!container) {
-            console.warn(`⚠️ [Compatible] Element ${index + 1} has no .container or .container-fluid parent - skipping`);
+            console.warn('⚠️ Parallax element has no .container or .container-fluid parent', element);
             return;
         }
+        console.log('✅ Container found:', container);
 
-        // console.log(`✅ [Compatible] Processing element ${index + 1}, speed: ${speed}`);
-
-        // Initialize CSS variable
-        element.style.setProperty('--parallax-y', '0px');
-        // console.log(`✅ [Compatible] CSS variable initialized for element ${index + 1}`);
-
-        // Use a simple object to animate for better compatibility
-        const parallaxObj = { progress: 0 };
-
-        gsap.to(parallaxObj, {
-            progress: 1,
-            scrollTrigger: {
-                trigger: container,
-                start: '20% center',
-                end: 'bottom center',
-                scrub: 0.3,
-                onUpdate: () => {
-                    const parallaxValue = parallaxObj.progress * multiplier * speed;
-                    element.style.setProperty('--parallax-y', parallaxValue + 'px');
-                    // console.log(`🎯 [Compatible] Element ${index + 1} - progress: ${(parallaxObj.progress * 100).toFixed(1)}%, Y: ${parallaxValue.toFixed(2)}px`);
-                },
-                markers: false,
-                invalidateOnRefresh: true
-            }
-        });
+        // Get speed value (how fast/slow the parallax moves)
+        // Positive values = moves down slower than scroll (common parallax)
+        // Negative values = moves up faster than scroll
+        const speed = parseFloat(element.getAttribute('data-parallax-speed')) || 0.5;
         
-        // console.log(`✅ [Compatible] Parallax animation created for element ${index + 1}`);
+        // Get custom start/end positions if specified
+        const start = element.getAttribute('data-parallax-start') || 'top center';
+        const end = element.getAttribute('data-parallax-end') || 'bottom center';
+
+        const distance = () => element.offsetHeight * speed;
+        // Compensate initial position so it doesn't look offset when speed is high.
+        // Defaults to 0.5 (center the travel around the original position).
+        const compensate = parseFloat(element.getAttribute('data-parallax-compensate'));
+        const baseOffset = isNaN(compensate) ? () => -distance() * 0.5 : () => -distance() * compensate;
+
+        console.log('⚙️ Settings:', { speed, start, end, distance: distance(), baseOffset: baseOffset() });
+
+        // Check if parallax is inside a Bootstrap carousel
+        const carouselElement = element.closest('.carousel');
+        let carouselOffsetX = 0;
+        
+        // Store initial dimensions (they change when carousel items are hidden)
+        const initialElementWidth = element.offsetWidth;
+        const carouselWidth = carouselElement ? carouselElement.offsetWidth : 0;
+
+        if (carouselElement) {
+            console.log('🎠 Carousel detected:', carouselElement);
+            console.log('📐 Carousel width:', carouselWidth);
+            console.log('📐 Element width (initial):', initialElementWidth);
+            console.log('📐 Element height:', element.offsetHeight);
+            
+            // Get carousel animation duration from Bootstrap's default (600ms)
+            // This is the time it takes for the slide transition
+            const carouselDuration = 600; // Bootstrap default carousel slide duration in milliseconds
+            const carouselDurationSeconds = carouselDuration / 1000;
+            console.log(`⏱️ Carousel duration: ${carouselDuration}ms`);
+            
+            // Listen to Bootstrap carousel slide events
+            // Use 'slide.bs.carousel' to start animation immediately (not 'slid.bs.carousel' which fires at end)
+            carouselElement.addEventListener('slide.bs.carousel', (event) => {
+                // Use stored initial width instead of current width (which becomes 0 when hidden)
+                const slideX = parseFloat(element.getAttribute('data-parallax-slide-offset')) || initialElementWidth || carouselWidth;
+                console.log(`📊 SlideX calculated:`, { 
+                    attribute: element.getAttribute('data-parallax-slide-offset'),
+                    initialElementWidth: initialElementWidth,
+                    carouselWidth: carouselWidth,
+                    finalSlideX: slideX,
+                    eventIndex: event.to
+                });
+                
+                carouselOffsetX = event.to * slideX;
+                console.log(`🎠 Carousel slide changed! Index: ${event.to}, Offset: ${carouselOffsetX}px`);
+                
+                // Update the animation with carousel duration
+                gsap.to(element, {
+                    x: carouselOffsetX,
+                    duration: carouselDurationSeconds,
+                    ease: 'power2.inOut',
+                    overwrite: 'auto'
+                });
+            });
+        } else {
+            console.log('❌ No carousel detected');
+        }
+
+        gsap.fromTo(
+            element,
+            { y: baseOffset, x: 0 },
+            {
+                y: () => baseOffset() + distance(),
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: container,
+                    start: start,
+                    end: end,
+                    scrub: true,
+                    invalidateOnRefresh: true, // Recalculates on resize
+                    // markers: true // Uncomment for debugging
+                }
+            }
+        );
+        
+        console.log('✅ Parallax animation created for element', index + 1);
     });
 }
 
@@ -108,44 +118,30 @@ function initCompatibleParallax() {
  * Initialize when DOM is ready
  */
 function init() {
-    // console.log('🚀 Initializing parallax system...');
-
-    // Use the compatible parallax implementation (works with other animations)
-    initCompatibleParallax();
-
-    // console.log('✅ Parallax system initialized');
+    initParallax();
 
     // Refresh ScrollTrigger when images load
     window.addEventListener('load', () => {
-        //console.log('📷 Images loaded - refreshing ScrollTrigger');
         ScrollTrigger.refresh();
     });
 }
 
 // Initialize when document is ready
 if (document.readyState === 'loading') {
-    // console.log('📄 DOM still loading - waiting for DOMContentLoaded');
     document.addEventListener('DOMContentLoaded', init);
 } else {
-    // console.log('📄 DOM already loaded - initializing immediately');
     init();
 }
 
 // Refresh ScrollTrigger on window resize
 window.addEventListener('resize', () => {
-    // console.log('📐 Window resized - refreshing ScrollTrigger');
     ScrollTrigger.refresh();
 });
 
 // Export for external use
 export const IlebenParallax = {
     init: init,
-    initSimple: initParallax,
-    initAdvanced: initCompatibleParallax,
-    refresh: () => {
-        // console.log('🔄 Manual parallax refresh');
-        ScrollTrigger.refresh();
-    }
+    refresh: () => ScrollTrigger.refresh()
 };
 
 // Also expose to window for backward compatibility

@@ -6,7 +6,7 @@
     const { __ } = wp.i18n;
     const { registerBlockType } = wp.blocks;
     const { InspectorControls, InnerBlocks, useBlockProps } = wp.blockEditor;
-    const { PanelBody, RangeControl, ToggleControl } = wp.components;
+    const { PanelBody, RangeControl, ToggleControl, TextControl } = wp.components;
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-parallax', {
@@ -25,9 +25,13 @@
                 type: 'number',
                 default: 0.5
             },
-            parallaxMultiplier: {
-                type: 'number',
-                default: 120
+            parallaxStart: {
+                type: 'string',
+                default: 'top center'
+            },
+            parallaxEnd: {
+                type: 'string',
+                default: 'bottom center'
             },
             preview: {
                 type: 'boolean',
@@ -75,14 +79,18 @@
                             onChange: (value) => setAttributes({ parallaxSpeed: value })
                         }),
 
-                        attributes.enableParallax && createElement(RangeControl, {
-                            label: __('Parallax Intensity', 'bootstrap-theme'),
-                            help: __('Adjust the strength of the parallax effect (px)', 'bootstrap-theme'),
-                            value: attributes.parallaxMultiplier,
-                            min: 50,
-                            max: 300,
-                            step: 10,
-                            onChange: (value) => setAttributes({ parallaxMultiplier: value })
+                        attributes.enableParallax && createElement(TextControl, {
+                            label: __('Start (ScrollTrigger start)', 'bootstrap-theme'),
+                            help: __('Formato "top center", "center center", etc.', 'bootstrap-theme'),
+                            value: attributes.parallaxStart,
+                            onChange: (value) => setAttributes({ parallaxStart: value || 'top center' })
+                        }),
+
+                        attributes.enableParallax && createElement(TextControl, {
+                            label: __('End (ScrollTrigger end)', 'bootstrap-theme'),
+                            help: __('Formato "bottom center", "center center", etc.', 'bootstrap-theme'),
+                            value: attributes.parallaxEnd,
+                            onChange: (value) => setAttributes({ parallaxEnd: value || 'bottom center' })
                         })
                     )
                 ),
@@ -99,7 +107,7 @@
                     }),
                     createElement('div', { style: { fontSize: '12px', color: '#666', marginBottom: '10px' } },
                         attributes.enableParallax ? 
-                            __('✓ Parallax enabled (Speed: ' + attributes.parallaxSpeed.toFixed(1) + ', Intensity: ' + attributes.parallaxMultiplier + 'px)', 'bootstrap-theme') :
+                            __('✓ Parallax enabled (Speed: ' + attributes.parallaxSpeed.toFixed(1) + ', Start: ' + attributes.parallaxStart + ', End: ' + attributes.parallaxEnd + ')', 'bootstrap-theme') :
                             __('Parallax disabled', 'bootstrap-theme')
                     ),
                     createElement(InnerBlocks, {

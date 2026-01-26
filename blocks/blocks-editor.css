@@ -863,7 +863,7 @@
 
 .wp-block-bootstrap-theme-bs-carousel .carousel-item {
   position: relative;
-  display: none;
+  opacity: 0.5;
   float: left;
   width: 100%;
   margin-right: -100%;
@@ -873,6 +873,7 @@
 
 .wp-block-bootstrap-theme-bs-carousel .carousel-item.active {
   display: block;
+  opacity: 1;
 }
 
 .wp-block-bootstrap-theme-bs-carousel .carousel-placeholder {
@@ -1022,6 +1023,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.carousel-item {
+  display: block !important;
+  opacity: 0.5;
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+  display: block;
+  opacity: 1;
 }
 
 /*# sourceMappingURL=blocks-editor.css.map */

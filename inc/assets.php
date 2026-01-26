@@ -4,6 +4,8 @@
  * Asset loading and helpers.
  */
 
+define('ILEBEN_THEME_VERSION', rand(100000, 999999)); // For cache busting during development, replace with static version for production
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -274,7 +276,7 @@ add_action('wp_enqueue_scripts', function () {
     $focus_ring_color = get_field('focus_ring_color', 'option') ?: '#0d6efd';
 
     // Typography
-    $fonts_name = get_field('google_font_name', 'option') ? explode(';', get_field('google_font_name', 'option')): array('"Open Sans", sans-serif');
+    $fonts_name = get_field('google_font_name', 'option') ? explode(';', get_field('google_font_name', 'option')) : array('"Open Sans", sans-serif');
     $font_size = get_field('body_font_size', 'option') ?: '1rem';
     $font_size_mobile = get_field('body_font_size_mobile', 'option') ?: '14px';
     $font_weight = get_field('body_font_weight', 'option') ?: '400';
@@ -315,8 +317,8 @@ add_action('wp_enqueue_scripts', function () {
     --bs-nav-link-color: var(--bs-link-color);
     --bs-nav-link-hover-color: var(--bs-link-hover-color);
     --bs-focus-ring-color: <?php echo $focus_ring_color; ?>;
-    <?php foreach($fonts_name as $i => $font): ?>
-    --bs-font-family-<?php echo $i + 1; ?>: <?php echo $font; ?>;
+    <?php foreach ($fonts_name as $i => $font): ?>
+        --bs-font-family-<?php echo $i + 1; ?>: <?php echo $font; ?>;
     <?php endforeach; ?>
     --bs-body-font-family: var(--bs-font-family-1);
     --bs-body-font-size: <?php echo $font_size; ?>;
