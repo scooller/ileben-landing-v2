@@ -8,9 +8,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// define('ILEBEN_THEME_VERSION', wp_get_theme()->get('Version'));
+define('ILEBEN_THEME_VERSION', wp_get_theme()->get('Version'));
 //development versioning
-define('ILEBEN_THEME_VERSION', rand(100000, 999999)); // For cache busting during development, replace with static version for production
+//define('ILEBEN_THEME_VERSION', rand(100000, 999999)); // For cache busting during development, replace with static version for production
 define('ILEBEN_THEME_DIR', get_template_directory());
 define('ILEBEN_THEME_URI', get_template_directory_uri());
 
