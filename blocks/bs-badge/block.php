@@ -16,12 +16,17 @@ function bootstrap_theme_render_bs_badge_block($attributes, $content, $block) {
     $variant = $attributes['variant'] ?? 'primary';
     $is_badge_pill = !empty($attributes['pill']);
     $text = $attributes['text'] ?? __('Badge', 'bootstrap-theme');
+    $size = $attributes['size'] ?? '';
     
     // Build badge classes
     $classes = array('badge', 'bg-' . $variant);
     
     if ($is_badge_pill) {
         $classes[] = 'rounded-pill';
+    }
+    
+    if (!empty($size)) {
+        $classes[] = $size;
     }
     
     // Add custom CSS classes from Advanced panel
@@ -54,6 +59,10 @@ function bootstrap_theme_register_bs_badge_block() {
             'text' => array(
                 'type' => 'string',
                 'default' => 'Badge'
+            ),
+            'size' => array(
+                'type' => 'string',
+                'default' => ''
             ),
             'className' => array(
                 'type' => 'string',

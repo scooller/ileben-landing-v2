@@ -6,7 +6,7 @@
     const { __ } = wp.i18n;
     const { registerBlockType } = wp.blocks;
     const { InspectorControls, InnerBlocks, useBlockProps, MediaUpload, MediaUploadCheck } = wp.blockEditor;
-    const { PanelBody, ToggleControl, Button } = wp.components;
+    const { PanelBody, ToggleControl, Button, TextControl, SelectControl } = wp.components;
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-carousel-item', {
@@ -29,6 +29,14 @@
             interval: {
                 type: 'string',
                 default: ''
+            },
+            link: {
+                type: 'string',
+                default: ''
+            },
+            target: {
+                type: 'string',
+                default: '_self'
             },
             preview: {
                 type: 'boolean',
@@ -55,7 +63,7 @@
             }
             
             const itemClasses = [
-                'carousel-item h-100',
+                'carousel-item',
                 attributes.active ? 'active' : ''
             ].filter(Boolean).join(' ');
 
@@ -114,7 +122,22 @@
                                     )
                                 })
                             )
-                        )
+                        ),
+                        createElement(TextControl, {
+                            label: __('Link URL', 'bootstrap-theme'),
+                            help: __('Optional URL to make the entire slide clickable', 'bootstrap-theme'),
+                            value: attributes.link || '',
+                            onChange: (value) => setAttributes({ link: value })
+                        }),
+                        attributes.link && createElement(SelectControl, {
+                            label: __('Link Target', 'bootstrap-theme'),
+                            value: attributes.target || '_self',
+                            options: [
+                                { label: __('Same Window', 'bootstrap-theme'), value: '_self' },
+                                { label: __('New Window', 'bootstrap-theme'), value: '_blank' }
+                            ],
+                            onChange: (value) => setAttributes({ target: value })
+                        })
                     )
                 ),
                 createElement('div', 
@@ -144,33 +167,51 @@
             const { attributes } = props;
             const blockProps = useBlockProps.save();
             
-            const itemClasses = `carousel-item h-100${attributes.active ? ' active' : ''}`;
+            const itemClasses = `carousel-item${attributes.active ? ' active' : ''}`;
             
             const itemStyle = attributes.backgroundImage ? {
                 backgroundImage: `url(${attributes.backgroundImage.url})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 minHeight: '400px'
-            } : { minHeight: '400px' };
+            } : {
+                minHeight: '400px'
+            };
 
-            return createElement('div', 
-                Object.assign({}, blockProps, { 
-                    className: itemClasses,
-                    style: itemStyle,
-                    'data-bs-interval': attributes.interval || undefined
-                }),
-                createElement('div', {
-                    className: 'd-flex align-items-center justify-content-center h-100',
-                    style: { 
-                        backgroundColor: attributes.backgroundImage ? 'rgba(0,0,0,0.3)' : 'transparent',
-                        color: attributes.backgroundImage ? 'white' : 'inherit'
-                    }
-                },
-                    createElement('div', { className: 'carousel-caption' },
-                        createElement(InnerBlocks.Content)
-                    )
+            const innerContent = createElement('div', {
+                className: 'd-flex align-items-center justify-content-center h-100',
+                style: { 
+                    backgroundColor: attributes.backgroundImage ? 'rgba(0,0,0,0.3)' : 'transparent',
+                    color: attributes.backgroundImage ? 'white' : 'inherit'
+                }
+            },
+                createElement('div', { className: 'carousel-caption' },
+                    createElement(InnerBlocks.Content)
                 )
             );
+
+            // Render as link if link attribute is set, otherwise as div
+            if (attributes.link) {
+                return createElement('a',
+                    Object.assign({}, blockProps, {
+                        href: attributes.link,
+                        target: attributes.target || '_self',
+                        className: itemClasses,
+                        style: itemStyle,
+                        'data-bs-interval': attributes.interval || undefined
+                    }),
+                    innerContent
+                );
+            } else {
+                return createElement('div',
+                    Object.assign({}, blockProps, {
+                        className: itemClasses,
+                        style: itemStyle,
+                        'data-bs-interval': attributes.interval || undefined
+                    }),
+                    innerContent
+                );
+            }
         }
     });
 

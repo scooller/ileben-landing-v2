@@ -34,9 +34,13 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
     // Show filters option
     $showFilters = !empty($attributes['showFilters']);
 
+    // Get animation data attributes
+    $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
+
     // Allow front-end filters via query params overriding block attributes
     $filterDormitorio = isset($_GET['planta_dormitorio']) ? sanitize_text_field(wp_unslash($_GET['planta_dormitorio'])) : (isset($attributes['filterDormitorio']) ? trim((string)$attributes['filterDormitorio']) : '');
     $filterBano = isset($_GET['planta_bano']) ? sanitize_text_field(wp_unslash($_GET['planta_bano'])) : (isset($attributes['filterBano']) ? trim((string)$attributes['filterBano']) : '');
+    $filterCategoria = isset($attributes['filterCategoria']) ? trim((string)$attributes['filterCategoria']) : '';
 
     // Options for filters (from ACF options page)
     $dorm_choices = function_exists('ileben_build_choices_from_options_repeater') ? ileben_build_choices_from_options_repeater('dormitorios') : [];
@@ -49,6 +53,17 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
         'orderby' => 'date',
         'order' => 'DESC',
     );
+
+    // Aplicar filtro de categoría si está seleccionado (solo en backend/bloque)
+    if (!empty($filterCategoria)) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'categoria_planta',
+                'field' => 'slug',
+                'terms' => $filterCategoria,
+            ),
+        );
+    }
 
     // No aplicar filtros en el backend, se filtrarán en el frontend con JS
     $q = new WP_Query($args);
@@ -79,7 +94,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
 
     // Front-end filters UI
 ?>
-    <div class="bs-plantas-filters-wrapper"
+    <div class="bs-plantas-filters-wrapper"<?php echo $animation_attrs; ?>
         data-block-attrs="<?php echo esc_attr(wp_json_encode([
                                 'postsPerPage' => $posts_per_page,
                                 'showThumbnail' => $showThumbnail,
@@ -118,7 +133,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
             </form>
         <?php endif; ?>
 
-        <div class="bs-plantas-slider-container <?php echo $attributes['className']; ?>">
+        <div class="bs-plantas-slider-container <?php echo isset($attributes['className']) ? esc_attr($attributes['className']) : ''; ?>">
             <div class="swiper js-swiper" <?php echo $data_attrs; ?> data-slider-id="<?php echo esc_attr($gallery_id); ?>">
                 <div class="swiper-wrapper">
                     <?php
@@ -155,9 +170,13 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                                 <?php
                                     endif;
                                 endif;
+                                $titulo = esc_html( get_the_title() );
+                                if( !empty( $planta_dorm_num ) || !empty( $planta_bano_num ) ) {
+                                    $titulo .= ' | ' . esc_html( $planta_dorm_num ) . 'D-' . esc_html( $planta_bano_num ) . 'B';
+                                }
                                 ?>
                                 <div class="card-body text-center">
-                                    <h3 class="card-title"><?php echo esc_html(get_the_title()); ?> | <?php echo esc_html($planta_dorm_num); ?>D-<?php echo esc_html($planta_bano_num); ?>B</h3>
+                                    <h3 class="card-title"><?php echo esc_html($titulo); ?></h3>
                                     <div class="card-text">
                                         <?php echo wp_kses_post($content_html); ?>
                                     </div>
@@ -219,6 +238,22 @@ function bootstrap_theme_register_bs_plantas_slider()
             'showFilters' => array('type' => 'boolean', 'default' => true),
             'filterDormitorio' => array('type' => 'string', 'default' => ''),
             'filterBano' => array('type' => 'string', 'default' => ''),
+            'filterCategoria' => array('type' => 'string', 'default' => ''),
+            // Animation attributes
+            'animationType' => array('type' => 'string'),
+            'animationTrigger' => array('type' => 'string'),
+            'animationDuration' => array('type' => 'number'),
+            'animationDelay' => array('type' => 'number'),
+            'animationEase' => array('type' => 'string'),
+            'animationRepeat' => array('type' => 'number'),
+            'animationRepeatDelay' => array('type' => 'number'),
+            'animationYoyo' => array('type' => 'boolean'),
+            'animationDistance' => array('type' => 'string'),
+            'animationRotation' => array('type' => 'number'),
+            'animationScale' => array('type' => 'string'),
+            'animationParallaxSpeed' => array('type' => 'number'),
+            'animationHoverEffect' => array('type' => 'string'),
+            'animationMobileEnabled' => array('type' => 'boolean'),
         )
     ));
 }

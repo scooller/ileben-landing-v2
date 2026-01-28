@@ -2,6 +2,32 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.10] - 2026-01-28
+
+### 🎨 Bloques de Gutenberg
+- **Revisión de sincronización:** Auditoría completa de sincronización entre `block.php` y `editor.js`.
+  - bs-button, bs-card, bs-column, bs-accordion, bs-carousel, bs-alert, bs-parallax, bs-gallery, bs-iframe: ✅ Sincronizados correctamente.
+  - **bs-container:** Agregados controles faltantes (breakpoint, backgroundColor, textColor, padding, margin).
+  - **bs-row:** Agregado atributo `noGutters` en editor.js para sincronización.
+  - **bs-modal:** Renombrado `modalTitle` → `title`, agregados controles para `backdrop` y `keyboard`.
+  - **bs-badge:** Agregado atributo `size` en block.php (faltaba en registro).
+  - **bs-card:** Agregados controles para `link`, `target`, `variant`, `textAlign`.
+
+- **Animaciones en bloques:** Extensión de sistema de animaciones GSAP.
+  - **bs-plantas-slider:** Agregados 14 atributos de animación, panel de controles con AnimationControls.
+  - **bs-divider:** Agregados atributos de animación, integración de data-attributes en frontend.
+  - **Desactivado parallax:** Removido `data-animate-parallax-speed` de todos los bloques (solo disponible en bs-parallax).
+  - **Removida opción parallax:** bs-plantas-slider y bs-divider usan `allowScroll: false`.
+
+- **bs-carousel-item:** Nuevo control para enlaces.
+  - Agregados atributos `link` y `target` en editor.js.
+  - Save function renderiza como `<a>` si tiene link, como `<div>` si no.
+  - Compatibilidad total con bootstrap carousel de HTML.
+
+### 🔧 Cambios
+- **Validación de bloques:** Corrección de discrepancias en validación (itemClasses, minHeight, carousel-caption).
+- **Sincronización uniforme:** Todos los bloques principales ahora tienen sincronización verificada entre PHP y JS.
+
 ## [0.1.10] - 2026-01-14
 
 ### 🔄 Sistema de Actualizaciones

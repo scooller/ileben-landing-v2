@@ -1,0 +1,131 @@
+/* =====================================================================
+   Utilities
+   ===================================================================== */
+
+.blurry { filter: blur(10px); }
+.glass-bg { backdrop-filter: blur(10px); }
+
+/* Object-fit helpers */
+.object-fit-contain { img,video{ object-fit: contain; width: 100%; height: 100%; } }
+.object-fit-cover   { img,video{ object-fit: cover;   width: 100%; height: 100%; } }
+.object-fit-fill    { img,video{ object-fit: fill;    width: 100%; height: 100%; } }
+.object-fit-scale   { img,video{ object-fit: scale-down; width: 100%; height: 100%; } }
+.object-fit-none    { img,video{ object-fit: none;    width: auto;  height: auto; } }
+
+//for spacing utilities
+$sizes: 1rem, 2rem, 3rem, 4rem, 5rem, 6rem, 7rem, 8rem, 9rem, 10rem;
+@each $size in $sizes {
+  .m-#{$size} {
+    margin: #{$size} !important;
+  }
+  .mt-#{$size} {
+    margin-top: #{$size} !important;
+  }
+  .mb-#{$size} {
+    margin-bottom: #{$size} !important;
+  }
+  .ml-#{$size} {
+    margin-left: #{$size} !important;
+  }
+  .mr-#{$size} {
+    margin-right: #{$size} !important;
+  }
+  .mx-#{$size} {
+    margin-left: #{$size} !important;
+    margin-right: #{$size} !important;
+  }
+  .my-#{$size} {
+    margin-top: #{$size} !important;
+    margin-bottom: #{$size} !important;
+  }
+  .p-#{$size} {
+    --bs-gutter-x: #{$size} !important;
+    --bs-gutter-y: #{$size} !important;
+    padding: var(--bs-gutter-y) var(--bs-gutter-x) !important;
+  }
+  .pt-#{$size} {
+    padding-top: #{$size} !important;
+  }
+  .pb-#{$size} {
+    padding-bottom: #{$size} !important;
+  }
+  .pl-#{$size} {
+    padding-left: #{$size} !important;
+  }
+  .pr-#{$size} {
+    padding-right: #{$size} !important;
+  }
+  .px-#{$size} {
+    --bs-gutter-x: #{$size} !important;
+    padding-left: var(--bs-gutter-x);
+    padding-right: var(--bs-gutter-x);
+  }
+  .py-#{$size} {
+    --bs-gutter-y: #{$size} !important;
+    padding-top: var(--bs-gutter-y);
+    padding-bottom: var(--bs-gutter-y);
+  }
+}
+.text-shadow {
+  text-shadow: 0 1px 2px rgba(var(--bs-black-rgb), 0.6);
+}
+
+[data-bs-theme=light] {
+  .d-dark { display: none; }
+  .text-muted { color: var(--bs-secondary) !important; }
+  .dropdown-menu {
+    --bs-nav-link-color: var(--bs-dark);
+  }
+  .form-control{
+    color: var(--bs-black);
+    &::placeholder {
+      color: var(--bs-secondary) !important;
+    }
+  }
+  .form-select{
+    color: var(--bs-black);
+  }
+  .text-color-invert{
+    color: var(--bs-white) !important;
+    --bs-heading-color: var(--bs-white) !important;
+  }
+}
+[data-bs-theme=dark] {
+  .d-light { display: none; }
+  .text-muted { color: var(--bs-secondary-bg) !important; }
+  .form-control{
+    color: var(--bs-white);
+    &::placeholder {
+      color: var(--bs-secondary-bg) !important;
+    }
+  }
+  .form-select{
+    color: var(--bs-white);
+  }
+  .text-color-invert{
+    color: var(--bs-black) !important;
+    --bs-heading-color: var(--bs-black) !important;
+  }
+}
+.bg-img{
+  position: relative;
+  div{
+    position: relative;
+    z-index: 2;
+  }
+  &::after{
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(var(--bs-theme-bg-rgb), 0) 0%, rgba(var(--bs-theme-bg-rgb), 0.5) 10%, rgba(var(--bs-theme-bg-rgb), 1) 100%);
+  }
+}
+.text-white{
+  --bs-body-color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+}
+.text-black{
+  --bs-body-color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
+}

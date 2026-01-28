@@ -107,13 +107,18 @@ function bootstrap_theme_get_animation_attributes($attributes, $block)
         $data_attrs .= ' data-animate-stagger-delay="' . esc_attr($attributes['animationStaggerDelay']) . '"';
     }
 
-    // Scroll and hover settings
-    if (isset($attributes['animationParallaxSpeed']) && $attributes['animationParallaxSpeed'] !== '' && $attributes['animationParallaxSpeed'] !== null) {
-        $data_attrs .= ' data-animate-parallax-speed="' . esc_attr($attributes['animationParallaxSpeed']) . '"';
-    }
-
+    // Hover settings
     if (isset($attributes['animationHoverEffect']) && $attributes['animationHoverEffect'] !== '' && $attributes['animationHoverEffect'] !== null) {
         $data_attrs .= ' data-animate-hover-effect="' . esc_attr($attributes['animationHoverEffect']) . '"';
+    }
+
+    // CountUp settings
+    if (isset($attributes['animationCountTo']) && $attributes['animationCountTo'] !== '' && $attributes['animationCountTo'] !== null) {
+        $data_attrs .= ' data-animate-count-to="' . esc_attr($attributes['animationCountTo']) . '"';
+    }
+
+    if (isset($attributes['animationCountIncrement']) && $attributes['animationCountIncrement'] !== '' && $attributes['animationCountIncrement'] !== null) {
+        $data_attrs .= ' data-animate-count-increment="' . esc_attr($attributes['animationCountIncrement']) . '"';
     }
 
     // Mobile settings

@@ -21,6 +21,9 @@ function bootstrap_theme_render_bs_divider_block($attributes, $content, $block) 
     $textColor     = $attributes['textColor'] ?? 'secondary';
     $marginY       = $attributes['marginY'] ?? '3';
     
+    // Get animation data attributes
+    $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
+    
     // Classes for the wrapper
     $wrapper_classes = ['d-flex', 'align-items-center'];
     if (!empty($marginY)) {
@@ -47,6 +50,10 @@ function bootstrap_theme_render_bs_divider_block($attributes, $content, $block) 
         esc_attr($border_class),
         esc_attr($border_style_style)
     );
+    
+    // Build wrapper output with animation attributes
+    $wrapper_open = '<div class="' . esc_attr(implode(' ', $wrapper_classes)) . '"' . $animation_attrs . '>';
+    $wrapper_close = '</div>';
     
     // Content HTML (Text or Icon)
     $content_html = '';
@@ -86,7 +93,7 @@ function bootstrap_theme_render_bs_divider_block($attributes, $content, $block) 
     }
     
     // Construct final output based on alignment
-    $output = '<div class="' . esc_attr(implode(' ', $wrapper_classes)) . '">';
+    $output = $wrapper_open;
     
     if (empty($text) && empty($icon)) {
         // Just a simple line
@@ -101,7 +108,7 @@ function bootstrap_theme_render_bs_divider_block($attributes, $content, $block) 
         }
     }
     
-    $output .= '</div>';
+    $output .= $wrapper_close;
     
     return $output;
 }

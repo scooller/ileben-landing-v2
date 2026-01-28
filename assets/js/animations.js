@@ -81,6 +81,9 @@ class GSAPAnimationManager {
     const parallaxSpeed = parseFloat(element.getAttribute('data-animate-parallax-speed')) || 0.5;
     const hoverEffect = element.getAttribute('data-animate-hover-effect') || null;
     const mobileEnabled = element.getAttribute('data-animate-mobile') !== 'false';
+    // CountUp attributes
+    const countTo = parseFloat(element.getAttribute('data-animate-count-to')) || 100;
+    const countIncrement = parseFloat(element.getAttribute('data-animate-count-increment')) || 1;
     // SplitText attributes
     const enableSplitText = element.getAttribute('data-split-text') === 'true';
     const splitType = element.getAttribute('data-split-type') || 'words';
@@ -104,6 +107,8 @@ class GSAPAnimationManager {
       parallaxSpeed,
       hoverEffect,
       mobileEnabled,
+      countTo,
+      countIncrement,
       enableSplitText,
       splitType,
       splitStagger
@@ -150,6 +155,12 @@ class GSAPAnimationManager {
       return;
     }
 
+    // Manejar CountUp de forma especial
+    if (config.type === 'countup') {
+      this.animateCountUp(element, config);
+      return;
+    }
+
     const { fromVars, toVars } = this.buildAnimationConfig(config);
     
     gsap.fromTo(element, fromVars, {
@@ -180,6 +191,12 @@ class GSAPAnimationManager {
     // Verificar si tiene SplitText habilitado
     if (config.enableSplitText && window.SplitText) {
       this.animateWithSplitText(element, config, true);
+      return;
+    }
+
+    // Manejar CountUp de forma especial
+    if (config.type === 'countup') {
+      this.animateCountUp(element, config, true);
       return;
     }
 
@@ -346,6 +363,15 @@ class GSAPAnimationManager {
       case 'pulse':
         fromVars = { scale: 1 };
         toVars = { ...toVars, scale: 1.1, ease: 'sine.inOut' };
+        break;
+
+      case 'countup':
+        // CountUp necesita manejo especial con modifiers
+        fromVars = {};
+        toVars = { 
+          ...toVars,
+          _isCountUp: true // Marcador especial
+        };
         break;
 
       default:
@@ -625,6 +651,62 @@ class GSAPAnimationManager {
       childList: true,
       subtree: true
     });
+  }
+
+  /**
+   * Anima un contador numérico (CountUp)
+   */
+  animateCountUp(element, config, useScrollTrigger = false) {
+    // Si no hay countTo especificado en el atributo, usar el contenido del elemento
+    let targetValue = config.countTo;
+    
+    // Si el atributo data-animate-count-to está presente, usarlo
+    const countToAttr = element.getAttribute('data-animate-count-to');
+    if (countToAttr && countToAttr !== '') {
+      targetValue = parseFloat(countToAttr);
+    } else {
+      // Si no hay atributo, usar el contenido actual del elemento como valor final
+      const currentText = element.innerText.replace(/,/g, ''); // Remover comas
+      targetValue = parseFloat(currentText) || 100;
+    }
+    
+    const increment = config.countIncrement;
+    
+    // El valor inicial siempre es 0 a menos que se especifique otro
+    const initialValue = 0;
+    
+    const animConfig = {
+      innerText: targetValue,
+      duration: config.duration,
+      delay: config.delay,
+      ease: config.ease,
+      snap: { innerText: increment },
+      modifiers: {
+        innerText: function(value) {
+          // Formatear con comas cada 3 dígitos
+          return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+      },
+      onUpdate: function() {
+        // Asegurar que el texto se actualice correctamente
+      }
+    };
+
+    if (useScrollTrigger) {
+      animConfig.scrollTrigger = {
+        trigger: element,
+        start: 'top 80%',
+        end: 'top 20%',
+        toggleActions: 'play none none reverse',
+        markers: false
+      };
+    }
+
+    // Establecer valor inicial
+    element.innerText = initialValue;
+    
+    // Animar
+    gsap.to(element, animConfig);
   }
 
   /**

@@ -21,6 +21,10 @@
                 type: 'string',
                 default: ''
             },
+            noGutters: {
+                type: 'boolean',
+                default: false
+            },
             justifyContent: {
                 type: 'string',
                 default: ''

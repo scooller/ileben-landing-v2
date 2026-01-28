@@ -21,9 +21,9 @@
                 type: 'string',
                 default: ''
             },
-            modalTitle: {
+            title: {
                 type: 'string',
-                default: 'Modal Title'
+                default: 'Modal title'
             },
             size: {
                 type: 'string',
@@ -47,7 +47,15 @@
             },
             buttonVariant: {
                 type: 'string',
-                default: 'primary'
+                default: 'btn-primary'
+            },
+            backdrop: {
+                type: 'string',
+                default: 'true'
+            },
+            keyboard: {
+                type: 'string',
+                default: 'true'
             },
             preview: {
                 type: 'boolean',
@@ -82,14 +90,14 @@
             ];
 
             const variantOptions = [
-                { label: 'Primary', value: 'primary' },
-                { label: 'Secondary', value: 'secondary' },
-                { label: 'Success', value: 'success' },
-                { label: 'Danger', value: 'danger' },
-                { label: 'Warning', value: 'warning' },
-                { label: 'Info', value: 'info' },
-                { label: 'Light', value: 'light' },
-                { label: 'Dark', value: 'dark' }
+                { label: 'Primary', value: 'btn-primary' },
+                { label: 'Secondary', value: 'btn-secondary' },
+                { label: 'Success', value: 'btn-success' },
+                { label: 'Danger', value: 'btn-danger' },
+                { label: 'Warning', value: 'btn-warning' },
+                { label: 'Info', value: 'btn-info' },
+                { label: 'Light', value: 'btn-light' },
+                { label: 'Dark', value: 'btn-dark' }
             ];
 
             const modalClasses = [
@@ -127,6 +135,27 @@
                             help: __('Modal will not close when clicking outside', 'bootstrap-theme'),
                             checked: attributes.staticBackdrop,
                             onChange: (value) => setAttributes({ staticBackdrop: value })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Backdrop', 'bootstrap-theme'),
+                            help: __('Backdrop behavior', 'bootstrap-theme'),
+                            value: attributes.backdrop || 'true',
+                            options: [
+                                { label: __('Default', 'bootstrap-theme'), value: 'true' },
+                                { label: __('Static', 'bootstrap-theme'), value: 'static' },
+                                { label: __('None', 'bootstrap-theme'), value: 'false' }
+                            ],
+                            onChange: (value) => setAttributes({ backdrop: value })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Keyboard', 'bootstrap-theme'),
+                            help: __('Close modal with Escape key', 'bootstrap-theme'),
+                            value: attributes.keyboard || 'true',
+                            options: [
+                                { label: __('Enabled', 'bootstrap-theme'), value: 'true' },
+                                { label: __('Disabled', 'bootstrap-theme'), value: 'false' }
+                            ],
+                            onChange: (value) => setAttributes({ keyboard: value })
                         })
                     ),
                     createElement(PanelBody, { title: __('Trigger Button', 'bootstrap-theme') },
@@ -147,7 +176,7 @@
                     // Trigger Button
                     createElement('button', {
                         type: 'button',
-                        className: `btn btn-${attributes.buttonVariant}`,
+                        className: `btn ${attributes.buttonVariant}`,
                         'data-bs-toggle': 'modal',
                         'data-bs-target': `#${attributes.modalId}`
                     }, attributes.buttonText),
@@ -163,8 +192,8 @@
                                 createElement(RichText, {
                                     tagName: 'h5',
                                     className: 'modal-title',
-                                    value: attributes.modalTitle,
-                                    onChange: (value) => setAttributes({ modalTitle: value }),
+                                    value: attributes.title,
+                                    onChange: (value) => setAttributes({ title: value }),
                                     placeholder: __('Modal title...', 'bootstrap-theme')
                                 })
                             ),

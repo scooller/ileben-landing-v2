@@ -22,6 +22,7 @@ if (!defined('ABSPATH')) {
             <div class="col d-flex text-center align-items-center justify-content-start">
                 <?php if (function_exists('get_field') && get_field('footer_logo', 'option')) : ?>
                     <img src="<?php echo esc_url(get_field('footer_logo', 'option')); ?>" class="footer-logo" alt="<?php esc_attr_e('Ileben Logo', 'ileben-landing'); ?>" data-animate-type="fadeInUp" data-animate-trigger="on-load" data-animate-duration="0.8" data-animate-delay="0" data-animate-ease="linear">
+                    <img src="<?php echo esc_url(get_field('footer_logo_dark', 'option')); ?>" class="footer-logo-dark" alt="<?php esc_attr_e('Ileben Logo', 'ileben-landing'); ?>" data-animate-type="fadeInUp" data-animate-trigger="on-load" data-animate-duration="0.8" data-animate-delay="0" data-animate-ease="linear">
                 <?php endif; ?>
             </div>
             <div class="col d-flex flex-column align-items-end justify-content-center" data-animate-type="scaleIn" data-animate-trigger="on-load" data-animate-duration="0.8" data-animate-delay="0" data-animate-ease="linear">

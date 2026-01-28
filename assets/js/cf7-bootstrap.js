@@ -415,7 +415,7 @@ function buildCf7Steps(form) {
         // Step title from marker label (configurable)
         if (cfg.showStepTitles) {
             const title = document.createElement('h5');
-            title.className = 'wpcf7-step-title mb-3';
+            title.className = 'wpcf7-step-title text-center mb-3';
             if (cfg.stepTitleMode === 'number') {
                 title.textContent = `Paso ${index + 1}`;
             } else {

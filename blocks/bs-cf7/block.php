@@ -18,7 +18,7 @@ function bootstrap_theme_render_bs_cf7_block($attributes, $content, $block)
         return '';
     }
 
-    $classes = ['bs-cf7', 'w-100'];
+    $classes = ['bs-cf7'];
     $classes = bootstrap_theme_add_custom_classes($classes, $attributes, $block);
     $class_attr = implode(' ', array_filter(array_unique($classes)));
 

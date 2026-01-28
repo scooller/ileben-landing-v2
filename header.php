@@ -30,18 +30,22 @@ if (!defined('ABSPATH')) {
             'walker'          => new WP_Bootstrap_Navwalker(),
         ]);
         ?>
-    </div>
+    </div>    
     <div class="col-md-2 col-6 mb-2 mb-md-0 text-center">
+        <?php if(get_field('mostrar_logonombre', 'option')) : ?>
         <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
             <?php
             if (function_exists('the_custom_logo') && has_custom_logo()) {
                 the_custom_logo();
             } else {
+                echo '<h1 class="site-title m-0">';
                 bloginfo('name');
+                echo '</h1>';
             }
             ?>
         </a>
-    </div>
+        <?php endif; ?>
+    </div>    
     <div class="col-md-5 col-3 text-end">
         <?php get_template_part('template-parts/header/navbar'); ?>
     </div>

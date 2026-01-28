@@ -11,6 +11,10 @@ if (!defined('ABSPATH')) {
 /**
  * Custom tag to split CF7 into steps: [step_break "Nombre del paso"]
  * JS will convert these markers into a multi-step flow.
+ * 
+ * Input group wrapper tags:
+ * Usage: [input_group_prepend "+56"][number* phone][/input_group_prepend]
+ *        [input_group_append "@example.com"][email* email][/input_group_append]
  */
 add_action('wpcf7_init', 'ileben_cf7_register_step_break_tag');
 function ileben_cf7_register_step_break_tag()
@@ -37,8 +41,85 @@ function ileben_cf7_step_break_tag($tag)
 }
 
 /**
- * Add Bootstrap-friendly classes to CF7 form tags.
+ * Marker tag for input-group wrappers
  */
+function ileben_cf7_ig_marker_tag($tag)
+{
+    if (!is_object($tag) || !class_exists('WPCF7_FormTag') || !($tag instanceof WPCF7_FormTag)) {
+        return '';
+    }
+
+    $type = $tag->type;
+    $position = $type === 'input_group_append' ? 'append' : 'prepend';
+    
+    // Get the text value from values array
+    $value = isset($tag->values[0]) ? $tag->values[0] : '';
+
+    if (!$value) {
+        return '';
+    }
+
+    return sprintf(
+        '<ileben-ig position="%s" value="%s"></ileben-ig>',
+        esc_attr($position),
+        esc_attr($value)
+    );
+}
+
+/**
+ * Handle input_group_prepend and input_group_append tags
+ */
+function ileben_cf7_input_group_tag($tag)
+{
+    // Just output a marker - the actual wrapping happens in post-processing
+    return ileben_cf7_ig_marker_tag($tag);
+}
+
+/**
+ * Pre-process form content to handle input-group wrappers before CF7 renders them
+ * Convert [input_group_prepend "..."][form fields][/input_group_prepend] 
+ * into markers that will be processed later
+ */
+function ileben_cf7_preprocess_input_groups($form)
+{
+    if (!is_object($form)) {
+        return $form;
+    }
+
+    // Get the form post content
+    $post_content = $form->prop('form');
+    
+    if (empty($post_content)) {
+        return $form;
+    }
+
+    // Find all [input_group_prepend "..."] ... [/input_group_prepend] blocks
+    $post_content = preg_replace_callback(
+        '/\[input_group_prepend\s+"([^"]+)"\](.*?)\[\/input_group_prepend\]/s',
+        function ($matches) {
+            $value = $matches[1];
+            $inner = $matches[2];
+            return '[ileben-ig-marker position="prepend" value="' . esc_attr($value) . '"]' . $inner . '[/ileben-ig-marker]';
+        },
+        $post_content
+    );
+
+    // Find all [input_group_append "..."] ... [/input_group_append] blocks
+    $post_content = preg_replace_callback(
+        '/\[input_group_append\s+"([^"]+)"\](.*?)\[\/input_group_append\]/s',
+        function ($matches) {
+            $value = $matches[1];
+            $inner = $matches[2];
+            return '[ileben-ig-marker position="append" value="' . esc_attr($value) . '"]' . $inner . '[/ileben-ig-marker]';
+        },
+        $post_content
+    );
+
+    $form->set_properties(['form' => $post_content]);
+
+    return $form;
+}
+add_filter('wpcf7_form_meta', 'ileben_cf7_preprocess_input_groups', 10, 1);
 function ileben_cf7_bootstrap_classes($tag)
 {
     // CF7 may pass either WPCF7_FormTag objects or associative arrays (during validation).
@@ -53,6 +134,14 @@ function ileben_cf7_bootstrap_classes($tag)
     $class_attr = $is_obj
         ? ($tag->atts['class'] ?? '')
         : (($tag['atts']['class'] ?? '') ?: '');
+
+    // Check for append/prepend attributes
+    $append = $is_obj
+        ? ($tag->atts['append'] ?? '')
+        : ($tag['atts']['append'] ?? '');
+    $prepend = $is_obj
+        ? ($tag->atts['prepend'] ?? '')
+        : ($tag['atts']['prepend'] ?? '');
 
     $add_class = function ($extra) use (&$class_attr) {
         $class_attr = trim($class_attr . ' ' . $extra);
@@ -107,7 +196,7 @@ function ileben_cf7_bootstrap_structure($content)
     $html = '<div id="ileben-cf7-wrap">' . $content . '</div>';
     $dom = new DOMDocument();
     libxml_use_internal_errors(true);
-    $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
+    $dom->loadHTML('<meta charset="UTF-8">' . $html);
     libxml_clear_errors();
 
     $xpath = new DOMXPath($dom);
@@ -308,6 +397,18 @@ function ileben_cf7_bootstrap_structure($content)
         }
     }
 
+    // Remove all <p> tags inside input-group elements
+    foreach ($xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " input-group ")]//p') as $p) {
+        /** @var DOMElement $p */
+        // Move all child nodes of <p> to its parent
+        $parent = $p->parentNode;
+        while ($p->firstChild) {
+            $parent->insertBefore($p->firstChild, $p);
+        }
+        // Remove the now-empty <p>
+        $parent->removeChild($p);
+    }
+
     // Remove empty paragraphs that CF7 sometimes leaves.
     foreach ($xpath->query('//p') as $p) {
         if (!trim($p->textContent) && !$p->getElementsByTagName('*')->length) {
@@ -371,7 +472,121 @@ function ileben_cf7_bootstrap_structure($content)
         $out
     );
 
+    // Process input-group wrappers AFTER bootstrap structure is done
+    $out = ileben_cf7_process_input_groups_regex($out);
+
     return $out;
 }
 // Run late so it happens after CF7 internal formatting and other filters.
-add_filter('wpcf7_form_elements', 'ileben_cf7_bootstrap_structure', 9999);
+add_filter('wpcf7_form_elements', 'ileben_cf7_bootstrap_structure', 9998);
+
+/**
+ * Process input-group tags with regex
+ * Captures min/max for numbers and maxlength for text inputs
+ */
+function ileben_cf7_process_input_groups_regex($content)
+{
+    // Helper function to extract complete form element (input/select/textarea with attributes)
+    $extract_element = function ($html) {
+        
+        // For input/textarea - capture the complete self-closing or single tag with all attributes
+        if (preg_match('/<input[^>]*>/i', $html, $match)) {
+            return $match[0];
+        }
+        // For select - capture opening tag, options, and closing tag
+        if (preg_match('/<select[^>]*>.*?<\/select>/is', $html, $match)) {
+            return $match[0];
+        }
+        // For textarea - capture opening tag, content, and closing tag
+        if (preg_match('/<textarea[^>]*>.*?<\/textarea>/is', $html, $match)) {
+            return $match[0];
+        }
+        return '';
+    };
+
+    // Process input-group wrapper patterns
+    
+    // Pattern 1: Standard with optional whitespace
+    $content = preg_replace_callback(
+        '/\[input_group_prepend\s*=\s*"([^"]+)"\s*\](.*?)\[\/input_group_prepend\]/is',
+        function ($matches) use ($extract_element) {
+            return ileben_process_input_group_match($matches, $extract_element, 'prepend');
+        },
+        $content
+    );
+
+    // Pattern 2: With quotes (original syntax)
+    $content = preg_replace_callback(
+        '/\[input_group_prepend\s+"([^"]+)"\](.*?)\[\/input_group_prepend\]/is',
+        function ($matches) use ($extract_element) {
+            return ileben_process_input_group_match($matches, $extract_element, 'prepend');
+        },
+        $content
+    );
+
+    // Pattern 3: Append variant with equals
+    $content = preg_replace_callback(
+        '/\[input_group_append\s*=\s*"([^"]+)"\s*\](.*?)\[\/input_group_append\]/is',
+        function ($matches) use ($extract_element) {
+            return ileben_process_input_group_match($matches, $extract_element, 'append');
+        },
+        $content
+    );
+
+    // Pattern 4: Append variant with quotes (original syntax)
+    $content = preg_replace_callback(
+        '/\[input_group_append\s+"([^"]+)"\](.*?)\[\/input_group_append\]/is',
+        function ($matches) use ($extract_element) {
+            return ileben_process_input_group_match($matches, $extract_element, 'append');
+        },
+        $content
+    );
+    
+    return $content;
+}
+
+/**
+ * Helper function to process a single input-group match
+ */
+function ileben_process_input_group_match($matches, $extract_element, $type)
+{
+    $value = $matches[1];
+    $inner_html = $matches[2];
+    
+    // Parse the inner HTML to extract label and input
+    $label_html = '';
+    $input_html = '';
+    
+    // Extract label (can be anywhere in the content)
+    if (preg_match('/<label[^>]*>.*?<\/label>/is', $inner_html, $label_match)) {
+        $label_html = $label_match[0];
+        // Remove label from inner HTML
+        $inner_html = preg_replace('/<label[^>]*>.*?<\/label>/is', '', $inner_html);
+    }
+    
+    // Extract complete form element with all attributes (min, max, maxlength, etc.)
+    $input_html = $extract_element($inner_html);
+    
+    // Clean up br tags and extra whitespace
+    $input_html = preg_replace('/<br\s*\/?>/i', '', $input_html);
+    $input_html = trim($input_html);
+    
+    if (!$input_html) {
+        // fallback if extraction failed
+        return $label_html . $inner_html;
+    }
+    
+    if ($type === 'append') {
+        return $label_html . '
+  <div class="input-group">
+    ' . $input_html . '
+    <span class="input-group-text">' . esc_html($value) . '</span>
+  </div>';
+    } else {
+        return $label_html . '
+  <div class="input-group">
+    <span class="input-group-text">' . esc_html($value) . '</span>
+    ' . $input_html . '
+  </div>';
+    }
+}

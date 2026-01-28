@@ -27,11 +27,6 @@ add_action('after_setup_theme', function () {
     add_image_size('banner', 1200, 900, true);
     add_image_size('banner_mobile', 750, 1200, true);
 
-    $editor_styles = [
-        'style.css',
-    ];
-    add_editor_style($editor_styles);
-
     if (!isset($GLOBALS['content_width'])) {
         $GLOBALS['content_width'] = 1200;
     }

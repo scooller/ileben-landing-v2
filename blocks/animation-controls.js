@@ -43,6 +43,8 @@ const ANIMATION_TYPES = [
     { label: __('Flip', 'bootstrap-theme'), value: 'flip' },
     { label: __('Flip X', 'bootstrap-theme'), value: 'flipX' },
     { label: __('Pulse', 'bootstrap-theme'), value: 'pulse' },
+    { label: __('--- Special ---', 'bootstrap-theme'), value: '' },
+    { label: __('Count Up', 'bootstrap-theme'), value: 'countup' },
 ];
 
 const ANIMATION_TRIGGERS = [
@@ -183,6 +185,26 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                     step: 45,
                     onChange: (value) => setAttributes({ animationRotation: value })
                 }),
+
+                // Count To (para countup animation)
+                animationType === 'countup' &&
+                el(
+                    Fragment,
+                    null,
+                    el(TextControl, {
+                        label: __('Count To (target value)', 'bootstrap-theme'),
+                        type: 'number',
+                        value: attributes.animationCountTo || '100',
+                        onChange: (value) => setAttributes({ animationCountTo: value })
+                    }),
+                    el(TextControl, {
+                        label: __('Increment Step', 'bootstrap-theme'),
+                        type: 'number',
+                        value: attributes.animationCountIncrement || '1',
+                        onChange: (value) => setAttributes({ animationCountIncrement: value }),
+                        help: __('El valor de incremento para cada paso del contador (ej: 1, 5, 10)', 'bootstrap-theme')
+                    })
+                ),
 
                 // Repeat options
                 el(RangeControl, {

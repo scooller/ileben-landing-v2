@@ -138,6 +138,22 @@ function bootstrap_theme_block_editor_assets()
                     }
                     return $choices;
                 };
+                
+                // Obtener categorías de plantas
+                $categorias_plantas = get_terms(array(
+                    'taxonomy' => 'categoria_planta',
+                    'hide_empty' => false,
+                ));
+                $categorias_array = array();
+                if (!is_wp_error($categorias_plantas) && !empty($categorias_plantas)) {
+                    foreach ($categorias_plantas as $cat) {
+                        $categorias_array[] = array(
+                            'name' => $cat->name,
+                            'slug' => $cat->slug,
+                        );
+                    }
+                }
+                
                 wp_add_inline_script($handle, 'window.BOOTSTRAP_THEME_PLANTAS_OPTIONS = ' . wp_json_encode([
                     'dorms' => $build_choices('dormitorios'),
                     'banos' => $build_choices('banos'),
@@ -145,6 +161,23 @@ function bootstrap_theme_block_editor_assets()
             }
         }
     }
+
+    // Always enqueue plantas categorías for the block editor (outside the loop)
+    wp_enqueue_script('wp-blocks');
+    $categorias_plantas = get_terms(array(
+        'taxonomy' => 'categoria_planta',
+        'hide_empty' => false,
+    ));
+    $categorias_array = array();
+    if (!is_wp_error($categorias_plantas) && !empty($categorias_plantas)) {
+        foreach ($categorias_plantas as $cat) {
+            $categorias_array[] = array(
+                'name' => $cat->name,
+                'slug' => $cat->slug,
+            );
+        }
+    }
+    wp_add_inline_script('wp-blocks', 'window.BOOTSTRAP_THEME_PLANTAS_CATEGORIAS = ' . wp_json_encode($categorias_array) . ';', 'before');
 
     // Enqueue Bootstrap CSS for block editor (same as frontend)
     wp_enqueue_style(
@@ -160,14 +193,6 @@ function bootstrap_theme_block_editor_assets()
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
         array(),
         '6.4.0'
-    );
-
-    // Enqueue custom block editor styles
-    wp_enqueue_style(
-        'bootstrap-theme-blocks-editor',
-        get_template_directory_uri() . '/blocks/blocks-editor.css',
-        array('bootstrap-editor'),
-        ILEBEN_THEME_VERSION
     );
 
     // Enqueue master block definitions (JS registers all block types for inserter)

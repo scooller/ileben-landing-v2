@@ -83,16 +83,21 @@ function ileben_add_animation_to_core_blocks($block_content, $block) {
         $data_attrs['data-animate-scale'] = $attrs['animationScale'];
     }
     
-    if (isset($attrs['animationParallaxSpeed']) && $attrs['animationParallaxSpeed'] !== '') {
-        $data_attrs['data-animate-parallax-speed'] = $attrs['animationParallaxSpeed'];
-    }
-    
     if (!empty($attrs['animationHoverEffect'])) {
         $data_attrs['data-animate-hover-effect'] = $attrs['animationHoverEffect'];
     }
     
     if (isset($attrs['animationMobileEnabled'])) {
         $data_attrs['data-animate-mobile'] = $attrs['animationMobileEnabled'] ? 'true' : 'false';
+    }
+    
+    // Add CountUp attributes
+    if (!empty($attrs['animationCountTo'])) {
+        $data_attrs['data-animate-count-to'] = $attrs['animationCountTo'];
+    }
+    
+    if (!empty($attrs['animationCountIncrement'])) {
+        $data_attrs['data-animate-count-increment'] = $attrs['animationCountIncrement'];
     }
     
     // Add SplitText attributes if enabled

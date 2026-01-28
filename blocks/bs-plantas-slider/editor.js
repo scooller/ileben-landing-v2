@@ -31,7 +31,23 @@
             loop: { type: 'boolean', default: true },
             showFilters: { type: 'boolean', default: true },
             filterDormitorio: { type: 'string', default: '' },
-            filterBano: { type: 'string', default: '' }
+            filterBano: { type: 'string', default: '' },
+            filterCategoria: { type: 'string', default: '' },
+            // Animation attributes
+            animationType: { type: 'string' },
+            animationTrigger: { type: 'string' },
+            animationDuration: { type: 'number' },
+            animationDelay: { type: 'number' },
+            animationEase: { type: 'string' },
+            animationRepeat: { type: 'number' },
+            animationRepeatDelay: { type: 'number' },
+            animationYoyo: { type: 'boolean' },
+            animationDistance: { type: 'string' },
+            animationRotation: { type: 'number' },
+            animationScale: { type: 'string' },
+            animationParallaxSpeed: { type: 'number' },
+            animationHoverEffect: { type: 'string' },
+            animationMobileEnabled: { type: 'boolean' }
         },
         edit: function(props) {
             const { attributes, setAttributes } = props;
@@ -150,7 +166,25 @@
                                 banos.map((item) => ({ label: item, value: item }))
                             ),
                             onChange: (value) => setAttributes({ filterBano: value })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Categoría', 'bootstrap-theme'),
+                            value: attributes.filterCategoria,
+                            options: [{ label: __('— Sin filtro —', 'bootstrap-theme'), value: '' }].concat(
+                                (window.BOOTSTRAP_THEME_PLANTAS_CATEGORIAS || []).map((cat) => ({ label: cat.name, value: cat.slug }))
+                            ),
+                            onChange: (value) => setAttributes({ filterCategoria: value })
                         })
+                    ),
+                    // Animation Controls Panel
+                    window.ilebenAnimationControls && createElement(
+                        window.ilebenAnimationControls.AnimationControls, 
+                        { 
+                            attributes: attributes, 
+                            setAttributes: setAttributes,
+                            allowHover: true,
+                            allowScroll: false
+                        }
                     )
                 ),
                 createElement('div', blockProps,

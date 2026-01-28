@@ -360,12 +360,15 @@
     }
 }
 
-/* carrousel block */
+/* Carrousel */  
 .carousel.slide{
-    .carousel-control-prev i,
-    .carousel-control-next i {
-        font-size: 4rem;
-        color: rgba(var(--bs-dark-rgb), 0.5);
-        transition: color 0.2s ease;
-    }
+  .carousel-caption{
+    width: 100%;;
+  }
+  .carousel-control-prev i,
+  .carousel-control-next i {
+      font-size: 4rem;
+      color: rgba(var(--bs-dark-rgb), 0.9);
+      transition: color 0.2s ease;
+  }
 }

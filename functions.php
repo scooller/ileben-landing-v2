@@ -8,14 +8,11 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ILEBEN_THEME_VERSION', '0.1.10'); // Debe coincidir con Version en style.css
+// define('ILEBEN_THEME_VERSION', wp_get_theme()->get('Version'));
+//development versioning
+define('ILEBEN_THEME_VERSION', rand(100000, 999999)); // For cache busting during development, replace with static version for production
 define('ILEBEN_THEME_DIR', get_template_directory());
 define('ILEBEN_THEME_URI', get_template_directory_uri());
-
-// Alias to reuse the existing block package versioning without edits across files.
-if (!defined('BOOTSTRAP_THEME_VERSION')) {
-    define('BOOTSTRAP_THEME_VERSION', ILEBEN_THEME_VERSION);
-}
 
 $theme_includes = [
     '/inc/setup.php',
@@ -42,11 +39,10 @@ foreach ($theme_includes as $file) {
     }
 }
 
-// Include theme editor styles, our blocks editor styles (compiled from SCSS), and Bootstrap CSS so grid/components preview correctly.
-add_editor_style(array(
-    'assets/css/editor-style.css',
-    'blocks/blocks-editor.css', // Compiled from blocks-editor.scss
-));
+// Include theme editor styles
+// add_editor_style(array(
+//     'assets/css/editor.css',
+// ));
 
 function add_custom_logo_class($html)
 {

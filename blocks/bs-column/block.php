@@ -34,7 +34,7 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block)
     if (!empty($xs)) {
         $classes[] = 'col-' . $xs;
     } else {
-        $classes[] = 'col-auto';
+        $classes[] = 'col';
     }
     if (!empty($sm)) {
         $classes[] = 'col-sm-' . $sm;
@@ -42,7 +42,7 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block)
     if (!empty($md)) {
         $classes[] = 'col-md-' . $md;
     } else {
-        $classes[] = 'col-md-auto';
+        $classes[] = 'col-md';
     }
     if (!empty($lg)) {
         $classes[] = 'col-lg-' . $lg;

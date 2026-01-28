@@ -39,3 +39,37 @@ function ileben_register_cpt_plantas() {
     register_post_type('plantas', $args);
 }
 add_action('init', 'ileben_register_cpt_plantas');
+
+/**
+ * Registro de taxonomía: Categoría de Plantas
+ */
+function ileben_register_tax_categoria_planta() {
+    $labels = array(
+        'name' => _x('Categorías de Plantas', 'Taxonomy General Name', 'bootstrap-theme'),
+        'singular_name' => _x('Categoría de Planta', 'Taxonomy Singular Name', 'bootstrap-theme'),
+        'menu_name' => __('Categorías', 'bootstrap-theme'),
+        'all_items' => __('Todas las Categorías', 'bootstrap-theme'),
+        'edit_item' => __('Editar Categoría', 'bootstrap-theme'),
+        'view_item' => __('Ver Categoría', 'bootstrap-theme'),
+        'update_item' => __('Actualizar Categoría', 'bootstrap-theme'),
+        'add_new_item' => __('Añadir Nueva Categoría', 'bootstrap-theme'),
+        'new_item_name' => __('Nuevo Nombre de Categoría', 'bootstrap-theme'),
+        'search_items' => __('Buscar Categorías', 'bootstrap-theme'),
+        'not_found' => __('No se encontraron categorías', 'bootstrap-theme'),
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'hierarchical' => true,
+        'public' => true,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'show_in_nav_menus' => true,
+        'show_tagcloud' => false,
+        'show_in_rest' => true,
+        'rewrite' => array('slug' => 'categoria-planta'),
+    );
+
+    register_taxonomy('categoria_planta', array('plantas'), $args);
+}
+add_action('init', 'ileben_register_tax_categoria_planta');

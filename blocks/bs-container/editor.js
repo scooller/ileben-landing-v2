@@ -32,6 +32,26 @@
                 type: 'boolean',
                 default: false
             },
+            breakpoint: {
+                type: 'string',
+                default: ''
+            },
+            backgroundColor: {
+                type: 'string',
+                default: ''
+            },
+            textColor: {
+                type: 'string',
+                default: ''
+            },
+            padding: {
+                type: 'string',
+                default: ''
+            },
+            margin: {
+                type: 'string',
+                default: ''
+            },
             bgType: {
                 type: 'string', // 'none' | 'solid' | 'gradient'
                 default: 'none'
@@ -288,6 +308,70 @@
                             value: attributes.type,
                             options: containerTypes,
                             onChange: (value) => setAttributes({ type: value })
+                        }),
+                        !attributes.fluid && createElement(SelectControl, {
+                            label: __('Breakpoint', 'bootstrap-theme'),
+                            help: __('Container breakpoint responsive', 'bootstrap-theme'),
+                            value: attributes.breakpoint || '',
+                            options: [
+                                { label: __('None', 'bootstrap-theme'), value: '' },
+                                { label: __('Small', 'bootstrap-theme'), value: 'sm' },
+                                { label: __('Medium', 'bootstrap-theme'), value: 'md' },
+                                { label: __('Large', 'bootstrap-theme'), value: 'lg' },
+                                { label: __('Extra Large', 'bootstrap-theme'), value: 'xl' },
+                                { label: __('XXL', 'bootstrap-theme'), value: 'xxl' }
+                            ],
+                            onChange: (value) => setAttributes({ breakpoint: value })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Background Color', 'bootstrap-theme'),
+                            help: __('Bootstrap background color utility class', 'bootstrap-theme'),
+                            value: attributes.backgroundColor || '',
+                            options: [
+                                { label: __('None', 'bootstrap-theme'), value: '' },
+                                { label: __('Primary', 'bootstrap-theme'), value: 'bg-primary' },
+                                { label: __('Secondary', 'bootstrap-theme'), value: 'bg-secondary' },
+                                { label: __('Success', 'bootstrap-theme'), value: 'bg-success' },
+                                { label: __('Danger', 'bootstrap-theme'), value: 'bg-danger' },
+                                { label: __('Warning', 'bootstrap-theme'), value: 'bg-warning' },
+                                { label: __('Info', 'bootstrap-theme'), value: 'bg-info' },
+                                { label: __('Light', 'bootstrap-theme'), value: 'bg-light' },
+                                { label: __('Dark', 'bootstrap-theme'), value: 'bg-dark' },
+                                { label: __('White', 'bootstrap-theme'), value: 'bg-white' },
+                                { label: __('Transparent', 'bootstrap-theme'), value: 'bg-transparent' }
+                            ],
+                            onChange: (value) => setAttributes({ backgroundColor: value })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Text Color', 'bootstrap-theme'),
+                            help: __('Bootstrap text color utility class', 'bootstrap-theme'),
+                            value: attributes.textColor || '',
+                            options: [
+                                { label: __('None', 'bootstrap-theme'), value: '' },
+                                { label: __('Primary', 'bootstrap-theme'), value: 'text-primary' },
+                                { label: __('Secondary', 'bootstrap-theme'), value: 'text-secondary' },
+                                { label: __('Success', 'bootstrap-theme'), value: 'text-success' },
+                                { label: __('Danger', 'bootstrap-theme'), value: 'text-danger' },
+                                { label: __('Warning', 'bootstrap-theme'), value: 'text-warning' },
+                                { label: __('Info', 'bootstrap-theme'), value: 'text-info' },
+                                { label: __('Light', 'bootstrap-theme'), value: 'text-light' },
+                                { label: __('Dark', 'bootstrap-theme'), value: 'text-dark' },
+                                { label: __('White', 'bootstrap-theme'), value: 'text-white' },
+                                { label: __('Muted', 'bootstrap-theme'), value: 'text-muted' }
+                            ],
+                            onChange: (value) => setAttributes({ textColor: value })
+                        }),
+                        createElement(TextControl, {
+                            label: __('Padding', 'bootstrap-theme'),
+                            help: __('Bootstrap padding utility classes (e.g., p-3, py-4, px-5)', 'bootstrap-theme'),
+                            value: attributes.padding || '',
+                            onChange: (value) => setAttributes({ padding: value })
+                        }),
+                        createElement(TextControl, {
+                            label: __('Margin', 'bootstrap-theme'),
+                            help: __('Bootstrap margin utility classes (e.g., m-3, my-4, mx-auto)', 'bootstrap-theme'),
+                            value: attributes.margin || '',
+                            onChange: (value) => setAttributes({ margin: value })
                         }),
                         createElement(ToggleControl, {
                             label: __('Use as Swiper', 'bootstrap-theme'),

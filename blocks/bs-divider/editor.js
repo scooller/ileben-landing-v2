@@ -23,7 +23,22 @@
             color: { type: 'string', default: 'secondary' },
             textColor: { type: 'string', default: 'secondary' },
             marginY: { type: 'string', default: '3' },
-            className: { type: 'string', default: '' }
+            className: { type: 'string', default: '' },
+            // Animation attributes
+            animationType: { type: 'string' },
+            animationTrigger: { type: 'string' },
+            animationDuration: { type: 'number' },
+            animationDelay: { type: 'number' },
+            animationEase: { type: 'string' },
+            animationRepeat: { type: 'number' },
+            animationRepeatDelay: { type: 'number' },
+            animationYoyo: { type: 'boolean' },
+            animationDistance: { type: 'string' },
+            animationRotation: { type: 'number' },
+            animationScale: { type: 'string' },
+            animationParallaxSpeed: { type: 'number' },
+            animationHoverEffect: { type: 'string' },
+            animationMobileEnabled: { type: 'boolean' }
         },
         edit: function(props) {
             const { attributes, setAttributes } = props;
@@ -155,6 +170,16 @@
                             min: 0,
                             max: 5
                         })
+                    ),
+                    // Animation Controls Panel
+                    window.ilebenAnimationControls && createElement(
+                        window.ilebenAnimationControls.AnimationControls, 
+                        { 
+                            attributes: attributes, 
+                            setAttributes: setAttributes,
+                            allowHover: true,
+                            allowScroll: false
+                        }
                     )
                 ),
                 createElement('div', blockProps, renderDivider())

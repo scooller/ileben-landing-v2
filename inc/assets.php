@@ -4,8 +4,6 @@
  * Asset loading and helpers.
  */
 
-define('ILEBEN_THEME_VERSION', rand(100000, 999999)); // For cache busting during development, replace with static version for production
-
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -323,19 +321,6 @@ add_action('wp_enqueue_scripts', function () {
     --bs-body-font-family: var(--bs-font-family-1);
     --bs-body-font-size: <?php echo $font_size; ?>;
     --bs-body-font-weight: <?php echo $font_weight; ?>;
-    --swiper-theme-color: var(--bs-primary);
-    --swiper-pagination-bullet-border-radius: var(--bs-border-radius-pill);
-    --swiper-pagination-bullet-opacity: 1;
-    --swiper-pagination-bullet-inactive-opacity: var(--bs-secondary-opacity);
-    --bs-form-invalid-color: var(--bs-danger);
-    --bs-form-invalid-border-color: var(--bs-danger);
-    /* Wp Block Editor */
-    --wp-block-font-size: 1rem;
-    --wp--preset--font-size--small: 12px;
-    --wp--preset--font-size--medium: 16px;
-    --wp--preset--font-size--large: 20px;
-    --wp--preset--font-size--x-large: 24px;
-    --bs-nav-link-font-size: 0.9rem;
     }
     <?php
     // Btns colors

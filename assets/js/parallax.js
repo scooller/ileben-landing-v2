@@ -15,18 +15,24 @@ gsap.registerPlugin(ScrollTrigger);
  */
 function initParallax() {
     const parallaxElements = document.querySelectorAll('[data-parallax="true"]');
-    console.log('🔍 Found parallax elements:', parallaxElements.length);
+
+    // Track carousels to avoid adding multiple listeners for the same carousel
+    const processedCarousels = new Set();
+    // Cache a reference element height per carousel so hidden slides use the same value
+    const carouselRefHeights = new WeakMap();
 
     parallaxElements.forEach((element, index) => {
-        console.log(`\n📍 Processing parallax element ${index + 1}:`, element);
         
         // Find the container parent (.container or .container-fluid)
         const container = element.closest('.container, .container-fluid');
         if (!container) {
-            console.warn('⚠️ Parallax element has no .container or .container-fluid parent', element);
+            console.error('Parallax element has no .container or .container-fluid parent', element);
             return;
         }
-        console.log('✅ Container found:', container);
+
+        // Check if parallax is inside a Bootstrap carousel (determine early for height normalization)
+        const carouselElement = element.closest('.carousel');
+        const carouselWidth = carouselElement ? carouselElement.offsetWidth : 0;
 
         // Get speed value (how fast/slow the parallax moves)
         // Positive values = moves down slower than scroll (common parallax)
@@ -36,63 +42,85 @@ function initParallax() {
         // Get custom start/end positions if specified
         const start = element.getAttribute('data-parallax-start') || 'top center';
         const end = element.getAttribute('data-parallax-end') || 'bottom center';
-
-        const distance = () => element.offsetHeight * speed;
+        // Determine a normalized element height across carousel slides
+        // - If inside a carousel: use the first non-zero element height encountered and reuse for all slides
+        // - Otherwise: use element's height or fallback to container height
+        let elementHeight;
+        let refHeightSource = 'element(visible)';
+        if (carouselElement) {
+            const ref = carouselRefHeights.get(carouselElement);
+            if (element.offsetHeight > 0) {
+                elementHeight = element.offsetHeight;
+                refHeightSource = ref ? 'element(visible-existingRef)' : 'element(visible-setRef)';
+                if (!ref) {
+                    carouselRefHeights.set(carouselElement, elementHeight);
+                }
+            } else if (ref) {
+                elementHeight = ref;
+                refHeightSource = 'carouselRef';
+            } else {
+                elementHeight = container.offsetHeight; // last-resort fallback
+                refHeightSource = 'container(fallback)';
+            }
+        } else {
+            elementHeight = element.offsetHeight > 0 ? element.offsetHeight : container.offsetHeight;
+            refHeightSource = element.offsetHeight > 0 ? 'element(visible)' : 'container(fallback)';
+        }
+        
+        const distance = () => elementHeight * speed;
         // Compensate initial position so it doesn't look offset when speed is high.
         // Defaults to 0.5 (center the travel around the original position).
         const compensate = parseFloat(element.getAttribute('data-parallax-compensate'));
-        const baseOffset = isNaN(compensate) ? () => -distance() * 0.5 : () => -distance() * compensate;
+        // Cache baseOffset on init to prevent accumulation when element is hidden in carousel
+        const baseOffsetValue = isNaN(compensate) ? -distance() * 0.5 : -distance() * compensate;
+        const baseOffset = () => baseOffsetValue;
 
-        console.log('⚙️ Settings:', { speed, start, end, distance: distance(), baseOffset: baseOffset() });
+        // init values computed above; only log on errors
 
-        // Check if parallax is inside a Bootstrap carousel
-        const carouselElement = element.closest('.carousel');
-        let carouselOffsetX = 0;
-        
-        // Store initial dimensions (they change when carousel items are hidden)
-        const initialElementWidth = element.offsetWidth;
-        const carouselWidth = carouselElement ? carouselElement.offsetWidth : 0;
-
-        if (carouselElement) {
-            console.log('🎠 Carousel detected:', carouselElement);
-            console.log('📐 Carousel width:', carouselWidth);
-            console.log('📐 Element width (initial):', initialElementWidth);
-            console.log('📐 Element height:', element.offsetHeight);
+        // Add carousel event listener only ONCE per carousel
+        if (carouselElement && !processedCarousels.has(carouselElement)) {
+            processedCarousels.add(carouselElement);
             
-            // Get carousel animation duration from Bootstrap's default (600ms)
-            // This is the time it takes for the slide transition
             const carouselDuration = 600; // Bootstrap default carousel slide duration in milliseconds
             const carouselDurationSeconds = carouselDuration / 1000;
-            console.log(`⏱️ Carousel duration: ${carouselDuration}ms`);
-            
+
             // Listen to Bootstrap carousel slide events
-            // Use 'slide.bs.carousel' to start animation immediately (not 'slid.bs.carousel' which fires at end)
             carouselElement.addEventListener('slide.bs.carousel', (event) => {
-                // Use stored initial width instead of current width (which becomes 0 when hidden)
-                const slideX = parseFloat(element.getAttribute('data-parallax-slide-offset')) || initialElementWidth || carouselWidth;
-                console.log(`📊 SlideX calculated:`, { 
-                    attribute: element.getAttribute('data-parallax-slide-offset'),
-                    initialElementWidth: initialElementWidth,
-                    carouselWidth: carouselWidth,
-                    finalSlideX: slideX,
-                    eventIndex: event.to
-                });
-                
-                carouselOffsetX = event.to * slideX;
-                console.log(`🎠 Carousel slide changed! Index: ${event.to}, Offset: ${carouselOffsetX}px`);
-                
-                // Update the animation with carousel duration
-                gsap.to(element, {
-                    x: carouselOffsetX,
-                    duration: carouselDurationSeconds,
-                    ease: 'power2.inOut',
-                    overwrite: 'auto'
-                });
+                // Get the parallax element that will be active in the next slide
+                const nextSlide = carouselElement.querySelectorAll('.carousel-item')[event.to];
+                const nextParallaxElement = nextSlide ? nextSlide.querySelector('[data-parallax="true"]') : null;
+                const currentParallaxElement = carouselElement.querySelector('.carousel-item.active [data-parallax="true"]');
+
+                if (nextParallaxElement) {
+                    
+                    // Animate the parallax element to move based on slide transition
+                    gsap.fromTo(currentParallaxElement, {
+                        x: 0
+                    }, {
+                        x: carouselWidth / 2,
+                        duration: carouselDurationSeconds,
+                        ease: 'power2.inOut',
+                        overwrite: 'auto',
+                        onComplete: () => {
+                            gsap.set(currentParallaxElement, { x: 0 });
+                        }
+                    });
+                }
             });
-        } else {
-            console.log('❌ No carousel detected');
+
+            // After slide completes, reset position to 0
+            // carouselElement.addEventListener('slid.bs.carousel', (event) => {
+            //     const activeSlide = carouselElement.querySelector('.carousel-item.active');
+            //     const activeParallaxElement = activeSlide ? activeSlide.querySelector('[data-parallax="true"]') : null;
+
+            //     if (activeParallaxElement) {
+            //         console.log('✅ Carousel slide complete, resetting position at index', event.to);
+            //         gsap.set(activeParallaxElement, { x: 0 });
+            //     }
+            // });
         }
 
+        // Create the parallax scroll animation
         gsap.fromTo(
             element,
             { y: baseOffset, x: 0 },
@@ -105,12 +133,10 @@ function initParallax() {
                     end: end,
                     scrub: true,
                     invalidateOnRefresh: true, // Recalculates on resize
-                    // markers: true // Uncomment for debugging
+                    // markers: true
                 }
             }
         );
-        
-        console.log('✅ Parallax animation created for element', index + 1);
     });
 }
 

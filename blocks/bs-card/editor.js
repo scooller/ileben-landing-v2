@@ -3,7 +3,7 @@
  */
 
 (function(wp) {
-    console.log('BS-CARD EDITOR.JS LOADED!', wp);
+    //console.log('BS-CARD EDITOR.JS LOADED!', wp);
     
     const { __ } = wp.i18n;
     const { registerBlockType } = wp.blocks;
@@ -34,6 +34,10 @@
             imageAlt: {
                 type: 'string',
                 default: ''
+            },
+            imageFull: {
+                type: 'boolean',
+                default: false
             },
             link: {
                 type: 'string',
@@ -205,6 +209,61 @@
                                 onClick: open,
                                 className: attributes.image ? 'image-button' : 'button button-large'
                             }, attributes.image ? __('Change Image', 'bootstrap-theme') : __('Select Image', 'bootstrap-theme'))
+                        }),
+                        attributes.image && createElement(ToggleControl, {
+                            label: __('Imagen Full', 'bootstrap-theme'),
+                            help: __('Hacer que la imagen ocupe el ancho completo del card', 'bootstrap-theme'),
+                            checked: attributes.imageFull || false,
+                            onChange: (value) => setAttributes({ imageFull: value })
+                        }),
+                        createElement(TextControl, {
+                            label: __('Link URL', 'bootstrap-theme'),
+                            help: __('URL a la que enlaza la tarjeta completa', 'bootstrap-theme'),
+                            value: attributes.link || '',
+                            onChange: (value) => setAttributes({ link: value })
+                        }),
+                        attributes.link && createElement(SelectControl, {
+                            label: __('Link Target', 'bootstrap-theme'),
+                            value: attributes.target || '_self',
+                            options: [
+                                { label: __('Same Window', 'bootstrap-theme'), value: '_self' },
+                                { label: __('New Window', 'bootstrap-theme'), value: '_blank' }
+                            ],
+                            onChange: (value) => setAttributes({ target: value })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Variant', 'bootstrap-theme'),
+                            help: __('Estilo de la tarjeta', 'bootstrap-theme'),
+                            value: attributes.variant || '',
+                            options: [
+                                { label: __('Default', 'bootstrap-theme'), value: '' },
+                                { label: __('Primary', 'bootstrap-theme'), value: 'bg-primary text-white' },
+                                { label: __('Secondary', 'bootstrap-theme'), value: 'bg-secondary text-white' },
+                                { label: __('Success', 'bootstrap-theme'), value: 'bg-success text-white' },
+                                { label: __('Danger', 'bootstrap-theme'), value: 'bg-danger text-white' },
+                                { label: __('Warning', 'bootstrap-theme'), value: 'bg-warning' },
+                                { label: __('Info', 'bootstrap-theme'), value: 'bg-info text-white' },
+                                { label: __('Light', 'bootstrap-theme'), value: 'bg-light' },
+                                { label: __('Dark', 'bootstrap-theme'), value: 'bg-dark text-white' },
+                                { label: __('Border Primary', 'bootstrap-theme'), value: 'border-primary' },
+                                { label: __('Border Secondary', 'bootstrap-theme'), value: 'border-secondary' },
+                                { label: __('Border Success', 'bootstrap-theme'), value: 'border-success' },
+                                { label: __('Border Danger', 'bootstrap-theme'), value: 'border-danger' },
+                                { label: __('Border Warning', 'bootstrap-theme'), value: 'border-warning' },
+                                { label: __('Border Info', 'bootstrap-theme'), value: 'border-info' }
+                            ],
+                            onChange: (value) => setAttributes({ variant: value })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Text Alignment', 'bootstrap-theme'),
+                            value: attributes.textAlign || '',
+                            options: [
+                                { label: __('Default', 'bootstrap-theme'), value: '' },
+                                { label: __('Left', 'bootstrap-theme'), value: 'start' },
+                                { label: __('Center', 'bootstrap-theme'), value: 'center' },
+                                { label: __('Right', 'bootstrap-theme'), value: 'end' }
+                            ],
+                            onChange: (value) => setAttributes({ textAlign: value })
                         })
                     ),
                     createElement(PanelBody, { title: __('CSS Classes', 'bootstrap-theme'), initialOpen: false },

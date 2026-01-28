@@ -19,11 +19,12 @@ function bootstrap_theme_render_bs_card_block($attributes, $content, $block)
     $subtitle = $attributes['subtitle'] ?? '';
     $image = $attributes['image'] ?? '';
     $imageAlt = $attributes['imageAlt'] ?? '';
+    $imageFull = $attributes['imageFull'] ?? false;
     $link = $attributes['link'] ?? '';
     $target = $attributes['target'] ?? '_self';
     $variant = $attributes['variant'] ?? '';
     $textAlign = $attributes['textAlign'] ?? '';
-    $headerBg = $attributes['headerBg'] ?? '';
+    $S = $attributes['headerBg'] ?? '';
     $footerBg = $attributes['footerBg'] ?? '';
     $bodyClasses = $attributes['bodyClasses'] ?? '';
     $titleClasses = $attributes['titleClasses'] ?? '';
@@ -48,79 +49,100 @@ function bootstrap_theme_render_bs_card_block($attributes, $content, $block)
     if (!empty($bodyClasses)) {
         $body_classes[] = $bodyClasses;
     }
-
-    $output = '<div class="' . esc_attr(implode(' ', array_unique($card_classes))) . '"' . $animation_attrs . '>';
-
-    // Card image
-    if (!empty($image)) {
-        if (!empty($link)) {
-            $output .= '<a href="' . esc_url($link) . '" target="' . esc_attr($target) . '">';
-        }
-        $output .= '<img src="' . esc_url($image) . '" class="card-img-top" alt="' . esc_attr($imageAlt) . '">';
-        if (!empty($link)) {
-            $output .= '</a>';
-        }
+    if($imageFull){
+        $body_classes[] = 'position-absolute bottom-0 start-0 w-100 bg-gradient-theme';
     }
 
+    ob_start();
+    ?>
+    <?php if (!empty($link)): ?>
+    <a href="<?php echo esc_url($link); ?>" target="<?php echo esc_attr($target); ?>" class="<?php echo esc_attr(implode(' ', array_unique($card_classes))); ?>"<?php echo $animation_attrs; ?>>
+    <?php else: ?>
+    <div class="<?php echo esc_attr(implode(' ', array_unique($card_classes))); ?>"<?php echo $animation_attrs; ?>>
+    <?php endif; ?>
+    <?php
+    // Card image
+    if (!empty($image)):
+        $img_class = 'card-img-top'; 
+    ?>       
+        <img src="<?php echo esc_url($image); ?>" class="<?php echo esc_attr($img_class); ?>" alt="<?php echo esc_attr($imageAlt); ?>">
+    <?php endif; ?>
+
+    <?php
     // Card header
-    if (!empty($headerBg)) {
+    if (!empty($headerBg)):
         $header_classes = 'card-header';
         if (!empty($headerBg)) {
             $header_classes .= ' ' . $headerBg;
         }
-        $output .= '<div class="' . esc_attr($header_classes) . '">';
-        if (!empty($title)) {
-            $output .= '<h5 class="card-title mb-0">' . esc_html($title) . '</h5>';
-        }
-        $output .= '</div>';
-    }
+        ?>
+        <div class="<?php echo esc_attr($header_classes); ?>">
+            <?php if (!empty($title)): ?>
+                <h5 class="card-title mb-0"><?php echo esc_html($title); ?></h5>
+            <?php endif; ?>
+        </div>
+        <?php
+    endif; ?>
 
+    <?php
     // Card body
-    $output .= '<div class="' . esc_attr(implode(' ', $body_classes)) . '">';
+    ?>
+    <div class="<?php echo esc_attr(implode(' ', $body_classes)); ?>">
 
+    <?php
     // Title in body (if not in header)
-    if (!empty($title) && empty($headerBg)) {
+    if (!empty($title) && empty($headerBg)):
         $title_class = 'card-title';
         if (!empty($titleClasses)) {
             $title_class .= ' ' . $titleClasses;
         }
-        if (!empty($link)) {
-            $output .= '<h5 class="' . esc_attr($title_class) . '"><a href="' . esc_url($link) . '" target="' . esc_attr($target) . '" class="text-decoration-none">' . esc_html($title) . '</a></h5>';
-        } else {
-            $output .= '<h5 class="' . esc_attr($title_class) . '">' . esc_html($title) . '</h5>';
-        }
-    }
+        ?>
+        <h5 class="<?php echo esc_attr($title_class); ?>"><?php echo esc_html($title); ?></h5>
+        <?php 
+    endif; ?>
 
+    <?php
     // Subtitle
-    if (!empty($subtitle)) {
-        $output .= '<h6 class="card-subtitle mb-2 text-muted">' . esc_html($subtitle) . '</h6>';
-    }
+    if (!empty($subtitle)): ?>
+        <h6 class="card-subtitle mb-2 text-muted"><?php echo esc_html($subtitle); ?></h6>
+    <?php endif; ?>
 
+    <?php
     // Content from InnerBlocks
-    if (!empty($content)) {
+    if (!empty($content)):
         $text_class = 'card-text';
         if (!empty($textClasses)) {
             $text_class .= ' ' . $textClasses;
         }
-        $output .= '<div class="' . esc_attr($text_class) . '">' . $content . '</div>';
-    }
+        ?>
+        <div class="<?php echo esc_attr($text_class); ?>"><?php echo $content; ?></div>
+    <?php endif; ?>
 
-    $output .= '</div>'; // End card-body
+    </div> <?php // End card-body ?>
 
+    <?php
     // Card footer
-    if (!empty($footerBg)) {
+    if (!empty($footerBg)):
         $footer_classes = 'card-footer';
         if (!empty($footerBg)) {
             $footer_classes .= ' ' . $footerBg;
         }
-        $output .= '<div class="' . esc_attr($footer_classes) . '">';
-        $output .= '<small class="text-muted">' . __('Card footer', 'bootstrap-theme') . '</small>';
-        $output .= '</div>';
-    }
+        ?>
+        <div class="<?php echo esc_attr($footer_classes); ?>">
+            <small class="text-muted"><?php echo __('Card footer', 'bootstrap-theme'); ?></small>
+        </div>
+        <?php
+    endif; ?>
 
-    $output .= '</div>'; // End card
-
-    return $output;
+    <?php if (!empty($link)): ?>
+    </a>
+    <?php else: ?>
+    </div> 
+    <?php
+    endif;
+     // End card ?>
+    <?php
+    return ob_get_clean();
 }
 
 /**
@@ -146,6 +168,10 @@ function bootstrap_theme_register_bs_card_block()
             'imageAlt' => array(
                 'type' => 'string',
                 'default' => ''
+            ),
+            'imageFull' => array(
+                'type' => 'boolean',
+                'default' => false
             ),
             'link' => array(
                 'type' => 'string',
