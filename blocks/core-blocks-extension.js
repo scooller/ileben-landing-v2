@@ -11,7 +11,7 @@
     const { createHigherOrderComponent } = wp.compose;
 
     // Bloques que extenderemos
-    const allowedBlocks = ['core/heading', 'core/paragraph'];
+    const allowedBlocks = ['core/heading', 'core/paragraph', 'core/image'];
 
     // Animation types
     const ANIMATION_TYPES = [
@@ -311,6 +311,8 @@
                     ),
                     
                     // SplitText Panel
+                    // si el bloque es heading o paragraph
+                    (props.name === 'core/heading' || props.name === 'core/paragraph') &&
                     el(
                         PanelBody,
                         {

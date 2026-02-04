@@ -118,23 +118,31 @@
 /* Lists */
 .list-group-unstyled {
   border-radius: 0;
+  --bs-list-group-font-size: 0.8rem;
+  --bs-list-group-item-padding-y: 0.25rem;
   &>.list-group-item {
     border-width: 0 0 0;
     --bs-list-group-item-padding-x: 0;
     background-color: transparent;
   }
 }
+.list-group-numbered.list-dots{
+  --bs-list-group-font-size: 0.7rem;
 
-.list-group-numbered.list-dots>.list-group-item:before {
-  background-color: var(--bs-primary);
-  border-radius: var(--bs-border-radius-pill);
-  font-size: 0.8rem;
-  width: 1.5rem; height: 1.5rem;
-  display: inline-block; line-height: 2; text-align: center;
-  margin-right: 1rem;
-  content: counters(section, ".");
+  >.list-group-item:before {
+    background-color: var(--bs-primary);
+    border-radius: var(--bs-border-radius-pill);
+    font-size: var(--bs-list-group-font-size);
+    width: 1.25rem;
+    height: 1.25rem;
+    display: inline-block; line-height: 2; text-align: center;
+    margin-right: 1rem;
+    content: counters(section, ".");
+  }  
 }
-
+.list-group-item {
+  font-size: var(--bs-list-group-font-size);
+}
 
 
 

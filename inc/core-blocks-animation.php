@@ -21,11 +21,11 @@ if (!defined('ABSPATH')) {
  */
 function ileben_add_animation_to_core_blocks($block_content, $block) {
     // Debug: see incoming attrs for core blocks
-    /*if (in_array($block['blockName'], ['core/heading', 'core/paragraph'], true)) {
+    /*if (in_array($block['blockName'], ['core/heading', 'core/paragraph', 'core/image'], true)) {
         error_log('[core-anim] ' . $block['blockName'] . ' attrs: ' . json_encode($block['attrs'] ?? []));
     }*/
-    // Only process heading and paragraph blocks
-    if (!in_array($block['blockName'], ['core/heading', 'core/paragraph'])) {
+    // Only process heading, paragraph and image blocks
+    if (!in_array($block['blockName'], ['core/heading', 'core/paragraph', 'core/image'], true)) {
         return $block_content;
     }
 
@@ -131,6 +131,13 @@ function ileben_add_animation_to_core_blocks($block_content, $block) {
         $block_content = preg_replace(
             '/\s*<p([^>]*)>/i',
             '<p$1' . $data_attrs_string . '>',
+            $block_content,
+            1
+        );
+    } elseif ($block['blockName'] === 'core/image') {
+        $block_content = preg_replace(
+            '/\s*<img([^>]*)\/?>/i',
+            '<img$1' . $data_attrs_string . ' />',
             $block_content,
             1
         );
