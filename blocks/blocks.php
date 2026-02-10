@@ -96,6 +96,7 @@ function bootstrap_theme_block_editor_assets()
         'bs-tab-pane',
         'bs-tabs',
         'bs-toast',
+        'bs-video',
         'bs-iframe',
         'bs-plantas-slider',
         'bs-cf7'

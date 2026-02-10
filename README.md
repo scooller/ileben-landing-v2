@@ -31,44 +31,44 @@ Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing
 
 ```
 ileben-landing-v2/
-├── style.css                    # Cabecera del tema WordPress
-├── functions.php                # Bootstrap del tema
-├── header.php                   # Plantilla de encabezado
-├── footer.php                   # Plantilla de pie de página
-├── index.php                    # Fallback template
-├── front-page.php               # Landing page principal
-├── package.json                 # Dependencias npm
-├── vite.config.js               # Configuración del bundler
-├── postcss.config.js            # Configuración de PostCSS (autoprefixer)
+├── style.css                             # Cabecera del tema WordPress
+├── functions.php                         # Bootstrap del tema
+├── header.php                            # Plantilla de encabezado
+├── footer.php                            # Plantilla de pie de página
+├── index.php                             # Fallback template
+├── front-page.php                        # Landing page principal
+├── package.json                          # Dependencias npm
+├── vite.config.js                        # Configuración del bundler
+├── postcss.config.js                     # Configuración de PostCSS (autoprefixer)
 ├── inc/
-│   ├── setup.php                # Setup del tema (soportes, menús, tamaños de imagen)
-│   ├── assets.php               # Enqueue de assets Vite + Google Fonts + Font Awesome
-│   ├── acf.php                  # Integración ACF Pro (JSON sync y options page)
-│   ├── github-updater.php       # GitHub Theme Updater (actualizaciones automáticas)
-│   ├── color-scheme-switcher.php# Widget flotante con selector claro/oscuro
-│   └── template-tags.php        # Helpers (lazy images, iframe facade con placeholders, loader)
+│   ├── setup.php                         # Setup del tema (soportes, menús, tamaños de imagen)
+│   ├── assets.php                        # Enqueue de assets Vite + Google Fonts + Font Awesome
+│   ├── acf.php                           # Integración ACF Pro (JSON sync y options page)
+│   ├── github-updater.php                # GitHub Theme Updater (actualizaciones automáticas)
+│   ├── color-scheme-switcher.php         # Widget flotante con selector claro/oscuro
+│   └── template-tags.php                 # Helpers (lazy images, iframe facade con placeholders, loader)
 ├── template-parts/
 │   ├── header/
-│   │   └── navbar.php           # Navegación principal con Bootstrap
+│   │   └── navbar.php                    # Navegación principal con Bootstrap
 │   └── banner/
-│       └── main-banner.php      # Banner principal (ACF-driven)
+│       └── main-banner.php               # Banner principal (ACF-driven)
 ├── assets/
 │   ├── scss/
-│   │   └── main.scss            # Único entry point de estilos (Bootstrap + estilos mínimos)
+│   │   └── main.scss                     # Único entry point de estilos (Bootstrap + estilos mínimos)
 │   ├── js/
-│   │   ├── main.js              # Entry point JS
-│   │   ├── router.js            # Router basado en body class
-│   │   ├── preloader.js         # Control del cargador inicial
-│   │   ├── lazyload.js          # IntersectionObserver para imágenes
-│   │   ├── facade.js            # Click-to-load para iframes (Bootstrap placeholders)
-│   │   ├── nav.js               # Bootstrap navbar toggles y dropdowns
-│   │   ├── sliders.js           # Inicialización Swiper
-│   │   └── fancybox.js          # Inicialización Fancybox
+│   │   ├── main.js                       # Entry point JS
+│   │   ├── router.js                     # Router basado en body class
+│   │   ├── preloader.js                  # Control del cargador inicial
+│   │   ├── lazyload.js                   # IntersectionObserver para imágenes
+│   │   ├── facade.js                     # Click-to-load para iframes (Bootstrap placeholders)
+│   │   ├── nav.js                        # Bootstrap navbar toggles y dropdowns
+│   │   ├── sliders.js                    # Inicialización Swiper
+│   │   └── fancybox.js                   # Inicialización Fancybox
 │   └── images/
 │       └── placeholders/
-│           └── placeholder-image.svg    # Placeholder para imágenes
-├── acf-json/                    # Sincronización JSON de campos ACF
-└── dist/                        # Salida compilada (generada con npm run build)
+│           └── placeholder-image.svg     # Placeholder para imágenes
+├── acf-json/                             # Sincronización JSON de campos ACF
+└── dist/                                 # Salida compilada (generada con npm run build)
 ```
 
 ---
@@ -92,7 +92,7 @@ cd wp-content/themes/ileben-landing-v2
 npm install
 
 # Compila los assets
-npm run build
+npm run build:all
 
 # (Opcional) Modo desarrollo con watch
 npm run dev
@@ -120,9 +120,27 @@ npm run dev
 
 El tema incluye un **GitHub Theme Updater** que permite actualizar el theme directamente desde el admin de WordPress sin necesidad de SSH, FTP o cPanel.
 
+> 📚 **Para documentación completa y troubleshooting, ver [GITHUB_UPDATER.md](GITHUB_UPDATER.md)**
+
+### 🛠️ Herramientas de Debug
+
+Si acabas de publicar un release y no aparece la actualización, usa estas URLs:
+
+**Ver estado del updater:**
+```
+https://tu-sitio.com/wp-admin/themes.php?ileben_debug_updater=1
+```
+Muestra: versión actual, última versión en GitHub, si hay actualización disponible, estado del caché, etc.
+
+**Forzar verificación inmediata:**
+```
+https://tu-sitio.com/wp-admin/themes.php?ileben_force_update=1
+```
+Limpia el caché y fuerza a WordPress a verificar actualizaciones inmediatamente.
+
 ### 📋 Cómo Funciona
 
-1. **Desarrollo Local:** Haces cambios en el código y compilas los assets con `npm run build`
+1. **Desarrollo Local:** Haces cambios en el código y compilas los assets con `npm run build:all`
 2. **Git Push:** Subes los cambios a GitHub (`git push origin main`)
 3. **GitHub Release:** Creas un Release con un tag que coincida con la versión (ej: `v0.2.0`)
 4. **WordPress Detecta:** El theme updater verifica automáticamente si hay nuevas versiones

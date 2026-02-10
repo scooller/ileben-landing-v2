@@ -100,21 +100,6 @@
   }
 }
 
-/* Image gradient overlay */
-.img-gradient {
-  position: relative;
-  overflow: hidden;
-  h2,p,div { position: relative; z-index: 2; }
-  &::after {
-    content: '';
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.6) 0%, rgba(var(--bs-body-bg-rgb), 0) 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-}
-
 /* Lists */
 .list-group-unstyled {
   border-radius: 0;
@@ -174,6 +159,9 @@ footer {
       display: inline;
     }
   }
+}
+.bs-color-switcher{
+  z-index: 10;
 }
 /* Legal */
 .legal { font-size: 0.8rem; line-height: 1.4; }

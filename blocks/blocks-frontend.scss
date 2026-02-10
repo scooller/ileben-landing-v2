@@ -9,6 +9,7 @@
 @import 'bs-cart/cart-block';
 @import 'bs-shipping-methods/style';
 @import 'bs-wc-products/style';
+@import 'bs-video/style';
 
 /* Estilos adicionales para bloques Bootstrap en frontend */
 .wp-block-bootstrap-theme-bs-container {
@@ -86,7 +87,7 @@
 }
 
 /* Responsive utilities */
-@media (max-width: 576px) {
+@include media-breakpoint-down(md) {
     .wp-block-bootstrap-theme-bs-card {
         .card {
             margin-bottom: 1rem;
@@ -351,7 +352,7 @@
     }
 }
 
-@media (max-width: 576px) {
+@include media-breakpoint-down(md) {
     .bs-asesor-avatar {
         img {
             width: 150px;
@@ -362,13 +363,25 @@
 
 /* Carrousel */  
 .carousel.slide{
-  .carousel-caption{
-    width: 100%;;
-  }
-  .carousel-control-prev i,
-  .carousel-control-next i {
-      font-size: 4rem;
-      color: rgba(var(--bs-dark-rgb), 0.9);
-      transition: color 0.2s ease;
-  }
+    .carousel-item {
+        .d-flex{
+            background-size: cover;
+            background-position: center;
+            background-image: var(--carousel-bg-desktop);
+            @include media-breakpoint-down(md) {
+                background-image: var(--carousel-bg-mobile, var(--carousel-bg-desktop));          
+            }
+        }
+    }
+    .carousel-caption{
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+    .carousel-control-prev i,
+    .carousel-control-next i {
+        font-size: 4rem;
+        color: rgba(var(--bs-dark-rgb), 0.9);
+        transition: color 0.2s ease;
+    }
 }

@@ -141,7 +141,7 @@
 }
 
 /* Responsive: Mobile */
-@media (max-width: 768px) {
+@include media-breakpoint-down(md) {
     .gallery-grid-mode {
         grid-template-columns: repeat(var(--gallery-columns-mobile, 2), 1fr) !important;
         

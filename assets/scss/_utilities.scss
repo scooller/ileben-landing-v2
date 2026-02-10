@@ -66,6 +66,19 @@ $sizes: 1rem, 2rem, 3rem, 4rem, 5rem, 6rem, 7rem, 8rem, 9rem, 10rem;
     padding-bottom: var(--bs-gutter-y);
   }
 }
+// only desktop
+$widths: 25, 50, 75, 100;
+@include media-breakpoint-up(md) {
+  @each $width in $widths {
+    .w-md-#{$width} {
+      width: $width * 1% !important;
+    }
+  }
+  .w-md-auto {
+    width: auto !important;
+  }
+}
+
 .text-shadow {
   text-shadow: 0 1px 2px rgba(var(--bs-black-rgb), 0.6);
 }
@@ -109,11 +122,11 @@ $sizes: 1rem, 2rem, 3rem, 4rem, 5rem, 6rem, 7rem, 8rem, 9rem, 10rem;
 }
 .bg-img{
   position: relative;
-  div{
+  > div{
     position: relative;
     z-index: 2;
   }
-  &::after{
+  &::before{
     content: '';
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background-size: cover;
@@ -125,14 +138,14 @@ $sizes: 1rem, 2rem, 3rem, 4rem, 5rem, 6rem, 7rem, 8rem, 9rem, 10rem;
 }
 .bg-vide{
   position: relative;
-  div{
+  > div{
     position: relative;
     z-index: 2;
   }
   video{
     position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;
   }
-  &::after{
+  &::before{
     content: '';
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background-size: cover;
@@ -140,6 +153,41 @@ $sizes: 1rem, 2rem, 3rem, 4rem, 5rem, 6rem, 7rem, 8rem, 9rem, 10rem;
     background-repeat: no-repeat;
     z-index: 1;
     background: linear-gradient(180deg, rgba(var(--bs-theme-bg-rgb), 0) 0%, rgba(var(--bs-theme-bg-rgb), 0.5) 10%, rgba(var(--bs-theme-bg-rgb), 1) 100%);
+  }
+}
+/* Image gradient overlay */
+.img-gradient {
+  position: relative;
+  overflow: hidden;
+  h2,p,div { position: relative; z-index: 2; }
+  &::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.6) 0%, rgba(var(--bs-body-bg-rgb), 0) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  &.invert-gradient::before {
+    background: linear-gradient(180deg, rgba(var(--bs-body-color-rgb), 0.6) 0%, rgba(var(--bs-body-color-rgb), 0) 100%);
+  }
+}
+.black-gradient-carrousel {
+  position: relative;
+  .d-flex.h-100 {
+    position: relative;
+    .carousel-caption {
+      position: relative;
+      z-index: 2;
+    }
+    &::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, rgba(var(--bs-black-rgb), 0.6) 0%, rgba(var(--bs-black-rgb), 0) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
   }
 }
 .text-white{

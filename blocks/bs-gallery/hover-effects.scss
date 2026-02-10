@@ -101,7 +101,7 @@
     }
 }
 
-@media (max-width: 576px) {
+@include media-breakpoint-down(md) {
     .gallery-hover-zoom figure:hover img {
         transform: scale(1);
     }

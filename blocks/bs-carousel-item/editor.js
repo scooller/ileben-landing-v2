@@ -26,6 +26,10 @@
                 type: 'object',
                 default: null
             },
+            backgroundImageMobile: {
+                type: 'object',
+                default: null
+            },
             interval: {
                 type: 'string',
                 default: ''
@@ -67,8 +71,10 @@
                 attributes.active ? 'active' : ''
             ].filter(Boolean).join(' ');
 
-            const itemStyle = attributes.backgroundImage ? {
-                backgroundImage: `url(${attributes.backgroundImage.url})`,
+            const editorBackgroundImage = attributes.backgroundImage || attributes.backgroundImageMobile;
+
+            const itemStyle = editorBackgroundImage ? {
+                backgroundImage: `url(${editorBackgroundImage.url})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 minHeight: '400px'
@@ -123,6 +129,43 @@
                                 })
                             )
                         ),
+                        createElement('div', { className: 'components-base-control' },
+                            createElement('label', { className: 'components-base-control__label' },
+                                __('Background Image Mobile', 'bootstrap-theme')
+                            ),
+                            createElement(MediaUploadCheck, {},
+                                createElement(MediaUpload, {
+                                    onSelect: (media) => setAttributes({ backgroundImageMobile: media }),
+                                    allowedTypes: ['image'],
+                                    value: attributes.backgroundImageMobile ? attributes.backgroundImageMobile.id : null,
+                                    render: ({ open }) => createElement(Fragment, {},
+                                        attributes.backgroundImageMobile ?
+                                            createElement('div', {},
+                                                createElement('img', {
+                                                    src: attributes.backgroundImageMobile.url,
+                                                    alt: attributes.backgroundImageMobile.alt,
+                                                    style: { maxWidth: '100%', height: 'auto' }
+                                                }),
+                                                createElement(Button, {
+                                                    onClick: open,
+                                                    variant: 'secondary',
+                                                    style: { marginTop: '10px', marginRight: '10px' }
+                                                }, __('Replace Image', 'bootstrap-theme')),
+                                                createElement(Button, {
+                                                    onClick: () => setAttributes({ backgroundImageMobile: null }),
+                                                    variant: 'link',
+                                                    isDestructive: true,
+                                                    style: { marginTop: '10px' }
+                                                }, __('Remove Image', 'bootstrap-theme'))
+                                            ) :
+                                            createElement(Button, {
+                                                onClick: open,
+                                                variant: 'secondary'
+                                            }, __('Select Image', 'bootstrap-theme'))
+                                    )
+                                })
+                            )
+                        ),
                         createElement(TextControl, {
                             label: __('Link URL', 'bootstrap-theme'),
                             help: __('Optional URL to make the entire slide clickable', 'bootstrap-theme'),
@@ -149,8 +192,8 @@
                     createElement('div', {
                         className: 'd-flex align-items-center justify-content-center h-100',
                         style: { 
-                            backgroundColor: attributes.backgroundImage ? 'rgba(0,0,0,0.3)' : 'transparent',
-                            color: attributes.backgroundImage ? 'white' : 'inherit'
+                            backgroundColor: editorBackgroundImage ? 'rgba(0,0,0,0.3)' : 'transparent',
+                            color: editorBackgroundImage ? 'white' : 'inherit'
                         }
                     },
                         createElement('div', { className: 'text-center' },
@@ -169,20 +212,27 @@
             
             const itemClasses = `carousel-item${attributes.active ? ' active' : ''}`;
             
-            const itemStyle = attributes.backgroundImage ? {
-                backgroundImage: `url(${attributes.backgroundImage.url})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                minHeight: '400px'
-            } : {
+            const itemStyle = {
                 minHeight: '400px'
             };
+
+            if (attributes.backgroundImage) {
+                itemStyle['--carousel-bg-desktop'] = `url(${attributes.backgroundImage.url})`;
+            }
+
+            if (attributes.backgroundImageMobile) {
+                itemStyle['--carousel-bg-mobile'] = `url(${attributes.backgroundImageMobile.url})`;
+            }
+
+            if (!attributes.backgroundImage && attributes.backgroundImageMobile) {
+                itemStyle['--carousel-bg-desktop'] = `url(${attributes.backgroundImageMobile.url})`;
+            }
 
             const innerContent = createElement('div', {
                 className: 'd-flex align-items-center justify-content-center h-100',
                 style: { 
-                    backgroundColor: attributes.backgroundImage ? 'rgba(0,0,0,0.3)' : 'transparent',
-                    color: attributes.backgroundImage ? 'white' : 'inherit'
+                    backgroundColor: (attributes.backgroundImage || attributes.backgroundImageMobile) ? 'rgba(0,0,0,0.3)' : 'transparent',
+                    color: (attributes.backgroundImage || attributes.backgroundImageMobile) ? 'white' : 'inherit'
                 }
             },
                 createElement('div', { className: 'carousel-caption' },

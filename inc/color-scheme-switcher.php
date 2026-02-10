@@ -37,7 +37,7 @@ function ileben_theme_render_color_scheme_switcher() {
     if ( $show ) :
     ?>
     <!-- Desktop switcher (md and up) -->
-    <div id="bs-color-scheme-switcher" class="position-fixed start-0 top-50 translate-middle-y d-none d-md-flex flex-column gap-1 bg-body border rounded-end shadow p-2 z-3"
+    <div id="bs-color-scheme-switcher" class="bs-color-switcher position-fixed start-0 top-50 translate-middle-y d-none d-md-flex flex-column gap-1 bg-body border rounded-end shadow p-2"
          style="--_offset: 8px; left: var(--_offset);">
     <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-theme-value="light" aria-label="Tema claro" title="<?php esc_attr_e('Claro','ileben-landing') ?>"><i class="fa-solid fa-sun"></i></button>
     <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-theme-value="dark" aria-label="Tema oscuro" title="<?php esc_attr_e('Oscuro','ileben-landing') ?>"><i class="fa-solid fa-moon"></i></button>
@@ -45,7 +45,7 @@ function ileben_theme_render_color_scheme_switcher() {
     </div>
 
     <!-- Mobile switcher (below md) -->
-    <div id="bs-color-scheme-switcher-mobile" class="position-fixed bottom-0 start-0 m-3 d-flex d-md-none z-3">
+    <div id="bs-color-scheme-switcher-mobile" class="bs-color-switcher position-fixed bottom-0 start-0 m-3 d-flex d-md-none">
         <div class="dropdown">
             <button class="btn btn-secondary btn-sm dropdown-toggle shadow" type="button" id="bsColorSchemeMenu" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-cloud-sun"></i>

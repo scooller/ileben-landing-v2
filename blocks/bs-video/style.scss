@@ -1,0 +1,58 @@
+/**
+ * Bootstrap Video Block Frontend Styles
+ */
+
+.bs-video-wrapper {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    video {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .video-mask{
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: left 50%;
+        @include media-breakpoint-down(md) {
+            mask-position: center;
+        }
+    }
+    // mobile css media
+    @include media-breakpoint-down(md) {
+        width: 100% !important;
+    }
+}
+
+.bs-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    object-fit: contain;
+    object-position: left 50%;
+    @include media-breakpoint-down(md) {
+        object-position: center;
+    }
+}
+
+/* Support for different object-fit values */
+.bs-video-wrapper.object-fit-cover video {
+    object-fit: cover;
+}
+
+.bs-video-wrapper.object-fit-contain video {
+    object-fit: contain;
+}
+
+.bs-video-wrapper.object-fit-fill video {
+    object-fit: fill;
+}
+
+.bs-video-wrapper.object-fit-scale-down video {
+    object-fit: scale-down;
+}

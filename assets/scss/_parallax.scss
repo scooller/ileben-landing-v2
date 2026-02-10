@@ -19,7 +19,7 @@
 }
 
 /* Optimize for mobile */
-@media (max-width: 768px) {
+@include media-breakpoint-down(md) {
     [data-parallax="true"] {
         will-change: auto;
     }

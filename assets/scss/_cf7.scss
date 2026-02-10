@@ -87,6 +87,11 @@
     padding: 0;
     margin: 0;
     width: 100%;
+    @include media-breakpoint-down(md) {
+      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 6px;
+    }
   }
 
   .cf7-step-indicator-item {
@@ -95,12 +100,19 @@
     gap: 8px;
     font-weight: 600;
     color: inherit;
+    @include media-breakpoint-down(md) {
+      width: 100%;
+    }
 
     .cf7-step-label {
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      @include media-breakpoint-down(md) {
+        font-size: 0.9rem;
+        width: 80%;
+      }
     }
   }
 
@@ -125,16 +137,6 @@
       background: var(--bs-success, #198754);
       opacity: 0.6;
     }
-  }
-}
-
-@media (max-width: 640px) {
-  .cf7-step-indicator .cf7-step-indicator-list {
-    gap: 6px;
-  }
-
-  .cf7-step-indicator .cf7-step-indicator-item .cf7-step-label {
-    font-size: 0.9rem;
   }
 }
 
