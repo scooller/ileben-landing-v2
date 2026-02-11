@@ -231,6 +231,9 @@ function bootstrap_theme_block_editor_assets()
             true
         );
     }
+
+    // Localize theme URI for use in block editor scripts
+    wp_add_inline_script('bootstrap-theme-blocks', 'var ILEBEN_THEME_URI = ' . wp_json_encode(ILEBEN_THEME_URI) . ';', 'before');
 }
 add_action('enqueue_block_editor_assets', 'bootstrap_theme_block_editor_assets');
 
@@ -306,7 +309,9 @@ function bootstrap_theme_enqueue_block_assets()
         // Localize script with AJAX URL
         wp_localize_script('bootstrap-theme-cart-handler', 'bootstrapThemeCart', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('bootstrap_theme_cart_nonce')
+            'nonce' => wp_create_nonce('bootstrap_theme_cart_nonce'),
+            'version' => ILEBEN_THEME_VERSION,
+            'devMode' => ILEBEN_DEV_MODE,
         ));
     }
 }

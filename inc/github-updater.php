@@ -249,7 +249,7 @@ class Ileben_GitHub_Theme_Updater {
                 
                 // Buscar la carpeta temporal de upgrade más reciente
                 if (is_dir($upgrade_dir)) {
-                    $dirs = glob($upgrade_dir . 'scooller-ileben-landing-v2-*', GLOB_ONLYDIR);
+                    $dirs = glob($upgrade_dir . 'ileben-landing-v2-*', GLOB_ONLYDIR);
                     if ($dirs) {
                         usort($dirs, function($a, $b) {
                             return filemtime($b) - filemtime($a);
@@ -258,7 +258,7 @@ class Ileben_GitHub_Theme_Updater {
                         $this->debug_log('Última carpeta temp encontrada: ' . $latest_temp);
                         
                         // Buscar la subcarpeta dentro
-                        $subfolder = glob($latest_temp . '/scooller-ileben-landing-v2-*', GLOB_ONLYDIR);
+                        $subfolder = glob($latest_temp . '/ileben-landing-v2-*', GLOB_ONLYDIR);
                         if ($subfolder) {
                             $source = $subfolder[0];
                             $this->debug_log('Subcarpeta encontrada: ' . $source);
@@ -493,7 +493,7 @@ class Ileben_GitHub_Theme_Updater {
      * Corrige la estructura de carpetas de GitHub zipball
      * 
      * El problema: GitHub zipball descomprime en:
-     *   /wp-content/upgrade/scooller-ileben-landing-v2-xxx/scooller-ileben-landing-v2-yyy/
+     *   /wp-content/upgrade/ileben-landing-v2-xxx/ileben-landing-v2-yyy/
      * 
      * WordPress espera:
      *   /wp-content/upgrade/ileben-landing-v2/
@@ -516,7 +516,7 @@ class Ileben_GitHub_Theme_Updater {
         $upgrade_dir = WP_CONTENT_DIR . '/upgrade/';
         if (is_dir($upgrade_dir)) {
             $this->debug_log('Limpiando carpetas antiguas de upgrade...');
-            $dirs = glob($upgrade_dir . 'scooller-ileben-landing-v2*', GLOB_ONLYDIR);
+            $dirs = glob($upgrade_dir . 'ileben-landing-v2*', GLOB_ONLYDIR);
             foreach ((array) $dirs as $dir) {
                 // No eliminar el directorio actual siendo usado
                 if ($dir !== dirname($source)) {

@@ -63,6 +63,9 @@ if (!defined('ABSPATH')) {
             </div>
             <div class="col-12 text-center mt-3">
                 <p class="mb-0 small text-center">&copy; <?php echo esc_html(date_i18n('Y')); ?> ileben.cl</p>
+                <?php if(ILEBEN_DEV_MODE): ?>
+                    <p class="mb-0 small text-center">Development Mode - Theme Version: <?php echo ILEBEN_THEME_VERSION; ?></p>
+                <?php endif; ?>
             </div>
         </div>
     </div>

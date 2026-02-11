@@ -8,11 +8,37 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-//define('ILEBEN_THEME_VERSION', wp_get_theme()->get('Version'));
-//development versioning
-define('ILEBEN_THEME_VERSION', rand(100000, 999999)); // For cache busting during development, replace with static version for production
+// Define theme directory constants
 define('ILEBEN_THEME_DIR', get_template_directory());
 define('ILEBEN_THEME_URI', get_template_directory_uri());
+
+/**
+ * Initialize theme constants after ACF is ready
+ */
+function ileben_init_constants() {
+    // Check dev mode from ACF if available
+    $dev_mode = false;
+    if (function_exists('get_field')) {
+        $dev_mode = (bool) get_field('dev_mode', 'option');
+    }
+    
+    // Define dev mode constant
+    if (!defined('ILEBEN_DEV_MODE')) {
+        define('ILEBEN_DEV_MODE', $dev_mode);
+    }
+    
+    // Define theme version constant
+    if (!defined('ILEBEN_THEME_VERSION')) {
+        if (ILEBEN_DEV_MODE) {
+            // Development versioning for cache busting
+            define('ILEBEN_THEME_VERSION', rand(100000, 999999));
+        } else {
+            // Production versioning
+            define('ILEBEN_THEME_VERSION', wp_get_theme()->get('Version'));
+        }
+    }
+}
+add_action('after_setup_theme', 'ileben_init_constants', 1);
 
 $theme_includes = [
     '/inc/setup.php',
@@ -39,10 +65,20 @@ foreach ($theme_includes as $file) {
     }
 }
 
-// Include theme editor styles
-// add_editor_style(array(
-//     'assets/css/editor.css',
-// ));
+/**
+ * Configure admin bar visibility based on ACF settings
+ */
+function ileben_configure_admin_bar() {
+    if (function_exists('get_field')) {
+        $show_admin_bar = get_field('show_admin_bar', 'option');
+        if ($show_admin_bar) {
+            add_filter('show_admin_bar', '__return_true');
+        } else {
+            add_filter('show_admin_bar', '__return_false');
+        }
+    }
+}
+add_action('after_setup_theme', 'ileben_configure_admin_bar');
 
 function add_custom_logo_class($html)
 {
@@ -60,13 +96,3 @@ function ileben_admin_custom_css() {
     </style>';
 }
 add_action('admin_head', 'ileben_admin_custom_css');
-
-// check if ACF is active
-if (function_exists('get_field')) {
-    // Show admin bar
-    if (get_field('show_admin_bar', 'option') == 'Si') {
-        add_filter('show_admin_bar', '__return_true');
-    } else {
-        add_filter('show_admin_bar', '__return_false');
-    }
-}

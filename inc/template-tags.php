@@ -77,7 +77,7 @@ function ileben_render_loader()
     ?>
     <div id="site-loader" class="site-loader" aria-hidden="true">
         <div class="loader-inner text-center">
-            <img src="https://ileben.cl/wp-content/uploads/2022/02/logo-leben-solo.svg" alt="<?php esc_attr_e('Ileben', 'ileben-landing'); ?>" class="img-logo">
+            <img src="<?php echo ILEBEN_THEME_URI . '/assets/images/logo-leben-solo.svg'; ?>" alt="<?php esc_attr_e('Ileben', 'ileben-landing'); ?>" class="img-logo">
             <br>
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>

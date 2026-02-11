@@ -134,7 +134,7 @@
             "acfe_thumbnail": 0
         },
         {
-            "key": "field_6977c772711f5",
+            "key": "field_footer_logo_dark",
             "label": "Logo Footer (Dark)",
             "name": "footer_logo_dark",
             "aria-label": "",
@@ -184,7 +184,7 @@
             "allow_in_bindings": 0
         },
         {
-            "key": "field_69404b557cc04",
+            "key": "field_extra_code",
             "label": "Código Extra",
             "name": "extra_code",
             "aria-label": "",
@@ -413,7 +413,7 @@
             "selected": 0
         },
         {
-            "key": "field_69415b7a6a89d",
+            "key": "field_asesores",
             "label": "Asesores",
             "name": "asesores",
             "aria-label": "",
@@ -436,7 +436,7 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_69415c056a8a0",
+                    "key": "field_asesores_imagen",
                     "label": "Imagen",
                     "name": "imagen",
                     "aria-label": "",
@@ -465,7 +465,7 @@
                     "parent_repeater": "field_69415b7a6a89d"
                 },
                 {
-                    "key": "field_69415b8e6a89e",
+                    "key": "field_asesores_nombre",
                     "label": "Nombre",
                     "name": "nombre",
                     "aria-label": "",
@@ -487,7 +487,7 @@
                     "parent_repeater": "field_69415b7a6a89d"
                 },
                 {
-                    "key": "field_69415c316a8a1",
+                    "key": "field_asesores_email",
                     "label": "Email",
                     "name": "email",
                     "aria-label": "",
@@ -509,7 +509,7 @@
                     "parent_repeater": "field_69415b7a6a89d"
                 },
                 {
-                    "key": "field_69415bc56a89f",
+                    "key": "field_asesores_telefono",
                     "label": "Telefono",
                     "name": "fono",
                     "aria-label": "",
@@ -1033,7 +1033,7 @@
             "selected": 0
         },
         {
-            "key": "field_69406c622ed63",
+            "key": "field_mostrar_barra_admin",
             "label": "Mostrar Barra",
             "name": "show_admin_bar",
             "aria-label": "",
@@ -1042,11 +1042,32 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50%",
                 "class": "",
                 "id": ""
             },
             "message": "Mostrar barra admin",
+            "default_value": 1,
+            "allow_in_bindings": 0,
+            "ui_on_text": "Si",
+            "ui_off_text": "No",
+            "ui": 1
+        },
+        {
+            "key": "field_modo_desarrollo",
+            "label": "Modo Desarrollo",
+            "name": "dev_mode",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50%",
+                "class": "",
+                "id": ""
+            },
+            "message": "Modo Desarrollo (desactiva optimizaciones y cache)",
             "default_value": 1,
             "allow_in_bindings": 0,
             "ui_on_text": "Si",
@@ -2779,5 +2800,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1695762631
+    "modified": 1770710400
 }

@@ -17,8 +17,8 @@
         keywords: [__('video'), __('mask'), __('phone'), __('frame')],
         attributes: {
             videoUrl: { type: 'string', default: '' },
-            maskUrl: { type: 'string', default: '' },
-            overlayUrl: { type: 'string', default: '' },
+            maskUrl: { type: 'string', default: ILEBEN_THEME_URI + '/assets/images/mask/iphone-back-mask.png' },
+            overlayUrl: { type: 'string', default: ILEBEN_THEME_URI + '/assets/images/mask/apple-iphone-12-pro-medium.png' },
             width: { type: 'string', default: '100%' },
             height: { type: 'string', default: 'auto' },
             autoplay: { type: 'boolean', default: true },

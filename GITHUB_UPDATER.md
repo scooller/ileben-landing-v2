@@ -124,7 +124,7 @@ private $github_token = 'ghp_tuTokenAqui';
 
 ### Folder con nombre incorrecto después de actualizar
 
-El sistema debería renombrar automáticamente el folder de GitHub (`scooller-ileben-landing-v2-abc123`) a `ileben-landing-v2`. Si no funciona:
+El sistema debería renombrar automáticamente el folder de GitHub (`ileben-landing-v2-abc123`) a `ileben-landing-v2`. Si no funciona:
 
 1. Revisa `debug.log` para ver errores de renombrado
 2. Verifica que `upgrader_source_selection` se esté ejecutando
