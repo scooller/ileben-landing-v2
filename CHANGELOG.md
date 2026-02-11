@@ -2,6 +2,17 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.11] - 2026-02-11
+
+### 🔄 Sistema de Actualizaciones
+- **GitHub Theme Updater:** Correcciones para instalaciones desde zipball.
+  - Resolucion de estructura de carpetas para `style.css`.
+  - Renombrado del tema al slug correcto despues de instalar.
+  - Limpieza de carpetas antiguas en `/wp-content/upgrade/`.
+  - Limpieza de cache de temas y headers despues de actualizar.
+- **Logs condicionales:** Los logs ahora se escriben solo si `WP_DEBUG_LOG` es verdadero.
+- **Activacion estable:** Se restaura el tema activo al slug correcto tras la actualizacion.
+
 ## [0.1.10] - 2026-01-28
 
 ### 🎨 Bloques de Gutenberg

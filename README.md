@@ -3,8 +3,8 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.9  
-**Compatibilidad:** PHP 8.2+, WordPress 6.0+, ACF Pro
+**Versión:** 0.1.11  
+**Compatibilidad:** PHP 8.3+, WordPress 6.0+ (tested 6.4), ACF Pro
 
 ---
 
@@ -78,8 +78,8 @@ ileben-landing-v2/
 ### 1. Requisitos previos
 
 - Node.js 20+ (incluye npm)
-- WordPress 6.0+
-- PHP 8.2+
+- WordPress 6.0+ (tested 6.4)
+- PHP 8.3+
 - ACF Pro (recomendado para campos personalizados)
 
 ### 2. Instalación del tema
@@ -142,7 +142,7 @@ Limpia el caché y fuerza a WordPress a verificar actualizaciones inmediatamente
 
 1. **Desarrollo Local:** Haces cambios en el código y compilas los assets con `npm run build:all`
 2. **Git Push:** Subes los cambios a GitHub (`git push origin main`)
-3. **GitHub Release:** Creas un Release con un tag que coincida con la versión (ej: `v0.2.0`)
+3. **GitHub Release:** Creas un Release con un tag que coincida con la versión (ej: `vX.Y.Z`)
 4. **WordPress Detecta:** El theme updater verifica automáticamente si hay nuevas versiones
 5. **Admin Notifica:** Se muestra "Actualizar ahora" en Apariencia → Temas
 6. **Un Clic:** Haces clic y se descarga e instala automáticamente
@@ -153,21 +153,21 @@ Limpia el caché y fuerza a WordPress a verificar actualizaciones inmediatamente
 
 ```bash
 # Edita style.css y functions.php con la nueva versión
-Version: 0.2.0
+Version: X.Y.Z
 ```
 
 En `style.css`:
 ```css
 /*
 Theme Name: ileben-landing-v2
-Version: 0.2.0
+Version: X.Y.Z
 ...
 */
 ```
 
 En `functions.php`:
 ```php
-define('ILEBEN_THEME_VERSION', '0.2.0');
+define('ILEBEN_THEME_VERSION', 'X.Y.Z');
 ```
 
 #### Paso 2: Compilar y Hacer Commit
@@ -178,7 +178,7 @@ npm run build
 
 # Haz commit de los cambios
 git add .
-git commit -m "Version bump to 0.2.0 - Add new features and fixes"
+git commit -m "Version bump to X.Y.Z - Add new features and fixes"
 git push origin main
 ```
 
@@ -187,8 +187,8 @@ git push origin main
 1. Ve a https://github.com/scooller/ileben-landing-v2/releases
 2. Clic en **"Create a new release"**
 3. Completa los campos:
-   - **Tag version:** `v0.2.0` (IMPORTANTE: debe coincidir con Version en style.css)
-   - **Release title:** `Version 0.2.0`
+  - **Tag version:** `vX.Y.Z` (IMPORTANTE: debe coincidir con Version en style.css)
+  - **Release title:** `Version X.Y.Z`
    - **Description:** (opcional) Describe los cambios realizados
    - **Publish release:** Clic en botón
 
@@ -213,7 +213,7 @@ git push origin main
 ┌─────────────────────────────────────────────────────────────────┐
 │ GITHUB                                                          │
 │ ├─ Code está en main                                            │
-│ └─ Crear Release con tag v0.2.0                                 │
+│ └─ Crear Release con tag vX.Y.Z                                 │
 │    └─ Genera automáticamente ZIP (zipball_url)                  │
 └────────────────────┬────────────────────────────────────────────┘
                      │
@@ -221,7 +221,7 @@ git push origin main
 ┌─────────────────────────────────────────────────────────────────┐
 │ WORDPRESS PRODUCTION                                            │
 │ ├─ inc/github-updater.php verifica GitHub API cada 12 horas     │
-│ ├─ Detecta nueva versión (0.2.0 > 0.1.9)                       │
+│ ├─ Detecta nueva versión (X.Y.Z > A.B.C)                        │
 │ └─ Muestra "Actualizar ahora" en Apariencia → Temas             │
 └────────────────────┬────────────────────────────────────────────┘
                      │
