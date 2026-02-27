@@ -50,8 +50,8 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
         'post_type' => 'plantas',
         'post_status' => 'publish',
         'posts_per_page' => $posts_per_page,
-        'orderby' => 'date',
-        'order' => 'DESC',
+        'orderby' => 'menu_order',
+        'order' => 'ASC',
     );
 
     // Aplicar filtro de categoría si está seleccionado (solo en backend/bloque)
@@ -61,6 +61,8 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                 'taxonomy' => 'categoria_planta',
                 'field' => 'slug',
                 'terms' => $filterCategoria,
+                'orderby' => 'name',
+                'order' => 'ASC',
             ),
         );
     }
