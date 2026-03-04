@@ -144,14 +144,14 @@ add_action('wp_enqueue_scripts', function () {
         }
     }
 
-    // Google Fonts enqueue
+    // Google Fonts enqueue (with display=swap for FOUT optimization)
     $family = ileben_google_font_family();
     $family = str_replace('&#038;', '&', $family); // Fix ACF encoding issue
     $google_url = 'https://fonts.googleapis.com/css2?' . $family . '&display=swap';
     wp_enqueue_style('ileben-google-fonts', $google_url, [], null);
 
-    // Font Awesome
-    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', [], '6.4.0');
+    // Font Awesome is loaded asynchronously via font-loader.js for better performance
+    // This prevents render-blocking and improves LCP
 
     // Theme base stylesheet
     wp_enqueue_style('ileben-theme-style', ILEBEN_THEME_URI . '/style.css', [], ILEBEN_THEME_VERSION);
@@ -402,3 +402,52 @@ add_action('wp_enqueue_scripts', function () {
     $css = ob_get_clean();
     wp_add_inline_style('ileben-theme-style', $css);
 }, 20);
+/**
+ * Preload LCP (Largest Contentful Paint) images from Bootstrap carousel blocks
+ * Improves LCP by making carousel background images discoverable in HTML
+ */
+add_action('wp_head', function() {
+    if (!is_main_query() || is_admin()) {
+        return;
+    }
+
+    global $post;
+    if (!$post || !has_blocks($post)) {
+        return;
+    }
+
+    // Parse carousel blocks from post content
+    $blocks = parse_blocks($post->post_content);
+    $carousel_urls = [];
+
+    // Recursively find carousel-item blocks and extract image URLs
+    function ileben_extract_carousel_images($blocks, &$urls) {
+        foreach ($blocks as $block) {
+            if ($block['blockName'] === 'bootstrap-theme/bs-carousel-item') {
+                // Get background image for desktop (preferred)
+                if (!empty($block['attrs']['backgroundImage']['url'])) {
+                    $urls[] = $block['attrs']['backgroundImage']['url'];
+                } elseif (!empty($block['attrs']['backgroundImageMobile']['url'])) {
+                    // Fallback to mobile image if no desktop image
+                    $urls[] = $block['attrs']['backgroundImageMobile']['url'];
+                }
+            }
+
+            // Recursively check inner blocks
+            if (!empty($block['innerBlocks'])) {
+                ileben_extract_carousel_images($block['innerBlocks'], $urls);
+            }
+        }
+    }
+
+    ileben_extract_carousel_images($blocks, $carousel_urls);
+
+    // Output preload links for carousel images
+    if (!empty($carousel_urls)) {
+        foreach (array_unique($carousel_urls) as $image_url) {
+            // Sanitize and output preload
+            $image_url = esc_url($image_url);
+            echo '<link rel="preload" as="image" href="' . $image_url . '" fetchpriority="high" crossorigin="anonymous" />' . "\n";
+        }
+    }
+}, 1); // Priority 1: run VERY early, before stylesheets (priority 10 default)
