@@ -10,8 +10,21 @@
   transform: scale(1);
   transition: all 0.5s ease;
   box-shadow: var(--bs-box-shadow-sm);
-  &:hover { 
-    transform: scale(1.01);
-    box-shadow: var(--bs-box-shadow);
+  
+  /* Disable hover effects on mobile for better performance */
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { 
+      transform: scale(1.01);
+      box-shadow: var(--bs-box-shadow);
+    }
+  }
+}
+
+/* Reduce motion for users with prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

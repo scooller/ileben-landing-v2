@@ -12,7 +12,15 @@ if (!defined('ABSPATH')) {
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?php echo esc_url(get_site_icon_url()); ?>" />
-    <?php if (function_exists('the_field')) { the_field('analytics_code', 'option'); } ?>
+    <!-- Resource hints for critical third-party resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Critical CSS for icon fallback to prevent CLS -->
+    <style>
+      [class*=" fa-"]::before, [class^="fa-"]::before { font-family: "Font Awesome 6 Free" !important; }
+    </style>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>

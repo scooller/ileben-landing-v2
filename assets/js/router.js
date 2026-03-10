@@ -1,12 +1,19 @@
 const routes = {
   common() {
-    //on scroll add class to nav
+    //on scroll add class to nav - with throttle for better mobile performance
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      const nav = document.querySelector('#site-header');
-      if (nav) {
-        nav.classList.toggle('scrolled', window.scrollY > 0);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const nav = document.querySelector('#site-header');
+          if (nav) {
+            nav.classList.toggle('scrolled', window.scrollY > 0);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-    });
+    }, { passive: true });
   },
   front_page() {
     // Animations handled externally

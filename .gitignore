@@ -29,6 +29,7 @@ dump*
 *.tar
 *.gz
 *.7z
+locales.ileben.cl-*.json
 
 # Archivos del sistema
 .DS_Store

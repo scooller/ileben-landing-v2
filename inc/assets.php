@@ -51,6 +51,10 @@ function ileben_find_asset($pattern)
 
     $files = glob($dist_path . $pattern);
     if (!empty($files)) {
+        usort($files, function ($a, $b) {
+            return filemtime($b) <=> filemtime($a);
+        });
+
         return ILEBEN_THEME_URI . '/dist/assets/' . basename($files[0]);
     }
 
@@ -150,8 +154,9 @@ add_action('wp_enqueue_scripts', function () {
     $google_url = 'https://fonts.googleapis.com/css2?' . $family . '&display=swap';
     wp_enqueue_style('ileben-google-fonts', $google_url, [], null);
 
-    // Font Awesome is loaded asynchronously via font-loader.js for better performance
-    // This prevents render-blocking and improves LCP
+    // Font Awesome frontend fallback: ensure icons always render
+    // (async loader in JS can still run, but will detect existing stylesheet)
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', [], '6.4.0');
 
     // Theme base stylesheet
     wp_enqueue_style('ileben-theme-style', ILEBEN_THEME_URI . '/style.css', [], ILEBEN_THEME_VERSION);
@@ -451,3 +456,83 @@ add_action('wp_head', function() {
         }
     }
 }, 1); // Priority 1: run VERY early, before stylesheets (priority 10 default)
+
+/**
+ * Defer analytics code injection from ACF option to reduce main-thread blocking.
+ */
+add_action('wp_footer', function () {
+        if (!function_exists('get_field')) {
+                return;
+        }
+
+        $analytics_code = get_field('analytics_code', 'option');
+        if (empty($analytics_code) || !is_string($analytics_code)) {
+                return;
+        }
+
+        $analytics_code = trim($analytics_code);
+        if ($analytics_code === '') {
+                return;
+        }
+        ?>
+        <script>
+        (function () {
+            var analyticsMarkup = <?php echo wp_json_encode($analytics_code); ?>;
+            if (!analyticsMarkup) return;
+            var interactionEvents = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+            var fallbackTimer = null;
+
+            function injectAnalytics() {
+                if (window.__ilebenAnalyticsInjected) return;
+                window.__ilebenAnalyticsInjected = true;
+
+                cleanupInteractionListeners();
+                if (fallbackTimer) {
+                    clearTimeout(fallbackTimer);
+                    fallbackTimer = null;
+                }
+
+                var fragment = document.createRange().createContextualFragment(analyticsMarkup);
+                document.body.appendChild(fragment);
+            }
+
+            function onFirstInteraction() {
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(injectAnalytics, { timeout: 1000 });
+                } else {
+                    setTimeout(injectAnalytics, 0);
+                }
+            }
+
+            function cleanupInteractionListeners() {
+                interactionEvents.forEach(function (eventName) {
+                    window.removeEventListener(eventName, onFirstInteraction, { passive: true });
+                });
+            }
+
+            function armAnalyticsInjection() {
+                if (window.__ilebenAnalyticsArmed) return;
+                window.__ilebenAnalyticsArmed = true;
+
+                interactionEvents.forEach(function (eventName) {
+                    window.addEventListener(eventName, onFirstInteraction, { once: true, passive: true });
+                });
+
+                fallbackTimer = setTimeout(function () {
+                    if ('requestIdleCallback' in window) {
+                        requestIdleCallback(injectAnalytics, { timeout: 1500 });
+                    } else {
+                        injectAnalytics();
+                    }
+                }, 12000);
+            }
+
+            if (document.readyState === 'complete') {
+                armAnalyticsInjection();
+            } else {
+                window.addEventListener('load', armAnalyticsInjection, { once: true });
+            }
+        })();
+        </script>
+        <?php
+}, 100);

@@ -121,7 +121,13 @@ class GSAPAnimationManager {
   setupAnimation(element, config) {
     const key = this.getElementKey(element);
     
-    switch (config.trigger) {
+    // On mobile, convert scroll and hover animations to on-load for better performance
+    let trigger = config.trigger;
+    if (this.isMobile && (trigger === 'on-scroll' || trigger === 'on-hover')) {
+      trigger = 'on-load';
+    }
+    
+    switch (trigger) {
       case 'on-load':
         this.animateOnLoad(element, config);
         break;

@@ -21,9 +21,6 @@ function ileben_enqueue_gallery_assets()
 }
 add_action('wp_enqueue_scripts', 'ileben_enqueue_gallery_assets');
 
-// Register block type
-register_block_type(__DIR__ . '/block.json');
-
 /**
  * Dynamic render callback
  */

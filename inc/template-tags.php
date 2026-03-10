@@ -7,6 +7,22 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+/**
+ * Generate lazy-loaded image with placeholder and srcset support
+ * 
+ * Usage:
+ *   echo ileben_lazy_image($image_id, 'large', ['alt' => 'Custom alt text']);
+ *   
+ * For better performance:
+ *   - Always provide width/height to prevent layout shift
+ *   - Use 'large' or 'medium' sizes
+ *   - The function automatically generates srcset for responsive images
+ * 
+ * @param int $image_id Attachment ID
+ * @param string $size WordPress image size, or custom dimensions like '800x600'
+ * @param array $attrs Additional HTML attributes
+ * @return string HTML img tag with lazy loading
+ */
 function ileben_lazy_image($image_id, $size = 'large', $attrs = [])
 {
     $image = wp_get_attachment_image_src($image_id, $size);
@@ -14,12 +30,18 @@ function ileben_lazy_image($image_id, $size = 'large', $attrs = [])
         return '';
     }
 
+    // Get srcset for responsive images
+    $srcset = wp_get_attachment_image_srcset($image_id, $size);
+    $sizes = wp_get_attachment_image_sizes($image_id, $size);
+
     $defaults = [
         'class' => 'lazyload img-fluid',
         'alt' => get_post_meta($image_id, '_wp_attachment_image_alt', true),
         'width' => $image[1],
         'height' => $image[2],
         'loading' => 'lazy',
+        'data-srcset' => $srcset ?: '',
+        'data-sizes' => $sizes ?: 'auto',
     ];
 
     $attrs = wp_parse_args($attrs, $defaults);

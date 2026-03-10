@@ -41,6 +41,7 @@ function ileben_init_constants() {
 add_action('after_setup_theme', 'ileben_init_constants', 1);
 
 $theme_includes = [
+    '/inc/cache-optimization.php', // Load caching first to benefit all modules
     '/inc/setup.php',
     '/inc/assets.php',
     '/inc/acf.php',

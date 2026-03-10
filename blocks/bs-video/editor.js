@@ -8,6 +8,7 @@
     const { InspectorControls, MediaUploadCheck, MediaUpload, useBlockProps } = wp.blockEditor;
     const { PanelBody, TextControl, ToggleControl, Button, __experimentalNumberControl: NumberControl } = wp.components;
     const { createElement: el, Fragment } = wp.element;
+    const themeUri = (typeof window.ILEBEN_THEME_URI === 'string') ? window.ILEBEN_THEME_URI : '';
 
     registerBlockType('bootstrap-theme/bs-video', {
         title: __('Video with Mask', 'bootstrap-theme'),
@@ -17,8 +18,8 @@
         keywords: [__('video'), __('mask'), __('phone'), __('frame')],
         attributes: {
             videoUrl: { type: 'string', default: '' },
-            maskUrl: { type: 'string', default: ILEBEN_THEME_URI + '/assets/images/mask/iphone-back-mask.png' },
-            overlayUrl: { type: 'string', default: ILEBEN_THEME_URI + '/assets/images/mask/apple-iphone-12-pro-medium.png' },
+            maskUrl: { type: 'string', default: themeUri ? (themeUri + '/assets/images/mask/iphone-back-mask.png') : '' },
+            overlayUrl: { type: 'string', default: themeUri ? (themeUri + '/assets/images/mask/apple-iphone-12-pro-medium.png') : '' },
             width: { type: 'string', default: '100%' },
             height: { type: 'string', default: 'auto' },
             autoplay: { type: 'boolean', default: true },

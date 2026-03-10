@@ -19,6 +19,13 @@ export default defineConfig({
         entryFileNames: 'assets/main-[hash].js',
         assetFileNames: 'assets/[name]-[hash][extname]'
       }
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
     }
   },
   server: {

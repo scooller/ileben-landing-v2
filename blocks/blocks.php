@@ -165,6 +165,7 @@ function bootstrap_theme_block_editor_assets()
 
     // Always enqueue plantas categorías for the block editor (outside the loop)
     wp_enqueue_script('wp-blocks');
+    wp_add_inline_script('wp-blocks', 'window.ILEBEN_THEME_URI = ' . wp_json_encode(ILEBEN_THEME_URI) . ';', 'before');
     $categorias_plantas = get_terms(array(
         'taxonomy' => 'categoria_planta',
         'hide_empty' => false,

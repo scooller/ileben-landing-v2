@@ -31,79 +31,82 @@ add_action('after_setup_theme', function () {
         $GLOBALS['content_width'] = 1200;
     }
 
-    // Add support for editor color palette from ACF Options
-    // Helper function to safely get ACF field with fallback
-    $get_color = function($field_name, $default) {
-        return function_exists('get_field') ? (get_field($field_name, 'option') ?: $default) : $default;
-    };
-    
-    $colors = [
-        // Base colors
-        'base' => [
-            'blue' => $get_color('color_blue', '#0d6efd'),
-            'indigo' => $get_color('color_indigo', '#6610f2'),
-            'purple' => $get_color('color_purple', '#6f42c1'),
-            'pink' => $get_color('color_pink', '#d63384'),
-            'red' => $get_color('color_red', '#dc3545'),
-            'orange' => $get_color('color_orange', '#fd7e14'),
-            'yellow' => $get_color('color_yellow', '#ffc107'),
-            'green' => $get_color('color_green', '#198754'),
-            'teal' => $get_color('color_teal', '#20c997'),
-            'cyan' => $get_color('color_cyan', '#0dcaf0'),
-            'black' => $get_color('color_black', '#000'),
-            'white' => $get_color('color_white', '#fff'),
-            'gray' => $get_color('color_gray', '#6c757d'),
-            'gray-dark' => $get_color('color_gray_dark', '#343a40'),
-        ],
-        // Gray scale
-        'gray-scale' => [
-            'gray-100' => $get_color('color_gray_100', '#f8f9fa'),
-            'gray-200' => $get_color('color_gray_200', '#e9ecef'),
-            'gray-300' => $get_color('color_gray_300', '#dee2e6'),
-            'gray-400' => $get_color('color_gray_400', '#ced4da'),
-            'gray-500' => $get_color('color_gray_500', '#adb5bd'),
-            'gray-600' => $get_color('color_gray_600', '#6c757d'),
-            'gray-700' => $get_color('color_gray_700', '#495057'),
-            'gray-800' => $get_color('color_gray_800', '#343a40'),
-            'gray-900' => $get_color('color_gray_900', '#212529'),
-        ],
-        // Theme colors
-        'theme-colors' => [
-            'primary' => $get_color('color_primary', '#0d6efd'),
-            'secondary' => $get_color('color_secondary', '#6c757d'),
-            'success' => $get_color('color_success', '#198754'),
-            'info' => $get_color('color_info', '#0dcaf0'),
-            'warning' => $get_color('color_warning', '#ffc107'),
-            'danger' => $get_color('color_danger', '#dc3545'),
-            'light' => $get_color('color_light', '#f8f9fa'),
-            'dark' => $get_color('color_dark', '#212529'),
-        ],
-        // Body colors
-        'body-colors' => [
-            'body-color' => $get_color('color_body', '#212529'),
-            'body-bg' => $get_color('color_body_bg', '#fff'),
-        ],
-        // Link colors
-        'link-colors' => [
-            'link-color' => $get_color('color_link', '#0d6efd'),
-            'link-hover-color' => $get_color('color_link_hover', '#0a58ca'),
-        ],
-        // Border
-        'border' => [
-            'border-color' => $get_color('color_border', '#dee2e6'),
-        ],
-        // System colors
-        'system-colors' => [
-            'emphasis-color' => $get_color('color_emphasis', '#000'),
-            'secondary-color' => $get_color('color_secondary_color', '#212529'),
-            'secondary-bg' => $get_color('color_secondary_bg', '#e9ecef'),
-            'tertiary-color' => $get_color('color_tertiary_color', '#212529'),
-            'tertiary-bg' => $get_color('color_tertiary_bg', '#f8f9fa'),
-            'code-color' => $get_color('color_code', '#d63384'),
-            'highlight-color' => $get_color('color_highlight', '#212529'),
-            'highlight-bg' => $get_color('color_highlight_bg', '#fff3cd'),
-        ],
-    ];
+    // Add support for editor color palette from ACF Options (with caching)
+    // Cache colors for 1 hour to avoid repeated database queries
+    $colors = ileben_get_cached_template_data('editor_colors', function() {
+        // Helper function to safely get ACF field with fallback and cache
+        $get_color = function($field_name, $default) {
+            return ileben_get_cached_color($field_name, $default);
+        };
+        
+        return [
+            // Base colors
+            'base' => [
+                'blue' => $get_color('color_blue', '#0d6efd'),
+                'indigo' => $get_color('color_indigo', '#6610f2'),
+                'purple' => $get_color('color_purple', '#6f42c1'),
+                'pink' => $get_color('color_pink', '#d63384'),
+                'red' => $get_color('color_red', '#dc3545'),
+                'orange' => $get_color('color_orange', '#fd7e14'),
+                'yellow' => $get_color('color_yellow', '#ffc107'),
+                'green' => $get_color('color_green', '#198754'),
+                'teal' => $get_color('color_teal', '#20c997'),
+                'cyan' => $get_color('color_cyan', '#0dcaf0'),
+                'black' => $get_color('color_black', '#000'),
+                'white' => $get_color('color_white', '#fff'),
+                'gray' => $get_color('color_gray', '#6c757d'),
+                'gray-dark' => $get_color('color_gray_dark', '#343a40'),
+            ],
+            // Gray scale
+            'gray-scale' => [
+                'gray-100' => $get_color('color_gray_100', '#f8f9fa'),
+                'gray-200' => $get_color('color_gray_200', '#e9ecef'),
+                'gray-300' => $get_color('color_gray_300', '#dee2e6'),
+                'gray-400' => $get_color('color_gray_400', '#ced4da'),
+                'gray-500' => $get_color('color_gray_500', '#adb5bd'),
+                'gray-600' => $get_color('color_gray_600', '#6c757d'),
+                'gray-700' => $get_color('color_gray_700', '#495057'),
+                'gray-800' => $get_color('color_gray_800', '#343a40'),
+                'gray-900' => $get_color('color_gray_900', '#212529'),
+            ],
+            // Theme colors
+            'theme-colors' => [
+                'primary' => $get_color('color_primary', '#0d6efd'),
+                'secondary' => $get_color('color_secondary', '#6c757d'),
+                'success' => $get_color('color_success', '#198754'),
+                'info' => $get_color('color_info', '#0dcaf0'),
+                'warning' => $get_color('color_warning', '#ffc107'),
+                'danger' => $get_color('color_danger', '#dc3545'),
+                'light' => $get_color('color_light', '#f8f9fa'),
+                'dark' => $get_color('color_dark', '#212529'),
+            ],
+            // Body colors
+            'body-colors' => [
+                'body-color' => $get_color('color_body', '#212529'),
+                'body-bg' => $get_color('color_body_bg', '#fff'),
+            ],
+            // Link colors
+            'link-colors' => [
+                'link-color' => $get_color('color_link', '#0d6efd'),
+                'link-hover-color' => $get_color('color_link_hover', '#0a58ca'),
+            ],
+            // Border
+            'border' => [
+                'border-color' => $get_color('color_border', '#dee2e6'),
+            ],
+            // System colors
+            'system-colors' => [
+                'emphasis-color' => $get_color('color_emphasis', '#000'),
+                'secondary-color' => $get_color('color_secondary_color', '#212529'),
+                'secondary-bg' => $get_color('color_secondary_bg', '#e9ecef'),
+                'tertiary-color' => $get_color('color_tertiary_color', '#212529'),
+                'tertiary-bg' => $get_color('color_tertiary_bg', '#f8f9fa'),
+                'code-color' => $get_color('color_code', '#d63384'),
+                'highlight-color' => $get_color('color_highlight', '#212529'),
+                'highlight-bg' => $get_color('color_highlight_bg', '#fff3cd'),
+            ],
+        ];
+    }, 3600 * 2); // Cache for 2 hours
     
     
     $color_palette = [];

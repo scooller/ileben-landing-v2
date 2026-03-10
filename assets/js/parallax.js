@@ -14,6 +14,12 @@ gsap.registerPlugin(ScrollTrigger);
  * Similar to: https://codepen.io/GreenSock/pen/QWjjYEw
  */
 function initParallax() {
+    // Disable parallax on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+        return;
+    }
+
     const parallaxElements = document.querySelectorAll('[data-parallax="true"]');
 
     // Track carousels to avoid adding multiple listeners for the same carousel
