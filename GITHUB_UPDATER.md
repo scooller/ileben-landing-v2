@@ -19,7 +19,7 @@ Version: 0.1.12  <-- Aumentar este número
 
 ```bash
 git add .
-git commit -m "Bump version to 0.1.11"
+git commit -m "Bump version to 0.1.12"
 git push origin main
 ```
 
@@ -28,7 +28,7 @@ git push origin main
 1. Ve a tu repositorio: `https://github.com/scooller/ileben-landing-v2`
 2. Click en "Releases" → "Draft a new release"
 3. **Tag version:** `v0.1.12` (debe coincidir con la versión de style.css)
-4. **Release title:** `Version 0.1.11`
+4. **Release title:** `Version 0.1.12`
 5. **Description:** Describe los cambios
 6. Click en "Publish release"
 
@@ -112,7 +112,7 @@ private $github_token = 'ghp_tuTokenAqui';
 ### No aparece la actualización
 
 1. Ve a `?ileben_debug_updater=1` para ver el estado
-2. Verifica que el tag del release empiece con `v` (ej: `v0.1.11`)
+2. Verifica que el tag del release empiece con `v` (ej: `v0.1.12`)
 3. Verifica que la versión en `style.css` sea menor que la del release
 4. Fuerza la verificación con `?ileben_force_update=1`
 
