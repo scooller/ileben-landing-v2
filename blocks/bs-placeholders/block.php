@@ -17,7 +17,7 @@ function bootstrap_theme_render_bs_placeholders_block($attributes, $content, $bl
     $color = $attributes['color'] ?? '';
     $size = $attributes['size'] ?? '';
     $placeholders = $attributes['placeholders'] ?? array();
-    
+
     if (empty($placeholders)) {
         $placeholders = array(
             array('width' => '6', 'type' => 'placeholder'),
@@ -27,55 +27,52 @@ function bootstrap_theme_render_bs_placeholders_block($attributes, $content, $bl
             array('width' => '8', 'type' => 'placeholder')
         );
     }
-    
+
     // Build container classes
     $container_classes = array('placeholder-container');
-    
+
     // Add custom CSS classes from Advanced panel
     $container_classes = bootstrap_theme_add_custom_classes($container_classes, $attributes, $block);
-    
+
     $container_class_string = implode(' ', array_unique($container_classes));
-    
-    $output = '<div class="' . esc_attr($container_class_string) . '">';
-    
-    foreach ($placeholders as $placeholder) {
-        $width = $placeholder['width'] ?? '12';
-        $type = $placeholder['type'] ?? 'placeholder';
-        
-        if ($type === 'text') {
-            $output .= '<p class="placeholder-paragraph">';
-            $for_count = intval($width);
-            for ($i = 0; $i < $for_count; $i++) {
-                $output .= '<span class="placeholder col-' . esc_attr($width) . '"></span> ';
-            }
-            $output .= '</p>';
-        } else {
-            // Build placeholder classes
-            $classes = array('placeholder');
-            
-            if (!empty($color)) {
-                $classes[] = 'bg-' . $color;
-            }
-            
-            if (!empty($size)) {
-                $classes[] = 'placeholder-' . $size;
-            }
-            
-            if (!empty($animation)) {
-                $classes[] = 'placeholder-' . $animation;
-            }
-            
-            $classes[] = 'col-' . $width;
-            
-            $class_string = implode(' ', $classes);
-            
-            $output .= '<span class="' . esc_attr($class_string) . '"></span>';
-        }
-    }
-    
-    $output .= '</div>';
-    
-    return $output;
+
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($container_class_string); ?>">
+        <?php foreach ($placeholders as $placeholder) : ?>
+            <?php
+            $width = $placeholder['width'] ?? '12';
+            $type = $placeholder['type'] ?? 'placeholder';
+            ?>
+            <?php if ($type === 'text') : ?>
+                <p class="placeholder-paragraph">
+                    <?php $for_count = intval($width); ?>
+                    <?php for ($i = 0; $i < $for_count; $i++) : ?>
+                        <span class="placeholder col-<?php echo esc_attr($width); ?>"></span>
+                    <?php endfor; ?>
+                </p>
+            <?php else : ?>
+                <?php
+                $classes = array('placeholder');
+                if (!empty($color)) {
+                    $classes[] = 'bg-' . $color;
+                }
+                if (!empty($size)) {
+                    $classes[] = 'placeholder-' . $size;
+                }
+                if (!empty($animation)) {
+                    $classes[] = 'placeholder-' . $animation;
+                }
+                $classes[] = 'col-' . $width;
+                $class_string = implode(' ', $classes);
+                ?>
+                <span class="<?php echo esc_attr($class_string); ?>"></span>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-11T16:08:17+00:00\n"
+"POT-Creation-Date: 2026-03-11T18:44:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: ileben-landing\n"
@@ -276,6 +276,10 @@ msgstr ""
 msgid "Toggle navigation"
 msgstr ""
 
+#: blocks/bs-navs-tabs/block.php:55
+msgid "Agrega pestanas"
+msgstr ""
+
 #: blocks/bs-offcanvas/block.php:16
 msgid "Offcanvas"
 msgstr ""
@@ -335,12 +339,16 @@ msgstr ""
 msgid "Agrega secciones al scrollspy."
 msgstr ""
 
+#: blocks/bs-shipping-methods/block.php:11
+msgid "WooCommerce no esta activo"
+msgstr ""
+
 #: blocks/bs-shipping-methods/block.php:38
-msgid "M├®todos de env├¡o"
+msgid "Metodos de envio"
 msgstr ""
 
 #: blocks/bs-shipping-methods/block.php:84
-msgid "Seleccionar m├®todo de env├¡o"
+msgid "Seleccionar metodo de envio"
 msgstr ""
 
 #: blocks/bs-spinner/block.php:19
@@ -446,6 +454,12 @@ msgstr ""
 msgid "Ileben Logo"
 msgstr ""
 
+#. translators: %s: active theme version.
+#: footer.php:68
+#, php-format
+msgid "Development Mode - Theme Version: %s"
+msgstr ""
+
 #: inc/acf.php:29
 msgid "Ileben Theme - Error:"
 msgstr ""
@@ -486,8 +500,44 @@ msgstr ""
 msgid "Opciones guardadas"
 msgstr ""
 
+#: inc/assets.php:135
+msgid "Siguiente"
+msgstr ""
+
+#: inc/assets.php:136
+msgid "Anterior"
+msgstr ""
+
+#: inc/assets.php:140
+msgid "Por favor completa los campos requeridos."
+msgstr ""
+
+#: inc/assets.php:142
+msgid "RUT invalido"
+msgstr ""
+
+#: inc/assets.php:146
+msgid "Paso"
+msgstr ""
+
+#: inc/assets.php:147
+msgid "Enviar"
+msgstr ""
+
+#: inc/assets.php:152
+msgid "No se encontraron plantas con los filtros seleccionados."
+msgstr ""
+
+#: inc/color-scheme-switcher.php:42
+msgid "Tema claro"
+msgstr ""
+
 #: inc/color-scheme-switcher.php:42
 msgid "Claro"
+msgstr ""
+
+#: inc/color-scheme-switcher.php:43
+msgid "Tema oscuro"
 msgstr ""
 
 #: inc/color-scheme-switcher.php:43
@@ -495,7 +545,11 @@ msgid "Oscuro"
 msgstr ""
 
 #: inc/color-scheme-switcher.php:44
-msgid "Automático"
+msgid "Tema automatico"
+msgstr ""
+
+#: inc/color-scheme-switcher.php:44
+msgid "Automatico"
 msgstr ""
 
 #: inc/cpt-plantas.php:12
@@ -645,6 +699,10 @@ msgstr ""
 
 #: inc/template-tags.php:102
 msgid "Ileben"
+msgstr ""
+
+#: inc/template-tags.php:108
+msgid "Cargando..."
 msgstr ""
 
 #: blocks/animation-controls.js:21

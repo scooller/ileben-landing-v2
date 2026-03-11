@@ -46,9 +46,9 @@ if (!defined('ABSPATH')) {
             if (function_exists('the_custom_logo') && has_custom_logo()) {
                 the_custom_logo();
             } else {
-                echo '<h1 class="site-title m-0">';
-                bloginfo('name');
-                echo '</h1>';
+                ?>
+                <h1 class="site-title m-0"><?php bloginfo('name'); ?></h1>
+                <?php
             }
             ?>
         </a>

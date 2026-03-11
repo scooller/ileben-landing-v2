@@ -58,7 +58,7 @@ function bootstrap_theme_render_bs_toast_block($attributes, $content, $block) {
     
     $container_class_string = implode(' ', array_unique($container_classes));
     
-    $output = '<div class="' . esc_attr($container_class_string) . '" style="z-index: 1055;">';
+    $data_attrs = '';
     
     $toast_data = array();
     if ($autohide) {
@@ -68,35 +68,32 @@ function bootstrap_theme_render_bs_toast_block($attributes, $content, $block) {
         $toast_data['data-bs-autohide'] = 'false';
     }
     
-    $data_attrs = '';
     foreach ($toast_data as $key => $value) {
         $data_attrs .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
     }
-    
-    $output .= '<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="' . esc_attr($toastId) . '"' . $data_attrs . '>';
-    
-    // Toast header
-    $output .= '<div class="toast-header">';
-    $output .= '<strong class="me-auto">' . esc_html($title) . '</strong>';
-    
-    if (!empty($subtitle)) {
-        $output .= '<small class="text-muted">' . esc_html($subtitle) . '</small>';
-    }
-    
-    $output .= '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="' . esc_attr__('Close', 'ileben-landing') . '"></button>';
-    $output .= '</div>';
-    
-    // Toast body
-    $output .= '<div class="toast-body">';
-    $output .= '<div class="wp-block-bootstrap-theme-bs-toast-content">';
-    $output .= $content;
-    $output .= '</div>';
-    $output .= '</div>';
-    
-    $output .= '</div>'; // toast
-    $output .= '</div>'; // toast-container
-    
-    return $output;
+
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($container_class_string); ?>" style="z-index: 1055;">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="<?php echo esc_attr($toastId); ?>"<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+            <div class="toast-header">
+                <strong class="me-auto"><?php echo esc_html($title); ?></strong>
+                <?php if (!empty($subtitle)) : ?>
+                    <small class="text-muted"><?php echo esc_html($subtitle); ?></small>
+                <?php endif; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="<?php echo esc_attr__('Close', 'ileben-landing'); ?>"></button>
+            </div>
+
+            <div class="toast-body">
+                <div class="wp-block-bootstrap-theme-bs-toast-content">
+                    <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

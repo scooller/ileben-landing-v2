@@ -35,23 +35,22 @@ function bootstrap_theme_render_bs_collapse_block($attributes, $content, $block)
     
     $collapse_class_string = implode(' ', array_unique($collapse_classes));
     
-    $output = '';
-    
-    // Toggle button
-    $output .= '<button class="btn ' . esc_attr($buttonVariant) . '" type="button" data-bs-toggle="collapse" data-bs-target="#' . esc_attr($collapseId) . '" aria-expanded="' . ($show ? 'true' : 'false') . '" aria-controls="' . esc_attr($collapseId) . '">';
-    $output .= esc_html($buttonText);
-    $output .= '</button>';
-    
-    // Collapsible content
-    $output .= '<div class="' . esc_attr($collapse_class_string) . '" id="' . esc_attr($collapseId) . '">';
-    $output .= '<div class="card card-body">';
-    $output .= '<div class="wp-block-bootstrap-theme-bs-collapse-content">';
-    $output .= $content;
-    $output .= '</div>';
-    $output .= '</div>';
-    $output .= '</div>';
-    
-    return $output;
+    ob_start();
+    ?>
+    <button class="btn <?php echo esc_attr($buttonVariant); ?>" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr($collapseId); ?>" aria-expanded="<?php echo $show ? 'true' : 'false'; ?>" aria-controls="<?php echo esc_attr($collapseId); ?>">
+        <?php echo esc_html($buttonText); ?>
+    </button>
+
+    <div class="<?php echo esc_attr($collapse_class_string); ?>" id="<?php echo esc_attr($collapseId); ?>">
+        <div class="card card-body">
+            <div class="wp-block-bootstrap-theme-bs-collapse-content">
+                <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            </div>
+        </div>
+    </div>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

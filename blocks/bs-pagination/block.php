@@ -40,29 +40,30 @@ function bootstrap_theme_render_bs_pagination_block($attributes, $content, $bloc
     // Add custom CSS classes from Advanced panel
     $pagination_classes = bootstrap_theme_add_custom_classes($pagination_classes, $attributes, $block);
     
-    $wrapper_class_string = !empty($wrapper_classes) ? ' class="' . esc_attr(implode(' ', $wrapper_classes)) . '"' : '';
     $pagination_class_string = implode(' ', array_unique($pagination_classes));
-    
-    $output = '<nav aria-label="' . esc_attr__('Page navigation', 'ileben-landing') . '">';
-    $output .= '<ul' . $wrapper_class_string . ' class="' . esc_attr($pagination_class_string) . '">';
-    
-    // Process the InnerBlocks content (pagination items)
-    if (!empty($content)) {
-        // The content should already be processed HTML from InnerBlocks.Content
-        $output .= $content;
-    } else {
-        // Default content if no items
-        $output .= '<li class="page-item disabled"><a class="page-link" href="#">' . __('Previous', 'ileben-landing') . '</a></li>';
-        $output .= '<li class="page-item active"><a class="page-link" href="#">1</a></li>';
-        $output .= '<li class="page-item"><a class="page-link" href="#">2</a></li>';
-        $output .= '<li class="page-item"><a class="page-link" href="#">3</a></li>';
-        $output .= '<li class="page-item"><a class="page-link" href="#">' . __('Next', 'ileben-landing') . '</a></li>';
-    }
-    
-    $output .= '</ul>';
-    $output .= '</nav>';
-    
-    return $output;
+    $ul_class_string = trim(implode(' ', array_filter([
+        !empty($wrapper_classes) ? implode(' ', $wrapper_classes) : '',
+        $pagination_class_string,
+    ])));
+
+    ob_start();
+    ?>
+    <nav aria-label="<?php echo esc_attr__('Page navigation', 'ileben-landing'); ?>">
+        <ul class="<?php echo esc_attr($ul_class_string); ?>">
+            <?php if (!empty($content)) : ?>
+                <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            <?php else : ?>
+                <li class="page-item disabled"><a class="page-link" href="#"><?php echo esc_html__('Previous', 'ileben-landing'); ?></a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#"><?php echo esc_html__('Next', 'ileben-landing'); ?></a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

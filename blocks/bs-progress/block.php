@@ -53,27 +53,19 @@ function bootstrap_theme_render_bs_progress_block($attributes, $content, $block)
     
     $progress_class_string = implode(' ', array_unique($progress_classes));
     
-    $output = '<div class="' . esc_attr($progress_class_string) . '"';
-    
-    if (!empty($height)) {
-        $output .= ' style="height: ' . esc_attr($height) . ';"';
-    }
-    
-    $output .= '>';
-    
-    $output .= '<div class="' . esc_attr($bar_class_string) . '" role="progressbar" style="width: ' . esc_attr($percentage) . '%;" aria-valuenow="' . esc_attr($value) . '" aria-valuemin="' . esc_attr($min) . '" aria-valuemax="' . esc_attr($max) . '">';
-    
-    // Show label if configured
-    if (!empty($label)) {
-        $output .= esc_html($label);
-    } elseif ($showLabel) {
-        $output .= esc_html(round($percentage) . '%');
-    }
-    
-    $output .= '</div>';
-    $output .= '</div>';
-    
-    return $output;
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($progress_class_string); ?>"<?php echo !empty($height) ? ' style="height: ' . esc_attr($height) . ';"' : ''; ?>>
+        <div class="<?php echo esc_attr($bar_class_string); ?>" role="progressbar" style="width: <?php echo esc_attr($percentage); ?>%;" aria-valuenow="<?php echo esc_attr($value); ?>" aria-valuemin="<?php echo esc_attr($min); ?>" aria-valuemax="<?php echo esc_attr($max); ?>">
+            <?php if (!empty($label)) : ?>
+                <?php echo esc_html($label); ?>
+            <?php elseif ($showLabel) : ?>
+                <?php echo esc_html(round($percentage) . '%'); ?>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
 }
 
 /**

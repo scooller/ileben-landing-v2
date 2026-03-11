@@ -163,25 +163,25 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
     $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
 
     $id_attr = $anchor ? ' id="' . esc_attr($anchor) . '"' : '';
-    $output = '<div class="' . esc_attr($class_string) . '"' . $id_attr . $style_string . $data_attrs . $animation_attrs . '>';
 
-    // Add content from InnerBlocks
-    if (!empty($content)) {
-        $output .= $content;
-    } else {
-        $output .= '<p>' . __('Add content to your container.', 'ileben-landing') . '</p>';
-    }
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($class_string); ?>"<?php echo $id_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo $style_string; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo $animation_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+        <?php if (!empty($content)) : ?>
+            <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+        <?php else : ?>
+            <p><?php echo esc_html__('Add content to your container.', 'ileben-landing'); ?></p>
+        <?php endif; ?>
 
-    // Render default Swiper controls (can be enabled via JS config)
-    if ($isSwiper) {
-        $output .= '<div class="swiper-pagination"></div>';
-        $output .= '<div class="swiper-button-prev"></div>';
-        $output .= '<div class="swiper-button-next"></div>';
-    }
+        <?php if ($isSwiper) : ?>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        <?php endif; ?>
+    </div>
+    <?php
 
-    $output .= '</div>';
-
-    return $output;
+    return ob_get_clean();
 }
 
 /**

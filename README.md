@@ -505,6 +505,77 @@ Distance: 40px
 
 ---
 
+## 🧱 Guía de Desarrollo de Bloques
+
+### Convención: Output Buffering en `render_callback`
+
+Todos los bloques deben usar `ob_start()` / `ob_get_clean()` en sus funciones `render_callback`. **No usar concatenación de strings** (`$output .= '<...'`).
+
+**✅ Correcto:**
+```php
+function bootstrap_theme_render_bs_ejemplo_block( $attributes, $content ) {
+    $class = 'ejemplo';
+    if ( ! empty( $attributes['className'] ) ) {
+        $class .= ' ' . $attributes['className'];
+    }
+    // Pre-construir atributos complejos antes de ob_start()
+    $data_attrs = ! empty( $attributes['id'] ) ? ' data-id="' . esc_attr( $attributes['id'] ) . '"' : '';
+
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr( $class ); ?>"<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+        <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+```
+
+**❌ Incorrecto:**
+```php
+function bootstrap_theme_render_bs_ejemplo_block( $attributes, $content ) {
+    $output  = '<div class="ejemplo">';
+    $output .= $content;
+    $output .= '</div>';
+    return $output;
+}
+```
+
+### Reglas de Escaping
+
+| Contexto | Función |
+|---|---|
+| Atributo HTML (texto plano) | `esc_attr()` |
+| Contenido HTML visible | `esc_html()` |
+| URL en `href`/`src` | `esc_url()` |
+| Strings i18n para atributos | `esc_attr__()` / `esc_attr_e()` |
+| HTML pre-construido o `$content` confiable | `// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped` |
+
+### Sintaxis Alternativa PHP en Templates
+
+Usa la sintaxis alternativa de PHP dentro de los templates para mayor legibilidad:
+
+```php
+ob_start();
+?>
+<ul>
+    <?php foreach ( $items as $item ) : ?>
+        <li><?php echo esc_html( $item ); ?></li>
+    <?php endforeach; ?>
+</ul>
+<?php if ( $show_footer ) : ?>
+    <footer>...</footer>
+<?php endif; ?>
+<?php
+return ob_get_clean();
+```
+
+### Excepción: `inc/bootstrap-navwalker.php`
+
+`Bootstrap_Nav_Walker` extiende `Walker_Nav_Menu` de WordPress, cuya API nativa acumula output en `$output` de forma incremental. Este archivo **no debe** convertirse al patrón `ob_start()`.
+
+---
+
 ## ⚡ Optimizaciones de rendimiento
 - **Preloader visible** – Mejora la percepción de velocidad
 - **Lazy loading nativo** – `loading="lazy"` en imágenes + IntersectionObserver fallback

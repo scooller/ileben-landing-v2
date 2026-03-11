@@ -84,9 +84,11 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
             
             if ($cart_is_empty) {
                 if ($show_empty_message) {
-                    echo '<div class="alert alert-info">';
-                    esc_html_e('Your cart is currently empty', 'ileben-landing');
-                    echo '</div>';
+                    ?>
+                    <div class="alert alert-info">
+                        <?php esc_html_e('Your cart is currently empty', 'ileben-landing'); ?>
+                    </div>
+                    <?php
                 }
             } else {
                 ?>
@@ -128,7 +130,11 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                                     if (!empty($image)) {
                                         echo wp_kses_post($image);
                                     } else {
-                                        echo '<div class="d-flex align-items-center justify-content-center w-100 h-100 text-muted small">' . esc_html__('No image', 'ileben-landing') . '</div>';
+                                        ?>
+                                        <div class="d-flex align-items-center justify-content-center w-100 h-100 text-muted small">
+                                            <?php esc_html_e('No image', 'ileben-landing'); ?>
+                                        </div>
+                                        <?php
                                     }
                                     ?>
                                 </div>

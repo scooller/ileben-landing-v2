@@ -29,38 +29,27 @@ function bootstrap_theme_render_bs_accordion_block($attributes, $content, $block
     
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<div class="' . esc_attr($class_string) . '" id="' . esc_attr($accordionId) . '"';
-    
-    // Add data attributes for accordion behavior
-    if (!$alwaysOpen) {
-        $output .= ' data-bs-accordion-parent="true"';
-    }
-    
-    $output .= '>';
-    
-    // Process the InnerBlocks content (accordion items)
-    if (!empty($content)) {
-        // The content should already be processed HTML from InnerBlocks.Content
-        $output .= $content;
-    } else {
-        // Default content if no items
-        $output .= '<div class="accordion-item">';
-        $output .= '<h2 class="accordion-header" id="' . esc_attr($accordionId) . '-heading-0">';
-        $output .= '<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#' . esc_attr($accordionId) . '-collapse-0" aria-expanded="true" aria-controls="' . esc_attr($accordionId) . '-collapse-0">';
-        $output .= __('Accordion Item #1', 'ileben-landing');
-        $output .= '</button>';
-        $output .= '</h2>';
-        $output .= '<div id="' . esc_attr($accordionId) . '-collapse-0" class="accordion-collapse collapse show" aria-labelledby="' . esc_attr($accordionId) . '-heading-0" data-bs-parent="#' . esc_attr($accordionId) . '">';
-        $output .= '<div class="accordion-body">';
-        $output .= __('Add content to your accordion.', 'ileben-landing');
-        $output .= '</div>';
-        $output .= '</div>';
-        $output .= '</div>';
-    }
-    
-    $output .= '</div>'; // accordion
-    
-    return $output;
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($class_string); ?>" id="<?php echo esc_attr($accordionId); ?>"<?php echo !$alwaysOpen ? ' data-bs-accordion-parent="true"' : ''; ?>>
+        <?php if (!empty($content)) : ?>
+            <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+        <?php else : ?>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="<?php echo esc_attr($accordionId); ?>-heading-0">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr($accordionId); ?>-collapse-0" aria-expanded="true" aria-controls="<?php echo esc_attr($accordionId); ?>-collapse-0">
+                        <?php echo esc_html__('Accordion Item #1', 'ileben-landing'); ?>
+                    </button>
+                </h2>
+                <div id="<?php echo esc_attr($accordionId); ?>-collapse-0" class="accordion-collapse collapse show" aria-labelledby="<?php echo esc_attr($accordionId); ?>-heading-0" data-bs-parent="#<?php echo esc_attr($accordionId); ?>">
+                    <div class="accordion-body"><?php echo esc_html__('Add content to your accordion.', 'ileben-landing'); ?></div>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

@@ -42,32 +42,27 @@ function bootstrap_theme_render_bs_offcanvas_block($attributes, $content, $block
         $data_attrs .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
     }
     
-    $output = '';
-    
-    // Toggle button
-    $output .= '<button class="btn ' . esc_attr($buttonVariant) . '" type="button" data-bs-toggle="offcanvas" data-bs-target="#' . esc_attr($offcanvasId) . '" aria-controls="' . esc_attr($offcanvasId) . '">';
-    $output .= esc_html($buttonText);
-    $output .= '</button>';
-    
-    // Offcanvas
-    $output .= '<div class="' . esc_attr($offcanvas_class_string) . '" tabindex="-1" id="' . esc_attr($offcanvasId) . '" aria-labelledby="' . esc_attr($offcanvasId) . 'Label"' . $data_attrs . '>';
-    
-    // Offcanvas header
-    $output .= '<div class="offcanvas-header">';
-    $output .= '<h5 class="offcanvas-title" id="' . esc_attr($offcanvasId) . 'Label">' . esc_html($title) . '</h5>';
-    $output .= '<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="' . esc_attr__('Close', 'ileben-landing') . '"></button>';
-    $output .= '</div>';
-    
-    // Offcanvas body
-    $output .= '<div class="offcanvas-body">';
-    $output .= '<div class="wp-block-bootstrap-theme-bs-offcanvas-content">';
-    $output .= $content;
-    $output .= '</div>';
-    $output .= '</div>';
-    
-    $output .= '</div>'; // offcanvas
-    
-    return $output;
+    ob_start();
+    ?>
+    <button class="btn <?php echo esc_attr($buttonVariant); ?>" type="button" data-bs-toggle="offcanvas" data-bs-target="#<?php echo esc_attr($offcanvasId); ?>" aria-controls="<?php echo esc_attr($offcanvasId); ?>">
+        <?php echo esc_html($buttonText); ?>
+    </button>
+
+    <div class="<?php echo esc_attr($offcanvas_class_string); ?>" tabindex="-1" id="<?php echo esc_attr($offcanvasId); ?>" aria-labelledby="<?php echo esc_attr($offcanvasId); ?>Label"<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="<?php echo esc_attr($offcanvasId); ?>Label"><?php echo esc_html($title); ?></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="<?php echo esc_attr__('Close', 'ileben-landing'); ?>"></button>
+        </div>
+
+        <div class="offcanvas-body">
+            <div class="wp-block-bootstrap-theme-bs-offcanvas-content">
+                <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            </div>
+        </div>
+    </div>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

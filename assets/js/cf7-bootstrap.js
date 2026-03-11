@@ -241,16 +241,19 @@ function showCf7Step(form, targetIndex, animation = 'fade') {
 
 function getCf7Config() {
     const cfg = window.ILEBEN_CF7 || {};
+    const stepPrefix = cfg.stepLabelPrefix || 'Paso';
     return {
-        nextButtonLabel: cfg.nextButtonLabel || 'Siguiente',
-        prevButtonLabel: cfg.prevButtonLabel || 'Anterior',
+        nextButtonLabel: cfg.nextButtonLabel || 'Next',
+        prevButtonLabel: cfg.prevButtonLabel || 'Previous',
         stepAnimation: cfg.stepAnimation || 'fade',
         stepAnimationDuration: Number(cfg.stepAnimationDuration || 250),
         stepAnimationEasing: cfg.stepAnimationEasing || 'ease',
-        toastMessage: cfg.toastMessage || 'Por favor completa los campos requeridos.',
+        toastMessage: cfg.toastMessage || 'Please complete the required fields.',
         showStepTitles: !!cfg.showStepTitles,
         stepTitleMode: cfg.stepTitleMode || 'label',
         showProgressBar: !!cfg.showProgressBar,
+        stepLabelPrefix: stepPrefix,
+        submitLabel: cfg.submitLabel || 'Submit',
     };
 }
 
@@ -266,14 +269,15 @@ function buildCf7Steps(form) {
 
     const steps = [];
     let currentNodes = [];
-    let currentLabel = 'Paso 1';
+    const cfg = getCf7Config();
+    let currentLabel = `${cfg.stepLabelPrefix} 1`;
 
     // Detect existing submit button to reuse label; remove it from flow
     const submitNodes = Array.from(form.querySelectorAll('input[type="submit"], button[type="submit"]'));
-    let submitLabel = 'Enviar';
+    let submitLabel = cfg.submitLabel;
     if (submitNodes.length) {
         const firstSubmit = submitNodes[0];
-        submitLabel = firstSubmit.value || firstSubmit.textContent || 'Enviar';
+        submitLabel = firstSubmit.value || firstSubmit.textContent || cfg.submitLabel;
     }
 
     // Parse steps scanning all child nodes (including text/br) and markers inside wrappers
@@ -301,7 +305,7 @@ function buildCf7Steps(form) {
     nodes.forEach((node) => {
         const marker = findMarker(node);
         if (marker) {
-            const markerLabel = marker.dataset.stepLabel || `Paso ${steps.length + 1}`;
+            const markerLabel = marker.dataset.stepLabel || `${cfg.stepLabelPrefix} ${steps.length + 1}`;
             // Remove all markers inside this node
             node.querySelectorAll && node.querySelectorAll('.wpcf7-step-break').forEach((m) => m.remove());
 
@@ -337,7 +341,6 @@ function buildCf7Steps(form) {
 
     form.innerHTML = '';
 
-    const cfg = getCf7Config();
     const animation = cfg.stepAnimation;
     const animDurationMs = Math.max(0, Number(cfg.stepAnimationDuration || 0));
 
@@ -367,7 +370,7 @@ function buildCf7Steps(form) {
             if (cfg.stepTitleMode !== 'number') {
                 const label = document.createElement('span');
                 label.className = 'cf7-step-label badge rounded-pill text-bg-light text-secondary border';
-                label.textContent = step.label || `Paso ${idx + 1}`;
+                label.textContent = step.label || `${cfg.stepLabelPrefix} ${idx + 1}`;
                 item.appendChild(label);
             }
 
@@ -417,9 +420,9 @@ function buildCf7Steps(form) {
             const title = document.createElement('h5');
             title.className = 'wpcf7-step-title text-center mb-3';
             if (cfg.stepTitleMode === 'number') {
-                title.textContent = `Paso ${index + 1}`;
+                title.textContent = `${cfg.stepLabelPrefix} ${index + 1}`;
             } else {
-                title.textContent = step.label || `Paso ${index + 1}`;
+                title.textContent = step.label || `${cfg.stepLabelPrefix} ${index + 1}`;
             }
             stepEl.appendChild(title);
         }

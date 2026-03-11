@@ -105,7 +105,7 @@ function ileben_render_loader()
             >
             <br>
             <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
+                <span class="visually-hidden"><?php esc_html_e('Cargando...', 'ileben-landing'); ?></span>
             </div>
         </div>
     </div>

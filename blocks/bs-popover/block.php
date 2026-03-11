@@ -49,30 +49,21 @@ function bootstrap_theme_render_bs_popover_block($attributes, $content, $block) 
         $data_attrs .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
     }
     
-    $output = '';
-    
-    switch ($element) {
-        case 'button':
-            $output .= '<button type="button" class="' . esc_attr($element_class_string) . '"' . $data_attrs . '>';
-            $output .= esc_html($elementText);
-            $output .= '</button>';
-            break;
-        
-        case 'link':
-            $output .= '<a href="#" class="' . esc_attr($element_class_string) . '" tabindex="0"' . $data_attrs . '>';
-            $output .= esc_html($elementText);
-            $output .= '</a>';
-            break;
-        
-        case 'span':
-        default:
-            $output .= '<span class="' . esc_attr($element_class_string) . '" tabindex="0"' . $data_attrs . '>';
-            $output .= esc_html($elementText);
-            $output .= '</span>';
-            break;
-    }
-    
-    return $output;
+    ob_start();
+    ?>
+    <?php switch ($element) :
+        case 'button': ?>
+            <button type="button" class="<?php echo esc_attr($element_class_string); ?>"<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo esc_html($elementText); ?></button>
+            <?php break; ?>
+        <?php case 'link': ?>
+            <a href="#" class="<?php echo esc_attr($element_class_string); ?>" tabindex="0"<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo esc_html($elementText); ?></a>
+            <?php break; ?>
+        <?php default: ?>
+            <span class="<?php echo esc_attr($element_class_string); ?>" tabindex="0"<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo esc_html($elementText); ?></span>
+    <?php endswitch; ?>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

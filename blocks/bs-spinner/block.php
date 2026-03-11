@@ -52,21 +52,24 @@ function bootstrap_theme_render_bs_spinner_block($attributes, $content, $block) 
         }
     }
     
-    $output = '';
-    
-    if (!empty($wrapper_classes)) {
-        $output .= '<div class="' . esc_attr(implode(' ', $wrapper_classes)) . '">';
-    }
-    
-    $output .= '<div class="' . esc_attr($class_string) . '" role="status">';
-    $output .= '<span class="visually-hidden">' . esc_html($label) . '</span>';
-    $output .= '</div>';
-    
-    if (!empty($wrapper_classes)) {
-        $output .= '</div>';
-    }
-    
-    return $output;
+    $wrapper_class_string = !empty($wrapper_classes) ? implode(' ', $wrapper_classes) : '';
+
+    ob_start();
+    ?>
+    <?php if (!empty($wrapper_class_string)) : ?>
+        <div class="<?php echo esc_attr($wrapper_class_string); ?>">
+    <?php endif; ?>
+
+    <div class="<?php echo esc_attr($class_string); ?>" role="status">
+        <span class="visually-hidden"><?php echo esc_html($label); ?></span>
+    </div>
+
+    <?php if (!empty($wrapper_class_string)) : ?>
+        </div>
+    <?php endif; ?>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

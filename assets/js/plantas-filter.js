@@ -1,5 +1,7 @@
 export function initPlantasFilter() {
   const wrappers = document.querySelectorAll('.bs-plantas-filters-wrapper');
+  const i18n = window.ILEBEN_I18N || {};
+  const noResultsMessage = i18n.plantasNoResults || 'No results found for the selected filters.';
   
   wrappers.forEach((wrapper) => {
     const form = wrapper.querySelector('[data-ajax-filter]');
@@ -78,7 +80,7 @@ export function initPlantasFilter() {
         if (!existingAlert) {
           const alert = document.createElement('div');
           alert.className = 'alert alert-info plantas-no-results mt-3';
-          alert.textContent = 'No se encontraron plantas con los filtros seleccionados.';
+          alert.textContent = noResultsMessage;
           container.appendChild(alert);
         }
         if (swiperContainer) {

@@ -92,8 +92,12 @@ add_filter('get_custom_logo', 'add_custom_logo_class');
  * Add admin CSS
  */
 function ileben_admin_custom_css() {
-    echo '<style>
+    ob_start();
+    ?>
+    <style>
         #side-sortables { position: fixed; }
-    </style>';
+    </style>
+    <?php
+    echo ob_get_clean();
 }
 add_action('admin_head', 'ileben_admin_custom_css');

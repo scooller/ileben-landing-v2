@@ -34,11 +34,11 @@ function bootstrap_theme_render_bs_badge_block($attributes, $content, $block) {
     
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<span class="' . esc_attr($class_string) . '">';
-    $output .= esc_html($text);
-    $output .= '</span>';
-    
-    return $output;
+    ob_start();
+    ?>
+    <span class="<?php echo esc_attr($class_string); ?>"><?php echo esc_html($text); ?></span>
+    <?php
+    return ob_get_clean();
 }
 
 /**

@@ -8,7 +8,7 @@
 
 function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content, $block) {
     if (!class_exists('WooCommerce')) {
-        return '<div class="alert alert-warning">WooCommerce no est├í activo</div>';
+        return '<div class="alert alert-warning">' . esc_html__('WooCommerce no esta activo', 'ileben-landing') . '</div>';
     }
 
     // Verificar que haya carrito y productos que requieran env├¡o
@@ -35,7 +35,7 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
     $display_type = isset($attributes['displayType']) ? $attributes['displayType'] : 'radio';
     $show_icon = isset($attributes['showIcon']) ? $attributes['showIcon'] : true;
     $show_description = isset($attributes['showDescription']) ? $attributes['showDescription'] : true;
-    $title = isset($attributes['title']) && !empty($attributes['title']) ? $attributes['title'] : __('M├®todos de env├¡o', 'ileben-landing');
+    $title = isset($attributes['title']) && !empty($attributes['title']) ? $attributes['title'] : __('Metodos de envio', 'ileben-landing');
     $alignment = isset($attributes['alignment']) ? $attributes['alignment'] : '';
     
     // Construir clases
@@ -81,7 +81,7 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
                     <select class="form-select shipping-method-select" 
                             name="shipping_method[<?php echo esc_attr($i); ?>]" 
                             data-package="<?php echo esc_attr($i); ?>"
-                            aria-label="<?php esc_attr_e('Seleccionar m├®todo de env├¡o', 'ileben-landing'); ?>">
+                            aria-label="<?php esc_attr_e('Seleccionar metodo de envio', 'ileben-landing'); ?>">
                         <?php foreach ($available_methods as $method) : ?>
                             <option value="<?php echo esc_attr($method->id); ?>" 
                                     <?php selected($chosen_method, $method->id); ?>>
@@ -191,7 +191,7 @@ function bootstrap_theme_register_bs_shipping_methods_block() {
             ),
             'title' => array(
                 'type' => 'string',
-                'default' => 'M├®todos de env├¡o'
+                'default' => 'Metodos de envio'
             ),
             'alignment' => array(
                 'type' => 'string',

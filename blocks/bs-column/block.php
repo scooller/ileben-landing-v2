@@ -79,19 +79,18 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block)
     // Get animation data attributes
     $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
 
-    // Build the output manually to ensure animation attributes are properly included
-    $output = '<div class="' . esc_attr($class_string) . '"' . $animation_attrs . '>';
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($class_string); ?>"<?php echo $animation_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+        <?php if (!empty($content)) : ?>
+            <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+        <?php else : ?>
+            <p><?php echo esc_html__('Add content to your column.', 'ileben-landing'); ?></p>
+        <?php endif; ?>
+    </div>
+    <?php
 
-    // Add content from InnerBlocks
-    if (!empty($content)) {
-        $output .= $content;
-    } else {
-        $output .= '<p>' . __('Add content to your column.', 'ileben-landing') . '</p>';
-    }
-
-    $output .= '</div>';
-
-    return $output;
+    return ob_get_clean();
 }
 
 /**

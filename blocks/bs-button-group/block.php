@@ -43,40 +43,32 @@ function bootstrap_theme_render_bs_button_group_block($attributes, $content, $bl
     
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<div class="' . esc_attr($class_string) . '" role="group" aria-label="' . esc_attr__('Button group', 'ileben-landing') . '">';
-    
-    foreach ($buttons as $button) {
-        $text = $button['text'] ?? '';
-        $variant = $button['variant'] ?? 'btn-outline-primary';
-        $link = $button['link'] ?? '';
-        $disabled = $button['disabled'] ?? false;
-        
-        $button_classes = array('btn', $variant);
-        
-        if ($disabled) {
-            $button_classes[] = 'disabled';
-        }
-        
-        $button_class_string = implode(' ', $button_classes);
-        
-        if (!empty($link) && !$disabled) {
-            $output .= '<a href="' . esc_url($link) . '" class="' . esc_attr($button_class_string) . '"';
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($class_string); ?>" role="group" aria-label="<?php echo esc_attr__('Button group', 'ileben-landing'); ?>">
+        <?php foreach ($buttons as $button) : ?>
+            <?php
+            $text = $button['text'] ?? '';
+            $variant = $button['variant'] ?? 'btn-outline-primary';
+            $link = $button['link'] ?? '';
+            $disabled = $button['disabled'] ?? false;
+
+            $button_classes = array('btn', $variant);
             if ($disabled) {
-                $output .= ' aria-disabled="true"';
+                $button_classes[] = 'disabled';
             }
-            $output .= '>' . esc_html($text) . '</a>';
-        } else {
-            $output .= '<button type="button" class="' . esc_attr($button_class_string) . '"';
-            if ($disabled) {
-                $output .= ' disabled';
-            }
-            $output .= '>' . esc_html($text) . '</button>';
-        }
-    }
-    
-    $output .= '</div>';
-    
-    return $output;
+            $button_class_string = implode(' ', $button_classes);
+            ?>
+            <?php if (!empty($link) && !$disabled) : ?>
+                <a href="<?php echo esc_url($link); ?>" class="<?php echo esc_attr($button_class_string); ?>"><?php echo esc_html($text); ?></a>
+            <?php else : ?>
+                <button type="button" class="<?php echo esc_attr($button_class_string); ?>"<?php echo $disabled ? ' disabled' : ''; ?>><?php echo esc_html($text); ?></button>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

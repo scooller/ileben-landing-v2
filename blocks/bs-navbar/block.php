@@ -40,39 +40,37 @@ function bootstrap_theme_render_bs_navbar_block($attributes, $content, $block) {
     
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<nav class="' . esc_attr($class_string) . '">';
-    $output .= '<div class="container-fluid">';
-    
-    // Brand
-    if (!empty($brand) || !empty($brandImage)) {
-        $output .= '<a class="navbar-brand" href="#">';
-        if (!empty($brandImage)) {
-            $output .= '<img src="' . esc_url($brandImage) . '" alt="' . esc_attr($brand) . '" width="30" height="24" class="d-inline-block align-text-top">';
-            if (!empty($brand)) {
-                $output .= ' ' . esc_html($brand);
-            }
-        } else {
-            $output .= esc_html($brand);
-        }
-        $output .= '</a>';
-    }
-    
-    // Toggler button
-    $output .= '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#' . esc_attr($navbarId) . '" aria-controls="' . esc_attr($navbarId) . '" aria-expanded="false" aria-label="' . esc_attr__('Toggle navigation', 'ileben-landing') . '">';
-    $output .= '<span class="navbar-toggler-icon"></span>';
-    $output .= '</button>';
-    
-    // Collapsible content
-    $output .= '<div class="collapse navbar-collapse" id="' . esc_attr($navbarId) . '">';
-    $output .= '<div class="wp-block-bootstrap-theme-bs-navbar-content">';
-    $output .= $content;
-    $output .= '</div>';
-    $output .= '</div>';
-    
-    $output .= '</div>';
-    $output .= '</nav>';
-    
-    return $output;
+    ob_start();
+    ?>
+    <nav class="<?php echo esc_attr($class_string); ?>">
+        <div class="container-fluid">
+            <?php if (!empty($brand) || !empty($brandImage)) : ?>
+                <a class="navbar-brand" href="#">
+                    <?php if (!empty($brandImage)) : ?>
+                        <img src="<?php echo esc_url($brandImage); ?>" alt="<?php echo esc_attr($brand); ?>" width="30" height="24" class="d-inline-block align-text-top">
+                        <?php if (!empty($brand)) : ?>
+                            <?php echo esc_html($brand); ?>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <?php echo esc_html($brand); ?>
+                    <?php endif; ?>
+                </a>
+            <?php endif; ?>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr($navbarId); ?>" aria-controls="<?php echo esc_attr($navbarId); ?>" aria-expanded="false" aria-label="<?php echo esc_attr__('Toggle navigation', 'ileben-landing'); ?>">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="<?php echo esc_attr($navbarId); ?>">
+                <div class="wp-block-bootstrap-theme-bs-navbar-content">
+                    <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

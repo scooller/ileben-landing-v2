@@ -31,27 +31,25 @@ function bootstrap_theme_render_bs_alert_block($attributes, $content, $block) {
     
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<div class="' . esc_attr($class_string) . '" role="alert">';
-    
-    if (!empty($heading)) {
-        $output .= '<h4 class="alert-heading">' . esc_html($heading) . '</h4>';
-    }
-    
-    // Process the InnerBlocks content
-    if (!empty($content)) {
-        // The content should already be processed HTML from InnerBlocks.Content
-        $output .= $content;
-    } else {
-        $output .= '<p>' . __('Please add content to your alert.', 'ileben-landing') . '</p>';
-    }
-    
-    if ($dismissible) {
-        $output .= '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="' . esc_attr__('Close', 'ileben-landing') . '"></button>';
-    }
-    
-    $output .= '</div>';
-    
-    return $output;
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($class_string); ?>" role="alert">
+        <?php if (!empty($heading)) : ?>
+            <h4 class="alert-heading"><?php echo esc_html($heading); ?></h4>
+        <?php endif; ?>
+
+        <?php if (!empty($content)) : ?>
+            <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+        <?php else : ?>
+            <p><?php echo esc_html__('Please add content to your alert.', 'ileben-landing'); ?></p>
+        <?php endif; ?>
+
+        <?php if ($dismissible) : ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php echo esc_attr__('Close', 'ileben-landing'); ?>"></button>
+        <?php endif; ?>
+    </div>
+    <?php
+    return ob_get_clean();
 }
 
 /**

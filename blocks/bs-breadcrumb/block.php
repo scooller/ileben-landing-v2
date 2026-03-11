@@ -23,29 +23,25 @@ function bootstrap_theme_render_bs_breadcrumb_block($attributes, $content, $bloc
     
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<nav aria-label="' . esc_attr__('breadcrumb', 'ileben-landing') . '">';
-    $output .= '<ol class="' . esc_attr($class_string) . '"';
-    
+    $divider_style = '';
     if (!empty($divider)) {
-        $output .= ' style="--bs-breadcrumb-divider: \'' . esc_attr($divider) . '\';"';
+        $divider_style = "--bs-breadcrumb-divider: '" . esc_attr($divider) . "';";
     }
-    
-    $output .= '>';
-    
-    // Process the InnerBlocks content (breadcrumb items)
-    if (!empty($content)) {
-        // The content should already be processed HTML from InnerBlocks.Content
-        $output .= $content;
-    } else {
-        // Default content if no items
-        $output .= '<li class="breadcrumb-item"><a href="#">' . __('Home', 'ileben-landing') . '</a></li>';
-        $output .= '<li class="breadcrumb-item active" aria-current="page">' . __('Current Page', 'ileben-landing') . '</li>';
-    }
-    
-    $output .= '</ol>';
-    $output .= '</nav>';
-    
-    return $output;
+
+    ob_start();
+    ?>
+    <nav aria-label="<?php echo esc_attr__('breadcrumb', 'ileben-landing'); ?>">
+        <ol class="<?php echo esc_attr($class_string); ?>"<?php echo $divider_style ? ' style="' . esc_attr($divider_style) . '"' : ''; ?>>
+            <?php if (!empty($content)) : ?>
+                <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            <?php else : ?>
+                <li class="breadcrumb-item"><a href="#"><?php echo esc_html__('Home', 'ileben-landing'); ?></a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo esc_html__('Current Page', 'ileben-landing'); ?></li>
+            <?php endif; ?>
+        </ol>
+    </nav>
+    <?php
+    return ob_get_clean();
 }
 
 /**

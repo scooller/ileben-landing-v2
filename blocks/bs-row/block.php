@@ -48,18 +48,18 @@ function bootstrap_theme_render_bs_row_block($attributes, $content, $block) {
     
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<div class="' . esc_attr($class_string) . '">';
-    
-    // Add content from InnerBlocks
-    if (!empty($content)) {
-        $output .= $content;
-    } else {
-        $output .= '<div class="col"><p>' . __('Add columns to your row.', 'ileben-landing') . '</p></div>';
-    }
-    
-    $output .= '</div>';
-    
-    return $output;
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($class_string); ?>">
+        <?php if (!empty($content)) : ?>
+            <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+        <?php else : ?>
+            <div class="col"><p><?php echo esc_html__('Add columns to your row.', 'ileben-landing'); ?></p></div>
+        <?php endif; ?>
+    </div>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

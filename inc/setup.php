@@ -139,23 +139,32 @@ add_action('after_setup_theme', function () {
 add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $args) {
     // Icono FontAwesome
     $icon = get_post_meta($item_id, '_menu_item_fa_icon', true);
-    echo '<p class="field-fa-icon description description-wide">
-        <label for="edit-menu-item-fa-icon-' . $item_id . '">' . esc_html__('Icono FontAwesome (ej: fa-home)', 'ileben-landing') . '<br />
-        <input type="text" id="edit-menu-item-fa-icon-' . $item_id . '" class="widefat code edit-menu-item-fa-icon" style="display: inline-block; width: 80%;" name="menu-item-fa-icon[' . $item_id . ']" value="' . esc_attr($icon) . '" />
-        </label>';
-    echo '<br><a href="https://fontawesome.com/icons" target="_blank" rel="noopener" style="font-size:13px;">' . esc_html__('Ver todos los iconos FontAwesome', 'ileben-landing') . '</a>';
-    if ($icon) {
-        echo '<span style="display:inline-block;margin-left:10px;vertical-align:middle;">'
-            . '<svg class="icon"><use xlink:href="#' . esc_attr($icon) . '"></use></svg></span>';
-    }
-    echo '</p>';
+    ob_start();
+    ?>
+    <p class="field-fa-icon description description-wide">
+        <label for="edit-menu-item-fa-icon-<?php echo esc_attr($item_id); ?>">
+            <?php echo esc_html__('Icono FontAwesome (ej: fa-home)', 'ileben-landing'); ?><br />
+            <input type="text" id="edit-menu-item-fa-icon-<?php echo esc_attr($item_id); ?>" class="widefat code edit-menu-item-fa-icon" style="display: inline-block; width: 80%;" name="menu-item-fa-icon[<?php echo esc_attr($item_id); ?>]" value="<?php echo esc_attr($icon); ?>" />
+        </label>
+        <br><a href="https://fontawesome.com/icons" target="_blank" rel="noopener" style="font-size:13px;"><?php echo esc_html__('Ver todos los iconos FontAwesome', 'ileben-landing'); ?></a>
+        <?php if ($icon) : ?>
+            <span style="display:inline-block;margin-left:10px;vertical-align:middle;">
+                <svg class="icon"><use xlink:href="#<?php echo esc_attr($icon); ?>"></use></svg>
+            </span>
+        <?php endif; ?>
+    </p>
+    <?php
 
     // Mostrar como bot├│n
     $is_button = get_post_meta($item_id, '_menu_item_is_button', true);
-    echo '<p class="field-is-button description description-wide">
-        <label for="edit-menu-item-is-button-' . $item_id . '">
-        <input type="checkbox" id="edit-menu-item-is-button-' . $item_id . '" name="menu-item-is-button[' . $item_id . ']" value="1"' . checked($is_button, '1', false) . ' /> '
-        . esc_html__('Mostrar como bot├│n Bootstrap', 'ileben-landing') . '</label></p>';
+    ?>
+    <p class="field-is-button description description-wide">
+        <label for="edit-menu-item-is-button-<?php echo esc_attr($item_id); ?>">
+            <input type="checkbox" id="edit-menu-item-is-button-<?php echo esc_attr($item_id); ?>" name="menu-item-is-button[<?php echo esc_attr($item_id); ?>]" value="1"<?php checked($is_button, '1'); ?> />
+            <?php echo esc_html__('Mostrar como bot├│n Bootstrap', 'ileben-landing'); ?>
+        </label>
+    </p>
+    <?php
 
     // Estilo de bot├│n Bootstrap
     $button_style = get_post_meta($item_id, '_menu_item_button_style', true);
@@ -178,19 +187,26 @@ add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $
         'btn-outline-dark' => 'Outline Oscuro',
         'icon-link' => 'Link con Icono',
     );
-    echo '<p class="field-button-style description description-wide">
-        <label for="edit-menu-item-button-style-' . $item_id . '">' . esc_html__('Estilo de bot├│n Bootstrap', 'ileben-landing') . '<br />
-        <select id="edit-menu-item-button-style-' . $item_id . '" name="menu-item-button-style[' . $item_id . ']">';
-    echo '<option value="">' . esc_html__('(Sin estilo)', 'ileben-landing') . '</option>';
-    foreach ($styles as $class => $label) {
-        echo '<option value="' . esc_attr($class) . '"' . selected($button_style, $class, false) . '>' . esc_html($label) . '</option>';
-    }
-    echo '</select></label>';
-    if ($is_button && $button_style) {
-        echo '<span style="display:inline-block;margin-left:10px;vertical-align:middle;">'
-            . '<button type="button" class="btn ' . esc_attr($button_style) . '">Preview</button></span>';
-    }
-    echo '</p>';
+    ?>
+    <p class="field-button-style description description-wide">
+        <label for="edit-menu-item-button-style-<?php echo esc_attr($item_id); ?>">
+            <?php echo esc_html__('Estilo de bot├│n Bootstrap', 'ileben-landing'); ?><br />
+            <select id="edit-menu-item-button-style-<?php echo esc_attr($item_id); ?>" name="menu-item-button-style[<?php echo esc_attr($item_id); ?>]">
+                <option value=""><?php echo esc_html__('(Sin estilo)', 'ileben-landing'); ?></option>
+                <?php foreach ($styles as $class => $label) : ?>
+                    <option value="<?php echo esc_attr($class); ?>"<?php selected($button_style, $class); ?>><?php echo esc_html($label); ?></option>
+                <?php endforeach; ?>
+            </select>
+        </label>
+        <?php if ($is_button && $button_style) : ?>
+            <span style="display:inline-block;margin-left:10px;vertical-align:middle;">
+                <button type="button" class="btn <?php echo esc_attr($button_style); ?>">Preview</button>
+            </span>
+        <?php endif; ?>
+    </p>
+    <?php
+
+    echo ob_get_clean();
 }, 10, 4);
 
 // Guardar los campos personalizados

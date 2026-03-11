@@ -41,26 +41,24 @@ function bootstrap_theme_render_bs_list_group_block($attributes, $content, $bloc
 
     $tag = $numbered ? 'ol' : 'ul';
 
-    $output = '<' . $tag . ' class="' . esc_attr($class_string) . '">';
+    ob_start();
+    ?>
+    <<?php echo esc_html($tag); ?> class="<?php echo esc_attr($class_string); ?>">
+        <?php if (!empty($block->inner_blocks)) : ?>
+            <?php foreach ($block->inner_blocks as $inner_block) : ?>
+                <?php echo $inner_block->render(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            <?php endforeach; ?>
+        <?php elseif (!empty($content)) : ?>
+            <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+        <?php else : ?>
+            <div class="list-group-item"><?php echo esc_html__('First item', 'ileben-landing'); ?></div>
+            <div class="list-group-item active"><?php echo esc_html__('Second item', 'ileben-landing'); ?></div>
+            <div class="list-group-item"><?php echo esc_html__('Third item', 'ileben-landing'); ?></div>
+        <?php endif; ?>
+    </<?php echo esc_html($tag); ?>>
+    <?php
 
-    // Render inner blocks so dynamic children (with animation) are preserved
-    if (!empty($block->inner_blocks)) {
-        foreach ($block->inner_blocks as $inner_block) {
-            $output .= $inner_block->render();
-        }
-    } else if (!empty($content)) {
-        // Fallback to provided content if inner_blocks unavailable
-        $output .= $content;
-    } else {
-        // Default content if no items
-        $output .= '<div class="list-group-item">' . __('First item', 'ileben-landing') . '</div>';
-        $output .= '<div class="list-group-item active">' . __('Second item', 'ileben-landing') . '</div>';
-        $output .= '<div class="list-group-item">' . __('Third item', 'ileben-landing') . '</div>';
-    }
-
-    $output .= '</' . $tag . '>';
-
-    return $output;
+    return ob_get_clean();
 }
 
 /**

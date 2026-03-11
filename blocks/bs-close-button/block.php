@@ -29,15 +29,12 @@ function bootstrap_theme_render_bs_close_button_block($attributes, $content, $bl
     
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<button type="button" class="' . esc_attr($class_string) . '" aria-label="' . esc_attr($ariaLabel) . '"';
-    
-    if ($disabled) {
-        $output .= ' disabled';
-    }
-    
-    $output .= '></button>';
-    
-    return $output;
+    ob_start();
+    ?>
+    <button type="button" class="<?php echo esc_attr($class_string); ?>" aria-label="<?php echo esc_attr($ariaLabel); ?>"<?php echo $disabled ? ' disabled' : ''; ?>></button>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

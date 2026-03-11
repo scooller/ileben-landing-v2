@@ -41,33 +41,33 @@ function bootstrap_theme_render_bs_navs_tabs_block($attributes, $content, $block
     // Add custom CSS classes from Advanced panel
     $nav_classes = bootstrap_theme_add_custom_classes($nav_classes, $attributes, $block);
     $nav_class_string = implode(' ', array_unique($nav_classes));
-    $output = '';
-    if ($vertical) {
-        $output .= '<div class="d-flex align-items-start">';
-        $output .= '<div class="nav flex-column nav-pills me-3" id="' . esc_attr($navId) . '-tab" role="tablist" aria-orientation="vertical">';
-    } else {
-        $output .= '<ul class="' . esc_attr($nav_class_string) . '" id="' . esc_attr($navId) . '-tab" role="tablist">';
-    }
-    // Aquí se espera que los elementos de navegación sean InnerBlocks
-    if (!empty($content)) {
-        $output .= $content;
-    } else {
-        $output .= '<li class="nav-item"><span class="nav-link disabled">Agrega pestañas</span></li>';
-    }
-    if ($vertical) {
-        $output .= '</div>';
-        $output .= '<div class="tab-content" id="' . esc_attr($navId) . '-tabContent">';
-    } else {
-        $output .= '</ul>';
-        $output .= '<div class="tab-content" id="' . esc_attr($navId) . '-tabContent">';
-    }
-    // El contenido de los paneles también debe venir de InnerBlocks
-    // (puedes personalizar esto según la estructura de tus bloques hijos)
-    $output .= '</div>'; // tab-content
-    if ($vertical) {
-        $output .= '</div>'; // d-flex container
-    }
-    return $output;
+
+    ob_start();
+    ?>
+    <?php if ($vertical) : ?>
+        <div class="d-flex align-items-start">
+            <div class="nav flex-column nav-pills me-3" id="<?php echo esc_attr($navId); ?>-tab" role="tablist" aria-orientation="vertical">
+                <?php if (!empty($content)) : ?>
+                    <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                <?php else : ?>
+                    <li class="nav-item"><span class="nav-link disabled"><?php echo esc_html__('Agrega pestanas', 'ileben-landing'); ?></span></li>
+                <?php endif; ?>
+            </div>
+            <div class="tab-content" id="<?php echo esc_attr($navId); ?>-tabContent"></div>
+        </div>
+    <?php else : ?>
+        <ul class="<?php echo esc_attr($nav_class_string); ?>" id="<?php echo esc_attr($navId); ?>-tab" role="tablist">
+            <?php if (!empty($content)) : ?>
+                <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            <?php else : ?>
+                <li class="nav-item"><span class="nav-link disabled"><?php echo esc_html__('Agrega pestanas', 'ileben-landing'); ?></span></li>
+            <?php endif; ?>
+        </ul>
+        <div class="tab-content" id="<?php echo esc_attr($navId); ?>-tabContent"></div>
+    <?php endif; ?>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

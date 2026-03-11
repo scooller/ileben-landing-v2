@@ -29,11 +29,14 @@ function bootstrap_theme_render_bs_cf7_block($attributes, $content, $block)
 
     $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
 
-    $output  = '<div class="' . esc_attr($class_attr) . '"' . $anchor_attr . $animation_attrs . '>';
-    $output .= do_shortcode('[contact-form-7 id="' . $form_id . '"]');
-    $output .= '</div>';
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($class_attr); ?>"<?php echo $anchor_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo $animation_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+        <?php echo do_shortcode('[contact-form-7 id="' . $form_id . '"]'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+    </div>
+    <?php
 
-    return $output;
+    return ob_get_clean();
 }
 
 /**

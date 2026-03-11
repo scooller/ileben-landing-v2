@@ -132,19 +132,25 @@ add_action('wp_enqueue_scripts', function () {
             $show_progress_bar = get_field('wpcf7_show_progress_bar', 'option');
 
             $cf7_config = [
-                'nextButtonLabel' => (string) (get_field('wpcf7_next_button_label', 'option') ?: 'Siguiente'),
-                'prevButtonLabel' => (string) (get_field('wpcf7_prev_button_label', 'option') ?: 'Anterior'),
+                'nextButtonLabel' => (string) (get_field('wpcf7_next_button_label', 'option') ?: __('Siguiente', 'ileben-landing')),
+                'prevButtonLabel' => (string) (get_field('wpcf7_prev_button_label', 'option') ?: __('Anterior', 'ileben-landing')),
                 'stepAnimation' => (string) (get_field('wpcf7_step_animation', 'option') ?: 'fade'),
                 'stepAnimationDuration' => (int) (get_field('wpcf7_step_animation_duration', 'option') ?: 250),
                 'stepAnimationEasing' => (string) (get_field('wpcf7_step_animation_easing', 'option') ?: 'ease'),
-                'toastMessage' => (string) (get_field('wpcf7_toast_message', 'option') ?: 'Por favor completa los campos requeridos.'),
+                'toastMessage' => (string) (get_field('wpcf7_toast_message', 'option') ?: __('Por favor completa los campos requeridos.', 'ileben-landing')),
                 'rutFormat' => (string) (get_field('wpcf7_rut_format', 'option') ?: 'plain'),
-                'rutErrorMessage' => (string) (get_field('wpcf7_rut_error_message', 'option') ?: 'RUT inválido'),
+                'rutErrorMessage' => (string) (get_field('wpcf7_rut_error_message', 'option') ?: __('RUT invalido', 'ileben-landing')),
                 'showStepTitles' => (bool) $show_step_titles && $show_step_titles !== '0',
                 'stepTitleMode' => (string) (get_field('wpcf7_step_title_mode', 'option') ?: 'label'),
                 'showProgressBar' => (bool) $show_progress_bar && $show_progress_bar !== '0',
+                'stepLabelPrefix' => (string) (get_field('wpcf7_step_label_prefix', 'option') ?: __('Paso', 'ileben-landing')),
+                'submitLabel' => (string) (get_field('wpcf7_submit_button_label', 'option') ?: __('Enviar', 'ileben-landing')),
             ];
             wp_localize_script('ileben-main', 'ILEBEN_CF7', $cf7_config);
+
+            wp_localize_script('ileben-main', 'ILEBEN_I18N', [
+                'plantasNoResults' => __('No se encontraron plantas con los filtros seleccionados.', 'ileben-landing'),
+            ]);
         }
     }
 
@@ -449,11 +455,15 @@ add_action('wp_head', function() {
 
     // Output preload links for carousel images
     if (!empty($carousel_urls)) {
+        ob_start();
         foreach (array_unique($carousel_urls) as $image_url) {
             // Sanitize and output preload
             $image_url = esc_url($image_url);
-            echo '<link rel="preload" as="image" href="' . $image_url . '" fetchpriority="high" crossorigin="anonymous" />' . "\n";
+            ?>
+            <link rel="preload" as="image" href="<?php echo $image_url; ?>" fetchpriority="high" crossorigin="anonymous" />
+            <?php
         }
+        echo ob_get_clean();
     }
 }, 1); // Priority 1: run VERY early, before stylesheets (priority 10 default)
 

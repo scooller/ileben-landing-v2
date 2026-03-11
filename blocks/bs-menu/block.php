@@ -124,32 +124,37 @@ function bootstrap_theme_render_bs_menu_block($attributes, $content, $block) {
     $item_class_string = implode(' ', array_unique($item_classes));
     $link_class_string = implode(' ', array_unique($link_classes));
     
-    // Start building output
-    $tag = ($style === 'nav') ? 'ul' : 'div';
-    $output = '<' . $tag . ' class="' . esc_attr($menu_class_string) . '">';
-    
     // Get current URL for active state
     $current_url = home_url($_SERVER['REQUEST_URI']);
-    
-    foreach ($menu_items as $item) {
+
+    ob_start();
+    ?>
+    <?php if ($style === 'nav') : ?>
+        <ul class="<?php echo esc_attr($menu_class_string); ?>">
+    <?php else : ?>
+        <div class="<?php echo esc_attr($menu_class_string); ?>">
+    <?php endif; ?>
+
+    <?php foreach ($menu_items as $item) : ?>
+        <?php
         // Skip items with parent (for now - simple menu)
         if ($item->menu_item_parent != 0) {
             continue;
         }
-        
+
         $url = $item->url;
         $title = $item->title;
         $is_current = ($current_url === $url);
-        
+
         // Get icon if exists
         $icon = get_post_meta($item->ID, '_menu_item_fa_icon', true);
         $is_button = get_post_meta($item->ID, '_menu_item_is_button', true);
         $button_style = get_post_meta($item->ID, '_menu_item_button_style', true);
-        
+
         // Build item classes
         $current_item_classes = $item_classes;
         $current_link_classes = $link_classes;
-        
+
         if ($is_current) {
             if ($style === 'list-group') {
                 $current_item_classes[] = 'active';
@@ -157,52 +162,58 @@ function bootstrap_theme_render_bs_menu_block($attributes, $content, $block) {
                 $current_link_classes[] = $activeClass;
             }
         }
-        
+
         // Override link classes if item is marked as button
         if ($is_button && !empty($button_style) && $style !== 'button-group') {
             $current_link_classes = array('btn', $button_style);
         }
-        
+
         $item_class_str = implode(' ', array_unique($current_item_classes));
         $link_class_str = implode(' ', array_unique($current_link_classes));
-        
-        // Build icon HTML
-        $icon_html = '';
-        if (!empty($icon)) {
-            $icon_class = strpos($icon, 'fa-') === 0 ? $icon : 'fa-' . $icon;
-            $icon_html = '<svg class="icon me-2"><use xlink:href="#' . esc_attr($icon_class) . '"></use></svg>';
-        }
-        
-        if ($style === 'nav') {
-            $output .= '<li class="' . esc_attr($item_class_str) . '">';
-            $output .= '<a href="' . esc_url($url) . '" class="' . esc_attr($link_class_str) . '">';
-            $output .= $icon_html . esc_html($title);
-            $output .= '</a>';
-            $output .= '</li>';
-        } elseif ($style === 'list-group') {
-            if (!empty($item_class_str)) {
-                $all_classes = $item_class_str . ' ' . $link_class_str;
-            } else {
-                $all_classes = $link_class_str;
-            }
-            $output .= '<a href="' . esc_url($url) . '" class="' . esc_attr(trim($all_classes)) . '">';
-            $output .= $icon_html . esc_html($title);
-            $output .= '</a>';
-            
-            // Add divider if enabled
-            if ($dividers && $item !== end($menu_items)) {
-                $output .= '<div class="list-group-item list-group-item-divider p-0 border-0"></div>';
-            }
-        } else { // button-group
-            $output .= '<a href="' . esc_url($url) . '" class="' . esc_attr($link_class_str) . '">';
-            $output .= $icon_html . esc_html($title);
-            $output .= '</a>';
-        }
-    }
-    
-    $output .= '</' . $tag . '>';
-    
-    return $output;
+        ?>
+
+        <?php if ($style === 'nav') : ?>
+            <li class="<?php echo esc_attr($item_class_str); ?>">
+                <a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr($link_class_str); ?>">
+                    <?php if (!empty($icon)) : ?>
+                        <?php $icon_class = strpos($icon, 'fa-') === 0 ? $icon : 'fa-' . $icon; ?>
+                        <svg class="icon me-2"><use xlink:href="#<?php echo esc_attr($icon_class); ?>"></use></svg>
+                    <?php endif; ?>
+                    <?php echo esc_html($title); ?>
+                </a>
+            </li>
+        <?php elseif ($style === 'list-group') : ?>
+            <?php $all_classes = trim((!empty($item_class_str) ? $item_class_str . ' ' : '') . $link_class_str); ?>
+            <a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr($all_classes); ?>">
+                <?php if (!empty($icon)) : ?>
+                    <?php $icon_class = strpos($icon, 'fa-') === 0 ? $icon : 'fa-' . $icon; ?>
+                    <svg class="icon me-2"><use xlink:href="#<?php echo esc_attr($icon_class); ?>"></use></svg>
+                <?php endif; ?>
+                <?php echo esc_html($title); ?>
+            </a>
+
+            <?php if ($dividers && $item !== end($menu_items)) : ?>
+                <div class="list-group-item list-group-item-divider p-0 border-0"></div>
+            <?php endif; ?>
+        <?php else : ?>
+            <a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr($link_class_str); ?>">
+                <?php if (!empty($icon)) : ?>
+                    <?php $icon_class = strpos($icon, 'fa-') === 0 ? $icon : 'fa-' . $icon; ?>
+                    <svg class="icon me-2"><use xlink:href="#<?php echo esc_attr($icon_class); ?>"></use></svg>
+                <?php endif; ?>
+                <?php echo esc_html($title); ?>
+            </a>
+        <?php endif; ?>
+    <?php endforeach; ?>
+
+    <?php if ($style === 'nav') : ?>
+        </ul>
+    <?php else : ?>
+        </div>
+    <?php endif; ?>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**

@@ -35,18 +35,21 @@ function bootstrap_theme_render_bs_scrollspy_block($attributes, $content, $block
     $row_classes = array('row');
     $row_classes = bootstrap_theme_add_custom_classes($row_classes, $attributes, $block);
     $row_class_string = implode(' ', array_unique($row_classes));
-    $output = '<div class="' . esc_attr($row_class_string) . '">';
-    $output .= '<div class="col-12">';
-    $output .= '<div' . $data_attrs . ' style="position: relative; height: 400px; overflow-y: auto;">';
-    if (!empty($content)) {
-        $output .= $content;
-    } else {
-        $output .= '<h4>' . __('Agrega secciones al scrollspy.', 'ileben-landing') . '</h4>';
-    }
-    $output .= '</div>';
-    $output .= '</div>';
-    $output .= '</div>';
-    return $output;
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($row_class_string); ?>">
+        <div class="col-12">
+            <div<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> style="position: relative; height: 400px; overflow-y: auto;">
+                <?php if (!empty($content)) : ?>
+                    <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                <?php else : ?>
+                    <h4><?php echo esc_html__('Agrega secciones al scrollspy.', 'ileben-landing'); ?></h4>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
 }
 
 /**

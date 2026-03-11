@@ -43,52 +43,45 @@ function bootstrap_theme_render_bs_modal_block($attributes, $content, $block) {
         $dialog_classes[] = 'modal-dialog-scrollable';
     }
     
-    // Trigger button
-    $output = '<button type="button" class="btn ' . esc_attr($buttonVariant) . '" data-bs-toggle="modal" data-bs-target="#' . esc_attr($modalId) . '">';
-    $output .= esc_html($buttonText);
-    $output .= '</button>';
-    
-    // Modal structure
-    $output .= '<div class="' . esc_attr(implode(' ', array_unique($modal_classes))) . '" id="' . esc_attr($modalId) . '" tabindex="-1" aria-labelledby="' . esc_attr($modalId) . 'Label" aria-hidden="true"';
-    
+    $modal_data_attrs = '';
     if ($backdrop !== 'true') {
-        $output .= ' data-bs-backdrop="' . esc_attr($backdrop) . '"';
+        $modal_data_attrs .= ' data-bs-backdrop="' . esc_attr($backdrop) . '"';
     }
-    
     if ($keyboard !== 'true') {
-        $output .= ' data-bs-keyboard="' . esc_attr($keyboard) . '"';
+        $modal_data_attrs .= ' data-bs-keyboard="' . esc_attr($keyboard) . '"';
     }
-    
-    $output .= '>';
-    
-    $output .= '<div class="' . esc_attr(implode(' ', $dialog_classes)) . '">';
-    $output .= '<div class="modal-content">';
-    
-    // Modal header
-    $output .= '<div class="modal-header">';
-    $output .= '<h5 class="modal-title" id="' . esc_attr($modalId) . 'Label">' . esc_html($title) . '</h5>';
-    $output .= '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="' . esc_attr__('Close', 'ileben-landing') . '"></button>';
-    $output .= '</div>';
-    
-    // Modal body
-    $output .= '<div class="modal-body">';
-    if (!empty($content)) {
-        $output .= $content;
-    } else {
-        $output .= '<p>' . __('Add content to your modal.', 'ileben-landing') . '</p>';
-    }
-    $output .= '</div>';
-    
-    // Modal footer
-    $output .= '<div class="modal-footer">';
-    $output .= '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">' . __('Close', 'ileben-landing') . '</button>';
-    $output .= '</div>';
-    
-    $output .= '</div>'; // modal-content
-    $output .= '</div>'; // modal-dialog
-    $output .= '</div>'; // modal
-    
-    return $output;
+
+    ob_start();
+    ?>
+    <button type="button" class="btn <?php echo esc_attr($buttonVariant); ?>" data-bs-toggle="modal" data-bs-target="#<?php echo esc_attr($modalId); ?>">
+        <?php echo esc_html($buttonText); ?>
+    </button>
+
+    <div class="<?php echo esc_attr(implode(' ', array_unique($modal_classes))); ?>" id="<?php echo esc_attr($modalId); ?>" tabindex="-1" aria-labelledby="<?php echo esc_attr($modalId); ?>Label" aria-hidden="true"<?php echo $modal_data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+        <div class="<?php echo esc_attr(implode(' ', $dialog_classes)); ?>">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="<?php echo esc_attr($modalId); ?>Label"><?php echo esc_html($title); ?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php echo esc_attr__('Close', 'ileben-landing'); ?>"></button>
+                </div>
+
+                <div class="modal-body">
+                    <?php if (!empty($content)) : ?>
+                        <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    <?php else : ?>
+                        <p><?php echo esc_html__('Add content to your modal.', 'ileben-landing'); ?></p>
+                    <?php endif; ?>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo esc_html__('Close', 'ileben-landing'); ?></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+
+    return ob_get_clean();
 }
 
 /**
