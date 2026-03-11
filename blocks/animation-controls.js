@@ -255,6 +255,33 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                     onChange: (value) => setAttributes({ animationParallaxSpeed: value })
                 }),
 
+                // ScrollTrigger Start Position
+                allowScroll && attributes.animationTrigger === 'on-scroll' &&
+                el(TextControl, {
+                    label: __('Scroll Start', 'bootstrap-theme'),
+                    value: attributes.animationScrollStart || 'top 70%',
+                    onChange: (value) => setAttributes({ animationScrollStart: value }),
+                    help: __('Ej: "top 70%", "top center", "top bottom"', 'bootstrap-theme')
+                }),
+
+                // ScrollTrigger End Position
+                allowScroll && attributes.animationTrigger === 'on-scroll' &&
+                el(TextControl, {
+                    label: __('Scroll End', 'bootstrap-theme'),
+                    value: attributes.animationScrollEnd || 'top 10%',
+                    onChange: (value) => setAttributes({ animationScrollEnd: value }),
+                    help: __('Ej: "top 10%", "bottom center"', 'bootstrap-theme')
+                }),
+
+                // ScrollTrigger Markers
+                allowScroll && attributes.animationTrigger === 'on-scroll' &&
+                el(ToggleControl, {
+                    label: __('Show ScrollTrigger Markers', 'bootstrap-theme'),
+                    checked: attributes.animationScrollMarkers || false,
+                    onChange: (value) => setAttributes({ animationScrollMarkers: value }),
+                    help: __('Muestra líneas de debug en la página', 'bootstrap-theme')
+                }),
+
                 // Mobile enabled
                 el(ToggleControl, {
                     label: __('Enable on Mobile', 'bootstrap-theme'),

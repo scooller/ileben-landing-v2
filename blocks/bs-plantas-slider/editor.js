@@ -47,6 +47,9 @@
             animationScale: { type: 'string' },
             animationParallaxSpeed: { type: 'number' },
             animationHoverEffect: { type: 'string' },
+            animationScrollStart: { type: 'string', default: 'top 70%' },
+            animationScrollEnd: { type: 'string', default: 'top 10%' },
+            animationScrollMarkers: { type: 'boolean', default: false },
             animationMobileEnabled: { type: 'boolean' }
         },
         edit: function(props) {

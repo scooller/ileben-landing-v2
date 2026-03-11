@@ -104,8 +104,18 @@
             animationDuration: {
                 type: 'number',
                 default: 0.8
+            },            animationScrollStart: {
+                type: 'string',
+                default: 'top 70%'
             },
-            animationDelay: {
+            animationScrollEnd: {
+                type: 'string',
+                default: 'top 10%'
+            },
+            animationScrollMarkers: {
+                type: 'boolean',
+                default: false
+            },            animationDelay: {
                 type: 'number',
                 default: 0
             },
@@ -266,6 +276,24 @@
                                 value: attributes.animationEase,
                                 options: EASE_OPTIONS,
                                 onChange: (value) => setAttributes({ animationEase: value })
+                            }),
+                            attributes.animationTrigger === 'on-scroll' && el(TextControl, {
+                                label: __('Scroll Start', 'bootstrap-theme'),
+                                value: attributes.animationScrollStart || 'top 70%',
+                                onChange: (value) => setAttributes({ animationScrollStart: value }),
+                                help: __('Ej: "top 70%", "top center", "top bottom"', 'bootstrap-theme')
+                            }),
+                            attributes.animationTrigger === 'on-scroll' && el(TextControl, {
+                                label: __('Scroll End', 'bootstrap-theme'),
+                                value: attributes.animationScrollEnd || 'top 10%',
+                                onChange: (value) => setAttributes({ animationScrollEnd: value }),
+                                help: __('Ej: "top 10%", "bottom center"', 'bootstrap-theme')
+                            }),
+                            attributes.animationTrigger === 'on-scroll' && el(ToggleControl, {
+                                label: __('Show ScrollTrigger Markers', 'bootstrap-theme'),
+                                checked: attributes.animationScrollMarkers || false,
+                                onChange: (value) => setAttributes({ animationScrollMarkers: value }),
+                                help: __('Muestra lineas de debug en la pagina', 'bootstrap-theme')
                             })
                         )
                     )

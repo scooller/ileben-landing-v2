@@ -11,7 +11,7 @@ Edita el archivo `style.css` y actualiza el número de versión:
 ```css
 /*
 Theme Name: ileben-landing-v2
-Version: 0.1.11  <-- Aumentar este número
+Version: 0.1.12  <-- Aumentar este número
 */
 ```
 
@@ -27,7 +27,7 @@ git push origin main
 
 1. Ve a tu repositorio: `https://github.com/scooller/ileben-landing-v2`
 2. Click en "Releases" → "Draft a new release"
-3. **Tag version:** `v0.1.11` (debe coincidir con la versión de style.css)
+3. **Tag version:** `v0.1.12` (debe coincidir con la versión de style.css)
 4. **Release title:** `Version 0.1.11`
 5. **Description:** Describe los cambios
 6. Click en "Publish release"

@@ -12,6 +12,8 @@ class GSAPAnimationManager {
     this.scrollTriggers = [];
     this.hoverObservers = [];
     this.clickObservers = [];
+    this.refreshTimeouts = [];
+    this.refreshRafId = null;
     this.initialized = false;
     this.isMobile = window.innerWidth < 768;
     
@@ -39,7 +41,51 @@ class GSAPAnimationManager {
     // Observar cambios en el DOM
     this.observeDOM();
 
+    // Recalcular triggers cuando el layout se estabiliza tras load/fonts/images.
+    this.scheduleScrollTriggerRefresh();
+
     window.addEventListener('resize', () => this.handleResize());
+  }
+
+  /**
+   * Refresca ScrollTrigger de forma segura
+   */
+  refreshScrollTrigger() {
+    if (!window.ScrollTrigger || !window.gsap) return;
+
+    try {
+      window.ScrollTrigger.refresh();
+    } catch (error) {
+      console.warn('ScrollTrigger refresh failed:', error);
+    }
+  }
+
+  /**
+   * Programa varios refresh para absorber cambios tardíos de layout
+   */
+  scheduleScrollTriggerRefresh() {
+    if (!window.ScrollTrigger || !window.gsap) return;
+
+    // Reprogramar si llega otra llamada antes de ejecutar los timers.
+    this.refreshTimeouts.forEach((timerId) => clearTimeout(timerId));
+    this.refreshTimeouts = [];
+
+    if (this.refreshRafId !== null) {
+      cancelAnimationFrame(this.refreshRafId);
+      this.refreshRafId = null;
+    }
+
+    this.refreshRafId = requestAnimationFrame(() => {
+      this.refreshRafId = requestAnimationFrame(() => {
+        this.refreshScrollTrigger();
+        this.refreshRafId = null;
+      });
+    });
+
+    [250, 800, 1600].forEach((delayMs) => {
+      const timerId = setTimeout(() => this.refreshScrollTrigger(), delayMs);
+      this.refreshTimeouts.push(timerId);
+    });
   }
 
   /**
@@ -88,6 +134,10 @@ class GSAPAnimationManager {
     const enableSplitText = element.getAttribute('data-split-text') === 'true';
     const splitType = element.getAttribute('data-split-type') || 'words';
     const splitStagger = parseFloat(element.getAttribute('data-split-stagger')) || 0.05;
+    // ScrollTrigger attributes
+    const scrollStart = element.getAttribute('data-animate-scroll-start') || 'top 70%';
+    const scrollEnd = element.getAttribute('data-animate-scroll-end') || 'top 10%';
+    const scrollMarkers = element.getAttribute('data-animate-scroll-markers') === 'true';
 
     if (!type) return null;
 
@@ -111,7 +161,10 @@ class GSAPAnimationManager {
       countIncrement,
       enableSplitText,
       splitType,
-      splitStagger
+      splitStagger,
+      scrollStart,
+      scrollEnd,
+      scrollMarkers
     };
   }
 
@@ -126,6 +179,9 @@ class GSAPAnimationManager {
     if (this.isMobile && (trigger === 'on-scroll' || trigger === 'on-hover')) {
       trigger = 'on-load';
     }
+    
+    // Debug: log trigger information
+    console.log(`[Animation] ${config.type} - trigger: ${trigger} - ${element.className || element.tagName}`);
     
     switch (trigger) {
       case 'on-load':
@@ -208,6 +264,22 @@ class GSAPAnimationManager {
 
     const { fromVars, toVars } = this.buildAnimationConfig(config);
 
+    // console.log('Configurar animación on-scroll para', element, 'con config:', config);
+
+    // Detectar si el elemento es una columna Bootstrap y usar su parent .row como trigger
+    let triggerElement = element;
+    if (element.classList && /\bcol(-\w*)?(-\d+)?\b/.test(element.className)) {
+      const parentRow = element.closest('.row');
+        const parentCont = element.closest('.container, .container-fluid');
+        if (parentRow) {
+          triggerElement = parentRow;
+          console.log('Elemento es columna, usando .row como trigger:', triggerElement);
+        }else if (parentCont) {
+          triggerElement = parentCont;
+          console.log('Elemento es columna, usando .container como trigger:', triggerElement);
+        }
+    }
+
     gsap.fromTo(element, fromVars, {
       ...toVars,
       delay: config.delay,
@@ -216,11 +288,12 @@ class GSAPAnimationManager {
       yoyo: config.yoyo,
       immediateRender: true,
       scrollTrigger: {
-        trigger: element,
-        start: 'top 80%',
-        end: 'top 20%',
+        trigger: triggerElement,
+        start: config.scrollStart,
+        end: config.scrollEnd,
         toggleActions: 'play none none reverse',
-        markers: false
+        markers: config.scrollMarkers,
+        scrub: false,
       }
     });
   }
@@ -647,6 +720,10 @@ class GSAPAnimationManager {
                 if (config && this.isMobile && !config.mobileEnabled) return;
                 if (config) this.setupAnimation(el, config);
               });
+
+              if (elements.length > 0) {
+                this.scheduleScrollTriggerRefresh();
+              }
             }
           });
         }
@@ -699,12 +776,26 @@ class GSAPAnimationManager {
     };
 
     if (useScrollTrigger) {
+      // Detectar si el elemento es una columna Bootstrap y usar su parent .row como trigger
+      let triggerElement = element;
+      if (element.classList && /\bcol(-\w*)?(-\d+)?\b/.test(element.className)) {
+        const parentRow = element.closest('.row');
+        const parentCont = element.closest('.container, .container-fluid');
+        if (parentRow) {
+          triggerElement = parentRow;
+          console.log('Elemento es columna, usando .row como trigger:', triggerElement);
+        }else if (parentCont) {
+          triggerElement = parentCont;
+          console.log('Elemento es columna, usando .container como trigger:', triggerElement);
+        }
+      }
+
       animConfig.scrollTrigger = {
-        trigger: element,
-        start: 'top 80%',
-        end: 'top 20%',
+        trigger: triggerElement,
+        start: config.scrollStart,
+        end: config.scrollEnd,
         toggleActions: 'play none none reverse',
-        markers: false
+        markers: config.scrollMarkers
       };
     }
 
@@ -726,6 +817,14 @@ class GSAPAnimationManager {
     this.hoverObservers.forEach(observer => observer.disconnect?.());
     this.clickObservers.forEach(observer => observer.disconnect?.());
     this.animations.clear();
+
+    this.refreshTimeouts.forEach((timerId) => clearTimeout(timerId));
+    this.refreshTimeouts = [];
+    if (this.refreshRafId !== null) {
+      cancelAnimationFrame(this.refreshRafId);
+      this.refreshRafId = null;
+    }
+
     this.initialized = false;
   }
 
@@ -775,14 +874,28 @@ class GSAPAnimationManager {
     };
 
     if (useScrollTrigger) {
+      // Detectar si el elemento es una columna Bootstrap y usar su parent .row como trigger
+      let triggerElement = element;
+      if (element.classList && /\bcol(-\w*)?(-\d+)?\b/.test(element.className)) {
+        const parentRow = element.closest('.row');
+        const parentCont = element.closest('.container, .container-fluid');
+        if (parentRow) {
+          triggerElement = parentRow;
+          console.log('Elemento es columna, usando .row como trigger:', triggerElement);
+        }else if (parentCont) {
+          triggerElement = parentCont;
+          console.log('Elemento es columna, usando .container como trigger:', triggerElement);
+        }
+      }
+
       // Animación con ScrollTrigger
       staggerConfig.scrollTrigger = {
-        trigger: element,
-        start: 'top 80%',
-        end: 'top 20%',
+        trigger: triggerElement,
+        start: config.scrollStart,
+        end: config.scrollEnd,
         toggleActions: 'play none none reverse',
         immediateRender: true,
-        markers: false
+        markers: config.scrollMarkers
       };
     } else {
       // Animación inmediata con repeat si está configurado
@@ -796,23 +909,78 @@ class GSAPAnimationManager {
     // Aplicar la animación
     gsap.fromTo(targets, fromVars, staggerConfig);
   }
+
+  /**
+   * Retorna un reporte de todos los triggers configurados
+   * Útil para debugging
+   */
+  getAnimationReport() {
+    const report = [];
+    const elements = document.querySelectorAll('[data-animate-type]');
+    
+    elements.forEach((element) => {
+      const config = this.parseAnimationConfig(element);
+      if (config) {
+        report.push({
+          element: element,
+          className: element.className,
+          tag: element.tagName,
+          type: config.type,
+          trigger: config.trigger ? config.trigger : 'on-load',
+          duration: config.duration,
+          delay: config.delay
+        });
+      }
+    });
+
+    console.table(report.map(r => ({
+      tag: r.tag,
+      class: r.className.substring(0, 50),
+      type: r.type,
+      trigger: r.trigger,
+      duration: r.duration,
+      delay: r.delay
+    })));
+
+    return report;
+  }
+
+  /**
+   * Filtra animaciones por trigger
+   * Ejemplo: getAnimationsByTrigger('on-scroll')
+   */
+  getAnimationsByTrigger(triggerName) {
+    const report = this.getAnimationReport();
+    const filtered = report.filter(r => r.trigger === triggerName);
+    
+    console.log(`\n[${triggerName}] - ${filtered.length} elementos:`);
+    console.table(filtered.map(r => ({
+      tag: r.tag,
+      class: r.className.substring(0, 50),
+      type: r.type
+    })));
+
+    return filtered;
+  }
 }
 
-// Inicialización global
-document.addEventListener('DOMContentLoaded', () => {
-  window.gsapAnimationManager = new GSAPAnimationManager();
-  window.gsapAnimationManager.init();
-});
-
-// Re-inicializar si el contenido cambia dinámicamente
-window.addEventListener('load', () => {
-  if (window.gsapAnimationManager) {
-    window.gsapAnimationManager.findAnimatedElements();
+function initializeGSAPAnimationManager() {
+  if (!window.gsapAnimationManager) {
+    window.gsapAnimationManager = new GSAPAnimationManager();
   }
-});
+
+  window.gsapAnimationManager.init();
+}
+
+if (document.readyState === 'complete') {
+  initializeGSAPAnimationManager();
+} else {
+  window.addEventListener('load', initializeGSAPAnimationManager, { once: true });
+}
 
 // Expose to window for external access
 window.GSAPAnimationManager = GSAPAnimationManager;
 
 // Export for module usage
+export { initializeGSAPAnimationManager };
 export default GSAPAnimationManager;

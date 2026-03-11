@@ -72,6 +72,18 @@
             },
             animationMobileEnabled: {
                 type: 'boolean'
+            },
+            animationScrollStart: {
+                type: 'string',
+                default: 'top 70%'
+            },
+            animationScrollEnd: {
+                type: 'string',
+                default: 'top 10%'
+            },
+            animationScrollMarkers: {
+                type: 'boolean',
+                default: false
             }
         },
         edit: function(props) {
@@ -181,6 +193,24 @@
                                 value: attributes.animationEase || 'power2.inOut',
                                 options: easeOptions,
                                 onChange: (value) => setAttributes({ animationEase: value })
+                            }),
+                            attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
+                                label: __('Scroll Start', 'bootstrap-theme'),
+                                value: attributes.animationScrollStart || 'top 70%',
+                                onChange: (value) => setAttributes({ animationScrollStart: value }),
+                                help: __('Ej: "top 70%", "top center", "top bottom"', 'bootstrap-theme')
+                            }),
+                            attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
+                                label: __('Scroll End', 'bootstrap-theme'),
+                                value: attributes.animationScrollEnd || 'top 10%',
+                                onChange: (value) => setAttributes({ animationScrollEnd: value }),
+                                help: __('Ej: "top 10%", "bottom center"', 'bootstrap-theme')
+                            }),
+                            attributes.animationTrigger === 'on-scroll' && createElement(ToggleControl, {
+                                label: __('Show ScrollTrigger Markers', 'bootstrap-theme'),
+                                checked: attributes.animationScrollMarkers || false,
+                                onChange: (value) => setAttributes({ animationScrollMarkers: value }),
+                                help: __('Muestra lineas de debug en la pagina', 'bootstrap-theme')
                             }),
                             createElement(ToggleControl, {
                                 label: __('Enable on Mobile', 'bootstrap-theme'),

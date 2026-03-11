@@ -12,7 +12,6 @@ import { initRutValidation } from './rut';
 import { applyBootstrapClasses } from './cf7-bootstrap';
 import { deferAnalytics } from './defer-analytics';
 import { initFontLoader } from './font-loader';
-import './parallax';
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
@@ -22,6 +21,10 @@ if (document.readyState === 'loading') {
 }
 
 async function init() {
+  const gsapConfig = window.ILEBEN_GSAP || {};
+  const gsapEnabled = gsapConfig.enableGsap !== false;
+  const scrollTriggerEnabled = gsapConfig.enableScrollTrigger !== false;
+
   // Critical path: keep only essentials before first interaction
   initPreloader();
   initLazyload();
@@ -43,15 +46,23 @@ async function init() {
     // Defer analytics signaling to idle/after load
     deferAnalytics();
 
+    // Load parallax module only when GSAP core + ScrollTrigger are enabled
+    if (gsapEnabled && scrollTriggerEnabled && document.querySelector('[data-parallax="true"]')) {
+      import('./parallax');
+    }
+
     // Defer GSAP if there are animations (lazy load)
-    if (document.querySelectorAll('[data-animate-type]').length > 0) {
+    if (gsapEnabled && document.querySelectorAll('[data-animate-type]').length > 0) {
       import('./gsap-loader').then(({ initGsap }) => {
         initGsap();
       });
-      import('./animations').then(({ default: GSAPAnimationManager }) => {
-        const animationManager = new GSAPAnimationManager();
-        animationManager.init();
-        window.gsapAnimationManager = animationManager;
+      import('./animations').then(({ initializeGSAPAnimationManager }) => {
+        if (document.readyState === 'complete') {
+          initializeGSAPAnimationManager();
+          return;
+        }
+
+        window.addEventListener('load', initializeGSAPAnimationManager, { once: true });
       });
     }
 

@@ -91,6 +91,19 @@ function ileben_add_animation_to_core_blocks($block_content, $block) {
         $data_attrs['data-animate-mobile'] = $attrs['animationMobileEnabled'] ? 'true' : 'false';
     }
     
+    // Add ScrollTrigger attributes
+    if (!empty($attrs['animationScrollStart'])) {
+        $data_attrs['data-animate-scroll-start'] = $attrs['animationScrollStart'];
+    }
+    
+    if (!empty($attrs['animationScrollEnd'])) {
+        $data_attrs['data-animate-scroll-end'] = $attrs['animationScrollEnd'];
+    }
+    
+    if (isset($attrs['animationScrollMarkers']) && $attrs['animationScrollMarkers'] === true) {
+        $data_attrs['data-animate-scroll-markers'] = 'true';
+    }
+    
     // Add CountUp attributes
     if (!empty($attrs['animationCountTo'])) {
         $data_attrs['data-animate-count-to'] = $attrs['animationCountTo'];

@@ -2,6 +2,34 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.12] - 2026-03-11
+
+### 🎬 Animaciones y ScrollTrigger
+- **Scroll Trigger Parámetros Editables:** Agregados controles en editor Gutenberg para ajustar `start`, `end` y debug markers de ScrollTrigger.
+  - Nuevos campos en todos los bloques con soporte de animaciones (bs-column, bs-asesores, bs-card, bs-cf7, bs-fa-icon, bs-container, bs-list-group-item, bs-step-item, bs-divider, bs-plantas-slider).
+  - Defaults: `start: 'top 70%'`, `end: 'top 10%'`, `markers: false`.
+  - Data attributes: `data-animate-scroll-start`, `data-animate-scroll-end`, `data-animate-scroll-markers`.
+
+- **UI Fixes - Animation Controls:** Corrección de visualización de nuevos controles Scroll en paneles de animación.
+  - Agregados TextControl y ToggleControl en `animation-controls.js` con renderizado condicional por trigger.
+  - Todos los editores de bloques ahora muestran campos scroll cuando trigger es "On Scroll".
+
+- **GSAP Master Toggle:** Implementado control maestro verdadero para GSAP Core en ACF Options.
+  - Desactivar "Habilitar GSAP Core" ahora previene carga de librerías GSAP desde CDN (PHP).
+  - `assets/js/main.js` condiciona lazy-loading de GSAP, parallax, y animation manager según `ILEBEN_GSAP.enableGsap`.
+  - Fallback seguro sin errores cuando GSAP está deshabilitado.
+
+- **ScrollTrigger Refresh Diferido:** Múltiples refresh escalonados para resolver problemas de triggers tardíos.
+  - Refresh inicial en doble `requestAnimationFrame` (post-paint).
+  - Refresh diferidos a 250ms, 800ms, 1600ms para absorber cambios de layout tardío (imágenes, fuentes).
+  - Refresh automático cuando se agregan nodos animables via MutationObserver.
+  - Limpieza adecuada de timers en cleanup/resize handlers.
+
+### 🔧 Cambios Técnicos
+- **inc/animations.php:** Condicional de enqueue de GSAP/ScrollTrigger basada en `enable_gsap` ACF.
+- **assets/js/main.js:** Gating de import de parallax y GSAP lazy-loading por configuración global.
+- **assets/js/animations.js:** Métodos `refreshScrollTrigger()` y `scheduleScrollTriggerRefresh()` para refrescos diferidos.
+
 ## [0.1.11] - 2026-02-11
 
 ### 🔄 Sistema de Actualizaciones

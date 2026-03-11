@@ -126,5 +126,18 @@ function bootstrap_theme_get_animation_attributes($attributes, $block)
         $data_attrs .= ' data-animate-mobile="' . ($attributes['animationMobileEnabled'] ? '1' : '0') . '"';
     }
 
+    // ScrollTrigger settings
+    if (isset($attributes['animationScrollStart']) && $attributes['animationScrollStart'] !== '' && $attributes['animationScrollStart'] !== null) {
+        $data_attrs .= ' data-animate-scroll-start="' . esc_attr($attributes['animationScrollStart']) . '"';
+    }
+
+    if (isset($attributes['animationScrollEnd']) && $attributes['animationScrollEnd'] !== '' && $attributes['animationScrollEnd'] !== null) {
+        $data_attrs .= ' data-animate-scroll-end="' . esc_attr($attributes['animationScrollEnd']) . '"';
+    }
+
+    if (isset($attributes['animationScrollMarkers']) && $attributes['animationScrollMarkers'] === true) {
+        $data_attrs .= ' data-animate-scroll-markers="true"';
+    }
+
     return $data_attrs;
 }

@@ -66,6 +66,18 @@
             animationMobileEnabled: {
                 type: 'boolean'
             },
+            animationScrollStart: {
+                type: 'string',
+                default: 'top 70%'
+            },
+            animationScrollEnd: {
+                type: 'string',
+                default: 'top 10%'
+            },
+            animationScrollMarkers: {
+                type: 'boolean',
+                default: false
+            },
         },
         supports: {
             html: true,

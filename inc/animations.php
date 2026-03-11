@@ -19,6 +19,16 @@ function bootstrap_theme_enqueue_animation_scripts()
 {
     $version = defined('ILEBEN_THEME_VERSION') ? ILEBEN_THEME_VERSION : '0.1.0';
 
+    // Master toggle from ACF Options: if disabled, do not enqueue GSAP core/plugins.
+    $enable_gsap = true;
+    if (function_exists('get_field')) {
+        $enable_gsap = (bool) get_field('enable_gsap', 'option');
+    }
+
+    if (!$enable_gsap) {
+        return;
+    }
+
     // GSAP library (CDN)
     wp_enqueue_script(
         'gsap',

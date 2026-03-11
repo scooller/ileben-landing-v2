@@ -6,7 +6,7 @@
     const { __ } = wp.i18n;
     const { registerBlockType } = wp.blocks;
     const { InspectorControls, InnerBlocks, useBlockProps } = wp.blockEditor;
-    const { PanelBody, SelectControl, RangeControl, ToggleControl } = wp.components;
+    const { PanelBody, SelectControl, RangeControl, ToggleControl, TextControl } = wp.components;
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-column', {
@@ -104,6 +104,18 @@
             },
             animationMobileEnabled: {
                 type: 'boolean'
+            },
+            animationScrollStart: {
+                type: 'string',
+                default: 'top 70%'
+            },
+            animationScrollEnd: {
+                type: 'string',
+                default: 'top 10%'
+            },
+            animationScrollMarkers: {
+                type: 'boolean',
+                default: false
             }
         },
         example: {
@@ -332,6 +344,27 @@
                                 value: attributes.animationEase,
                                 options: easeOptions,
                                 onChange: (value) => setAttributes({ animationEase: value })
+                            }),
+
+                            attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
+                                label: __('Scroll Start', 'bootstrap-theme'),
+                                value: attributes.animationScrollStart || 'top 70%',
+                                onChange: (value) => setAttributes({ animationScrollStart: value }),
+                                help: __('Ej: "top 70%", "top center", "top bottom"', 'bootstrap-theme')
+                            }),
+
+                            attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
+                                label: __('Scroll End', 'bootstrap-theme'),
+                                value: attributes.animationScrollEnd || 'top 10%',
+                                onChange: (value) => setAttributes({ animationScrollEnd: value }),
+                                help: __('Ej: "top 10%", "bottom center"', 'bootstrap-theme')
+                            }),
+
+                            attributes.animationTrigger === 'on-scroll' && createElement(ToggleControl, {
+                                label: __('Show ScrollTrigger Markers', 'bootstrap-theme'),
+                                checked: attributes.animationScrollMarkers || false,
+                                onChange: (value) => setAttributes({ animationScrollMarkers: value }),
+                                help: __('Muestra lineas de debug en la pagina', 'bootstrap-theme')
                             }),
 
                             createElement(ToggleControl, {
