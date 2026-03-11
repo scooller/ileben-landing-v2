@@ -26,7 +26,7 @@ function ileben_theme_check_acf_pro() {
 function ileben_theme_acf_missing_notice() {
 	?>
 	<div class="notice notice-error">
-		<p><strong><?php esc_html_e( 'Ileben Theme - Error:', 'ileben-landing' ); ?></strong> <?php esc_html_e( 'Este tema requiere Advanced Custom Fields (ACF) PRO para funcionar correctamente. Por favor instala y activa ACF PRO.', 'ileben-landing' ); ?> <a href="<?php echo esc_url( admin_url( 'plugin-install.php?s=advanced+custom+fields&tab=search&type=term' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Instalar ACF', 'ileben-landing' ); ?></a></p>
+		<p><strong><?php esc_html_e( 'Leben Theme - Error:', 'ileben-landing' ); ?></strong> <?php esc_html_e( 'Este tema requiere Advanced Custom Fields (ACF) PRO para funcionar correctamente. Por favor instala y activa ACF PRO.', 'ileben-landing' ); ?> <a href="<?php echo esc_url( admin_url( 'plugin-install.php?s=advanced+custom+fields&tab=search&type=term' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Instalar ACF', 'ileben-landing' ); ?></a></p>
 	</div>
 	<?php
 }
@@ -34,7 +34,7 @@ function ileben_theme_acf_missing_notice() {
 function ileben_theme_acf_pro_missing_notice() {
 	?>
 	<div class="notice notice-warning">
-		<p><strong><?php esc_html_e( 'Ileben Theme - Advertencia:', 'ileben-landing' ); ?></strong> <?php esc_html_e( 'ACF está instalado pero este tema requiere Advanced Custom Fields PRO. La versión gratuita no incluye todas las funcionalidades necesarias.', 'ileben-landing' ); ?> <a href="https://www.advancedcustomfields.com/pro/" target="_blank" class="button button-primary"><?php esc_html_e( 'Conseguir ACF Pro', 'ileben-landing' ); ?></a></p>
+		<p><strong><?php esc_html_e( 'Leben Theme - Advertencia:', 'ileben-landing' ); ?></strong> <?php esc_html_e( 'ACF está instalado pero este tema requiere Advanced Custom Fields PRO. La versión gratuita no incluye todas las funcionalidades necesarias.', 'ileben-landing' ); ?> <a href="https://www.advancedcustomfields.com/pro/" target="_blank" class="button button-primary"><?php esc_html_e( 'Conseguir ACF Pro', 'ileben-landing' ); ?></a></p>
 	</div>
 	<?php
 }
@@ -49,7 +49,7 @@ function ileben_theme_register_acf_options_page() {
 
     acf_add_options_page([
 		'page_title'      => __('Configuración del tema', 'ileben-landing'),
-		'menu_title'      => __('Ileben Config', 'ileben-landing'),
+		'menu_title'      => __('Leben Config', 'ileben-landing'),
         'menu_slug'       => 'ileben-opciones-tema',
         'capability'      => 'manage_options',
         'redirect'        => false,

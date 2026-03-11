@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-list-group', {
+        apiVersion: 3,
         title: __('Bootstrap List Group', 'ileben-landing'),
         description: __('Bootstrap list group component', 'ileben-landing'),
         icon: 'editor-ul',

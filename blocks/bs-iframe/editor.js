@@ -17,6 +17,7 @@
     ];
 
     registerBlockType('bootstrap-theme/bs-iframe', {
+        apiVersion: 3,
         title: __('Bootstrap Iframe', 'ileben-landing'),
         description: __('Iframe responsive usando helper Ratio de Bootstrap 5', 'ileben-landing'),
         icon: 'video-alt3',

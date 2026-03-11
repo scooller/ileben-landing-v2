@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-badge', {
+        apiVersion: 3,
         title: __('Bootstrap Badge', 'ileben-landing'),
         description: __('Bootstrap badge component for labels and counters', 'ileben-landing'),
         icon: 'tag',

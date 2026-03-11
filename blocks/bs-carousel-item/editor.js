@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-carousel-item', {
+        apiVersion: 3,
         title: __('Bootstrap Carousel Item', 'ileben-landing'),
         description: __('Individual slide within a Bootstrap carousel', 'ileben-landing'),
         icon: 'format-image',
@@ -246,7 +247,7 @@
                     Object.assign({}, blockProps, {
                         href: attributes.link,
                         target: attributes.target || '_self',
-                        className: itemClasses,
+                        className: [blockProps.className, itemClasses].filter(Boolean).join(' '),
                         style: itemStyle,
                         'data-bs-interval': attributes.interval || undefined
                     }),
@@ -255,7 +256,7 @@
             } else {
                 return createElement('div',
                     Object.assign({}, blockProps, {
-                        className: itemClasses,
+                        className: [blockProps.className, itemClasses].filter(Boolean).join(' '),
                         style: itemStyle,
                         'data-bs-interval': attributes.interval || undefined
                     }),

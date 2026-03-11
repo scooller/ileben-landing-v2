@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-carousel', {
+        apiVersion: 3,
         title: __('Bootstrap Carousel', 'ileben-landing'),
         description: __('Bootstrap carousel slideshow component', 'ileben-landing'),
         icon: 'images-alt2',

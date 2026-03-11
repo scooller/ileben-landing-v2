@@ -1,7 +1,7 @@
 <?php
 /**
  * Bootstrap Shipping Methods Block
- * Muestra los m├®todos de env├¡o disponibles de WooCommerce
+ * Muestra los métodos de envío disponibles de WooCommerce
  *
  * @package Bootstrap_Theme
  */
@@ -11,7 +11,7 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
         return '<div class="alert alert-warning">' . esc_html__('WooCommerce no esta activo', 'ileben-landing') . '</div>';
     }
 
-    // Verificar que haya carrito y productos que requieran env├¡o
+    // Verificar que haya carrito y productos que requieran envío
     if (!WC()->cart || !WC()->cart->needs_shipping()) {
         return '';
     }
@@ -26,7 +26,7 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
         }
     }
     
-    // Si solo hay productos virtuales/descargables, no mostrar m├®todos de env├¡o
+    // Si solo hay productos virtuales/descargables, no mostrar métodos de envío
     if (!$has_physical_product) {
         return '';
     }
@@ -49,10 +49,10 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
     
     $wrapper_class = implode(' ', $classes);
 
-    // Calcular env├¡o
+    // Calcular envío
     WC()->cart->calculate_shipping();
     
-    // Obtener paquetes de env├¡o
+    // Obtener paquetes de envío
     $packages = WC()->shipping()->get_packages();
     $chosen_methods = WC()->session->get('chosen_shipping_methods');
     
@@ -131,12 +131,12 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
     <script>
     (function() {
         document.addEventListener('DOMContentLoaded', function() {
-            // Actualizar m├®todo de env├¡o seleccionado
+            // Actualizar método de envío seleccionado
             function updateShippingMethod(element) {
                 var packageId = element.dataset.package;
                 var methodId = element.value;
                 
-                // Aqu├¡ podr├¡as agregar AJAX para actualizar el carrito
+                // Aquí podrías agregar AJAX para actualizar el carrito
                 // Por ahora solo actualiza visualmente
                 console.log('Shipping method selected:', methodId, 'for package:', packageId);
                 
@@ -175,6 +175,7 @@ function bootstrap_theme_register_bs_shipping_methods_block() {
     }
 
     register_block_type('bootstrap-theme/bs-shipping-methods', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_shipping_methods_block',
         'attributes' => array(
             'displayType' => array(

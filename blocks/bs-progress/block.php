@@ -73,6 +73,7 @@ function bootstrap_theme_render_bs_progress_block($attributes, $content, $block)
  */
 function bootstrap_theme_register_bs_progress_block() {
     register_block_type('bootstrap-theme/bs-progress', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_progress_block',
         'attributes' => array(
             'value' => array(

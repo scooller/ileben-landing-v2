@@ -11,6 +11,7 @@
     const { useSelect } = wp.data;
 
     registerBlockType('bootstrap-theme/bs-steps', {
+        apiVersion: 3,
         title: __('Bootstrap Steps', 'ileben-landing'),
         description: __('Display a progress stepper with customizable steps', 'ileben-landing'),
         icon: 'list-view',
@@ -169,7 +170,7 @@
                                     ['bootstrap-theme/bs-step-item', { title: 'Desarrollo' }],
                                     ['bootstrap-theme/bs-step-item', { title: 'Lanzamiento' }],
                                     ['bootstrap-theme/bs-step-item', { title: 'Inicio de obra' }],
-                                    ['bootstrap-theme/bs-step-item', { title: 'Construcci├│n' }]
+                                    ['bootstrap-theme/bs-step-item', { title: 'Construcción' }]
                                 ],
                                 renderAppender: InnerBlocks.ButtonBlockAppender
                             })

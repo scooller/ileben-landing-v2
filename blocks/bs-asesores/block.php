@@ -104,7 +104,7 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                                     <?php if ($show_actions && $show_email && $mailto_href !== '') : ?>
                                         <a class="btn btn-danger btn-sm" href="<?php echo esc_url($mailto_href); ?>">
                                             <i class="fa-solid fa-at"></i>
-                                            <?php esc_html_e('Escr├¡beme', 'ileben-landing'); ?>
+                                            <?php esc_html_e('Escríbeme', 'ileben-landing'); ?>
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -146,7 +146,7 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                                                 <?php if ($show_actions && $show_email && $mailto_href !== '') : ?>
                                                     <a class="btn btn-danger btn-sm" href="<?php echo esc_url($mailto_href); ?>">
                                                         <i class="fa-solid fa-at"></i>
-                                                        <?php esc_html_e('Escr├¡beme', 'ileben-landing'); ?>
+                                                        <?php esc_html_e('Escríbeme', 'ileben-landing'); ?>
                                                     </a>
                                                 <?php endif; ?>
                                             </div>
@@ -170,6 +170,7 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
 function bootstrap_theme_register_bs_asesores_block()
 {
     register_block_type('bootstrap-theme/bs-asesores', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_asesores_block',
         'attributes' => array(
             'columnsMd' => array(

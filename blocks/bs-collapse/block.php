@@ -58,6 +58,7 @@ function bootstrap_theme_render_bs_collapse_block($attributes, $content, $block)
  */
 function bootstrap_theme_register_bs_collapse_block() {
     register_block_type('bootstrap-theme/bs-collapse', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_collapse_block',
         'attributes' => array(
             'collapseId' => array(

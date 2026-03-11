@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-pagination', {
+        apiVersion: 3,
         title: __('Bootstrap Pagination', 'ileben-landing'),
         description: __('Bootstrap pagination navigation component', 'ileben-landing'),
         icon: 'ellipsis',

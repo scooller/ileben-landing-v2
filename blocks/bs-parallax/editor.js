@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Bootstrap Parallax Container Block Editor
  */
 
@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-parallax', {
+        apiVersion: 3,
         title: __('Bootstrap Parallax Container', 'ileben-landing'),
         description: __('Container with parallax scroll effect - use this to wrap elements', 'ileben-landing'),
         icon: 'format-image',
@@ -107,7 +108,7 @@
                     }),
                     createElement('div', { style: { fontSize: '12px', color: '#666', marginBottom: '10px' } },
                         attributes.enableParallax ? 
-                            __('Ô£ô Parallax enabled (Speed: ' + attributes.parallaxSpeed.toFixed(1) + ', Start: ' + attributes.parallaxStart + ', End: ' + attributes.parallaxEnd + ')', 'ileben-landing') :
+                            __('Parallax enabled (Speed: ' + attributes.parallaxSpeed.toFixed(1) + ', Start: ' + attributes.parallaxStart + ', End: ' + attributes.parallaxEnd + ')', 'ileben-landing') :
                             __('Parallax disabled', 'ileben-landing')
                     ),
                     createElement(InnerBlocks, {

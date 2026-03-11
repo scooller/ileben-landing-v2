@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Bootstrap CF7 Block Editor
  */
 
@@ -10,6 +10,7 @@
     const { createElement, Fragment, useEffect, useState } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-cf7', {
+        apiVersion: 3,
         title: __('Contact Form 7', 'ileben-landing'),
         description: __('Insert a Contact Form 7 form with Bootstrap styles and animations', 'ileben-landing'),
         icon: 'feedback',
@@ -138,7 +139,7 @@
             ];
 
             const formOptions = [
-                { label: __('Select a formÔÇª', 'ileben-landing'), value: 0 },
+                { label: __('Select a form...', 'ileben-landing'), value: 0 },
                 ...forms
             ];
 

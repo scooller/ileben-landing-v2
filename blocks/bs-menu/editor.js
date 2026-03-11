@@ -17,6 +17,7 @@
     const { useSelect } = data;
 
     registerBlockType('bootstrap-theme/bs-menu', {
+        apiVersion: 3,
         title: 'Bootstrap Menu',
         description: 'Display WordPress menus with Bootstrap styling (Nav, List Group, Button Group)',
         icon: 'menu',

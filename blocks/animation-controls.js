@@ -15,7 +15,7 @@ const {
 const { createElement: el, Fragment } = wp.element;
 
 /**
- * Animaci├│n types disponibles
+ * Animación types disponibles
  */
 const ANIMATION_TYPES = [
     { label: __('None', 'ileben-landing'), value: '' },
@@ -76,7 +76,7 @@ const HOVER_EFFECTS = [
 ];
 
 /**
- * Componente principal de controles de animaci├│n
+ * Componente principal de controles de animación
  */
 function AnimationControls({ attributes, setAttributes, allowHover = true, allowScroll = true }) {
     const animationType = attributes.animationType || '';
@@ -279,7 +279,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                     label: __('Show ScrollTrigger Markers', 'ileben-landing'),
                     checked: attributes.animationScrollMarkers || false,
                     onChange: (value) => setAttributes({ animationScrollMarkers: value }),
-                    help: __('Muestra l├¡neas de debug en la p├ígina', 'ileben-landing')
+                    help: __('Muestra líneas de debug en la página', 'ileben-landing')
                 }),
 
                 // Mobile enabled

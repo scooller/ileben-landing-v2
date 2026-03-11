@@ -9,6 +9,18 @@
     const { PanelBody, SelectControl, TextControl, ColorPicker, RangeControl, ToggleControl } = wp.components;
     const { createElement: el, Fragment } = wp.element;
 
+    const NEXT_SELECT_PROPS = {
+        __next40pxDefaultSize: true,
+        __nextHasNoMarginBottom: true,
+    };
+    const NEXT_TEXT_PROPS = {
+        __next40pxDefaultSize: true,
+        __nextHasNoMarginBottom: true,
+    };
+    const NEXT_TOGGLE_PROPS = {
+        __nextHasNoMarginBottom: true,
+    };
+
     const ICON_STYLES = [
         { label: __('Solid', 'ileben-landing'), value: 'fa-solid' },
         { label: __('Regular', 'ileben-landing'), value: 'fa-regular' },
@@ -81,6 +93,7 @@
     ];
 
     registerBlockType('bootstrap-theme/bs-fa-icon', {
+        apiVersion: 3,
         title: __('FontAwesome Icon', 'ileben-landing'),
         description: __('Inserta un ícono de FontAwesome (colección free).', 'ileben-landing'),
         icon: 'star-filled',
@@ -195,24 +208,28 @@
                             label: __('Estilo', 'ileben-landing'),
                             value: attributes.iconStyle,
                             options: ICON_STYLES,
+                            ...NEXT_SELECT_PROPS,
                             onChange: (value) => setAttributes({ iconStyle: value })
                         }),
                         el(TextControl, {
                             label: __('Nombre de ícono (ej: fa-house)', 'ileben-landing'),
                             help: __('Solo íconos free: https://fontawesome.com/search?ic=free-collection', 'ileben-landing'),
                             value: attributes.iconName,
+                            ...NEXT_TEXT_PROPS,
                             onChange: (value) => setAttributes({ iconName: value })
                         }),
                         el(SelectControl, {
                             label: __('Tamaño', 'ileben-landing'),
                             value: attributes.size,
                             options: ICON_SIZES,
+                            ...NEXT_SELECT_PROPS,
                             onChange: (value) => setAttributes({ size: value })
                         }),
                         el(SelectControl, {
                             label: __('Alineación', 'ileben-landing'),
                             value: attributes.align,
                             options: ALIGN_OPTIONS,
+                            ...NEXT_SELECT_PROPS,
                             onChange: (value) => setAttributes({ align: value })
                         }),
                         el('div', { style: { marginTop: '12px' } },
@@ -229,6 +246,7 @@
                             label: __('Animation Type', 'ileben-landing'),
                             value: animationType,
                             options: ANIMATION_TYPES,
+                            ...NEXT_SELECT_PROPS,
                             onChange: (value) => {
                                 const updates = { animationType: value };
                                 if (value && value !== '') {
@@ -253,6 +271,7 @@
                                 label: __('Trigger', 'ileben-landing'),
                                 value: attributes.animationTrigger,
                                 options: ANIMATION_TRIGGERS,
+                                ...NEXT_SELECT_PROPS,
                                 onChange: (value) => setAttributes({ animationTrigger: value })
                             }),
                             el(RangeControl, {
@@ -275,23 +294,27 @@
                                 label: __('Easing', 'ileben-landing'),
                                 value: attributes.animationEase,
                                 options: EASE_OPTIONS,
+                                ...NEXT_SELECT_PROPS,
                                 onChange: (value) => setAttributes({ animationEase: value })
                             }),
                             attributes.animationTrigger === 'on-scroll' && el(TextControl, {
                                 label: __('Scroll Start', 'ileben-landing'),
                                 value: attributes.animationScrollStart || 'top 70%',
+                                ...NEXT_TEXT_PROPS,
                                 onChange: (value) => setAttributes({ animationScrollStart: value }),
                                 help: __('Ej: "top 70%", "top center", "top bottom"', 'ileben-landing')
                             }),
                             attributes.animationTrigger === 'on-scroll' && el(TextControl, {
                                 label: __('Scroll End', 'ileben-landing'),
                                 value: attributes.animationScrollEnd || 'top 10%',
+                                ...NEXT_TEXT_PROPS,
                                 onChange: (value) => setAttributes({ animationScrollEnd: value }),
                                 help: __('Ej: "top 10%", "bottom center"', 'ileben-landing')
                             }),
                             attributes.animationTrigger === 'on-scroll' && el(ToggleControl, {
                                 label: __('Show ScrollTrigger Markers', 'ileben-landing'),
                                 checked: attributes.animationScrollMarkers || false,
+                                ...NEXT_TOGGLE_PROPS,
                                 onChange: (value) => setAttributes({ animationScrollMarkers: value }),
                                 help: __('Muestra lineas de debug en la pagina', 'ileben-landing')
                             })

@@ -49,6 +49,7 @@ function bootstrap_theme_render_bs_breadcrumb_block($attributes, $content, $bloc
  */
 function bootstrap_theme_register_bs_breadcrumb_block() {
     register_block_type('bootstrap-theme/bs-breadcrumb', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_breadcrumb_block',
         'supports' => array(
             'html' => true,

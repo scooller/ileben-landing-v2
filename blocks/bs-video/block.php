@@ -115,6 +115,7 @@ function bootstrap_theme_render_bs_video_block($attributes, $content, $block)
 function bootstrap_theme_register_bs_video_block()
 {
     register_block_type('bootstrap-theme/bs-video', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_video_block',
         'attributes' => array(
             'videoUrl' => array('type' => 'string', 'default' => ''),

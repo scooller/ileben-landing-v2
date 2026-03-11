@@ -54,7 +54,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
         'order' => 'ASC',
     );
 
-    // Aplicar filtro de categor├¡a si est├í seleccionado (solo en backend/bloque)
+    // Aplicar filtro de categoría si está seleccionado (solo en backend/bloque)
     if (!empty($filterCategoria)) {
         $args['tax_query'] = array(
             array(
@@ -67,7 +67,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
         );
     }
 
-    // No aplicar filtros en el backend, se filtrar├ín en el frontend con JS
+    // No aplicar filtros en el backend, se filtrarán en el frontend con JS
     $q = new WP_Query($args);
     if (!$q->have_posts()) {
         return '';
@@ -124,7 +124,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                 </div>
 
                 <div class="col-12 col-md-6">
-                    <label class="form-label"><?php echo esc_html__('Ba├▒os', 'ileben-landing'); ?></label>
+                    <label class="form-label"><?php echo esc_html__('Baños', 'ileben-landing'); ?></label>
                     <select class="form-select" name="planta_bano" data-filter-select>
                         <option value=""><?php echo esc_html__('Todos', 'ileben-landing'); ?></option>
                         <?php foreach ($bano_choices as $value => $label) : ?>
@@ -147,7 +147,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                         $content_html = apply_filters('the_content', get_the_content(null, false, get_the_ID()));
                         $planta_dorm = function_exists('get_field') ? get_field('planta_dormitorio', get_the_ID()) : '';
                         $planta_bano = function_exists('get_field') ? get_field('planta_bano', get_the_ID()) : '';
-                        // solo mostrar el numero de dormitorios y ba├▒os
+                        // solo mostrar el numero de dormitorios y baños
                         $planta_dorm_num = explode(' ', $planta_dorm)[0];
                         $planta_bano_num = explode(' ', $planta_bano)[0];
                     ?>
@@ -222,6 +222,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
 function bootstrap_theme_register_bs_plantas_slider()
 {
     register_block_type('bootstrap-theme/bs-plantas-slider', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_plantas_slider',
         'attributes' => array(
             'postsPerPage' => array('type' => 'number', 'default' => -1),

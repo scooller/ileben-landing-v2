@@ -45,6 +45,7 @@ function bootstrap_theme_render_bs_cf7_block($attributes, $content, $block)
 function bootstrap_theme_register_bs_cf7_block()
 {
     register_block_type('bootstrap-theme/bs-cf7', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_cf7_block',
         'attributes' => array(
             'formId' => array(

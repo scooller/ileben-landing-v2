@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-breadcrumb', {
+        apiVersion: 3,
         title: __('Bootstrap Breadcrumb', 'ileben-landing'),
         description: __('Bootstrap breadcrumb navigation component', 'ileben-landing'),
         icon: 'arrow-right-alt2',

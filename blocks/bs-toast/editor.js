@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-toast', {
+        apiVersion: 3,
         title: __('Bootstrap Toast', 'ileben-landing'),
         description: __('Bootstrap toast notification component', 'ileben-landing'),
         icon: 'info',

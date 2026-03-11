@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-divider', {
+        apiVersion: 3,
         title: __('Bootstrap Divider', 'ileben-landing'),
         description: __('A divider line with optional text or icon.', 'ileben-landing'),
         icon: 'minus',

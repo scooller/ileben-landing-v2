@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Bootstrap Cart Block
  * 
@@ -49,7 +49,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
             
             // Only initialize cart on frontend, not in REST API/editor
             if (class_exists('WooCommerce') && function_exists('WC') && WC() && WC()->cart) {
-                // Asegurar totales calculados (incluye env├¡o cuando procede)
+                // Asegurar totales calculados (incluye envío cuando procede)
                 WC()->cart->calculate_totals();
                 $cart_is_empty = WC()->cart->is_empty();
                 if (!$cart_is_empty) {
@@ -61,7 +61,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                     $shipping_can_show = WC()->cart->show_shipping();
                     $shipping_total = $shipping_can_show ? WC()->cart->get_cart_shipping_total() : '';
 
-                    // Construir etiqueta(s) de m├®todo(s) de env├¡o (solo nombre, precio va a la derecha)
+                    // Construir etiqueta(s) de método(s) de envío (solo nombre, precio va a la derecha)
                     $shipping_label_html = '';
                     if ($needs_shipping) {
                         $packages = WC()->shipping()->get_packages();
@@ -150,7 +150,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                                     
                                     <!-- Product Details (variations, meta, etc.) -->
                                     <?php
-                                    // Use flat formatted data to avoid extra CSS ÔÇô just Bootstrap utilities
+                                    // Use flat formatted data to avoid extra CSS - just Bootstrap utilities
                                     $item_data_text = wc_get_formatted_cart_item_data($cart_item, true);
                                     if (!empty($item_data_text)) :
                                     ?>
@@ -240,7 +240,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                         </div>
                         <?php if (!empty($needs_shipping)) : ?>
                             <?php
-                            // Verificar si hay productos f├¡sicos que requieran env├¡o
+                            // Verificar si hay productos físicos que requieran envío
                             $has_physical_product = false;
                             foreach ($cart_items as $item) {
                                 $prod = $item['data'];
@@ -258,7 +258,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                                     if (!empty($shipping_label_html)) {
                                         echo wp_kses_post($shipping_label_html);
                                     } else {
-                                        esc_html_e('Env├¡o', 'ileben-landing');
+                                        esc_html_e('Envío', 'ileben-landing');
                                     }
                                     ?>
                                     </i>
@@ -327,6 +327,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
  */
 function bootstrap_theme_register_bs_cart_block() {
     register_block_type('bootstrap-theme/bs-cart', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_cart_block',
         'attributes' => array(
             'showEmptyMessage' => array(

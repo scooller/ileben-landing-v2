@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Bootstrap WooCommerce Products Loop Block
  *
@@ -162,10 +162,10 @@ function bootstrap_theme_render_bs_wc_products_block($attributes, $content, $blo
         'menu_order' => __('Orden predeterminado', 'ileben-landing'),
         'title'      => __('Nombre', 'ileben-landing'),
         'date'       => __('Fecha', 'ileben-landing'),
-        'modified'   => __('├Ültima modificaci├│n', 'ileben-landing'),
+        'modified'   => __('Última modificación', 'ileben-landing'),
         'price'      => __('Precio', 'ileben-landing'),
         'popularity' => __('Popularidad', 'ileben-landing'),
-        'rating'     => __('Calificaci├│n', 'ileben-landing'),
+        'rating'     => __('Calificación', 'ileben-landing'),
         'sku'        => __('SKU', 'ileben-landing'),
         'rand'       => __('Aleatorio', 'ileben-landing'),
     );
@@ -184,7 +184,7 @@ function bootstrap_theme_render_bs_wc_products_block($attributes, $content, $blo
                 <?php if ($show_search) : ?>
                     <div class="woocommerce-catalog-search mb-3">
                         <form role="search" method="get" action="<?php echo esc_url(add_query_arg(array())); ?>" class="d-flex gap-2">
-                            <input type="search" name="s" value="<?php echo esc_attr($search_s); ?>" class="form-control" placeholder="<?php echo esc_attr__('Buscar productosÔÇª', 'ileben-landing'); ?>" aria-label="<?php echo esc_attr__('Buscar productos', 'ileben-landing'); ?>" />
+                            <input type="search" name="s" value="<?php echo esc_attr($search_s); ?>" class="form-control" placeholder="<?php echo esc_attr__('Buscar productos...', 'ileben-landing'); ?>" aria-label="<?php echo esc_attr__('Buscar productos', 'ileben-landing'); ?>" />
                             <input type="hidden" name="post_type" value="product" />
                             <?php if ($current_page > 1) : ?>
                                 <input type="hidden" name="wc_page" value="<?php echo esc_attr($current_page); ?>" />
@@ -228,7 +228,7 @@ function bootstrap_theme_render_bs_wc_products_block($attributes, $content, $blo
 
         <!-- Pagination: Bootstrap styled using theme template approach -->
         <?php if ($show_paged && $q->max_num_pages > 1) : ?>
-            <nav aria-label="<?php echo esc_attr__('Navegaci├│n de productos', 'ileben-landing'); ?>" class="wc-pagination mt-4">
+            <nav aria-label="<?php echo esc_attr__('Navegación de productos', 'ileben-landing'); ?>" class="wc-pagination mt-4">
                 <ul class="pagination justify-content-center">
                     <?php
                     $big = 999999999;
@@ -238,8 +238,8 @@ function bootstrap_theme_render_bs_wc_products_block($attributes, $content, $blo
                         'current'   => $current_page,
                         'total'     => (int)$q->max_num_pages,
                         'type'      => 'array',
-                        'prev_text' => __('┬½ Anterior', 'ileben-landing'),
-                        'next_text' => __('Siguiente ┬╗', 'ileben-landing'),
+                        'prev_text' => __('« Anterior', 'ileben-landing'),
+                        'next_text' => __('Siguiente »', 'ileben-landing'),
                     ));
 
                     if (is_array($page_links)) {
@@ -259,9 +259,9 @@ function bootstrap_theme_render_bs_wc_products_block($attributes, $content, $blo
                                 // Add aria-label for next/prev links if not present
                                 if (strpos($link, 'aria-label=') === false) {
                                     if (strpos($link, 'Siguiente') !== false) {
-                                        $link = str_replace('<a ', '<a aria-label="' . esc_attr__('P├ígina siguiente', 'ileben-landing') . '" ', $link);
+                                        $link = str_replace('<a ', '<a aria-label="' . esc_attr__('Página siguiente', 'ileben-landing') . '" ', $link);
                                     } elseif (strpos($link, 'Anterior') !== false) {
-                                        $link = str_replace('<a ', '<a aria-label="' . esc_attr__('P├ígina anterior', 'ileben-landing') . '" ', $link);
+                                        $link = str_replace('<a ', '<a aria-label="' . esc_attr__('Página anterior', 'ileben-landing') . '" ', $link);
                                     }
                                 }
                                 $link = str_replace('<a ', '<li class="page-item"><a class="page-link" ', $link);
@@ -285,6 +285,7 @@ function bootstrap_theme_render_bs_wc_products_block($attributes, $content, $blo
 
 function bootstrap_theme_register_bs_wc_products_block() {
     register_block_type('bootstrap-theme/bs-wc-products', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_wc_products_block',
         'attributes' => array(
             'useThemeDefaults' => array('type' => 'boolean', 'default' => true),

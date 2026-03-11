@@ -9,6 +9,7 @@
     const { createElement } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-dropdown-divider', {
+        apiVersion: 3,
         title: __('Bootstrap Dropdown Divider', 'ileben-landing'),
         description: __('Divider line for dropdown menus', 'ileben-landing'),
         icon: 'minus',

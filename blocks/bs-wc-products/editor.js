@@ -7,6 +7,7 @@
     const { apiFetch } = wp;
 
     registerBlockType('bootstrap-theme/bs-wc-products', {
+        apiVersion: 3,
         title: __('WooCommerce Products (Bootstrap Loop)', 'ileben-landing'),
         icon: 'products',
         category: 'ileben-landing',

@@ -46,6 +46,7 @@ function bootstrap_theme_render_bs_badge_block($attributes, $content, $block) {
  */
 function bootstrap_theme_register_bs_badge_block() {
     register_block_type('bootstrap-theme/bs-badge', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_badge_block',
         'attributes' => array(
             'variant' => array(

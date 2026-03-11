@@ -134,7 +134,7 @@ add_action('after_setup_theme', function () {
 });
 
 /**
- * Campos personalizados para ├¡tems de men├║: icono FontAwesome, bot├│n y estilo Bootstrap
+ * Campos personalizados para ítems de menú: icono FontAwesome, botón y estilo Bootstrap
  */
 add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $args) {
     // Icono FontAwesome
@@ -155,23 +155,23 @@ add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $
     </p>
     <?php
 
-    // Mostrar como bot├│n
+    // Mostrar como botón
     $is_button = get_post_meta($item_id, '_menu_item_is_button', true);
     ?>
     <p class="field-is-button description description-wide">
         <label for="edit-menu-item-is-button-<?php echo esc_attr($item_id); ?>">
             <input type="checkbox" id="edit-menu-item-is-button-<?php echo esc_attr($item_id); ?>" name="menu-item-is-button[<?php echo esc_attr($item_id); ?>]" value="1"<?php checked($is_button, '1'); ?> />
-            <?php echo esc_html__('Mostrar como bot├│n Bootstrap', 'ileben-landing'); ?>
+            <?php echo esc_html__('Mostrar como botón Bootstrap', 'ileben-landing'); ?>
         </label>
     </p>
     <?php
 
-    // Estilo de bot├│n Bootstrap
+    // Estilo de botón Bootstrap
     $button_style = get_post_meta($item_id, '_menu_item_button_style', true);
     $styles = array(
         'btn-primary' => 'Primario',
         'btn-secondary' => 'Secundario',
-        'btn-success' => '├ëxito',
+        'btn-success' => 'Éxito',
         'btn-danger' => 'Peligro',
         'btn-warning' => 'Advertencia',
         'btn-info' => 'Info',
@@ -179,7 +179,7 @@ add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $
         'btn-dark' => 'Oscuro',
         'btn-outline-primary' => 'Outline Primario',
         'btn-outline-secondary' => 'Outline Secundario',
-        'btn-outline-success' => 'Outline ├ëxito',
+        'btn-outline-success' => 'Outline Éxito',
         'btn-outline-danger' => 'Outline Peligro',
         'btn-outline-warning' => 'Outline Advertencia',
         'btn-outline-info' => 'Outline Info',
@@ -190,7 +190,7 @@ add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $
     ?>
     <p class="field-button-style description description-wide">
         <label for="edit-menu-item-button-style-<?php echo esc_attr($item_id); ?>">
-            <?php echo esc_html__('Estilo de bot├│n Bootstrap', 'ileben-landing'); ?><br />
+            <?php echo esc_html__('Estilo de botón Bootstrap', 'ileben-landing'); ?><br />
             <select id="edit-menu-item-button-style-<?php echo esc_attr($item_id); ?>" name="menu-item-button-style[<?php echo esc_attr($item_id); ?>]">
                 <option value=""><?php echo esc_html__('(Sin estilo)', 'ileben-landing'); ?></option>
                 <?php foreach ($styles as $class => $label) : ?>
@@ -215,11 +215,11 @@ add_action('wp_update_nav_menu_item', function($menu_id, $menu_item_db_id, $args
     $icon = isset($_POST['menu-item-fa-icon'][$menu_item_db_id]) ? sanitize_text_field($_POST['menu-item-fa-icon'][$menu_item_db_id]) : '';
     update_post_meta($menu_item_db_id, '_menu_item_fa_icon', $icon);
 
-    // Mostrar como bot├│n
+    // Mostrar como botón
     $is_button = isset($_POST['menu-item-is-button'][$menu_item_db_id]) ? '1' : '';
     update_post_meta($menu_item_db_id, '_menu_item_is_button', $is_button);
 
-    // Estilo de bot├│n Bootstrap
+    // Estilo de botón Bootstrap
     $button_style = isset($_POST['menu-item-button-style'][$menu_item_db_id]) ? sanitize_text_field($_POST['menu-item-button-style'][$menu_item_db_id]) : '';
     update_post_meta($menu_item_db_id, '_menu_item_button_style', $button_style);
 }, 10, 3);

@@ -55,6 +55,7 @@ function bootstrap_theme_render_bs_parallax_block($attributes, $content, $block)
 function bootstrap_theme_register_bs_parallax_block()
 {
     register_block_type('bootstrap-theme/bs-parallax', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_parallax_block',
         'attributes' => array(
             'enableParallax' => array(

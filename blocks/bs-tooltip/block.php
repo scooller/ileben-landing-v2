@@ -69,6 +69,7 @@ function bootstrap_theme_render_bs_tooltip_block($attributes, $content, $block) 
  */
 function bootstrap_theme_register_bs_tooltip_block() {
     register_block_type('bootstrap-theme/bs-tooltip', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_tooltip_block',
         'attributes' => array(
             'text' => array(

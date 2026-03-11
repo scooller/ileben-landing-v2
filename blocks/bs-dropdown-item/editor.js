@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-dropdown-item', {
+        apiVersion: 3,
         title: __('Bootstrap Dropdown Item', 'ileben-landing'),
         description: __('Individual item within a dropdown menu', 'ileben-landing'),
         icon: 'minus',
@@ -228,7 +229,7 @@
             } else {
                 return createElement('li', 
                     Object.assign({}, blockProps, { 
-                        className: itemClasses
+                        className: [blockProps.className, itemClasses].filter(Boolean).join(' ')
                     }),
                     createElement(RichText.Content, {
                         tagName: 'span',

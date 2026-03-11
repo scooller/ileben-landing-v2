@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-offcanvas', {
+        apiVersion: 3,
         title: __('Bootstrap Offcanvas', 'ileben-landing'),
         description: __('Bootstrap offcanvas sidebar component', 'ileben-landing'),
         icon: 'menu',

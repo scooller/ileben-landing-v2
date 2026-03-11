@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-tab-pane', {
+        apiVersion: 3,
         title: __('Bootstrap Tab Pane', 'ileben-landing'),
         description: __('Individual tab pane content', 'ileben-landing'),
         icon: 'media-document',

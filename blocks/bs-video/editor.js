@@ -11,6 +11,7 @@
     const themeUri = (typeof window.ILEBEN_THEME_URI === 'string') ? window.ILEBEN_THEME_URI : '';
 
     registerBlockType('bootstrap-theme/bs-video', {
+        apiVersion: 3,
         title: __('Video with Mask', 'ileben-landing'),
         description: __('A video block with optional image mask support (e.g., phone frame)', 'ileben-landing'),
         icon: 'format-video',

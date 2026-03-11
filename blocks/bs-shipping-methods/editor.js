@@ -10,11 +10,12 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-shipping-methods', {
+        apiVersion: 3,
         title: __('Bootstrap Shipping Methods', 'ileben-landing'),
         description: __('Display WooCommerce shipping methods with radio or select options', 'ileben-landing'),
         icon: 'cart',
         category: 'ileben-landing',
-        keywords: [__('shipping'), __('env├¡o'), __('m├®todos'), __('woocommerce')],
+        keywords: [__('shipping'), __('envío'), __('métodos'), __('woocommerce')],
         
         attributes: {
             displayType: {
@@ -27,7 +28,7 @@
             },
             title: {
                 type: 'string',
-                default: 'M├®todos de env├¡o'
+                default: 'Métodos de envío'
             },
             alignment: {
                 type: 'string',
@@ -65,29 +66,29 @@
                     })
                 ),
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Configuraci├│n', 'ileben-landing'), initialOpen: true },
+                    createElement(PanelBody, { title: __('Configuración', 'ileben-landing'), initialOpen: true },
                         createElement(SelectControl, {
-                            label: __('Tipo de visualizaci├│n', 'ileben-landing'),
+                            label: __('Tipo de visualización', 'ileben-landing'),
                             value: displayType,
                             options: [
                                 { label: __('Radio Buttons', 'ileben-landing'), value: 'radio' },
                                 { label: __('Select Dropdown', 'ileben-landing'), value: 'select' }
                             ],
                             onChange: (value) => setAttributes({ displayType: value }),
-                            help: __('C├│mo mostrar las opciones de env├¡o', 'ileben-landing')
+                            help: __('Cómo mostrar las opciones de envío', 'ileben-landing')
                         }),
                         createElement(TextControl, {
-                            label: __('T├¡tulo', 'ileben-landing'),
+                            label: __('Título', 'ileben-landing'),
                             value: title,
                             onChange: (value) => setAttributes({ title: value }),
-                            help: __('T├¡tulo que aparece sobre los m├®todos de env├¡o', 'ileben-landing')
+                            help: __('Título que aparece sobre los métodos de envío', 'ileben-landing')
                         }),
                         displayType === 'radio' && createElement(Fragment, {},
                             createElement(ToggleControl, {
                                 label: __('Mostrar icono', 'ileben-landing'),
                                 checked: showIcon,
                                 onChange: (value) => setAttributes({ showIcon: value }),
-                                help: __('Mostrar icono de cami├│n junto al nombre', 'ileben-landing')
+                                help: __('Mostrar icono de camión junto al nombre', 'ileben-landing')
                             })
                         )
                     )
@@ -100,22 +101,22 @@
                                 style: { width: '20px', height: '20px', display: 'inline-block', verticalAlign: 'middle' },
                                 dangerouslySetInnerHTML: { __html: '<use xlink:href="#fa-truck"></use>' }
                             }),
-                            __('Vista previa: M├®todos de Env├¡o', 'ileben-landing')
+                            __('Vista previa: Métodos de Envío', 'ileben-landing')
                         ),
                         createElement('p', { className: 'mb-2' },
-                            __('Este bloque mostrar├í los m├®todos de env├¡o disponibles de WooCommerce cuando el carrito tenga productos.', 'ileben-landing')
+                            __('Este bloque mostrará los métodos de envío disponibles de WooCommerce cuando el carrito tenga productos.', 'ileben-landing')
                         ),
                         createElement('hr'),
                         createElement('div', { className: 'mb-0' },
-                            createElement('strong', {}, __('Configuraci├│n actual:', 'ileben-landing')),
+                            createElement('strong', {}, __('Configuración actual:', 'ileben-landing')),
                             createElement('ul', { className: 'mb-0 mt-2' },
                                 createElement('li', {},
-                                    createElement('strong', {}, __('Visualizaci├│n:', 'ileben-landing')),
+                                    createElement('strong', {}, __('Visualización:', 'ileben-landing')),
                                     ' ',
                                     displayType === 'radio' ? __('Radio Buttons', 'ileben-landing') : __('Select Dropdown', 'ileben-landing')
                                 ),
                                 title && createElement('li', {},
-                                    createElement('strong', {}, __('T├¡tulo:', 'ileben-landing')),
+                                    createElement('strong', {}, __('Título:', 'ileben-landing')),
                                     ' ',
                                     title
                                 ),
@@ -123,7 +124,7 @@
                                     createElement('li', {},
                                         createElement('strong', {}, __('Icono:', 'ileben-landing')),
                                         ' ',
-                                        showIcon ? __('S├¡', 'ileben-landing') : __('No', 'ileben-landing')
+                                        showIcon ? __('Sí', 'ileben-landing') : __('No', 'ileben-landing')
                                     )
                                 )
                             )

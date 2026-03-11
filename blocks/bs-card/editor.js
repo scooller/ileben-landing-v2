@@ -12,6 +12,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-card', {
+        apiVersion: 3,
         title: __('Bootstrap Card', 'ileben-landing'),
         description: __('A flexible Bootstrap card component with GSAP animations', 'ileben-landing'),
         icon: 'id-alt',

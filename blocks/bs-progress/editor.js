@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-progress', {
+        apiVersion: 3,
         title: __('Bootstrap Progress Bar', 'ileben-landing'),
         description: __('Bootstrap progress bar component', 'ileben-landing'),
         icon: 'chart-bar',

@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-accordion', {
+        apiVersion: 3,
         title: __('Bootstrap Accordion', 'ileben-landing'),
         description: __('Bootstrap accordion component', 'ileben-landing'),
         icon: 'list-view',

@@ -71,6 +71,7 @@ function bootstrap_theme_render_bs_pagination_block($attributes, $content, $bloc
  */
 function bootstrap_theme_register_bs_pagination_block() {
     register_block_type('bootstrap-theme/bs-pagination', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_pagination_block',
         'supports' => array(
             'html' => true,

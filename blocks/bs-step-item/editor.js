@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-step-item', {
+        apiVersion: 3,
         title: __('Step Item', 'ileben-landing'),
         description: __('Individual step for the steps component', 'ileben-landing'),
         icon: 'marker',

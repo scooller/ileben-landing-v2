@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-row', {
+        apiVersion: 3,
         title: __('Bootstrap Row', 'ileben-landing'),
         description: __('Bootstrap row for grid layout', 'ileben-landing'),
         icon: 'editor-table',

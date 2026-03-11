@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Bootstrap Cart Block Editor
  */
 
@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-cart', {
+        apiVersion: 3,
         title: __('Bootstrap Shopping Cart', 'ileben-landing'),
         description: __('Display WooCommerce shopping cart with automatic checkout updates', 'ileben-landing'),
         icon: 'cart',
@@ -67,7 +68,7 @@
                     }),
                     createElement('div', { className: 'p-3 bg-light border rounded' },
                         createElement('div', { className: 'mb-2' },
-                            createElement('strong', null, '­ƒøÆ ' + __('Shopping Cart Block', 'ileben-landing'))
+                            createElement('strong', null, '' + __('Shopping Cart Block', 'ileben-landing'))
                         ),
                         createElement('p', { style: { margin: '0.5rem 0', fontSize: '0.9rem', color: '#666' } },
                             __('This block displays the WooCommerce shopping cart on the frontend.', 'ileben-landing')
@@ -78,13 +79,13 @@
                         createElement('div', { className: 'mt-3 pt-3 border-top' },
                             createElement('div', { style: { fontSize: '0.85rem' } },
                                 createElement('div', { style: { margin: '0.25rem 0' } },
-                                    (attributes.showEmptyMessage ? 'Ô£ô' : 'Ô£ù') + ' ' + __('Empty message', 'ileben-landing')
+                                    (attributes.showEmptyMessage ? '[ON]' : '[OFF]') + ' ' + __('Empty message', 'ileben-landing')
                                 ),
                                 createElement('div', { style: { margin: '0.25rem 0' } },
-                                    (attributes.showTotals ? 'Ô£ô' : 'Ô£ù') + ' ' + __('Show totals', 'ileben-landing')
+                                    (attributes.showTotals ? '[ON]' : '[OFF]') + ' ' + __('Show totals', 'ileben-landing')
                                 ),
                                 createElement('div', { style: { margin: '0.25rem 0' } },
-                                    (attributes.showButtons ? 'Ô£ô' : 'Ô£ù') + ' ' + __('Show buttons', 'ileben-landing')
+                                    (attributes.showButtons ? '[ON]' : '[OFF]') + ' ' + __('Show buttons', 'ileben-landing')
                                 )
                             )
                         )

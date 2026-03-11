@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-button', {
+        apiVersion: 3,
         title: __('Bootstrap Button', 'ileben-landing'),
         description: __('A customizable Bootstrap button component', 'ileben-landing'),
         icon: 'button',

@@ -6,6 +6,7 @@
     const { Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-asesores', {
+        apiVersion: 3,
         title: __('Asesores (ACF)', 'ileben-landing'),
         icon: 'groups',
         category: 'ileben-landing',
@@ -152,7 +153,7 @@
             return (
                 wp.element.createElement(Fragment, {},
                     wp.element.createElement(InspectorControls, {},
-                        wp.element.createElement(PanelBody, { title: __('Dise├▒o', 'ileben-landing'), initialOpen: true },
+                        wp.element.createElement(PanelBody, { title: __('Diseño', 'ileben-landing'), initialOpen: true },
                             wp.element.createElement(RangeControl, {
                                 label: __('Columnas en MD', 'ileben-landing'),
                                 min: 1,
@@ -168,7 +169,7 @@
                                 onChange: (value) => setAttributes({ columnsLg: value || 1 })
                             }),
                             wp.element.createElement(SelectControl, {
-                                label: __('Distribuci├│n', 'ileben-landing'),
+                                label: __('Distribución', 'ileben-landing'),
                                 value: layout,
                                 options: [
                                     { label: __('Horizontal (foto + datos)', 'ileben-landing'), value: 'horizontal' },
@@ -193,7 +194,7 @@
                                 onChange: (value) => setAttributes({ showImage: value })
                             }),
                             wp.element.createElement(ToggleControl, {
-                                label: __('Mostrar tel├®fono', 'ileben-landing'),
+                                label: __('Mostrar teléfono', 'ileben-landing'),
                                 checked: showPhone,
                                 onChange: (value) => setAttributes({ showPhone: value })
                             }),
@@ -213,9 +214,9 @@
                                 onChange: (value) => setAttributes({ contentMode: value })
                             })
                         ),
-                        wp.element.createElement(PanelBody, { title: __('Animaci├│n', 'ileben-landing'), initialOpen: false },
+                        wp.element.createElement(PanelBody, { title: __('Animación', 'ileben-landing'), initialOpen: false },
                             wp.element.createElement(SelectControl, {
-                                label: __('Tipo de animaci├│n', 'ileben-landing'),
+                                label: __('Tipo de animación', 'ileben-landing'),
                                 value: animationType,
                                 options: animationTypes,
                                 onChange: (value) => {
@@ -237,7 +238,7 @@
                                     onChange: (value) => setAttributes({ animationTrigger: value })
                                 }),
                                 wp.element.createElement(RangeControl, {
-                                    label: __('Duraci├│n (s)', 'ileben-landing'),
+                                    label: __('Duración (s)', 'ileben-landing'),
                                     value: attributes.animationDuration,
                                     min: 0.1,
                                     max: 3,
@@ -259,7 +260,7 @@
                                     onChange: (value) => setAttributes({ animationEase: value })
                                 }),
                                 wp.element.createElement(ToggleControl, {
-                                    label: __('Habilitar en m├│vil', 'ileben-landing'),
+                                    label: __('Habilitar en móvil', 'ileben-landing'),
                                     checked: attributes.animationMobileEnabled !== false,
                                     onChange: (value) => setAttributes({ animationMobileEnabled: value })
                                 })
@@ -285,7 +286,7 @@
                                                     (contentMode === 'both' || contentMode === 'text') && showEmail && wp.element.createElement('div', { className: 'text-muted small mb-2' }, item.email),
                                                     (contentMode === 'both' || contentMode === 'buttons') && wp.element.createElement('div', { className: 'd-flex flex-wrap gap-2 mt-2' },
                                                         showPhone && wp.element.createElement('span', { className: 'btn btn-success btn-sm disabled' }, __('WhatsApp', 'ileben-landing')),
-                                                        showEmail && wp.element.createElement('span', { className: 'btn btn-danger btn-sm disabled' }, __('Escr├¡beme', 'ileben-landing'))
+                                                        showEmail && wp.element.createElement('span', { className: 'btn btn-danger btn-sm disabled' }, __('Escríbeme', 'ileben-landing'))
                                                     )
                                                 )
                                             )
@@ -299,7 +300,7 @@
                                                     (contentMode === 'both' || contentMode === 'text') && showEmail && wp.element.createElement('div', { className: 'text-muted small mb-2' }, item.email),
                                                     (contentMode === 'both' || contentMode === 'buttons') && wp.element.createElement('div', { className: 'd-flex flex-wrap gap-2 mt-2' },
                                                         showPhone && wp.element.createElement('span', { className: 'btn btn-success btn-sm disabled' }, __('WhatsApp', 'ileben-landing')),
-                                                        showEmail && wp.element.createElement('span', { className: 'btn btn-danger btn-sm disabled' }, __('Escr├¡beme', 'ileben-landing'))
+                                                        showEmail && wp.element.createElement('span', { className: 'btn btn-danger btn-sm disabled' }, __('Escríbeme', 'ileben-landing'))
                                                     )
                                                 )
                                             )

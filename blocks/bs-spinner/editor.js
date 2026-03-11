@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-spinner', {
+        apiVersion: 3,
         title: __('Bootstrap Spinner', 'ileben-landing'),
         description: __('Bootstrap loading spinner component', 'ileben-landing'),
         icon: 'update',

@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-modal', {
+        apiVersion: 3,
         title: __('Bootstrap Modal', 'ileben-landing'),
         description: __('Bootstrap modal dialog component', 'ileben-landing'),
         icon: 'admin-page',

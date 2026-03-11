@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-breadcrumb-item', {
+        apiVersion: 3,
         title: __('Bootstrap Breadcrumb Item', 'ileben-landing'),
         description: __('Individual item within breadcrumb navigation', 'ileben-landing'),
         icon: 'minus',
@@ -128,7 +129,7 @@
 
             return createElement('li', 
                 Object.assign({}, blockProps, { 
-                    className: itemClasses,
+                    className: [blockProps.className, itemClasses].filter(Boolean).join(' '),
                     'aria-current': attributes.active ? 'page' : undefined
                 }),
                 attributes.active ? 

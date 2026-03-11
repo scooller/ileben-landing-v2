@@ -100,6 +100,7 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
 function bootstrap_theme_register_bs_carousel_block()
 {
     register_block_type('bootstrap-theme/bs-carousel', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_carousel_block',
         'supports' => array(
             'html' => true,

@@ -358,7 +358,7 @@
     /**
      * Add animation data attributes to block wrapper
      * NOTA: No usamos blocks.getSaveContent.extraProps porque causa problemas
-     * Los data attributes se agregan din├ímicamente en PHP mediante el filtro render_block
+     * Los data attributes se agregan dinámicamente en PHP mediante el filtro render_block
      */
     function addAnimationProps(props, blockType, attributes) {
         // Este filtro ahora solo es informativo, los data attributes

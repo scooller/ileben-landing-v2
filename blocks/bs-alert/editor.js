@@ -9,7 +9,20 @@
     const { PanelBody, SelectControl, ToggleControl, TextControl } = wp.components;
     const { createElement, Fragment } = wp.element;
 
+    const NEXT_SELECT_PROPS = {
+        __next40pxDefaultSize: true,
+        __nextHasNoMarginBottom: true,
+    };
+    const NEXT_TEXT_PROPS = {
+        __next40pxDefaultSize: true,
+        __nextHasNoMarginBottom: true,
+    };
+    const NEXT_TOGGLE_PROPS = {
+        __nextHasNoMarginBottom: true,
+    };
+
     registerBlockType('bootstrap-theme/bs-alert', {
+        apiVersion: 3,
         title: __('Bootstrap Alert', 'ileben-landing'),
         description: __('A dismissible Bootstrap alert component', 'ileben-landing'),
         icon: 'warning',
@@ -75,16 +88,19 @@
                                 { label: 'Light', value: 'light' },
                                 { label: 'Dark', value: 'dark' }
                             ],
+                            ...NEXT_SELECT_PROPS,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(ToggleControl, {
                             label: __('Dismissible', 'ileben-landing'),
                             checked: attributes.dismissible,
+                            ...NEXT_TOGGLE_PROPS,
                             onChange: (value) => setAttributes({ dismissible: value })
                         }),
                         createElement(TextControl, {
                             label: __('Alert Heading', 'ileben-landing'),
                             value: attributes.heading,
+                            ...NEXT_TEXT_PROPS,
                             onChange: (value) => setAttributes({ heading: value })
                         })
                     )

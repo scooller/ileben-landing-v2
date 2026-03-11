@@ -51,6 +51,7 @@ function bootstrap_theme_render_bs_fa_icon_block($attributes, $content, $block) 
 
 function bootstrap_theme_register_bs_fa_icon_block() {
     register_block_type('bootstrap-theme/bs-fa-icon', [
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_fa_icon_block',
         'attributes' => [
             'iconStyle' => [

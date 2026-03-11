@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-list-group-item', {
+        apiVersion: 3,
         title: __('Bootstrap List Group Item', 'ileben-landing'),
         description: __('Individual item within a list group', 'ileben-landing'),
         icon: 'minus',
@@ -410,7 +411,7 @@
 
             return createElement(TagName, 
                 Object.assign({}, blockProps, { 
-                    className: itemClasses,
+                    className: [blockProps.className, itemClasses].filter(Boolean).join(' '),
                     href: attributes.actionable ? attributes.href : undefined,
                     target: (attributes.actionable && attributes.openInNewTab) ? '_blank' : undefined,
                     rel: (attributes.actionable && attributes.openInNewTab) ? 'noopener noreferrer' : undefined

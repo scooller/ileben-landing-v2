@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-button-group', {
+        apiVersion: 3,
         title: __('Bootstrap Button Group', 'ileben-landing'),
         description: __('Group multiple buttons together', 'ileben-landing'),
         icon: 'editor-justify',

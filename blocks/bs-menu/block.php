@@ -221,6 +221,7 @@ function bootstrap_theme_render_bs_menu_block($attributes, $content, $block) {
  */
 function bootstrap_theme_register_bs_menu_block() {
     register_block_type('bootstrap-theme/bs-menu', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_menu_block',
         'attributes' => array(
             'menuId' => array(

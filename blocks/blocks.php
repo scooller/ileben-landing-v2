@@ -140,7 +140,7 @@ function bootstrap_theme_block_editor_assets()
                     return $choices;
                 };
                 
-                // Obtener categor├¡as de plantas
+                // Obtener categorías de plantas
                 $categorias_plantas = get_terms(array(
                     'taxonomy' => 'categoria_planta',
                     'hide_empty' => false,
@@ -163,7 +163,7 @@ function bootstrap_theme_block_editor_assets()
         }
     }
 
-    // Always enqueue plantas categor├¡as for the block editor (outside the loop)
+    // Always enqueue plantas categorías for the block editor (outside the loop)
     wp_enqueue_script('wp-blocks');
     wp_add_inline_script('wp-blocks', 'window.ILEBEN_THEME_URI = ' . wp_json_encode(ILEBEN_THEME_URI) . ';', 'before');
     $categorias_plantas = get_terms(array(
@@ -200,11 +200,12 @@ function bootstrap_theme_block_editor_assets()
     // Enqueue master block definitions (JS registers all block types for inserter)
     $blocks_master_js = ILEBEN_THEME_DIR . '/blocks/blocks.js';
     if (file_exists($blocks_master_js)) {
+        $blocks_master_version = filemtime($blocks_master_js) ?: ILEBEN_THEME_VERSION;
         wp_enqueue_script(
             'bootstrap-theme-blocks',
             ILEBEN_THEME_URI . '/blocks/blocks.js',
             array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data'),
-            ILEBEN_THEME_VERSION,
+            $blocks_master_version,
             true
         );
     }
@@ -212,11 +213,12 @@ function bootstrap_theme_block_editor_assets()
     // Enqueue animation controls utility
     $animation_controls_js = ILEBEN_THEME_DIR . '/blocks/animation-controls.js';
     if (file_exists($animation_controls_js)) {
+        $animation_controls_version = filemtime($animation_controls_js) ?: ILEBEN_THEME_VERSION;
         wp_enqueue_script(
             'bootstrap-theme-animation-controls',
             ILEBEN_THEME_URI . '/blocks/animation-controls.js',
             array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n'),
-            ILEBEN_THEME_VERSION,
+            $animation_controls_version,
             true
         );
     }
@@ -224,11 +226,12 @@ function bootstrap_theme_block_editor_assets()
     // Enqueue core blocks extension (adds animation to core/heading and core/paragraph)
     $core_blocks_extension_js = ILEBEN_THEME_DIR . '/blocks/core-blocks-extension.js';
     if (file_exists($core_blocks_extension_js)) {
+        $core_blocks_extension_version = filemtime($core_blocks_extension_js) ?: ILEBEN_THEME_VERSION;
         wp_enqueue_script(
             'bootstrap-theme-core-blocks-extension',
             ILEBEN_THEME_URI . '/blocks/core-blocks-extension.js',
             array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-hooks', 'wp-compose', 'bootstrap-theme-animation-controls'),
-            ILEBEN_THEME_VERSION,
+            $core_blocks_extension_version,
             true
         );
     }
@@ -246,11 +249,12 @@ add_action('admin_enqueue_scripts', function ($hook) {
 
     $blocks_master_js = ILEBEN_THEME_DIR . '/blocks/blocks.js';
     if (file_exists($blocks_master_js)) {
+        $blocks_master_version = filemtime($blocks_master_js) ?: ILEBEN_THEME_VERSION;
         wp_enqueue_script(
             'bootstrap-theme-blocks',
             ILEBEN_THEME_URI . '/blocks/blocks.js',
             array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n'),
-            ILEBEN_THEME_VERSION,
+            $blocks_master_version,
             true
         );
     }

@@ -76,6 +76,7 @@ function bootstrap_theme_render_bs_button_group_block($attributes, $content, $bl
  */
 function bootstrap_theme_register_bs_button_group_block() {
     register_block_type('bootstrap-theme/bs-button-group', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_button_group_block',
         'attributes' => array(
             'size' => array(

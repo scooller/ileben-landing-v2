@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-dropdown', {
+        apiVersion: 3,
         title: __('Bootstrap Dropdown', 'ileben-landing'),
         description: __('Bootstrap dropdown menu component', 'ileben-landing'),
         icon: 'arrow-down-alt2',

@@ -62,6 +62,7 @@ function bootstrap_theme_render_bs_list_group_item_block($attributes, $content, 
 function bootstrap_theme_register_bs_list_group_item_block()
 {
     register_block_type('bootstrap-theme/bs-list-group-item', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_list_group_item_block',
         'attributes' => array(
             'text' => array('type' => 'string', 'default' => 'List item'),

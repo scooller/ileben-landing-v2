@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-container', {
+        apiVersion: 3,
         title: __('Bootstrap Container', 'ileben-landing'),
         description: __('Bootstrap container for layout structure', 'ileben-landing'),
         icon: 'editor-table',
@@ -231,8 +232,8 @@
                 { label: __('To left', 'ileben-landing'), value: 'to left' },
                 { label: __('To bottom', 'ileben-landing'), value: 'to bottom' },
                 { label: __('To top', 'ileben-landing'), value: 'to top' },                    
-                { label: __('45┬░', 'ileben-landing'), value: '45deg' },
-                { label: __('135┬░', 'ileben-landing'), value: '135deg' }
+                { label: __('45°', 'ileben-landing'), value: '45deg' },
+                { label: __('135°', 'ileben-landing'), value: '135deg' }
             ];
 
             const animationTypes = [

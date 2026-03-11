@@ -67,6 +67,7 @@ function bootstrap_theme_render_bs_list_group_block($attributes, $content, $bloc
 function bootstrap_theme_register_bs_list_group_block()
 {
     register_block_type('bootstrap-theme/bs-list-group', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_list_group_block',
         'attributes' => array(
             'flush' => array(

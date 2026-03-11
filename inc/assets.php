@@ -169,16 +169,27 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 /**
- * Enqueue Block Editor Styles (Gutenberg)
+ * Enqueue block editor stylesheet in the iframe-compatible hook.
  */
-add_action('enqueue_block_editor_assets', function () {
+add_action('enqueue_block_assets', function () {
+    if (!is_admin()) {
+        return;
+    }
+
+    // Load Font Awesome in editor iframe so icon blocks render correctly.
+    wp_enqueue_style('font-awesome-editor', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', [], '6.4.0');
+
     $editor_css = ILEBEN_THEME_URI . '/dist/assets/editor.css';
     if (file_exists(ILEBEN_THEME_DIR . '/dist/assets/editor.css')) {
         wp_enqueue_style('ileben-editor-styles', $editor_css, ['wp-edit-blocks'], ILEBEN_THEME_VERSION);
     }
+});
 
-    // Font Awesome for Editor
-    wp_enqueue_style('font-awesome-editor', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', [], '6.4.0');
+/**
+ * Enqueue editor-only extras.
+ */
+add_action('enqueue_block_editor_assets', function () {
+    // Reserved for editor UI-only assets (outside iframe) when needed.
 });
 
 /**

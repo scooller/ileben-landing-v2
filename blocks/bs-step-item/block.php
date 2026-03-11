@@ -16,6 +16,7 @@ if (!defined('ABSPATH')) {
 function bootstrap_theme_register_bs_step_item_block()
 {
     register_block_type('bootstrap-theme/bs-step-item', array(
+        'api_version' => 3,
         'attributes' => array(
             'title' => array(
                 'type' => 'string',

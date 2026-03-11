@@ -51,9 +51,9 @@ function bootstrap_theme_render_bs_button_block($attributes, $content, $block) {
     if (!empty($icon)) {
         $tokens = preg_split('/\s+/', (string) $icon, -1, PREG_SPLIT_NO_EMPTY);
         $tokens = array_filter($tokens, function($t){ return preg_match('/^fa[\-a-z0-9]+$/i', $t); });
-        // Si no incluye ning├║n prefijo, no forzamos uno: el usuario controla 'fa-solid|fa-regular|fa-brands'
+        // Si no incluye ningún prefijo, no forzamos uno: el usuario controla 'fa-solid|fa-regular|fa-brands'
         $icon_class = trim(implode(' ', $tokens));
-        // Espaciado Bootstrap seg├║n posici├│n si hay texto
+        // Espaciado Bootstrap según posición si hay texto
         $space_class = ($text !== '') ? ($iconPosition === 'left' ? ' me-2' : ' ms-2') : '';
         $icon_html = '<i class="' . esc_attr($icon_class . $space_class) . '"></i>';
 
@@ -93,6 +93,7 @@ function bootstrap_theme_render_bs_button_block($attributes, $content, $block) {
  */
 function bootstrap_theme_register_bs_button_block() {
     register_block_type('bootstrap-theme/bs-button', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_button_block',
         'attributes' => array(
             'variant' => array(

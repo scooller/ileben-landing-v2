@@ -75,6 +75,7 @@ function bootstrap_theme_render_bs_navs_tabs_block($attributes, $content, $block
  */
 function bootstrap_theme_register_bs_navs_tabs_block() {
     register_block_type('bootstrap-theme/bs-navs-tabs', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_navs_tabs_block',
         'attributes' => array(
             'type' => array(

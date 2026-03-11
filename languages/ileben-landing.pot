@@ -1,4 +1,4 @@
-# Copyright (C) 2026 ileben.cl
+﻿# Copyright (C) 2026 ileben.cl
 # This file is distributed under the same license as the ileben-landing-v2 theme.
 msgid ""
 msgstr ""
@@ -71,7 +71,7 @@ msgstr ""
 #: blocks/bs-asesores/block.php:149
 #: blocks/bs-asesores/editor.js:288
 #: blocks/bs-asesores/editor.js:302
-msgid "Escr├¡beme"
+msgid "Escríbeme"
 msgstr ""
 
 #: blocks/bs-badge/block.php:18
@@ -165,7 +165,7 @@ msgid "Subtotal:"
 msgstr ""
 
 #: blocks/bs-cart/block.php:255
-msgid "Env├¡o"
+msgid "Envío"
 msgstr ""
 
 #: blocks/bs-cart/block.php:265
@@ -316,7 +316,7 @@ msgstr ""
 
 #: blocks/bs-plantas-slider/block.php:127
 #: blocks/bs-plantas-slider/editor.js:166
-msgid "Ba├▒os"
+msgid "Baños"
 msgstr ""
 
 #: blocks/bs-popover/block.php:16
@@ -385,7 +385,7 @@ msgid "Fecha"
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:165
-msgid "├Ültima modificaci├│n"
+msgid "Última modificación"
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:166
@@ -397,7 +397,7 @@ msgid "Popularidad"
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:168
-msgid "Calificaci├│n"
+msgid "Calificación"
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:169
@@ -410,7 +410,7 @@ msgid "Aleatorio"
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:187
-msgid "Buscar productosÔÇª"
+msgid "Buscar productos..."
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:187
@@ -430,23 +430,23 @@ msgid "No products found."
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:231
-msgid "Navegaci├│n de productos"
+msgid "Navegación de productos"
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:241
-msgid "┬½ Anterior"
+msgid "« Anterior"
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:242
-msgid "Siguiente ┬╗"
+msgid "Siguiente »"
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:262
-msgid "P├ígina siguiente"
+msgid "Página siguiente"
 msgstr ""
 
 #: blocks/bs-wc-products/block.php:264
-msgid "P├ígina anterior"
+msgid "Página anterior"
 msgstr ""
 
 #: footer.php:24
@@ -572,11 +572,11 @@ msgid "Planta"
 msgstr ""
 
 #: inc/cpt-plantas.php:16
-msgid "A├▒adir nueva"
+msgid "Añadir nueva"
 msgstr ""
 
 #: inc/cpt-plantas.php:17
-msgid "A├▒adir nueva planta"
+msgid "Añadir nueva planta"
 msgstr ""
 
 #: inc/cpt-plantas.php:18
@@ -613,48 +613,48 @@ msgstr ""
 
 #: inc/cpt-plantas.php:48
 msgctxt "Taxonomy General Name"
-msgid "Categor├¡as de Plantas"
+msgid "Categorías de Plantas"
 msgstr ""
 
 #: inc/cpt-plantas.php:49
 msgctxt "Taxonomy Singular Name"
-msgid "Categor├¡a de Planta"
+msgid "Categoría de Planta"
 msgstr ""
 
 #: inc/cpt-plantas.php:50
-msgid "Categor├¡as"
+msgid "Categorías"
 msgstr ""
 
 #: inc/cpt-plantas.php:51
-msgid "Todas las Categor├¡as"
+msgid "Todas las Categorías"
 msgstr ""
 
 #: inc/cpt-plantas.php:52
-msgid "Editar Categor├¡a"
+msgid "Editar Categoría"
 msgstr ""
 
 #: inc/cpt-plantas.php:53
-msgid "Ver Categor├¡a"
+msgid "Ver Categoría"
 msgstr ""
 
 #: inc/cpt-plantas.php:54
-msgid "Actualizar Categor├¡a"
+msgid "Actualizar Categoría"
 msgstr ""
 
 #: inc/cpt-plantas.php:55
-msgid "A├▒adir Nueva Categor├¡a"
+msgid "Añadir Nueva Categoría"
 msgstr ""
 
 #: inc/cpt-plantas.php:56
-msgid "Nuevo Nombre de Categor├¡a"
+msgid "Nuevo Nombre de Categoría"
 msgstr ""
 
 #: inc/cpt-plantas.php:57
-msgid "Buscar Categor├¡as"
+msgid "Buscar Categorías"
 msgstr ""
 
 #: inc/cpt-plantas.php:58
-msgid "No se encontraron categor├¡as"
+msgid "No se encontraron categorías"
 msgstr ""
 
 #: inc/setup.php:22
@@ -678,11 +678,11 @@ msgid "Ver todos los iconos FontAwesome"
 msgstr ""
 
 #: inc/setup.php:158
-msgid "Mostrar como bot├│n Bootstrap"
+msgid "Mostrar como botón Bootstrap"
 msgstr ""
 
 #: inc/setup.php:182
-msgid "Estilo de bot├│n Bootstrap"
+msgid "Estilo de botón Bootstrap"
 msgstr ""
 
 #: inc/setup.php:184
@@ -1422,7 +1422,7 @@ msgid "Show ScrollTrigger Markers"
 msgstr ""
 
 #: blocks/animation-controls.js:282
-msgid "Muestra l├¡neas de debug en la p├ígina"
+msgid "Muestra líneas de debug en la página"
 msgstr ""
 
 #: blocks/animation-controls.js:287
@@ -1441,7 +1441,7 @@ msgid "FontAwesome Icon"
 msgstr ""
 
 #: blocks/blocks.js:23
-msgid "Inserta un ├¡cono de FontAwesome (colecci├│n free)."
+msgid "Inserta un ícono de FontAwesome (colección free)."
 msgstr ""
 
 #: blocks/blocks.js:51
@@ -1485,19 +1485,19 @@ msgid "Estilo"
 msgstr ""
 
 #: blocks/blocks.js:83
-msgid "Nombre de ├¡cono (ej: fa-house)"
+msgid "Nombre de ícono (ej: fa-house)"
 msgstr ""
 
 #: blocks/blocks.js:84
-msgid "Solo ├¡conos free: https://fontawesome.com/search?ic=free-collection"
+msgid "Solo íconos free: https://fontawesome.com/search?ic=free-collection"
 msgstr ""
 
 #: blocks/blocks.js:89
-msgid "Tama├▒o"
+msgid "Tamaño"
 msgstr ""
 
 #: blocks/blocks.js:95
-msgid "Alineaci├│n"
+msgid "Alineación"
 msgstr ""
 
 #: blocks/blocks.js:101
@@ -1619,7 +1619,7 @@ msgid "Muestra la lista de asesores desde las opciones del tema (ACF)."
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:155
-msgid "Dise├▒o"
+msgid "Diseño"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:157
@@ -1631,7 +1631,7 @@ msgid "Columnas en LG"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:171
-msgid "Distribuci├│n"
+msgid "Distribución"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:174
@@ -1664,7 +1664,7 @@ msgid "Mostrar imagen"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:196
-msgid "Mostrar tel├®fono"
+msgid "Mostrar teléfono"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:201
@@ -1688,11 +1688,11 @@ msgid "Solo botones"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:216
-msgid "Animaci├│n"
+msgid "Animación"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:218
-msgid "Tipo de animaci├│n"
+msgid "Tipo de animación"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:234
@@ -1700,7 +1700,7 @@ msgid "Disparador"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:240
-msgid "Duraci├│n (s)"
+msgid "Duración (s)"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:248
@@ -1709,7 +1709,7 @@ msgid "Delay (s)"
 msgstr ""
 
 #: blocks/bs-asesores/editor.js:262
-msgid "Habilitar en m├│vil"
+msgid "Habilitar en móvil"
 msgstr ""
 
 #: blocks/bs-badge/editor.js:13
@@ -2307,7 +2307,7 @@ msgid "Insert a Contact Form 7 form with Bootstrap styles and animations"
 msgstr ""
 
 #: blocks/bs-cf7/editor.js:141
-msgid "Select a formÔÇª"
+msgid "Select a form..."
 msgstr ""
 
 #: blocks/bs-cf7/editor.js:147
@@ -2438,11 +2438,11 @@ msgid "To top"
 msgstr ""
 
 #: blocks/bs-container/editor.js:234
-msgid "45┬░"
+msgid "45°"
 msgstr ""
 
 #: blocks/bs-container/editor.js:235
-msgid "135┬░"
+msgid "135°"
 msgstr ""
 
 #: blocks/bs-container/editor.js:310
@@ -2831,11 +2831,11 @@ msgid "Color"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:13
-msgid "Galer├¡a"
+msgid "Galería"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:14
-msgid "Galer├¡a de im├ígenes con CSS Grid, lightbox y efectos hover"
+msgid "Galería de imágenes con CSS Grid, lightbox y efectos hover"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:116
@@ -2848,7 +2848,7 @@ msgid "XS"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:118
-msgid "Peque├▒o"
+msgid "Pequeño"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:119
@@ -2897,19 +2897,19 @@ msgstr ""
 
 #: blocks/bs-gallery/editor.js:143
 #: blocks/bs-gallery/editor.js:176
-msgid "A├▒adir im├ígenes"
+msgid "Añadir imágenes"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:161
-msgid "Im├ígenes"
+msgid "Imágenes"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:195
-msgid "Tama├▒o de thumbnail"
+msgid "Tamaño de thumbnail"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:202
-msgid "Tama├▒o en el Grid (Layout tipo Mosaico)"
+msgid "Tamaño en el Grid (Layout tipo Mosaico)"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:205
@@ -2917,7 +2917,7 @@ msgid "Columnas que ocupa (Column Span)"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:210
-msgid "Cu├íntas columnas ocupa esta imagen (1 = normal, 2 = doble ancho, etc.)"
+msgid "Cuántas columnas ocupa esta imagen (1 = normal, 2 = doble ancho, etc.)"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:213
@@ -2925,7 +2925,7 @@ msgid "Filas que ocupa (Row Span)"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:218
-msgid "Cu├íntas filas ocupa esta imagen (1 = normal, 2 = doble alto, etc.)"
+msgid "Cuántas filas ocupa esta imagen (1 = normal, 2 = doble alto, etc.)"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:222
@@ -2937,11 +2937,11 @@ msgid "Ingresa un caption solo para esta imagen (opcional)"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:232
-msgid "­ƒöä Reemplazar imagen"
+msgid "Reemplazar imagen"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:237
-msgid "Ô£ò Quitar"
+msgid "Quitar"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:243
@@ -2953,7 +2953,7 @@ msgid "Mover abajo"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:253
-msgid "Cerrar configuraci├│n"
+msgid "Cerrar configuración"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:257
@@ -2965,7 +2965,7 @@ msgid "Columnas Desktop"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:264
-msgid "N├║mero de columnas en pantallas grandes"
+msgid "Número de columnas en pantallas grandes"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:267
@@ -2973,7 +2973,7 @@ msgid "Columnas Mobile"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:272
-msgid "N├║mero de columnas en m├│viles"
+msgid "Número de columnas en móviles"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:275
@@ -3005,23 +3005,23 @@ msgid "Lightbox (FancyBox)"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:321
-msgid "L├¡mite de im├ígenes a mostrar"
+msgid "Límite de imágenes a mostrar"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:326
-msgid "0 = sin l├¡mite (mostrar todas)"
+msgid "0 = sin límite (mostrar todas)"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:329
-msgid "Activar filtrado por categor├¡as"
+msgid "Activar filtrado por categorías"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:332
-msgid "Muestra botones de filtro si las im├ígenes tienen categor├¡as asignadas"
+msgid "Muestra botones de filtro si las imágenes tienen categorías asignadas"
 msgstr ""
 
 #: blocks/bs-gallery/editor.js:340
-msgid "Ninguna imagen seleccionada. Haz clic en \"A├▒adir im├ígenes\" para comenzar."
+msgid "Ninguna imagen seleccionada. Haz clic en \"Añadir imágenes\" para comenzar."
 msgstr ""
 
 #: blocks/bs-iframe/editor.js:20
@@ -3404,11 +3404,11 @@ msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:64
 #: blocks/bs-shipping-methods/editor.js:68
-msgid "Configuraci├│n"
+msgid "Configuración"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:66
-msgid "M├íximo de posts (-1 = todos)"
+msgid "Máximo de posts (-1 = todos)"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:72
@@ -3424,7 +3424,7 @@ msgid "Tablet (768px - 1023px)"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:86
-msgid "Desktop (ÔëÑ 1024px)"
+msgid "Desktop (>= 1024px)"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:92
@@ -3432,15 +3432,15 @@ msgid "Mostrar imagen destacada"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:97
-msgid "Texto bot├│n cotizador"
+msgid "Texto botón cotizador"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:102
-msgid "Texto bot├│n desactivado"
+msgid "Texto botón desactivado"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:106
-msgid "Navegaci├│n"
+msgid "Navegación"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:108
@@ -3448,11 +3448,11 @@ msgid "Mostrar flechas prev/next"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:113
-msgid "Tipo de paginaci├│n"
+msgid "Tipo de paginación"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:116
-msgid "Sin paginaci├│n"
+msgid "Sin paginación"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:117
@@ -3520,29 +3520,29 @@ msgid "Filtros"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:152
-msgid "Mostrar filtros de b├║squeda"
+msgid "Mostrar filtros de búsqueda"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:153
-msgid "Mostrar u ocultar la barra de filtros (Dormitorios y Ba├▒os)"
+msgid "Mostrar u ocultar la barra de filtros (Dormitorios y Baños)"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:160
 #: blocks/bs-plantas-slider/editor.js:168
 #: blocks/bs-plantas-slider/editor.js:176
-msgid "ÔÇö Sin filtro ÔÇö"
+msgid "-- Sin filtro --"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:174
-msgid "Categor├¡a"
+msgid "Categoría"
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:196
-msgid "El slider se renderizar├í con las Plantas publicadas en el frontend."
+msgid "El slider se renderizará con las Plantas publicadas en el frontend."
 msgstr ""
 
 #: blocks/bs-plantas-slider/editor.js:197
-msgid "Usa las configuraciones globales de Swiper en Opciones de Tema ÔåÆ Otros."
+msgid "Usa las configuraciones globales de Swiper en Opciones de Tema -> Otros."
 msgstr ""
 
 #: blocks/bs-progress/editor.js:13
@@ -3652,7 +3652,7 @@ msgid "Display WooCommerce shipping methods with radio or select options"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:70
-msgid "Tipo de visualizaci├│n"
+msgid "Tipo de visualización"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:73
@@ -3666,15 +3666,15 @@ msgid "Select Dropdown"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:77
-msgid "C├│mo mostrar las opciones de env├¡o"
+msgid "Cómo mostrar las opciones de envío"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:80
-msgid "T├¡tulo"
+msgid "Título"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:83
-msgid "T├¡tulo que aparece sobre los m├®todos de env├¡o"
+msgid "Título que aparece sobre los métodos de envío"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:87
@@ -3682,27 +3682,27 @@ msgid "Mostrar icono"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:90
-msgid "Mostrar icono de cami├│n junto al nombre"
+msgid "Mostrar icono de camión junto al nombre"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:103
-msgid "Vista previa: M├®todos de Env├¡o"
+msgid "Vista previa: Métodos de Envío"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:106
-msgid "Este bloque mostrar├í los m├®todos de env├¡o disponibles de WooCommerce cuando el carrito tenga productos."
+msgid "Este bloque mostrará los métodos de envío disponibles de WooCommerce cuando el carrito tenga productos."
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:110
-msgid "Configuraci├│n actual:"
+msgid "Configuración actual:"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:113
-msgid "Visualizaci├│n:"
+msgid "Visualización:"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:118
-msgid "T├¡tulo:"
+msgid "Título:"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:124
@@ -3710,7 +3710,7 @@ msgid "Icono:"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:126
-msgid "S├¡"
+msgid "Sí"
 msgstr ""
 
 #: blocks/bs-shipping-methods/editor.js:126

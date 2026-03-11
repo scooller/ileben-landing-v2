@@ -99,6 +99,7 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block)
 function bootstrap_theme_register_bs_column_block()
 {
     register_block_type('bootstrap-theme/bs-column', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_column_block',
         'attributes' => array(
             'colXs' => array(

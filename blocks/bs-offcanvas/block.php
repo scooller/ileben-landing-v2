@@ -70,6 +70,7 @@ function bootstrap_theme_render_bs_offcanvas_block($attributes, $content, $block
  */
 function bootstrap_theme_register_bs_offcanvas_block() {
     register_block_type('bootstrap-theme/bs-offcanvas', array(
+        'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_offcanvas_block',
         'attributes' => array(
             'title' => array(

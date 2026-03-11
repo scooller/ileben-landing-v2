@@ -10,6 +10,7 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-tabs', {
+        apiVersion: 3,
         title: __('Bootstrap Tabs', 'ileben-landing'),
         description: __('Bootstrap tabs navigation component', 'ileben-landing'),
         icon: 'index-card',
