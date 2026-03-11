@@ -4,7 +4,6 @@
 AGENTS.md
 node_modules/
 vendor/
-dist/
 build/
 tmp/
 temp/
