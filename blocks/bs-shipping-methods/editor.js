@@ -10,11 +10,11 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-shipping-methods', {
-        title: __('Bootstrap Shipping Methods', 'bootstrap-theme'),
-        description: __('Display WooCommerce shipping methods with radio or select options', 'bootstrap-theme'),
+        title: __('Bootstrap Shipping Methods', 'ileben-landing'),
+        description: __('Display WooCommerce shipping methods with radio or select options', 'ileben-landing'),
         icon: 'cart',
         category: 'ileben-landing',
-        keywords: [__('shipping'), __('envío'), __('métodos'), __('woocommerce')],
+        keywords: [__('shipping'), __('env├¡o'), __('m├®todos'), __('woocommerce')],
         
         attributes: {
             displayType: {
@@ -27,7 +27,7 @@
             },
             title: {
                 type: 'string',
-                default: 'Métodos de envío'
+                default: 'M├®todos de env├¡o'
             },
             alignment: {
                 type: 'string',
@@ -65,29 +65,29 @@
                     })
                 ),
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Configuración', 'bootstrap-theme'), initialOpen: true },
+                    createElement(PanelBody, { title: __('Configuraci├│n', 'ileben-landing'), initialOpen: true },
                         createElement(SelectControl, {
-                            label: __('Tipo de visualización', 'bootstrap-theme'),
+                            label: __('Tipo de visualizaci├│n', 'ileben-landing'),
                             value: displayType,
                             options: [
-                                { label: __('Radio Buttons', 'bootstrap-theme'), value: 'radio' },
-                                { label: __('Select Dropdown', 'bootstrap-theme'), value: 'select' }
+                                { label: __('Radio Buttons', 'ileben-landing'), value: 'radio' },
+                                { label: __('Select Dropdown', 'ileben-landing'), value: 'select' }
                             ],
                             onChange: (value) => setAttributes({ displayType: value }),
-                            help: __('Cómo mostrar las opciones de envío', 'bootstrap-theme')
+                            help: __('C├│mo mostrar las opciones de env├¡o', 'ileben-landing')
                         }),
                         createElement(TextControl, {
-                            label: __('Título', 'bootstrap-theme'),
+                            label: __('T├¡tulo', 'ileben-landing'),
                             value: title,
                             onChange: (value) => setAttributes({ title: value }),
-                            help: __('Título que aparece sobre los métodos de envío', 'bootstrap-theme')
+                            help: __('T├¡tulo que aparece sobre los m├®todos de env├¡o', 'ileben-landing')
                         }),
                         displayType === 'radio' && createElement(Fragment, {},
                             createElement(ToggleControl, {
-                                label: __('Mostrar icono', 'bootstrap-theme'),
+                                label: __('Mostrar icono', 'ileben-landing'),
                                 checked: showIcon,
                                 onChange: (value) => setAttributes({ showIcon: value }),
-                                help: __('Mostrar icono de camión junto al nombre', 'bootstrap-theme')
+                                help: __('Mostrar icono de cami├│n junto al nombre', 'ileben-landing')
                             })
                         )
                     )
@@ -100,30 +100,30 @@
                                 style: { width: '20px', height: '20px', display: 'inline-block', verticalAlign: 'middle' },
                                 dangerouslySetInnerHTML: { __html: '<use xlink:href="#fa-truck"></use>' }
                             }),
-                            __('Vista previa: Métodos de Envío', 'bootstrap-theme')
+                            __('Vista previa: M├®todos de Env├¡o', 'ileben-landing')
                         ),
                         createElement('p', { className: 'mb-2' },
-                            __('Este bloque mostrará los métodos de envío disponibles de WooCommerce cuando el carrito tenga productos.', 'bootstrap-theme')
+                            __('Este bloque mostrar├í los m├®todos de env├¡o disponibles de WooCommerce cuando el carrito tenga productos.', 'ileben-landing')
                         ),
                         createElement('hr'),
                         createElement('div', { className: 'mb-0' },
-                            createElement('strong', {}, __('Configuración actual:', 'bootstrap-theme')),
+                            createElement('strong', {}, __('Configuraci├│n actual:', 'ileben-landing')),
                             createElement('ul', { className: 'mb-0 mt-2' },
                                 createElement('li', {},
-                                    createElement('strong', {}, __('Visualización:', 'bootstrap-theme')),
+                                    createElement('strong', {}, __('Visualizaci├│n:', 'ileben-landing')),
                                     ' ',
-                                    displayType === 'radio' ? __('Radio Buttons', 'bootstrap-theme') : __('Select Dropdown', 'bootstrap-theme')
+                                    displayType === 'radio' ? __('Radio Buttons', 'ileben-landing') : __('Select Dropdown', 'ileben-landing')
                                 ),
                                 title && createElement('li', {},
-                                    createElement('strong', {}, __('Título:', 'bootstrap-theme')),
+                                    createElement('strong', {}, __('T├¡tulo:', 'ileben-landing')),
                                     ' ',
                                     title
                                 ),
                                 displayType === 'radio' && createElement(Fragment, {},
                                     createElement('li', {},
-                                        createElement('strong', {}, __('Icono:', 'bootstrap-theme')),
+                                        createElement('strong', {}, __('Icono:', 'ileben-landing')),
                                         ' ',
-                                        showIcon ? __('Sí', 'bootstrap-theme') : __('No', 'bootstrap-theme')
+                                        showIcon ? __('S├¡', 'ileben-landing') : __('No', 'ileben-landing')
                                     )
                                 )
                             )
@@ -132,8 +132,8 @@
                     title && createElement('h5', { className: 'shipping-title mb-3' }, title),
                     displayType === 'select' ? 
                         createElement('select', { className: 'form-select', disabled: true },
-                            createElement('option', {}, __('Blue Express (Standard): $4.201', 'bootstrap-theme')),
-                            createElement('option', {}, __('Starken (Normal a agencia): $5.560', 'bootstrap-theme'))
+                            createElement('option', {}, __('Blue Express (Standard): $4.201', 'ileben-landing')),
+                            createElement('option', {}, __('Starken (Normal a agencia): $5.560', 'ileben-landing'))
                         )
                     :
                         createElement('div', { className: 'shipping-radio-wrapper' },
@@ -154,7 +154,7 @@
                                                 style: { width: '16px', height: '16px', display: 'inline-block', verticalAlign: 'middle' },
                                                 dangerouslySetInnerHTML: { __html: '<use xlink:href="#fa-truck"></use>' }
                                             }),
-                                            __('Blue Express (Standard)', 'bootstrap-theme')
+                                            __('Blue Express (Standard)', 'ileben-landing')
                                         ),
                                         createElement('span', { className: 'shipping-method-cost fw-bold' }, '$4.201')
                                     )
@@ -176,7 +176,7 @@
                                                 style: { width: '16px', height: '16px', display: 'inline-block', verticalAlign: 'middle' },
                                                 dangerouslySetInnerHTML: { __html: '<use xlink:href="#fa-truck"></use>' }
                                             }),
-                                            __('Starken (Normal a agencia)', 'bootstrap-theme')
+                                            __('Starken (Normal a agencia)', 'ileben-landing')
                                         ),
                                         createElement('span', { className: 'shipping-method-cost fw-bold' }, '$5.560')
                                     )

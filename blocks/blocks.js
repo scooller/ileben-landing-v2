@@ -14,13 +14,13 @@
     const { PanelBody, SelectControl, TextControl } = wp.components;
     const { __ } = wp.i18n;
 
-    console.log('✅ blocks.js cargado - FALLBACK blocks');
+    console.log('Ô£à blocks.js cargado - FALLBACK blocks');
 
     // FontAwesome Icon Block (fallback registration to ensure it appears in inserter)
     if (!wp.blocks.getBlockType('bootstrap-theme/bs-fa-icon')) {
         registerBlockType('bootstrap-theme/bs-fa-icon', {
-            title: __('FontAwesome Icon', 'bootstrap-theme'),
-            description: __('Inserta un ícono de FontAwesome (colección free).', 'bootstrap-theme'),
+            title: __('FontAwesome Icon', 'ileben-landing'),
+            description: __('Inserta un ├¡cono de FontAwesome (colecci├│n free).', 'ileben-landing'),
             icon: 'star-filled',
             category: 'ileben-landing',
             keywords: [__('icon'), __('fontawesome'), __('fa')],
@@ -48,9 +48,9 @@
                 }
 
                 const iconStyles = [
-                    { label: __('Solid', 'bootstrap-theme'), value: 'fa-solid' },
-                    { label: __('Regular', 'bootstrap-theme'), value: 'fa-regular' },
-                    { label: __('Brands', 'bootstrap-theme'), value: 'fa-brands' },
+                    { label: __('Solid', 'ileben-landing'), value: 'fa-solid' },
+                    { label: __('Regular', 'ileben-landing'), value: 'fa-regular' },
+                    { label: __('Brands', 'ileben-landing'), value: 'fa-brands' },
                 ];
 
                 const iconSizes = [
@@ -64,41 +64,41 @@
                 ];
 
                 const alignOptions = [
-                    { label: __('Default', 'bootstrap-theme'), value: '' },
-                    { label: __('Left', 'bootstrap-theme'), value: 'start' },
-                    { label: __('Center', 'bootstrap-theme'), value: 'center' },
-                    { label: __('Right', 'bootstrap-theme'), value: 'end' },
+                    { label: __('Default', 'ileben-landing'), value: '' },
+                    { label: __('Left', 'ileben-landing'), value: 'start' },
+                    { label: __('Center', 'ileben-landing'), value: 'center' },
+                    { label: __('Right', 'ileben-landing'), value: 'end' },
                 ];
 
                 return createElement(Fragment, {},
                     createElement(InspectorControls, {},
-                        createElement(PanelBody, { title: __('Icon Settings', 'bootstrap-theme'), initialOpen: true },
+                        createElement(PanelBody, { title: __('Icon Settings', 'ileben-landing'), initialOpen: true },
                             createElement(SelectControl, {
-                                label: __('Estilo', 'bootstrap-theme'),
+                                label: __('Estilo', 'ileben-landing'),
                                 value: attributes.iconStyle,
                                 options: iconStyles,
                                 onChange: (value) => setAttributes({ iconStyle: value })
                             }),
                             createElement(TextControl, {
-                                label: __('Nombre de ícono (ej: fa-house)', 'bootstrap-theme'),
-                                help: __('Solo íconos free: https://fontawesome.com/search?ic=free-collection', 'bootstrap-theme'),
+                                label: __('Nombre de ├¡cono (ej: fa-house)', 'ileben-landing'),
+                                help: __('Solo ├¡conos free: https://fontawesome.com/search?ic=free-collection', 'ileben-landing'),
                                 value: attributes.iconName,
                                 onChange: (value) => setAttributes({ iconName: value })
                             }),
                             createElement(SelectControl, {
-                                label: __('Tamaño', 'bootstrap-theme'),
+                                label: __('Tama├▒o', 'ileben-landing'),
                                 value: attributes.size,
                                 options: iconSizes,
                                 onChange: (value) => setAttributes({ size: value })
                             }),
                             createElement(SelectControl, {
-                                label: __('Alineación', 'bootstrap-theme'),
+                                label: __('Alineaci├│n', 'ileben-landing'),
                                 value: attributes.align,
                                 options: alignOptions,
                                 onChange: (value) => setAttributes({ align: value })
                             }),
                             createElement(TextControl, {
-                                label: __('Color (ej: #000000)', 'bootstrap-theme'),
+                                label: __('Color (ej: #000000)', 'ileben-landing'),
                                 value: attributes.color,
                                 onChange: (value) => setAttributes({ color: value })
                             })
@@ -110,11 +110,11 @@
                 );
             },
             save: function() {
-                return null; // render dinámico en PHP
+                return null; // render din├ímico en PHP
             }
         });
     }
 
-    console.log('✅ blocks.js inicialización completada - bloques registrados en PHP');
+    console.log('Ô£à blocks.js inicializaci├│n completada - bloques registrados en PHP');
 
 })();

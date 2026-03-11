@@ -98,13 +98,13 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                                     <?php if ($show_actions && $show_phone && $wa_href !== '') : ?>
                                         <a class="btn btn-success btn-sm" href="<?php echo esc_url($wa_href); ?>" target="_blank" rel="noopener noreferrer">
                                             <i class="fa-brands fa-whatsapp"></i>
-                                            <?php esc_html_e('WhatsApp', 'bootstrap-theme'); ?>
+                                            <?php esc_html_e('WhatsApp', 'ileben-landing'); ?>
                                         </a>
                                     <?php endif; ?>
                                     <?php if ($show_actions && $show_email && $mailto_href !== '') : ?>
                                         <a class="btn btn-danger btn-sm" href="<?php echo esc_url($mailto_href); ?>">
                                             <i class="fa-solid fa-at"></i>
-                                            <?php esc_html_e('Escríbeme', 'bootstrap-theme'); ?>
+                                            <?php esc_html_e('Escr├¡beme', 'ileben-landing'); ?>
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -140,13 +140,13 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                                                 <?php if ($show_actions && $show_phone && $wa_href !== '') : ?>
                                                     <a class="btn btn-success btn-sm" href="<?php echo esc_url($wa_href); ?>" target="_blank" rel="noopener noreferrer">
                                                         <i class="fa-brands fa-whatsapp"></i>
-                                                        <?php esc_html_e('WhatsApp', 'bootstrap-theme'); ?>
+                                                        <?php esc_html_e('WhatsApp', 'ileben-landing'); ?>
                                                     </a>
                                                 <?php endif; ?>
                                                 <?php if ($show_actions && $show_email && $mailto_href !== '') : ?>
                                                     <a class="btn btn-danger btn-sm" href="<?php echo esc_url($mailto_href); ?>">
                                                         <i class="fa-solid fa-at"></i>
-                                                        <?php esc_html_e('Escríbeme', 'bootstrap-theme'); ?>
+                                                        <?php esc_html_e('Escr├¡beme', 'ileben-landing'); ?>
                                                     </a>
                                                 <?php endif; ?>
                                             </div>

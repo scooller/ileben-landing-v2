@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-offcanvas', {
-        title: __('Bootstrap Offcanvas', 'bootstrap-theme'),
-        description: __('Bootstrap offcanvas sidebar component', 'bootstrap-theme'),
+        title: __('Bootstrap Offcanvas', 'ileben-landing'),
+        description: __('Bootstrap offcanvas sidebar component', 'ileben-landing'),
         icon: 'menu',
         category: 'ileben-landing',
         keywords: [__('offcanvas'), __('sidebar'), __('drawer')],
@@ -76,7 +76,7 @@
             if (attributes.preview) {
                 return createElement('img', {
                     src: '/wp-content/themes/bootstrap-theme/blocks/bs-offcanvas/example.png',
-                    alt: __('Offcanvas preview', 'bootstrap-theme'),
+                    alt: __('Offcanvas preview', 'ileben-landing'),
                     style: { width: '100%', height: 'auto', display: 'block' }
                 });
             }
@@ -117,55 +117,55 @@
             
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Offcanvas Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Offcanvas Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Offcanvas ID', 'bootstrap-theme'),
+                            label: __('Offcanvas ID', 'ileben-landing'),
                             value: attributes.offcanvasId,
                             onChange: (value) => setAttributes({ offcanvasId: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Placement', 'bootstrap-theme'),
+                            label: __('Placement', 'ileben-landing'),
                             value: attributes.placement,
                             options: placementOptions,
                             onChange: (value) => setAttributes({ placement: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Backdrop', 'bootstrap-theme'),
+                            label: __('Backdrop', 'ileben-landing'),
                             value: attributes.backdrop,
                             options: backdropOptions,
                             onChange: (value) => setAttributes({ backdrop: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Body Scrolling', 'bootstrap-theme'),
-                            help: __('Allow body to scroll when offcanvas is open', 'bootstrap-theme'),
+                            label: __('Body Scrolling', 'ileben-landing'),
+                            help: __('Allow body to scroll when offcanvas is open', 'ileben-landing'),
                             checked: attributes.scroll,
                             onChange: (value) => setAttributes({ scroll: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Keyboard', 'bootstrap-theme'),
-                            help: __('Close with Escape key', 'bootstrap-theme'),
+                            label: __('Keyboard', 'ileben-landing'),
+                            help: __('Close with Escape key', 'ileben-landing'),
                             checked: attributes.keyboard,
                             onChange: (value) => setAttributes({ keyboard: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Show Header', 'bootstrap-theme'),
+                            label: __('Show Header', 'ileben-landing'),
                             checked: attributes.showHeader,
                             onChange: (value) => setAttributes({ showHeader: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Show Close Button', 'bootstrap-theme'),
+                            label: __('Show Close Button', 'ileben-landing'),
                             checked: attributes.showCloseButton,
                             onChange: (value) => setAttributes({ showCloseButton: value })
                         })
                     ),
-                    createElement(PanelBody, { title: __('Trigger Button', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Trigger Button', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Button Text', 'bootstrap-theme'),
+                            label: __('Button Text', 'ileben-landing'),
                             value: attributes.buttonText,
                             onChange: (value) => setAttributes({ buttonText: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Button Variant', 'bootstrap-theme'),
+                            label: __('Button Variant', 'ileben-landing'),
                             value: attributes.buttonVariant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ buttonVariant: value })
@@ -184,7 +184,7 @@
                     
                     // Offcanvas Preview
                     createElement('div', { className: 'offcanvas-preview mt-3 p-3 border' },
-                        createElement('h6', {}, __('Offcanvas Preview:', 'bootstrap-theme')),
+                        createElement('h6', {}, __('Offcanvas Preview:', 'ileben-landing')),
                         createElement('div', {
                             className: offcanvasClasses,
                             style: { position: 'relative', transform: 'none', display: 'block' }
@@ -195,7 +195,7 @@
                                     className: 'offcanvas-title',
                                     value: attributes.title,
                                     onChange: (value) => setAttributes({ title: value }),
-                                    placeholder: __('Offcanvas title...', 'bootstrap-theme')
+                                    placeholder: __('Offcanvas title...', 'ileben-landing')
                                 }),
                                 attributes.showCloseButton && createElement('button', {
                                     type: 'button',
@@ -206,10 +206,10 @@
                             ),
                             createElement('div', { className: 'offcanvas-body' },
                                 createElement(InnerBlocks, {
-                                    placeholder: __('Add offcanvas content...', 'bootstrap-theme'),
+                                    placeholder: __('Add offcanvas content...', 'ileben-landing'),
                                     template: [
                                         ['core/paragraph', { 
-                                            content: __('Some text as placeholder. In real usage this can be any content you want.', 'bootstrap-theme')
+                                            content: __('Some text as placeholder. In real usage this can be any content you want.', 'ileben-landing')
                                         }]
                                     ]
                                 })

@@ -54,7 +54,7 @@ function bootstrap_theme_render_bs_row_block($attributes, $content, $block) {
     if (!empty($content)) {
         $output .= $content;
     } else {
-        $output .= '<div class="col"><p>' . __('Add columns to your row.', 'bootstrap-theme') . '</p></div>';
+        $output .= '<div class="col"><p>' . __('Add columns to your row.', 'ileben-landing') . '</p></div>';
     }
     
     $output .= '</div>';

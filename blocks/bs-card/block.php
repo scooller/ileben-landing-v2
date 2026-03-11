@@ -129,7 +129,7 @@ function bootstrap_theme_render_bs_card_block($attributes, $content, $block)
         }
         ?>
         <div class="<?php echo esc_attr($footer_classes); ?>">
-            <small class="text-muted"><?php echo __('Card footer', 'bootstrap-theme'); ?></small>
+            <small class="text-muted"><?php echo __('Card footer', 'ileben-landing'); ?></small>
         </div>
         <?php
     endif; ?>

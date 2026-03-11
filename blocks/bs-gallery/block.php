@@ -41,7 +41,7 @@ function ileben_render_bs_gallery($attributes, $content, $block)
     $className = $attributes['className'] ?? '';
 
     if (empty($images)) {
-        return '<div class="alert alert-info" role="alert">' . __('No images selected', 'bootstrap-theme') . '</div>';
+        return '<div class="alert alert-info" role="alert">' . __('No images selected', 'ileben-landing') . '</div>';
     }
 
     // Limit images if set
@@ -100,7 +100,7 @@ function ileben_render_bs_gallery($attributes, $content, $block)
     <div class="gallery-wrapper">
         <?php if ($filter_categories && ! empty($all_categories)) : ?>
             <div class="gallery-filters mb-4">
-                <button class="gallery-filter-btn active" data-filter="*"><?php esc_html_e('Todas', 'bootstrap-theme'); ?></button>
+                <button class="gallery-filter-btn active" data-filter="*"><?php esc_html_e('Todas', 'ileben-landing'); ?></button>
                 <?php foreach ($all_categories as $category) : ?>
                     <button class="gallery-filter-btn" data-filter=".<?php echo esc_attr('cat-' . $category->term_id); ?>">
                         <?php echo esc_html($category->name); ?>
@@ -122,7 +122,7 @@ function ileben_render_bs_gallery($attributes, $content, $block)
                     continue;
                 }
 
-                // Obtener configuración individual de la imagen
+                // Obtener configuraci├│n individual de la imagen
                 $img_thumbnail_size = isset($image['thumbnailSize']) ? sanitize_text_field($image['thumbnailSize']) : 'medium';
                 $img_column_span = isset($image['columnSpan']) && $image['columnSpan'] > 0 ? absint($image['columnSpan']) : 1;
                 $img_row_span = isset($image['rowSpan']) && $image['rowSpan'] > 0 ? absint($image['rowSpan']) : 1;
@@ -151,7 +151,7 @@ function ileben_render_bs_gallery($attributes, $content, $block)
                 $custom_caption = isset($image['customCaption']) ? sanitize_text_field($image['customCaption']) : $img_title;
                 $display_caption = $custom_caption !== '' ? $custom_caption : $img_caption;
 
-                // Estilos de grid sin forzar relación de aspecto
+                // Estilos de grid sin forzar relaci├│n de aspecto
                 $figure_style = sprintf(
                     'grid-column: span %d; grid-row: span %d;',
                     $img_column_span,

@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-button', {
-        title: __('Bootstrap Button', 'bootstrap-theme'),
-        description: __('A customizable Bootstrap button component', 'bootstrap-theme'),
+        title: __('Bootstrap Button', 'ileben-landing'),
+        description: __('A customizable Bootstrap button component', 'ileben-landing'),
         icon: 'button',
         category: 'ileben-landing',
         keywords: [ __('button'), __('bootstrap'), __('link') ],
@@ -59,59 +59,59 @@
                 { label: 'Large', value: 'btn-lg' }
             ];
 
-            const settingsPanel = createElement(PanelBody, { title: __('Button Settings', 'bootstrap-theme') },
+            const settingsPanel = createElement(PanelBody, { title: __('Button Settings', 'ileben-landing') },
                 createElement(TextControl, {
-                    label: __('Button Text', 'bootstrap-theme'),
+                    label: __('Button Text', 'ileben-landing'),
                     value: attributes.text,
                     onChange: (value) => setAttributes({ text: value })
                 }),
                 createElement(SelectControl, {
-                    label: __('Button Style', 'bootstrap-theme'),
+                    label: __('Button Style', 'ileben-landing'),
                     value: attributes.variant,
                     options: buttonVariants,
                     onChange: (value) => setAttributes({ variant: value })
                 }),
                 createElement(SelectControl, {
-                    label: __('Button Size', 'bootstrap-theme'),
+                    label: __('Button Size', 'ileben-landing'),
                     value: attributes.size,
                     options: buttonSizes,
                     onChange: (value) => setAttributes({ size: value })
                 }),
                 createElement(ToggleControl, {
-                    label: __('Outline Style', 'bootstrap-theme'),
+                    label: __('Outline Style', 'ileben-landing'),
                     checked: attributes.outline,
                     onChange: (value) => setAttributes({ outline: value })
                 }),
                 createElement(TextControl, {
-                    label: __('Link URL', 'bootstrap-theme'),
+                    label: __('Link URL', 'ileben-landing'),
                     value: attributes.link,
                     onChange: (value) => setAttributes({ link: value })
                 }),
                 createElement(ToggleControl, {
-                    label: __('Open in new tab', 'bootstrap-theme'),
+                    label: __('Open in new tab', 'ileben-landing'),
                     checked: attributes.target === '_blank',
                     onChange: (value) => setAttributes({ target: value ? '_blank' : '_self' })
                 }),
                 createElement(ToggleControl, {
-                    label: __('Disabled', 'bootstrap-theme'),
+                    label: __('Disabled', 'ileben-landing'),
                     checked: attributes.disabled,
                     onChange: (value) => setAttributes({ disabled: value })
                 })
             );
 
-            const iconPanel = createElement(PanelBody, { title: __('Icon', 'bootstrap-theme'), initialOpen: false },
+            const iconPanel = createElement(PanelBody, { title: __('Icon', 'ileben-landing'), initialOpen: false },
                 createElement(TextControl, {
-                    label: __('Font Awesome classes', 'bootstrap-theme'),
-                    help: __('Ejemplo: fa-solid fa-car (solo clases del icono)', 'bootstrap-theme'),
+                    label: __('Font Awesome classes', 'ileben-landing'),
+                    help: __('Ejemplo: fa-solid fa-car (solo clases del icono)', 'ileben-landing'),
                     value: attributes.icon,
                     onChange: (value) => setAttributes({ icon: value })
                 }),
                 createElement(SelectControl, {
-                    label: __('Icon position', 'bootstrap-theme'),
+                    label: __('Icon position', 'ileben-landing'),
                     value: attributes.iconPosition,
                     options: [
-                        { label: __('Before text', 'bootstrap-theme'), value: 'left' },
-                        { label: __('After text', 'bootstrap-theme'), value: 'right' }
+                        { label: __('Before text', 'ileben-landing'), value: 'left' },
+                        { label: __('After text', 'ileben-landing'), value: 'right' }
                     ],
                     onChange: (value) => setAttributes({ iconPosition: value })
                 })

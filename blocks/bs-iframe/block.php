@@ -13,7 +13,7 @@ function bootstrap_theme_render_bs_iframe_block($attributes, $content, $block) {
         return '';
     }
 
-    $title = isset($attributes['title']) && $attributes['title'] !== '' ? sanitize_text_field($attributes['title']) : __('Contenido incrustado', 'bootstrap-theme');
+    $title = isset($attributes['title']) && $attributes['title'] !== '' ? sanitize_text_field($attributes['title']) : __('Contenido incrustado', 'ileben-landing');
     $ratio = isset($attributes['ratio']) ? $attributes['ratio'] : '16x9';
     $allowed_ratios = array('1x1','4x3','16x9','21x9');
     if (!in_array($ratio, $allowed_ratios, true)) {

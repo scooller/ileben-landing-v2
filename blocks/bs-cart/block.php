@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
  */
 function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
     if (!function_exists('wc_get_cart_url') || !function_exists('wc_get_checkout_url')) {
-        return '<div class="alert alert-warning">' . esc_html__('WooCommerce is not active', 'bootstrap-theme') . '</div>';
+        return '<div class="alert alert-warning">' . esc_html__('WooCommerce is not active', 'ileben-landing') . '</div>';
     }
 
     $show_empty_message = $attributes['showEmptyMessage'] ?? true;
@@ -49,7 +49,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
             
             // Only initialize cart on frontend, not in REST API/editor
             if (class_exists('WooCommerce') && function_exists('WC') && WC() && WC()->cart) {
-                // Asegurar totales calculados (incluye envío cuando procede)
+                // Asegurar totales calculados (incluye env├¡o cuando procede)
                 WC()->cart->calculate_totals();
                 $cart_is_empty = WC()->cart->is_empty();
                 if (!$cart_is_empty) {
@@ -61,7 +61,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                     $shipping_can_show = WC()->cart->show_shipping();
                     $shipping_total = $shipping_can_show ? WC()->cart->get_cart_shipping_total() : '';
 
-                    // Construir etiqueta(s) de método(s) de envío (solo nombre, precio va a la derecha)
+                    // Construir etiqueta(s) de m├®todo(s) de env├¡o (solo nombre, precio va a la derecha)
                     $shipping_label_html = '';
                     if ($needs_shipping) {
                         $packages = WC()->shipping()->get_packages();
@@ -85,7 +85,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
             if ($cart_is_empty) {
                 if ($show_empty_message) {
                     echo '<div class="alert alert-info">';
-                    esc_html_e('Your cart is currently empty', 'bootstrap-theme');
+                    esc_html_e('Your cart is currently empty', 'ileben-landing');
                     echo '</div>';
                 }
             } else {
@@ -128,7 +128,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                                     if (!empty($image)) {
                                         echo wp_kses_post($image);
                                     } else {
-                                        echo '<div class="d-flex align-items-center justify-content-center w-100 h-100 text-muted small">' . esc_html__('No image', 'bootstrap-theme') . '</div>';
+                                        echo '<div class="d-flex align-items-center justify-content-center w-100 h-100 text-muted small">' . esc_html__('No image', 'ileben-landing') . '</div>';
                                     }
                                     ?>
                                 </div>
@@ -144,7 +144,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                                     
                                     <!-- Product Details (variations, meta, etc.) -->
                                     <?php
-                                    // Use flat formatted data to avoid extra CSS – just Bootstrap utilities
+                                    // Use flat formatted data to avoid extra CSS ÔÇô just Bootstrap utilities
                                     $item_data_text = wc_get_formatted_cart_item_data($cart_item, true);
                                     if (!empty($item_data_text)) :
                                     ?>
@@ -156,7 +156,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                                     <!-- Product SKU -->
                                     <?php if ($product->get_sku()) : ?>
                                         <div class="text-muted small">
-                                            <strong><?php esc_html_e('SKU:', 'bootstrap-theme'); ?></strong> <?php echo esc_html($product->get_sku()); ?>
+                                            <strong><?php esc_html_e('SKU:', 'ileben-landing'); ?></strong> <?php echo esc_html($product->get_sku()); ?>
                                         </div>
                                     <?php endif; ?>
 
@@ -166,7 +166,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                                         <?php if ($product->get_type() === 'rental_car' || $product->is_sold_individually()) : ?>
                                             <div class="cart-item-quantity sold-individually d-flex align-items-center">
                                                 <span class="badge bg-secondary">
-                                                    <?php esc_html_e('Cantidad fija: 1', 'bootstrap-theme'); ?>
+                                                    <?php esc_html_e('Cantidad fija: 1', 'ileben-landing'); ?>
                                                 </span>
                                             </div>
                                         <?php else : ?>
@@ -227,14 +227,14 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                     ?>
                     <div class="cart-totals mt-3 pt-3 border-top">
                         <div class="row mb-2">
-                            <div class="col"><b><?php esc_html_e('Subtotal:', 'bootstrap-theme'); ?></b></div>
+                            <div class="col"><b><?php esc_html_e('Subtotal:', 'ileben-landing'); ?></b></div>
                             <div class="col text-end">
                                 <?php echo wp_kses_post(wc_price($cart_subtotal)); ?>
                             </div>
                         </div>
                         <?php if (!empty($needs_shipping)) : ?>
                             <?php
-                            // Verificar si hay productos físicos que requieran envío
+                            // Verificar si hay productos f├¡sicos que requieran env├¡o
                             $has_physical_product = false;
                             foreach ($cart_items as $item) {
                                 $prod = $item['data'];
@@ -252,7 +252,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                                     if (!empty($shipping_label_html)) {
                                         echo wp_kses_post($shipping_label_html);
                                     } else {
-                                        esc_html_e('Envío', 'bootstrap-theme');
+                                        esc_html_e('Env├¡o', 'ileben-landing');
                                     }
                                     ?>
                                     </i>
@@ -262,7 +262,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                                     if (!empty($shipping_total)) {
                                         echo wp_kses_post($shipping_total);
                                     } else {
-                                        esc_html_e('Calculado al finalizar compra', 'bootstrap-theme');
+                                        esc_html_e('Calculado al finalizar compra', 'ileben-landing');
                                     }
                                     ?>
                                 </div>
@@ -274,7 +274,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                             foreach ($cart_taxes as $tax) {
                                 ?>
                                 <div class="row mb-2">
-                                    <div class="col"><b><?php esc_html_e('Tax:', 'bootstrap-theme'); ?></b></div>
+                                    <div class="col"><b><?php esc_html_e('Tax:', 'ileben-landing'); ?></b></div>
                                     <div class="col text-end">
                                         <?php echo wp_kses_post(wc_price($tax)); ?>
                                     </div>
@@ -284,7 +284,7 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
                         }
                         ?>
                         <div class="row border-top pt-2 fw-bold">
-                            <div class="col"><?php esc_html_e('Total:', 'bootstrap-theme'); ?></div>
+                            <div class="col"><?php esc_html_e('Total:', 'ileben-landing'); ?></div>
                             <div class="col text-end">
                                 <?php echo wp_kses_post($cart_total); ?>
                             </div>
@@ -301,10 +301,10 @@ function bootstrap_theme_render_bs_cart_block($attributes, $content, $block) {
             ?>
             <div class="cart-buttons mt-4 d-flex gap-2">
                 <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="btn btn-outline-primary flex-grow-1">
-                    <?php esc_html_e('View Cart', 'bootstrap-theme'); ?>
+                    <?php esc_html_e('View Cart', 'ileben-landing'); ?>
                 </a>
                 <a href="<?php echo esc_url(wc_get_checkout_url()); ?>" class="btn btn-primary flex-grow-1">
-                    <?php esc_html_e('Checkout', 'bootstrap-theme'); ?>
+                    <?php esc_html_e('Checkout', 'ileben-landing'); ?>
                 </a>
             </div>
             <?php

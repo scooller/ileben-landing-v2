@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
  */
 function bootstrap_theme_render_bs_collapse_block($attributes, $content, $block) {
     $collapseId = $attributes['collapseId'] ?? 'collapse-' . uniqid();
-    $buttonText = $attributes['buttonText'] ?? __('Toggle Collapse', 'bootstrap-theme');
+    $buttonText = $attributes['buttonText'] ?? __('Toggle Collapse', 'ileben-landing');
     $buttonVariant = $attributes['buttonVariant'] ?? 'btn-primary';
     $horizontal = $attributes['horizontal'] ?? false;
     $show = $attributes['show'] ?? false;

@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-alert', {
-        title: __('Bootstrap Alert', 'bootstrap-theme'),
-        description: __('A dismissible Bootstrap alert component', 'bootstrap-theme'),
+        title: __('Bootstrap Alert', 'ileben-landing'),
+        description: __('A dismissible Bootstrap alert component', 'ileben-landing'),
         icon: 'warning',
         category: 'ileben-landing',
         keywords: [__('alert'), __('bootstrap'), __('message')],
@@ -53,7 +53,7 @@
                 },
                     createElement('img', {
                         src: '/wp-content/themes/bootstrap-theme/blocks/bs-alert/example.png',
-                        alt: __('Bootstrap Alert Preview', 'bootstrap-theme'),
+                        alt: __('Bootstrap Alert Preview', 'ileben-landing'),
                         style: { width: '100%', height: 'auto', maxWidth: '600px' }
                     })
                 );
@@ -61,9 +61,9 @@
 
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Alert Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Alert Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Alert Style', 'bootstrap-theme'),
+                            label: __('Alert Style', 'ileben-landing'),
                             value: attributes.variant,
                             options: [
                                 { label: 'Primary', value: 'primary' },
@@ -78,12 +78,12 @@
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Dismissible', 'bootstrap-theme'),
+                            label: __('Dismissible', 'ileben-landing'),
                             checked: attributes.dismissible,
                             onChange: (value) => setAttributes({ dismissible: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Alert Heading', 'bootstrap-theme'),
+                            label: __('Alert Heading', 'ileben-landing'),
                             value: attributes.heading,
                             onChange: (value) => setAttributes({ heading: value })
                         })
@@ -96,7 +96,7 @@
                     }),
                     attributes.heading && createElement('h4', { className: 'alert-heading' }, attributes.heading),
                     createElement(InnerBlocks, {
-                        placeholder: __('Add alert content...', 'bootstrap-theme')
+                        placeholder: __('Add alert content...', 'ileben-landing')
                     }),
                     attributes.dismissible && createElement('button', {
                         type: 'button',

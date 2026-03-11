@@ -1,17 +1,17 @@
 <?php
 /**
  * Bootstrap Shipping Methods Block
- * Muestra los métodos de envío disponibles de WooCommerce
+ * Muestra los m├®todos de env├¡o disponibles de WooCommerce
  *
  * @package Bootstrap_Theme
  */
 
 function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content, $block) {
     if (!class_exists('WooCommerce')) {
-        return '<div class="alert alert-warning">WooCommerce no está activo</div>';
+        return '<div class="alert alert-warning">WooCommerce no est├í activo</div>';
     }
 
-    // Verificar que haya carrito y productos que requieran envío
+    // Verificar que haya carrito y productos que requieran env├¡o
     if (!WC()->cart || !WC()->cart->needs_shipping()) {
         return '';
     }
@@ -26,7 +26,7 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
         }
     }
     
-    // Si solo hay productos virtuales/descargables, no mostrar métodos de envío
+    // Si solo hay productos virtuales/descargables, no mostrar m├®todos de env├¡o
     if (!$has_physical_product) {
         return '';
     }
@@ -35,7 +35,7 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
     $display_type = isset($attributes['displayType']) ? $attributes['displayType'] : 'radio';
     $show_icon = isset($attributes['showIcon']) ? $attributes['showIcon'] : true;
     $show_description = isset($attributes['showDescription']) ? $attributes['showDescription'] : true;
-    $title = isset($attributes['title']) && !empty($attributes['title']) ? $attributes['title'] : __('Métodos de envío', 'bootstrap-theme');
+    $title = isset($attributes['title']) && !empty($attributes['title']) ? $attributes['title'] : __('M├®todos de env├¡o', 'ileben-landing');
     $alignment = isset($attributes['alignment']) ? $attributes['alignment'] : '';
     
     // Construir clases
@@ -49,10 +49,10 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
     
     $wrapper_class = implode(' ', $classes);
 
-    // Calcular envío
+    // Calcular env├¡o
     WC()->cart->calculate_shipping();
     
-    // Obtener paquetes de envío
+    // Obtener paquetes de env├¡o
     $packages = WC()->shipping()->get_packages();
     $chosen_methods = WC()->session->get('chosen_shipping_methods');
     
@@ -81,7 +81,7 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
                     <select class="form-select shipping-method-select" 
                             name="shipping_method[<?php echo esc_attr($i); ?>]" 
                             data-package="<?php echo esc_attr($i); ?>"
-                            aria-label="<?php esc_attr_e('Seleccionar método de envío', 'bootstrap-theme'); ?>">
+                            aria-label="<?php esc_attr_e('Seleccionar m├®todo de env├¡o', 'ileben-landing'); ?>">
                         <?php foreach ($available_methods as $method) : ?>
                             <option value="<?php echo esc_attr($method->id); ?>" 
                                     <?php selected($chosen_method, $method->id); ?>>
@@ -131,12 +131,12 @@ function bootstrap_theme_render_bs_shipping_methods_block($attributes, $content,
     <script>
     (function() {
         document.addEventListener('DOMContentLoaded', function() {
-            // Actualizar método de envío seleccionado
+            // Actualizar m├®todo de env├¡o seleccionado
             function updateShippingMethod(element) {
                 var packageId = element.dataset.package;
                 var methodId = element.value;
                 
-                // Aquí podrías agregar AJAX para actualizar el carrito
+                // Aqu├¡ podr├¡as agregar AJAX para actualizar el carrito
                 // Por ahora solo actualiza visualmente
                 console.log('Shipping method selected:', methodId, 'for package:', packageId);
                 
@@ -191,7 +191,7 @@ function bootstrap_theme_register_bs_shipping_methods_block() {
             ),
             'title' => array(
                 'type' => 'string',
-                'default' => 'Métodos de envío'
+                'default' => 'M├®todos de env├¡o'
             ),
             'alignment' => array(
                 'type' => 'string',

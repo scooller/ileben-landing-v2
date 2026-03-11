@@ -9,8 +9,8 @@
     const { createElement } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-dropdown-divider', {
-        title: __('Bootstrap Dropdown Divider', 'bootstrap-theme'),
-        description: __('Divider line for dropdown menus', 'bootstrap-theme'),
+        title: __('Bootstrap Dropdown Divider', 'ileben-landing'),
+        description: __('Divider line for dropdown menus', 'ileben-landing'),
         icon: 'minus',
         category: 'ileben-landing',
         keywords: [__('dropdown'), __('divider'), __('separator')],
@@ -35,7 +35,7 @@
             if (attributes.preview) {
                 return createElement('img', {
                     src: '/wp-content/themes/bootstrap-theme/blocks/bs-dropdown-divider/example.png',
-                    alt: __('Dropdown divider preview', 'bootstrap-theme'),
+                    alt: __('Dropdown divider preview', 'ileben-landing'),
                     style: { width: '100%', height: 'auto', display: 'block' }
                 });
             }

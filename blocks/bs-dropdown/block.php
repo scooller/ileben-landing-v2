@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
  * Render Bootstrap Dropdown Block
  */
 function bootstrap_theme_render_bs_dropdown_block($attributes, $content, $block) {
-    $buttonText = $attributes['buttonText'] ?? __('Dropdown', 'bootstrap-theme');
+    $buttonText = $attributes['buttonText'] ?? __('Dropdown', 'ileben-landing');
     $buttonVariant = $attributes['buttonVariant'] ?? 'btn-secondary';
     $split = $attributes['split'] ?? false;
     $direction = $attributes['direction'] ?? '';
@@ -52,7 +52,7 @@ function bootstrap_theme_render_bs_dropdown_block($attributes, $content, $block)
         // Split button dropdown
         $output .= '<button type="button" class="btn ' . esc_attr($buttonVariant) . '">' . esc_html($buttonText) . '</button>';
         $output .= '<button type="button" class="btn ' . esc_attr($buttonVariant) . ' dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" id="' . esc_attr($dropdownId) . '">';
-        $output .= '<span class="visually-hidden">' . __('Toggle Dropdown', 'bootstrap-theme') . '</span>';
+        $output .= '<span class="visually-hidden">' . __('Toggle Dropdown', 'ileben-landing') . '</span>';
         $output .= '</button>';
     } else {
         // Regular dropdown
@@ -70,10 +70,10 @@ function bootstrap_theme_render_bs_dropdown_block($attributes, $content, $block)
         $output .= $content;
     } else {
         // Default content if no items
-        $output .= '<li><a class="dropdown-item" href="#">' . __('Action', 'bootstrap-theme') . '</a></li>';
-        $output .= '<li><a class="dropdown-item" href="#">' . __('Another action', 'bootstrap-theme') . '</a></li>';
+        $output .= '<li><a class="dropdown-item" href="#">' . __('Action', 'ileben-landing') . '</a></li>';
+        $output .= '<li><a class="dropdown-item" href="#">' . __('Another action', 'ileben-landing') . '</a></li>';
         $output .= '<li><hr class="dropdown-divider"></li>';
-        $output .= '<li><a class="dropdown-item" href="#">' . __('Something else here', 'bootstrap-theme') . '</a></li>';
+        $output .= '<li><a class="dropdown-item" href="#">' . __('Something else here', 'ileben-landing') . '</a></li>';
     }
     
     $output .= '</ul>';

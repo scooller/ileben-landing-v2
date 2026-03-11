@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-progress', {
-        title: __('Bootstrap Progress Bar', 'bootstrap-theme'),
-        description: __('Bootstrap progress bar component', 'bootstrap-theme'),
+        title: __('Bootstrap Progress Bar', 'ileben-landing'),
+        description: __('Bootstrap progress bar component', 'ileben-landing'),
         icon: 'chart-bar',
         category: 'ileben-landing',
         keywords: [__('progress'), __('bar'), __('bootstrap')],
@@ -96,61 +96,61 @@
             const progressStyle = attributes.height ? { height: attributes.height } : {};
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Progress Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Progress Settings', 'ileben-landing') },
                         createElement(RangeControl, {
-                            label: __('Current Value', 'bootstrap-theme'),
+                            label: __('Current Value', 'ileben-landing'),
                             value: attributes.value,
                             onChange: (value) => setAttributes({ value: value }),
                             min: attributes.min,
                             max: attributes.max
                         }),
                         createElement(RangeControl, {
-                            label: __('Minimum Value', 'bootstrap-theme'),
+                            label: __('Minimum Value', 'ileben-landing'),
                             value: attributes.min,
                             onChange: (value) => setAttributes({ min: value }),
                             min: 0,
                             max: attributes.max - 1
                         }),
                         createElement(RangeControl, {
-                            label: __('Maximum Value', 'bootstrap-theme'),
+                            label: __('Maximum Value', 'ileben-landing'),
                             value: attributes.max,
                             onChange: (value) => setAttributes({ max: value }),
                             min: attributes.min + 1,
                             max: 1000
                         }),
                         createElement(SelectControl, {
-                            label: __('Color Variant', 'bootstrap-theme'),
+                            label: __('Color Variant', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Striped', 'bootstrap-theme'),
-                            help: __('Add diagonal stripes to progress bar', 'bootstrap-theme'),
+                            label: __('Striped', 'ileben-landing'),
+                            help: __('Add diagonal stripes to progress bar', 'ileben-landing'),
                             checked: attributes.striped,
                             onChange: (value) => setAttributes({ striped: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Animated', 'bootstrap-theme'),
-                            help: __('Animate the stripes (requires striped)', 'bootstrap-theme'),
+                            label: __('Animated', 'ileben-landing'),
+                            help: __('Animate the stripes (requires striped)', 'ileben-landing'),
                             checked: attributes.animated,
                             onChange: (value) => setAttributes({ animated: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Show Label', 'bootstrap-theme'),
-                            help: __('Display percentage inside progress bar', 'bootstrap-theme'),
+                            label: __('Show Label', 'ileben-landing'),
+                            help: __('Display percentage inside progress bar', 'ileben-landing'),
                             checked: attributes.showLabel,
                             onChange: (value) => setAttributes({ showLabel: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Custom Label', 'bootstrap-theme'),
-                            help: __('Leave empty to show percentage', 'bootstrap-theme'),
+                            label: __('Custom Label', 'ileben-landing'),
+                            help: __('Leave empty to show percentage', 'ileben-landing'),
                             value: attributes.label,
                             onChange: (value) => setAttributes({ label: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Height', 'bootstrap-theme'),
-                            help: __('CSS height value (e.g., 20px, 1.5rem)', 'bootstrap-theme'),
+                            label: __('Height', 'ileben-landing'),
+                            help: __('CSS height value (e.g., 20px, 1.5rem)', 'ileben-landing'),
                             value: attributes.height,
                             onChange: (value) => setAttributes({ height: value })
                         })
@@ -159,7 +159,7 @@
                 createElement('div', blockProps,
                     createElement('div', { className: 'mb-2' },
                         createElement('small', { className: 'text-muted' },
-                            __('Progress: ', 'bootstrap-theme') + `${attributes.value}/${attributes.max} (${percentage}%)`
+                            __('Progress: ', 'ileben-landing') + `${attributes.value}/${attributes.max} (${percentage}%)`
                         )
                     ),
                     createElement('div', {

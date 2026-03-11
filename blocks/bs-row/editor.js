@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-row', {
-        title: __('Bootstrap Row', 'bootstrap-theme'),
-        description: __('Bootstrap row for grid layout', 'bootstrap-theme'),
+        title: __('Bootstrap Row', 'ileben-landing'),
+        description: __('Bootstrap row for grid layout', 'ileben-landing'),
         icon: 'editor-table',
         category: 'ileben-landing',
         keywords: [__('row'), __('bootstrap'), __('grid')],
@@ -81,21 +81,21 @@
             ];
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Row Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Row Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Gutters', 'bootstrap-theme'),
+                            label: __('Gutters', 'ileben-landing'),
                             value: attributes.gutters,
                             options: gutterOptions,
                             onChange: (value) => setAttributes({ gutters: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Justify Content', 'bootstrap-theme'),
+                            label: __('Justify Content', 'ileben-landing'),
                             value: attributes.justifyContent,
                             options: justifyOptions,
                             onChange: (value) => setAttributes({ justifyContent: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Align Items', 'bootstrap-theme'),
+                            label: __('Align Items', 'ileben-landing'),
                             value: attributes.alignItems,
                             options: alignOptions,
                             onChange: (value) => setAttributes({ alignItems: value })
@@ -112,7 +112,7 @@
                             ['bootstrap-theme/bs-column'],
                             ['bootstrap-theme/bs-column']
                         ],
-                        placeholder: __('Add columns to row...', 'bootstrap-theme')
+                        placeholder: __('Add columns to row...', 'ileben-landing')
                     })
                 )
             );

@@ -23,7 +23,7 @@ function bootstrap_theme_render_bs_breadcrumb_block($attributes, $content, $bloc
     
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<nav aria-label="' . esc_attr__('breadcrumb', 'bootstrap-theme') . '">';
+    $output = '<nav aria-label="' . esc_attr__('breadcrumb', 'ileben-landing') . '">';
     $output .= '<ol class="' . esc_attr($class_string) . '"';
     
     if (!empty($divider)) {
@@ -38,8 +38,8 @@ function bootstrap_theme_render_bs_breadcrumb_block($attributes, $content, $bloc
         $output .= $content;
     } else {
         // Default content if no items
-        $output .= '<li class="breadcrumb-item"><a href="#">' . __('Home', 'bootstrap-theme') . '</a></li>';
-        $output .= '<li class="breadcrumb-item active" aria-current="page">' . __('Current Page', 'bootstrap-theme') . '</li>';
+        $output .= '<li class="breadcrumb-item"><a href="#">' . __('Home', 'ileben-landing') . '</a></li>';
+        $output .= '<li class="breadcrumb-item active" aria-current="page">' . __('Current Page', 'ileben-landing') . '</li>';
     }
     
     $output .= '</ol>';

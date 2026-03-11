@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-modal', {
-        title: __('Bootstrap Modal', 'bootstrap-theme'),
-        description: __('Bootstrap modal dialog component', 'bootstrap-theme'),
+        title: __('Bootstrap Modal', 'ileben-landing'),
+        description: __('Bootstrap modal dialog component', 'ileben-landing'),
         icon: 'admin-page',
         category: 'ileben-landing',
         keywords: [__('modal'), __('dialog'), __('bootstrap')],
@@ -108,64 +108,64 @@
             ].filter(Boolean).join(' ');
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Modal Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Modal Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Modal ID', 'bootstrap-theme'),
+                            label: __('Modal ID', 'ileben-landing'),
                             value: attributes.modalId,
                             onChange: (value) => setAttributes({ modalId: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Size', 'bootstrap-theme'),
+                            label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Centered', 'bootstrap-theme'),
+                            label: __('Centered', 'ileben-landing'),
                             checked: attributes.centered,
                             onChange: (value) => setAttributes({ centered: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Scrollable', 'bootstrap-theme'),
+                            label: __('Scrollable', 'ileben-landing'),
                             checked: attributes.scrollable,
                             onChange: (value) => setAttributes({ scrollable: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Static Backdrop', 'bootstrap-theme'),
-                            help: __('Modal will not close when clicking outside', 'bootstrap-theme'),
+                            label: __('Static Backdrop', 'ileben-landing'),
+                            help: __('Modal will not close when clicking outside', 'ileben-landing'),
                             checked: attributes.staticBackdrop,
                             onChange: (value) => setAttributes({ staticBackdrop: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Backdrop', 'bootstrap-theme'),
-                            help: __('Backdrop behavior', 'bootstrap-theme'),
+                            label: __('Backdrop', 'ileben-landing'),
+                            help: __('Backdrop behavior', 'ileben-landing'),
                             value: attributes.backdrop || 'true',
                             options: [
-                                { label: __('Default', 'bootstrap-theme'), value: 'true' },
-                                { label: __('Static', 'bootstrap-theme'), value: 'static' },
-                                { label: __('None', 'bootstrap-theme'), value: 'false' }
+                                { label: __('Default', 'ileben-landing'), value: 'true' },
+                                { label: __('Static', 'ileben-landing'), value: 'static' },
+                                { label: __('None', 'ileben-landing'), value: 'false' }
                             ],
                             onChange: (value) => setAttributes({ backdrop: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Keyboard', 'bootstrap-theme'),
-                            help: __('Close modal with Escape key', 'bootstrap-theme'),
+                            label: __('Keyboard', 'ileben-landing'),
+                            help: __('Close modal with Escape key', 'ileben-landing'),
                             value: attributes.keyboard || 'true',
                             options: [
-                                { label: __('Enabled', 'bootstrap-theme'), value: 'true' },
-                                { label: __('Disabled', 'bootstrap-theme'), value: 'false' }
+                                { label: __('Enabled', 'ileben-landing'), value: 'true' },
+                                { label: __('Disabled', 'ileben-landing'), value: 'false' }
                             ],
                             onChange: (value) => setAttributes({ keyboard: value })
                         })
                     ),
-                    createElement(PanelBody, { title: __('Trigger Button', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Trigger Button', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Button Text', 'bootstrap-theme'),
+                            label: __('Button Text', 'ileben-landing'),
                             value: attributes.buttonText,
                             onChange: (value) => setAttributes({ buttonText: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Button Variant', 'bootstrap-theme'),
+                            label: __('Button Variant', 'ileben-landing'),
                             value: attributes.buttonVariant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ buttonVariant: value })
@@ -186,7 +186,7 @@
                         className: 'modal-preview mt-3 p-3 border',
                         style: { backgroundColor: '#f8f9fa' }
                     },
-                        createElement('h6', {}, __('Modal Preview:', 'bootstrap-theme')),
+                        createElement('h6', {}, __('Modal Preview:', 'ileben-landing')),
                         createElement('div', { className: 'modal-content' },
                             createElement('div', { className: 'modal-header' },
                                 createElement(RichText, {
@@ -194,12 +194,12 @@
                                     className: 'modal-title',
                                     value: attributes.title,
                                     onChange: (value) => setAttributes({ title: value }),
-                                    placeholder: __('Modal title...', 'bootstrap-theme')
+                                    placeholder: __('Modal title...', 'ileben-landing')
                                 })
                             ),
                             createElement('div', { className: 'modal-body' },
                                 createElement(InnerBlocks, {
-                                    placeholder: __('Add modal content...', 'bootstrap-theme')
+                                    placeholder: __('Add modal content...', 'ileben-landing')
                                 })
                             )
                         )

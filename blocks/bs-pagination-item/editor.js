@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-pagination-item', {
-        title: __('Bootstrap Pagination Item', 'bootstrap-theme'),
-        description: __('Individual item within pagination navigation', 'bootstrap-theme'),
+        title: __('Bootstrap Pagination Item', 'ileben-landing'),
+        description: __('Individual item within pagination navigation', 'ileben-landing'),
         icon: 'minus',
         category: 'ileben-landing',
         keywords: [__('pagination'), __('item'), __('page')],
@@ -61,7 +61,7 @@
             if (attributes.preview) {
                 return createElement('img', {
                     src: '/wp-content/themes/bootstrap-theme/blocks/bs-pagination-item/example.png',
-                    alt: __('Pagination item preview', 'bootstrap-theme'),
+                    alt: __('Pagination item preview', 'ileben-landing'),
                     style: { width: '100%', height: 'auto', display: 'block' }
                 });
             }
@@ -83,10 +83,10 @@
 
             const getDefaultText = (type) => {
                 switch (type) {
-                    case 'previous': return __('Previous', 'bootstrap-theme');
-                    case 'next': return __('Next', 'bootstrap-theme');
-                    case 'first': return __('First', 'bootstrap-theme');
-                    case 'last': return __('Last', 'bootstrap-theme');
+                    case 'previous': return __('Previous', 'ileben-landing');
+                    case 'next': return __('Next', 'ileben-landing');
+                    case 'first': return __('First', 'ileben-landing');
+                    case 'last': return __('Last', 'ileben-landing');
                     case 'ellipsis': return '...';
                     default: return '1';
                 }
@@ -99,9 +99,9 @@
             
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Pagination Item Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Pagination Item Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Type', 'bootstrap-theme'),
+                            label: __('Type', 'ileben-landing'),
                             value: attributes.type,
                             options: typeOptions,
                             onChange: (value) => {
@@ -112,25 +112,25 @@
                             }
                         }),
                         createElement(ToggleControl, {
-                            label: __('Active', 'bootstrap-theme'),
-                            help: __('Mark as current page', 'bootstrap-theme'),
+                            label: __('Active', 'ileben-landing'),
+                            help: __('Mark as current page', 'ileben-landing'),
                             checked: attributes.active,
                             onChange: (value) => setAttributes({ active: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Disabled', 'bootstrap-theme'),
-                            help: __('Make item appear disabled', 'bootstrap-theme'),
+                            label: __('Disabled', 'ileben-landing'),
+                            help: __('Make item appear disabled', 'ileben-landing'),
                             checked: attributes.disabled,
                             onChange: (value) => setAttributes({ disabled: value })
                         }),
                         !attributes.disabled && createElement(TextControl, {
-                            label: __('Link URL', 'bootstrap-theme'),
+                            label: __('Link URL', 'ileben-landing'),
                             value: attributes.href,
                             onChange: (value) => setAttributes({ href: value }),
-                            placeholder: __('https://example.com', 'bootstrap-theme')
+                            placeholder: __('https://example.com', 'ileben-landing')
                         }),
                         !attributes.disabled && createElement(ToggleControl, {
-                            label: __('Open in New Tab', 'bootstrap-theme'),
+                            label: __('Open in New Tab', 'ileben-landing'),
                             checked: attributes.openInNewTab,
                             onChange: (value) => setAttributes({ openInNewTab: value })
                         })
@@ -147,7 +147,7 @@
                                 tagName: 'span',
                                 value: attributes.text,
                                 onChange: (value) => setAttributes({ text: value }),
-                                placeholder: __('Page text...', 'bootstrap-theme'),
+                                placeholder: __('Page text...', 'ileben-landing'),
                                 allowedFormats: [],
                                 style: { display: 'inline' }
                             })
@@ -163,7 +163,7 @@
                                 tagName: 'span',
                                 value: attributes.text,
                                 onChange: (value) => setAttributes({ text: value }),
-                                placeholder: __('Page text...', 'bootstrap-theme'),
+                                placeholder: __('Page text...', 'ileben-landing'),
                                 allowedFormats: [],
                                 style: { display: 'inline' }
                             })

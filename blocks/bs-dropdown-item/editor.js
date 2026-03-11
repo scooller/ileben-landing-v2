@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-dropdown-item', {
-        title: __('Bootstrap Dropdown Item', 'bootstrap-theme'),
-        description: __('Individual item within a dropdown menu', 'bootstrap-theme'),
+        title: __('Bootstrap Dropdown Item', 'ileben-landing'),
+        description: __('Individual item within a dropdown menu', 'ileben-landing'),
         icon: 'minus',
         category: 'ileben-landing',
         keywords: [__('dropdown'), __('item'), __('menu')],
@@ -61,7 +61,7 @@
             if (attributes.preview) {
                 return createElement('img', {
                     src: '/wp-content/themes/bootstrap-theme/blocks/bs-dropdown-item/example.png',
-                    alt: __('Dropdown item preview', 'bootstrap-theme'),
+                    alt: __('Dropdown item preview', 'ileben-landing'),
                     style: { width: '100%', height: 'auto', display: 'block' }
                 });
             }
@@ -92,33 +92,33 @@
             
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Dropdown Item Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Dropdown Item Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Type', 'bootstrap-theme'),
+                            label: __('Type', 'ileben-landing'),
                             value: attributes.type,
                             options: typeOptions,
                             onChange: (value) => setAttributes({ type: value })
                         }),
                         (attributes.type === 'link' || attributes.type === 'button') && createElement(ToggleControl, {
-                            label: __('Active', 'bootstrap-theme'),
-                            help: __('Mark as active/current item', 'bootstrap-theme'),
+                            label: __('Active', 'ileben-landing'),
+                            help: __('Mark as active/current item', 'ileben-landing'),
                             checked: attributes.active,
                             onChange: (value) => setAttributes({ active: value })
                         }),
                         (attributes.type === 'link' || attributes.type === 'button') && createElement(ToggleControl, {
-                            label: __('Disabled', 'bootstrap-theme'),
-                            help: __('Make item appear disabled', 'bootstrap-theme'),
+                            label: __('Disabled', 'ileben-landing'),
+                            help: __('Make item appear disabled', 'ileben-landing'),
                             checked: attributes.disabled,
                             onChange: (value) => setAttributes({ disabled: value })
                         }),
                         attributes.type === 'link' && !attributes.disabled && createElement(TextControl, {
-                            label: __('Link URL', 'bootstrap-theme'),
+                            label: __('Link URL', 'ileben-landing'),
                             value: attributes.href,
                             onChange: (value) => setAttributes({ href: value }),
-                            placeholder: __('https://example.com', 'bootstrap-theme')
+                            placeholder: __('https://example.com', 'ileben-landing')
                         }),
                         attributes.type === 'link' && !attributes.disabled && createElement(ToggleControl, {
-                            label: __('Open in New Tab', 'bootstrap-theme'),
+                            label: __('Open in New Tab', 'ileben-landing'),
                             checked: attributes.openInNewTab,
                             onChange: (value) => setAttributes({ openInNewTab: value })
                         })
@@ -137,7 +137,7 @@
                                 tagName: 'span',
                                 value: attributes.text,
                                 onChange: (value) => setAttributes({ text: value }),
-                                placeholder: __('Dropdown item text...', 'bootstrap-theme'),
+                                placeholder: __('Dropdown item text...', 'ileben-landing'),
                                 allowedFormats: [],
                                 style: { display: 'inline' }
                             })
@@ -154,7 +154,7 @@
                                 tagName: 'span',
                                 value: attributes.text,
                                 onChange: (value) => setAttributes({ text: value }),
-                                placeholder: __('Dropdown button text...', 'bootstrap-theme'),
+                                placeholder: __('Dropdown button text...', 'ileben-landing'),
                                 allowedFormats: [],
                                 style: { display: 'inline' }
                             })
@@ -169,8 +169,8 @@
                             value: attributes.text,
                             onChange: (value) => setAttributes({ text: value }),
                             placeholder: attributes.type === 'header' ? 
-                                __('Dropdown header...', 'bootstrap-theme') :
-                                __('Dropdown text...', 'bootstrap-theme'),
+                                __('Dropdown header...', 'ileben-landing') :
+                                __('Dropdown text...', 'ileben-landing'),
                             allowedFormats: attributes.type === 'header' ? ['core/bold'] : []
                         })
                     )

@@ -13,12 +13,12 @@ if (!defined('ABSPATH')) {
  * Render Bootstrap Popover Block
  */
 function bootstrap_theme_render_bs_popover_block($attributes, $content, $block) {
-    $title = $attributes['title'] ?? __('Popover title', 'bootstrap-theme');
-    $content_text = $attributes['content'] ?? __('Popover content', 'bootstrap-theme');
+    $title = $attributes['title'] ?? __('Popover title', 'ileben-landing');
+    $content_text = $attributes['content'] ?? __('Popover content', 'ileben-landing');
     $placement = $attributes['placement'] ?? 'right';
     $trigger = $attributes['trigger'] ?? 'click';
     $element = $attributes['element'] ?? 'button';
-    $elementText = $attributes['elementText'] ?? __('Click me', 'bootstrap-theme');
+    $elementText = $attributes['elementText'] ?? __('Click me', 'ileben-landing');
     $variant = $attributes['variant'] ?? 'btn-danger';
     
     // Build element classes

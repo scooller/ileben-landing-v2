@@ -13,11 +13,11 @@ if (!defined('ABSPATH')) {
  * Render Bootstrap Tooltip Block
  */
 function bootstrap_theme_render_bs_tooltip_block($attributes, $content, $block) {
-    $text = $attributes['text'] ?? __('Tooltip text', 'bootstrap-theme');
+    $text = $attributes['text'] ?? __('Tooltip text', 'ileben-landing');
     $placement = $attributes['placement'] ?? 'top';
     $trigger = $attributes['trigger'] ?? 'hover';
     $element = $attributes['element'] ?? 'button';
-    $elementText = $attributes['elementText'] ?? __('Hover me', 'bootstrap-theme');
+    $elementText = $attributes['elementText'] ?? __('Hover me', 'ileben-landing');
     $variant = $attributes['variant'] ?? 'btn-secondary';
     
     // Build element classes

@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-divider', {
-        title: __('Bootstrap Divider', 'bootstrap-theme'),
-        description: __('A divider line with optional text or icon.', 'bootstrap-theme'),
+        title: __('Bootstrap Divider', 'ileben-landing'),
+        description: __('A divider line with optional text or icon.', 'ileben-landing'),
         icon: 'minus',
         category: 'ileben-landing',
         keywords: [ __('divider'), __('separator'), __('line'), __('hr') ],
@@ -129,45 +129,45 @@
 
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Divider Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Divider Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Text', 'bootstrap-theme'),
+                            label: __('Text', 'ileben-landing'),
                             value: attributes.text,
                             onChange: (value) => setAttributes({ text: value }),
-                            help: __('Optional text to display.', 'bootstrap-theme')
+                            help: __('Optional text to display.', 'ileben-landing')
                         }),
                         createElement(TextControl, {
-                            label: __('Icon Class (FontAwesome)', 'bootstrap-theme'),
+                            label: __('Icon Class (FontAwesome)', 'ileben-landing'),
                             value: attributes.icon,
                             onChange: (value) => setAttributes({ icon: value }),
-                            help: __('e.g., fa-solid fa-star', 'bootstrap-theme')
+                            help: __('e.g., fa-solid fa-star', 'ileben-landing')
                         }),
                         createElement(SelectControl, {
-                            label: __('Alignment', 'bootstrap-theme'),
+                            label: __('Alignment', 'ileben-landing'),
                             value: attributes.align,
                             options: alignments,
                             onChange: (value) => setAttributes({ align: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Line Style', 'bootstrap-theme'),
+                            label: __('Line Style', 'ileben-landing'),
                             value: attributes.variant,
                             options: variants,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Line Color', 'bootstrap-theme'),
+                            label: __('Line Color', 'ileben-landing'),
                             value: attributes.color,
                             options: colors,
                             onChange: (value) => setAttributes({ color: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Text/Icon Color', 'bootstrap-theme'),
+                            label: __('Text/Icon Color', 'ileben-landing'),
                             value: attributes.textColor,
                             options: colors,
                             onChange: (value) => setAttributes({ textColor: value })
                         }),
                         createElement(RangeControl, {
-                            label: __('Vertical Margin (my-*)', 'bootstrap-theme'),
+                            label: __('Vertical Margin (my-*)', 'ileben-landing'),
                             value: parseInt(attributes.marginY),
                             onChange: (value) => setAttributes({ marginY: value.toString() }),
                             min: 0,

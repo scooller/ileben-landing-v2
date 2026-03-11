@@ -11,8 +11,8 @@
     const { useSelect } = wp.data;
 
     registerBlockType('bootstrap-theme/bs-steps', {
-        title: __('Bootstrap Steps', 'bootstrap-theme'),
-        description: __('Display a progress stepper with customizable steps', 'bootstrap-theme'),
+        title: __('Bootstrap Steps', 'ileben-landing'),
+        description: __('Display a progress stepper with customizable steps', 'ileben-landing'),
         icon: 'list-view',
         category: 'ileben-landing',
         keywords: [__('steps'), __('stepper'), __('progress'), __('timeline'), __('bootstrap')],
@@ -84,29 +84,29 @@
 
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Steps Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Steps Settings', 'ileben-landing') },
                         totalSteps > 0 && createElement(RangeControl, {
-                            label: __('Current Step', 'bootstrap-theme'),
+                            label: __('Current Step', 'ileben-landing'),
                             value: Math.min(attributes.currentStep, totalSteps),
                             onChange: (value) => setAttributes({ currentStep: value }),
                             min: 1,
                             max: Math.max(1, totalSteps),
-                            help: __('Select which step is currently active', 'bootstrap-theme')
+                            help: __('Select which step is currently active', 'ileben-landing')
                         }),
                         createElement(SelectControl, {
-                            label: __('Color Variant', 'bootstrap-theme'),
+                            label: __('Color Variant', 'ileben-landing'),
                             value: attributes.colorVariant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ colorVariant: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Show Progress Bar', 'bootstrap-theme'),
+                            label: __('Show Progress Bar', 'ileben-landing'),
                             checked: attributes.showProgress,
                             onChange: (value) => setAttributes({ showProgress: value })
                         }),
                         attributes.showProgress && createElement(ToggleControl, {
-                            label: __('Animate Progress', 'bootstrap-theme'),
-                            help: __('Animate progress bar on page load', 'bootstrap-theme'),
+                            label: __('Animate Progress', 'ileben-landing'),
+                            help: __('Animate progress bar on page load', 'ileben-landing'),
                             checked: attributes.animateProgress,
                             onChange: (value) => setAttributes({ animateProgress: value })
                         })
@@ -169,7 +169,7 @@
                                     ['bootstrap-theme/bs-step-item', { title: 'Desarrollo' }],
                                     ['bootstrap-theme/bs-step-item', { title: 'Lanzamiento' }],
                                     ['bootstrap-theme/bs-step-item', { title: 'Inicio de obra' }],
-                                    ['bootstrap-theme/bs-step-item', { title: 'Construcción' }]
+                                    ['bootstrap-theme/bs-step-item', { title: 'Construcci├│n' }]
                                 ],
                                 renderAppender: InnerBlocks.ButtonBlockAppender
                             })

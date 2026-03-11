@@ -71,7 +71,7 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
             <?php else : ?>
                 <div class="carousel-item active">
                     <div class="carousel-placeholder d-block w-100" style="min-height: 400px; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
-                        <span class="text-muted"><?php echo __('Add carousel items...', 'bootstrap-theme'); ?></span>
+                        <span class="text-muted"><?php echo __('Add carousel items...', 'ileben-landing'); ?></span>
                     </div>
                 </div>
             <?php endif; ?>
@@ -80,12 +80,12 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
         <?php if ($controls) : ?>
             <button class="carousel-control-prev" type="button" data-bs-target="#<?php echo esc_attr($carouselId); ?>" data-bs-slide="prev">
                 <i class="fa-solid fa-chevron-left"></i>
-                <span class="visually-hidden"><?php echo __('Previous', 'bootstrap-theme'); ?></span>
+                <span class="visually-hidden"><?php echo __('Previous', 'ileben-landing'); ?></span>
             </button>
 
             <button class="carousel-control-next" type="button" data-bs-target="#<?php echo esc_attr($carouselId); ?>" data-bs-slide="next">
                 <i class="fa-solid fa-chevron-right"></i>
-                <span class="visually-hidden"><?php echo __('Next', 'bootstrap-theme'); ?></span>
+                <span class="visually-hidden"><?php echo __('Next', 'ileben-landing'); ?></span>
             </button>
         <?php endif; ?>
 

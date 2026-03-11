@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-dropdown', {
-        title: __('Bootstrap Dropdown', 'bootstrap-theme'),
-        description: __('Bootstrap dropdown menu component', 'bootstrap-theme'),
+        title: __('Bootstrap Dropdown', 'ileben-landing'),
+        description: __('Bootstrap dropdown menu component', 'ileben-landing'),
         icon: 'arrow-down-alt2',
         category: 'ileben-landing',
         keywords: [__('dropdown'), __('menu'), __('bootstrap')],
@@ -72,7 +72,7 @@
             if (attributes.preview) {
                 return createElement('img', {
                     src: '/wp-content/themes/bootstrap-theme/blocks/bs-dropdown/example.png',
-                    alt: __('Dropdown preview', 'bootstrap-theme'),
+                    alt: __('Dropdown preview', 'ileben-landing'),
                     style: { width: '100%', height: 'auto', display: 'block' }
                 });
             }
@@ -135,51 +135,51 @@
             
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Dropdown Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Dropdown Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Button Text', 'bootstrap-theme'),
+                            label: __('Button Text', 'ileben-landing'),
                             value: attributes.buttonText,
                             onChange: (value) => setAttributes({ buttonText: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Button Variant', 'bootstrap-theme'),
+                            label: __('Button Variant', 'ileben-landing'),
                             value: attributes.buttonVariant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ buttonVariant: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Size', 'bootstrap-theme'),
+                            label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Direction', 'bootstrap-theme'),
+                            label: __('Direction', 'ileben-landing'),
                             value: attributes.direction,
                             options: directionOptions,
                             onChange: (value) => setAttributes({ direction: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Menu Alignment', 'bootstrap-theme'),
+                            label: __('Menu Alignment', 'ileben-landing'),
                             value: attributes.alignment,
                             options: alignmentOptions,
                             onChange: (value) => setAttributes({ alignment: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Split Button', 'bootstrap-theme'),
-                            help: __('Separate button and dropdown toggle', 'bootstrap-theme'),
+                            label: __('Split Button', 'ileben-landing'),
+                            help: __('Separate button and dropdown toggle', 'ileben-landing'),
                             checked: attributes.split,
                             onChange: (value) => setAttributes({ split: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Dark Menu', 'bootstrap-theme'),
-                            help: __('Use dark theme for dropdown menu', 'bootstrap-theme'),
+                            label: __('Dark Menu', 'ileben-landing'),
+                            help: __('Use dark theme for dropdown menu', 'ileben-landing'),
                             checked: attributes.dark,
                             onChange: (value) => setAttributes({ dark: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Auto Close', 'bootstrap-theme'),
-                            help: __('Configure when dropdown closes', 'bootstrap-theme'),
+                            label: __('Auto Close', 'ileben-landing'),
+                            help: __('Configure when dropdown closes', 'ileben-landing'),
                             value: attributes.autoClose,
                             options: autoCloseOptions,
                             onChange: (value) => setAttributes({ autoClose: value })
@@ -203,7 +203,7 @@
                                 'data-bs-toggle': 'dropdown',
                                 'aria-expanded': 'false'
                             },
-                                createElement('span', { className: 'visually-hidden' }, __('Toggle Dropdown', 'bootstrap-theme'))
+                                createElement('span', { className: 'visually-hidden' }, __('Toggle Dropdown', 'ileben-landing'))
                             )
                         ) :
                         createElement('button', {
@@ -217,7 +217,7 @@
                     createElement('div', { className: 'mt-2' },
                         createElement('div', { className: 'mb-2' },
                             createElement('small', { className: 'text-muted' },
-                                __('Dropdown Menu Preview:', 'bootstrap-theme')
+                                __('Dropdown Menu Preview:', 'ileben-landing')
                             )
                         ),
                         createElement('ul', {
@@ -232,7 +232,7 @@
                                     ['bootstrap-theme/bs-dropdown-divider'],
                                     ['bootstrap-theme/bs-dropdown-item', { text: 'Something else here' }]
                                 ],
-                                placeholder: __('Add dropdown items...', 'bootstrap-theme')
+                                placeholder: __('Add dropdown items...', 'ileben-landing')
                             })
                         )
                     )

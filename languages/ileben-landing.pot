@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the ileben-landing-v2 theme.
 msgid ""
 msgstr ""
-"Project-Id-Version: ileben-landing-v2 0.1.10\n"
+"Project-Id-Version: ileben-landing-v2 0.1.12\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/ileben-landing-v2\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-19T13:59:10+00:00\n"
+"POT-Creation-Date: 2026-03-11T16:08:17+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: ileben-landing\n"
@@ -27,7 +27,7 @@ msgstr ""
 
 #. Description of the theme
 #: style.css
-msgid "Landing theme optimized for mobile-first with Bootstrap 5, GSAP, Swiper, Fancybox, lazy media, iframe facades, and preloader."
+msgid "Landing theme optimized for mobile-first with Bootstrap 5, GSAP, Swiper, Fancybox, lazy media, iframe facades, and preloader. Localizado para español (Chile) - es_CL."
 msgstr ""
 
 #. Author of the theme
@@ -35,7 +35,414 @@ msgstr ""
 msgid "ileben.cl"
 msgstr ""
 
-#: footer.php:22
+#: blocks/blocks.php:267
+msgid "Ileben-landing"
+msgstr ""
+
+#: blocks/bs-accordion/block.php:50
+msgid "Accordion Item #1"
+msgstr ""
+
+#: blocks/bs-accordion/block.php:55
+msgid "Add content to your accordion."
+msgstr ""
+
+#: blocks/bs-alert/block.php:45
+msgid "Please add content to your alert."
+msgstr ""
+
+#: blocks/bs-alert/block.php:49
+#: blocks/bs-close-button/block.php:18
+#: blocks/bs-modal/block.php:70
+#: blocks/bs-modal/block.php:84
+#: blocks/bs-offcanvas/block.php:58
+#: blocks/bs-toast/block.php:86
+msgid "Close"
+msgstr ""
+
+#: blocks/bs-asesores/block.php:101
+#: blocks/bs-asesores/block.php:143
+#: blocks/bs-asesores/editor.js:287
+#: blocks/bs-asesores/editor.js:301
+msgid "WhatsApp"
+msgstr ""
+
+#: blocks/bs-asesores/block.php:107
+#: blocks/bs-asesores/block.php:149
+#: blocks/bs-asesores/editor.js:288
+#: blocks/bs-asesores/editor.js:302
+msgid "Escr├¡beme"
+msgstr ""
+
+#: blocks/bs-badge/block.php:18
+msgid "Badge"
+msgstr ""
+
+#: blocks/bs-breadcrumb/block.php:26
+msgid "breadcrumb"
+msgstr ""
+
+#: blocks/bs-breadcrumb/block.php:41
+msgid "Home"
+msgstr ""
+
+#: blocks/bs-breadcrumb/block.php:42
+msgid "Current Page"
+msgstr ""
+
+#: blocks/bs-button-group/block.php:22
+#: blocks/blocks.js:68
+#: blocks/bs-card/editor.js:274
+#: blocks/bs-fa-icon/editor.js:30
+msgid "Left"
+msgstr ""
+
+#: blocks/bs-button-group/block.php:23
+msgid "Middle"
+msgstr ""
+
+#: blocks/bs-button-group/block.php:24
+#: blocks/blocks.js:70
+#: blocks/bs-card/editor.js:276
+#: blocks/bs-fa-icon/editor.js:32
+msgid "Right"
+msgstr ""
+
+#: blocks/bs-button-group/block.php:46
+msgid "Button group"
+msgstr ""
+
+#: blocks/bs-button/block.php:23
+msgid "Button"
+msgstr ""
+
+#: blocks/bs-card/block.php:132
+msgid "Card footer"
+msgstr ""
+
+#: blocks/bs-carousel/block.php:74
+#: blocks/bs-carousel/editor.js:162
+msgid "Add carousel items..."
+msgstr ""
+
+#: blocks/bs-carousel/block.php:83
+#: blocks/bs-pagination/block.php:55
+#: blocks/bs-pagination-item/editor.js:86
+#: blocks/bs-pagination/editor.js:81
+msgid "Previous"
+msgstr ""
+
+#: blocks/bs-carousel/block.php:88
+#: blocks/bs-pagination/block.php:59
+#: blocks/bs-pagination-item/editor.js:87
+#: blocks/bs-pagination/editor.js:100
+msgid "Next"
+msgstr ""
+
+#: blocks/bs-cart/block.php:17
+#: blocks/bs-wc-products/block.php:14
+msgid "WooCommerce is not active"
+msgstr ""
+
+#: blocks/bs-cart/block.php:88
+msgid "Your cart is currently empty"
+msgstr ""
+
+#: blocks/bs-cart/block.php:131
+msgid "No image"
+msgstr ""
+
+#: blocks/bs-cart/block.php:159
+msgid "SKU:"
+msgstr ""
+
+#: blocks/bs-cart/block.php:169
+msgid "Cantidad fija: 1"
+msgstr ""
+
+#: blocks/bs-cart/block.php:230
+msgid "Subtotal:"
+msgstr ""
+
+#: blocks/bs-cart/block.php:255
+msgid "Env├¡o"
+msgstr ""
+
+#: blocks/bs-cart/block.php:265
+msgid "Calculado al finalizar compra"
+msgstr ""
+
+#: blocks/bs-cart/block.php:277
+msgid "Tax:"
+msgstr ""
+
+#: blocks/bs-cart/block.php:287
+msgid "Total:"
+msgstr ""
+
+#: blocks/bs-cart/block.php:304
+msgid "View Cart"
+msgstr ""
+
+#: blocks/bs-cart/block.php:307
+msgid "Checkout"
+msgstr ""
+
+#: blocks/bs-collapse/block.php:17
+msgid "Toggle Collapse"
+msgstr ""
+
+#: blocks/bs-column/block.php:89
+msgid "Add content to your column."
+msgstr ""
+
+#: blocks/bs-container/block.php:172
+msgid "Add content to your container."
+msgstr ""
+
+#: blocks/bs-dropdown/block.php:16
+msgid "Dropdown"
+msgstr ""
+
+#: blocks/bs-dropdown/block.php:55
+#: blocks/bs-dropdown/editor.js:206
+msgid "Toggle Dropdown"
+msgstr ""
+
+#: blocks/bs-dropdown/block.php:73
+msgid "Action"
+msgstr ""
+
+#: blocks/bs-dropdown/block.php:74
+msgid "Another action"
+msgstr ""
+
+#: blocks/bs-dropdown/block.php:76
+msgid "Something else here"
+msgstr ""
+
+#: blocks/bs-gallery/block.php:44
+msgid "No images selected"
+msgstr ""
+
+#: blocks/bs-gallery/block.php:103
+msgid "Todas"
+msgstr ""
+
+#: blocks/bs-iframe/block.php:16
+#: blocks/bs-iframe/editor.js:52
+#: blocks/bs-iframe/editor.js:82
+msgid "Contenido incrustado"
+msgstr ""
+
+#: blocks/bs-list-group/block.php:56
+msgid "First item"
+msgstr ""
+
+#: blocks/bs-list-group/block.php:57
+msgid "Second item"
+msgstr ""
+
+#: blocks/bs-list-group/block.php:58
+msgid "Third item"
+msgstr ""
+
+#: blocks/bs-menu/block.php:29
+msgid "Please select a menu to display."
+msgstr ""
+
+#: blocks/bs-menu/block.php:35
+msgid "Selected menu not found."
+msgstr ""
+
+#: blocks/bs-menu/block.php:41
+msgid "This menu has no items."
+msgstr ""
+
+#: blocks/bs-modal/block.php:17
+msgid "Modal title"
+msgstr ""
+
+#: blocks/bs-modal/block.php:18
+msgid "Open Modal"
+msgstr ""
+
+#: blocks/bs-modal/block.php:78
+msgid "Add content to your modal."
+msgstr ""
+
+#: blocks/bs-navbar/block.php:61
+#: template-parts/header/navbar.php:12
+msgid "Toggle navigation"
+msgstr ""
+
+#: blocks/bs-offcanvas/block.php:16
+msgid "Offcanvas"
+msgstr ""
+
+#: blocks/bs-offcanvas/block.php:20
+msgid "Toggle Offcanvas"
+msgstr ""
+
+#: blocks/bs-pagination/block.php:46
+msgid "Page navigation"
+msgstr ""
+
+#: blocks/bs-plantas-slider/block.php:15
+#: blocks/bs-plantas-slider/block.php:229
+#: blocks/bs-plantas-slider/editor.js:21
+msgid "Cotizar"
+msgstr ""
+
+#: blocks/bs-plantas-slider/block.php:16
+#: blocks/bs-plantas-slider/block.php:230
+#: blocks/bs-plantas-slider/editor.js:22
+msgid "No disponible"
+msgstr ""
+
+#: blocks/bs-plantas-slider/block.php:117
+#: blocks/bs-plantas-slider/editor.js:158
+msgid "Dormitorios"
+msgstr ""
+
+#: blocks/bs-plantas-slider/block.php:119
+#: blocks/bs-plantas-slider/block.php:129
+msgid "Todos"
+msgstr ""
+
+#: blocks/bs-plantas-slider/block.php:127
+#: blocks/bs-plantas-slider/editor.js:166
+msgid "Ba├▒os"
+msgstr ""
+
+#: blocks/bs-popover/block.php:16
+msgid "Popover title"
+msgstr ""
+
+#: blocks/bs-popover/block.php:17
+msgid "Popover content"
+msgstr ""
+
+#: blocks/bs-popover/block.php:21
+msgid "Click me"
+msgstr ""
+
+#: blocks/bs-row/block.php:57
+msgid "Add columns to your row."
+msgstr ""
+
+#: blocks/bs-scrollspy/block.php:44
+msgid "Agrega secciones al scrollspy."
+msgstr ""
+
+#: blocks/bs-shipping-methods/block.php:38
+msgid "M├®todos de env├¡o"
+msgstr ""
+
+#: blocks/bs-shipping-methods/block.php:84
+msgid "Seleccionar m├®todo de env├¡o"
+msgstr ""
+
+#: blocks/bs-spinner/block.php:19
+#: blocks/bs-spinner/editor.js:129
+msgid "Loading..."
+msgstr ""
+
+#: blocks/bs-toast/block.php:16
+msgid "Toast"
+msgstr ""
+
+#: blocks/bs-tooltip/block.php:16
+msgid "Tooltip text"
+msgstr ""
+
+#: blocks/bs-tooltip/block.php:20
+msgid "Hover me"
+msgstr ""
+
+#: blocks/bs-video/block.php:96
+msgid "Your browser does not support the video tag."
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:162
+msgid "Orden predeterminado"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:163
+msgid "Nombre"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:164
+msgid "Fecha"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:165
+msgid "├Ültima modificaci├│n"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:166
+msgid "Precio"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:167
+msgid "Popularidad"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:168
+msgid "Calificaci├│n"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:169
+#: blocks/bs-wc-products/editor.js:59
+msgid "SKU"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:170
+msgid "Aleatorio"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:187
+msgid "Buscar productosÔÇª"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:187
+msgid "Buscar productos"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:193
+msgid "Buscar"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:201
+msgid "Pedido de la tienda"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:224
+msgid "No products found."
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:231
+msgid "Navegaci├│n de productos"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:241
+msgid "┬½ Anterior"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:242
+msgid "Siguiente ┬╗"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:262
+msgid "P├ígina siguiente"
+msgstr ""
+
+#: blocks/bs-wc-products/block.php:264
+msgid "P├ígina anterior"
+msgstr ""
+
+#: footer.php:24
+#: footer.php:25
 msgid "Ileben Logo"
 msgstr ""
 
@@ -91,6 +498,111 @@ msgstr ""
 msgid "Automático"
 msgstr ""
 
+#: inc/cpt-plantas.php:12
+msgctxt "Post Type General Name"
+msgid "Plantas"
+msgstr ""
+
+#: inc/cpt-plantas.php:13
+msgctxt "Post Type Singular Name"
+msgid "Planta"
+msgstr ""
+
+#: inc/cpt-plantas.php:14
+#: inc/cpt-plantas.php:29
+msgid "Plantas"
+msgstr ""
+
+#: inc/cpt-plantas.php:15
+msgid "Planta"
+msgstr ""
+
+#: inc/cpt-plantas.php:16
+msgid "A├▒adir nueva"
+msgstr ""
+
+#: inc/cpt-plantas.php:17
+msgid "A├▒adir nueva planta"
+msgstr ""
+
+#: inc/cpt-plantas.php:18
+msgid "Editar planta"
+msgstr ""
+
+#: inc/cpt-plantas.php:19
+msgid "Nueva planta"
+msgstr ""
+
+#: inc/cpt-plantas.php:20
+msgid "Ver planta"
+msgstr ""
+
+#: inc/cpt-plantas.php:21
+msgid "Ver plantas"
+msgstr ""
+
+#: inc/cpt-plantas.php:22
+msgid "Buscar plantas"
+msgstr ""
+
+#: inc/cpt-plantas.php:23
+msgid "No se encontraron plantas"
+msgstr ""
+
+#: inc/cpt-plantas.php:24
+msgid "No hay plantas en la papelera"
+msgstr ""
+
+#: inc/cpt-plantas.php:25
+msgid "Todas las plantas"
+msgstr ""
+
+#: inc/cpt-plantas.php:48
+msgctxt "Taxonomy General Name"
+msgid "Categor├¡as de Plantas"
+msgstr ""
+
+#: inc/cpt-plantas.php:49
+msgctxt "Taxonomy Singular Name"
+msgid "Categor├¡a de Planta"
+msgstr ""
+
+#: inc/cpt-plantas.php:50
+msgid "Categor├¡as"
+msgstr ""
+
+#: inc/cpt-plantas.php:51
+msgid "Todas las Categor├¡as"
+msgstr ""
+
+#: inc/cpt-plantas.php:52
+msgid "Editar Categor├¡a"
+msgstr ""
+
+#: inc/cpt-plantas.php:53
+msgid "Ver Categor├¡a"
+msgstr ""
+
+#: inc/cpt-plantas.php:54
+msgid "Actualizar Categor├¡a"
+msgstr ""
+
+#: inc/cpt-plantas.php:55
+msgid "A├▒adir Nueva Categor├¡a"
+msgstr ""
+
+#: inc/cpt-plantas.php:56
+msgid "Nuevo Nombre de Categor├¡a"
+msgstr ""
+
+#: inc/cpt-plantas.php:57
+msgid "Buscar Categor├¡as"
+msgstr ""
+
+#: inc/cpt-plantas.php:58
+msgid "No se encontraron categor├¡as"
+msgstr ""
+
 #: inc/setup.php:22
 msgid "Primary Menu"
 msgstr ""
@@ -103,36 +615,3541 @@ msgstr ""
 msgid "Footer Menu"
 msgstr ""
 
-#: inc/template-tags.php:43
+#: inc/setup.php:143
+msgid "Icono FontAwesome (ej: fa-home)"
+msgstr ""
+
+#: inc/setup.php:146
+msgid "Ver todos los iconos FontAwesome"
+msgstr ""
+
+#: inc/setup.php:158
+msgid "Mostrar como bot├│n Bootstrap"
+msgstr ""
+
+#: inc/setup.php:182
+msgid "Estilo de bot├│n Bootstrap"
+msgstr ""
+
+#: inc/setup.php:184
+msgid "(Sin estilo)"
+msgstr ""
+
+#: inc/template-tags.php:65
 msgid "Abrir contenido"
 msgstr ""
 
-#: inc/template-tags.php:45
+#: inc/template-tags.php:67
 msgid "Reproducir"
 msgstr ""
 
-#: inc/template-tags.php:80
+#: inc/template-tags.php:102
 msgid "Ileben"
 msgstr ""
 
-#: index.php:12
-msgid "Content not found"
+#: blocks/animation-controls.js:21
+#: blocks/bs-asesores/editor.js:92
+#: blocks/bs-card/editor.js:145
+#: blocks/bs-cf7/editor.js:108
+#: blocks/bs-column/editor.js:179
+#: blocks/bs-container/editor.js:223
+#: blocks/bs-container/editor.js:239
+#: blocks/bs-container/editor.js:327
+#: blocks/bs-container/editor.js:341
+#: blocks/bs-container/editor.js:360
+#: blocks/bs-fa-icon/editor.js:36
+#: blocks/bs-list-group-item/editor.js:148
+#: blocks/bs-modal/editor.js:146
+#: blocks/bs-step-item/editor.js:88
+#: blocks/core-blocks-extension.js:18
+msgid "None"
 msgstr ""
 
-#: index.php:13
-msgid "This theme is intended for a custom landing page. Please configure front-page.php."
+#: blocks/animation-controls.js:22
+#: blocks/bs-asesores/editor.js:93
+#: blocks/bs-card/editor.js:146
+#: blocks/bs-column/editor.js:180
+#: blocks/bs-container/editor.js:240
+#: blocks/bs-fa-icon/editor.js:37
+#: blocks/bs-list-group-item/editor.js:149
+#: blocks/bs-step-item/editor.js:89
+#: blocks/core-blocks-extension.js:19
+msgid "--- Fade ---"
 msgstr ""
 
-#: template-parts/header/navbar.php:12
-msgid "Toggle navigation"
+#: blocks/animation-controls.js:23
+#: blocks/bs-asesores/editor.js:94
+#: blocks/bs-card/editor.js:147
+#: blocks/bs-cf7/editor.js:109
+#: blocks/bs-column/editor.js:181
+#: blocks/bs-container/editor.js:241
+#: blocks/bs-fa-icon/editor.js:38
+#: blocks/bs-list-group-item/editor.js:150
+#: blocks/bs-step-item/editor.js:90
+#: blocks/core-blocks-extension.js:20
+msgid "Fade In"
 msgstr ""
 
-#: blocks/bs-wc-products/block.json
-msgctxt "block title"
+#: blocks/animation-controls.js:24
+#: blocks/bs-asesores/editor.js:95
+#: blocks/bs-card/editor.js:148
+#: blocks/bs-cf7/editor.js:110
+#: blocks/bs-column/editor.js:182
+#: blocks/bs-container/editor.js:242
+#: blocks/bs-fa-icon/editor.js:39
+#: blocks/bs-list-group-item/editor.js:151
+#: blocks/bs-step-item/editor.js:91
+#: blocks/core-blocks-extension.js:21
+msgid "Fade In Up"
+msgstr ""
+
+#: blocks/animation-controls.js:25
+#: blocks/bs-asesores/editor.js:96
+#: blocks/bs-card/editor.js:149
+#: blocks/bs-cf7/editor.js:111
+#: blocks/bs-column/editor.js:183
+#: blocks/bs-container/editor.js:243
+#: blocks/bs-fa-icon/editor.js:40
+#: blocks/bs-list-group-item/editor.js:152
+#: blocks/bs-step-item/editor.js:92
+#: blocks/core-blocks-extension.js:22
+msgid "Fade In Down"
+msgstr ""
+
+#: blocks/animation-controls.js:26
+#: blocks/bs-asesores/editor.js:97
+#: blocks/bs-card/editor.js:150
+#: blocks/bs-cf7/editor.js:112
+#: blocks/bs-column/editor.js:184
+#: blocks/bs-container/editor.js:244
+#: blocks/bs-fa-icon/editor.js:41
+#: blocks/bs-list-group-item/editor.js:153
+#: blocks/bs-step-item/editor.js:93
+#: blocks/core-blocks-extension.js:23
+msgid "Fade In Left"
+msgstr ""
+
+#: blocks/animation-controls.js:27
+#: blocks/bs-asesores/editor.js:98
+#: blocks/bs-card/editor.js:151
+#: blocks/bs-cf7/editor.js:113
+#: blocks/bs-column/editor.js:185
+#: blocks/bs-container/editor.js:245
+#: blocks/bs-fa-icon/editor.js:42
+#: blocks/bs-list-group-item/editor.js:154
+#: blocks/bs-step-item/editor.js:94
+#: blocks/core-blocks-extension.js:24
+msgid "Fade In Right"
+msgstr ""
+
+#: blocks/animation-controls.js:28
+#: blocks/bs-asesores/editor.js:99
+#: blocks/bs-card/editor.js:152
+#: blocks/bs-column/editor.js:186
+#: blocks/bs-container/editor.js:246
+#: blocks/bs-fa-icon/editor.js:43
+#: blocks/bs-list-group-item/editor.js:155
+#: blocks/bs-step-item/editor.js:95
+#: blocks/core-blocks-extension.js:25
+msgid "--- Slide ---"
+msgstr ""
+
+#: blocks/animation-controls.js:29
+#: blocks/bs-asesores/editor.js:100
+#: blocks/bs-card/editor.js:153
+#: blocks/bs-cf7/editor.js:114
+#: blocks/bs-column/editor.js:187
+#: blocks/bs-container/editor.js:247
+#: blocks/bs-fa-icon/editor.js:44
+#: blocks/bs-list-group-item/editor.js:156
+#: blocks/bs-step-item/editor.js:96
+#: blocks/core-blocks-extension.js:26
+msgid "Slide Up"
+msgstr ""
+
+#: blocks/animation-controls.js:30
+#: blocks/bs-asesores/editor.js:101
+#: blocks/bs-card/editor.js:154
+#: blocks/bs-cf7/editor.js:115
+#: blocks/bs-column/editor.js:188
+#: blocks/bs-container/editor.js:248
+#: blocks/bs-fa-icon/editor.js:45
+#: blocks/bs-list-group-item/editor.js:157
+#: blocks/bs-step-item/editor.js:97
+#: blocks/core-blocks-extension.js:27
+msgid "Slide Down"
+msgstr ""
+
+#: blocks/animation-controls.js:31
+#: blocks/bs-asesores/editor.js:102
+#: blocks/bs-card/editor.js:155
+#: blocks/bs-cf7/editor.js:116
+#: blocks/bs-column/editor.js:189
+#: blocks/bs-container/editor.js:249
+#: blocks/bs-fa-icon/editor.js:46
+#: blocks/bs-list-group-item/editor.js:158
+#: blocks/bs-step-item/editor.js:98
+#: blocks/core-blocks-extension.js:28
+msgid "Slide Left"
+msgstr ""
+
+#: blocks/animation-controls.js:32
+#: blocks/bs-asesores/editor.js:103
+#: blocks/bs-card/editor.js:156
+#: blocks/bs-cf7/editor.js:117
+#: blocks/bs-column/editor.js:190
+#: blocks/bs-container/editor.js:250
+#: blocks/bs-fa-icon/editor.js:47
+#: blocks/bs-list-group-item/editor.js:159
+#: blocks/bs-step-item/editor.js:99
+#: blocks/core-blocks-extension.js:29
+msgid "Slide Right"
+msgstr ""
+
+#: blocks/animation-controls.js:33
+#: blocks/bs-asesores/editor.js:104
+#: blocks/bs-card/editor.js:157
+#: blocks/bs-column/editor.js:191
+#: blocks/bs-container/editor.js:251
+#: blocks/bs-fa-icon/editor.js:48
+#: blocks/bs-list-group-item/editor.js:160
+#: blocks/bs-step-item/editor.js:100
+#: blocks/core-blocks-extension.js:30
+msgid "--- Scale ---"
+msgstr ""
+
+#: blocks/animation-controls.js:34
+#: blocks/bs-asesores/editor.js:105
+#: blocks/bs-card/editor.js:158
+#: blocks/bs-cf7/editor.js:118
+#: blocks/bs-column/editor.js:192
+#: blocks/bs-container/editor.js:252
+#: blocks/bs-fa-icon/editor.js:49
+#: blocks/bs-list-group-item/editor.js:161
+#: blocks/bs-step-item/editor.js:101
+#: blocks/core-blocks-extension.js:31
+msgid "Scale In"
+msgstr ""
+
+#: blocks/animation-controls.js:35
+#: blocks/bs-asesores/editor.js:106
+#: blocks/bs-card/editor.js:159
+#: blocks/bs-column/editor.js:193
+#: blocks/bs-container/editor.js:253
+#: blocks/bs-fa-icon/editor.js:50
+#: blocks/bs-list-group-item/editor.js:162
+#: blocks/bs-step-item/editor.js:102
+#: blocks/core-blocks-extension.js:32
+msgid "Scale Up"
+msgstr ""
+
+#: blocks/animation-controls.js:36
+#: blocks/bs-asesores/editor.js:107
+#: blocks/bs-card/editor.js:160
+#: blocks/bs-column/editor.js:194
+#: blocks/bs-container/editor.js:254
+#: blocks/bs-fa-icon/editor.js:51
+#: blocks/bs-list-group-item/editor.js:163
+#: blocks/bs-step-item/editor.js:103
+#: blocks/bs-video/editor.js:322
+#: blocks/core-blocks-extension.js:33
+msgid "Scale Down"
+msgstr ""
+
+#: blocks/animation-controls.js:37
+#: blocks/bs-asesores/editor.js:108
+#: blocks/bs-card/editor.js:161
+#: blocks/bs-column/editor.js:195
+#: blocks/bs-container/editor.js:255
+#: blocks/bs-fa-icon/editor.js:52
+#: blocks/bs-list-group-item/editor.js:164
+#: blocks/bs-step-item/editor.js:104
+#: blocks/core-blocks-extension.js:34
+msgid "--- Rotate ---"
+msgstr ""
+
+#: blocks/animation-controls.js:38
+#: blocks/bs-asesores/editor.js:109
+#: blocks/bs-card/editor.js:162
+#: blocks/bs-cf7/editor.js:119
+#: blocks/bs-column/editor.js:196
+#: blocks/bs-container/editor.js:256
+#: blocks/bs-fa-icon/editor.js:53
+#: blocks/bs-list-group-item/editor.js:165
+#: blocks/bs-step-item/editor.js:105
+#: blocks/core-blocks-extension.js:35
+msgid "Rotate"
+msgstr ""
+
+#: blocks/animation-controls.js:39
+#: blocks/bs-asesores/editor.js:110
+#: blocks/bs-card/editor.js:163
+#: blocks/bs-column/editor.js:197
+#: blocks/bs-container/editor.js:257
+#: blocks/bs-fa-icon/editor.js:54
+#: blocks/bs-list-group-item/editor.js:166
+#: blocks/bs-step-item/editor.js:106
+#: blocks/core-blocks-extension.js:36
+msgid "Rotate Fast"
+msgstr ""
+
+#: blocks/animation-controls.js:40
+#: blocks/bs-asesores/editor.js:111
+#: blocks/bs-card/editor.js:164
+#: blocks/bs-column/editor.js:198
+#: blocks/bs-container/editor.js:258
+#: blocks/bs-fa-icon/editor.js:55
+#: blocks/bs-list-group-item/editor.js:167
+#: blocks/bs-step-item/editor.js:107
+#: blocks/core-blocks-extension.js:37
+msgid "--- Effects ---"
+msgstr ""
+
+#: blocks/animation-controls.js:41
+#: blocks/bs-asesores/editor.js:112
+#: blocks/bs-card/editor.js:165
+#: blocks/bs-cf7/editor.js:120
+#: blocks/bs-column/editor.js:199
+#: blocks/bs-container/editor.js:259
+#: blocks/bs-fa-icon/editor.js:56
+#: blocks/bs-list-group-item/editor.js:168
+#: blocks/bs-step-item/editor.js:108
+#: blocks/core-blocks-extension.js:38
+msgid "Bounce"
+msgstr ""
+
+#: blocks/animation-controls.js:42
+#: blocks/bs-asesores/editor.js:113
+#: blocks/bs-card/editor.js:166
+#: blocks/bs-column/editor.js:200
+#: blocks/bs-container/editor.js:260
+#: blocks/bs-fa-icon/editor.js:57
+#: blocks/bs-list-group-item/editor.js:169
+#: blocks/bs-step-item/editor.js:109
+#: blocks/core-blocks-extension.js:39
+msgid "Elastic"
+msgstr ""
+
+#: blocks/animation-controls.js:43
+#: blocks/bs-asesores/editor.js:114
+#: blocks/bs-card/editor.js:167
+#: blocks/bs-column/editor.js:201
+#: blocks/bs-container/editor.js:261
+#: blocks/bs-fa-icon/editor.js:58
+#: blocks/bs-list-group-item/editor.js:170
+#: blocks/bs-step-item/editor.js:110
+#: blocks/core-blocks-extension.js:40
+msgid "Flip"
+msgstr ""
+
+#: blocks/animation-controls.js:44
+#: blocks/bs-asesores/editor.js:115
+#: blocks/bs-card/editor.js:168
+#: blocks/bs-column/editor.js:202
+#: blocks/bs-container/editor.js:262
+#: blocks/bs-fa-icon/editor.js:59
+#: blocks/bs-list-group-item/editor.js:171
+#: blocks/bs-step-item/editor.js:111
+#: blocks/core-blocks-extension.js:41
+msgid "Flip X"
+msgstr ""
+
+#: blocks/animation-controls.js:45
+#: blocks/bs-asesores/editor.js:116
+#: blocks/bs-card/editor.js:169
+#: blocks/bs-cf7/editor.js:121
+#: blocks/bs-column/editor.js:203
+#: blocks/bs-container/editor.js:263
+#: blocks/bs-fa-icon/editor.js:60
+#: blocks/bs-list-group-item/editor.js:172
+#: blocks/bs-step-item/editor.js:112
+#: blocks/core-blocks-extension.js:42
+msgid "Pulse"
+msgstr ""
+
+#: blocks/animation-controls.js:46
+#: blocks/core-blocks-extension.js:43
+msgid "--- Special ---"
+msgstr ""
+
+#: blocks/animation-controls.js:47
+#: blocks/core-blocks-extension.js:44
+msgid "Count Up"
+msgstr ""
+
+#: blocks/animation-controls.js:51
+#: blocks/bs-asesores/editor.js:120
+#: blocks/bs-card/editor.js:173
+#: blocks/bs-cf7/editor.js:125
+#: blocks/bs-column/editor.js:207
+#: blocks/bs-container/editor.js:267
+#: blocks/bs-fa-icon/editor.js:64
+#: blocks/bs-list-group-item/editor.js:176
+#: blocks/bs-step-item/editor.js:116
+#: blocks/core-blocks-extension.js:48
+msgid "On Load"
+msgstr ""
+
+#: blocks/animation-controls.js:52
+#: blocks/bs-asesores/editor.js:121
+#: blocks/bs-card/editor.js:174
+#: blocks/bs-cf7/editor.js:126
+#: blocks/bs-column/editor.js:208
+#: blocks/bs-container/editor.js:268
+#: blocks/bs-fa-icon/editor.js:65
+#: blocks/bs-list-group-item/editor.js:177
+#: blocks/bs-step-item/editor.js:117
+#: blocks/core-blocks-extension.js:49
+msgid "On Scroll"
+msgstr ""
+
+#: blocks/animation-controls.js:53
+#: blocks/bs-asesores/editor.js:122
+#: blocks/bs-card/editor.js:175
+#: blocks/bs-cf7/editor.js:127
+#: blocks/bs-column/editor.js:209
+#: blocks/bs-container/editor.js:269
+#: blocks/bs-fa-icon/editor.js:66
+#: blocks/bs-list-group-item/editor.js:178
+#: blocks/bs-step-item/editor.js:118
+#: blocks/core-blocks-extension.js:50
+msgid "On Hover"
+msgstr ""
+
+#: blocks/animation-controls.js:54
+#: blocks/bs-asesores/editor.js:123
+#: blocks/bs-card/editor.js:176
+#: blocks/bs-cf7/editor.js:128
+#: blocks/bs-column/editor.js:210
+#: blocks/bs-container/editor.js:270
+#: blocks/bs-fa-icon/editor.js:67
+#: blocks/bs-list-group-item/editor.js:179
+#: blocks/bs-step-item/editor.js:119
+#: blocks/core-blocks-extension.js:51
+msgid "On Click"
+msgstr ""
+
+#: blocks/animation-controls.js:58
+#: blocks/bs-asesores/editor.js:127
+#: blocks/bs-card/editor.js:180
+#: blocks/bs-column/editor.js:214
+#: blocks/bs-container/editor.js:274
+#: blocks/bs-fa-icon/editor.js:71
+#: blocks/bs-list-group-item/editor.js:183
+#: blocks/bs-step-item/editor.js:123
+#: blocks/core-blocks-extension.js:55
+msgid "Linear"
+msgstr ""
+
+#: blocks/animation-controls.js:59
+#: blocks/bs-asesores/editor.js:128
+#: blocks/bs-card/editor.js:181
+#: blocks/bs-column/editor.js:215
+#: blocks/bs-container/editor.js:275
+#: blocks/bs-fa-icon/editor.js:72
+#: blocks/bs-list-group-item/editor.js:184
+#: blocks/bs-step-item/editor.js:124
+#: blocks/core-blocks-extension.js:56
+msgid "Power 1 In Out"
+msgstr ""
+
+#: blocks/animation-controls.js:60
+#: blocks/bs-asesores/editor.js:129
+#: blocks/bs-card/editor.js:182
+#: blocks/bs-cf7/editor.js:132
+#: blocks/bs-column/editor.js:216
+#: blocks/bs-container/editor.js:276
+#: blocks/bs-fa-icon/editor.js:73
+#: blocks/bs-list-group-item/editor.js:185
+#: blocks/bs-step-item/editor.js:125
+#: blocks/core-blocks-extension.js:57
+msgid "Power 2 In Out"
+msgstr ""
+
+#: blocks/animation-controls.js:61
+#: blocks/bs-asesores/editor.js:130
+#: blocks/bs-card/editor.js:183
+#: blocks/bs-cf7/editor.js:133
+#: blocks/bs-column/editor.js:217
+#: blocks/bs-container/editor.js:277
+#: blocks/bs-fa-icon/editor.js:74
+#: blocks/bs-list-group-item/editor.js:186
+#: blocks/bs-step-item/editor.js:126
+#: blocks/core-blocks-extension.js:58
+msgid "Power 3 In Out"
+msgstr ""
+
+#: blocks/animation-controls.js:62
+#: blocks/bs-asesores/editor.js:131
+#: blocks/bs-card/editor.js:184
+#: blocks/bs-cf7/editor.js:134
+#: blocks/bs-column/editor.js:218
+#: blocks/bs-container/editor.js:278
+#: blocks/bs-fa-icon/editor.js:75
+#: blocks/bs-list-group-item/editor.js:187
+#: blocks/bs-step-item/editor.js:127
+#: blocks/core-blocks-extension.js:59
+msgid "Power 4 In Out"
+msgstr ""
+
+#: blocks/animation-controls.js:63
+#: blocks/bs-asesores/editor.js:132
+#: blocks/bs-card/editor.js:185
+#: blocks/bs-cf7/editor.js:135
+#: blocks/bs-column/editor.js:219
+#: blocks/bs-container/editor.js:279
+#: blocks/bs-fa-icon/editor.js:76
+#: blocks/bs-list-group-item/editor.js:188
+#: blocks/bs-step-item/editor.js:128
+#: blocks/core-blocks-extension.js:60
+msgid "Back Out"
+msgstr ""
+
+#: blocks/animation-controls.js:64
+#: blocks/bs-asesores/editor.js:133
+#: blocks/bs-card/editor.js:186
+#: blocks/bs-cf7/editor.js:136
+#: blocks/bs-column/editor.js:220
+#: blocks/bs-container/editor.js:280
+#: blocks/bs-fa-icon/editor.js:77
+#: blocks/bs-list-group-item/editor.js:189
+#: blocks/bs-step-item/editor.js:129
+#: blocks/core-blocks-extension.js:61
+msgid "Elastic Out"
+msgstr ""
+
+#: blocks/animation-controls.js:65
+#: blocks/bs-asesores/editor.js:134
+#: blocks/bs-card/editor.js:187
+#: blocks/bs-cf7/editor.js:137
+#: blocks/bs-column/editor.js:221
+#: blocks/bs-container/editor.js:281
+#: blocks/bs-fa-icon/editor.js:78
+#: blocks/bs-list-group-item/editor.js:190
+#: blocks/bs-step-item/editor.js:130
+#: blocks/core-blocks-extension.js:62
+msgid "Bounce Out"
+msgstr ""
+
+#: blocks/animation-controls.js:66
+#: blocks/bs-asesores/editor.js:135
+#: blocks/bs-card/editor.js:188
+#: blocks/bs-column/editor.js:222
+#: blocks/bs-container/editor.js:282
+#: blocks/bs-fa-icon/editor.js:79
+#: blocks/bs-list-group-item/editor.js:191
+#: blocks/bs-step-item/editor.js:131
+#: blocks/core-blocks-extension.js:63
+msgid "Circ In Out"
+msgstr ""
+
+#: blocks/animation-controls.js:67
+#: blocks/bs-asesores/editor.js:136
+#: blocks/bs-card/editor.js:189
+#: blocks/bs-column/editor.js:223
+#: blocks/bs-container/editor.js:283
+#: blocks/bs-fa-icon/editor.js:80
+#: blocks/bs-list-group-item/editor.js:192
+#: blocks/bs-step-item/editor.js:132
+#: blocks/core-blocks-extension.js:64
+msgid "Sine In Out"
+msgstr ""
+
+#: blocks/animation-controls.js:71
+#: blocks/bs-card/editor.js:193
+#: blocks/core-blocks-extension.js:68
+msgid "Scale"
+msgstr ""
+
+#: blocks/animation-controls.js:72
+#: blocks/bs-card/editor.js:194
+#: blocks/core-blocks-extension.js:69
+msgid "Brightness"
+msgstr ""
+
+#: blocks/animation-controls.js:73
+#: blocks/bs-card/editor.js:195
+#: blocks/core-blocks-extension.js:70
+msgid "Shadow"
+msgstr ""
+
+#: blocks/animation-controls.js:74
+#: blocks/bs-card/editor.js:196
+#: blocks/core-blocks-extension.js:71
+msgid "Lift"
+msgstr ""
+
+#: blocks/animation-controls.js:75
+#: blocks/bs-card/editor.js:197
+#: blocks/core-blocks-extension.js:72
+msgid "Glow"
+msgstr ""
+
+#: blocks/animation-controls.js:89
+#: blocks/bs-card/editor.js:303
+#: blocks/bs-cf7/editor.js:161
+#: blocks/bs-column/editor.js:304
+#: blocks/bs-container/editor.js:537
+#: blocks/bs-fa-icon/editor.js:227
+#: blocks/bs-list-group-item/editor.js:272
+#: blocks/bs-step-item/editor.js:147
+#: blocks/bs-toast/editor.js:153
+#: blocks/core-blocks-extension.js:135
+msgid "Animation"
+msgstr ""
+
+#: blocks/animation-controls.js:93
+#: blocks/bs-card/editor.js:306
+#: blocks/bs-cf7/editor.js:163
+#: blocks/bs-column/editor.js:307
+#: blocks/bs-container/editor.js:540
+#: blocks/bs-fa-icon/editor.js:229
+#: blocks/bs-list-group-item/editor.js:274
+#: blocks/bs-step-item/editor.js:149
+#: blocks/core-blocks-extension.js:139
+msgid "Animation Type"
+msgstr ""
+
+#: blocks/animation-controls.js:125
+#: blocks/bs-card/editor.js:317
+#: blocks/bs-cf7/editor.js:170
+#: blocks/bs-column/editor.js:318
+#: blocks/bs-container/editor.js:551
+#: blocks/bs-fa-icon/editor.js:253
+#: blocks/bs-list-group-item/editor.js:298
+#: blocks/bs-step-item/editor.js:173
+#: blocks/core-blocks-extension.js:171
+msgid "Trigger"
+msgstr ""
+
+#: blocks/animation-controls.js:133
+#: blocks/bs-card/editor.js:324
+#: blocks/bs-column/editor.js:325
+#: blocks/bs-container/editor.js:558
+#: blocks/bs-fa-icon/editor.js:259
+#: blocks/bs-list-group-item/editor.js:304
+#: blocks/bs-step-item/editor.js:179
+#: blocks/core-blocks-extension.js:179
+msgid "Duration (seconds)"
+msgstr ""
+
+#: blocks/animation-controls.js:143
+#: blocks/bs-card/editor.js:333
+#: blocks/bs-column/editor.js:334
+#: blocks/bs-container/editor.js:567
+#: blocks/bs-fa-icon/editor.js:267
+#: blocks/bs-list-group-item/editor.js:312
+#: blocks/bs-step-item/editor.js:187
+#: blocks/core-blocks-extension.js:189
+msgid "Delay (seconds)"
+msgstr ""
+
+#: blocks/animation-controls.js:153
+#: blocks/bs-asesores/editor.js:256
+#: blocks/bs-card/editor.js:342
+#: blocks/bs-cf7/editor.js:192
+#: blocks/bs-column/editor.js:343
+#: blocks/bs-container/editor.js:576
+#: blocks/bs-fa-icon/editor.js:275
+#: blocks/bs-list-group-item/editor.js:320
+#: blocks/bs-step-item/editor.js:195
+#: blocks/core-blocks-extension.js:199
+msgid "Easing"
+msgstr ""
+
+#: blocks/animation-controls.js:162
+#: blocks/core-blocks-extension.js:208
+msgid "Distance (px)"
+msgstr ""
+
+#: blocks/animation-controls.js:170
+#: blocks/core-blocks-extension.js:216
+msgid "Scale From"
+msgstr ""
+
+#: blocks/animation-controls.js:181
+#: blocks/core-blocks-extension.js:227
+msgid "Rotation (degrees)"
+msgstr ""
+
+#: blocks/animation-controls.js:195
+#: blocks/core-blocks-extension.js:241
+msgid "Count To (target value)"
+msgstr ""
+
+#: blocks/animation-controls.js:201
+#: blocks/core-blocks-extension.js:247
+msgid "Increment Step"
+msgstr ""
+
+#: blocks/animation-controls.js:205
+#: blocks/core-blocks-extension.js:251
+msgid "El valor de incremento para cada paso del contador (ej: 1, 5, 10)"
+msgstr ""
+
+#: blocks/animation-controls.js:211
+#: blocks/core-blocks-extension.js:257
+msgid "Repeat Count"
+msgstr ""
+
+#: blocks/animation-controls.js:223
+#: blocks/core-blocks-extension.js:269
+msgid "Repeat Delay (seconds)"
+msgstr ""
+
+#: blocks/animation-controls.js:232
+#: blocks/core-blocks-extension.js:278
+msgid "Yoyo (reverse animation)"
+msgstr ""
+
+#: blocks/animation-controls.js:241
+#: blocks/core-blocks-extension.js:287
+msgid "Hover Effect"
+msgstr ""
+
+#: blocks/animation-controls.js:250
+#: blocks/bs-parallax/editor.js:74
+#: blocks/core-blocks-extension.js:296
+msgid "Parallax Speed"
+msgstr ""
+
+#: blocks/animation-controls.js:261
+#: blocks/bs-cf7/editor.js:198
+#: blocks/bs-column/editor.js:350
+#: blocks/bs-container/editor.js:583
+#: blocks/bs-fa-icon/editor.js:281
+#: blocks/bs-list-group-item/editor.js:326
+#: blocks/bs-step-item/editor.js:201
+msgid "Scroll Start"
+msgstr ""
+
+#: blocks/animation-controls.js:264
+#: blocks/bs-cf7/editor.js:201
+#: blocks/bs-column/editor.js:353
+#: blocks/bs-container/editor.js:586
+#: blocks/bs-fa-icon/editor.js:284
+#: blocks/bs-list-group-item/editor.js:329
+#: blocks/bs-step-item/editor.js:204
+msgid "Ej: \"top 70%\", \"top center\", \"top bottom\""
+msgstr ""
+
+#: blocks/animation-controls.js:270
+#: blocks/bs-cf7/editor.js:204
+#: blocks/bs-column/editor.js:357
+#: blocks/bs-container/editor.js:590
+#: blocks/bs-fa-icon/editor.js:287
+#: blocks/bs-list-group-item/editor.js:332
+#: blocks/bs-step-item/editor.js:207
+msgid "Scroll End"
+msgstr ""
+
+#: blocks/animation-controls.js:273
+#: blocks/bs-cf7/editor.js:207
+#: blocks/bs-column/editor.js:360
+#: blocks/bs-container/editor.js:593
+#: blocks/bs-fa-icon/editor.js:290
+#: blocks/bs-list-group-item/editor.js:335
+#: blocks/bs-step-item/editor.js:210
+msgid "Ej: \"top 10%\", \"bottom center\""
+msgstr ""
+
+#: blocks/animation-controls.js:279
+#: blocks/bs-cf7/editor.js:210
+#: blocks/bs-column/editor.js:364
+#: blocks/bs-container/editor.js:597
+#: blocks/bs-fa-icon/editor.js:293
+#: blocks/bs-list-group-item/editor.js:338
+#: blocks/bs-step-item/editor.js:213
+msgid "Show ScrollTrigger Markers"
+msgstr ""
+
+#: blocks/animation-controls.js:282
+msgid "Muestra l├¡neas de debug en la p├ígina"
+msgstr ""
+
+#: blocks/animation-controls.js:287
+#: blocks/bs-card/editor.js:349
+#: blocks/bs-cf7/editor.js:216
+#: blocks/bs-column/editor.js:371
+#: blocks/bs-container/editor.js:604
+#: blocks/bs-step-item/editor.js:219
+#: blocks/core-blocks-extension.js:306
+msgid "Enable on Mobile"
+msgstr ""
+
+#: blocks/blocks.js:22
+#: blocks/bs-fa-icon/editor.js:84
+msgid "FontAwesome Icon"
+msgstr ""
+
+#: blocks/blocks.js:23
+msgid "Inserta un ├¡cono de FontAwesome (colecci├│n free)."
+msgstr ""
+
+#: blocks/blocks.js:51
+#: blocks/bs-fa-icon/editor.js:13
+msgid "Solid"
+msgstr ""
+
+#: blocks/blocks.js:52
+#: blocks/bs-fa-icon/editor.js:14
+msgid "Regular"
+msgstr ""
+
+#: blocks/blocks.js:53
+#: blocks/bs-fa-icon/editor.js:15
+msgid "Brands"
+msgstr ""
+
+#: blocks/blocks.js:67
+#: blocks/bs-card/editor.js:251
+#: blocks/bs-card/editor.js:273
+#: blocks/bs-fa-icon/editor.js:19
+#: blocks/bs-fa-icon/editor.js:29
+#: blocks/bs-modal/editor.js:144
+msgid "Default"
+msgstr ""
+
+#: blocks/blocks.js:69
+#: blocks/bs-card/editor.js:275
+#: blocks/bs-fa-icon/editor.js:31
+msgid "Center"
+msgstr ""
+
+#: blocks/blocks.js:75
+#: blocks/bs-fa-icon/editor.js:193
+msgid "Icon Settings"
+msgstr ""
+
+#: blocks/blocks.js:77
+#: blocks/bs-fa-icon/editor.js:195
+msgid "Estilo"
+msgstr ""
+
+#: blocks/blocks.js:83
+msgid "Nombre de ├¡cono (ej: fa-house)"
+msgstr ""
+
+#: blocks/blocks.js:84
+msgid "Solo ├¡conos free: https://fontawesome.com/search?ic=free-collection"
+msgstr ""
+
+#: blocks/blocks.js:89
+msgid "Tama├▒o"
+msgstr ""
+
+#: blocks/blocks.js:95
+msgid "Alineaci├│n"
+msgstr ""
+
+#: blocks/blocks.js:101
+msgid "Color (ej: #000000)"
+msgstr ""
+
+#: blocks/bs-accordion-item/editor.js:13
+msgid "Bootstrap Accordion Item"
+msgstr ""
+
+#: blocks/bs-accordion-item/editor.js:14
+msgid "Individual item within a Bootstrap accordion"
+msgstr ""
+
+#: blocks/bs-accordion-item/editor.js:52
+msgid "Accordion item preview"
+msgstr ""
+
+#: blocks/bs-accordion-item/editor.js:64
+msgid "Accordion Item Settings"
+msgstr ""
+
+#: blocks/bs-accordion-item/editor.js:66
+msgid "Open by Default"
+msgstr ""
+
+#: blocks/bs-accordion-item/editor.js:71
+msgid "Item ID"
+msgstr ""
+
+#: blocks/bs-accordion-item/editor.js:94
+msgid "Accordion title..."
+msgstr ""
+
+#: blocks/bs-accordion-item/editor.js:105
+msgid "Add accordion content..."
+msgstr ""
+
+#: blocks/bs-accordion/editor.js:13
+msgid "Bootstrap Accordion"
+msgstr ""
+
+#: blocks/bs-accordion/editor.js:14
+msgid "Bootstrap accordion component"
+msgstr ""
+
+#: blocks/bs-accordion/editor.js:56
+msgid "Bootstrap Accordion Preview"
+msgstr ""
+
+#: blocks/bs-accordion/editor.js:71
+msgid "Accordion Settings"
+msgstr ""
+
+#: blocks/bs-accordion/editor.js:73
+msgid "Always Open"
+msgstr ""
+
+#: blocks/bs-accordion/editor.js:74
+msgid "Allow multiple items to be open simultaneously"
+msgstr ""
+
+#: blocks/bs-accordion/editor.js:79
+#: blocks/bs-list-group/editor.js:74
+msgid "Flush"
+msgstr ""
+
+#: blocks/bs-accordion/editor.js:80
+#: blocks/bs-list-group/editor.js:75
+msgid "Remove borders and rounded corners"
+msgstr ""
+
+#: blocks/bs-accordion/editor.js:85
+msgid "Accordion ID"
+msgstr ""
+
+#: blocks/bs-accordion/editor.js:102
+msgid "Add accordion items..."
+msgstr ""
+
+#: blocks/bs-alert/editor.js:13
+msgid "Bootstrap Alert"
+msgstr ""
+
+#: blocks/bs-alert/editor.js:14
+msgid "A dismissible Bootstrap alert component"
+msgstr ""
+
+#: blocks/bs-alert/editor.js:56
+msgid "Bootstrap Alert Preview"
+msgstr ""
+
+#: blocks/bs-alert/editor.js:64
+msgid "Alert Settings"
+msgstr ""
+
+#: blocks/bs-alert/editor.js:66
+msgid "Alert Style"
+msgstr ""
+
+#: blocks/bs-alert/editor.js:81
+msgid "Dismissible"
+msgstr ""
+
+#: blocks/bs-alert/editor.js:86
+msgid "Alert Heading"
+msgstr ""
+
+#: blocks/bs-alert/editor.js:99
+msgid "Add alert content..."
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:9
+msgid "Asesores (ACF)"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:12
+msgid "Muestra la lista de asesores desde las opciones del tema (ACF)."
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:155
+msgid "Dise├▒o"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:157
+msgid "Columnas en MD"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:164
+msgid "Columnas en LG"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:171
+msgid "Distribuci├│n"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:174
+msgid "Horizontal (foto + datos)"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:175
+msgid "Vertical (foto arriba)"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:180
+msgid "Avatar"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:183
+msgid "Completa (card)"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:184
+msgid "Redonda"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:189
+#: blocks/bs-gallery/editor.js:309
+msgid "Contenido"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:191
+msgid "Mostrar imagen"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:196
+msgid "Mostrar tel├®fono"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:201
+msgid "Mostrar email"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:206
+msgid "Contenido a mostrar"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:209
+msgid "Texto y botones"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:210
+msgid "Solo texto"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:211
+msgid "Solo botones"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:216
+msgid "Animaci├│n"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:218
+msgid "Tipo de animaci├│n"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:234
+msgid "Disparador"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:240
+msgid "Duraci├│n (s)"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:248
+#: blocks/bs-cf7/editor.js:184
+msgid "Delay (s)"
+msgstr ""
+
+#: blocks/bs-asesores/editor.js:262
+msgid "Habilitar en m├│vil"
+msgstr ""
+
+#: blocks/bs-badge/editor.js:13
+msgid "Bootstrap Badge"
+msgstr ""
+
+#: blocks/bs-badge/editor.js:14
+msgid "Bootstrap badge component for labels and counters"
+msgstr ""
+
+#: blocks/bs-badge/editor.js:81
+msgid "Badge Settings"
+msgstr ""
+
+#: blocks/bs-badge/editor.js:83
+#: blocks/bs-card/editor.js:247
+#: blocks/bs-tabs/editor.js:81
+msgid "Variant"
+msgstr ""
+
+#: blocks/bs-badge/editor.js:89
+msgid "Pill Style"
+msgstr ""
+
+#: blocks/bs-badge/editor.js:90
+msgid "Make badge more rounded"
+msgstr ""
+
+#: blocks/bs-badge/editor.js:95
+#: blocks/bs-button-group/editor.js:95
+#: blocks/bs-container/editor.js:446
+#: blocks/bs-dropdown/editor.js:151
+#: blocks/bs-modal/editor.js:118
+#: blocks/bs-pagination/editor.js:111
+#: blocks/bs-spinner/editor.js:108
+msgid "Size"
+msgstr ""
+
+#: blocks/bs-badge/editor.js:108
+msgid "Badge text..."
+msgstr ""
+
+#: blocks/bs-breadcrumb-item/editor.js:13
+msgid "Bootstrap Breadcrumb Item"
+msgstr ""
+
+#: blocks/bs-breadcrumb-item/editor.js:14
+msgid "Individual item within breadcrumb navigation"
+msgstr ""
+
+#: blocks/bs-breadcrumb-item/editor.js:56
+msgid "Breadcrumb item preview"
+msgstr ""
+
+#: blocks/bs-breadcrumb-item/editor.js:68
+msgid "Breadcrumb Item Settings"
+msgstr ""
+
+#: blocks/bs-breadcrumb-item/editor.js:70
+msgid "Active Item"
+msgstr ""
+
+#: blocks/bs-breadcrumb-item/editor.js:71
+msgid "Mark as current page (no link)"
+msgstr ""
+
+#: blocks/bs-breadcrumb-item/editor.js:76
+#: blocks/bs-button/editor.js:86
+#: blocks/bs-card/editor.js:232
+#: blocks/bs-carousel-item/editor.js:170
+#: blocks/bs-dropdown-item/editor.js:115
+#: blocks/bs-list-group-item/editor.js:254
+#: blocks/bs-pagination-item/editor.js:127
+msgid "Link URL"
+msgstr ""
+
+#: blocks/bs-breadcrumb-item/editor.js:79
+#: blocks/bs-dropdown-item/editor.js:118
+#: blocks/bs-list-group-item/editor.js:257
+#: blocks/bs-pagination-item/editor.js:130
+msgid "https://example.com"
+msgstr ""
+
+#: blocks/bs-breadcrumb-item/editor.js:82
+#: blocks/bs-dropdown-item/editor.js:121
+#: blocks/bs-list-group-item/editor.js:260
+#: blocks/bs-pagination-item/editor.js:133
+msgid "Open in New Tab"
+msgstr ""
+
+#: blocks/bs-breadcrumb-item/editor.js:98
+#: blocks/bs-breadcrumb-item/editor.js:111
+msgid "Breadcrumb text..."
+msgstr ""
+
+#: blocks/bs-breadcrumb/editor.js:13
+msgid "Bootstrap Breadcrumb"
+msgstr ""
+
+#: blocks/bs-breadcrumb/editor.js:14
+msgid "Bootstrap breadcrumb navigation component"
+msgstr ""
+
+#: blocks/bs-breadcrumb/editor.js:48
+msgid "Bootstrap Breadcrumb Preview"
+msgstr ""
+
+#: blocks/bs-breadcrumb/editor.js:60
+msgid "Breadcrumb Settings"
+msgstr ""
+
+#: blocks/bs-breadcrumb/editor.js:62
+msgid "Custom Separator"
+msgstr ""
+
+#: blocks/bs-breadcrumb/editor.js:63
+msgid "Leave empty for default separator"
+msgstr ""
+
+#: blocks/bs-breadcrumb/editor.js:66
+msgid ">"
+msgstr ""
+
+#: blocks/bs-breadcrumb/editor.js:83
+msgid "Add breadcrumb items..."
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:13
+msgid "Bootstrap Button Group"
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:14
+msgid "Group multiple buttons together"
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:60
+msgid "Bootstrap Button Group Preview"
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:81
+msgid "Button Group Settings"
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:83
+msgid "Toolbar"
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:84
+msgid "Combine multiple button groups into a toolbar"
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:89
+#: blocks/bs-tabs/editor.js:93
+msgid "Vertical"
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:90
+msgid "Stack buttons vertically"
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:101
+msgid "ARIA Label"
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:102
+msgid "Accessibility label for the button group"
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:127
+msgid "Add button groups..."
+msgstr ""
+
+#: blocks/bs-button-group/editor.js:128
+msgid "Add buttons to group..."
+msgstr ""
+
+#: blocks/bs-button/editor.js:13
+msgid "Bootstrap Button"
+msgstr ""
+
+#: blocks/bs-button/editor.js:14
+msgid "A customizable Bootstrap button component"
+msgstr ""
+
+#: blocks/bs-button/editor.js:62
+msgid "Button Settings"
+msgstr ""
+
+#: blocks/bs-button/editor.js:64
+#: blocks/bs-dropdown/editor.js:140
+#: blocks/bs-modal/editor.js:163
+#: blocks/bs-offcanvas/editor.js:163
+msgid "Button Text"
+msgstr ""
+
+#: blocks/bs-button/editor.js:69
+msgid "Button Style"
+msgstr ""
+
+#: blocks/bs-button/editor.js:75
+msgid "Button Size"
+msgstr ""
+
+#: blocks/bs-button/editor.js:81
+msgid "Outline Style"
+msgstr ""
+
+#: blocks/bs-button/editor.js:91
+msgid "Open in new tab"
+msgstr ""
+
+#: blocks/bs-button/editor.js:96
+#: blocks/bs-dropdown-item/editor.js:109
+#: blocks/bs-list-group-item/editor.js:242
+#: blocks/bs-modal/editor.js:156
+#: blocks/bs-pagination-item/editor.js:121
+msgid "Disabled"
+msgstr ""
+
+#: blocks/bs-button/editor.js:102
+msgid "Icon"
+msgstr ""
+
+#: blocks/bs-button/editor.js:104
+msgid "Font Awesome classes"
+msgstr ""
+
+#: blocks/bs-button/editor.js:105
+msgid "Ejemplo: fa-solid fa-car (solo clases del icono)"
+msgstr ""
+
+#: blocks/bs-button/editor.js:110
+msgid "Icon position"
+msgstr ""
+
+#: blocks/bs-button/editor.js:113
+msgid "Before text"
+msgstr ""
+
+#: blocks/bs-button/editor.js:114
+msgid "After text"
+msgstr ""
+
+#: blocks/bs-card/editor.js:15
+msgid "Bootstrap Card"
+msgstr ""
+
+#: blocks/bs-card/editor.js:16
+msgid "A flexible Bootstrap card component with GSAP animations"
+msgstr ""
+
+#: blocks/bs-card/editor.js:202
+msgid "Card Settings"
+msgstr ""
+
+#: blocks/bs-card/editor.js:204
+msgid "Card Title"
+msgstr ""
+
+#: blocks/bs-card/editor.js:209
+msgid "Card Subtitle"
+msgstr ""
+
+#: blocks/bs-card/editor.js:223
+msgid "Change Image"
+msgstr ""
+
+#: blocks/bs-card/editor.js:223
+#: blocks/bs-carousel-item/editor.js:127
+#: blocks/bs-carousel-item/editor.js:164
+msgid "Select Image"
+msgstr ""
+
+#: blocks/bs-card/editor.js:226
+msgid "Imagen Full"
+msgstr ""
+
+#: blocks/bs-card/editor.js:227
+msgid "Hacer que la imagen ocupe el ancho completo del card"
+msgstr ""
+
+#: blocks/bs-card/editor.js:233
+msgid "URL a la que enlaza la tarjeta completa"
+msgstr ""
+
+#: blocks/bs-card/editor.js:238
+#: blocks/bs-carousel-item/editor.js:176
+msgid "Link Target"
+msgstr ""
+
+#: blocks/bs-card/editor.js:241
+#: blocks/bs-carousel-item/editor.js:179
+msgid "Same Window"
+msgstr ""
+
+#: blocks/bs-card/editor.js:242
+#: blocks/bs-carousel-item/editor.js:180
+msgid "New Window"
+msgstr ""
+
+#: blocks/bs-card/editor.js:248
+msgid "Estilo de la tarjeta"
+msgstr ""
+
+#: blocks/bs-card/editor.js:252
+#: blocks/bs-container/editor.js:342
+#: blocks/bs-container/editor.js:361
+msgid "Primary"
+msgstr ""
+
+#: blocks/bs-card/editor.js:253
+#: blocks/bs-container/editor.js:343
+#: blocks/bs-container/editor.js:362
+msgid "Secondary"
+msgstr ""
+
+#: blocks/bs-card/editor.js:254
+#: blocks/bs-container/editor.js:344
+#: blocks/bs-container/editor.js:363
+msgid "Success"
+msgstr ""
+
+#: blocks/bs-card/editor.js:255
+#: blocks/bs-container/editor.js:345
+#: blocks/bs-container/editor.js:364
+msgid "Danger"
+msgstr ""
+
+#: blocks/bs-card/editor.js:256
+#: blocks/bs-container/editor.js:346
+#: blocks/bs-container/editor.js:365
+msgid "Warning"
+msgstr ""
+
+#: blocks/bs-card/editor.js:257
+#: blocks/bs-container/editor.js:347
+#: blocks/bs-container/editor.js:366
+msgid "Info"
+msgstr ""
+
+#: blocks/bs-card/editor.js:258
+#: blocks/bs-container/editor.js:348
+#: blocks/bs-container/editor.js:367
+msgid "Light"
+msgstr ""
+
+#: blocks/bs-card/editor.js:259
+#: blocks/bs-container/editor.js:349
+#: blocks/bs-container/editor.js:368
+msgid "Dark"
+msgstr ""
+
+#: blocks/bs-card/editor.js:260
+msgid "Border Primary"
+msgstr ""
+
+#: blocks/bs-card/editor.js:261
+msgid "Border Secondary"
+msgstr ""
+
+#: blocks/bs-card/editor.js:262
+msgid "Border Success"
+msgstr ""
+
+#: blocks/bs-card/editor.js:263
+msgid "Border Danger"
+msgstr ""
+
+#: blocks/bs-card/editor.js:264
+msgid "Border Warning"
+msgstr ""
+
+#: blocks/bs-card/editor.js:265
+msgid "Border Info"
+msgstr ""
+
+#: blocks/bs-card/editor.js:270
+msgid "Text Alignment"
+msgstr ""
+
+#: blocks/bs-card/editor.js:281
+msgid "CSS Classes"
+msgstr ""
+
+#: blocks/bs-card/editor.js:283
+msgid "Card Body Extra Classes"
+msgstr ""
+
+#: blocks/bs-card/editor.js:284
+msgid "Agregar clases al card-body"
+msgstr ""
+
+#: blocks/bs-card/editor.js:289
+msgid "Title Extra Classes"
+msgstr ""
+
+#: blocks/bs-card/editor.js:290
+msgid "Agregar clases al card-title"
+msgstr ""
+
+#: blocks/bs-card/editor.js:295
+msgid "Text Extra Classes"
+msgstr ""
+
+#: blocks/bs-card/editor.js:296
+msgid "Agregar clases al card-text"
+msgstr ""
+
+#: blocks/bs-card/editor.js:366
+msgid "Add card content..."
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:13
+msgid "Bootstrap Carousel Item"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:14
+msgid "Individual slide within a Bootstrap carousel"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:64
+msgid "Carousel item preview"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:88
+msgid "Carousel Item Settings"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:90
+msgid "Active Slide"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:91
+msgid "Set as the default active slide"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:97
+msgid "Background Image"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:116
+#: blocks/bs-carousel-item/editor.js:153
+msgid "Replace Image"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:122
+#: blocks/bs-carousel-item/editor.js:159
+msgid "Remove Image"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:134
+msgid "Background Image Mobile"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:171
+msgid "Optional URL to make the entire slide clickable"
+msgstr ""
+
+#: blocks/bs-carousel-item/editor.js:201
+msgid "Add slide content (text, image, etc)..."
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:13
+msgid "Bootstrap Carousel"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:14
+msgid "Bootstrap carousel slideshow component"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:88
+msgid "Carousel Settings"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:90
+msgid "Carousel ID"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:95
+#: blocks/bs-video/editor.js:147
+msgid "Show Controls"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:96
+msgid "Show previous/next arrows"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:101
+msgid "Show Indicators"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:102
+msgid "Show slide indicator dots"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:107
+msgid "Auto Play"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:113
+msgid "Interval (ms)"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:114
+msgid "Time between slides in milliseconds"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:120
+msgid "Wrap"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:121
+msgid "Loop slides continuously"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:126
+#: blocks/bs-tab-pane/editor.js:81
+msgid "Fade Effect"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:127
+msgid "Use fade transition instead of slide"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:132
+msgid "Touch Swipe"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:133
+msgid "Enable touch/swipe on mobile devices"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:150
+msgid "Indicators will appear here"
+msgstr ""
+
+#: blocks/bs-carousel/editor.js:168
+msgid "Previous/Next controls will appear here"
+msgstr ""
+
+#: blocks/bs-cart/editor.js:13
+msgid "Bootstrap Shopping Cart"
+msgstr ""
+
+#: blocks/bs-cart/editor.js:14
+msgid "Display WooCommerce shopping cart with automatic checkout updates"
+msgstr ""
+
+#: blocks/bs-cart/editor.js:46
+msgid "Cart Settings"
+msgstr ""
+
+#: blocks/bs-cart/editor.js:48
+msgid "Show Empty Cart Message"
+msgstr ""
+
+#: blocks/bs-cart/editor.js:53
+msgid "Show Totals"
+msgstr ""
+
+#: blocks/bs-cart/editor.js:58
+msgid "Show Cart & Checkout Buttons"
+msgstr ""
+
+#: blocks/bs-cart/editor.js:70
+msgid "Shopping Cart Block"
+msgstr ""
+
+#: blocks/bs-cart/editor.js:73
+msgid "This block displays the WooCommerce shopping cart on the frontend."
+msgstr ""
+
+#: blocks/bs-cart/editor.js:76
+msgid "The cart will appear here when visitors add products."
+msgstr ""
+
+#: blocks/bs-cart/editor.js:81
+msgid "Empty message"
+msgstr ""
+
+#: blocks/bs-cart/editor.js:84
+msgid "Show totals"
+msgstr ""
+
+#: blocks/bs-cart/editor.js:87
+msgid "Show buttons"
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:13
+msgid "Contact Form 7"
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:14
+msgid "Insert a Contact Form 7 form with Bootstrap styles and animations"
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:141
+msgid "Select a formÔÇª"
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:147
+msgid "Form Settings"
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:149
+#: blocks/bs-cf7/editor.js:226
+msgid "Contact Form"
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:155
+msgid "Form ID (manual fallback)"
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:158
+msgid "If the list is empty, type the form ID manually."
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:176
+msgid "Duration (s)"
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:213
+#: blocks/bs-column/editor.js:367
+#: blocks/bs-container/editor.js:600
+#: blocks/bs-fa-icon/editor.js:296
+#: blocks/bs-list-group-item/editor.js:341
+#: blocks/bs-step-item/editor.js:216
+msgid "Muestra lineas de debug en la pagina"
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:227
+msgid "The form will render on the frontend."
+msgstr ""
+
+#: blocks/bs-cf7/editor.js:230
+msgid "Select a Contact Form 7 form to display."
+msgstr ""
+
+#: blocks/bs-column/editor.js:13
+msgid "Bootstrap Column"
+msgstr ""
+
+#: blocks/bs-column/editor.js:14
+msgid "Bootstrap column for grid layout"
+msgstr ""
+
+#: blocks/bs-column/editor.js:246
+msgid "Column Settings"
+msgstr ""
+
+#: blocks/bs-column/editor.js:248
+msgid "XS (Mobile/All)"
+msgstr ""
+
+#: blocks/bs-column/editor.js:254
+msgid "SM (Tablet)"
+msgstr ""
+
+#: blocks/bs-column/editor.js:260
+msgid "MD (Desktop)"
+msgstr ""
+
+#: blocks/bs-column/editor.js:266
+msgid "LG (Large)"
+msgstr ""
+
+#: blocks/bs-column/editor.js:272
+msgid "XL (Extra Large)"
+msgstr ""
+
+#: blocks/bs-column/editor.js:278
+msgid "XXL (Extra Extra Large)"
+msgstr ""
+
+#: blocks/bs-column/editor.js:284
+msgid "Offset"
+msgstr ""
+
+#: blocks/bs-column/editor.js:290
+msgid "Order (Mobile)"
+msgstr ""
+
+#: blocks/bs-column/editor.js:296
+msgid "Order (Desktop)"
+msgstr ""
+
+#: blocks/bs-column/editor.js:383
+msgid "Add content to column..."
+msgstr ""
+
+#: blocks/bs-container/editor.js:13
+msgid "Bootstrap Container"
+msgstr ""
+
+#: blocks/bs-container/editor.js:14
+msgid "Bootstrap container for layout structure"
+msgstr ""
+
+#: blocks/bs-container/editor.js:224
+#: blocks/bs-container/editor.js:400
+msgid "Solid color"
+msgstr ""
+
+#: blocks/bs-container/editor.js:225
+msgid "Gradient"
+msgstr ""
+
+#: blocks/bs-container/editor.js:226
+msgid "Image"
+msgstr ""
+
+#: blocks/bs-container/editor.js:230
+msgid "To right"
+msgstr ""
+
+#: blocks/bs-container/editor.js:231
+msgid "To left"
+msgstr ""
+
+#: blocks/bs-container/editor.js:232
+msgid "To bottom"
+msgstr ""
+
+#: blocks/bs-container/editor.js:233
+msgid "To top"
+msgstr ""
+
+#: blocks/bs-container/editor.js:234
+msgid "45┬░"
+msgstr ""
+
+#: blocks/bs-container/editor.js:235
+msgid "135┬░"
+msgstr ""
+
+#: blocks/bs-container/editor.js:310
+msgid "Container Settings"
+msgstr ""
+
+#: blocks/bs-container/editor.js:312
+msgid "Fluid Container"
+msgstr ""
+
+#: blocks/bs-container/editor.js:317
+msgid "Container Type"
+msgstr ""
+
+#: blocks/bs-container/editor.js:323
+msgid "Breakpoint"
+msgstr ""
+
+#: blocks/bs-container/editor.js:324
+msgid "Container breakpoint responsive"
+msgstr ""
+
+#: blocks/bs-container/editor.js:328
+msgid "Small"
+msgstr ""
+
+#: blocks/bs-container/editor.js:329
+msgid "Medium"
+msgstr ""
+
+#: blocks/bs-container/editor.js:330
+msgid "Large"
+msgstr ""
+
+#: blocks/bs-container/editor.js:331
+msgid "Extra Large"
+msgstr ""
+
+#: blocks/bs-container/editor.js:332
+msgid "XXL"
+msgstr ""
+
+#: blocks/bs-container/editor.js:337
+msgid "Background Color"
+msgstr ""
+
+#: blocks/bs-container/editor.js:338
+msgid "Bootstrap background color utility class"
+msgstr ""
+
+#: blocks/bs-container/editor.js:350
+#: blocks/bs-container/editor.js:369
+msgid "White"
+msgstr ""
+
+#: blocks/bs-container/editor.js:351
+msgid "Transparent"
+msgstr ""
+
+#: blocks/bs-container/editor.js:356
+msgid "Text Color"
+msgstr ""
+
+#: blocks/bs-container/editor.js:357
+msgid "Bootstrap text color utility class"
+msgstr ""
+
+#: blocks/bs-container/editor.js:370
+#: blocks/bs-video/editor.js:141
+msgid "Muted"
+msgstr ""
+
+#: blocks/bs-container/editor.js:375
+msgid "Padding"
+msgstr ""
+
+#: blocks/bs-container/editor.js:376
+msgid "Bootstrap padding utility classes (e.g., p-3, py-4, px-5)"
+msgstr ""
+
+#: blocks/bs-container/editor.js:381
+msgid "Margin"
+msgstr ""
+
+#: blocks/bs-container/editor.js:382
+msgid "Bootstrap margin utility classes (e.g., m-3, my-4, mx-auto)"
+msgstr ""
+
+#: blocks/bs-container/editor.js:387
+msgid "Use as Swiper"
+msgstr ""
+
+#: blocks/bs-container/editor.js:392
+msgid "Background"
+msgstr ""
+
+#: blocks/bs-container/editor.js:394
+msgid "Background Type"
+msgstr ""
+
+#: blocks/bs-container/editor.js:405
+msgid "Background color"
+msgstr ""
+
+#: blocks/bs-container/editor.js:411
+#: blocks/bs-dropdown/editor.js:157
+msgid "Direction"
+msgstr ""
+
+#: blocks/bs-container/editor.js:417
+msgid "Gradient colors"
+msgstr ""
+
+#: blocks/bs-container/editor.js:422
+msgid "From"
+msgstr ""
+
+#: blocks/bs-container/editor.js:427
+msgid "To"
+msgstr ""
+
+#: blocks/bs-container/editor.js:439
+msgid "Change image"
+msgstr ""
+
+#: blocks/bs-container/editor.js:439
+msgid "Select image"
+msgstr ""
+
+#: blocks/bs-container/editor.js:443
+msgid "Remove image"
+msgstr ""
+
+#: blocks/bs-container/editor.js:456
+#: blocks/bs-toast/editor.js:133
+msgid "Position"
+msgstr ""
+
+#: blocks/bs-container/editor.js:468
+msgid "Repeat"
+msgstr ""
+
+#: blocks/bs-container/editor.js:479
+msgid "Attachment"
+msgstr ""
+
+#: blocks/bs-container/editor.js:489
+msgid "Swiper Settings"
+msgstr ""
+
+#: blocks/bs-container/editor.js:491
+msgid "Pagination (bullets)"
+msgstr ""
+
+#: blocks/bs-container/editor.js:496
+msgid "Navigation (prev/next)"
+msgstr ""
+
+#: blocks/bs-container/editor.js:501
+#: blocks/bs-video/editor.js:135
+msgid "Loop"
+msgstr ""
+
+#: blocks/bs-container/editor.js:506
+#: blocks/bs-video/editor.js:129
+msgid "Autoplay"
+msgstr ""
+
+#: blocks/bs-container/editor.js:511
+msgid "Slides per view"
+msgstr ""
+
+#: blocks/bs-container/editor.js:517
+msgid "Space between (px)"
+msgstr ""
+
+#: blocks/bs-container/editor.js:523
+msgid "Speed (ms)"
+msgstr ""
+
+#: blocks/bs-container/editor.js:529
+msgid "Autoplay delay (ms)"
+msgstr ""
+
+#: blocks/bs-container/editor.js:617
+msgid "Add content to container..."
+msgstr ""
+
+#: blocks/bs-divider/editor.js:13
+msgid "Bootstrap Divider"
+msgstr ""
+
+#: blocks/bs-divider/editor.js:14
+msgid "A divider line with optional text or icon."
+msgstr ""
+
+#: blocks/bs-divider/editor.js:132
+msgid "Divider Settings"
+msgstr ""
+
+#: blocks/bs-divider/editor.js:134
+msgid "Text"
+msgstr ""
+
+#: blocks/bs-divider/editor.js:137
+msgid "Optional text to display."
+msgstr ""
+
+#: blocks/bs-divider/editor.js:140
+msgid "Icon Class (FontAwesome)"
+msgstr ""
+
+#: blocks/bs-divider/editor.js:143
+msgid "e.g., fa-solid fa-star"
+msgstr ""
+
+#: blocks/bs-divider/editor.js:146
+#: blocks/bs-pagination/editor.js:117
+msgid "Alignment"
+msgstr ""
+
+#: blocks/bs-divider/editor.js:152
+msgid "Line Style"
+msgstr ""
+
+#: blocks/bs-divider/editor.js:158
+msgid "Line Color"
+msgstr ""
+
+#: blocks/bs-divider/editor.js:164
+msgid "Text/Icon Color"
+msgstr ""
+
+#: blocks/bs-divider/editor.js:170
+msgid "Vertical Margin (my-*)"
+msgstr ""
+
+#: blocks/bs-dropdown-divider/editor.js:12
+msgid "Bootstrap Dropdown Divider"
+msgstr ""
+
+#: blocks/bs-dropdown-divider/editor.js:13
+msgid "Divider line for dropdown menus"
+msgstr ""
+
+#: blocks/bs-dropdown-divider/editor.js:38
+msgid "Dropdown divider preview"
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:13
+msgid "Bootstrap Dropdown Item"
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:14
+msgid "Individual item within a dropdown menu"
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:64
+msgid "Dropdown item preview"
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:95
+msgid "Dropdown Item Settings"
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:97
+#: blocks/bs-pagination-item/editor.js:104
+#: blocks/bs-spinner/editor.js:96
+msgid "Type"
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:103
+#: blocks/bs-list-group-item/editor.js:236
+#: blocks/bs-pagination-item/editor.js:115
+msgid "Active"
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:104
+#: blocks/bs-list-group-item/editor.js:237
+msgid "Mark as active/current item"
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:110
+#: blocks/bs-list-group-item/editor.js:243
+#: blocks/bs-pagination-item/editor.js:122
+msgid "Make item appear disabled"
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:140
+msgid "Dropdown item text..."
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:157
+msgid "Dropdown button text..."
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:172
+msgid "Dropdown header..."
+msgstr ""
+
+#: blocks/bs-dropdown-item/editor.js:173
+msgid "Dropdown text..."
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:13
+msgid "Bootstrap Dropdown"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:14
+msgid "Bootstrap dropdown menu component"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:75
+msgid "Dropdown preview"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:138
+msgid "Dropdown Settings"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:145
+#: blocks/bs-modal/editor.js:168
+#: blocks/bs-offcanvas/editor.js:168
+msgid "Button Variant"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:163
+msgid "Menu Alignment"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:169
+msgid "Split Button"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:170
+msgid "Separate button and dropdown toggle"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:175
+msgid "Dark Menu"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:176
+msgid "Use dark theme for dropdown menu"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:181
+msgid "Auto Close"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:182
+msgid "Configure when dropdown closes"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:220
+msgid "Dropdown Menu Preview:"
+msgstr ""
+
+#: blocks/bs-dropdown/editor.js:235
+msgid "Add dropdown items..."
+msgstr ""
+
+#: blocks/bs-fa-icon/editor.js:85
+msgid "Inserta un ícono de FontAwesome (colección free)."
+msgstr ""
+
+#: blocks/bs-fa-icon/editor.js:201
+msgid "Nombre de ícono (ej: fa-house)"
+msgstr ""
+
+#: blocks/bs-fa-icon/editor.js:202
+msgid "Solo íconos free: https://fontawesome.com/search?ic=free-collection"
+msgstr ""
+
+#: blocks/bs-fa-icon/editor.js:207
+msgid "Tamaño"
+msgstr ""
+
+#: blocks/bs-fa-icon/editor.js:213
+msgid "Alineación"
+msgstr ""
+
+#: blocks/bs-fa-icon/editor.js:219
+#: blocks/bs-spinner/editor.js:102
+msgid "Color"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:13
+msgid "Galer├¡a"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:14
+msgid "Galer├¡a de im├ígenes con CSS Grid, lightbox y efectos hover"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:116
+#: blocks/bs-gallery/editor.js:129
+msgid "Ninguno"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:117
+msgid "XS"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:118
+msgid "Peque├▒o"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:119
+msgid "Normal"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:120
+msgid "Medio"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:121
+msgid "Grande"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:125
+msgid "Overlay"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:126
+msgid "Zoom"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:127
+msgid "Slide"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:128
+msgid "Fade"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:133
+msgid "Thumb (150x150)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:134
+msgid "Medio (300x300)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:135
+msgid "Largo (600x600)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:136
+msgid "Completo"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:143
+#: blocks/bs-gallery/editor.js:176
+msgid "A├▒adir im├ígenes"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:161
+msgid "Im├ígenes"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:195
+msgid "Tama├▒o de thumbnail"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:202
+msgid "Tama├▒o en el Grid (Layout tipo Mosaico)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:205
+msgid "Columnas que ocupa (Column Span)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:210
+msgid "Cu├íntas columnas ocupa esta imagen (1 = normal, 2 = doble ancho, etc.)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:213
+msgid "Filas que ocupa (Row Span)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:218
+msgid "Cu├íntas filas ocupa esta imagen (1 = normal, 2 = doble alto, etc.)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:222
+msgid "Caption personalizado"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:223
+msgid "Ingresa un caption solo para esta imagen (opcional)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:232
+msgid "­ƒöä Reemplazar imagen"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:237
+msgid "Ô£ò Quitar"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:243
+msgid "Mover arriba"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:247
+msgid "Mover abajo"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:253
+msgid "Cerrar configuraci├│n"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:257
+msgid "Grid"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:259
+msgid "Columnas Desktop"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:264
+msgid "N├║mero de columnas en pantallas grandes"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:267
+msgid "Columnas Mobile"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:272
+msgid "N├║mero de columnas en m├│viles"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:275
+msgid "Espaciado (Gap)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:282
+msgid "Efecto Hover"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:284
+msgid "Efecto hover"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:291
+msgid "Color overlay"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:299
+msgid "Opacidad overlay"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:311
+msgid "Mostrar captions"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:316
+msgid "Lightbox (FancyBox)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:321
+msgid "L├¡mite de im├ígenes a mostrar"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:326
+msgid "0 = sin l├¡mite (mostrar todas)"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:329
+msgid "Activar filtrado por categor├¡as"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:332
+msgid "Muestra botones de filtro si las im├ígenes tienen categor├¡as asignadas"
+msgstr ""
+
+#: blocks/bs-gallery/editor.js:340
+msgid "Ninguna imagen seleccionada. Haz clic en \"A├▒adir im├ígenes\" para comenzar."
+msgstr ""
+
+#: blocks/bs-iframe/editor.js:20
+msgid "Bootstrap Iframe"
+msgstr ""
+
+#: blocks/bs-iframe/editor.js:21
+msgid "Iframe responsive usando helper Ratio de Bootstrap 5"
+msgstr ""
+
+#: blocks/bs-iframe/editor.js:41
+msgid "Iframe Settings"
+msgstr ""
+
+#: blocks/bs-iframe/editor.js:43
+msgid "Embed URL"
+msgstr ""
+
+#: blocks/bs-iframe/editor.js:49
+msgid "Title (accessibility)"
+msgstr ""
+
+#: blocks/bs-iframe/editor.js:55
+msgid "Ratio"
+msgstr ""
+
+#: blocks/bs-iframe/editor.js:61
+msgid "Allow fullscreen"
+msgstr ""
+
+#: blocks/bs-iframe/editor.js:66
+msgid "Loading"
+msgstr ""
+
+#: blocks/bs-iframe/editor.js:78
+msgid "Ingresa un Embed URL para previsualizar el iframe."
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:13
+msgid "Bootstrap List Group Item"
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:14
+msgid "Individual item within a list group"
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:130
+msgid "List group item preview"
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:228
+msgid "List Item Settings"
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:230
+#: blocks/bs-progress/editor.js:122
+#: blocks/bs-steps/editor.js:97
+#: blocks/bs-toast/editor.js:127
+msgid "Color Variant"
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:248
+msgid "Actionable"
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:249
+msgid "Make item clickable/hoverable"
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:265
+msgid "Complex Content"
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:266
+msgid "Enable rich content instead of simple text"
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:356
+msgid "Add list item content..."
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:359
+msgid "List item heading"
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:363
+msgid "Some additional content for this list item."
+msgstr ""
+
+#: blocks/bs-list-group-item/editor.js:371
+msgid "List item text..."
+msgstr ""
+
+#: blocks/bs-list-group/editor.js:13
+msgid "Bootstrap List Group"
+msgstr ""
+
+#: blocks/bs-list-group/editor.js:14
+msgid "Bootstrap list group component"
+msgstr ""
+
+#: blocks/bs-list-group/editor.js:72
+msgid "List Group Settings"
+msgstr ""
+
+#: blocks/bs-list-group/editor.js:80
+msgid "Layout"
+msgstr ""
+
+#: blocks/bs-list-group/editor.js:86
+msgid "Numbered"
+msgstr ""
+
+#: blocks/bs-list-group/editor.js:87
+msgid "Add automatic numbering to list items"
+msgstr ""
+
+#: blocks/bs-list-group/editor.js:104
+msgid "Add list group items..."
+msgstr ""
+
+#: blocks/bs-modal/editor.js:13
+msgid "Bootstrap Modal"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:14
+msgid "Bootstrap modal dialog component"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:111
+msgid "Modal Settings"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:113
+msgid "Modal ID"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:124
+#: blocks/bs-spinner/editor.js:114
+msgid "Centered"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:129
+msgid "Scrollable"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:134
+msgid "Static Backdrop"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:135
+msgid "Modal will not close when clicking outside"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:140
+#: blocks/bs-offcanvas/editor.js:133
+msgid "Backdrop"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:141
+msgid "Backdrop behavior"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:145
+msgid "Static"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:151
+#: blocks/bs-offcanvas/editor.js:145
+msgid "Keyboard"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:152
+msgid "Close modal with Escape key"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:155
+msgid "Enabled"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:161
+#: blocks/bs-offcanvas/editor.js:161
+msgid "Trigger Button"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:189
+msgid "Modal Preview:"
+msgstr ""
+
+#: blocks/bs-modal/editor.js:197
+msgid "Modal title..."
+msgstr ""
+
+#: blocks/bs-modal/editor.js:202
+msgid "Add modal content..."
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:13
+msgid "Bootstrap Offcanvas"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:14
+msgid "Bootstrap offcanvas sidebar component"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:79
+msgid "Offcanvas preview"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:120
+msgid "Offcanvas Settings"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:122
+msgid "Offcanvas ID"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:127
+msgid "Placement"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:139
+msgid "Body Scrolling"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:140
+msgid "Allow body to scroll when offcanvas is open"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:146
+msgid "Close with Escape key"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:151
+#: blocks/bs-toast/editor.js:117
+msgid "Show Header"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:156
+#: blocks/bs-toast/editor.js:122
+msgid "Show Close Button"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:187
+msgid "Offcanvas Preview:"
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:198
+msgid "Offcanvas title..."
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:209
+msgid "Add offcanvas content..."
+msgstr ""
+
+#: blocks/bs-offcanvas/editor.js:212
+msgid "Some text as placeholder. In real usage this can be any content you want."
+msgstr ""
+
+#: blocks/bs-pagination-item/editor.js:13
+msgid "Bootstrap Pagination Item"
+msgstr ""
+
+#: blocks/bs-pagination-item/editor.js:14
+msgid "Individual item within pagination navigation"
+msgstr ""
+
+#: blocks/bs-pagination-item/editor.js:64
+msgid "Pagination item preview"
+msgstr ""
+
+#: blocks/bs-pagination-item/editor.js:88
+msgid "First"
+msgstr ""
+
+#: blocks/bs-pagination-item/editor.js:89
+msgid "Last"
+msgstr ""
+
+#: blocks/bs-pagination-item/editor.js:102
+msgid "Pagination Item Settings"
+msgstr ""
+
+#: blocks/bs-pagination-item/editor.js:116
+msgid "Mark as current page"
+msgstr ""
+
+#: blocks/bs-pagination-item/editor.js:150
+#: blocks/bs-pagination-item/editor.js:166
+msgid "Page text..."
+msgstr ""
+
+#: blocks/bs-pagination/editor.js:13
+msgid "Bootstrap Pagination"
+msgstr ""
+
+#: blocks/bs-pagination/editor.js:14
+msgid "Bootstrap pagination navigation component"
+msgstr ""
+
+#: blocks/bs-pagination/editor.js:51
+msgid "Pagination preview"
+msgstr ""
+
+#: blocks/bs-pagination/editor.js:109
+msgid "Pagination Settings"
+msgstr ""
+
+#: blocks/bs-pagination/editor.js:123
+msgid "Preview Pages"
+msgstr ""
+
+#: blocks/bs-pagination/editor.js:124
+msgid "Number of pages to show in preview"
+msgstr ""
+
+#: blocks/bs-pagination/editor.js:138
+msgid "Preview - Configure pagination via block settings"
+msgstr ""
+
+#: blocks/bs-pagination/editor.js:147
+msgid "Add custom pagination items..."
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:13
+msgid "Bootstrap Parallax Container"
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:14
+msgid "Container with parallax scroll effect - use this to wrap elements"
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:56
+msgid "Parallax container preview"
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:64
+msgid "Parallax Settings"
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:67
+msgid "Enable Parallax"
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:68
+msgid "Add parallax scroll effect to this container"
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:83
+msgid "Start (ScrollTrigger start)"
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:84
+msgid "Formato \"top center\", \"center center\", etc."
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:90
+msgid "End (ScrollTrigger end)"
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:91
+msgid "Formato \"bottom center\", \"center center\", etc."
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:111
+msgid "Parallax disabled"
+msgstr ""
+
+#: blocks/bs-parallax/editor.js:126
+msgid "Add content inside parallax container..."
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:13
+msgid "Plantas Slider"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:14
+msgid "Muestra las plantas publicadas como slider (Swiper)."
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:64
+#: blocks/bs-shipping-methods/editor.js:68
+msgid "Configuraci├│n"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:66
+msgid "M├íximo de posts (-1 = todos)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:72
+msgid "Slides por Viewport"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:74
+msgid "Mobile (< 768px)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:80
+msgid "Tablet (768px - 1023px)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:86
+msgid "Desktop (ÔëÑ 1024px)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:92
+msgid "Mostrar imagen destacada"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:97
+msgid "Texto bot├│n cotizador"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:102
+msgid "Texto bot├│n desactivado"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:106
+msgid "Navegaci├│n"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:108
+msgid "Mostrar flechas prev/next"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:113
+msgid "Tipo de paginaci├│n"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:116
+msgid "Sin paginaci├│n"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:117
+msgid "Bullets (puntos)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:118
+msgid "Fracciones (2/10)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:119
+msgid "Barra de progreso"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:120
+msgid "Scroll bar"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:124
+msgid "Efecto"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:126
+msgid "Tipo de efecto"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:129
+msgid "Slide (defecto)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:130
+msgid "Fade (desvanecimiento)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:131
+msgid "Cube (cubo 3D)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:132
+msgid "Coverflow (portadas)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:133
+msgid "Flip (volteo)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:134
+msgid "Cards (tarjetas)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:135
+msgid "Creative (personalizado)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:140
+msgid "Centrar slide activo"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:145
+msgid "Repetir infinitamente (loop)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:150
+msgid "Filtros"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:152
+msgid "Mostrar filtros de b├║squeda"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:153
+msgid "Mostrar u ocultar la barra de filtros (Dormitorios y Ba├▒os)"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:160
+#: blocks/bs-plantas-slider/editor.js:168
+#: blocks/bs-plantas-slider/editor.js:176
+msgid "ÔÇö Sin filtro ÔÇö"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:174
+msgid "Categor├¡a"
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:196
+msgid "El slider se renderizar├í con las Plantas publicadas en el frontend."
+msgstr ""
+
+#: blocks/bs-plantas-slider/editor.js:197
+msgid "Usa las configuraciones globales de Swiper en Opciones de Tema ÔåÆ Otros."
+msgstr ""
+
+#: blocks/bs-progress/editor.js:13
+msgid "Bootstrap Progress Bar"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:14
+msgid "Bootstrap progress bar component"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:99
+msgid "Progress Settings"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:101
+msgid "Current Value"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:108
+msgid "Minimum Value"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:115
+msgid "Maximum Value"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:128
+msgid "Striped"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:129
+msgid "Add diagonal stripes to progress bar"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:134
+msgid "Animated"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:135
+msgid "Animate the stripes (requires striped)"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:140
+#: blocks/bs-spinner/editor.js:120
+msgid "Show Label"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:141
+msgid "Display percentage inside progress bar"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:146
+msgid "Custom Label"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:147
+msgid "Leave empty to show percentage"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:152
+#: blocks/bs-video/editor.js:295
+msgid "Height"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:153
+msgid "CSS height value (e.g., 20px, 1.5rem)"
+msgstr ""
+
+#: blocks/bs-progress/editor.js:162
+msgid "Progress: "
+msgstr ""
+
+#: blocks/bs-row/editor.js:13
+msgid "Bootstrap Row"
+msgstr ""
+
+#: blocks/bs-row/editor.js:14
+msgid "Bootstrap row for grid layout"
+msgstr ""
+
+#: blocks/bs-row/editor.js:84
+msgid "Row Settings"
+msgstr ""
+
+#: blocks/bs-row/editor.js:86
+msgid "Gutters"
+msgstr ""
+
+#: blocks/bs-row/editor.js:92
+msgid "Justify Content"
+msgstr ""
+
+#: blocks/bs-row/editor.js:98
+msgid "Align Items"
+msgstr ""
+
+#: blocks/bs-row/editor.js:115
+msgid "Add columns to row..."
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:13
+msgid "Bootstrap Shipping Methods"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:14
+msgid "Display WooCommerce shipping methods with radio or select options"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:70
+msgid "Tipo de visualizaci├│n"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:73
+#: blocks/bs-shipping-methods/editor.js:115
+msgid "Radio Buttons"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:74
+#: blocks/bs-shipping-methods/editor.js:115
+msgid "Select Dropdown"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:77
+msgid "C├│mo mostrar las opciones de env├¡o"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:80
+msgid "T├¡tulo"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:83
+msgid "T├¡tulo que aparece sobre los m├®todos de env├¡o"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:87
+msgid "Mostrar icono"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:90
+msgid "Mostrar icono de cami├│n junto al nombre"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:103
+msgid "Vista previa: M├®todos de Env├¡o"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:106
+msgid "Este bloque mostrar├í los m├®todos de env├¡o disponibles de WooCommerce cuando el carrito tenga productos."
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:110
+msgid "Configuraci├│n actual:"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:113
+msgid "Visualizaci├│n:"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:118
+msgid "T├¡tulo:"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:124
+msgid "Icono:"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:126
+msgid "S├¡"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:126
+msgid "No"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:135
+msgid "Blue Express (Standard): $4.201"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:136
+msgid "Starken (Normal a agencia): $5.560"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:157
+msgid "Blue Express (Standard)"
+msgstr ""
+
+#: blocks/bs-shipping-methods/editor.js:179
+msgid "Starken (Normal a agencia)"
+msgstr ""
+
+#: blocks/bs-spinner/editor.js:13
+msgid "Bootstrap Spinner"
+msgstr ""
+
+#: blocks/bs-spinner/editor.js:14
+msgid "Bootstrap loading spinner component"
+msgstr ""
+
+#: blocks/bs-spinner/editor.js:94
+msgid "Spinner Settings"
+msgstr ""
+
+#: blocks/bs-spinner/editor.js:115
+msgid "Center the spinner horizontally"
+msgstr ""
+
+#: blocks/bs-spinner/editor.js:121
+msgid "Display text next to spinner"
+msgstr ""
+
+#: blocks/bs-spinner/editor.js:126
+msgid "Label Text"
+msgstr ""
+
+#: blocks/bs-step-item/editor.js:13
+msgid "Step Item"
+msgstr ""
+
+#: blocks/bs-step-item/editor.js:14
+msgid "Individual step for the steps component"
+msgstr ""
+
+#: blocks/bs-step-item/editor.js:139
+msgid "Step Settings"
+msgstr ""
+
+#: blocks/bs-step-item/editor.js:141
+msgid "Step Title"
+msgstr ""
+
+#: blocks/bs-step-item/editor.js:232
+msgid "Step title..."
+msgstr ""
+
+#: blocks/bs-steps/editor.js:14
+msgid "Bootstrap Steps"
+msgstr ""
+
+#: blocks/bs-steps/editor.js:15
+msgid "Display a progress stepper with customizable steps"
+msgstr ""
+
+#: blocks/bs-steps/editor.js:87
+msgid "Steps Settings"
+msgstr ""
+
+#: blocks/bs-steps/editor.js:89
+msgid "Current Step"
+msgstr ""
+
+#: blocks/bs-steps/editor.js:94
+msgid "Select which step is currently active"
+msgstr ""
+
+#: blocks/bs-steps/editor.js:103
+msgid "Show Progress Bar"
+msgstr ""
+
+#: blocks/bs-steps/editor.js:108
+msgid "Animate Progress"
+msgstr ""
+
+#: blocks/bs-steps/editor.js:109
+msgid "Animate progress bar on page load"
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:13
+msgid "Bootstrap Tab Pane"
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:14
+msgid "Individual tab pane content"
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:68
+msgid "Tab Pane Settings"
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:70
+msgid "Tab Title"
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:75
+msgid "Active Tab"
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:76
+msgid "Set as the default active tab"
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:82
+msgid "Enable fade transition effect"
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:87
+msgid "Pane ID"
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:100
+msgid "Tab Title: "
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:105
+msgid "Tab title..."
+msgstr ""
+
+#: blocks/bs-tab-pane/editor.js:110
+msgid "Add tab content..."
+msgstr ""
+
+#: blocks/bs-tabs/editor.js:13
+msgid "Bootstrap Tabs"
+msgstr ""
+
+#: blocks/bs-tabs/editor.js:14
+msgid "Bootstrap tabs navigation component"
+msgstr ""
+
+#: blocks/bs-tabs/editor.js:74
+msgid "Tabs Settings"
+msgstr ""
+
+#: blocks/bs-tabs/editor.js:76
+msgid "Tabs ID"
+msgstr ""
+
+#: blocks/bs-tabs/editor.js:87
+msgid "Justified"
+msgstr ""
+
+#: blocks/bs-tabs/editor.js:88
+msgid "Make tabs fill available width"
+msgstr ""
+
+#: blocks/bs-tabs/editor.js:94
+msgid "Stack tabs vertically"
+msgstr ""
+
+#: blocks/bs-tabs/editor.js:115
+msgid "Tab 1"
+msgstr ""
+
+#: blocks/bs-tabs/editor.js:122
+msgid "Tab 2"
+msgstr ""
+
+#: blocks/bs-tabs/editor.js:137
+msgid "Add tab panes..."
+msgstr ""
+
+#: blocks/bs-toast/editor.js:13
+msgid "Bootstrap Toast"
+msgstr ""
+
+#: blocks/bs-toast/editor.js:14
+msgid "Bootstrap toast notification component"
+msgstr ""
+
+#: blocks/bs-toast/editor.js:110
+msgid "Toast Settings"
+msgstr ""
+
+#: blocks/bs-toast/editor.js:112
+msgid "Toast ID"
+msgstr ""
+
+#: blocks/bs-toast/editor.js:139
+msgid "Auto Hide"
+msgstr ""
+
+#: blocks/bs-toast/editor.js:140
+msgid "Automatically hide after delay"
+msgstr ""
+
+#: blocks/bs-toast/editor.js:145
+msgid "Delay (ms)"
+msgstr ""
+
+#: blocks/bs-toast/editor.js:154
+msgid "Enable fade animation"
+msgstr ""
+
+#: blocks/bs-toast/editor.js:163
+msgid "Toast Preview (Position: "
+msgstr ""
+
+#: blocks/bs-toast/editor.js:193
+msgid "Toast title..."
+msgstr ""
+
+#: blocks/bs-toast/editor.js:205
+msgid "Add toast message..."
+msgstr ""
+
+#: blocks/bs-toast/editor.js:208
+msgid "Hello, world! This is a toast message."
+msgstr ""
+
+#: blocks/bs-video/editor.js:14
+msgid "Video with Mask"
+msgstr ""
+
+#: blocks/bs-video/editor.js:15
+msgid "A video block with optional image mask support (e.g., phone frame)"
+msgstr ""
+
+#: blocks/bs-video/editor.js:87
+msgid "Select a video to preview"
+msgstr ""
+
+#: blocks/bs-video/editor.js:96
+msgid "Video Settings"
+msgstr ""
+
+#: blocks/bs-video/editor.js:113
+msgid "Change Video"
+msgstr ""
+
+#: blocks/bs-video/editor.js:113
+msgid "Select Video"
+msgstr ""
+
+#: blocks/bs-video/editor.js:126
+msgid "Remove Video"
+msgstr ""
+
+#: blocks/bs-video/editor.js:132
+msgid "Video will start playing automatically"
+msgstr ""
+
+#: blocks/bs-video/editor.js:138
+msgid "Video will loop continuously"
+msgstr ""
+
+#: blocks/bs-video/editor.js:144
+msgid "Video will be muted (required for autoplay)"
+msgstr ""
+
+#: blocks/bs-video/editor.js:154
+msgid "Preload"
+msgstr ""
+
+#: blocks/bs-video/editor.js:169
+msgid "None - Do not preload"
+msgstr ""
+
+#: blocks/bs-video/editor.js:170
+msgid "Metadata - Load title, duration, etc"
+msgstr ""
+
+#: blocks/bs-video/editor.js:171
+msgid "Auto - Load entire video"
+msgstr ""
+
+#: blocks/bs-video/editor.js:176
+msgid "Mask Settings"
+msgstr ""
+
+#: blocks/bs-video/editor.js:180
+msgid "Upload an image (like a phone frame) to use as a mask over the video"
+msgstr ""
+
+#: blocks/bs-video/editor.js:198
+msgid "Change Mask"
+msgstr ""
+
+#: blocks/bs-video/editor.js:198
+msgid "Select Mask Image"
+msgstr ""
+
+#: blocks/bs-video/editor.js:211
+msgid "Remove Mask"
+msgstr ""
+
+#: blocks/bs-video/editor.js:216
+msgid "Mask Preview:"
+msgstr ""
+
+#: blocks/bs-video/editor.js:231
+msgid "Overlay Image"
+msgstr ""
+
+#: blocks/bs-video/editor.js:235
+msgid "Upload an image to display on top of the video (e.g., phone bezel, frame)"
+msgstr ""
+
+#: blocks/bs-video/editor.js:253
+msgid "Change Overlay Image"
+msgstr ""
+
+#: blocks/bs-video/editor.js:253
+msgid "Select Overlay Image"
+msgstr ""
+
+#: blocks/bs-video/editor.js:266
+msgid "Remove Overlay"
+msgstr ""
+
+#: blocks/bs-video/editor.js:271
+msgid "Overlay Preview:"
+msgstr ""
+
+#: blocks/bs-video/editor.js:286
+msgid "Size & Display"
+msgstr ""
+
+#: blocks/bs-video/editor.js:288
+msgid "Width"
+msgstr ""
+
+#: blocks/bs-video/editor.js:292
+msgid "Set as percentage (100%) or pixels (400px)"
+msgstr ""
+
+#: blocks/bs-video/editor.js:299
+msgid "Set as pixels (600px) or auto"
+msgstr ""
+
+#: blocks/bs-video/editor.js:304
+msgid "Object Fit"
+msgstr ""
+
+#: blocks/bs-video/editor.js:319
+msgid "Cover"
+msgstr ""
+
+#: blocks/bs-video/editor.js:320
+msgid "Contain"
+msgstr ""
+
+#: blocks/bs-video/editor.js:321
+msgid "Fill"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:10
 msgid "WooCommerce Products (Bootstrap Loop)"
 msgstr ""
 
-#: blocks/bs-wc-products/block.json
-msgctxt "block description"
-msgid "Display WooCommerce products with Bootstrap styling"
+#: blocks/bs-wc-products/editor.js:52
+#: blocks/bs-wc-products/editor.js:103
+msgid "Default order"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:53
+msgid "Title"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:54
+msgid "Date"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:55
+msgid "Modified"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:56
+msgid "Price"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:57
+msgid "Popularity"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:58
+msgid "Rating"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:60
+msgid "Random"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:68
+msgid "Loop Settings"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:70
+msgid "Use theme WooCommerce catalog defaults"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:75
+msgid "Products per row"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:78
+#: blocks/bs-wc-products/editor.js:85
+#: blocks/bs-wc-products/editor.js:92
+msgid "Theme default will be used (this value is ignored)"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:82
+msgid "Products per row (mobile)"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:85
+msgid "For small screens. Recommended: 1 or 2"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:89
+msgid "Products per page"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:97
+msgid "Default order by"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:110
+msgid "Show pagination"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:115
+msgid "Show ordering (filter)"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:120
+msgid "Show search"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:125
+msgid "Only products in stock"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:130
+msgid "Product Categories"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:140
+msgid "No categories found"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:144
+msgid "WooCommerce Products"
+msgstr ""
+
+#: blocks/bs-wc-products/editor.js:145
+msgid "The loop will render on the frontend."
+msgstr ""
+
+#: blocks/core-blocks-extension.js:319
+msgid "SplitText Animation"
+msgstr ""
+
+#: blocks/core-blocks-extension.js:323
+msgid "Enable SplitText"
+msgstr ""
+
+#: blocks/core-blocks-extension.js:324
+msgid "Split text into words or characters for staggered animations"
+msgstr ""
+
+#: blocks/core-blocks-extension.js:333
+msgid "Split Type"
+msgstr ""
+
+#: blocks/core-blocks-extension.js:336
+msgid "Words"
+msgstr ""
+
+#: blocks/core-blocks-extension.js:337
+msgid "Characters"
+msgstr ""
+
+#: blocks/core-blocks-extension.js:343
+msgid "Stagger Delay (seconds)"
+msgstr ""
+
+#: blocks/core-blocks-extension.js:344
+msgid "Delay between each word/character animation"
 msgstr ""

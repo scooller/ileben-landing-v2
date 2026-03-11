@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-spinner', {
-        title: __('Bootstrap Spinner', 'bootstrap-theme'),
-        description: __('Bootstrap loading spinner component', 'bootstrap-theme'),
+        title: __('Bootstrap Spinner', 'ileben-landing'),
+        description: __('Bootstrap loading spinner component', 'ileben-landing'),
         icon: 'update',
         category: 'ileben-landing',
         keywords: [__('spinner'), __('loading'), __('bootstrap')],
@@ -91,42 +91,42 @@
             const containerClasses = attributes.centered ? 'd-flex justify-content-center' : '';
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Spinner Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Spinner Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Type', 'bootstrap-theme'),
+                            label: __('Type', 'ileben-landing'),
                             value: attributes.type,
                             options: typeOptions,
                             onChange: (value) => setAttributes({ type: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Color', 'bootstrap-theme'),
+                            label: __('Color', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Size', 'bootstrap-theme'),
+                            label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Centered', 'bootstrap-theme'),
-                            help: __('Center the spinner horizontally', 'bootstrap-theme'),
+                            label: __('Centered', 'ileben-landing'),
+                            help: __('Center the spinner horizontally', 'ileben-landing'),
                             checked: attributes.centered,
                             onChange: (value) => setAttributes({ centered: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Show Label', 'bootstrap-theme'),
-                            help: __('Display text next to spinner', 'bootstrap-theme'),
+                            label: __('Show Label', 'ileben-landing'),
+                            help: __('Display text next to spinner', 'ileben-landing'),
                             checked: attributes.showLabel,
                             onChange: (value) => setAttributes({ showLabel: value })
                         }),
                         attributes.showLabel && createElement(TextControl, {
-                            label: __('Label Text', 'bootstrap-theme'),
+                            label: __('Label Text', 'ileben-landing'),
                             value: attributes.label,
                             onChange: (value) => setAttributes({ label: value }),
-                            placeholder: __('Loading...', 'bootstrap-theme')
+                            placeholder: __('Loading...', 'ileben-landing')
                         })
                     )
                 ),

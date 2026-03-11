@@ -169,7 +169,7 @@ function bootstrap_theme_render_bs_container_block($attributes, $content, $block
     if (!empty($content)) {
         $output .= $content;
     } else {
-        $output .= '<p>' . __('Add content to your container.', 'bootstrap-theme') . '</p>';
+        $output .= '<p>' . __('Add content to your container.', 'ileben-landing') . '</p>';
     }
 
     // Render default Swiper controls (can be enabled via JS config)

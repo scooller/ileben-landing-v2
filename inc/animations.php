@@ -12,47 +12,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-/**
- * Enqueue animation scripts and styles
- */
-function bootstrap_theme_enqueue_animation_scripts()
-{
-    $version = defined('ILEBEN_THEME_VERSION') ? ILEBEN_THEME_VERSION : '0.1.0';
-
-    // Master toggle from ACF Options: if disabled, do not enqueue GSAP core/plugins.
-    $enable_gsap = true;
-    if (function_exists('get_field')) {
-        $enable_gsap = (bool) get_field('enable_gsap', 'option');
-    }
-
-    if (!$enable_gsap) {
-        return;
-    }
-
-    // GSAP library (CDN)
-    wp_enqueue_script(
-        'gsap',
-        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js',
-        [],
-        '3.12.2',
-        true
-    );
-
-    // ScrollTrigger plugin
-    wp_enqueue_script(
-        'gsap-scroll-trigger',
-        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js',
-        ['gsap'],
-        '3.12.2',
-        true
-    );
-
-    // Animation manager script is now bundled in main.js via Vite
-    // No need to enqueue separately since it's imported in main.js
-
-}
-add_action('wp_enqueue_scripts', 'bootstrap_theme_enqueue_animation_scripts');
-add_action('admin_enqueue_scripts', 'bootstrap_theme_enqueue_animation_scripts');
+// GSAP runtime is loaded from the Vite bundle via dynamic imports in assets/js/main.js.
+// This file only registers block editor controls for animation settings.
 
 /**
  * Enqueue animation controls for Gutenberg editor

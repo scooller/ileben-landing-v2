@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-button-group', {
-        title: __('Bootstrap Button Group', 'bootstrap-theme'),
-        description: __('Group multiple buttons together', 'bootstrap-theme'),
+        title: __('Bootstrap Button Group', 'ileben-landing'),
+        description: __('Group multiple buttons together', 'ileben-landing'),
         icon: 'editor-justify',
         category: 'ileben-landing',
         keywords: [__('button'), __('group'), __('toolbar')],
@@ -57,7 +57,7 @@
                 },
                     createElement('img', {
                         src: '/wp-content/themes/bootstrap-theme/blocks/bs-button-group/example.png',
-                        alt: __('Bootstrap Button Group Preview', 'bootstrap-theme'),
+                        alt: __('Bootstrap Button Group Preview', 'ileben-landing'),
                         style: { width: '100%', height: 'auto', maxWidth: '600px' }
                     })
                 );
@@ -78,28 +78,28 @@
 
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Button Group Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Button Group Settings', 'ileben-landing') },
                         createElement(ToggleControl, {
-                            label: __('Toolbar', 'bootstrap-theme'),
-                            help: __('Combine multiple button groups into a toolbar', 'bootstrap-theme'),
+                            label: __('Toolbar', 'ileben-landing'),
+                            help: __('Combine multiple button groups into a toolbar', 'ileben-landing'),
                             checked: attributes.toolbar,
                             onChange: (value) => setAttributes({ toolbar: value })
                         }),
                         !attributes.toolbar && createElement(ToggleControl, {
-                            label: __('Vertical', 'bootstrap-theme'),
-                            help: __('Stack buttons vertically', 'bootstrap-theme'),
+                            label: __('Vertical', 'ileben-landing'),
+                            help: __('Stack buttons vertically', 'ileben-landing'),
                             checked: attributes.vertical,
                             onChange: (value) => setAttributes({ vertical: value })
                         }),
                         !attributes.toolbar && createElement(SelectControl, {
-                            label: __('Size', 'bootstrap-theme'),
+                            label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
                         }),
                         createElement(TextControl, {
-                            label: __('ARIA Label', 'bootstrap-theme'),
-                            help: __('Accessibility label for the button group', 'bootstrap-theme'),
+                            label: __('ARIA Label', 'ileben-landing'),
+                            help: __('Accessibility label for the button group', 'ileben-landing'),
                             value: attributes.ariaLabel,
                             onChange: (value) => setAttributes({ ariaLabel: value })
                         })
@@ -124,8 +124,8 @@
                             ['bootstrap-theme/bs-button', { text: 'Right', variant: 'outline-primary' }]
                         ],
                         placeholder: attributes.toolbar ? 
-                            __('Add button groups...', 'bootstrap-theme') :
-                            __('Add buttons to group...', 'bootstrap-theme')
+                            __('Add button groups...', 'ileben-landing') :
+                            __('Add buttons to group...', 'ileben-landing')
                     })
                 )
             );

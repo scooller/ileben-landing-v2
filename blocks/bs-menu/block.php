@@ -26,19 +26,19 @@ function bootstrap_theme_render_bs_menu_block($attributes, $content, $block) {
     $textAlign = $attributes['textAlign'] ?? '';
     
     if (empty($menuId)) {
-        return '<div class="alert alert-warning">' . __('Please select a menu to display.', 'bootstrap-theme') . '</div>';
+        return '<div class="alert alert-warning">' . __('Please select a menu to display.', 'ileben-landing') . '</div>';
     }
     
     // Get the menu
     $menu = wp_get_nav_menu_object($menuId);
     if (!$menu) {
-        return '<div class="alert alert-danger">' . __('Selected menu not found.', 'bootstrap-theme') . '</div>';
+        return '<div class="alert alert-danger">' . __('Selected menu not found.', 'ileben-landing') . '</div>';
     }
     
     // Get menu items
     $menu_items = wp_get_nav_menu_items($menu->term_id);
     if (empty($menu_items)) {
-        return '<div class="alert alert-info">' . __('This menu has no items.', 'bootstrap-theme') . '</div>';
+        return '<div class="alert alert-info">' . __('This menu has no items.', 'ileben-landing') . '</div>';
     }
     
     // Build menu classes based on style

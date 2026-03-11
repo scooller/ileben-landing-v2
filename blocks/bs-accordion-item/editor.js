@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-accordion-item', {
-        title: __('Bootstrap Accordion Item', 'bootstrap-theme'),
-        description: __('Individual item within a Bootstrap accordion', 'bootstrap-theme'),
+        title: __('Bootstrap Accordion Item', 'ileben-landing'),
+        description: __('Individual item within a Bootstrap accordion', 'ileben-landing'),
         icon: 'format-aside',
         category: 'ileben-landing',
         keywords: [__('accordion'), __('item'), __('bootstrap')],
@@ -49,7 +49,7 @@
             if (attributes.preview) {
                 return createElement('img', {
                     src: '/wp-content/themes/bootstrap-theme/blocks/bs-accordion-item/example.png',
-                    alt: __('Accordion item preview', 'bootstrap-theme'),
+                    alt: __('Accordion item preview', 'ileben-landing'),
                     style: { width: '100%', height: 'auto', display: 'block' }
                 });
             }
@@ -61,14 +61,14 @@
             
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Accordion Item Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Accordion Item Settings', 'ileben-landing') },
                         createElement(ToggleControl, {
-                            label: __('Open by Default', 'bootstrap-theme'),
+                            label: __('Open by Default', 'ileben-landing'),
                             checked: attributes.isOpen,
                             onChange: (value) => setAttributes({ isOpen: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Item ID', 'bootstrap-theme'),
+                            label: __('Item ID', 'ileben-landing'),
                             value: attributes.itemId,
                             onChange: (value) => setAttributes({ itemId: value })
                         })
@@ -91,7 +91,7 @@
                                 tagName: 'span',
                                 value: attributes.title,
                                 onChange: (value) => setAttributes({ title: value }),
-                                placeholder: __('Accordion title...', 'bootstrap-theme')
+                                placeholder: __('Accordion title...', 'ileben-landing')
                             })
                         )
                     ),
@@ -102,7 +102,7 @@
                     },
                         createElement('div', { className: 'accordion-body' },
                             createElement(InnerBlocks, {
-                                placeholder: __('Add accordion content...', 'bootstrap-theme')
+                                placeholder: __('Add accordion content...', 'ileben-landing')
                             })
                         )
                     )

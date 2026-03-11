@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-carousel-item', {
-        title: __('Bootstrap Carousel Item', 'bootstrap-theme'),
-        description: __('Individual slide within a Bootstrap carousel', 'bootstrap-theme'),
+        title: __('Bootstrap Carousel Item', 'ileben-landing'),
+        description: __('Individual slide within a Bootstrap carousel', 'ileben-landing'),
         icon: 'format-image',
         category: 'ileben-landing',
         keywords: [__('carousel'), __('slide'), __('item')],
@@ -61,7 +61,7 @@
             if (attributes.preview) {
                 return createElement('img', {
                     src: '/wp-content/themes/bootstrap-theme/blocks/bs-carousel-item/example.png',
-                    alt: __('Carousel item preview', 'bootstrap-theme'),
+                    alt: __('Carousel item preview', 'ileben-landing'),
                     style: { width: '100%', height: 'auto', display: 'block' }
                 });
             }
@@ -85,16 +85,16 @@
             
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Carousel Item Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Carousel Item Settings', 'ileben-landing') },
                         createElement(ToggleControl, {
-                            label: __('Active Slide', 'bootstrap-theme'),
-                            help: __('Set as the default active slide', 'bootstrap-theme'),
+                            label: __('Active Slide', 'ileben-landing'),
+                            help: __('Set as the default active slide', 'ileben-landing'),
                             checked: attributes.active,
                             onChange: (value) => setAttributes({ active: value })
                         }),
                         createElement('div', { className: 'components-base-control' },
                             createElement('label', { className: 'components-base-control__label' }, 
-                                __('Background Image', 'bootstrap-theme')
+                                __('Background Image', 'ileben-landing')
                             ),
                             createElement(MediaUploadCheck, {},
                                 createElement(MediaUpload, {
@@ -113,25 +113,25 @@
                                                     onClick: open,
                                                     variant: 'secondary',
                                                     style: { marginTop: '10px', marginRight: '10px' }
-                                                }, __('Replace Image', 'bootstrap-theme')),
+                                                }, __('Replace Image', 'ileben-landing')),
                                                 createElement(Button, {
                                                     onClick: () => setAttributes({ backgroundImage: null }),
                                                     variant: 'link',
                                                     isDestructive: true,
                                                     style: { marginTop: '10px' }
-                                                }, __('Remove Image', 'bootstrap-theme'))
+                                                }, __('Remove Image', 'ileben-landing'))
                                             ) :
                                             createElement(Button, {
                                                 onClick: open,
                                                 variant: 'secondary'
-                                            }, __('Select Image', 'bootstrap-theme'))
+                                            }, __('Select Image', 'ileben-landing'))
                                     )
                                 })
                             )
                         ),
                         createElement('div', { className: 'components-base-control' },
                             createElement('label', { className: 'components-base-control__label' },
-                                __('Background Image Mobile', 'bootstrap-theme')
+                                __('Background Image Mobile', 'ileben-landing')
                             ),
                             createElement(MediaUploadCheck, {},
                                 createElement(MediaUpload, {
@@ -150,34 +150,34 @@
                                                     onClick: open,
                                                     variant: 'secondary',
                                                     style: { marginTop: '10px', marginRight: '10px' }
-                                                }, __('Replace Image', 'bootstrap-theme')),
+                                                }, __('Replace Image', 'ileben-landing')),
                                                 createElement(Button, {
                                                     onClick: () => setAttributes({ backgroundImageMobile: null }),
                                                     variant: 'link',
                                                     isDestructive: true,
                                                     style: { marginTop: '10px' }
-                                                }, __('Remove Image', 'bootstrap-theme'))
+                                                }, __('Remove Image', 'ileben-landing'))
                                             ) :
                                             createElement(Button, {
                                                 onClick: open,
                                                 variant: 'secondary'
-                                            }, __('Select Image', 'bootstrap-theme'))
+                                            }, __('Select Image', 'ileben-landing'))
                                     )
                                 })
                             )
                         ),
                         createElement(TextControl, {
-                            label: __('Link URL', 'bootstrap-theme'),
-                            help: __('Optional URL to make the entire slide clickable', 'bootstrap-theme'),
+                            label: __('Link URL', 'ileben-landing'),
+                            help: __('Optional URL to make the entire slide clickable', 'ileben-landing'),
                             value: attributes.link || '',
                             onChange: (value) => setAttributes({ link: value })
                         }),
                         attributes.link && createElement(SelectControl, {
-                            label: __('Link Target', 'bootstrap-theme'),
+                            label: __('Link Target', 'ileben-landing'),
                             value: attributes.target || '_self',
                             options: [
-                                { label: __('Same Window', 'bootstrap-theme'), value: '_self' },
-                                { label: __('New Window', 'bootstrap-theme'), value: '_blank' }
+                                { label: __('Same Window', 'ileben-landing'), value: '_self' },
+                                { label: __('New Window', 'ileben-landing'), value: '_blank' }
                             ],
                             onChange: (value) => setAttributes({ target: value })
                         })
@@ -198,7 +198,7 @@
                     },
                         createElement('div', { className: 'text-center' },
                             createElement(InnerBlocks, {
-                                placeholder: __('Add slide content (text, image, etc)...', 'bootstrap-theme')
+                                placeholder: __('Add slide content (text, image, etc)...', 'ileben-landing')
                             })
                         )
                     )

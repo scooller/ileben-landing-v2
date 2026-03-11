@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-badge', {
-        title: __('Bootstrap Badge', 'bootstrap-theme'),
-        description: __('Bootstrap badge component for labels and counters', 'bootstrap-theme'),
+        title: __('Bootstrap Badge', 'ileben-landing'),
+        description: __('Bootstrap badge component for labels and counters', 'ileben-landing'),
         icon: 'tag',
         category: 'ileben-landing',
         keywords: [__('badge'), __('label'), __('bootstrap')],
@@ -78,21 +78,21 @@
             ].filter(Boolean).join(' ');
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Badge Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Badge Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Variant', 'bootstrap-theme'),
+                            label: __('Variant', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Pill Style', 'bootstrap-theme'),
-                            help: __('Make badge more rounded', 'bootstrap-theme'),
+                            label: __('Pill Style', 'ileben-landing'),
+                            help: __('Make badge more rounded', 'ileben-landing'),
                             checked: attributes.pill,
                             onChange: (value) => setAttributes({ pill: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Size', 'bootstrap-theme'),
+                            label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
@@ -105,7 +105,7 @@
                         className: badgeClasses,
                         value: attributes.text,
                         onChange: (value) => setAttributes({ text: value }),
-                        placeholder: __('Badge text...', 'bootstrap-theme'),
+                        placeholder: __('Badge text...', 'ileben-landing'),
                         allowedFormats: []
                     })
                 )

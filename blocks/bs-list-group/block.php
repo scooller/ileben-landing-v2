@@ -53,9 +53,9 @@ function bootstrap_theme_render_bs_list_group_block($attributes, $content, $bloc
         $output .= $content;
     } else {
         // Default content if no items
-        $output .= '<div class="list-group-item">' . __('First item', 'bootstrap-theme') . '</div>';
-        $output .= '<div class="list-group-item active">' . __('Second item', 'bootstrap-theme') . '</div>';
-        $output .= '<div class="list-group-item">' . __('Third item', 'bootstrap-theme') . '</div>';
+        $output .= '<div class="list-group-item">' . __('First item', 'ileben-landing') . '</div>';
+        $output .= '<div class="list-group-item active">' . __('Second item', 'ileben-landing') . '</div>';
+        $output .= '<div class="list-group-item">' . __('Third item', 'ileben-landing') . '</div>';
     }
 
     $output .= '</' . $tag . '>';

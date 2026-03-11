@@ -17,8 +17,8 @@
     ];
 
     registerBlockType('bootstrap-theme/bs-iframe', {
-        title: __('Bootstrap Iframe', 'bootstrap-theme'),
-        description: __('Iframe responsive usando helper Ratio de Bootstrap 5', 'bootstrap-theme'),
+        title: __('Bootstrap Iframe', 'ileben-landing'),
+        description: __('Iframe responsive usando helper Ratio de Bootstrap 5', 'ileben-landing'),
         icon: 'video-alt3',
         category: 'ileben-landing',
         keywords: [__('iframe'), __('embed'), __('video')],
@@ -38,32 +38,32 @@
 
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Iframe Settings', 'bootstrap-theme'), initialOpen: true },
+                    createElement(PanelBody, { title: __('Iframe Settings', 'ileben-landing'), initialOpen: true },
                         createElement(TextControl, {
-                            label: __('Embed URL', 'bootstrap-theme'),
+                            label: __('Embed URL', 'ileben-landing'),
                             value: attributes.embedUrl,
                             onChange: (value) => setAttributes({ embedUrl: value }),
                             placeholder: 'https://www.youtube.com/embed/VIDEO_ID'
                         }),
                         createElement(TextControl, {
-                            label: __('Title (accessibility)', 'bootstrap-theme'),
+                            label: __('Title (accessibility)', 'ileben-landing'),
                             value: attributes.title,
                             onChange: (value) => setAttributes({ title: value }),
-                            placeholder: __('Contenido incrustado', 'bootstrap-theme')
+                            placeholder: __('Contenido incrustado', 'ileben-landing')
                         }),
                         createElement(SelectControl, {
-                            label: __('Ratio', 'bootstrap-theme'),
+                            label: __('Ratio', 'ileben-landing'),
                             value: attributes.ratio,
                             options: ratioOptions,
                             onChange: (value) => setAttributes({ ratio: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Allow fullscreen', 'bootstrap-theme'),
+                            label: __('Allow fullscreen', 'ileben-landing'),
                             checked: !!attributes.allowFullscreen,
                             onChange: (value) => setAttributes({ allowFullscreen: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Loading', 'bootstrap-theme'),
+                            label: __('Loading', 'ileben-landing'),
                             value: attributes.loading,
                             options: [
                                 { label: 'lazy', value: 'lazy' },
@@ -75,11 +75,11 @@
                 ),
                 createElement('div', blockProps,
                     !attributes.embedUrl
-                        ? createElement(Notice, { status: 'info', isDismissible: false }, __('Ingresa un Embed URL para previsualizar el iframe.', 'bootstrap-theme'))
+                        ? createElement(Notice, { status: 'info', isDismissible: false }, __('Ingresa un Embed URL para previsualizar el iframe.', 'ileben-landing'))
                         : createElement('div', { className: `ratio ratio-${attributes.ratio || '16x9'}` },
                             createElement('iframe', {
                                 src: attributes.embedUrl,
-                                title: attributes.title || __('Contenido incrustado', 'bootstrap-theme'),
+                                title: attributes.title || __('Contenido incrustado', 'ileben-landing'),
                                 loading: attributes.loading || 'lazy',
                                 style: { border: 0 },
                                 ...(attributes.allowFullscreen ? { allowFullScreen: true } : {})

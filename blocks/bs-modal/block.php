@@ -14,8 +14,8 @@ if (!defined('ABSPATH')) {
  */
 function bootstrap_theme_render_bs_modal_block($attributes, $content, $block) {
     $modalId = $attributes['modalId'] ?? 'modal-' . wp_generate_uuid4();
-    $title = $attributes['title'] ?? __('Modal title', 'bootstrap-theme');
-    $buttonText = $attributes['buttonText'] ?? __('Open Modal', 'bootstrap-theme');
+    $title = $attributes['title'] ?? __('Modal title', 'ileben-landing');
+    $buttonText = $attributes['buttonText'] ?? __('Open Modal', 'ileben-landing');
     $buttonVariant = $attributes['buttonVariant'] ?? 'btn-primary';
     $size = $attributes['size'] ?? '';
     $centered = $attributes['centered'] ?? false;
@@ -67,7 +67,7 @@ function bootstrap_theme_render_bs_modal_block($attributes, $content, $block) {
     // Modal header
     $output .= '<div class="modal-header">';
     $output .= '<h5 class="modal-title" id="' . esc_attr($modalId) . 'Label">' . esc_html($title) . '</h5>';
-    $output .= '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="' . esc_attr__('Close', 'bootstrap-theme') . '"></button>';
+    $output .= '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="' . esc_attr__('Close', 'ileben-landing') . '"></button>';
     $output .= '</div>';
     
     // Modal body
@@ -75,13 +75,13 @@ function bootstrap_theme_render_bs_modal_block($attributes, $content, $block) {
     if (!empty($content)) {
         $output .= $content;
     } else {
-        $output .= '<p>' . __('Add content to your modal.', 'bootstrap-theme') . '</p>';
+        $output .= '<p>' . __('Add content to your modal.', 'ileben-landing') . '</p>';
     }
     $output .= '</div>';
     
     // Modal footer
     $output .= '<div class="modal-footer">';
-    $output .= '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">' . __('Close', 'bootstrap-theme') . '</button>';
+    $output .= '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">' . __('Close', 'ileben-landing') . '</button>';
     $output .= '</div>';
     
     $output .= '</div>'; // modal-content

@@ -15,68 +15,68 @@ const {
 const { createElement: el, Fragment } = wp.element;
 
 /**
- * Animación types disponibles
+ * Animaci├│n types disponibles
  */
 const ANIMATION_TYPES = [
-    { label: __('None', 'bootstrap-theme'), value: '' },
-    { label: __('--- Fade ---', 'bootstrap-theme'), value: '' },
-    { label: __('Fade In', 'bootstrap-theme'), value: 'fadeIn' },
-    { label: __('Fade In Up', 'bootstrap-theme'), value: 'fadeInUp' },
-    { label: __('Fade In Down', 'bootstrap-theme'), value: 'fadeInDown' },
-    { label: __('Fade In Left', 'bootstrap-theme'), value: 'fadeInLeft' },
-    { label: __('Fade In Right', 'bootstrap-theme'), value: 'fadeInRight' },
-    { label: __('--- Slide ---', 'bootstrap-theme'), value: '' },
-    { label: __('Slide Up', 'bootstrap-theme'), value: 'slideUp' },
-    { label: __('Slide Down', 'bootstrap-theme'), value: 'slideDown' },
-    { label: __('Slide Left', 'bootstrap-theme'), value: 'slideLeft' },
-    { label: __('Slide Right', 'bootstrap-theme'), value: 'slideRight' },
-    { label: __('--- Scale ---', 'bootstrap-theme'), value: '' },
-    { label: __('Scale In', 'bootstrap-theme'), value: 'scaleIn' },
-    { label: __('Scale Up', 'bootstrap-theme'), value: 'scaleUp' },
-    { label: __('Scale Down', 'bootstrap-theme'), value: 'scaleDown' },
-    { label: __('--- Rotate ---', 'bootstrap-theme'), value: '' },
-    { label: __('Rotate', 'bootstrap-theme'), value: 'rotate' },
-    { label: __('Rotate Fast', 'bootstrap-theme'), value: 'rotateFast' },
-    { label: __('--- Effects ---', 'bootstrap-theme'), value: '' },
-    { label: __('Bounce', 'bootstrap-theme'), value: 'bounce' },
-    { label: __('Elastic', 'bootstrap-theme'), value: 'elastic' },
-    { label: __('Flip', 'bootstrap-theme'), value: 'flip' },
-    { label: __('Flip X', 'bootstrap-theme'), value: 'flipX' },
-    { label: __('Pulse', 'bootstrap-theme'), value: 'pulse' },
-    { label: __('--- Special ---', 'bootstrap-theme'), value: '' },
-    { label: __('Count Up', 'bootstrap-theme'), value: 'countup' },
+    { label: __('None', 'ileben-landing'), value: '' },
+    { label: __('--- Fade ---', 'ileben-landing'), value: '' },
+    { label: __('Fade In', 'ileben-landing'), value: 'fadeIn' },
+    { label: __('Fade In Up', 'ileben-landing'), value: 'fadeInUp' },
+    { label: __('Fade In Down', 'ileben-landing'), value: 'fadeInDown' },
+    { label: __('Fade In Left', 'ileben-landing'), value: 'fadeInLeft' },
+    { label: __('Fade In Right', 'ileben-landing'), value: 'fadeInRight' },
+    { label: __('--- Slide ---', 'ileben-landing'), value: '' },
+    { label: __('Slide Up', 'ileben-landing'), value: 'slideUp' },
+    { label: __('Slide Down', 'ileben-landing'), value: 'slideDown' },
+    { label: __('Slide Left', 'ileben-landing'), value: 'slideLeft' },
+    { label: __('Slide Right', 'ileben-landing'), value: 'slideRight' },
+    { label: __('--- Scale ---', 'ileben-landing'), value: '' },
+    { label: __('Scale In', 'ileben-landing'), value: 'scaleIn' },
+    { label: __('Scale Up', 'ileben-landing'), value: 'scaleUp' },
+    { label: __('Scale Down', 'ileben-landing'), value: 'scaleDown' },
+    { label: __('--- Rotate ---', 'ileben-landing'), value: '' },
+    { label: __('Rotate', 'ileben-landing'), value: 'rotate' },
+    { label: __('Rotate Fast', 'ileben-landing'), value: 'rotateFast' },
+    { label: __('--- Effects ---', 'ileben-landing'), value: '' },
+    { label: __('Bounce', 'ileben-landing'), value: 'bounce' },
+    { label: __('Elastic', 'ileben-landing'), value: 'elastic' },
+    { label: __('Flip', 'ileben-landing'), value: 'flip' },
+    { label: __('Flip X', 'ileben-landing'), value: 'flipX' },
+    { label: __('Pulse', 'ileben-landing'), value: 'pulse' },
+    { label: __('--- Special ---', 'ileben-landing'), value: '' },
+    { label: __('Count Up', 'ileben-landing'), value: 'countup' },
 ];
 
 const ANIMATION_TRIGGERS = [
-    { label: __('On Load', 'bootstrap-theme'), value: 'on-load' },
-    { label: __('On Scroll', 'bootstrap-theme'), value: 'on-scroll' },
-    { label: __('On Hover', 'bootstrap-theme'), value: 'on-hover' },
-    { label: __('On Click', 'bootstrap-theme'), value: 'on-click' },
+    { label: __('On Load', 'ileben-landing'), value: 'on-load' },
+    { label: __('On Scroll', 'ileben-landing'), value: 'on-scroll' },
+    { label: __('On Hover', 'ileben-landing'), value: 'on-hover' },
+    { label: __('On Click', 'ileben-landing'), value: 'on-click' },
 ];
 
 const EASE_OPTIONS = [
-    { label: __('Linear', 'bootstrap-theme'), value: 'linear' },
-    { label: __('Power 1 In Out', 'bootstrap-theme'), value: 'power1.inOut' },
-    { label: __('Power 2 In Out', 'bootstrap-theme'), value: 'power2.inOut' },
-    { label: __('Power 3 In Out', 'bootstrap-theme'), value: 'power3.inOut' },
-    { label: __('Power 4 In Out', 'bootstrap-theme'), value: 'power4.inOut' },
-    { label: __('Back Out', 'bootstrap-theme'), value: 'back.out' },
-    { label: __('Elastic Out', 'bootstrap-theme'), value: 'elastic.out' },
-    { label: __('Bounce Out', 'bootstrap-theme'), value: 'bounce.out' },
-    { label: __('Circ In Out', 'bootstrap-theme'), value: 'circ.inOut' },
-    { label: __('Sine In Out', 'bootstrap-theme'), value: 'sine.inOut' },
+    { label: __('Linear', 'ileben-landing'), value: 'linear' },
+    { label: __('Power 1 In Out', 'ileben-landing'), value: 'power1.inOut' },
+    { label: __('Power 2 In Out', 'ileben-landing'), value: 'power2.inOut' },
+    { label: __('Power 3 In Out', 'ileben-landing'), value: 'power3.inOut' },
+    { label: __('Power 4 In Out', 'ileben-landing'), value: 'power4.inOut' },
+    { label: __('Back Out', 'ileben-landing'), value: 'back.out' },
+    { label: __('Elastic Out', 'ileben-landing'), value: 'elastic.out' },
+    { label: __('Bounce Out', 'ileben-landing'), value: 'bounce.out' },
+    { label: __('Circ In Out', 'ileben-landing'), value: 'circ.inOut' },
+    { label: __('Sine In Out', 'ileben-landing'), value: 'sine.inOut' },
 ];
 
 const HOVER_EFFECTS = [
-    { label: __('Scale', 'bootstrap-theme'), value: 'scale' },
-    { label: __('Brightness', 'bootstrap-theme'), value: 'brightness' },
-    { label: __('Shadow', 'bootstrap-theme'), value: 'shadow' },
-    { label: __('Lift', 'bootstrap-theme'), value: 'lift' },
-    { label: __('Glow', 'bootstrap-theme'), value: 'glow' },
+    { label: __('Scale', 'ileben-landing'), value: 'scale' },
+    { label: __('Brightness', 'ileben-landing'), value: 'brightness' },
+    { label: __('Shadow', 'ileben-landing'), value: 'shadow' },
+    { label: __('Lift', 'ileben-landing'), value: 'lift' },
+    { label: __('Glow', 'ileben-landing'), value: 'glow' },
 ];
 
 /**
- * Componente principal de controles de animación
+ * Componente principal de controles de animaci├│n
  */
 function AnimationControls({ attributes, setAttributes, allowHover = true, allowScroll = true }) {
     const animationType = attributes.animationType || '';
@@ -86,11 +86,11 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
         null,
         el(
             PanelBody,
-            { title: __('Animation', 'bootstrap-theme'), initialOpen: false },
+            { title: __('Animation', 'ileben-landing'), initialOpen: false },
             
             // Animation Type
             el(SelectControl, {
-                label: __('Animation Type', 'bootstrap-theme'),
+                label: __('Animation Type', 'ileben-landing'),
                 value: animationType,
                 options: ANIMATION_TYPES,
                 onChange: (value) => {
@@ -122,7 +122,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
 
                 // Animation Trigger
                 el(SelectControl, {
-                    label: __('Trigger', 'bootstrap-theme'),
+                    label: __('Trigger', 'ileben-landing'),
                     value: attributes.animationTrigger || 'on-load',
                     options: ANIMATION_TRIGGERS,
                     onChange: (value) => setAttributes({ animationTrigger: value })
@@ -130,7 +130,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
 
                 // Duration
                 el(RangeControl, {
-                    label: __('Duration (seconds)', 'bootstrap-theme'),
+                    label: __('Duration (seconds)', 'ileben-landing'),
                     value: attributes.animationDuration || 0.6,
                     min: 0.1,
                     max: 3,
@@ -140,7 +140,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
 
                 // Delay
                 el(RangeControl, {
-                    label: __('Delay (seconds)', 'bootstrap-theme'),
+                    label: __('Delay (seconds)', 'ileben-landing'),
                     value: attributes.animationDelay || 0,
                     min: 0,
                     max: 5,
@@ -150,7 +150,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
 
                 // Easing
                 el(SelectControl, {
-                    label: __('Easing', 'bootstrap-theme'),
+                    label: __('Easing', 'ileben-landing'),
                     value: attributes.animationEase || 'power2.inOut',
                     options: EASE_OPTIONS,
                     onChange: (value) => setAttributes({ animationEase: value })
@@ -159,7 +159,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                 // Distance (para slides/fades directional)
                 ['fadeInUp', 'fadeInDown', 'fadeInLeft', 'fadeInRight', 'slideUp', 'slideDown', 'slideLeft', 'slideRight', 'bounce'].includes(animationType) &&
                 el(TextControl, {
-                    label: __('Distance (px)', 'bootstrap-theme'),
+                    label: __('Distance (px)', 'ileben-landing'),
                     value: attributes.animationDistance || '30',
                     onChange: (value) => setAttributes({ animationDistance: value })
                 }),
@@ -167,7 +167,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                 // Scale (para scale animations)
                 ['scaleIn', 'scaleUp', 'scaleDown'].includes(animationType) &&
                 el(RangeControl, {
-                    label: __('Scale From', 'bootstrap-theme'),
+                    label: __('Scale From', 'ileben-landing'),
                     value: parseFloat(attributes.animationScale || '0.8'),
                     min: 0.1,
                     max: 2,
@@ -178,7 +178,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                 // Rotation (para rotate animations)
                 ['rotate', 'rotateFast', 'flip', 'flipX'].includes(animationType) &&
                 el(RangeControl, {
-                    label: __('Rotation (degrees)', 'bootstrap-theme'),
+                    label: __('Rotation (degrees)', 'ileben-landing'),
                     value: attributes.animationRotation || 360,
                     min: 0,
                     max: 720,
@@ -192,23 +192,23 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                     Fragment,
                     null,
                     el(TextControl, {
-                        label: __('Count To (target value)', 'bootstrap-theme'),
+                        label: __('Count To (target value)', 'ileben-landing'),
                         type: 'number',
                         value: attributes.animationCountTo || '100',
                         onChange: (value) => setAttributes({ animationCountTo: value })
                     }),
                     el(TextControl, {
-                        label: __('Increment Step', 'bootstrap-theme'),
+                        label: __('Increment Step', 'ileben-landing'),
                         type: 'number',
                         value: attributes.animationCountIncrement || '1',
                         onChange: (value) => setAttributes({ animationCountIncrement: value }),
-                        help: __('El valor de incremento para cada paso del contador (ej: 1, 5, 10)', 'bootstrap-theme')
+                        help: __('El valor de incremento para cada paso del contador (ej: 1, 5, 10)', 'ileben-landing')
                     })
                 ),
 
                 // Repeat options
                 el(RangeControl, {
-                    label: __('Repeat Count', 'bootstrap-theme'),
+                    label: __('Repeat Count', 'ileben-landing'),
                     value: attributes.animationRepeat || 0,
                     min: 0,
                     max: 5,
@@ -220,7 +220,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                     Fragment,
                     null,
                     el(RangeControl, {
-                        label: __('Repeat Delay (seconds)', 'bootstrap-theme'),
+                        label: __('Repeat Delay (seconds)', 'ileben-landing'),
                         value: attributes.animationRepeatDelay || 0.5,
                         min: 0,
                         max: 3,
@@ -229,7 +229,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                     }),
 
                     el(ToggleControl, {
-                        label: __('Yoyo (reverse animation)', 'bootstrap-theme'),
+                        label: __('Yoyo (reverse animation)', 'ileben-landing'),
                         checked: attributes.animationYoyo || false,
                         onChange: (value) => setAttributes({ animationYoyo: value })
                     })
@@ -238,7 +238,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                 // Hover Effect
                 allowHover && attributes.animationTrigger === 'on-hover' &&
                 el(SelectControl, {
-                    label: __('Hover Effect', 'bootstrap-theme'),
+                    label: __('Hover Effect', 'ileben-landing'),
                     value: attributes.animationHoverEffect || 'scale',
                     options: HOVER_EFFECTS,
                     onChange: (value) => setAttributes({ animationHoverEffect: value })
@@ -247,7 +247,7 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                 // Parallax Speed
                 allowScroll && attributes.animationTrigger === 'on-scroll' &&
                 el(RangeControl, {
-                    label: __('Parallax Speed', 'bootstrap-theme'),
+                    label: __('Parallax Speed', 'ileben-landing'),
                     value: attributes.animationParallaxSpeed || 0.5,
                     min: 0.1,
                     max: 2,
@@ -258,33 +258,33 @@ function AnimationControls({ attributes, setAttributes, allowHover = true, allow
                 // ScrollTrigger Start Position
                 allowScroll && attributes.animationTrigger === 'on-scroll' &&
                 el(TextControl, {
-                    label: __('Scroll Start', 'bootstrap-theme'),
+                    label: __('Scroll Start', 'ileben-landing'),
                     value: attributes.animationScrollStart || 'top 70%',
                     onChange: (value) => setAttributes({ animationScrollStart: value }),
-                    help: __('Ej: "top 70%", "top center", "top bottom"', 'bootstrap-theme')
+                    help: __('Ej: "top 70%", "top center", "top bottom"', 'ileben-landing')
                 }),
 
                 // ScrollTrigger End Position
                 allowScroll && attributes.animationTrigger === 'on-scroll' &&
                 el(TextControl, {
-                    label: __('Scroll End', 'bootstrap-theme'),
+                    label: __('Scroll End', 'ileben-landing'),
                     value: attributes.animationScrollEnd || 'top 10%',
                     onChange: (value) => setAttributes({ animationScrollEnd: value }),
-                    help: __('Ej: "top 10%", "bottom center"', 'bootstrap-theme')
+                    help: __('Ej: "top 10%", "bottom center"', 'ileben-landing')
                 }),
 
                 // ScrollTrigger Markers
                 allowScroll && attributes.animationTrigger === 'on-scroll' &&
                 el(ToggleControl, {
-                    label: __('Show ScrollTrigger Markers', 'bootstrap-theme'),
+                    label: __('Show ScrollTrigger Markers', 'ileben-landing'),
                     checked: attributes.animationScrollMarkers || false,
                     onChange: (value) => setAttributes({ animationScrollMarkers: value }),
-                    help: __('Muestra líneas de debug en la página', 'bootstrap-theme')
+                    help: __('Muestra l├¡neas de debug en la p├ígina', 'ileben-landing')
                 }),
 
                 // Mobile enabled
                 el(ToggleControl, {
-                    label: __('Enable on Mobile', 'bootstrap-theme'),
+                    label: __('Enable on Mobile', 'ileben-landing'),
                     checked: attributes.animationMobileEnabled !== false,
                     onChange: (value) => setAttributes({ animationMobileEnabled: value })
                 })

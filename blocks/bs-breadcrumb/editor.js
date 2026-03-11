@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-breadcrumb', {
-        title: __('Bootstrap Breadcrumb', 'bootstrap-theme'),
-        description: __('Bootstrap breadcrumb navigation component', 'bootstrap-theme'),
+        title: __('Bootstrap Breadcrumb', 'ileben-landing'),
+        description: __('Bootstrap breadcrumb navigation component', 'ileben-landing'),
         icon: 'arrow-right-alt2',
         category: 'ileben-landing',
         keywords: [__('breadcrumb'), __('navigation'), __('bootstrap')],
@@ -45,7 +45,7 @@
                 },
                     createElement('img', {
                         src: '/wp-content/themes/bootstrap-theme/blocks/bs-breadcrumb/example.png',
-                        alt: __('Bootstrap Breadcrumb Preview', 'bootstrap-theme'),
+                        alt: __('Bootstrap Breadcrumb Preview', 'ileben-landing'),
                         style: { width: '100%', height: 'auto', maxWidth: '600px' }
                     })
                 );
@@ -57,13 +57,13 @@
 
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Breadcrumb Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Breadcrumb Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Custom Separator', 'bootstrap-theme'),
-                            help: __('Leave empty for default separator', 'bootstrap-theme'),
+                            label: __('Custom Separator', 'ileben-landing'),
+                            help: __('Leave empty for default separator', 'ileben-landing'),
                             value: attributes.separator,
                             onChange: (value) => setAttributes({ separator: value }),
-                            placeholder: __('>', 'bootstrap-theme')
+                            placeholder: __('>', 'ileben-landing')
                         })
                     )
                 ),
@@ -80,7 +80,7 @@
                                 ['bootstrap-theme/bs-breadcrumb-item', { text: 'Category', href: '#' }],
                                 ['bootstrap-theme/bs-breadcrumb-item', { text: 'Current Page', active: true }]
                             ],
-                            placeholder: __('Add breadcrumb items...', 'bootstrap-theme')
+                            placeholder: __('Add breadcrumb items...', 'ileben-landing')
                         })
                     )
                 )

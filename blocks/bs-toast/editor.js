@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-toast', {
-        title: __('Bootstrap Toast', 'bootstrap-theme'),
-        description: __('Bootstrap toast notification component', 'bootstrap-theme'),
+        title: __('Bootstrap Toast', 'ileben-landing'),
+        description: __('Bootstrap toast notification component', 'ileben-landing'),
         icon: 'info',
         category: 'ileben-landing',
         keywords: [__('toast'), __('notification'), __('bootstrap')],
@@ -107,42 +107,42 @@
             ].filter(Boolean).join(' ');
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Toast Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Toast Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Toast ID', 'bootstrap-theme'),
+                            label: __('Toast ID', 'ileben-landing'),
                             value: attributes.toastId,
                             onChange: (value) => setAttributes({ toastId: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Show Header', 'bootstrap-theme'),
+                            label: __('Show Header', 'ileben-landing'),
                             checked: attributes.showHeader,
                             onChange: (value) => setAttributes({ showHeader: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Show Close Button', 'bootstrap-theme'),
+                            label: __('Show Close Button', 'ileben-landing'),
                             checked: attributes.showCloseButton,
                             onChange: (value) => setAttributes({ showCloseButton: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Color Variant', 'bootstrap-theme'),
+                            label: __('Color Variant', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Position', 'bootstrap-theme'),
+                            label: __('Position', 'ileben-landing'),
                             value: attributes.position,
                             options: positionOptions,
                             onChange: (value) => setAttributes({ position: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Auto Hide', 'bootstrap-theme'),
-                            help: __('Automatically hide after delay', 'bootstrap-theme'),
+                            label: __('Auto Hide', 'ileben-landing'),
+                            help: __('Automatically hide after delay', 'ileben-landing'),
                             checked: attributes.autohide,
                             onChange: (value) => setAttributes({ autohide: value })
                         }),
                         attributes.autohide && createElement(RangeControl, {
-                            label: __('Delay (ms)', 'bootstrap-theme'),
+                            label: __('Delay (ms)', 'ileben-landing'),
                             value: attributes.delay,
                             onChange: (value) => setAttributes({ delay: value }),
                             min: 1000,
@@ -150,8 +150,8 @@
                             step: 500
                         }),
                         createElement(ToggleControl, {
-                            label: __('Animation', 'bootstrap-theme'),
-                            help: __('Enable fade animation', 'bootstrap-theme'),
+                            label: __('Animation', 'ileben-landing'),
+                            help: __('Enable fade animation', 'ileben-landing'),
                             checked: attributes.animation,
                             onChange: (value) => setAttributes({ animation: value })
                         })
@@ -160,7 +160,7 @@
                 createElement('div', blockProps,
                     createElement('div', { className: 'mb-2' },
                         createElement('small', { className: 'text-muted' },
-                            __('Toast Preview (Position: ', 'bootstrap-theme') + attributes.position + ')'
+                            __('Toast Preview (Position: ', 'ileben-landing') + attributes.position + ')'
                         )
                     ),
                     createElement('div', {
@@ -190,7 +190,7 @@
                                 className: 'me-auto',
                                 value: attributes.headerText,
                                 onChange: (value) => setAttributes({ headerText: value }),
-                                placeholder: __('Toast title...', 'bootstrap-theme')
+                                placeholder: __('Toast title...', 'ileben-landing')
                             }),
                             createElement('small', {}, '11 mins ago'),
                             attributes.showCloseButton && createElement('button', {
@@ -202,10 +202,10 @@
                         ),
                         createElement('div', { className: 'toast-body' },
                             createElement(InnerBlocks, {
-                                placeholder: __('Add toast message...', 'bootstrap-theme'),
+                                placeholder: __('Add toast message...', 'ileben-landing'),
                                 template: [
                                     ['core/paragraph', { 
-                                        content: __('Hello, world! This is a toast message.', 'bootstrap-theme')
+                                        content: __('Hello, world! This is a toast message.', 'ileben-landing')
                                     }]
                                 ]
                             })

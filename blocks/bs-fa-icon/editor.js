@@ -1,4 +1,4 @@
-﻿/**
+/**
  * FontAwesome Icon Block (Editor)
  */
 
@@ -10,13 +10,13 @@
     const { createElement: el, Fragment } = wp.element;
 
     const ICON_STYLES = [
-        { label: __('Solid', 'bootstrap-theme'), value: 'fa-solid' },
-        { label: __('Regular', 'bootstrap-theme'), value: 'fa-regular' },
-        { label: __('Brands', 'bootstrap-theme'), value: 'fa-brands' },
+        { label: __('Solid', 'ileben-landing'), value: 'fa-solid' },
+        { label: __('Regular', 'ileben-landing'), value: 'fa-regular' },
+        { label: __('Brands', 'ileben-landing'), value: 'fa-brands' },
     ];
 
     const ICON_SIZES = [
-        { label: __('Default', 'bootstrap-theme'), value: '' },
+        { label: __('Default', 'ileben-landing'), value: '' },
         { label: '1x', value: 'fa-lg' },
         { label: '2x', value: 'fa-2x' },
         { label: '3x', value: 'fa-3x' },
@@ -26,63 +26,63 @@
     ];
 
     const ALIGN_OPTIONS = [
-        { label: __('Default', 'bootstrap-theme'), value: '' },
-        { label: __('Left', 'bootstrap-theme'), value: 'start' },
-        { label: __('Center', 'bootstrap-theme'), value: 'center' },
-        { label: __('Right', 'bootstrap-theme'), value: 'end' },
+        { label: __('Default', 'ileben-landing'), value: '' },
+        { label: __('Left', 'ileben-landing'), value: 'start' },
+        { label: __('Center', 'ileben-landing'), value: 'center' },
+        { label: __('Right', 'ileben-landing'), value: 'end' },
     ];
 
     const ANIMATION_TYPES = [
-        { label: __('None', 'bootstrap-theme'), value: '' },
-        { label: __('--- Fade ---', 'bootstrap-theme'), value: '' },
-        { label: __('Fade In', 'bootstrap-theme'), value: 'fadeIn' },
-        { label: __('Fade In Up', 'bootstrap-theme'), value: 'fadeInUp' },
-        { label: __('Fade In Down', 'bootstrap-theme'), value: 'fadeInDown' },
-        { label: __('Fade In Left', 'bootstrap-theme'), value: 'fadeInLeft' },
-        { label: __('Fade In Right', 'bootstrap-theme'), value: 'fadeInRight' },
-        { label: __('--- Slide ---', 'bootstrap-theme'), value: '' },
-        { label: __('Slide Up', 'bootstrap-theme'), value: 'slideUp' },
-        { label: __('Slide Down', 'bootstrap-theme'), value: 'slideDown' },
-        { label: __('Slide Left', 'bootstrap-theme'), value: 'slideLeft' },
-        { label: __('Slide Right', 'bootstrap-theme'), value: 'slideRight' },
-        { label: __('--- Scale ---', 'bootstrap-theme'), value: '' },
-        { label: __('Scale In', 'bootstrap-theme'), value: 'scaleIn' },
-        { label: __('Scale Up', 'bootstrap-theme'), value: 'scaleUp' },
-        { label: __('Scale Down', 'bootstrap-theme'), value: 'scaleDown' },
-        { label: __('--- Rotate ---', 'bootstrap-theme'), value: '' },
-        { label: __('Rotate', 'bootstrap-theme'), value: 'rotate' },
-        { label: __('Rotate Fast', 'bootstrap-theme'), value: 'rotateFast' },
-        { label: __('--- Effects ---', 'bootstrap-theme'), value: '' },
-        { label: __('Bounce', 'bootstrap-theme'), value: 'bounce' },
-        { label: __('Elastic', 'bootstrap-theme'), value: 'elastic' },
-        { label: __('Flip', 'bootstrap-theme'), value: 'flip' },
-        { label: __('Flip X', 'bootstrap-theme'), value: 'flipX' },
-        { label: __('Pulse', 'bootstrap-theme'), value: 'pulse' },
+        { label: __('None', 'ileben-landing'), value: '' },
+        { label: __('--- Fade ---', 'ileben-landing'), value: '' },
+        { label: __('Fade In', 'ileben-landing'), value: 'fadeIn' },
+        { label: __('Fade In Up', 'ileben-landing'), value: 'fadeInUp' },
+        { label: __('Fade In Down', 'ileben-landing'), value: 'fadeInDown' },
+        { label: __('Fade In Left', 'ileben-landing'), value: 'fadeInLeft' },
+        { label: __('Fade In Right', 'ileben-landing'), value: 'fadeInRight' },
+        { label: __('--- Slide ---', 'ileben-landing'), value: '' },
+        { label: __('Slide Up', 'ileben-landing'), value: 'slideUp' },
+        { label: __('Slide Down', 'ileben-landing'), value: 'slideDown' },
+        { label: __('Slide Left', 'ileben-landing'), value: 'slideLeft' },
+        { label: __('Slide Right', 'ileben-landing'), value: 'slideRight' },
+        { label: __('--- Scale ---', 'ileben-landing'), value: '' },
+        { label: __('Scale In', 'ileben-landing'), value: 'scaleIn' },
+        { label: __('Scale Up', 'ileben-landing'), value: 'scaleUp' },
+        { label: __('Scale Down', 'ileben-landing'), value: 'scaleDown' },
+        { label: __('--- Rotate ---', 'ileben-landing'), value: '' },
+        { label: __('Rotate', 'ileben-landing'), value: 'rotate' },
+        { label: __('Rotate Fast', 'ileben-landing'), value: 'rotateFast' },
+        { label: __('--- Effects ---', 'ileben-landing'), value: '' },
+        { label: __('Bounce', 'ileben-landing'), value: 'bounce' },
+        { label: __('Elastic', 'ileben-landing'), value: 'elastic' },
+        { label: __('Flip', 'ileben-landing'), value: 'flip' },
+        { label: __('Flip X', 'ileben-landing'), value: 'flipX' },
+        { label: __('Pulse', 'ileben-landing'), value: 'pulse' },
     ];
 
     const ANIMATION_TRIGGERS = [
-        { label: __('On Load', 'bootstrap-theme'), value: 'on-load' },
-        { label: __('On Scroll', 'bootstrap-theme'), value: 'on-scroll' },
-        { label: __('On Hover', 'bootstrap-theme'), value: 'on-hover' },
-        { label: __('On Click', 'bootstrap-theme'), value: 'on-click' },
+        { label: __('On Load', 'ileben-landing'), value: 'on-load' },
+        { label: __('On Scroll', 'ileben-landing'), value: 'on-scroll' },
+        { label: __('On Hover', 'ileben-landing'), value: 'on-hover' },
+        { label: __('On Click', 'ileben-landing'), value: 'on-click' },
     ];
 
     const EASE_OPTIONS = [
-        { label: __('Linear', 'bootstrap-theme'), value: 'linear' },
-        { label: __('Power 1 In Out', 'bootstrap-theme'), value: 'power1.inOut' },
-        { label: __('Power 2 In Out', 'bootstrap-theme'), value: 'power2.inOut' },
-        { label: __('Power 3 In Out', 'bootstrap-theme'), value: 'power3.inOut' },
-        { label: __('Power 4 In Out', 'bootstrap-theme'), value: 'power4.inOut' },
-        { label: __('Back Out', 'bootstrap-theme'), value: 'back.out' },
-        { label: __('Elastic Out', 'bootstrap-theme'), value: 'elastic.out' },
-        { label: __('Bounce Out', 'bootstrap-theme'), value: 'bounce.out' },
-        { label: __('Circ In Out', 'bootstrap-theme'), value: 'circ.inOut' },
-        { label: __('Sine In Out', 'bootstrap-theme'), value: 'sine.inOut' },
+        { label: __('Linear', 'ileben-landing'), value: 'linear' },
+        { label: __('Power 1 In Out', 'ileben-landing'), value: 'power1.inOut' },
+        { label: __('Power 2 In Out', 'ileben-landing'), value: 'power2.inOut' },
+        { label: __('Power 3 In Out', 'ileben-landing'), value: 'power3.inOut' },
+        { label: __('Power 4 In Out', 'ileben-landing'), value: 'power4.inOut' },
+        { label: __('Back Out', 'ileben-landing'), value: 'back.out' },
+        { label: __('Elastic Out', 'ileben-landing'), value: 'elastic.out' },
+        { label: __('Bounce Out', 'ileben-landing'), value: 'bounce.out' },
+        { label: __('Circ In Out', 'ileben-landing'), value: 'circ.inOut' },
+        { label: __('Sine In Out', 'ileben-landing'), value: 'sine.inOut' },
     ];
 
     registerBlockType('bootstrap-theme/bs-fa-icon', {
-        title: __('FontAwesome Icon', 'bootstrap-theme'),
-        description: __('Inserta un ícono de FontAwesome (colección free).', 'bootstrap-theme'),
+        title: __('FontAwesome Icon', 'ileben-landing'),
+        description: __('Inserta un ícono de FontAwesome (colección free).', 'ileben-landing'),
         icon: 'star-filled',
         category: 'ileben-landing',
         keywords: [__('icon'), __('fontawesome'), __('fa')],
@@ -190,33 +190,33 @@
 
             return el(Fragment, {},
                 el(InspectorControls, {},
-                    el(PanelBody, { title: __('Icon Settings', 'bootstrap-theme'), initialOpen: true },
+                    el(PanelBody, { title: __('Icon Settings', 'ileben-landing'), initialOpen: true },
                         el(SelectControl, {
-                            label: __('Estilo', 'bootstrap-theme'),
+                            label: __('Estilo', 'ileben-landing'),
                             value: attributes.iconStyle,
                             options: ICON_STYLES,
                             onChange: (value) => setAttributes({ iconStyle: value })
                         }),
                         el(TextControl, {
-                            label: __('Nombre de ícono (ej: fa-house)', 'bootstrap-theme'),
-                            help: __('Solo íconos free: https://fontawesome.com/search?ic=free-collection', 'bootstrap-theme'),
+                            label: __('Nombre de ícono (ej: fa-house)', 'ileben-landing'),
+                            help: __('Solo íconos free: https://fontawesome.com/search?ic=free-collection', 'ileben-landing'),
                             value: attributes.iconName,
                             onChange: (value) => setAttributes({ iconName: value })
                         }),
                         el(SelectControl, {
-                            label: __('Tamaño', 'bootstrap-theme'),
+                            label: __('Tamaño', 'ileben-landing'),
                             value: attributes.size,
                             options: ICON_SIZES,
                             onChange: (value) => setAttributes({ size: value })
                         }),
                         el(SelectControl, {
-                            label: __('Alineación', 'bootstrap-theme'),
+                            label: __('Alineación', 'ileben-landing'),
                             value: attributes.align,
                             options: ALIGN_OPTIONS,
                             onChange: (value) => setAttributes({ align: value })
                         }),
                         el('div', { style: { marginTop: '12px' } },
-                            el('label', { style: { display: 'block', marginBottom: '6px' } }, __('Color', 'bootstrap-theme')),
+                            el('label', { style: { display: 'block', marginBottom: '6px' } }, __('Color', 'ileben-landing')),
                             el(ColorPicker, {
                                 color: attributes.color,
                                 onChangeComplete: (value) => setAttributes({ color: value.hex }),
@@ -224,9 +224,9 @@
                             })
                         )
                     ),
-                    el(PanelBody, { title: __('Animation', 'bootstrap-theme'), initialOpen: false },
+                    el(PanelBody, { title: __('Animation', 'ileben-landing'), initialOpen: false },
                         el(SelectControl, {
-                            label: __('Animation Type', 'bootstrap-theme'),
+                            label: __('Animation Type', 'ileben-landing'),
                             value: animationType,
                             options: ANIMATION_TYPES,
                             onChange: (value) => {
@@ -250,13 +250,13 @@
                         }),
                         animationType && el(Fragment, null,
                             el(SelectControl, {
-                                label: __('Trigger', 'bootstrap-theme'),
+                                label: __('Trigger', 'ileben-landing'),
                                 value: attributes.animationTrigger,
                                 options: ANIMATION_TRIGGERS,
                                 onChange: (value) => setAttributes({ animationTrigger: value })
                             }),
                             el(RangeControl, {
-                                label: __('Duration (seconds)', 'bootstrap-theme'),
+                                label: __('Duration (seconds)', 'ileben-landing'),
                                 value: attributes.animationDuration,
                                 min: 0.1,
                                 max: 3,
@@ -264,7 +264,7 @@
                                 onChange: (value) => setAttributes({ animationDuration: value })
                             }),
                             el(RangeControl, {
-                                label: __('Delay (seconds)', 'bootstrap-theme'),
+                                label: __('Delay (seconds)', 'ileben-landing'),
                                 value: attributes.animationDelay,
                                 min: 0,
                                 max: 5,
@@ -272,28 +272,28 @@
                                 onChange: (value) => setAttributes({ animationDelay: value })
                             }),
                             el(SelectControl, {
-                                label: __('Easing', 'bootstrap-theme'),
+                                label: __('Easing', 'ileben-landing'),
                                 value: attributes.animationEase,
                                 options: EASE_OPTIONS,
                                 onChange: (value) => setAttributes({ animationEase: value })
                             }),
                             attributes.animationTrigger === 'on-scroll' && el(TextControl, {
-                                label: __('Scroll Start', 'bootstrap-theme'),
+                                label: __('Scroll Start', 'ileben-landing'),
                                 value: attributes.animationScrollStart || 'top 70%',
                                 onChange: (value) => setAttributes({ animationScrollStart: value }),
-                                help: __('Ej: "top 70%", "top center", "top bottom"', 'bootstrap-theme')
+                                help: __('Ej: "top 70%", "top center", "top bottom"', 'ileben-landing')
                             }),
                             attributes.animationTrigger === 'on-scroll' && el(TextControl, {
-                                label: __('Scroll End', 'bootstrap-theme'),
+                                label: __('Scroll End', 'ileben-landing'),
                                 value: attributes.animationScrollEnd || 'top 10%',
                                 onChange: (value) => setAttributes({ animationScrollEnd: value }),
-                                help: __('Ej: "top 10%", "bottom center"', 'bootstrap-theme')
+                                help: __('Ej: "top 10%", "bottom center"', 'ileben-landing')
                             }),
                             attributes.animationTrigger === 'on-scroll' && el(ToggleControl, {
-                                label: __('Show ScrollTrigger Markers', 'bootstrap-theme'),
+                                label: __('Show ScrollTrigger Markers', 'ileben-landing'),
                                 checked: attributes.animationScrollMarkers || false,
                                 onChange: (value) => setAttributes({ animationScrollMarkers: value }),
-                                help: __('Muestra lineas de debug en la pagina', 'bootstrap-theme')
+                                help: __('Muestra lineas de debug en la pagina', 'ileben-landing')
                             })
                         )
                     )

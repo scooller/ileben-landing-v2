@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-list-group', {
-        title: __('Bootstrap List Group', 'bootstrap-theme'),
-        description: __('Bootstrap list group component', 'bootstrap-theme'),
+        title: __('Bootstrap List Group', 'ileben-landing'),
+        description: __('Bootstrap list group component', 'ileben-landing'),
         icon: 'editor-ul',
         category: 'ileben-landing',
         keywords: [__('list'), __('group'), __('bootstrap')],
@@ -69,22 +69,22 @@
             const tagName = attributes.numbered ? 'ol' : 'ul';
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('List Group Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('List Group Settings', 'ileben-landing') },
                         createElement(ToggleControl, {
-                            label: __('Flush', 'bootstrap-theme'),
-                            help: __('Remove borders and rounded corners', 'bootstrap-theme'),
+                            label: __('Flush', 'ileben-landing'),
+                            help: __('Remove borders and rounded corners', 'ileben-landing'),
                             checked: attributes.flush,
                             onChange: (value) => setAttributes({ flush: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Layout', 'bootstrap-theme'),
+                            label: __('Layout', 'ileben-landing'),
                             value: attributes.horizontal,
                             options: horizontalOptions,
                             onChange: (value) => setAttributes({ horizontal: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Numbered', 'bootstrap-theme'),
-                            help: __('Add automatic numbering to list items', 'bootstrap-theme'),
+                            label: __('Numbered', 'ileben-landing'),
+                            help: __('Add automatic numbering to list items', 'ileben-landing'),
                             checked: attributes.numbered,
                             onChange: (value) => setAttributes({ numbered: value })
                         })
@@ -101,7 +101,7 @@
                             ['bootstrap-theme/bs-list-group-item', { text: 'Second item' }],
                             ['bootstrap-theme/bs-list-group-item', { text: 'Third item' }]
                         ],
-                        placeholder: __('Add list group items...', 'bootstrap-theme')
+                        placeholder: __('Add list group items...', 'ileben-landing')
                     })
                 )
             );

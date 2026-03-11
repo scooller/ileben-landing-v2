@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 function bootstrap_theme_render_bs_close_button_block($attributes, $content, $block) {
     $disabled = $attributes['disabled'] ?? false;
     $white = $attributes['white'] ?? false;
-    $ariaLabel = $attributes['ariaLabel'] ?? __('Close', 'bootstrap-theme');
+    $ariaLabel = $attributes['ariaLabel'] ?? __('Close', 'ileben-landing');
     
     // Build close button classes
     $classes = array('btn-close');

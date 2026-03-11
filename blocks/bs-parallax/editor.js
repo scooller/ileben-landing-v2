@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-parallax', {
-        title: __('Bootstrap Parallax Container', 'bootstrap-theme'),
-        description: __('Container with parallax scroll effect - use this to wrap elements', 'bootstrap-theme'),
+        title: __('Bootstrap Parallax Container', 'ileben-landing'),
+        description: __('Container with parallax scroll effect - use this to wrap elements', 'ileben-landing'),
         icon: 'format-image',
         category: 'ileben-landing',
         keywords: [__('parallax'), __('container'), __('scroll'), __('effect')],
@@ -53,7 +53,7 @@
             if (attributes.preview) {
                 return createElement('img', {
                     src: '/wp-content/themes/bootstrap-theme/blocks/bs-parallax/example.png',
-                    alt: __('Parallax container preview', 'bootstrap-theme'),
+                    alt: __('Parallax container preview', 'ileben-landing'),
                     style: { width: '100%', height: 'auto', display: 'block' }
                 });
             }
@@ -61,17 +61,17 @@
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
                     createElement(PanelBody, 
-                        { title: __('Parallax Settings', 'bootstrap-theme') },
+                        { title: __('Parallax Settings', 'ileben-landing') },
                         
                         createElement(ToggleControl, {
-                            label: __('Enable Parallax', 'bootstrap-theme'),
-                            help: __('Add parallax scroll effect to this container', 'bootstrap-theme'),
+                            label: __('Enable Parallax', 'ileben-landing'),
+                            help: __('Add parallax scroll effect to this container', 'ileben-landing'),
                             checked: attributes.enableParallax,
                             onChange: (value) => setAttributes({ enableParallax: value })
                         }),
 
                         attributes.enableParallax && createElement(RangeControl, {
-                            label: __('Parallax Speed', 'bootstrap-theme'),
+                            label: __('Parallax Speed', 'ileben-landing'),
                             value: attributes.parallaxSpeed,
                             min: 0.1,
                             max: 2,
@@ -80,15 +80,15 @@
                         }),
 
                         attributes.enableParallax && createElement(TextControl, {
-                            label: __('Start (ScrollTrigger start)', 'bootstrap-theme'),
-                            help: __('Formato "top center", "center center", etc.', 'bootstrap-theme'),
+                            label: __('Start (ScrollTrigger start)', 'ileben-landing'),
+                            help: __('Formato "top center", "center center", etc.', 'ileben-landing'),
                             value: attributes.parallaxStart,
                             onChange: (value) => setAttributes({ parallaxStart: value || 'top center' })
                         }),
 
                         attributes.enableParallax && createElement(TextControl, {
-                            label: __('End (ScrollTrigger end)', 'bootstrap-theme'),
-                            help: __('Formato "bottom center", "center center", etc.', 'bootstrap-theme'),
+                            label: __('End (ScrollTrigger end)', 'ileben-landing'),
+                            help: __('Formato "bottom center", "center center", etc.', 'ileben-landing'),
                             value: attributes.parallaxEnd,
                             onChange: (value) => setAttributes({ parallaxEnd: value || 'bottom center' })
                         })
@@ -107,8 +107,8 @@
                     }),
                     createElement('div', { style: { fontSize: '12px', color: '#666', marginBottom: '10px' } },
                         attributes.enableParallax ? 
-                            __('✓ Parallax enabled (Speed: ' + attributes.parallaxSpeed.toFixed(1) + ', Start: ' + attributes.parallaxStart + ', End: ' + attributes.parallaxEnd + ')', 'bootstrap-theme') :
-                            __('Parallax disabled', 'bootstrap-theme')
+                            __('Ô£ô Parallax enabled (Speed: ' + attributes.parallaxSpeed.toFixed(1) + ', Start: ' + attributes.parallaxStart + ', End: ' + attributes.parallaxEnd + ')', 'ileben-landing') :
+                            __('Parallax disabled', 'ileben-landing')
                     ),
                     createElement(InnerBlocks, {
                         allowedBlocks: [
@@ -123,7 +123,7 @@
                             'core/image',
                             'core/group'
                         ],
-                        placeholder: __('Add content inside parallax container...', 'bootstrap-theme')
+                        placeholder: __('Add content inside parallax container...', 'ileben-landing')
                     })
                 )
             );

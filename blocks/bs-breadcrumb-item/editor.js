@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-breadcrumb-item', {
-        title: __('Bootstrap Breadcrumb Item', 'bootstrap-theme'),
-        description: __('Individual item within breadcrumb navigation', 'bootstrap-theme'),
+        title: __('Bootstrap Breadcrumb Item', 'ileben-landing'),
+        description: __('Individual item within breadcrumb navigation', 'ileben-landing'),
         icon: 'minus',
         category: 'ileben-landing',
         keywords: [__('breadcrumb'), __('item'), __('navigation')],
@@ -53,7 +53,7 @@
             if (attributes.preview) {
                 return createElement('img', {
                     src: '/wp-content/themes/bootstrap-theme/blocks/bs-breadcrumb-item/example.png',
-                    alt: __('Breadcrumb item preview', 'bootstrap-theme'),
+                    alt: __('Breadcrumb item preview', 'ileben-landing'),
                     style: { width: '100%', height: 'auto', display: 'block' }
                 });
             }
@@ -65,21 +65,21 @@
             
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Breadcrumb Item Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Breadcrumb Item Settings', 'ileben-landing') },
                         createElement(ToggleControl, {
-                            label: __('Active Item', 'bootstrap-theme'),
-                            help: __('Mark as current page (no link)', 'bootstrap-theme'),
+                            label: __('Active Item', 'ileben-landing'),
+                            help: __('Mark as current page (no link)', 'ileben-landing'),
                             checked: attributes.active,
                             onChange: (value) => setAttributes({ active: value })
                         }),
                         !attributes.active && createElement(TextControl, {
-                            label: __('Link URL', 'bootstrap-theme'),
+                            label: __('Link URL', 'ileben-landing'),
                             value: attributes.href,
                             onChange: (value) => setAttributes({ href: value }),
-                            placeholder: __('https://example.com', 'bootstrap-theme')
+                            placeholder: __('https://example.com', 'ileben-landing')
                         }),
                         !attributes.active && createElement(ToggleControl, {
-                            label: __('Open in New Tab', 'bootstrap-theme'),
+                            label: __('Open in New Tab', 'ileben-landing'),
                             checked: attributes.openInNewTab,
                             onChange: (value) => setAttributes({ openInNewTab: value })
                         })
@@ -95,7 +95,7 @@
                             tagName: 'span',
                             value: attributes.text,
                             onChange: (value) => setAttributes({ text: value }),
-                            placeholder: __('Breadcrumb text...', 'bootstrap-theme'),
+                            placeholder: __('Breadcrumb text...', 'ileben-landing'),
                             allowedFormats: []
                         }) :
                         createElement('a', {
@@ -108,7 +108,7 @@
                                 tagName: 'span',
                                 value: attributes.text,
                                 onChange: (value) => setAttributes({ text: value }),
-                                placeholder: __('Breadcrumb text...', 'bootstrap-theme'),
+                                placeholder: __('Breadcrumb text...', 'ileben-landing'),
                                 allowedFormats: [],
                                 style: { color: 'inherit', textDecoration: 'inherit' }
                             })

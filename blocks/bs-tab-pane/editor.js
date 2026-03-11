@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-tab-pane', {
-        title: __('Bootstrap Tab Pane', 'bootstrap-theme'),
-        description: __('Individual tab pane content', 'bootstrap-theme'),
+        title: __('Bootstrap Tab Pane', 'ileben-landing'),
+        description: __('Individual tab pane content', 'ileben-landing'),
         icon: 'media-document',
         category: 'ileben-landing',
         keywords: [__('tab'), __('pane'), __('bootstrap')],
@@ -65,26 +65,26 @@
             ].filter(Boolean).join(' ');
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Tab Pane Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Tab Pane Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Tab Title', 'bootstrap-theme'),
+                            label: __('Tab Title', 'ileben-landing'),
                             value: attributes.title,
                             onChange: (value) => setAttributes({ title: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Active Tab', 'bootstrap-theme'),
-                            help: __('Set as the default active tab', 'bootstrap-theme'),
+                            label: __('Active Tab', 'ileben-landing'),
+                            help: __('Set as the default active tab', 'ileben-landing'),
                             checked: attributes.active,
                             onChange: (value) => setAttributes({ active: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Fade Effect', 'bootstrap-theme'),
-                            help: __('Enable fade transition effect', 'bootstrap-theme'),
+                            label: __('Fade Effect', 'ileben-landing'),
+                            help: __('Enable fade transition effect', 'ileben-landing'),
                             checked: attributes.fade,
                             onChange: (value) => setAttributes({ fade: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Pane ID', 'bootstrap-theme'),
+                            label: __('Pane ID', 'ileben-landing'),
                             value: attributes.paneId,
                             onChange: (value) => setAttributes({ paneId: value })
                         })
@@ -97,17 +97,17 @@
                         role: 'tabpanel'
                     }),
                     createElement('div', { className: 'tab-title-editor mb-3 p-2 bg-light border' },
-                        createElement('strong', {}, __('Tab Title: ', 'bootstrap-theme')),
+                        createElement('strong', {}, __('Tab Title: ', 'ileben-landing')),
                         createElement(RichText, {
                             tagName: 'span',
                             value: attributes.title,
                             onChange: (value) => setAttributes({ title: value }),
-                            placeholder: __('Tab title...', 'bootstrap-theme'),
+                            placeholder: __('Tab title...', 'ileben-landing'),
                             style: { display: 'inline' }
                         })
                     ),
                     createElement(InnerBlocks, {
-                        placeholder: __('Add tab content...', 'bootstrap-theme')
+                        placeholder: __('Add tab content...', 'ileben-landing')
                     })
                 )
             );

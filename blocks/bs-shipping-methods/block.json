@@ -5,8 +5,8 @@
   "title": "Bootstrap Shipping Methods",
   "category": "bootstrap-blocks",
   "icon": "cart",
-  "description": "Muestra los métodos de envío disponibles de WooCommerce",
-  "keywords": ["shipping", "envío", "métodos", "woocommerce", "bootstrap"],
+  "description": "Muestra los m├®todos de env├¡o disponibles de WooCommerce",
+  "keywords": ["shipping", "env├¡o", "m├®todos", "woocommerce", "bootstrap"],
   "supports": {
     "html": false,
     "align": ["wide", "full"],
@@ -27,7 +27,7 @@
     },
     "title": {
       "type": "string",
-      "default": "Métodos de envío"
+      "default": "M├®todos de env├¡o"
     },
     "alignment": {
       "type": "string",
@@ -38,6 +38,6 @@
       "default": ""
     }
   },
-  "textdomain": "bootstrap-theme",
+  "textdomain": "ileben-landing",
   "editorScript": "file:./editor.js"
 }

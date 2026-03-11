@@ -16,7 +16,7 @@ function bootstrap_theme_render_bs_spinner_block($attributes, $content, $block) 
     $type = $attributes['type'] ?? 'border';
     $variant = $attributes['variant'] ?? '';
     $size = $attributes['size'] ?? '';
-    $label = $attributes['label'] ?? __('Loading...', 'bootstrap-theme');
+    $label = $attributes['label'] ?? __('Loading...', 'ileben-landing');
     $alignment = $attributes['alignment'] ?? '';
     
     // Build spinner classes

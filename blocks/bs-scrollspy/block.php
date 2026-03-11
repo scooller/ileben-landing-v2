@@ -41,7 +41,7 @@ function bootstrap_theme_render_bs_scrollspy_block($attributes, $content, $block
     if (!empty($content)) {
         $output .= $content;
     } else {
-        $output .= '<h4>' . __('Agrega secciones al scrollspy.', 'bootstrap-theme') . '</h4>';
+        $output .= '<h4>' . __('Agrega secciones al scrollspy.', 'ileben-landing') . '</h4>';
     }
     $output .= '</div>';
     $output .= '</div>';

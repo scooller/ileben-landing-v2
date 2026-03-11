@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-container', {
-        title: __('Bootstrap Container', 'bootstrap-theme'),
-        description: __('Bootstrap container for layout structure', 'bootstrap-theme'),
+        title: __('Bootstrap Container', 'ileben-landing'),
+        description: __('Bootstrap container for layout structure', 'ileben-landing'),
         icon: 'editor-table',
         category: 'ileben-landing',
         keywords: [__('container'), __('bootstrap'), __('layout')],
@@ -220,67 +220,67 @@
             ];
 
             const bgTypeOptions = [
-                { label: __('None', 'bootstrap-theme'), value: 'none' },
-                { label: __('Solid color', 'bootstrap-theme'), value: 'solid' },
-                { label: __('Gradient', 'bootstrap-theme'), value: 'gradient' },
-                { label: __('Image', 'bootstrap-theme'), value: 'image' }
+                { label: __('None', 'ileben-landing'), value: 'none' },
+                { label: __('Solid color', 'ileben-landing'), value: 'solid' },
+                { label: __('Gradient', 'ileben-landing'), value: 'gradient' },
+                { label: __('Image', 'ileben-landing'), value: 'image' }
             ];
 
             const gradientDirections = [
-                { label: __('To right', 'bootstrap-theme'), value: 'to right' },
-                { label: __('To left', 'bootstrap-theme'), value: 'to left' },
-                { label: __('To bottom', 'bootstrap-theme'), value: 'to bottom' },
-                { label: __('To top', 'bootstrap-theme'), value: 'to top' },                    
-                { label: __('45°', 'bootstrap-theme'), value: '45deg' },
-                { label: __('135°', 'bootstrap-theme'), value: '135deg' }
+                { label: __('To right', 'ileben-landing'), value: 'to right' },
+                { label: __('To left', 'ileben-landing'), value: 'to left' },
+                { label: __('To bottom', 'ileben-landing'), value: 'to bottom' },
+                { label: __('To top', 'ileben-landing'), value: 'to top' },                    
+                { label: __('45┬░', 'ileben-landing'), value: '45deg' },
+                { label: __('135┬░', 'ileben-landing'), value: '135deg' }
             ];
 
             const animationTypes = [
-                { label: __('None', 'bootstrap-theme'), value: '' },
-                { label: __('--- Fade ---', 'bootstrap-theme'), value: '' },
-                { label: __('Fade In', 'bootstrap-theme'), value: 'fadeIn' },
-                { label: __('Fade In Up', 'bootstrap-theme'), value: 'fadeInUp' },
-                { label: __('Fade In Down', 'bootstrap-theme'), value: 'fadeInDown' },
-                { label: __('Fade In Left', 'bootstrap-theme'), value: 'fadeInLeft' },
-                { label: __('Fade In Right', 'bootstrap-theme'), value: 'fadeInRight' },
-                { label: __('--- Slide ---', 'bootstrap-theme'), value: '' },
-                { label: __('Slide Up', 'bootstrap-theme'), value: 'slideUp' },
-                { label: __('Slide Down', 'bootstrap-theme'), value: 'slideDown' },
-                { label: __('Slide Left', 'bootstrap-theme'), value: 'slideLeft' },
-                { label: __('Slide Right', 'bootstrap-theme'), value: 'slideRight' },
-                { label: __('--- Scale ---', 'bootstrap-theme'), value: '' },
-                { label: __('Scale In', 'bootstrap-theme'), value: 'scaleIn' },
-                { label: __('Scale Up', 'bootstrap-theme'), value: 'scaleUp' },
-                { label: __('Scale Down', 'bootstrap-theme'), value: 'scaleDown' },
-                { label: __('--- Rotate ---', 'bootstrap-theme'), value: '' },
-                { label: __('Rotate', 'bootstrap-theme'), value: 'rotate' },
-                { label: __('Rotate Fast', 'bootstrap-theme'), value: 'rotateFast' },
-                { label: __('--- Effects ---', 'bootstrap-theme'), value: '' },
-                { label: __('Bounce', 'bootstrap-theme'), value: 'bounce' },
-                { label: __('Elastic', 'bootstrap-theme'), value: 'elastic' },
-                { label: __('Flip', 'bootstrap-theme'), value: 'flip' },
-                { label: __('Flip X', 'bootstrap-theme'), value: 'flipX' },
-                { label: __('Pulse', 'bootstrap-theme'), value: 'pulse' },
+                { label: __('None', 'ileben-landing'), value: '' },
+                { label: __('--- Fade ---', 'ileben-landing'), value: '' },
+                { label: __('Fade In', 'ileben-landing'), value: 'fadeIn' },
+                { label: __('Fade In Up', 'ileben-landing'), value: 'fadeInUp' },
+                { label: __('Fade In Down', 'ileben-landing'), value: 'fadeInDown' },
+                { label: __('Fade In Left', 'ileben-landing'), value: 'fadeInLeft' },
+                { label: __('Fade In Right', 'ileben-landing'), value: 'fadeInRight' },
+                { label: __('--- Slide ---', 'ileben-landing'), value: '' },
+                { label: __('Slide Up', 'ileben-landing'), value: 'slideUp' },
+                { label: __('Slide Down', 'ileben-landing'), value: 'slideDown' },
+                { label: __('Slide Left', 'ileben-landing'), value: 'slideLeft' },
+                { label: __('Slide Right', 'ileben-landing'), value: 'slideRight' },
+                { label: __('--- Scale ---', 'ileben-landing'), value: '' },
+                { label: __('Scale In', 'ileben-landing'), value: 'scaleIn' },
+                { label: __('Scale Up', 'ileben-landing'), value: 'scaleUp' },
+                { label: __('Scale Down', 'ileben-landing'), value: 'scaleDown' },
+                { label: __('--- Rotate ---', 'ileben-landing'), value: '' },
+                { label: __('Rotate', 'ileben-landing'), value: 'rotate' },
+                { label: __('Rotate Fast', 'ileben-landing'), value: 'rotateFast' },
+                { label: __('--- Effects ---', 'ileben-landing'), value: '' },
+                { label: __('Bounce', 'ileben-landing'), value: 'bounce' },
+                { label: __('Elastic', 'ileben-landing'), value: 'elastic' },
+                { label: __('Flip', 'ileben-landing'), value: 'flip' },
+                { label: __('Flip X', 'ileben-landing'), value: 'flipX' },
+                { label: __('Pulse', 'ileben-landing'), value: 'pulse' },
             ];
 
             const animationTriggers = [
-                { label: __('On Load', 'bootstrap-theme'), value: 'on-load' },
-                { label: __('On Scroll', 'bootstrap-theme'), value: 'on-scroll' },
-                { label: __('On Hover', 'bootstrap-theme'), value: 'on-hover' },
-                { label: __('On Click', 'bootstrap-theme'), value: 'on-click' },
+                { label: __('On Load', 'ileben-landing'), value: 'on-load' },
+                { label: __('On Scroll', 'ileben-landing'), value: 'on-scroll' },
+                { label: __('On Hover', 'ileben-landing'), value: 'on-hover' },
+                { label: __('On Click', 'ileben-landing'), value: 'on-click' },
             ];
 
             const easeOptions = [
-                { label: __('Linear', 'bootstrap-theme'), value: 'linear' },
-                { label: __('Power 1 In Out', 'bootstrap-theme'), value: 'power1.inOut' },
-                { label: __('Power 2 In Out', 'bootstrap-theme'), value: 'power2.inOut' },
-                { label: __('Power 3 In Out', 'bootstrap-theme'), value: 'power3.inOut' },
-                { label: __('Power 4 In Out', 'bootstrap-theme'), value: 'power4.inOut' },
-                { label: __('Back Out', 'bootstrap-theme'), value: 'back.out' },
-                { label: __('Elastic Out', 'bootstrap-theme'), value: 'elastic.out' },
-                { label: __('Bounce Out', 'bootstrap-theme'), value: 'bounce.out' },
-                { label: __('Circ In Out', 'bootstrap-theme'), value: 'circ.inOut' },
-                { label: __('Sine In Out', 'bootstrap-theme'), value: 'sine.inOut' },
+                { label: __('Linear', 'ileben-landing'), value: 'linear' },
+                { label: __('Power 1 In Out', 'ileben-landing'), value: 'power1.inOut' },
+                { label: __('Power 2 In Out', 'ileben-landing'), value: 'power2.inOut' },
+                { label: __('Power 3 In Out', 'ileben-landing'), value: 'power3.inOut' },
+                { label: __('Power 4 In Out', 'ileben-landing'), value: 'power4.inOut' },
+                { label: __('Back Out', 'ileben-landing'), value: 'back.out' },
+                { label: __('Elastic Out', 'ileben-landing'), value: 'elastic.out' },
+                { label: __('Bounce Out', 'ileben-landing'), value: 'bounce.out' },
+                { label: __('Circ In Out', 'ileben-landing'), value: 'circ.inOut' },
+                { label: __('Sine In Out', 'ileben-landing'), value: 'sine.inOut' },
             ];
 
             const animationType = attributes.animationType || '';
@@ -307,124 +307,124 @@
             };
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Container Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Container Settings', 'ileben-landing') },
                         createElement(ToggleControl, {
-                            label: __('Fluid Container', 'bootstrap-theme'),
+                            label: __('Fluid Container', 'ileben-landing'),
                             checked: attributes.fluid,
                             onChange: (value) => setAttributes({ fluid: value })
                         }),
                         !attributes.fluid && createElement(SelectControl, {
-                            label: __('Container Type', 'bootstrap-theme'),
+                            label: __('Container Type', 'ileben-landing'),
                             value: attributes.type,
                             options: containerTypes,
                             onChange: (value) => setAttributes({ type: value })
                         }),
                         !attributes.fluid && createElement(SelectControl, {
-                            label: __('Breakpoint', 'bootstrap-theme'),
-                            help: __('Container breakpoint responsive', 'bootstrap-theme'),
+                            label: __('Breakpoint', 'ileben-landing'),
+                            help: __('Container breakpoint responsive', 'ileben-landing'),
                             value: attributes.breakpoint || '',
                             options: [
-                                { label: __('None', 'bootstrap-theme'), value: '' },
-                                { label: __('Small', 'bootstrap-theme'), value: 'sm' },
-                                { label: __('Medium', 'bootstrap-theme'), value: 'md' },
-                                { label: __('Large', 'bootstrap-theme'), value: 'lg' },
-                                { label: __('Extra Large', 'bootstrap-theme'), value: 'xl' },
-                                { label: __('XXL', 'bootstrap-theme'), value: 'xxl' }
+                                { label: __('None', 'ileben-landing'), value: '' },
+                                { label: __('Small', 'ileben-landing'), value: 'sm' },
+                                { label: __('Medium', 'ileben-landing'), value: 'md' },
+                                { label: __('Large', 'ileben-landing'), value: 'lg' },
+                                { label: __('Extra Large', 'ileben-landing'), value: 'xl' },
+                                { label: __('XXL', 'ileben-landing'), value: 'xxl' }
                             ],
                             onChange: (value) => setAttributes({ breakpoint: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Background Color', 'bootstrap-theme'),
-                            help: __('Bootstrap background color utility class', 'bootstrap-theme'),
+                            label: __('Background Color', 'ileben-landing'),
+                            help: __('Bootstrap background color utility class', 'ileben-landing'),
                             value: attributes.backgroundColor || '',
                             options: [
-                                { label: __('None', 'bootstrap-theme'), value: '' },
-                                { label: __('Primary', 'bootstrap-theme'), value: 'bg-primary' },
-                                { label: __('Secondary', 'bootstrap-theme'), value: 'bg-secondary' },
-                                { label: __('Success', 'bootstrap-theme'), value: 'bg-success' },
-                                { label: __('Danger', 'bootstrap-theme'), value: 'bg-danger' },
-                                { label: __('Warning', 'bootstrap-theme'), value: 'bg-warning' },
-                                { label: __('Info', 'bootstrap-theme'), value: 'bg-info' },
-                                { label: __('Light', 'bootstrap-theme'), value: 'bg-light' },
-                                { label: __('Dark', 'bootstrap-theme'), value: 'bg-dark' },
-                                { label: __('White', 'bootstrap-theme'), value: 'bg-white' },
-                                { label: __('Transparent', 'bootstrap-theme'), value: 'bg-transparent' }
+                                { label: __('None', 'ileben-landing'), value: '' },
+                                { label: __('Primary', 'ileben-landing'), value: 'bg-primary' },
+                                { label: __('Secondary', 'ileben-landing'), value: 'bg-secondary' },
+                                { label: __('Success', 'ileben-landing'), value: 'bg-success' },
+                                { label: __('Danger', 'ileben-landing'), value: 'bg-danger' },
+                                { label: __('Warning', 'ileben-landing'), value: 'bg-warning' },
+                                { label: __('Info', 'ileben-landing'), value: 'bg-info' },
+                                { label: __('Light', 'ileben-landing'), value: 'bg-light' },
+                                { label: __('Dark', 'ileben-landing'), value: 'bg-dark' },
+                                { label: __('White', 'ileben-landing'), value: 'bg-white' },
+                                { label: __('Transparent', 'ileben-landing'), value: 'bg-transparent' }
                             ],
                             onChange: (value) => setAttributes({ backgroundColor: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Text Color', 'bootstrap-theme'),
-                            help: __('Bootstrap text color utility class', 'bootstrap-theme'),
+                            label: __('Text Color', 'ileben-landing'),
+                            help: __('Bootstrap text color utility class', 'ileben-landing'),
                             value: attributes.textColor || '',
                             options: [
-                                { label: __('None', 'bootstrap-theme'), value: '' },
-                                { label: __('Primary', 'bootstrap-theme'), value: 'text-primary' },
-                                { label: __('Secondary', 'bootstrap-theme'), value: 'text-secondary' },
-                                { label: __('Success', 'bootstrap-theme'), value: 'text-success' },
-                                { label: __('Danger', 'bootstrap-theme'), value: 'text-danger' },
-                                { label: __('Warning', 'bootstrap-theme'), value: 'text-warning' },
-                                { label: __('Info', 'bootstrap-theme'), value: 'text-info' },
-                                { label: __('Light', 'bootstrap-theme'), value: 'text-light' },
-                                { label: __('Dark', 'bootstrap-theme'), value: 'text-dark' },
-                                { label: __('White', 'bootstrap-theme'), value: 'text-white' },
-                                { label: __('Muted', 'bootstrap-theme'), value: 'text-muted' }
+                                { label: __('None', 'ileben-landing'), value: '' },
+                                { label: __('Primary', 'ileben-landing'), value: 'text-primary' },
+                                { label: __('Secondary', 'ileben-landing'), value: 'text-secondary' },
+                                { label: __('Success', 'ileben-landing'), value: 'text-success' },
+                                { label: __('Danger', 'ileben-landing'), value: 'text-danger' },
+                                { label: __('Warning', 'ileben-landing'), value: 'text-warning' },
+                                { label: __('Info', 'ileben-landing'), value: 'text-info' },
+                                { label: __('Light', 'ileben-landing'), value: 'text-light' },
+                                { label: __('Dark', 'ileben-landing'), value: 'text-dark' },
+                                { label: __('White', 'ileben-landing'), value: 'text-white' },
+                                { label: __('Muted', 'ileben-landing'), value: 'text-muted' }
                             ],
                             onChange: (value) => setAttributes({ textColor: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Padding', 'bootstrap-theme'),
-                            help: __('Bootstrap padding utility classes (e.g., p-3, py-4, px-5)', 'bootstrap-theme'),
+                            label: __('Padding', 'ileben-landing'),
+                            help: __('Bootstrap padding utility classes (e.g., p-3, py-4, px-5)', 'ileben-landing'),
                             value: attributes.padding || '',
                             onChange: (value) => setAttributes({ padding: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Margin', 'bootstrap-theme'),
-                            help: __('Bootstrap margin utility classes (e.g., m-3, my-4, mx-auto)', 'bootstrap-theme'),
+                            label: __('Margin', 'ileben-landing'),
+                            help: __('Bootstrap margin utility classes (e.g., m-3, my-4, mx-auto)', 'ileben-landing'),
                             value: attributes.margin || '',
                             onChange: (value) => setAttributes({ margin: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Use as Swiper', 'bootstrap-theme'),
+                            label: __('Use as Swiper', 'ileben-landing'),
                             checked: attributes.isSwiper,
                             onChange: (value) => setAttributes({ isSwiper: value })
                         })
                     ),
-                    createElement(PanelBody, { title: __('Background', 'bootstrap-theme'), initialOpen: false },
+                    createElement(PanelBody, { title: __('Background', 'ileben-landing'), initialOpen: false },
                         createElement(SelectControl, {
-                            label: __('Background Type', 'bootstrap-theme'),
+                            label: __('Background Type', 'ileben-landing'),
                             value: attributes.bgType,
                             options: bgTypeOptions,
                             onChange: (value) => setAttributes({ bgType: value })
                         }),
                         attributes.bgType === 'solid' && createElement(PanelColorSettings, {
-                            title: __('Solid color', 'bootstrap-theme'),
+                            title: __('Solid color', 'ileben-landing'),
                             colorSettings: [
                                 {
                                     value: attributes.bgColor,
                                     onChange: (value) => setAttributes({ bgColor: value || '' }),
-                                    label: __('Background color', 'bootstrap-theme')
+                                    label: __('Background color', 'ileben-landing')
                                 }
                             ]
                         }),
                         attributes.bgType === 'gradient' && createElement(Fragment, {},
                             createElement(SelectControl, {
-                                label: __('Direction', 'bootstrap-theme'),
+                                label: __('Direction', 'ileben-landing'),
                                 value: attributes.bgGradientDirection,
                                 options: gradientDirections,
                                 onChange: (value) => setAttributes({ bgGradientDirection: value })
                             }),
                             createElement(PanelColorSettings, {
-                                title: __('Gradient colors', 'bootstrap-theme'),
+                                title: __('Gradient colors', 'ileben-landing'),
                                 colorSettings: [
                                     {
                                         value: attributes.bgGradientFrom,
                                         onChange: (value) => setAttributes({ bgGradientFrom: value || '' }),
-                                        label: __('From', 'bootstrap-theme')
+                                        label: __('From', 'ileben-landing')
                                     },
                                     {
                                         value: attributes.bgGradientTo,
                                         onChange: (value) => setAttributes({ bgGradientTo: value || '' }),
-                                        label: __('To', 'bootstrap-theme')
+                                        label: __('To', 'ileben-landing')
                                     }
                                 ]
                             })
@@ -436,14 +436,14 @@
                                 },
                                 allowedTypes: ['image'],
                                 value: attributes.bgImageID,
-                                render: ({ open }) => createElement(Button, { variant: 'primary', onClick: open }, attributes.bgImageURL ? __('Change image', 'bootstrap-theme') : __('Select image', 'bootstrap-theme'))
+                                render: ({ open }) => createElement(Button, { variant: 'primary', onClick: open }, attributes.bgImageURL ? __('Change image', 'ileben-landing') : __('Select image', 'ileben-landing'))
                             }),
                             attributes.bgImageURL && createElement('div', { style: { marginTop: '8px' } },
                                 createElement('img', { src: attributes.bgImageURL, alt: '', style: { maxWidth: '100%', height: 'auto', display: 'block' } }),
-                                createElement(Button, { variant: 'secondary', onClick: () => setAttributes({ bgImageID: 0, bgImageURL: '' }) }, __('Remove image', 'bootstrap-theme'))
+                                createElement(Button, { variant: 'secondary', onClick: () => setAttributes({ bgImageID: 0, bgImageURL: '' }) }, __('Remove image', 'ileben-landing'))
                             ),
                             createElement(SelectControl, {
-                                label: __('Size', 'bootstrap-theme'),
+                                label: __('Size', 'ileben-landing'),
                                 value: attributes.bgImageSize,
                                 options: [
                                     { label: 'Cover', value: 'cover' },
@@ -453,7 +453,7 @@
                                 onChange: (value) => setAttributes({ bgImageSize: value })
                             }),
                             createElement(SelectControl, {
-                                label: __('Position', 'bootstrap-theme'),
+                                label: __('Position', 'ileben-landing'),
                                 value: attributes.bgImagePosition,
                                 options: [
                                     { label: 'Center Center', value: 'center center' },
@@ -465,7 +465,7 @@
                                 onChange: (value) => setAttributes({ bgImagePosition: value })
                             }),
                             createElement(SelectControl, {
-                                label: __('Repeat', 'bootstrap-theme'),
+                                label: __('Repeat', 'ileben-landing'),
                                 value: attributes.bgImageRepeat,
                                 options: [
                                     { label: 'No repeat', value: 'no-repeat' },
@@ -476,7 +476,7 @@
                                 onChange: (value) => setAttributes({ bgImageRepeat: value })
                             }),
                             createElement(SelectControl, {
-                                label: __('Attachment', 'bootstrap-theme'),
+                                label: __('Attachment', 'ileben-landing'),
                                 value: attributes.bgImageAttachment,
                                 options: [
                                     { label: 'Scroll', value: 'scroll' },
@@ -486,47 +486,47 @@
                             })
                         )
                     ),
-                    attributes.isSwiper && createElement(PanelBody, { title: __('Swiper Settings', 'bootstrap-theme'), initialOpen: true },
+                    attributes.isSwiper && createElement(PanelBody, { title: __('Swiper Settings', 'ileben-landing'), initialOpen: true },
                         createElement(ToggleControl, {
-                            label: __('Pagination (bullets)', 'bootstrap-theme'),
+                            label: __('Pagination (bullets)', 'ileben-landing'),
                             checked: !!attributes.swiperPagination,
                             onChange: (value) => setAttributes({ swiperPagination: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Navigation (prev/next)', 'bootstrap-theme'),
+                            label: __('Navigation (prev/next)', 'ileben-landing'),
                             checked: !!attributes.swiperNavigation,
                             onChange: (value) => setAttributes({ swiperNavigation: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Loop', 'bootstrap-theme'),
+                            label: __('Loop', 'ileben-landing'),
                             checked: !!attributes.swiperLoop,
                             onChange: (value) => setAttributes({ swiperLoop: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Autoplay', 'bootstrap-theme'),
+                            label: __('Autoplay', 'ileben-landing'),
                             checked: !!attributes.swiperAutoplay,
                             onChange: (value) => setAttributes({ swiperAutoplay: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Slides per view', 'bootstrap-theme'),
+                            label: __('Slides per view', 'ileben-landing'),
                             value: attributes.swiperSlidesPerView,
                             onChange: (value) => setAttributes({ swiperSlidesPerView: value }),
                             placeholder: '1.1'
                         }),
                         createElement(TextControl, {
-                            label: __('Space between (px)', 'bootstrap-theme'),
+                            label: __('Space between (px)', 'ileben-landing'),
                             value: attributes.swiperSpaceBetween,
                             onChange: (value) => setAttributes({ swiperSpaceBetween: value }),
                             placeholder: '16'
                         }),
                         createElement(TextControl, {
-                            label: __('Speed (ms)', 'bootstrap-theme'),
+                            label: __('Speed (ms)', 'ileben-landing'),
                             value: attributes.swiperSpeed,
                             onChange: (value) => setAttributes({ swiperSpeed: value }),
                             placeholder: '500'
                         }),
                         createElement(TextControl, {
-                            label: __('Autoplay delay (ms)', 'bootstrap-theme'),
+                            label: __('Autoplay delay (ms)', 'ileben-landing'),
                             value: attributes.swiperAutoplayDelay,
                             onChange: (value) => setAttributes({ swiperAutoplayDelay: value }),
                             placeholder: '4000'
@@ -534,10 +534,10 @@
                     ),
                     // Animation Panel
                     createElement(PanelBody, 
-                        { title: __('Animation', 'bootstrap-theme'), initialOpen: false },
+                        { title: __('Animation', 'ileben-landing'), initialOpen: false },
                         
                         createElement(SelectControl, {
-                            label: __('Animation Type', 'bootstrap-theme'),
+                            label: __('Animation Type', 'ileben-landing'),
                             value: animationType,
                             options: animationTypes,
                             onChange: (value) => setAttributes({ animationType: value })
@@ -548,14 +548,14 @@
                             null,
 
                             createElement(SelectControl, {
-                                label: __('Trigger', 'bootstrap-theme'),
+                                label: __('Trigger', 'ileben-landing'),
                                 value: attributes.animationTrigger,
                                 options: animationTriggers,
                                 onChange: (value) => setAttributes({ animationTrigger: value })
                             }),
 
                             createElement(RangeControl, {
-                                label: __('Duration (seconds)', 'bootstrap-theme'),
+                                label: __('Duration (seconds)', 'ileben-landing'),
                                 value: attributes.animationDuration,
                                 min: 0.1,
                                 max: 3,
@@ -564,7 +564,7 @@
                             }),
 
                             createElement(RangeControl, {
-                                label: __('Delay (seconds)', 'bootstrap-theme'),
+                                label: __('Delay (seconds)', 'ileben-landing'),
                                 value: attributes.animationDelay,
                                 min: 0,
                                 max: 5,
@@ -573,35 +573,35 @@
                             }),
 
                             createElement(SelectControl, {
-                                label: __('Easing', 'bootstrap-theme'),
+                                label: __('Easing', 'ileben-landing'),
                                 value: attributes.animationEase,
                                 options: easeOptions,
                                 onChange: (value) => setAttributes({ animationEase: value })
                             }),
 
                             attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
-                                label: __('Scroll Start', 'bootstrap-theme'),
+                                label: __('Scroll Start', 'ileben-landing'),
                                 value: attributes.animationScrollStart || 'top 70%',
                                 onChange: (value) => setAttributes({ animationScrollStart: value }),
-                                help: __('Ej: "top 70%", "top center", "top bottom"', 'bootstrap-theme')
+                                help: __('Ej: "top 70%", "top center", "top bottom"', 'ileben-landing')
                             }),
 
                             attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
-                                label: __('Scroll End', 'bootstrap-theme'),
+                                label: __('Scroll End', 'ileben-landing'),
                                 value: attributes.animationScrollEnd || 'top 10%',
                                 onChange: (value) => setAttributes({ animationScrollEnd: value }),
-                                help: __('Ej: "top 10%", "bottom center"', 'bootstrap-theme')
+                                help: __('Ej: "top 10%", "bottom center"', 'ileben-landing')
                             }),
 
                             attributes.animationTrigger === 'on-scroll' && createElement(ToggleControl, {
-                                label: __('Show ScrollTrigger Markers', 'bootstrap-theme'),
+                                label: __('Show ScrollTrigger Markers', 'ileben-landing'),
                                 checked: attributes.animationScrollMarkers || false,
                                 onChange: (value) => setAttributes({ animationScrollMarkers: value }),
-                                help: __('Muestra lineas de debug en la pagina', 'bootstrap-theme')
+                                help: __('Muestra lineas de debug en la pagina', 'ileben-landing')
                             }),
 
                             createElement(ToggleControl, {
-                                label: __('Enable on Mobile', 'bootstrap-theme'),
+                                label: __('Enable on Mobile', 'ileben-landing'),
                                 checked: attributes.animationMobileEnabled === true,
                                 onChange: (value) => setAttributes({ animationMobileEnabled: value })
                             })
@@ -614,7 +614,7 @@
                         style: Object.assign({}, blockProps.style || {}, buildStyle())
                     }),
                     createElement(InnerBlocks, {
-                        placeholder: __('Add content to container...', 'bootstrap-theme')
+                        placeholder: __('Add content to container...', 'ileben-landing')
                     })
                 )
             );

@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 function bootstrap_theme_render_bs_badge_block($attributes, $content, $block) {
     $variant = $attributes['variant'] ?? 'primary';
     $is_badge_pill = !empty($attributes['pill']);
-    $text = $attributes['text'] ?? __('Badge', 'bootstrap-theme');
+    $text = $attributes['text'] ?? __('Badge', 'ileben-landing');
     $size = $attributes['size'] ?? '';
     
     // Build badge classes

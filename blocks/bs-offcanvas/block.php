@@ -13,11 +13,11 @@ if (!defined('ABSPATH')) {
  * Render Bootstrap Offcanvas Block
  */
 function bootstrap_theme_render_bs_offcanvas_block($attributes, $content, $block) {
-    $title = $attributes['title'] ?? __('Offcanvas', 'bootstrap-theme');
+    $title = $attributes['title'] ?? __('Offcanvas', 'ileben-landing');
     $placement = $attributes['placement'] ?? 'start';
     $backdrop = $attributes['backdrop'] ?? true;
     $scroll = $attributes['scroll'] ?? false;
-    $buttonText = $attributes['buttonText'] ?? __('Toggle Offcanvas', 'bootstrap-theme');
+    $buttonText = $attributes['buttonText'] ?? __('Toggle Offcanvas', 'ileben-landing');
     $buttonVariant = $attributes['buttonVariant'] ?? 'btn-primary';
     $offcanvasId = $attributes['offcanvasId'] ?? 'offcanvas-' . uniqid();
     
@@ -55,7 +55,7 @@ function bootstrap_theme_render_bs_offcanvas_block($attributes, $content, $block
     // Offcanvas header
     $output .= '<div class="offcanvas-header">';
     $output .= '<h5 class="offcanvas-title" id="' . esc_attr($offcanvasId) . 'Label">' . esc_html($title) . '</h5>';
-    $output .= '<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="' . esc_attr__('Close', 'bootstrap-theme') . '"></button>';
+    $output .= '<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="' . esc_attr__('Close', 'ileben-landing') . '"></button>';
     $output .= '</div>';
     
     // Offcanvas body

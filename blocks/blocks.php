@@ -140,7 +140,7 @@ function bootstrap_theme_block_editor_assets()
                     return $choices;
                 };
                 
-                // Obtener categorías de plantas
+                // Obtener categor├¡as de plantas
                 $categorias_plantas = get_terms(array(
                     'taxonomy' => 'categoria_planta',
                     'hide_empty' => false,
@@ -163,7 +163,7 @@ function bootstrap_theme_block_editor_assets()
         }
     }
 
-    // Always enqueue plantas categorías for the block editor (outside the loop)
+    // Always enqueue plantas categor├¡as for the block editor (outside the loop)
     wp_enqueue_script('wp-blocks');
     wp_add_inline_script('wp-blocks', 'window.ILEBEN_THEME_URI = ' . wp_json_encode(ILEBEN_THEME_URI) . ';', 'before');
     $categorias_plantas = get_terms(array(
@@ -264,7 +264,7 @@ function bootstrap_theme_register_block_category($categories)
     // Add Ileben-landing category at the beginning for better visibility
     array_unshift($categories, array(
         'slug'  => 'ileben-landing',
-        'title' => __('Ileben-landing', 'bootstrap-theme'),
+        'title' => __('Ileben-landing', 'ileben-landing'),
         'icon'  => 'admin-customizer'
     ));
 

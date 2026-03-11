@@ -47,12 +47,12 @@ function bootstrap_theme_render_bs_accordion_block($attributes, $content, $block
         $output .= '<div class="accordion-item">';
         $output .= '<h2 class="accordion-header" id="' . esc_attr($accordionId) . '-heading-0">';
         $output .= '<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#' . esc_attr($accordionId) . '-collapse-0" aria-expanded="true" aria-controls="' . esc_attr($accordionId) . '-collapse-0">';
-        $output .= __('Accordion Item #1', 'bootstrap-theme');
+        $output .= __('Accordion Item #1', 'ileben-landing');
         $output .= '</button>';
         $output .= '</h2>';
         $output .= '<div id="' . esc_attr($accordionId) . '-collapse-0" class="accordion-collapse collapse show" aria-labelledby="' . esc_attr($accordionId) . '-heading-0" data-bs-parent="#' . esc_attr($accordionId) . '">';
         $output .= '<div class="accordion-body">';
-        $output .= __('Add content to your accordion.', 'bootstrap-theme');
+        $output .= __('Add content to your accordion.', 'ileben-landing');
         $output .= '</div>';
         $output .= '</div>';
         $output .= '</div>';

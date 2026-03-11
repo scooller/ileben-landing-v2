@@ -43,7 +43,7 @@ function bootstrap_theme_render_bs_pagination_block($attributes, $content, $bloc
     $wrapper_class_string = !empty($wrapper_classes) ? ' class="' . esc_attr(implode(' ', $wrapper_classes)) . '"' : '';
     $pagination_class_string = implode(' ', array_unique($pagination_classes));
     
-    $output = '<nav aria-label="' . esc_attr__('Page navigation', 'bootstrap-theme') . '">';
+    $output = '<nav aria-label="' . esc_attr__('Page navigation', 'ileben-landing') . '">';
     $output .= '<ul' . $wrapper_class_string . ' class="' . esc_attr($pagination_class_string) . '">';
     
     // Process the InnerBlocks content (pagination items)
@@ -52,11 +52,11 @@ function bootstrap_theme_render_bs_pagination_block($attributes, $content, $bloc
         $output .= $content;
     } else {
         // Default content if no items
-        $output .= '<li class="page-item disabled"><a class="page-link" href="#">' . __('Previous', 'bootstrap-theme') . '</a></li>';
+        $output .= '<li class="page-item disabled"><a class="page-link" href="#">' . __('Previous', 'ileben-landing') . '</a></li>';
         $output .= '<li class="page-item active"><a class="page-link" href="#">1</a></li>';
         $output .= '<li class="page-item"><a class="page-link" href="#">2</a></li>';
         $output .= '<li class="page-item"><a class="page-link" href="#">3</a></li>';
-        $output .= '<li class="page-item"><a class="page-link" href="#">' . __('Next', 'bootstrap-theme') . '</a></li>';
+        $output .= '<li class="page-item"><a class="page-link" href="#">' . __('Next', 'ileben-landing') . '</a></li>';
     }
     
     $output .= '</ul>';

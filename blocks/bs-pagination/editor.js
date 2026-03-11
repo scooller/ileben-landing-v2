@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-pagination', {
-        title: __('Bootstrap Pagination', 'bootstrap-theme'),
-        description: __('Bootstrap pagination navigation component', 'bootstrap-theme'),
+        title: __('Bootstrap Pagination', 'ileben-landing'),
+        description: __('Bootstrap pagination navigation component', 'ileben-landing'),
         icon: 'ellipsis',
         category: 'ileben-landing',
         keywords: [__('pagination'), __('navigation'), __('bootstrap')],
@@ -48,7 +48,7 @@
             if (attributes.preview) {
                 return createElement('img', {
                     src: '/wp-content/themes/bootstrap-theme/blocks/bs-pagination/example.png',
-                    alt: __('Pagination preview', 'bootstrap-theme'),
+                    alt: __('Pagination preview', 'ileben-landing'),
                     style: { width: '100%', height: 'auto', display: 'block' }
                 });
             }
@@ -78,7 +78,7 @@
                 // Previous button
                 pages.push(
                     createElement('li', { className: 'page-item', key: 'prev' },
-                        createElement('a', { className: 'page-link', href: '#' }, __('Previous', 'bootstrap-theme'))
+                        createElement('a', { className: 'page-link', href: '#' }, __('Previous', 'ileben-landing'))
                     )
                 );
                 
@@ -97,7 +97,7 @@
                 // Next button
                 pages.push(
                     createElement('li', { className: 'page-item', key: 'next' },
-                        createElement('a', { className: 'page-link', href: '#' }, __('Next', 'bootstrap-theme'))
+                        createElement('a', { className: 'page-link', href: '#' }, __('Next', 'ileben-landing'))
                     )
                 );
                 
@@ -106,22 +106,22 @@
             
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Pagination Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Pagination Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Size', 'bootstrap-theme'),
+                            label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Alignment', 'bootstrap-theme'),
+                            label: __('Alignment', 'ileben-landing'),
                             value: attributes.alignment,
                             options: alignmentOptions,
                             onChange: (value) => setAttributes({ alignment: value })
                         }),
                         createElement(RangeControl, {
-                            label: __('Preview Pages', 'bootstrap-theme'),
-                            help: __('Number of pages to show in preview', 'bootstrap-theme'),
+                            label: __('Preview Pages', 'ileben-landing'),
+                            help: __('Number of pages to show in preview', 'ileben-landing'),
                             value: attributes.totalPages,
                             onChange: (value) => setAttributes({ totalPages: value }),
                             min: 1,
@@ -135,7 +135,7 @@
                     }),
                     createElement('div', { className: 'mb-3' },
                         createElement('small', { className: 'text-muted' },
-                            __('Preview - Configure pagination via block settings', 'bootstrap-theme')
+                            __('Preview - Configure pagination via block settings', 'ileben-landing')
                         )
                     ),
                     createElement('ul', { className: paginationClasses },
@@ -144,7 +144,7 @@
                     createElement('div', { className: 'mt-3' },
                         createElement(InnerBlocks, {
                             allowedBlocks: ['bootstrap-theme/bs-pagination-item'],
-                            placeholder: __('Add custom pagination items...', 'bootstrap-theme'),
+                            placeholder: __('Add custom pagination items...', 'ileben-landing'),
                             template: []
                         })
                     )

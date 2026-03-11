@@ -86,7 +86,7 @@ function bootstrap_theme_render_bs_column_block($attributes, $content, $block)
     if (!empty($content)) {
         $output .= $content;
     } else {
-        $output .= '<p>' . __('Add content to your column.', 'bootstrap-theme') . '</p>';
+        $output .= '<p>' . __('Add content to your column.', 'ileben-landing') . '</p>';
     }
 
     $output .= '</div>';

@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-accordion', {
-        title: __('Bootstrap Accordion', 'bootstrap-theme'),
-        description: __('Bootstrap accordion component', 'bootstrap-theme'),
+        title: __('Bootstrap Accordion', 'ileben-landing'),
+        description: __('Bootstrap accordion component', 'ileben-landing'),
         icon: 'list-view',
         category: 'ileben-landing',
         keywords: [__('accordion'), __('bootstrap'), __('collapse')],
@@ -53,7 +53,7 @@
                 },
                     createElement('img', {
                         src: '/wp-content/themes/bootstrap-theme/blocks/bs-accordion/example.png',
-                        alt: __('Bootstrap Accordion Preview', 'bootstrap-theme'),
+                        alt: __('Bootstrap Accordion Preview', 'ileben-landing'),
                         style: { width: '100%', height: 'auto', maxWidth: '600px' }
                     })
                 );
@@ -68,21 +68,21 @@
             
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Accordion Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Accordion Settings', 'ileben-landing') },
                         createElement(ToggleControl, {
-                            label: __('Always Open', 'bootstrap-theme'),
-                            help: __('Allow multiple items to be open simultaneously', 'bootstrap-theme'),
+                            label: __('Always Open', 'ileben-landing'),
+                            help: __('Allow multiple items to be open simultaneously', 'ileben-landing'),
                             checked: attributes.alwaysOpen,
                             onChange: (value) => setAttributes({ alwaysOpen: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Flush', 'bootstrap-theme'),
-                            help: __('Remove borders and rounded corners', 'bootstrap-theme'),
+                            label: __('Flush', 'ileben-landing'),
+                            help: __('Remove borders and rounded corners', 'ileben-landing'),
                             checked: attributes.flush,
                             onChange: (value) => setAttributes({ flush: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Accordion ID', 'bootstrap-theme'),
+                            label: __('Accordion ID', 'ileben-landing'),
                             value: attributes.accordionId,
                             onChange: (value) => setAttributes({ accordionId: value })
                         })
@@ -99,7 +99,7 @@
                             ['bootstrap-theme/bs-accordion-item', { title: 'Accordion Item 1' }],
                             ['bootstrap-theme/bs-accordion-item', { title: 'Accordion Item 2' }]
                         ],
-                        placeholder: __('Add accordion items...', 'bootstrap-theme')
+                        placeholder: __('Add accordion items...', 'ileben-landing')
                     })
                 )
             );

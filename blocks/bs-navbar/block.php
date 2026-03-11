@@ -58,7 +58,7 @@ function bootstrap_theme_render_bs_navbar_block($attributes, $content, $block) {
     }
     
     // Toggler button
-    $output .= '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#' . esc_attr($navbarId) . '" aria-controls="' . esc_attr($navbarId) . '" aria-expanded="false" aria-label="' . esc_attr__('Toggle navigation', 'bootstrap-theme') . '">';
+    $output .= '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#' . esc_attr($navbarId) . '" aria-controls="' . esc_attr($navbarId) . '" aria-expanded="false" aria-label="' . esc_attr__('Toggle navigation', 'ileben-landing') . '">';
     $output .= '<span class="navbar-toggler-icon"></span>';
     $output .= '</button>';
     

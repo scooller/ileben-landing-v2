@@ -12,8 +12,8 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
 {
     $posts_per_page = isset($attributes['postsPerPage']) ? intval($attributes['postsPerPage']) : -1;
     $showThumbnail = !empty($attributes['showThumbnail']);
-    $buttonLabel = isset($attributes['buttonLabel']) && $attributes['buttonLabel'] !== '' ? sanitize_text_field($attributes['buttonLabel']) : __('Cotizar', 'bootstrap-theme');
-    $disabledButtonLabel = isset($attributes['disabledButtonLabel']) && $attributes['disabledButtonLabel'] !== '' ? sanitize_text_field($attributes['disabledButtonLabel']) : __('No disponible', 'bootstrap-theme');
+    $buttonLabel = isset($attributes['buttonLabel']) && $attributes['buttonLabel'] !== '' ? sanitize_text_field($attributes['buttonLabel']) : __('Cotizar', 'ileben-landing');
+    $disabledButtonLabel = isset($attributes['disabledButtonLabel']) && $attributes['disabledButtonLabel'] !== '' ? sanitize_text_field($attributes['disabledButtonLabel']) : __('No disponible', 'ileben-landing');
     $slidesPerView = isset($attributes['slidesPerView']) ? trim((string)$attributes['slidesPerView']) : '';
     $slidesPerView = $slidesPerView !== '' ? str_replace(',', '.', $slidesPerView) : '';
 
@@ -54,7 +54,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
         'order' => 'ASC',
     );
 
-    // Aplicar filtro de categoría si está seleccionado (solo en backend/bloque)
+    // Aplicar filtro de categor├¡a si est├í seleccionado (solo en backend/bloque)
     if (!empty($filterCategoria)) {
         $args['tax_query'] = array(
             array(
@@ -67,7 +67,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
         );
     }
 
-    // No aplicar filtros en el backend, se filtrarán en el frontend con JS
+    // No aplicar filtros en el backend, se filtrar├ín en el frontend con JS
     $q = new WP_Query($args);
     if (!$q->have_posts()) {
         return '';
@@ -114,9 +114,9 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
         <?php if ($showFilters) : ?>
             <form class="bs-plantas-filters row g-3 mb-3 text-center text-md-start" data-ajax-filter>
                 <div class="col-12 col-md-6">
-                    <label class="form-label"><?php echo esc_html__('Dormitorios', 'bootstrap-theme'); ?></label>
+                    <label class="form-label"><?php echo esc_html__('Dormitorios', 'ileben-landing'); ?></label>
                     <select class="form-select" name="planta_dormitorio" data-filter-select>
-                        <option value=""><?php echo esc_html__('Todos', 'bootstrap-theme'); ?></option>
+                        <option value=""><?php echo esc_html__('Todos', 'ileben-landing'); ?></option>
                         <?php foreach ($dorm_choices as $value => $label) : ?>
                             <option value="<?php echo esc_attr($value); ?>" <?php echo selected($filterDormitorio, $value, false); ?>><?php echo esc_html($label); ?></option>
                         <?php endforeach; ?>
@@ -124,9 +124,9 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                 </div>
 
                 <div class="col-12 col-md-6">
-                    <label class="form-label"><?php echo esc_html__('Baños', 'bootstrap-theme'); ?></label>
+                    <label class="form-label"><?php echo esc_html__('Ba├▒os', 'ileben-landing'); ?></label>
                     <select class="form-select" name="planta_bano" data-filter-select>
-                        <option value=""><?php echo esc_html__('Todos', 'bootstrap-theme'); ?></option>
+                        <option value=""><?php echo esc_html__('Todos', 'ileben-landing'); ?></option>
                         <?php foreach ($bano_choices as $value => $label) : ?>
                             <option value="<?php echo esc_attr($value); ?>" <?php echo selected($filterBano, $value, false); ?>><?php echo esc_html($label); ?></option>
                         <?php endforeach; ?>
@@ -147,7 +147,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                         $content_html = apply_filters('the_content', get_the_content(null, false, get_the_ID()));
                         $planta_dorm = function_exists('get_field') ? get_field('planta_dormitorio', get_the_ID()) : '';
                         $planta_bano = function_exists('get_field') ? get_field('planta_bano', get_the_ID()) : '';
-                        // solo mostrar el numero de dormitorios y baños
+                        // solo mostrar el numero de dormitorios y ba├▒os
                         $planta_dorm_num = explode(' ', $planta_dorm)[0];
                         $planta_bano_num = explode(' ', $planta_bano)[0];
                     ?>
@@ -226,8 +226,8 @@ function bootstrap_theme_register_bs_plantas_slider()
         'attributes' => array(
             'postsPerPage' => array('type' => 'number', 'default' => -1),
             'showThumbnail' => array('type' => 'boolean', 'default' => true),
-            'buttonLabel' => array('type' => 'string', 'default' => __('Cotizar', 'bootstrap-theme')),
-            'disabledButtonLabel' => array('type' => 'string', 'default' => __('No disponible', 'bootstrap-theme')),
+            'buttonLabel' => array('type' => 'string', 'default' => __('Cotizar', 'ileben-landing')),
+            'disabledButtonLabel' => array('type' => 'string', 'default' => __('No disponible', 'ileben-landing')),
             'slidesPerView' => array('type' => 'string', 'default' => ''),
             'slidesPerViewMobile' => array('type' => 'string', 'default' => '1'),
             'slidesPerViewTablet' => array('type' => 'string', 'default' => '1.5'),

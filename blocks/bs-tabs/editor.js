@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-tabs', {
-        title: __('Bootstrap Tabs', 'bootstrap-theme'),
-        description: __('Bootstrap tabs navigation component', 'bootstrap-theme'),
+        title: __('Bootstrap Tabs', 'ileben-landing'),
+        description: __('Bootstrap tabs navigation component', 'ileben-landing'),
         icon: 'index-card',
         category: 'ileben-landing',
         keywords: [__('tabs'), __('navigation'), __('bootstrap')],
@@ -71,27 +71,27 @@
             ].filter(Boolean).join(' ');
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Tabs Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Tabs Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Tabs ID', 'bootstrap-theme'),
+                            label: __('Tabs ID', 'ileben-landing'),
                             value: attributes.tabsId,
                             onChange: (value) => setAttributes({ tabsId: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Variant', 'bootstrap-theme'),
+                            label: __('Variant', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Justified', 'bootstrap-theme'),
-                            help: __('Make tabs fill available width', 'bootstrap-theme'),
+                            label: __('Justified', 'ileben-landing'),
+                            help: __('Make tabs fill available width', 'ileben-landing'),
                             checked: attributes.justified,
                             onChange: (value) => setAttributes({ justified: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Vertical', 'bootstrap-theme'),
-                            help: __('Stack tabs vertically', 'bootstrap-theme'),
+                            label: __('Vertical', 'ileben-landing'),
+                            help: __('Stack tabs vertically', 'ileben-landing'),
                             checked: attributes.vertical,
                             onChange: (value) => setAttributes({ vertical: value })
                         })
@@ -112,14 +112,14 @@
                                     className: 'nav-link active',
                                     type: 'button',
                                     role: 'tab'
-                                }, __('Tab 1', 'bootstrap-theme'))
+                                }, __('Tab 1', 'ileben-landing'))
                             ),
                             createElement('li', { className: 'nav-item', role: 'presentation' },
                                 createElement('button', {
                                     className: 'nav-link',
                                     type: 'button',
                                     role: 'tab'
-                                }, __('Tab 2', 'bootstrap-theme'))
+                                }, __('Tab 2', 'ileben-landing'))
                             )
                         ),
                         
@@ -134,7 +134,7 @@
                                     ['bootstrap-theme/bs-tab-pane', { title: 'Tab 1', active: true }],
                                     ['bootstrap-theme/bs-tab-pane', { title: 'Tab 2' }]
                                 ],
-                                placeholder: __('Add tab panes...', 'bootstrap-theme')
+                                placeholder: __('Add tab panes...', 'ileben-landing')
                             })
                         )
                     )

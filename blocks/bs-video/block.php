@@ -93,7 +93,7 @@ function bootstrap_theme_render_bs_video_block($attributes, $content, $block)
         <video<?php echo $video_attrs_string; ?> style="w-100 h-100 object-fit: <?php echo esc_attr($object_fit); ?>;">
             <source data-src="<?php echo esc_url($video_url); ?>" type="video/mp4">
             <source data-src="<?php echo esc_url(str_replace('.mp4', '.webm', $video_url)); ?>" type="video/webm">
-            <?php echo __('Your browser does not support the video tag.', 'bootstrap-theme'); ?>
+            <?php echo __('Your browser does not support the video tag.', 'ileben-landing'); ?>
         </video>
 
         <?php if (!empty($mask_url)) : ?>

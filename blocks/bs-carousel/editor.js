@@ -10,8 +10,8 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-carousel', {
-        title: __('Bootstrap Carousel', 'bootstrap-theme'),
-        description: __('Bootstrap carousel slideshow component', 'bootstrap-theme'),
+        title: __('Bootstrap Carousel', 'ileben-landing'),
+        description: __('Bootstrap carousel slideshow component', 'ileben-landing'),
         icon: 'images-alt2',
         category: 'ileben-landing',
         keywords: [__('carousel'), __('slider'), __('bootstrap')],
@@ -85,52 +85,52 @@
             ].filter(Boolean).join(' ');
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Carousel Settings', 'bootstrap-theme') },
+                    createElement(PanelBody, { title: __('Carousel Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Carousel ID', 'bootstrap-theme'),
+                            label: __('Carousel ID', 'ileben-landing'),
                             value: attributes.carouselId,
                             onChange: (value) => setAttributes({ carouselId: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Show Controls', 'bootstrap-theme'),
-                            help: __('Show previous/next arrows', 'bootstrap-theme'),
+                            label: __('Show Controls', 'ileben-landing'),
+                            help: __('Show previous/next arrows', 'ileben-landing'),
                             checked: attributes.controls,
                             onChange: (value) => setAttributes({ controls: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Show Indicators', 'bootstrap-theme'),
-                            help: __('Show slide indicator dots', 'bootstrap-theme'),
+                            label: __('Show Indicators', 'ileben-landing'),
+                            help: __('Show slide indicator dots', 'ileben-landing'),
                             checked: attributes.indicators,
                             onChange: (value) => setAttributes({ indicators: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Auto Play', 'bootstrap-theme'),
+                            label: __('Auto Play', 'ileben-landing'),
                             value: attributes.ride,
                             options: rideOptions,
                             onChange: (value) => setAttributes({ ride: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Interval (ms)', 'bootstrap-theme'),
-                            help: __('Time between slides in milliseconds', 'bootstrap-theme'),
+                            label: __('Interval (ms)', 'ileben-landing'),
+                            help: __('Time between slides in milliseconds', 'ileben-landing'),
                             value: attributes.interval,
                             type: 'number',
                             onChange: (value) => setAttributes({ interval: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Wrap', 'bootstrap-theme'),
-                            help: __('Loop slides continuously', 'bootstrap-theme'),
+                            label: __('Wrap', 'ileben-landing'),
+                            help: __('Loop slides continuously', 'ileben-landing'),
                             checked: attributes.wrap,
                             onChange: (value) => setAttributes({ wrap: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Fade Effect', 'bootstrap-theme'),
-                            help: __('Use fade transition instead of slide', 'bootstrap-theme'),
+                            label: __('Fade Effect', 'ileben-landing'),
+                            help: __('Use fade transition instead of slide', 'ileben-landing'),
                             checked: attributes.fade,
                             onChange: (value) => setAttributes({ fade: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Touch Swipe', 'bootstrap-theme'),
-                            help: __('Enable touch/swipe on mobile devices', 'bootstrap-theme'),
+                            label: __('Touch Swipe', 'ileben-landing'),
+                            help: __('Enable touch/swipe on mobile devices', 'ileben-landing'),
                             checked: attributes.touch,
                             onChange: (value) => setAttributes({ touch: value })
                         })
@@ -147,7 +147,7 @@
                     }),
                     // Indicators placeholder
                     attributes.indicators && createElement('div', { className: 'carousel-indicators-preview mb-2' },
-                        createElement('small', { className: 'text-muted' }, __('Indicators will appear here', 'bootstrap-theme'))
+                        createElement('small', { className: 'text-muted' }, __('Indicators will appear here', 'ileben-landing'))
                     ),
                     
                     // Carousel Inner
@@ -159,13 +159,13 @@
                                 ['bootstrap-theme/bs-carousel-item'],
                                 ['bootstrap-theme/bs-carousel-item']
                             ],
-                            placeholder: __('Add carousel items...', 'bootstrap-theme')
+                            placeholder: __('Add carousel items...', 'ileben-landing')
                         })
                     ),
                     
                     // Controls placeholder
                     attributes.controls && createElement('div', { className: 'carousel-controls-preview mt-2' },
-                        createElement('small', { className: 'text-muted' }, __('Previous/Next controls will appear here', 'bootstrap-theme'))
+                        createElement('small', { className: 'text-muted' }, __('Previous/Next controls will appear here', 'ileben-landing'))
                     )
                 )
             );

@@ -10,16 +10,16 @@
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-plantas-slider', {
-        title: __('Plantas Slider', 'bootstrap-theme'),
-        description: __('Muestra las plantas publicadas como slider (Swiper).', 'bootstrap-theme'),
+        title: __('Plantas Slider', 'ileben-landing'),
+        description: __('Muestra las plantas publicadas como slider (Swiper).', 'ileben-landing'),
         icon: 'images-alt2',
         category: 'ileben-landing',
         supports: { html: false },
         attributes: {
             postsPerPage: { type: 'number', default: -1 },
             showThumbnail: { type: 'boolean', default: true },
-            buttonLabel: { type: 'string', default: __('Cotizar', 'bootstrap-theme') },
-            disabledButtonLabel: { type: 'string', default: __('No disponible', 'bootstrap-theme') },
+            buttonLabel: { type: 'string', default: __('Cotizar', 'ileben-landing') },
+            disabledButtonLabel: { type: 'string', default: __('No disponible', 'ileben-landing') },
             slidesPerView: { type: 'string', default: '' },
             slidesPerViewMobile: { type: 'string', default: '1' },
             slidesPerViewTablet: { type: 'string', default: '1.5' },
@@ -61,119 +61,119 @@
 
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
-                    createElement(PanelBody, { title: __('Configuración', 'bootstrap-theme'), initialOpen: true },
+                    createElement(PanelBody, { title: __('Configuraci├│n', 'ileben-landing'), initialOpen: true },
                         createElement(RangeControl, {
-                            label: __('Máximo de posts (-1 = todos)', 'bootstrap-theme'),
+                            label: __('M├íximo de posts (-1 = todos)', 'ileben-landing'),
                             value: attributes.postsPerPage,
                             onChange: (value) => setAttributes({ postsPerPage: value }),
                             min: -1,
                             max: 24
                         }),
-                        createElement('h4', { style: { marginTop: '1rem', marginBottom: '0.5rem' } }, __('Slides por Viewport', 'bootstrap-theme')),
+                        createElement('h4', { style: { marginTop: '1rem', marginBottom: '0.5rem' } }, __('Slides por Viewport', 'ileben-landing')),
                         createElement(TextControl, {
-                            label: __('Mobile (< 768px)', 'bootstrap-theme'),
+                            label: __('Mobile (< 768px)', 'ileben-landing'),
                             value: attributes.slidesPerViewMobile,
                             onChange: (value) => setAttributes({ slidesPerViewMobile: value }),
                             placeholder: '1'
                         }),
                         createElement(TextControl, {
-                            label: __('Tablet (768px - 1023px)', 'bootstrap-theme'),
+                            label: __('Tablet (768px - 1023px)', 'ileben-landing'),
                             value: attributes.slidesPerViewTablet,
                             onChange: (value) => setAttributes({ slidesPerViewTablet: value }),
                             placeholder: '1.5'
                         }),
                         createElement(TextControl, {
-                            label: __('Desktop (≥ 1024px)', 'bootstrap-theme'),
+                            label: __('Desktop (ÔëÑ 1024px)', 'ileben-landing'),
                             value: attributes.slidesPerViewDesktop,
                             onChange: (value) => setAttributes({ slidesPerViewDesktop: value }),
                             placeholder: '3'
                         }),
                         createElement(ToggleControl, {
-                            label: __('Mostrar imagen destacada', 'bootstrap-theme'),
+                            label: __('Mostrar imagen destacada', 'ileben-landing'),
                             checked: !!attributes.showThumbnail,
                             onChange: (value) => setAttributes({ showThumbnail: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Texto botón cotizador', 'bootstrap-theme'),
+                            label: __('Texto bot├│n cotizador', 'ileben-landing'),
                             value: attributes.buttonLabel,
                             onChange: (value) => setAttributes({ buttonLabel: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Texto botón desactivado', 'bootstrap-theme'),
+                            label: __('Texto bot├│n desactivado', 'ileben-landing'),
                             value: attributes.disabledButtonLabel,
                             onChange: (value) => setAttributes({ disabledButtonLabel: value })
                         }),
-                        createElement('h4', { style: { marginTop: '1rem', marginBottom: '0.5rem' } }, __('Navegación', 'bootstrap-theme')),
+                        createElement('h4', { style: { marginTop: '1rem', marginBottom: '0.5rem' } }, __('Navegaci├│n', 'ileben-landing')),
                         createElement(ToggleControl, {
-                            label: __('Mostrar flechas prev/next', 'bootstrap-theme'),
+                            label: __('Mostrar flechas prev/next', 'ileben-landing'),
                             checked: !!attributes.navigationArrows,
                             onChange: (value) => setAttributes({ navigationArrows: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Tipo de paginación', 'bootstrap-theme'),
+                            label: __('Tipo de paginaci├│n', 'ileben-landing'),
                             value: attributes.paginationType,
                             options: [
-                                { label: __('Sin paginación', 'bootstrap-theme'), value: 'none' },
-                                { label: __('Bullets (puntos)', 'bootstrap-theme'), value: 'bullets' },
-                                { label: __('Fracciones (2/10)', 'bootstrap-theme'), value: 'fraction' },
-                                { label: __('Barra de progreso', 'bootstrap-theme'), value: 'progressbar' },
-                                { label: __('Scroll bar', 'bootstrap-theme'), value: 'scrollbar' }
+                                { label: __('Sin paginaci├│n', 'ileben-landing'), value: 'none' },
+                                { label: __('Bullets (puntos)', 'ileben-landing'), value: 'bullets' },
+                                { label: __('Fracciones (2/10)', 'ileben-landing'), value: 'fraction' },
+                                { label: __('Barra de progreso', 'ileben-landing'), value: 'progressbar' },
+                                { label: __('Scroll bar', 'ileben-landing'), value: 'scrollbar' }
                             ],
                             onChange: (value) => setAttributes({ paginationType: value })
                         }),
-                        createElement('h4', { style: { marginTop: '1rem', marginBottom: '0.5rem' } }, __('Efecto', 'bootstrap-theme')),
+                        createElement('h4', { style: { marginTop: '1rem', marginBottom: '0.5rem' } }, __('Efecto', 'ileben-landing')),
                         createElement(SelectControl, {
-                            label: __('Tipo de efecto', 'bootstrap-theme'),
+                            label: __('Tipo de efecto', 'ileben-landing'),
                             value: attributes.effect,
                             options: [
-                                { label: __('Slide (defecto)', 'bootstrap-theme'), value: 'slide' },
-                                { label: __('Fade (desvanecimiento)', 'bootstrap-theme'), value: 'fade' },
-                                { label: __('Cube (cubo 3D)', 'bootstrap-theme'), value: 'cube' },
-                                { label: __('Coverflow (portadas)', 'bootstrap-theme'), value: 'coverflow' },
-                                { label: __('Flip (volteo)', 'bootstrap-theme'), value: 'flip' },
-                                { label: __('Cards (tarjetas)', 'bootstrap-theme'), value: 'cards' },
-                                { label: __('Creative (personalizado)', 'bootstrap-theme'), value: 'creative' }
+                                { label: __('Slide (defecto)', 'ileben-landing'), value: 'slide' },
+                                { label: __('Fade (desvanecimiento)', 'ileben-landing'), value: 'fade' },
+                                { label: __('Cube (cubo 3D)', 'ileben-landing'), value: 'cube' },
+                                { label: __('Coverflow (portadas)', 'ileben-landing'), value: 'coverflow' },
+                                { label: __('Flip (volteo)', 'ileben-landing'), value: 'flip' },
+                                { label: __('Cards (tarjetas)', 'ileben-landing'), value: 'cards' },
+                                { label: __('Creative (personalizado)', 'ileben-landing'), value: 'creative' }
                             ],
                             onChange: (value) => setAttributes({ effect: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Centrar slide activo', 'bootstrap-theme'),
+                            label: __('Centrar slide activo', 'ileben-landing'),
                             checked: !!attributes.centered,
                             onChange: (value) => setAttributes({ centered: value })
                         }),
                         createElement(ToggleControl, {
-                            label: __('Repetir infinitamente (loop)', 'bootstrap-theme'),
+                            label: __('Repetir infinitamente (loop)', 'ileben-landing'),
                             checked: !!attributes.loop,
                             onChange: (value) => setAttributes({ loop: value })
                         })
                     ),
-                    createElement(PanelBody, { title: __('Filtros', 'bootstrap-theme'), initialOpen: false },
+                    createElement(PanelBody, { title: __('Filtros', 'ileben-landing'), initialOpen: false },
                         createElement(ToggleControl, {
-                            label: __('Mostrar filtros de búsqueda', 'bootstrap-theme'),
-                            help: __('Mostrar u ocultar la barra de filtros (Dormitorios y Baños)', 'bootstrap-theme'),
+                            label: __('Mostrar filtros de b├║squeda', 'ileben-landing'),
+                            help: __('Mostrar u ocultar la barra de filtros (Dormitorios y Ba├▒os)', 'ileben-landing'),
                             checked: !!attributes.showFilters,
                             onChange: (value) => setAttributes({ showFilters: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Dormitorios', 'bootstrap-theme'),
+                            label: __('Dormitorios', 'ileben-landing'),
                             value: attributes.filterDormitorio,
-                            options: [{ label: __('— Sin filtro —', 'bootstrap-theme'), value: '' }].concat(
+                            options: [{ label: __('ÔÇö Sin filtro ÔÇö', 'ileben-landing'), value: '' }].concat(
                                 dorms.map((item) => ({ label: item, value: item }))
                             ),
                             onChange: (value) => setAttributes({ filterDormitorio: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Baños', 'bootstrap-theme'),
+                            label: __('Ba├▒os', 'ileben-landing'),
                             value: attributes.filterBano,
-                            options: [{ label: __('— Sin filtro —', 'bootstrap-theme'), value: '' }].concat(
+                            options: [{ label: __('ÔÇö Sin filtro ÔÇö', 'ileben-landing'), value: '' }].concat(
                                 banos.map((item) => ({ label: item, value: item }))
                             ),
                             onChange: (value) => setAttributes({ filterBano: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Categoría', 'bootstrap-theme'),
+                            label: __('Categor├¡a', 'ileben-landing'),
                             value: attributes.filterCategoria,
-                            options: [{ label: __('— Sin filtro —', 'bootstrap-theme'), value: '' }].concat(
+                            options: [{ label: __('ÔÇö Sin filtro ÔÇö', 'ileben-landing'), value: '' }].concat(
                                 (window.BOOTSTRAP_THEME_PLANTAS_CATEGORIAS || []).map((cat) => ({ label: cat.name, value: cat.slug }))
                             ),
                             onChange: (value) => setAttributes({ filterCategoria: value })
@@ -193,8 +193,8 @@
                 createElement('div', blockProps,
                     createElement('div', { className: 'ratio ratio-16x9 bg-body-secondary d-flex align-items-center justify-content-center rounded' },
                         createElement('div', { className: 'text-center px-3' },
-                            createElement('p', {}, __('El slider se renderizará con las Plantas publicadas en el frontend.', 'bootstrap-theme')),
-                            createElement('small', { className: 'text-muted' }, __('Usa las configuraciones globales de Swiper en Opciones de Tema → Otros.', 'bootstrap-theme'))
+                            createElement('p', {}, __('El slider se renderizar├í con las Plantas publicadas en el frontend.', 'ileben-landing')),
+                            createElement('small', { className: 'text-muted' }, __('Usa las configuraciones globales de Swiper en Opciones de Tema ÔåÆ Otros.', 'ileben-landing'))
                         )
                     )
                 )

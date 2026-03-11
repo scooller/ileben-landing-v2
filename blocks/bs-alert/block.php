@@ -42,11 +42,11 @@ function bootstrap_theme_render_bs_alert_block($attributes, $content, $block) {
         // The content should already be processed HTML from InnerBlocks.Content
         $output .= $content;
     } else {
-        $output .= '<p>' . __('Please add content to your alert.', 'bootstrap-theme') . '</p>';
+        $output .= '<p>' . __('Please add content to your alert.', 'ileben-landing') . '</p>';
     }
     
     if ($dismissible) {
-        $output .= '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="' . esc_attr__('Close', 'bootstrap-theme') . '"></button>';
+        $output .= '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="' . esc_attr__('Close', 'ileben-landing') . '"></button>';
     }
     
     $output .= '</div>';

@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
  * Render Bootstrap Toast Block
  */
 function bootstrap_theme_render_bs_toast_block($attributes, $content, $block) {
-    $title = $attributes['title'] ?? __('Toast', 'bootstrap-theme');
+    $title = $attributes['title'] ?? __('Toast', 'ileben-landing');
     $subtitle = $attributes['subtitle'] ?? '';
     $autohide = $attributes['autohide'] ?? true;
     $delay = $attributes['delay'] ?? 5000;
@@ -83,7 +83,7 @@ function bootstrap_theme_render_bs_toast_block($attributes, $content, $block) {
         $output .= '<small class="text-muted">' . esc_html($subtitle) . '</small>';
     }
     
-    $output .= '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="' . esc_attr__('Close', 'bootstrap-theme') . '"></button>';
+    $output .= '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="' . esc_attr__('Close', 'ileben-landing') . '"></button>';
     $output .= '</div>';
     
     // Toast body

@@ -11,8 +11,8 @@
     const themeUri = (typeof window.ILEBEN_THEME_URI === 'string') ? window.ILEBEN_THEME_URI : '';
 
     registerBlockType('bootstrap-theme/bs-video', {
-        title: __('Video with Mask', 'bootstrap-theme'),
-        description: __('A video block with optional image mask support (e.g., phone frame)', 'bootstrap-theme'),
+        title: __('Video with Mask', 'ileben-landing'),
+        description: __('A video block with optional image mask support (e.g., phone frame)', 'ileben-landing'),
         icon: 'format-video',
         category: 'ileben-landing',
         keywords: [__('video'), __('mask'), __('phone'), __('frame')],
@@ -84,7 +84,7 @@
                             : el(
                                 'p',
                                 { style: { color: '#999', margin: 0 } },
-                                __('Select a video to preview', 'bootstrap-theme')
+                                __('Select a video to preview', 'ileben-landing')
                             )
                     )
                 ),
@@ -93,7 +93,7 @@
                     {},
                     el(
                         PanelBody,
-                        { title: __('Video Settings', 'bootstrap-theme'), initialOpen: true },
+                        { title: __('Video Settings', 'ileben-landing'), initialOpen: true },
                         el(
                             MediaUploadCheck,
                             {},
@@ -110,7 +110,7 @@
                                                 isSecondary: !attributes.videoUrl,
                                                 isPrimary: !!attributes.videoUrl,
                                             },
-                                            attributes.videoUrl ? __('Change Video', 'bootstrap-theme') : __('Select Video', 'bootstrap-theme')
+                                            attributes.videoUrl ? __('Change Video', 'ileben-landing') : __('Select Video', 'ileben-landing')
                                         ),
                                 },
                                 null
@@ -123,35 +123,35 @@
                                 isDestructive: true,
                                 isSmall: true,
                             },
-                            __('Remove Video', 'bootstrap-theme')
+                            __('Remove Video', 'ileben-landing')
                         ),
                         el(ToggleControl, {
-                            label: __('Autoplay', 'bootstrap-theme'),
+                            label: __('Autoplay', 'ileben-landing'),
                             checked: attributes.autoplay,
                             onChange: (value) => setAttributes({ autoplay: value }),
-                            help: __('Video will start playing automatically', 'bootstrap-theme'),
+                            help: __('Video will start playing automatically', 'ileben-landing'),
                         }),
                         el(ToggleControl, {
-                            label: __('Loop', 'bootstrap-theme'),
+                            label: __('Loop', 'ileben-landing'),
                             checked: attributes.loop,
                             onChange: (value) => setAttributes({ loop: value }),
-                            help: __('Video will loop continuously', 'bootstrap-theme'),
+                            help: __('Video will loop continuously', 'ileben-landing'),
                         }),
                         el(ToggleControl, {
-                            label: __('Muted', 'bootstrap-theme'),
+                            label: __('Muted', 'ileben-landing'),
                             checked: attributes.muted,
                             onChange: (value) => setAttributes({ muted: value }),
-                            help: __('Video will be muted (required for autoplay)', 'bootstrap-theme'),
+                            help: __('Video will be muted (required for autoplay)', 'ileben-landing'),
                         }),
                         el(ToggleControl, {
-                            label: __('Show Controls', 'bootstrap-theme'),
+                            label: __('Show Controls', 'ileben-landing'),
                             checked: attributes.controls,
                             onChange: (value) => setAttributes({ controls: value }),
                         }),
                         el(
                             'label',
                             { style: { display: 'block', marginTop: '16px', marginBottom: '8px', fontWeight: '500' } },
-                            __('Preload', 'bootstrap-theme')
+                            __('Preload', 'ileben-landing')
                         ),
                         el(
                             'select',
@@ -166,18 +166,18 @@
                                     fontSize: '14px',
                                 },
                             },
-                            el('option', { value: 'none' }, __('None - Do not preload', 'bootstrap-theme')),
-                            el('option', { value: 'metadata' }, __('Metadata - Load title, duration, etc', 'bootstrap-theme')),
-                            el('option', { value: 'auto' }, __('Auto - Load entire video', 'bootstrap-theme'))
+                            el('option', { value: 'none' }, __('None - Do not preload', 'ileben-landing')),
+                            el('option', { value: 'metadata' }, __('Metadata - Load title, duration, etc', 'ileben-landing')),
+                            el('option', { value: 'auto' }, __('Auto - Load entire video', 'ileben-landing'))
                         )
                     ),
                     el(
                         PanelBody,
-                        { title: __('Mask Settings', 'bootstrap-theme'), initialOpen: false },
+                        { title: __('Mask Settings', 'ileben-landing'), initialOpen: false },
                         el(
                             'p',
                             { style: { fontSize: '13px', margin: '0 0 16px 0', color: '#555' } },
-                            __('Upload an image (like a phone frame) to use as a mask over the video', 'bootstrap-theme')
+                            __('Upload an image (like a phone frame) to use as a mask over the video', 'ileben-landing')
                         ),
                         el(
                             MediaUploadCheck,
@@ -195,7 +195,7 @@
                                                 isSecondary: !attributes.maskUrl,
                                                 isPrimary: !!attributes.maskUrl,
                                             },
-                                            attributes.maskUrl ? __('Change Mask', 'bootstrap-theme') : __('Select Mask Image', 'bootstrap-theme')
+                                            attributes.maskUrl ? __('Change Mask', 'ileben-landing') : __('Select Mask Image', 'ileben-landing')
                                         ),
                                 },
                                 null
@@ -208,12 +208,12 @@
                                 isDestructive: true,
                                 isSmall: true,
                             },
-                            __('Remove Mask', 'bootstrap-theme')
+                            __('Remove Mask', 'ileben-landing')
                         ),
                         attributes.maskUrl && el(
                             'div',
                             { style: { marginTop: '16px', padding: '8px', backgroundColor: '#f5f5f5', borderRadius: '4px', fontSize: '12px' } },
-                            el('p', { style: { margin: '0 0 8px 0', fontWeight: 'bold' } }, __('Mask Preview:', 'bootstrap-theme')),
+                            el('p', { style: { margin: '0 0 8px 0', fontWeight: 'bold' } }, __('Mask Preview:', 'ileben-landing')),
                             el('img', {
                                 src: attributes.maskUrl,
                                 style: {
@@ -228,11 +228,11 @@
                     ),
                     el(
                         PanelBody,
-                        { title: __('Overlay Image', 'bootstrap-theme'), initialOpen: false },
+                        { title: __('Overlay Image', 'ileben-landing'), initialOpen: false },
                         el(
                             'p',
                             { style: { fontSize: '13px', margin: '0 0 16px 0', color: '#555' } },
-                            __('Upload an image to display on top of the video (e.g., phone bezel, frame)', 'bootstrap-theme')
+                            __('Upload an image to display on top of the video (e.g., phone bezel, frame)', 'ileben-landing')
                         ),
                         el(
                             MediaUploadCheck,
@@ -250,7 +250,7 @@
                                                 isSecondary: !attributes.overlayUrl,
                                                 isPrimary: !!attributes.overlayUrl,
                                             },
-                                            attributes.overlayUrl ? __('Change Overlay Image', 'bootstrap-theme') : __('Select Overlay Image', 'bootstrap-theme')
+                                            attributes.overlayUrl ? __('Change Overlay Image', 'ileben-landing') : __('Select Overlay Image', 'ileben-landing')
                                         ),
                                 },
                                 null
@@ -263,12 +263,12 @@
                                 isDestructive: true,
                                 isSmall: true,
                             },
-                            __('Remove Overlay', 'bootstrap-theme')
+                            __('Remove Overlay', 'ileben-landing')
                         ),
                         attributes.overlayUrl && el(
                             'div',
                             { style: { marginTop: '16px', padding: '8px', backgroundColor: '#f5f5f5', borderRadius: '4px', fontSize: '12px' } },
-                            el('p', { style: { margin: '0 0 8px 0', fontWeight: 'bold' } }, __('Overlay Preview:', 'bootstrap-theme')),
+                            el('p', { style: { margin: '0 0 8px 0', fontWeight: 'bold' } }, __('Overlay Preview:', 'ileben-landing')),
                             el('img', {
                                 src: attributes.overlayUrl,
                                 style: {
@@ -283,25 +283,25 @@
                     ),
                     el(
                         PanelBody,
-                        { title: __('Size & Display', 'bootstrap-theme'), initialOpen: false },
+                        { title: __('Size & Display', 'ileben-landing'), initialOpen: false },
                         el(TextControl, {
-                            label: __('Width', 'bootstrap-theme'),
+                            label: __('Width', 'ileben-landing'),
                             value: attributes.width,
                             onChange: (value) => setAttributes({ width: value }),
                             placeholder: 'e.g., 100%, 400px',
-                            help: __('Set as percentage (100%) or pixels (400px)', 'bootstrap-theme'),
+                            help: __('Set as percentage (100%) or pixels (400px)', 'ileben-landing'),
                         }),
                         el(TextControl, {
-                            label: __('Height', 'bootstrap-theme'),
+                            label: __('Height', 'ileben-landing'),
                             value: attributes.height,
                             onChange: (value) => setAttributes({ height: value }),
                             placeholder: 'e.g., 600px, auto',
-                            help: __('Set as pixels (600px) or auto', 'bootstrap-theme'),
+                            help: __('Set as pixels (600px) or auto', 'ileben-landing'),
                         }),
                         el(
                             'label',
                             { style: { display: 'block', marginTop: '16px', marginBottom: '8px', fontWeight: '500' } },
-                            __('Object Fit', 'bootstrap-theme')
+                            __('Object Fit', 'ileben-landing')
                         ),
                         el(
                             'select',
@@ -316,10 +316,10 @@
                                     fontSize: '14px',
                                 },
                             },
-                            el('option', { value: 'cover' }, __('Cover', 'bootstrap-theme')),
-                            el('option', { value: 'contain' }, __('Contain', 'bootstrap-theme')),
-                            el('option', { value: 'fill' }, __('Fill', 'bootstrap-theme')),
-                            el('option', { value: 'scale-down' }, __('Scale Down', 'bootstrap-theme'))
+                            el('option', { value: 'cover' }, __('Cover', 'ileben-landing')),
+                            el('option', { value: 'contain' }, __('Contain', 'ileben-landing')),
+                            el('option', { value: 'fill' }, __('Fill', 'ileben-landing')),
+                            el('option', { value: 'scale-down' }, __('Scale Down', 'ileben-landing'))
                         )
                     )
                 )

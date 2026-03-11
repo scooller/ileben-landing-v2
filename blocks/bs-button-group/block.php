@@ -19,9 +19,9 @@ function bootstrap_theme_render_bs_button_group_block($attributes, $content, $bl
     
     if (empty($buttons)) {
         $buttons = array(
-            array('text' => __('Left', 'bootstrap-theme'), 'variant' => 'btn-outline-primary', 'link' => ''),
-            array('text' => __('Middle', 'bootstrap-theme'), 'variant' => 'btn-outline-primary', 'link' => ''),
-            array('text' => __('Right', 'bootstrap-theme'), 'variant' => 'btn-outline-primary', 'link' => '')
+            array('text' => __('Left', 'ileben-landing'), 'variant' => 'btn-outline-primary', 'link' => ''),
+            array('text' => __('Middle', 'ileben-landing'), 'variant' => 'btn-outline-primary', 'link' => ''),
+            array('text' => __('Right', 'ileben-landing'), 'variant' => 'btn-outline-primary', 'link' => '')
         );
     }
     
@@ -43,7 +43,7 @@ function bootstrap_theme_render_bs_button_group_block($attributes, $content, $bl
     
     $class_string = implode(' ', array_unique($classes));
     
-    $output = '<div class="' . esc_attr($class_string) . '" role="group" aria-label="' . esc_attr__('Button group', 'bootstrap-theme') . '">';
+    $output = '<div class="' . esc_attr($class_string) . '" role="group" aria-label="' . esc_attr__('Button group', 'ileben-landing') . '">';
     
     foreach ($buttons as $button) {
         $text = $button['text'] ?? '';

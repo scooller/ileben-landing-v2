@@ -10,11 +10,11 @@
     const { createElement: el, Fragment, useState } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-gallery', {
-        title: __('Galería', 'bootstrap-theme'),
-        description: __('Galería de imágenes con CSS Grid, lightbox y efectos hover', 'bootstrap-theme'),
+        title: __('Galer├¡a', 'ileben-landing'),
+        description: __('Galer├¡a de im├ígenes con CSS Grid, lightbox y efectos hover', 'ileben-landing'),
         icon: 'format-gallery',
         category: 'ileben-landing',
-        keywords: [__('gallery'), __('galería'), __('grid'), __('lightbox')],
+        keywords: [__('gallery'), __('galer├¡a'), __('grid'), __('lightbox')],
         
         attributes: {
             images: { 
@@ -44,8 +44,8 @@
                     id: img.id,
                     url: img.url,
                     thumbnailSize: 'medium', // Valor por defecto
-                    columnSpan: 1, // Cuántas columnas ocupa
-                    rowSpan: 1, // Cuántas filas ocupa
+                    columnSpan: 1, // Cu├íntas columnas ocupa
+                    rowSpan: 1, // Cu├íntas filas ocupa
                     customCaption: '', // Caption personalizado opcional
                 }));
                 setAttributes({ images: [...attributes.images, ...newImages] });
@@ -113,34 +113,34 @@
             };
 
             const gapOptions = [
-                { label: __('Ninguno', 'bootstrap-theme'), value: 'none' },
-                { label: __('XS', 'bootstrap-theme'), value: 'xs' },
-                { label: __('Pequeño', 'bootstrap-theme'), value: 'small' },
-                { label: __('Normal', 'bootstrap-theme'), value: 'default' },
-                { label: __('Medio', 'bootstrap-theme'), value: 'medium' },
-                { label: __('Grande', 'bootstrap-theme'), value: 'large' },
+                { label: __('Ninguno', 'ileben-landing'), value: 'none' },
+                { label: __('XS', 'ileben-landing'), value: 'xs' },
+                { label: __('Peque├▒o', 'ileben-landing'), value: 'small' },
+                { label: __('Normal', 'ileben-landing'), value: 'default' },
+                { label: __('Medio', 'ileben-landing'), value: 'medium' },
+                { label: __('Grande', 'ileben-landing'), value: 'large' },
             ];
 
             const hoverEffects = [
-                { label: __('Overlay', 'bootstrap-theme'), value: 'overlay' },
-                { label: __('Zoom', 'bootstrap-theme'), value: 'zoom' },
-                { label: __('Slide', 'bootstrap-theme'), value: 'slide' },
-                { label: __('Fade', 'bootstrap-theme'), value: 'fade' },
-                { label: __('Ninguno', 'bootstrap-theme'), value: 'none' },
+                { label: __('Overlay', 'ileben-landing'), value: 'overlay' },
+                { label: __('Zoom', 'ileben-landing'), value: 'zoom' },
+                { label: __('Slide', 'ileben-landing'), value: 'slide' },
+                { label: __('Fade', 'ileben-landing'), value: 'fade' },
+                { label: __('Ninguno', 'ileben-landing'), value: 'none' },
             ];
 
             const sizeOptions = [
-                { label: __('Thumb (150x150)', 'bootstrap-theme'), value: 'thumb' },
-                { label: __('Medio (300x300)', 'bootstrap-theme'), value: 'medio' },
-                { label: __('Largo (600x600)', 'bootstrap-theme'), value: 'largo' },
-                { label: __('Completo', 'bootstrap-theme'), value: 'completo' },
+                { label: __('Thumb (150x150)', 'ileben-landing'), value: 'thumb' },
+                { label: __('Medio (300x300)', 'ileben-landing'), value: 'medio' },
+                { label: __('Largo (600x600)', 'ileben-landing'), value: 'largo' },
+                { label: __('Completo', 'ileben-landing'), value: 'completo' },
             ];
 
             return el(Fragment, {},
                 el(BlockControls, {},
                     el(ToolbarGroup, {},
                         el(ToolbarButton, {
-                            label: __('Añadir imágenes', 'bootstrap-theme'),
+                            label: __('A├▒adir im├ígenes', 'ileben-landing'),
                             icon: 'plus',
                             onClick: () => {
                                 const mediaFrame = wp.media({
@@ -158,7 +158,7 @@
                 ),
 
                 el(InspectorControls, {},
-                    el(PanelBody, { title: __('Imágenes', 'bootstrap-theme'), initialOpen: true },
+                    el(PanelBody, { title: __('Im├ígenes', 'ileben-landing'), initialOpen: true },
                         el('div', { style: { marginBottom: '12px' } },
                             el('button', {
                                 className: 'button button-primary',
@@ -173,13 +173,13 @@
                                     });
                                     mediaFrame.open();
                                 }
-                            }, __('Añadir imágenes', 'bootstrap-theme'))
+                            }, __('A├▒adir im├ígenes', 'ileben-landing'))
                         ),
                         attributes.images.length > 0 && el('div', { style: { fontSize: '12px', color: '#666', marginBottom: '12px' } },
-                            __(`${attributes.images.length} imagen(s) seleccionada(s)`, 'bootstrap-theme')
+                            __(`${attributes.images.length} imagen(s) seleccionada(s)`, 'ileben-landing')
                         ),
                         
-                        // Configuración por imagen seleccionada
+                        // Configuraci├│n por imagen seleccionada
                         selectedImageIndex !== null && attributes.images[selectedImageIndex] && el('div', { 
                             style: { 
                                 padding: '12px', 
@@ -189,38 +189,38 @@
                             } 
                         },
                             el('div', { style: { marginBottom: '8px', fontWeight: 'bold' } },
-                                __(`Configuración de imagen #${selectedImageIndex + 1}`, 'bootstrap-theme')
+                                __(`Configuraci├│n de imagen #${selectedImageIndex + 1}`, 'ileben-landing')
                             ),
                             el(SelectControl, {
-                                label: __('Tamaño de thumbnail', 'bootstrap-theme'),
+                                label: __('Tama├▒o de thumbnail', 'ileben-landing'),
                                 value: attributes.images[selectedImageIndex].thumbnailSize || 'medium',
                                 options: sizeOptions,
                                 onChange: (value) => updateImageProperty(selectedImageIndex, 'thumbnailSize', value)
                             }),
                             el('hr', { style: { margin: '12px 0' } }),
                             el('div', { style: { marginBottom: '8px', fontSize: '11px', color: '#666', fontWeight: 'bold' } },
-                                __('Tamaño en el Grid (Layout tipo Mosaico)', 'bootstrap-theme')
+                                __('Tama├▒o en el Grid (Layout tipo Mosaico)', 'ileben-landing')
                             ),
                             el(RangeControl, {
-                                label: __('Columnas que ocupa (Column Span)', 'bootstrap-theme'),
+                                label: __('Columnas que ocupa (Column Span)', 'ileben-landing'),
                                 value: attributes.images[selectedImageIndex].columnSpan || 1,
                                 onChange: (value) => updateImageProperty(selectedImageIndex, 'columnSpan', value),
                                 min: 1,
                                 max: 6,
-                                help: __('Cuántas columnas ocupa esta imagen (1 = normal, 2 = doble ancho, etc.)', 'bootstrap-theme')
+                                help: __('Cu├íntas columnas ocupa esta imagen (1 = normal, 2 = doble ancho, etc.)', 'ileben-landing')
                             }),
                             el(RangeControl, {
-                                label: __('Filas que ocupa (Row Span)', 'bootstrap-theme'),
+                                label: __('Filas que ocupa (Row Span)', 'ileben-landing'),
                                 value: attributes.images[selectedImageIndex].rowSpan || 1,
                                 onChange: (value) => updateImageProperty(selectedImageIndex, 'rowSpan', value),
                                 min: 1,
                                 max: 4,
-                                help: __('Cuántas filas ocupa esta imagen (1 = normal, 2 = doble alto, etc.)', 'bootstrap-theme')
+                                help: __('Cu├íntas filas ocupa esta imagen (1 = normal, 2 = doble alto, etc.)', 'ileben-landing')
                             }),
                             el('hr', { style: { margin: '12px 0' } }),
                             el(TextControl, {
-                                label: __('Caption personalizado', 'bootstrap-theme'),
-                                placeholder: __('Ingresa un caption solo para esta imagen (opcional)', 'bootstrap-theme'),
+                                label: __('Caption personalizado', 'ileben-landing'),
+                                placeholder: __('Ingresa un caption solo para esta imagen (opcional)', 'ileben-landing'),
                                 value: attributes.images[selectedImageIndex].customCaption || attributes.images[selectedImageIndex].title || '',
                                 onChange: (value) => updateImageProperty(selectedImageIndex, 'customCaption', value),
                             }),
@@ -229,66 +229,66 @@
                                     className: 'button button-primary button-small',
                                     onClick: () => onReplaceImage(selectedImageIndex),
                                     style: { flex: 1 }
-                                }, __('🔄 Reemplazar imagen', 'bootstrap-theme')),
+                                }, __('­ƒöä Reemplazar imagen', 'ileben-landing')),
                                 el('button', {
                                     className: 'button button-small',
                                     onClick: () => onRemoveImage(selectedImageIndex),
                                     style: { flex: 1, color: '#dc3545' }
-                                }, __('✕ Quitar', 'bootstrap-theme'))
+                                }, __('Ô£ò Quitar', 'ileben-landing'))
                             ),
                             el('div', { style: { display: 'flex', gap: '8px', marginTop: '12px' } },
                                 selectedImageIndex > 0 && el('button', {
                                     className: 'button button-small',
                                     onClick: () => onMoveImage(selectedImageIndex, 'up')
-                                }, '↑ ' + __('Mover arriba', 'bootstrap-theme')),
+                                }, 'Ôåæ ' + __('Mover arriba', 'ileben-landing')),
                                 selectedImageIndex < attributes.images.length - 1 && el('button', {
                                     className: 'button button-small',
                                     onClick: () => onMoveImage(selectedImageIndex, 'down')
-                                }, '↓ ' + __('Mover abajo', 'bootstrap-theme'))
+                                }, 'Ôåô ' + __('Mover abajo', 'ileben-landing'))
                             ),
                             el('button', {
                                 className: 'button button-small',
                                 onClick: () => setSelectedImageIndex(null),
                                 style: { marginTop: '8px', width: '100%' }
-                            }, __('Cerrar configuración', 'bootstrap-theme'))
+                            }, __('Cerrar configuraci├│n', 'ileben-landing'))
                         )
                     ),
 
-                    el(PanelBody, { title: __('Grid', 'bootstrap-theme') },
+                    el(PanelBody, { title: __('Grid', 'ileben-landing') },
                         el(RangeControl, {
-                            label: __('Columnas Desktop', 'bootstrap-theme'),
+                            label: __('Columnas Desktop', 'ileben-landing'),
                             value: attributes.columns,
                             onChange: (value) => setAttributes({ columns: value }),
                             min: 1,
                             max: 6,
-                            help: __('Número de columnas en pantallas grandes', 'bootstrap-theme')
+                            help: __('N├║mero de columnas en pantallas grandes', 'ileben-landing')
                         }),
                         el(RangeControl, {
-                            label: __('Columnas Mobile', 'bootstrap-theme'),
+                            label: __('Columnas Mobile', 'ileben-landing'),
                             value: attributes.columnsMobile,
                             onChange: (value) => setAttributes({ columnsMobile: value }),
                             min: 1,
                             max: 4,
-                            help: __('Número de columnas en móviles', 'bootstrap-theme')
+                            help: __('N├║mero de columnas en m├│viles', 'ileben-landing')
                         }),
                         el(SelectControl, {
-                            label: __('Espaciado (Gap)', 'bootstrap-theme'),
+                            label: __('Espaciado (Gap)', 'ileben-landing'),
                             value: attributes.gap,
                             options: gapOptions,
                             onChange: (value) => setAttributes({ gap: value })
                         })
                     ),
 
-                    el(PanelBody, { title: __('Efecto Hover', 'bootstrap-theme') },
+                    el(PanelBody, { title: __('Efecto Hover', 'ileben-landing') },
                         el(SelectControl, {
-                            label: __('Efecto hover', 'bootstrap-theme'),
+                            label: __('Efecto hover', 'ileben-landing'),
                             value: attributes.hoverEffect,
                             options: hoverEffects,
                             onChange: (value) => setAttributes({ hoverEffect: value })
                         }),
                         'overlay' === attributes.hoverEffect && el(Fragment, {},
                             el('div', { style: { marginTop: '12px' } },
-                                el('label', { style: { display: 'block', marginBottom: '6px', fontWeight: 'bold' } }, __('Color overlay', 'bootstrap-theme')),
+                                el('label', { style: { display: 'block', marginBottom: '6px', fontWeight: 'bold' } }, __('Color overlay', 'ileben-landing')),
                                 el(ColorPicker, {
                                     color: attributes.overlayColor,
                                     onChangeComplete: (value) => setAttributes({ overlayColor: value.hex }),
@@ -296,7 +296,7 @@
                                 })
                             ),
                             el(RangeControl, {
-                                label: __('Opacidad overlay', 'bootstrap-theme'),
+                                label: __('Opacidad overlay', 'ileben-landing'),
                                 value: attributes.overlayOpacity,
                                 onChange: (value) => setAttributes({ overlayOpacity: value }),
                                 min: 0,
@@ -306,30 +306,30 @@
                         )
                     ),
 
-                    el(PanelBody, { title: __('Contenido', 'bootstrap-theme') },
+                    el(PanelBody, { title: __('Contenido', 'ileben-landing') },
                         el(ToggleControl, {
-                            label: __('Mostrar captions', 'bootstrap-theme'),
+                            label: __('Mostrar captions', 'ileben-landing'),
                             checked: attributes.showCaptions,
                             onChange: (value) => setAttributes({ showCaptions: value })
                         }),
                         el(ToggleControl, {
-                            label: __('Lightbox (FancyBox)', 'bootstrap-theme'),
+                            label: __('Lightbox (FancyBox)', 'ileben-landing'),
                             checked: attributes.lightbox,
                             onChange: (value) => setAttributes({ lightbox: value })
                         }),
                         el(RangeControl, {
-                            label: __('Límite de imágenes a mostrar', 'bootstrap-theme'),
+                            label: __('L├¡mite de im├ígenes a mostrar', 'ileben-landing'),
                             value: attributes.imageLimit,
                             onChange: (value) => setAttributes({ imageLimit: value }),
                             min: 0,
                             max: 100,
-                            help: __('0 = sin límite (mostrar todas)', 'bootstrap-theme')
+                            help: __('0 = sin l├¡mite (mostrar todas)', 'ileben-landing')
                         }),
                         el(ToggleControl, {
-                            label: __('Activar filtrado por categorías', 'bootstrap-theme'),
+                            label: __('Activar filtrado por categor├¡as', 'ileben-landing'),
                             checked: attributes.filterCategories,
                             onChange: (value) => setAttributes({ filterCategories: value }),
-                            help: __('Muestra botones de filtro si las imágenes tienen categorías asignadas', 'bootstrap-theme')
+                            help: __('Muestra botones de filtro si las im├ígenes tienen categor├¡as asignadas', 'ileben-landing')
                         })
                     )
                 ),
@@ -337,7 +337,7 @@
                 el('div', blockProps,
                     attributes.images.length === 0 ?
                         el('div', { style: { padding: '40px', textAlign: 'center', background: '#f5f5f5', borderRadius: '4px' } },
-                            el('p', {}, __('Ninguna imagen seleccionada. Haz clic en "Añadir imágenes" para comenzar.', 'bootstrap-theme'))
+                            el('p', {}, __('Ninguna imagen seleccionada. Haz clic en "A├▒adir im├ígenes" para comenzar.', 'ileben-landing'))
                         )
                         :
                         el('div', { 
@@ -416,7 +416,7 @@
                                                 fontSize: '11px',
                                                 fontWeight: 'bold'
                                             }
-                                        }, '×')
+                                        }, '├ù')
                                     ),
                                     el('div', {
                                         style: {

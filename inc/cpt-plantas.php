@@ -9,24 +9,24 @@ if (!defined('ABSPATH')) {
 
 function ileben_register_cpt_plantas() {
     $labels = array(
-        'name' => _x('Plantas', 'Post Type General Name', 'bootstrap-theme'),
-        'singular_name' => _x('Planta', 'Post Type Singular Name', 'bootstrap-theme'),
-        'menu_name' => __('Plantas', 'bootstrap-theme'),
-        'name_admin_bar' => __('Planta', 'bootstrap-theme'),
-        'add_new' => __('Añadir nueva', 'bootstrap-theme'),
-        'add_new_item' => __('Añadir nueva planta', 'bootstrap-theme'),
-        'edit_item' => __('Editar planta', 'bootstrap-theme'),
-        'new_item' => __('Nueva planta', 'bootstrap-theme'),
-        'view_item' => __('Ver planta', 'bootstrap-theme'),
-        'view_items' => __('Ver plantas', 'bootstrap-theme'),
-        'search_items' => __('Buscar plantas', 'bootstrap-theme'),
-        'not_found' => __('No se encontraron plantas', 'bootstrap-theme'),
-        'not_found_in_trash' => __('No hay plantas en la papelera', 'bootstrap-theme'),
-        'all_items' => __('Todas las plantas', 'bootstrap-theme'),
+        'name' => _x('Plantas', 'Post Type General Name', 'ileben-landing'),
+        'singular_name' => _x('Planta', 'Post Type Singular Name', 'ileben-landing'),
+        'menu_name' => __('Plantas', 'ileben-landing'),
+        'name_admin_bar' => __('Planta', 'ileben-landing'),
+        'add_new' => __('A├▒adir nueva', 'ileben-landing'),
+        'add_new_item' => __('A├▒adir nueva planta', 'ileben-landing'),
+        'edit_item' => __('Editar planta', 'ileben-landing'),
+        'new_item' => __('Nueva planta', 'ileben-landing'),
+        'view_item' => __('Ver planta', 'ileben-landing'),
+        'view_items' => __('Ver plantas', 'ileben-landing'),
+        'search_items' => __('Buscar plantas', 'ileben-landing'),
+        'not_found' => __('No se encontraron plantas', 'ileben-landing'),
+        'not_found_in_trash' => __('No hay plantas en la papelera', 'ileben-landing'),
+        'all_items' => __('Todas las plantas', 'ileben-landing'),
     );
 
     $args = array(
-        'label' => __('Plantas', 'bootstrap-theme'),
+        'label' => __('Plantas', 'ileben-landing'),
         'labels' => $labels,
         'public' => true,
         'has_archive' => false,
@@ -41,21 +41,21 @@ function ileben_register_cpt_plantas() {
 add_action('init', 'ileben_register_cpt_plantas');
 
 /**
- * Registro de taxonomía: Categoría de Plantas
+ * Registro de taxonom├¡a: Categor├¡a de Plantas
  */
 function ileben_register_tax_categoria_planta() {
     $labels = array(
-        'name' => _x('Categorías de Plantas', 'Taxonomy General Name', 'bootstrap-theme'),
-        'singular_name' => _x('Categoría de Planta', 'Taxonomy Singular Name', 'bootstrap-theme'),
-        'menu_name' => __('Categorías', 'bootstrap-theme'),
-        'all_items' => __('Todas las Categorías', 'bootstrap-theme'),
-        'edit_item' => __('Editar Categoría', 'bootstrap-theme'),
-        'view_item' => __('Ver Categoría', 'bootstrap-theme'),
-        'update_item' => __('Actualizar Categoría', 'bootstrap-theme'),
-        'add_new_item' => __('Añadir Nueva Categoría', 'bootstrap-theme'),
-        'new_item_name' => __('Nuevo Nombre de Categoría', 'bootstrap-theme'),
-        'search_items' => __('Buscar Categorías', 'bootstrap-theme'),
-        'not_found' => __('No se encontraron categorías', 'bootstrap-theme'),
+        'name' => _x('Categor├¡as de Plantas', 'Taxonomy General Name', 'ileben-landing'),
+        'singular_name' => _x('Categor├¡a de Planta', 'Taxonomy Singular Name', 'ileben-landing'),
+        'menu_name' => __('Categor├¡as', 'ileben-landing'),
+        'all_items' => __('Todas las Categor├¡as', 'ileben-landing'),
+        'edit_item' => __('Editar Categor├¡a', 'ileben-landing'),
+        'view_item' => __('Ver Categor├¡a', 'ileben-landing'),
+        'update_item' => __('Actualizar Categor├¡a', 'ileben-landing'),
+        'add_new_item' => __('A├▒adir Nueva Categor├¡a', 'ileben-landing'),
+        'new_item_name' => __('Nuevo Nombre de Categor├¡a', 'ileben-landing'),
+        'search_items' => __('Buscar Categor├¡as', 'ileben-landing'),
+        'not_found' => __('No se encontraron categor├¡as', 'ileben-landing'),
     );
 
     $args = array(
