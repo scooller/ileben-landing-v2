@@ -2,6 +2,13 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.14] - 2026-03-16
+
+### ⚡ Carga de Assets
+- **Resolución por manifest de Vite:** `inc/assets.php` ahora resuelve CSS/JS desde `dist/.vite/manifest.json` para una carga determinista de archivos hasheados.
+- **Helpers nuevos:** se agregan `ileben_get_vite_manifest()` y `ileben_find_manifest_asset()` para leer y consultar el manifest con cache por request.
+- **Compatibilidad mantenida:** `ileben_find_asset()` queda como fallback si no existe manifest o falta una entrada.
+
 ## [0.1.12] - 2026-03-11
 
 ### 🎬 Animaciones y ScrollTrigger

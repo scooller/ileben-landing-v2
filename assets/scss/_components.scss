@@ -226,3 +226,7 @@ img.lazyload {
   50% { opacity: 1; }
 }
 
+.input-group-text{
+  background-color: var(--bs-body-bg);
+  border: var(--bs-border-width) solid var(--bs-border-color);
+}

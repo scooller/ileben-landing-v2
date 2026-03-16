@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.13  
+**Versión:** 0.1.14  
 **Compatibilidad:** PHP 8.3+, WordPress 6.0+ (tested 6.4), ACF Pro
 
 ---

@@ -61,6 +61,48 @@ function ileben_find_asset($pattern)
     return null;
 }
 
+function ileben_get_vite_manifest()
+{
+    static $manifest = null;
+
+    if ($manifest !== null) {
+        return $manifest;
+    }
+
+    $manifest_path = ILEBEN_THEME_DIR . '/dist/.vite/manifest.json';
+    if (!file_exists($manifest_path)) {
+        $manifest = [];
+        return $manifest;
+    }
+
+    $raw_manifest = file_get_contents($manifest_path);
+    if ($raw_manifest === false) {
+        $manifest = [];
+        return $manifest;
+    }
+
+    $decoded = json_decode($raw_manifest, true);
+    if (json_last_error() !== JSON_ERROR_NONE || !is_array($decoded)) {
+        $manifest = [];
+        return $manifest;
+    }
+
+    $manifest = $decoded;
+    return $manifest;
+}
+
+function ileben_find_manifest_asset($entry)
+{
+    $manifest = ileben_get_vite_manifest();
+
+    if (empty($manifest[$entry]['file']) || !is_string($manifest[$entry]['file'])) {
+        return null;
+    }
+
+    $file = ltrim($manifest[$entry]['file'], '/');
+    return ILEBEN_THEME_URI . '/dist/' . $file;
+}
+
 function ileben_google_font_family()
 {
     if (function_exists('get_field')) {
@@ -76,14 +118,20 @@ add_action('wp_enqueue_scripts', function () {
     // Enqueue jQuery
     wp_enqueue_script('jquery');
 
-    // Find compiled CSS file
-    $css_file = ileben_find_asset('style-*.css');
+    // Find compiled CSS file from Vite manifest, fallback to glob
+    $css_file = ileben_find_manifest_asset('style.css');
+    if (!$css_file) {
+        $css_file = ileben_find_asset('style-*.css');
+    }
     if ($css_file) {
         wp_enqueue_style('ileben-style', $css_file, [], ILEBEN_THEME_VERSION, 'all');
     }
 
-    // Find compiled JS file (IIFE bundle)
-    $js_file = ileben_find_asset('main-*.js');
+    // Find compiled JS file (IIFE bundle) from Vite manifest, fallback to glob
+    $js_file = ileben_find_manifest_asset('assets/js/main.js');
+    if (!$js_file) {
+        $js_file = ileben_find_asset('main-*.js');
+    }
     if ($js_file) {
         wp_enqueue_script('ileben-main', $js_file, [], ILEBEN_THEME_VERSION, true);
 
