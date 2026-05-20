@@ -210,7 +210,7 @@ add_action('wp_enqueue_scripts', function () {
 
     // Font Awesome frontend fallback: ensure icons always render
     // (async loader in JS can still run, but will detect existing stylesheet)
-    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', [], '6.4.0');
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css', [], '7.0.1');
 
     // Theme base stylesheet
     wp_enqueue_style('ileben-theme-style', ILEBEN_THEME_URI . '/style.css', [], ILEBEN_THEME_VERSION);
@@ -468,7 +468,7 @@ add_action('wp_enqueue_scripts', function () {
     [data-bs-theme=dark]{--bs-body-color:var(--bs-white);--bs-body-color-rgb:var(--bs-light-rgb);--bs-body-bg:var(--bs-dark);--bs-body-bg-rgb:var(--bs-dark-rgb);}
     [data-bs-theme=light]{--bs-body-color:var(--bs-black);--bs-body-color-rgb:var(--bs-dark-rgb);--bs-body-bg:var(--bs-light);--bs-body-bg-rgb:var(--bs-light-rgb);}
     @media (max-width:768px){html{font-size: <?php echo $font_size_mobile; ?>;}}
-<?php
+    <?php
     $css = ob_get_clean();
     wp_add_inline_style('ileben-theme-style', $css);
 }, 20);
@@ -476,7 +476,7 @@ add_action('wp_enqueue_scripts', function () {
  * Preload LCP (Largest Contentful Paint) images from Bootstrap carousel blocks
  * Improves LCP by making carousel background images discoverable in HTML
  */
-add_action('wp_head', function() {
+add_action('wp_head', function () {
     if (!is_main_query() || is_admin()) {
         return;
     }
@@ -491,7 +491,8 @@ add_action('wp_head', function() {
     $carousel_urls = [];
 
     // Recursively find carousel-item blocks and extract image URLs
-    function ileben_extract_carousel_images($blocks, &$urls) {
+    function ileben_extract_carousel_images($blocks, &$urls)
+    {
         foreach ($blocks as $block) {
             if ($block['blockName'] === 'bootstrap-theme/bs-carousel-item') {
                 // Get background image for desktop (preferred)
@@ -518,9 +519,9 @@ add_action('wp_head', function() {
         foreach (array_unique($carousel_urls) as $image_url) {
             // Sanitize and output preload
             $image_url = esc_url($image_url);
-            ?>
+    ?>
             <link rel="preload" as="image" href="<?php echo $image_url; ?>" fetchpriority="high" crossorigin="anonymous" />
-            <?php
+    <?php
         }
         echo ob_get_clean();
     }
@@ -530,22 +531,22 @@ add_action('wp_head', function() {
  * Defer analytics code injection from ACF option to reduce main-thread blocking.
  */
 add_action('wp_footer', function () {
-        if (!function_exists('get_field')) {
-                return;
-        }
+    if (!function_exists('get_field')) {
+        return;
+    }
 
-        $analytics_code = get_field('analytics_code', 'option');
-        if (empty($analytics_code) || !is_string($analytics_code)) {
-                return;
-        }
+    $analytics_code = get_field('analytics_code', 'option');
+    if (empty($analytics_code) || !is_string($analytics_code)) {
+        return;
+    }
 
-        $analytics_code = trim($analytics_code);
-        if ($analytics_code === '') {
-                return;
-        }
-        ?>
-        <script>
-        (function () {
+    $analytics_code = trim($analytics_code);
+    if ($analytics_code === '') {
+        return;
+    }
+    ?>
+    <script>
+        (function() {
             var analyticsMarkup = <?php echo wp_json_encode($analytics_code); ?>;
             if (!analyticsMarkup) return;
             var interactionEvents = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
@@ -567,15 +568,19 @@ add_action('wp_footer', function () {
 
             function onFirstInteraction() {
                 if ('requestIdleCallback' in window) {
-                    requestIdleCallback(injectAnalytics, { timeout: 1000 });
+                    requestIdleCallback(injectAnalytics, {
+                        timeout: 1000
+                    });
                 } else {
                     setTimeout(injectAnalytics, 0);
                 }
             }
 
             function cleanupInteractionListeners() {
-                interactionEvents.forEach(function (eventName) {
-                    window.removeEventListener(eventName, onFirstInteraction, { passive: true });
+                interactionEvents.forEach(function(eventName) {
+                    window.removeEventListener(eventName, onFirstInteraction, {
+                        passive: true
+                    });
                 });
             }
 
@@ -583,13 +588,18 @@ add_action('wp_footer', function () {
                 if (window.__ilebenAnalyticsArmed) return;
                 window.__ilebenAnalyticsArmed = true;
 
-                interactionEvents.forEach(function (eventName) {
-                    window.addEventListener(eventName, onFirstInteraction, { once: true, passive: true });
+                interactionEvents.forEach(function(eventName) {
+                    window.addEventListener(eventName, onFirstInteraction, {
+                        once: true,
+                        passive: true
+                    });
                 });
 
-                fallbackTimer = setTimeout(function () {
+                fallbackTimer = setTimeout(function() {
                     if ('requestIdleCallback' in window) {
-                        requestIdleCallback(injectAnalytics, { timeout: 1500 });
+                        requestIdleCallback(injectAnalytics, {
+                            timeout: 1500
+                        });
                     } else {
                         injectAnalytics();
                     }
@@ -599,9 +609,11 @@ add_action('wp_footer', function () {
             if (document.readyState === 'complete') {
                 armAnalyticsInjection();
             } else {
-                window.addEventListener('load', armAnalyticsInjection, { once: true });
+                window.addEventListener('load', armAnalyticsInjection, {
+                    once: true
+                });
             }
         })();
-        </script>
-        <?php
+    </script>
+<?php
 }, 100);

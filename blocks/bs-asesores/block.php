@@ -32,15 +32,17 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
     }
 
     // Build wrapper classes
-    $classes = ['bs-asesores', 'row', 'row-cols-1', 'g-3','justify-content-center'];
+    $classes = ['bs-asesores', 'row', 'row-cols-1', 'g-3', 'justify-content-center'];
+    $cd_classes = ['card', 'h-100', 'bs-asesor-card', 'text-center'];
     if ($columns_md > 1) {
         $classes[] = 'row-cols-md-' . $columns_md;
     }
     if ($columns_lg > 1) {
         $classes[] = 'row-cols-lg-' . $columns_lg;
     }
-    $classes = bootstrap_theme_add_custom_classes($classes, $attributes, $block);
+    $cd_classes = bootstrap_theme_add_custom_classes($cd_classes, $attributes, $block);
     $wrapper_classes = implode(' ', array_unique($classes));
+    $card_classes = implode(' ', array_unique($cd_classes));
 
     ob_start();
 ?>
@@ -72,7 +74,7 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
             );
         ?>
             <div class="col">
-                <div class="card h-100 bs-asesor-card text-center" <?php echo $animation_attrs; ?>>
+                <div class="<?php echo esc_attr($card_classes); ?>" <?php echo $animation_attrs; ?>>
                     <?php if ($layout === 'vertical') : ?>
                         <?php if ($show_image && $image) : ?>
                             <?php if ($avatar_shape === 'card') : ?>
@@ -84,16 +86,18 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                             <?php endif; ?>
                         <?php endif; ?>
                         <div class="card-body">
-                            <?php if ($name !== '') : ?>
-                                <div class="card-title mb-3"><?php echo esc_html($name); ?></div>
-                            <?php endif; ?>
-                            <div class="card-text">
+                            <div class="card-title mb-3">
+                                <?php if ($name !== '') : ?>
+                                    <?php echo esc_html($name); ?>
+                                <?php endif; ?>
                                 <?php if ($show_text && $show_phone && $phone !== '') : ?>
                                     <div class="small mb-1"><?php echo esc_html($phone); ?></div>
                                 <?php endif; ?>
                                 <?php if ($show_text && $show_email && $email !== '') : ?>
                                     <div class="small mb-2"><?php echo esc_html($email); ?></div>
                                 <?php endif; ?>
+                            </div>
+                            <div class="card-text">
                                 <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
                                     <?php if ($show_actions && $show_phone && $wa_href !== '') : ?>
                                         <a class="btn btn-success btn-sm" href="<?php echo esc_url($wa_href); ?>" target="_blank" rel="noopener noreferrer">
@@ -125,17 +129,19 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                                     </div>
                                 <?php endif; ?>
                                 <div class="col d-flex align-items-center justify-content-center">
-                                    <div class="content-wrapper">
-                                        <?php if ($name !== '') : ?>
-                                            <div class="card-title mb-3"><?php echo esc_html($name); ?></div>
-                                        <?php endif; ?>
-                                        <div class="card-text">
+                                    <div class="content-wrapper row">
+                                        <div class="card-title mb-3 col">
+                                            <?php if ($name !== '') : ?>
+                                                <strong><?php echo esc_html($name); ?></strong>
+                                            <?php endif; ?>
                                             <?php if ($show_text && $show_phone && $phone !== '') : ?>
-                                                <div class="small mb-1"><?php echo esc_html($phone); ?></div>
+                                                <div class="small mb-1 mt-2"><?php echo esc_html($phone); ?></div>
                                             <?php endif; ?>
                                             <?php if ($show_text && $show_email && $email !== '') : ?>
-                                                <div class="small mb-2"><?php echo esc_html($email); ?></div>
+                                                <div class="small mb-2 mt-1"><?php echo esc_html($email); ?></div>
                                             <?php endif; ?>
+                                        </div>
+                                        <div class="card-text col">
                                             <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
                                                 <?php if ($show_actions && $show_phone && $wa_href !== '') : ?>
                                                     <a class="btn btn-success btn-sm" href="<?php echo esc_url($wa_href); ?>" target="_blank" rel="noopener noreferrer">

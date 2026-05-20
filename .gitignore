@@ -39,3 +39,4 @@ assets/css/*.map
 
 # Scripts y utilidades de depuración locales
 debug-acf.php
+/dist

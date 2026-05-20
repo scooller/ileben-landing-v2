@@ -181,7 +181,7 @@ class GSAPAnimationManager {
     }
     
     // Debug: log trigger information
-    console.log(`[Animation] ${config.type} - trigger: ${trigger} - ${element.className || element.tagName}`);
+    // console.log(`[Animation] ${config.type} - trigger: ${trigger} - ${element.className || element.tagName}`);
     
     switch (trigger) {
       case 'on-load':

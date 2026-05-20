@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Header template.
  */
@@ -6,8 +7,10 @@
 if (!defined('ABSPATH')) {
     exit;
 }
-?><!doctype html>
+?>
+<!doctype html>
 <html <?php language_attributes(); ?>>
+
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,44 +20,43 @@ if (!defined('ABSPATH')) {
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Critical CSS for icon fallback to prevent CLS -->
-    <style>
-      [class*=" fa-"]::before, [class^="fa-"]::before { font-family: "Font Awesome 6 Free" !important; }
-    </style>
     <?php wp_head(); ?>
 </head>
+
 <body <?php body_class(); ?>>
-<?php if (function_exists('ileben_render_loader')) { ileben_render_loader(); } ?>
-<?php wp_body_open(); ?>
-<header id="site-header" class="site-header d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 fixed-top top-0 shadow-sm">
-    <div class="col-md-5 col-3 mb-2 mb-md-0 px-3">
-        <?php
-        wp_nav_menu([
-            'theme_location'  => 'header-menu',
-            'menu_class'      => 'navbar-nav ms-auto text-center',
-            'container'       => false,
-            'fallback_cb'     => false,
-            'depth'           => 2,
-            'walker'          => new WP_Bootstrap_Navwalker(),
-        ]);
-        ?>
-    </div>    
-    <div class="col-md-2 col-6 mb-2 mb-md-0 text-center">
-        <?php if(get_field('mostrar_logonombre', 'option')) : ?>
-        <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
+    <?php if (function_exists('ileben_render_loader')) {
+        ileben_render_loader();
+    } ?>
+    <?php wp_body_open(); ?>
+    <header id="site-header" class="site-header d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 fixed-top top-0 shadow-sm">
+        <div class="col-md-5 col-3 mb-2 mb-md-0 px-3">
             <?php
-            if (function_exists('the_custom_logo') && has_custom_logo()) {
-                the_custom_logo();
-            } else {
-                ?>
-                <h1 class="site-title m-0"><?php bloginfo('name'); ?></h1>
-                <?php
-            }
+            wp_nav_menu([
+                'theme_location'  => 'header-menu',
+                'menu_class'      => 'navbar-nav ms-auto text-center',
+                'container'       => false,
+                'fallback_cb'     => false,
+                'depth'           => 2,
+                'walker'          => new WP_Bootstrap_Navwalker(),
+            ]);
             ?>
-        </a>
-        <?php endif; ?>
-    </div>    
-    <div class="col-md-5 col-3 text-end">
-        <?php get_template_part('template-parts/header/navbar'); ?>
-    </div>
-</header>
+        </div>
+        <div class="col-md-2 col-6 mb-2 mb-md-0 text-center">
+            <?php if (get_field('mostrar_logonombre', 'option')) : ?>
+                <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
+                    <?php
+                    if (function_exists('the_custom_logo') && has_custom_logo()) {
+                        the_custom_logo();
+                    } else {
+                    ?>
+                        <h1 class="site-title m-0"><?php bloginfo('name'); ?></h1>
+                    <?php
+                    }
+                    ?>
+                </a>
+            <?php endif; ?>
+        </div>
+        <div class="col-md-5 col-3 text-end">
+            <?php get_template_part('template-parts/header/navbar'); ?>
+        </div>
+    </header>
