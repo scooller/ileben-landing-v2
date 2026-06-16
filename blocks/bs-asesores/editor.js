@@ -7,10 +7,10 @@
 
     registerBlockType('bootstrap-theme/bs-asesores', {
         apiVersion: 3,
-        title: __('Asesores (ACF)', 'ileben-landing'),
+        title: __('Asesores (API ileben)', 'ileben-landing'),
         icon: 'groups',
         category: 'ileben-landing',
-        description: __('Muestra la lista de asesores desde las opciones del tema (ACF).', 'ileben-landing'),
+        description: __('Muestra la lista de asesores desde la API de ileben según el proyecto configurado en Opciones de Tema > API.', 'ileben-landing'),
         attributes: {
             columnsMd: { type: 'number', default: 2 },
             columnsLg: { type: 'number', default: 3 },

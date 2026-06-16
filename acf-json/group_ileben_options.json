@@ -2773,6 +2773,77 @@
             "custom_palette_source": "",
             "palette_colors": "",
             "show_color_wheel": true
+        },
+        {
+            "key": "tab_api",
+            "label": "API",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_api_url",
+            "label": "URL de la API",
+            "name": "api_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "URL base del servicio API externo.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://api.example.com"
+        },
+        {
+            "key": "field_api_token",
+            "label": "Token de Autenticación",
+            "name": "api_token",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Token de autenticación para las solicitudes a la API.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_api_proyecto_actual",
+            "label": "Proyecto Actual",
+            "name": "api_proyecto_actual",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Identificador del proyecto actual (slug) para filtrar datos desde la API de ileben.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "ej: leben-makro",
+            "maxlength": ""
         }
     ],
     "location": [

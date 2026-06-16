@@ -3,6 +3,8 @@
 /**
  * Asesores Block
  *
+ * Muestra la lista de asesores desde la API de ileben según el proyecto configurado.
+ *
  * @package Bootstrap_Theme
  */
 
@@ -11,7 +13,77 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Render Asesores block pulling data from ACF options
+ * Fetch advisors from the ileben API.
+ *
+ * @param string $api_url     Base URL of the API.
+ * @param string $api_token   Bearer token for authentication.
+ * @param string $proyecto    Project slug to filter advisors.
+ * @return array List of advisors, each with 'nombre', 'email', 'fono', 'imagen'.
+ */
+function bootstrap_theme_fetch_asesores_api($api_url, $api_token, $proyecto)
+{
+    if (empty($api_url) || empty($proyecto)) {
+        return [];
+    }
+
+    // Ensure trailing slash
+    $api_url = rtrim($api_url, '/') . '/';
+
+    // Build the endpoint
+    $endpoint = add_query_arg('proyecto', $proyecto, $api_url . 'asesores');
+
+    // Cache key based on endpoint
+    $cache_key = 'bs_asesores_' . md5($endpoint);
+    $cached = get_transient($cache_key);
+    if (false !== $cached) {
+        return $cached;
+    }
+
+    $args = [
+        'timeout' => 15,
+        'headers' => [
+            'Accept' => 'application/json',
+        ],
+    ];
+
+    // Add Bearer token if provided
+    if (!empty($api_token)) {
+        $args['headers']['Authorization'] = 'Bearer ' . $api_token;
+    }
+
+    $response = wp_remote_get($endpoint, $args);
+
+    if (is_wp_error($response)) {
+        return [];
+    }
+
+    $status = wp_remote_retrieve_response_code($response);
+    if ($status < 200 || $status >= 300) {
+        return [];
+    }
+
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body, true);
+
+    if (!is_array($data)) {
+        return [];
+    }
+
+    // Normalize: if the API wraps results in a key like 'data' or 'asesores'
+    if (isset($data['data']) && is_array($data['data'])) {
+        $data = $data['data'];
+    } elseif (isset($data['asesores']) && is_array($data['asesores'])) {
+        $data = $data['asesores'];
+    }
+
+    // Cache for 10 minutes
+    set_transient($cache_key, $data, 10 * MINUTE_IN_SECONDS);
+
+    return $data;
+}
+
+/**
+ * Render Asesores block pulling data from the ileben API.
  */
 function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
 {
@@ -26,8 +98,23 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
     $show_text = in_array($content_mode, ['both', 'text'], true);
     $show_actions = in_array($content_mode, ['both', 'buttons'], true);
 
-    $asesores = function_exists('get_field') ? get_field('asesores', 'option') : [];
+    // Fetch from API
+    $api_url    = function_exists('get_field') ? get_field('api_url', 'option') : '';
+    $api_token  = function_exists('get_field') ? get_field('api_token', 'option') : '';
+    $proyecto   = function_exists('get_field') ? get_field('api_proyecto_actual', 'option') : '';
+
+    $asesores = bootstrap_theme_fetch_asesores_api($api_url, $api_token, $proyecto);
+
     if (empty($asesores) || !is_array($asesores)) {
+        if (current_user_can('manage_options')) {
+            $reason = '';
+            if (empty($api_url) || empty($proyecto)) {
+                $reason = __('Configura la URL de la API y el Proyecto Actual en Opciones de Tema > API.', 'ileben-landing');
+            } else {
+                $reason = __('No se pudieron obtener asesores desde la API. Verifica la configuración.', 'ileben-landing');
+            }
+            return '<div class="alert alert-warning">' . esc_html($reason) . '</div>';
+        }
         return '';
     }
 
@@ -48,10 +135,12 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
 ?>
     <div class="<?php echo esc_attr($wrapper_classes); ?>">
         <?php foreach ($asesores as $index => $asesor) :
-            $image = isset($asesor['imagen']) ? $asesor['imagen'] : '';
-            $name = isset($asesor['nombre']) ? $asesor['nombre'] : '';
+            // Map API fields — supports both snake_case (api standard) and camelCase
+            $image = isset($asesor['imagen']) ? $asesor['imagen'] : (isset($asesor['imagenUrl']) ? $asesor['imagenUrl'] : '');
+            $image = isset($asesor['foto']) ? $asesor['foto'] : $image;
+            $name  = isset($asesor['nombre']) ? $asesor['nombre'] : (isset($asesor['name']) ? $asesor['name'] : '');
             $email = isset($asesor['email']) ? $asesor['email'] : '';
-            $phone = isset($asesor['fono']) ? $asesor['fono'] : '';
+            $phone = isset($asesor['fono']) ? $asesor['fono'] : (isset($asesor['telefono']) ? $asesor['telefono'] : (isset($asesor['phone']) ? $asesor['phone'] : ''));
 
             // Build hrefs
             $wa_href = '';
@@ -65,7 +154,7 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
             $mailto_href = $email !== '' ? 'mailto:' . sanitize_email($email) : '';
             // Animation data attrs (shared across cards)
             $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
-            // add delay based on index            
+            // add delay based on index
             $delay = $index * ($attributes['animationDelay'] ?? 0);
             $animation_attrs = preg_replace(
                 '/data-animate-delay="[^"]*"/',
@@ -232,7 +321,7 @@ function bootstrap_theme_register_bs_asesores_block()
             ),
         ),
         'supports' => array(
-            'html' => true,
+            'html' => false,
         ),
     ));
 }
