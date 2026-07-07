@@ -1,7 +1,7 @@
 /**
-* Gutenberg editor styles for Bootstrap blocks
-* Clean, iframe-safe version focused on layout parity and editor UX.
-*/
+ * Gutenberg editor styles for Bootstrap blocks
+ * Clean, iframe-safe version focused on layout parity and editor UX.
+ */
 /* ==============================
    Base editor tokens
    ============================== */
@@ -808,6 +808,13 @@
 
 .editor-styles-wrapper .box-shadow-5 {
   box-shadow: rgba(var(--bs-black-rgb), 0.45) 0px 25px 20px -20px;
+}
+
+/* Fix Masterplan Drag&Drop Vertical bounds in iframe mode */
+.editor-styles-wrapper .bs-masterplan-innerblocks-wrapper > .block-editor-inner-blocks, .editor-styles-wrapper .bs-masterplan-innerblocks-wrapper > .block-editor-inner-blocks > .block-editor-block-list__layout {
+  height: 100%;
+  min-height: 100%;
+  position: static !important; /* Forces the nearest relative ancestor to be the canvas */
 }
 
 /*# sourceMappingURL=editor.css.map */

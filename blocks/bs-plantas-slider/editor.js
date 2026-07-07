@@ -31,8 +31,11 @@
             effect: { type: 'string', default: 'slide' },
             loop: { type: 'boolean', default: true },
             showFilters: { type: 'boolean', default: true },
+            showAdvancedFilters: { type: 'boolean', default: false },
             filterDormitorio: { type: 'string', default: '' },
             filterBano: { type: 'string', default: '' },
+            filterPiso: { type: 'string', default: '' },
+            filterOrientacion: { type: 'string', default: '' },
             filterCategoria: { type: 'string', default: '' },
             // Animation attributes
             animationType: { type: 'string' },
@@ -155,6 +158,12 @@
                             checked: !!attributes.showFilters,
                             onChange: (value) => setAttributes({ showFilters: value })
                         }),
+                        createElement(ToggleControl, {
+                            label: __('Mostrar filtros avanzados', 'ileben-landing'),
+                            help: __('Incluir Piso y Orientación como filtros adicionales', 'ileben-landing'),
+                            checked: !!attributes.showAdvancedFilters,
+                            onChange: (value) => setAttributes({ showAdvancedFilters: value })
+                        }),
                         createElement(SelectControl, {
                             label: __('Dormitorios', 'ileben-landing'),
                             value: attributes.filterDormitorio,
@@ -178,7 +187,7 @@
                                 (window.BOOTSTRAP_THEME_PLANTAS_CATEGORIAS || []).map((cat) => ({ label: cat.name, value: cat.slug }))
                             ),
                             onChange: (value) => setAttributes({ filterCategoria: value })
-                        })
+                        }),
                     ),
                     // Animation Controls Panel
                     window.ilebenAnimationControls && createElement(

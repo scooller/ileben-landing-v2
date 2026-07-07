@@ -3,8 +3,6 @@
 /**
  * Asesores Block
  *
- * Muestra la lista de asesores desde la API de ileben según el proyecto configurado.
- *
  * @package Bootstrap_Theme
  */
 
@@ -13,77 +11,7 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Fetch advisors from the ileben API.
- *
- * @param string $api_url     Base URL of the API.
- * @param string $api_token   Bearer token for authentication.
- * @param string $proyecto    Project slug to filter advisors.
- * @return array List of advisors, each with 'nombre', 'email', 'fono', 'imagen'.
- */
-function bootstrap_theme_fetch_asesores_api($api_url, $api_token, $proyecto)
-{
-    if (empty($api_url) || empty($proyecto)) {
-        return [];
-    }
-
-    // Ensure trailing slash
-    $api_url = rtrim($api_url, '/') . '/';
-
-    // Build the endpoint
-    $endpoint = add_query_arg('proyecto', $proyecto, $api_url . 'asesores');
-
-    // Cache key based on endpoint
-    $cache_key = 'bs_asesores_' . md5($endpoint);
-    $cached = get_transient($cache_key);
-    if (false !== $cached) {
-        return $cached;
-    }
-
-    $args = [
-        'timeout' => 15,
-        'headers' => [
-            'Accept' => 'application/json',
-        ],
-    ];
-
-    // Add Bearer token if provided
-    if (!empty($api_token)) {
-        $args['headers']['Authorization'] = 'Bearer ' . $api_token;
-    }
-
-    $response = wp_remote_get($endpoint, $args);
-
-    if (is_wp_error($response)) {
-        return [];
-    }
-
-    $status = wp_remote_retrieve_response_code($response);
-    if ($status < 200 || $status >= 300) {
-        return [];
-    }
-
-    $body = wp_remote_retrieve_body($response);
-    $data = json_decode($body, true);
-
-    if (!is_array($data)) {
-        return [];
-    }
-
-    // Normalize: if the API wraps results in a key like 'data' or 'asesores'
-    if (isset($data['data']) && is_array($data['data'])) {
-        $data = $data['data'];
-    } elseif (isset($data['asesores']) && is_array($data['asesores'])) {
-        $data = $data['asesores'];
-    }
-
-    // Cache for 10 minutes
-    set_transient($cache_key, $data, 10 * MINUTE_IN_SECONDS);
-
-    return $data;
-}
-
-/**
- * Render Asesores block pulling data from the ileben API.
+ * Render Asesores block pulling data from ACF options
  */
 function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
 {
@@ -98,52 +26,48 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
     $show_text = in_array($content_mode, ['both', 'text'], true);
     $show_actions = in_array($content_mode, ['both', 'buttons'], true);
 
-    // Fetch from API
-    $api_url    = function_exists('get_field') ? get_field('api_url', 'option') : '';
-    $api_token  = function_exists('get_field') ? get_field('api_token', 'option') : '';
-    $proyecto   = function_exists('get_field') ? get_field('api_proyecto_actual', 'option') : '';
-
-    $asesores = bootstrap_theme_fetch_asesores_api($api_url, $api_token, $proyecto);
-
+    $asesores = function_exists('get_field') ? get_field('asesores', 'option') : [];
     if (empty($asesores) || !is_array($asesores)) {
-        if (current_user_can('manage_options')) {
-            $reason = '';
-            if (empty($api_url) || empty($proyecto)) {
-                $reason = __('Configura la URL de la API y el Proyecto Actual en Opciones de Tema > API.', 'ileben-landing');
-            } else {
-                $reason = __('No se pudieron obtener asesores desde la API. Verifica la configuración.', 'ileben-landing');
-            }
-            return '<div class="alert alert-warning">' . esc_html($reason) . '</div>';
-        }
         return '';
+    }
+
+    $order_by = isset($attributes['orderBy']) ? $attributes['orderBy'] : 'default';
+    if ($order_by === 'random') {
+        shuffle($asesores);
+    } elseif ($order_by === 'alphaAsc' || $order_by === 'alphaDesc') {
+        usort($asesores, function ($a, $b) use ($order_by) {
+            $nameA = isset($a['nombre']) ? (string)$a['nombre'] : '';
+            $nameB = isset($b['nombre']) ? (string)$b['nombre'] : '';
+            if ($order_by === 'alphaAsc') {
+                return strcasecmp($nameA, $nameB);
+            }
+            return strcasecmp($nameB, $nameA);
+        });
     }
 
     // Build wrapper classes
     $classes = ['bs-asesores', 'row', 'row-cols-1', 'g-3', 'justify-content-center'];
-    $cd_classes = ['card', 'h-100', 'bs-asesor-card', 'text-center'];
     if ($columns_md > 1) {
         $classes[] = 'row-cols-md-' . $columns_md;
     }
     if ($columns_lg > 1) {
         $classes[] = 'row-cols-lg-' . $columns_lg;
     }
-    $cd_classes = bootstrap_theme_add_custom_classes($cd_classes, $attributes, $block);
+    $classes = bootstrap_theme_add_custom_classes($classes, $attributes, $block);
     $wrapper_classes = implode(' ', array_unique($classes));
-    $card_classes = implode(' ', array_unique($cd_classes));
 
     ob_start();
 ?>
     <div class="<?php echo esc_attr($wrapper_classes); ?>">
         <?php foreach ($asesores as $index => $asesor) :
-            // Map API fields — supports both snake_case (api standard) and camelCase
-            $image = isset($asesor['imagen']) ? $asesor['imagen'] : (isset($asesor['imagenUrl']) ? $asesor['imagenUrl'] : '');
-            $image = isset($asesor['foto']) ? $asesor['foto'] : $image;
-            $name  = isset($asesor['nombre']) ? $asesor['nombre'] : (isset($asesor['name']) ? $asesor['name'] : '');
+            $image = isset($asesor['imagen']) ? $asesor['imagen'] : '';
+            $name = isset($asesor['nombre']) ? $asesor['nombre'] : '';
             $email = isset($asesor['email']) ? $asesor['email'] : '';
-            $phone = isset($asesor['fono']) ? $asesor['fono'] : (isset($asesor['telefono']) ? $asesor['telefono'] : (isset($asesor['phone']) ? $asesor['phone'] : ''));
+            $phone = isset($asesor['fono']) ? $asesor['fono'] : '';
 
             // Build hrefs
             $wa_href = '';
+            $wa_number = '';
             if ($phone !== '') {
                 $digits = preg_replace('/\D+/', '', $phone);
                 if ($digits !== '') {
@@ -152,9 +76,20 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                 }
             }
             $mailto_href = $email !== '' ? 'mailto:' . sanitize_email($email) : '';
+
+            // Build QR Code
+            $qr_type = isset($attributes['qrType']) ? $attributes['qrType'] : 'none';
+            $qr_img_src = '';
+            if ($qr_type === 'whatsapp' && $wa_href !== '') {
+                $qr_img_src = 'https://quickchart.io/qr?size=120&margin=1&text=' . urlencode($wa_href);
+            } elseif ($qr_type === 'vcard') {
+                $vcard = "BEGIN:VCARD\nVERSION:3.0\nN:;{$name};;;\nFN:{$name}\nTEL;TYPE=WORK,VOICE:{$phone}\nEMAIL:{$email}\nEND:VCARD";
+                $qr_img_src = 'https://quickchart.io/qr?size=120&margin=1&text=' . urlencode($vcard);
+            }
+
             // Animation data attrs (shared across cards)
             $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
-            // add delay based on index
+            // add delay based on index            
             $delay = $index * ($attributes['animationDelay'] ?? 0);
             $animation_attrs = preg_replace(
                 '/data-animate-delay="[^"]*"/',
@@ -163,41 +98,44 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
             );
         ?>
             <div class="col">
-                <div class="<?php echo esc_attr($card_classes); ?>" <?php echo $animation_attrs; ?>>
+                <div class="card h-100 bs-asesor-card text-center" <?php echo $animation_attrs; ?>>
                     <?php if ($layout === 'vertical') : ?>
                         <?php if ($show_image && $image) : ?>
                             <?php if ($avatar_shape === 'card') : ?>
                                 <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($name); ?>" class="card-img-top" loading="lazy" />
                             <?php else : ?>
                                 <div class="bs-asesor-avatar text-center pt-3">
-                                    <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($name); ?>" class="img-fluid rounded-circle" loading="lazy" />
+                                    <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($name); ?>" class="img-fluid rounded-circle w-100 h-100" loading="lazy" />
                                 </div>
                             <?php endif; ?>
                         <?php endif; ?>
                         <div class="card-body">
-                            <div class="card-title mb-3">
-                                <?php if ($name !== '') : ?>
-                                    <?php echo esc_html($name); ?>
-                                <?php endif; ?>
+                            <?php if ($qr_img_src !== '') : ?>
+                                <div class="mb-3 text-center">
+                                    <img src="<?php echo esc_url($qr_img_src); ?>" alt="QR Code" class="img-fluid rounded shadow-sm" style="max-width: 120px;" loading="lazy">
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($name !== '') : ?>
+                                <div class="card-title mb-3"><?php echo esc_html($name); ?></div>
+                            <?php endif; ?>
+                            <div class="card-text">
                                 <?php if ($show_text && $show_phone && $phone !== '') : ?>
                                     <div class="small mb-1"><?php echo esc_html($phone); ?></div>
                                 <?php endif; ?>
                                 <?php if ($show_text && $show_email && $email !== '') : ?>
                                     <div class="small mb-2"><?php echo esc_html($email); ?></div>
                                 <?php endif; ?>
-                            </div>
-                            <div class="card-text">
                                 <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
                                     <?php if ($show_actions && $show_phone && $wa_href !== '') : ?>
                                         <a class="btn btn-success btn-sm" href="<?php echo esc_url($wa_href); ?>" target="_blank" rel="noopener noreferrer">
                                             <i class="fa-brands fa-whatsapp"></i>
-                                            <?php esc_html_e('WhatsApp', 'ileben-landing'); ?>
+                                            <?php esc_html_e('WhatsApp', 'bootstrap-theme'); ?>
                                         </a>
                                     <?php endif; ?>
                                     <?php if ($show_actions && $show_email && $mailto_href !== '') : ?>
                                         <a class="btn btn-danger btn-sm" href="<?php echo esc_url($mailto_href); ?>">
                                             <i class="fa-solid fa-at"></i>
-                                            <?php esc_html_e('Escríbeme', 'ileben-landing'); ?>
+                                            <?php esc_html_e('Escríbeme', 'bootstrap-theme'); ?>
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -218,30 +156,33 @@ function bootstrap_theme_render_bs_asesores_block($attributes, $content, $block)
                                     </div>
                                 <?php endif; ?>
                                 <div class="col d-flex align-items-center justify-content-center">
-                                    <div class="content-wrapper row">
-                                        <div class="card-title mb-3 col">
-                                            <?php if ($name !== '') : ?>
-                                                <strong><?php echo esc_html($name); ?></strong>
-                                            <?php endif; ?>
+                                    <div class="content-wrapper">
+                                        <?php if ($qr_img_src !== '') : ?>
+                                            <div class="mb-3 text-center">
+                                                <img src="<?php echo esc_url($qr_img_src); ?>" alt="QR Code" class="img-fluid rounded shadow-sm mx-auto" style="max-width: 120px;" loading="lazy">
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if ($name !== '') : ?>
+                                            <div class="card-title mb-3"><?php echo esc_html($name); ?></div>
+                                        <?php endif; ?>
+                                        <div class="card-text">
                                             <?php if ($show_text && $show_phone && $phone !== '') : ?>
-                                                <div class="small mb-1 mt-2"><?php echo esc_html($phone); ?></div>
+                                                <div class="small mb-1"><?php echo esc_html($phone); ?></div>
                                             <?php endif; ?>
                                             <?php if ($show_text && $show_email && $email !== '') : ?>
-                                                <div class="small mb-2 mt-1"><?php echo esc_html($email); ?></div>
+                                                <div class="small mb-2"><?php echo esc_html($email); ?></div>
                                             <?php endif; ?>
-                                        </div>
-                                        <div class="card-text col">
                                             <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
                                                 <?php if ($show_actions && $show_phone && $wa_href !== '') : ?>
                                                     <a class="btn btn-success btn-sm" href="<?php echo esc_url($wa_href); ?>" target="_blank" rel="noopener noreferrer">
                                                         <i class="fa-brands fa-whatsapp"></i>
-                                                        <?php esc_html_e('WhatsApp', 'ileben-landing'); ?>
+                                                        <?php esc_html_e('WhatsApp', 'bootstrap-theme'); ?>
                                                     </a>
                                                 <?php endif; ?>
                                                 <?php if ($show_actions && $show_email && $mailto_href !== '') : ?>
                                                     <a class="btn btn-danger btn-sm" href="<?php echo esc_url($mailto_href); ?>">
                                                         <i class="fa-solid fa-at"></i>
-                                                        <?php esc_html_e('Escríbeme', 'ileben-landing'); ?>
+                                                        <?php esc_html_e('Escríbeme', 'bootstrap-theme'); ?>
                                                     </a>
                                                 <?php endif; ?>
                                             </div>
@@ -300,6 +241,14 @@ function bootstrap_theme_register_bs_asesores_block()
                 'type' => 'string',
                 'default' => 'both',
             ),
+            'qrType' => array(
+                'type' => 'string',
+                'default' => 'none',
+            ),
+            'orderBy' => array(
+                'type' => 'string',
+                'default' => 'default',
+            ),
             // Animation attributes
             'animationType' => array('type' => 'string'),
             'animationTrigger' => array('type' => 'string'),
@@ -321,7 +270,7 @@ function bootstrap_theme_register_bs_asesores_block()
             ),
         ),
         'supports' => array(
-            'html' => false,
+            'html' => true,
         ),
     ));
 }

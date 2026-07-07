@@ -11,6 +11,10 @@ add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
     add_theme_support('editor-styles');
+    add_editor_style([
+        'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css',
+        'dist/assets/editor.css'
+    ]);
     add_theme_support('responsive-embeds');
     add_theme_support('custom-logo');
     add_theme_support('html5', ['script', 'style']);

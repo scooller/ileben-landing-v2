@@ -325,6 +325,21 @@
     transition: width 0.3s ease;
 }
 
+/* === Masterplan Hotspots === */
+.bs-hotspot-popover {
+    .popover-header {
+        background-color: var(--bs-primary);
+        color: #fff;
+        border-bottom: none;
+        padding-right: 0.75rem;
+        
+        /* Ajustar icono cerrar */
+        .btn-close {
+            filter: var(--bs-btn-close-white-filter);
+        }
+    }
+}
+
 /* === Asesores Block === */
 .bs-asesor-card {
     backdrop-filter: blur(4px);

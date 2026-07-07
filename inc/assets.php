@@ -212,6 +212,10 @@ add_action('wp_enqueue_scripts', function () {
     // (async loader in JS can still run, but will detect existing stylesheet)
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css', [], '7.0.1');
 
+    // Select2 for enhanced form-select dropdowns (plantas showcase filters)
+    wp_enqueue_style('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', [], '4.1.0-rc.0');
+    wp_enqueue_script('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', ['jquery'], '4.1.0-rc.0', true);
+
     // Theme base stylesheet
     wp_enqueue_style('ileben-theme-style', ILEBEN_THEME_URI . '/style.css', [], ILEBEN_THEME_VERSION);
 });

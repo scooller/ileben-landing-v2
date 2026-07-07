@@ -38,6 +38,7 @@ function ileben_render_bs_gallery($attributes, $content, $block)
     $overlay_color = sanitize_hex_color($attributes['overlayColor'] ?? '#000000');
     $overlay_opacity = floatval($attributes['overlayOpacity'] ?? 0.5);
     $image_limit = absint($attributes['imageLimit'] ?? 0);
+    $enable_masonry = false;
     $className = $attributes['className'] ?? '';
 
     if (empty($images)) {

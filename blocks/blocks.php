@@ -99,7 +99,17 @@ function bootstrap_theme_block_editor_assets()
         'bs-video',
         'bs-iframe',
         'bs-plantas-slider',
-        'bs-cf7'
+        'bs-plantas-showcase',
+        'bs-cf7',
+        'bs-entorno',
+        'bs-entorno-category',
+        'bs-entorno-poi',
+        'bs-amenities',
+        'bs-amenity-item',
+        'bs-interactive-masterplan',
+        'bs-masterplan-hotspot',
+        'bs-construction-progress-v2',
+        'bs-construction-stage'
     ];
 
     // Add WooCommerce blocks only if WooCommerce is active
@@ -139,7 +149,7 @@ function bootstrap_theme_block_editor_assets()
                     }
                     return $choices;
                 };
-                
+
                 // Obtener categorías de plantas
                 $categorias_plantas = get_terms(array(
                     'taxonomy' => 'categoria_planta',
@@ -154,7 +164,7 @@ function bootstrap_theme_block_editor_assets()
                         );
                     }
                 }
-                
+
                 wp_add_inline_script($handle, 'window.BOOTSTRAP_THEME_PLANTAS_OPTIONS = ' . wp_json_encode([
                     'dorms' => $build_choices('dormitorios'),
                     'banos' => $build_choices('banos'),
@@ -192,9 +202,9 @@ function bootstrap_theme_block_editor_assets()
     // Enqueue FontAwesome for block editor
     wp_enqueue_style(
         'font-awesome-editor',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css',
         array(),
-        '6.4.0'
+        '6.6.0'
     );
 
     // Enqueue master block definitions (JS registers all block types for inserter)

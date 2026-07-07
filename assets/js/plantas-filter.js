@@ -25,18 +25,24 @@ export function initPlantasFilter() {
       const formData = new FormData(form);
       const selectedDorm = formData.get('planta_dormitorio') || '';
       const selectedBano = formData.get('planta_bano') || '';
+      const selectedPiso = formData.get('planta_piso') || '';
+      const selectedOrientacion = formData.get('planta_orientacion') || '';
 
       let visibleCount = 0;
 
       allSlides.forEach((slide) => {
         const slideDorm = slide.dataset.dorm || '';
         const slideBano = slide.dataset.bano || '';
+        const slidePiso = slide.dataset.piso || '';
+        const slideOrientacion = slide.dataset.orientacion || '';
 
         // Check if slide matches filters
         const matchesDorm = !selectedDorm || slideDorm === selectedDorm;
         const matchesBano = !selectedBano || slideBano === selectedBano;
+        const matchesPiso = !selectedPiso || slidePiso === selectedPiso;
+        const matchesOrientacion = !selectedOrientacion || slideOrientacion === selectedOrientacion;
 
-        if (matchesDorm && matchesBano) {
+        if (matchesDorm && matchesBano && matchesPiso && matchesOrientacion) {
           slide.style.display = '';
           slide.classList.remove('swiper-slide-hidden');
           slide.classList.add('swiper-slide-visible');
