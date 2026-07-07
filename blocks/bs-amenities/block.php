@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Block: Amenities Container (Grid)
  */
@@ -13,22 +14,22 @@ function bootstrap_theme_render_bs_amenities($attributes, $content, $block)
     $colsMobile = isset($attributes['colsMobile']) ? $attributes['colsMobile'] : '2';
     $colsTablet = isset($attributes['colsTablet']) ? $attributes['colsTablet'] : '3';
     $colsDesktop = isset($attributes['colsDesktop']) ? $attributes['colsDesktop'] : '4';
-    
+
     // Get animation data attributes
     $animation_attrs = function_exists('bootstrap_theme_get_animation_attributes') ? bootstrap_theme_get_animation_attributes($attributes, $block) : '';
-    
+
     ob_start();
-    ?>
+?>
     <div class="bs-amenities-wrapper <?php echo isset($attributes['className']) ? esc_attr($attributes['className']) : ''; ?>" <?php echo $animation_attrs; ?>>
         <?php if (!empty($title)): ?>
-            <h3 class="bs-amenities-title mb-4"><?php echo esc_html($title); ?></h3>
+            <h3 class="bs-amenities-title mb-4 text-center"><?php echo esc_html($title); ?></h3>
         <?php endif; ?>
 
-        <div class="row row-cols-<?php echo esc_attr($colsMobile); ?> row-cols-md-<?php echo esc_attr($colsTablet); ?> row-cols-lg-<?php echo esc_attr($colsDesktop); ?> g-4">
+        <div class="row row-cols-<?php echo esc_attr($colsMobile); ?> row-cols-md-<?php echo esc_attr($colsTablet); ?> row-cols-lg-<?php echo esc_attr($colsDesktop); ?> g-4 align-items-center justify-content-center">
             <?php echo $content; ?>
         </div>
     </div>
-    <?php
+<?php
     return ob_get_clean();
 }
 

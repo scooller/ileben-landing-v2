@@ -20,7 +20,9 @@
         attributes: {
             title: { type: 'string', default: __('Amenity', 'ileben-landing') },
             description: { type: 'string', default: '' },
-            icon: { type: 'string', default: 'fa-solid fa-check' }
+            iconType: { type: 'string', default: 'icon' },
+            icon: { type: 'string', default: 'fa-solid fa-check' },
+            imageUrl: { type: 'string', default: '' }
         },
         edit: function(props) {
             const { attributes, setAttributes } = props;
@@ -29,17 +31,51 @@
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Configuración', 'ileben-landing'), initialOpen: true },
-                        createElement(TextControl, {
+                        createElement(wp.components.SelectControl, {
+                            label: __('Tipo de Ícono', 'ileben-landing'),
+                            value: attributes.iconType,
+                            options: [
+                                { label: __('FontAwesome', 'ileben-landing'), value: 'icon' },
+                                { label: __('Imagen / SVG', 'ileben-landing'), value: 'image' }
+                            ],
+                            onChange: (val) => setAttributes({ iconType: val })
+                        }),
+                        attributes.iconType === 'icon' && createElement(TextControl, {
                             label: __('Ícono (FontAwesome)', 'ileben-landing'),
                             value: attributes.icon,
                             onChange: (val) => setAttributes({ icon: val }),
                             help: 'Ej: fa-solid fa-swimming-pool'
-                        })
+                        }),
+                        attributes.iconType === 'image' && createElement('div', { className: 'mb-3' },
+                            createElement('p', { className: 'components-base-control__label' }, __('Imagen / SVG', 'ileben-landing')),
+                            createElement(wp.blockEditor.MediaUploadCheck, {},
+                                createElement(wp.blockEditor.MediaUpload, {
+                                    onSelect: (media) => setAttributes({ imageUrl: media.url }),
+                                    allowedTypes: ['image'],
+                                    value: attributes.imageUrl,
+                                    render: ({ open }) => createElement(wp.components.Button, {
+                                        className: attributes.imageUrl ? 'image-button' : 'button button-large',
+                                        onClick: open,
+                                        style: attributes.imageUrl ? { width: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '4px' } : {}
+                                    },
+                                        attributes.imageUrl 
+                                            ? createElement('img', { src: attributes.imageUrl, style: { maxHeight: '100px', maxWidth: '100%', objectFit: 'contain' } }) 
+                                            : __('Seleccionar imagen', 'ileben-landing')
+                                    )
+                                })
+                            ),
+                            attributes.imageUrl && createElement(wp.components.Button, {
+                                className: 'button button-link-delete mt-2 text-danger',
+                                onClick: () => setAttributes({ imageUrl: '' })
+                            }, __('Quitar imagen', 'ileben-landing'))
+                        )
                     )
                 ),
                 createElement('div', blockProps,
-                    createElement('div', { className: 'bs-amenity-icon text-primary mb-3', style: { fontSize: '2.5rem' } },
-                        createElement('i', { className: attributes.icon || 'fa-solid fa-check' })
+                    createElement('div', { className: 'bs-amenity-icon text-primary mb-3 d-flex justify-content-center align-items-center', style: { height: '2.5rem' } },
+                        attributes.iconType === 'image' && attributes.imageUrl 
+                            ? createElement('img', { src: attributes.imageUrl, style: { maxHeight: '2.5rem', maxWidth: '100%', objectFit: 'contain' } })
+                            : createElement('i', { className: attributes.icon || 'fa-solid fa-check', style: { fontSize: '2.5rem' } })
                     ),
                     createElement(RichText, {
                         tagName: 'h5',

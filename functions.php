@@ -58,6 +58,7 @@ $theme_includes = [
     '/inc/core-blocks-animation.php',
     '/inc/api-sync.php',
     '/inc/github-updater.php',
+    '/inc/showcase-generator.php',
     '/blocks/blocks.php',
 ];
 
