@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.14  
+**Versión:** 0.1.15  
 **Compatibilidad:** PHP 8.3+, WordPress 6.0+ (tested 6.4), ACF Pro
 
 ---
@@ -432,6 +432,62 @@ echo ileben_iframe_facade([
 ### Cargador
 
 Se renderiza automáticamente en `front-page.php`. El loader se oculta cuando la página se ha cargado completamente o después de 5 segundos (failsafe).
+
+---
+
+## 🧩 Bloques Disponibles
+
+El tema incluye una amplia colección de bloques personalizados (basados en Bootstrap 5) ubicados en la carpeta `blocks/`. Estos bloques permiten construir interfaces complejas directamente desde el editor de WordPress.
+
+### Layout & Contenedores
+- **bs-container**: Contenedor principal (soporta fondo, Swiper, etc.)
+- **bs-row**: Fila Bootstrap
+- **bs-column**: Columna Bootstrap
+
+### Navegación
+- **bs-navbar**, **bs-menu**
+- **bs-breadcrumb**, **bs-breadcrumb-item**
+- **bs-pagination**, **bs-pagination-item**
+
+### Componentes Básicos
+- **bs-button**, **bs-button-group**, **bs-close-button**
+- **bs-card**
+- **bs-badge**
+- **bs-alert**
+- **bs-divider**
+- **bs-fa-icon**
+- **bs-spinner**
+- **bs-progress**
+- **bs-list-group**, **bs-list-group-item**
+
+### Interacción & Modales
+- **bs-accordion**, **bs-accordion-item**
+- **bs-collapse**
+- **bs-modal**, **bs-offcanvas**
+- **bs-dropdown**, **bs-dropdown-item**, **bs-dropdown-divider**
+- **bs-tabs**, **bs-tab-pane**, **bs-navs-tabs**
+- **bs-popover**, **bs-tooltip**, **bs-toast**
+- **bs-scrollspy**
+
+### Media & Sliders
+- **bs-carousel**, **bs-carousel-item**
+- **bs-gallery**
+- **bs-iframe**
+- **bs-video**
+- **bs-parallax**
+- **bs-placeholders**
+
+### Componentes Especializados
+- **bs-plantas-slider**: Slider avanzado con filtros en cliente (dormitorios/baños), Fancybox, navegación y paginación
+- **bs-plantas-showcase**: Showcase de plantas inmobiliarias
+- **bs-asesores**: Listado de asesores/equipo
+- **bs-steps**, **bs-step-item**: Componente de pasos/progreso
+
+### Integraciones (CF7 & WooCommerce)
+- **bs-cf7**: Renderiza formularios de Contact Form 7
+- **bs-wc-products**: Listado de productos WooCommerce
+- **bs-cart**: Componente de carrito
+- **bs-checkout-custom-fields**, **bs-shipping-methods**: Componentes de checkout
 
 ---
 

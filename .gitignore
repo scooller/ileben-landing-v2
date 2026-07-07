@@ -28,6 +28,7 @@ dump*
 *.tar
 *.gz
 *.7z
+*.tmp
 locales.ileben.cl-*.json
 
 # Archivos del sistema
@@ -40,3 +41,8 @@ assets/css/*.map
 # Scripts y utilidades de depuración locales
 debug-acf.php
 /dist
+/.qwen
+QWEN.md
+.agents/skills.json
+/.qwen
+.qwen/settings.json

@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
                     <?php if (function_exists('the_field')) {
                         the_field('footer_legal_text', 'option');
                     } ?>
-                    </small>
+                </small>
             </div>
             <hr>
             <div class="col d-flex text-center align-items-center justify-content-start">
@@ -63,7 +63,7 @@ if (!defined('ABSPATH')) {
             </div>
             <div class="col-12 text-center mt-3">
                 <p class="mb-0 small text-center">&copy; <?php echo esc_html(date_i18n('Y')); ?> ileben.cl</p>
-                <?php if(ILEBEN_DEV_MODE): ?>
+                <?php if (ILEBEN_DEV_MODE): ?>
                     <?php /* translators: %s: active theme version. */ ?>
                     <p class="mb-0 small text-center"><?php printf(esc_html__('Development Mode - Theme Version: %s', 'ileben-landing'), esc_html(ILEBEN_THEME_VERSION)); ?></p>
                 <?php endif; ?>
@@ -71,6 +71,18 @@ if (!defined('ABSPATH')) {
         </div>
     </div>
 </footer>
+
+<!-- BlurBar: progressive blur effect at bottom of screen -->
+<div class="blur-bar" aria-hidden="true">
+    <div class="blur-bar__layer"></div>
+    <div class="blur-bar__layer"></div>
+    <div class="blur-bar__layer"></div>
+    <div class="blur-bar__layer"></div>
+    <div class="blur-bar__layer"></div>
+    <div class="blur-bar__layer"></div>
+    <div class="blur-bar__layer"></div>
+    <div class="blur-bar__layer"></div>
+</div>
 <script>
     var $ = jQuery.noConflict();
     <?php if (function_exists('the_field')) {

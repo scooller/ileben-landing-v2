@@ -1,0 +1,101 @@
+// ============================================================================
+// Plantas Showcase – Minimal custom styles
+// Most styling uses Bootstrap utility classes directly in the HTML.
+// ============================================================================
+
+.bs-plantas-showcase {
+    // Select2 — adapted from ileben_plantas public.css
+    .select2-container {
+        width: 16rem !important;
+    }
+
+    .select2-container .selection .select2-selection {
+        border: 0;
+        border-bottom: 1px solid var(--bs-border-color);
+        background: transparent;
+        padding: 0.6rem 0.25rem;
+        font-size: 1rem;
+        color: var(--bs-body-color);
+        border-radius: 0;
+        min-height: 43px;
+    }
+
+    .select2-dropdown {
+        background-color: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+        color: var(--bs-body-color);
+    }
+
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+        background-color: var(--bs-primary);
+        color: #fff;
+    }
+
+    .select2-results__option {
+        color: var(--bs-body-color);
+        background-color: transparent;
+    }
+
+    .select2-container--default .select2-results__option--selected {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        color: var(--bs-body-color);
+    }
+
+    .form-select:focus-visible {
+        outline: 0;
+        border-color: var(--bs-body-color);
+        color: var(--bs-emphasis-color);
+    }
+
+    @media (max-width: 960px) {
+        .select2-container {
+            width: 100% !important;
+        }
+    }
+
+    // Loader visibility toggle
+    .bs-plantas-showcase-loader {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        z-index: 10;
+    }
+
+    &.is-filtering .bs-plantas-showcase-loader {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &.is-filtering .bs-plantas-showcase-grid {
+        opacity: 0.4;
+        transition: opacity 0.2s ease;
+    }
+
+    // Carousel images — keep consistent height
+    .carousel-inner {
+        min-height: 320px;
+
+        .carousel-item {
+            min-height: 320px;
+            width: 100%;
+            height: 100%;
+            img{
+                min-height: 320px;
+            }
+        }
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 8%;
+        opacity: 0.7;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        i {
+            font-size: 1.5rem;
+        }
+    }
+}

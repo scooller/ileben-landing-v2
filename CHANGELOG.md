@@ -2,6 +2,24 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.15] - 2026-07-07
+
+### ✨ Mejoras y Nuevas Funciones
+- **bs-masterplan-hotspot:** 
+  - Soporte completo para tooltips interactivos con contenido.
+  - Se puede asignar una imagen a mostrar en el admin/frontend.
+  - El tooltip ahora cuenta con un botón de cierre en la cabecera.
+  - Comportamiento mejorado: al abrir un tooltip se cierra automáticamente el anterior.
+  - Corrección visual en la cabecera del tooltip para que sea legible en temas oscuros (dark mode).
+- **bs-plantas-showcase:**
+  - Nueva opción en el inspector para elegir si el slider debe mostrar la `Imagen de Portada` o la `Imagen Interior`.
+  - Corrección visual del selector (dropdown) en temas oscuros, haciendo el texto y fondo legibles.
+- **bs-asesores:**
+  - Nueva función para mostrar un código **QR** (WhatsApp o vCard) de forma automática para cada asesor, configurado desde el bloque.
+  - Nuevo selector de **Orden de asesores** con opciones: predeterminado de ACF, al azar, alfabético (A-Z) o alfabético (Z-A).
+- **Dependencias:**
+  - FontAwesome actualizado a la versión **6.6.0**.
+
 ## [0.1.14] - 2026-03-16
 
 ### ⚡ Carga de Assets

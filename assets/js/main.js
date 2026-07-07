@@ -6,6 +6,7 @@ import { initFacade } from './facade';
 import { initSliders } from './sliders';
 import { initPlantasSlider } from '../../blocks/bs-plantas-slider/plantas-slider';
 import { initPlantasFilter } from './plantas-filter';
+import '../../blocks/bs-plantas-showcase/showcase.js';
 import { initFancybox } from './fancybox';
 import { initNav } from './nav';
 import { initRutValidation } from './rut';
@@ -69,15 +70,28 @@ async function init() {
     // Defer Bootstrap components (only load if needed)
     const hasCarousels = document.querySelectorAll('.carousel').length > 0;
     const hasCollapse = document.querySelectorAll('[data-bs-toggle="collapse"]').length > 0;
+    const hasTabs = document.querySelectorAll('[data-bs-toggle="pill"], [data-bs-toggle="tab"]').length > 0;
 
-    if (hasCarousels || hasCollapse) {
+    if (hasCarousels || hasCollapse || hasTabs) {
       const bootstrapImports = [];
       if (hasCarousels) bootstrapImports.push(import('bootstrap/js/dist/carousel'));
       if (hasCollapse) bootstrapImports.push(import('bootstrap/js/dist/collapse'));
+      if (hasTabs) bootstrapImports.push(import('bootstrap/js/dist/tab'));
 
       if (bootstrapImports.length > 0) {
         Promise.all(bootstrapImports);
       }
+    }
+
+    // Initialize Interactive Masterplan if exists
+    const hasHotspots = document.querySelectorAll('.bs-hotspot-btn').length > 0;
+    if (hasHotspots) {
+      Promise.all([
+        import('bootstrap/js/dist/popover'),
+        import('../../blocks/bs-interactive-masterplan/masterplan')
+      ]).then(([PopoverModule, { initInteractiveMasterplan }]) => {
+        initInteractiveMasterplan(PopoverModule.default);
+      });
     }
   };
 
