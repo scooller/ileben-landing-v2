@@ -2,6 +2,19 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.16] - 2026-07-07
+
+### ✨ Mejoras y Nuevas Funciones
+- **Generador de Componentes (Showcase):**
+  - Arreglados los componentes Modales y Offcanvas para su correcto funcionamiento.
+  - Agregados ejemplos de todos los tipos de Barras de Progreso (Progress bars).
+  - Agregados ejemplos del sistema de grillas (Rows y Columns) similar a la documentación oficial de Bootstrap.
+- **bs-masterplan-hotspot:** 
+  - Nuevo estado "-sin estado-" para limpiar estados asignados.
+  - Nueva opción para personalizar el ícono (FontAwesome) de cada punto (hotspot) desde el inspector.
+  - Animación sutil de "pulso" agregada con GSAP a los botones de ubicación.
+  - Revertida la animación de entrada del Popover a su estado nativo por comportamiento inconsistente.
+
 ## [0.1.15] - 2026-07-07
 
 ### ✨ Mejoras y Nuevas Funciones

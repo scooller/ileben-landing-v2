@@ -8,13 +8,13 @@ export function initInteractiveMasterplan(PopoverClass) {
 
   const popovers = [];
 
-  // Inicializar popovers de Bootstrap en modo manual
   hotspots.forEach(btn => {
     const popover = new PopoverClass(btn, {
       container: 'body',
-      trigger: 'manual', // Controlado manualmente
+      trigger: 'manual',
       html: true,
-      sanitize: false // Permitir nuestro botón cerrar HTML personalizado
+      sanitize: false,
+      template: '<div class="popover toast show p-0" role="tooltip"><div class="popover-arrow"></div><div class="popover-body p-0"></div></div>'
     });
     popovers.push({ btn, popover });
 
@@ -22,22 +22,18 @@ export function initInteractiveMasterplan(PopoverClass) {
       e.preventDefault();
       e.stopPropagation();
       
-      // Cerrar los demás popovers
       popovers.forEach(p => {
         if (p.btn !== btn) {
           p.popover.hide();
         }
       });
       
-      // Mostrar/ocultar el actual
       popover.toggle();
     });
   });
 
-  // Cerrar popovers al hacer click fuera o en el boton cerrar
   document.addEventListener('click', function(e) {
     if (e.target.closest('.bs-hotspot-close')) {
-      // Clicked on close button inside popover
       popovers.forEach(p => p.popover.hide());
       return;
     }
@@ -46,4 +42,12 @@ export function initInteractiveMasterplan(PopoverClass) {
       popovers.forEach(p => p.popover.hide());
     }
   });
+
+  // GSAP Animation: Aparecer y desaparecer (Pulse effect)
+  if (window.gsap) {
+    window.gsap.fromTo(hotspots, 
+      { opacity: 0.2 }, 
+      { opacity: 1, duration: 1.2, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: { each: 0.15, from: "random" } }
+    );
+  }
 }

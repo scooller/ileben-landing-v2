@@ -17,19 +17,38 @@ function bootstrap_theme_render_bs_masterplan_hotspot($attributes, $content, $bl
     $link = isset($attributes['link']) ? $attributes['link'] : '';
     
     $image = isset($attributes['image']) ? $attributes['image'] : null;
+    $imageUrl = !empty($image) ? esc_url($image['url']) : '';
+    $iconClass = isset($attributes['iconClass']) ? $attributes['iconClass'] : 'fa-solid fa-plus';
     
     // Definir color por estado
     $btnClass = 'btn-primary';
+    $statusColor = '#0d6efd';
     if ($status === 'vendido') {
         $btnClass = 'btn-danger';
+        $statusColor = '#dc3545';
     } elseif ($status === 'reservado') {
         $btnClass = 'btn-warning text-dark';
+        $statusColor = '#ffc107';
+    } elseif ($status === 'sin_estado') {
+        $btnClass = 'btn-secondary';
+        $statusColor = '#6c757d';
     }
 
-    // Armar HTML del popover
-    $popover_content = '<div class="text-center">';
-    if (!empty($image)) {
-        $popover_content .= '<img src="' . esc_url($image['url']) . '" class="img-fluid mb-2 rounded" style="max-height: 120px; object-fit: cover; width: 100%;" alt="' . esc_attr($title) . '">';
+    // Armar HTML del popover con estructura de Toast
+    $popover_content = '<div class="toast-header">';
+    if ($status !== 'sin_estado') {
+        $popover_content .= '<span class="rounded-circle me-2 shadow-sm" style="width: 12px; height: 12px; display: inline-block; background-color: ' . esc_attr($statusColor) . ';"></span>';
+    }
+    $popover_content .= '<strong class="me-auto text-body">' . esc_html($title) . '</strong>';
+    if ($status !== 'sin_estado') {
+        $popover_content .= '<small class="text-muted ms-2">' . esc_html(ucfirst($status)) . '</small>';
+    }
+    $popover_content .= '<button type="button" class="btn-close ms-2 bs-hotspot-close" aria-label="Close" style="font-size: 0.75rem;"></button>';
+    $popover_content .= '</div>';
+    
+    $popover_content .= '<div class="toast-body text-start">';
+    if (!empty($imageUrl)) {
+        $popover_content .= '<img src="' . esc_url($imageUrl) . '" class="img-fluid mb-2 rounded" style="max-height: 120px; object-fit: cover; width: 100%;" alt="' . esc_attr($title) . '">';
     }
     if (!empty($description)) {
         $popover_content .= '<p class="mb-2 small">' . esc_html($description) . '</p>';
@@ -38,10 +57,7 @@ function bootstrap_theme_render_bs_masterplan_hotspot($attributes, $content, $bl
         $popover_content .= '<a href="' . esc_url($link) . '" class="btn btn-sm btn-outline-primary d-block">' . esc_html__('Ver más', 'ileben-landing') . '</a>';
     }
     $popover_content .= '</div>';
-    
-    // Armar título con botón cerrar
-    $popover_title = esc_html($title . ' (' . ucfirst($status) . ')') . '<button type="button" class="btn-close btn-close-white float-end ms-2 bs-hotspot-close" aria-label="Close" style="font-size: 0.65rem; margin-top: 0.2rem;"></button>';
-    
+
     ob_start();
     ?>
     <button type="button" 
@@ -49,9 +65,8 @@ function bootstrap_theme_render_bs_masterplan_hotspot($attributes, $content, $bl
             style="top: <?php echo esc_attr($top); ?>%; left: <?php echo esc_attr($left); ?>%; width: 28px; height: 28px; transform: translate(-50%, -50%); z-index: 10;"
             data-bs-placement="top"
             data-bs-custom-class="bs-hotspot-popover"
-            title="<?php echo esc_attr($popover_title); ?>" 
             data-bs-content="<?php echo esc_attr($popover_content); ?>">
-        <i class="fa-solid fa-plus small"></i>
+        <i class="<?php echo esc_attr($iconClass); ?> small"></i>
     </button>
     <?php
     return ob_get_clean();
@@ -70,6 +85,7 @@ function bootstrap_theme_register_bs_masterplan_hotspot()
             'image' => array('type' => 'object', 'default' => null),
             'top' => array('type' => 'number', 'default' => 50),
             'left' => array('type' => 'number', 'default' => 50),
+            'iconClass' => array('type' => 'string', 'default' => 'fa-solid fa-plus'),
         )
     ));
 }

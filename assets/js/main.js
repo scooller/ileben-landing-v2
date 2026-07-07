@@ -91,7 +91,7 @@ async function init() {
         import('../../blocks/bs-interactive-masterplan/masterplan')
       ]).then(([PopoverModule, { initInteractiveMasterplan }]) => {
         initInteractiveMasterplan(PopoverModule.default);
-      });
+      }).catch(err => console.error("Error loading interactive masterplan:", err));
     }
   };
 

@@ -24,7 +24,8 @@
             link: { type: 'string', default: '' },
             image: { type: 'object', default: null },
             top: { type: 'number', default: 50 },
-            left: { type: 'number', default: 50 }
+            left: { type: 'number', default: 50 },
+            iconClass: { type: 'string', default: 'fa-solid fa-plus' }
         },
         edit: function(props) {
             const { attributes, setAttributes } = props;
@@ -32,7 +33,7 @@
             const containerRef = wp.element.useRef(null);
             
             // Preview style for positioning in the editor
-            const btnColor = attributes.status === 'vendido' ? '#dc3545' : (attributes.status === 'reservado' ? '#ffc107' : '#0d6efd');
+            const btnColor = attributes.status === 'vendido' ? '#dc3545' : (attributes.status === 'reservado' ? '#ffc107' : (attributes.status === 'sin_estado' ? '#6c757d' : '#0d6efd'));
             const textColor = attributes.status === 'reservado' ? '#000' : '#fff';
             
             const blockProps = useBlockProps({
@@ -99,11 +100,18 @@
                             label: __('Estado', 'ileben-landing'),
                             value: attributes.status,
                             options: [
+                                { label: '- Sin estado -', value: 'sin_estado' },
                                 { label: 'Disponible (Azul)', value: 'disponible' },
                                 { label: 'Reservado (Amarillo)', value: 'reservado' },
                                 { label: 'Vendido (Rojo)', value: 'vendido' }
                             ],
                             onChange: (val) => setAttributes({ status: val })
+                        }),
+                        createElement(TextControl, {
+                            label: __('Clase de Icono (FontAwesome)', 'ileben-landing'),
+                            value: attributes.iconClass,
+                            help: __('Ej: fa-solid fa-plus, fa-solid fa-location-dot', 'ileben-landing'),
+                            onChange: (val) => setAttributes({ iconClass: val })
                         }),
                         createElement('p', { className: 'components-base-control__help' }, __('También puedes arrastrar el punto directamente en la imagen.', 'ileben-landing')),
                         createElement(RangeControl, {
@@ -172,7 +180,7 @@
                             position: 'relative'
                         },
                         title: attributes.title
-                    }, createElement(Icon, { icon: 'plus', size: 14 })),
+                    }, createElement('i', { className: (attributes.iconClass || 'fa-solid fa-plus') + ' small', style: { fontSize: '14px' } })),
                     // Tooltip Preview when selected
                     props.isSelected && createElement('div', {
                         style: {
@@ -192,8 +200,8 @@
                             textAlign: 'center'
                         }
                     },
-                        createElement('div', { style: { backgroundColor: '#0d6efd', color: '#fff', padding: '5px 20px 5px 5px', margin: '-10px -10px 10px -10px', borderRadius: '3px 3px 0 0', fontSize: '11px', fontWeight: 'bold' } }, 
-                            attributes.title + ' (' + attributes.status.charAt(0).toUpperCase() + attributes.status.slice(1) + ')'
+                        createElement('div', { style: { backgroundColor: attributes.status === 'sin_estado' ? '#6c757d' : '#0d6efd', color: '#fff', padding: '5px 20px 5px 5px', margin: '-10px -10px 10px -10px', borderRadius: '3px 3px 0 0', fontSize: '11px', fontWeight: 'bold' } }, 
+                            attributes.status === 'sin_estado' ? attributes.title : (attributes.title + ' (' + attributes.status.charAt(0).toUpperCase() + attributes.status.slice(1) + ')')
                         ),
                         attributes.image && createElement('img', { src: attributes.image.url, style: { width: '100%', maxHeight: '120px', objectFit: 'cover', marginBottom: '8px', borderRadius: '4px' } }),
                         attributes.description && createElement('p', { style: { fontSize: '12px', marginBottom: 0, color: '#333' } }, attributes.description)
