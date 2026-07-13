@@ -83,6 +83,21 @@ async function init() {
       }
     }
 
+    // Initialize Split Carousel transitions if GSAP is available
+    if (gsapEnabled && document.querySelectorAll('.bs-split-carousel').length > 0) {
+      import('../../blocks/bs-split-carousel/split-carousel').then(({ initSplitCarousel }) => {
+        // Wait for GSAP to be ready, then init
+        const tryInit = () => {
+          if (window.gsap) {
+            initSplitCarousel();
+          } else {
+            setTimeout(tryInit, 100);
+          }
+        };
+        tryInit();
+      });
+    }
+
     // Initialize Interactive Masterplan if exists
     const hasHotspots = document.querySelectorAll('.bs-hotspot-btn').length > 0;
     if (hasHotspots) {

@@ -2,8 +2,25 @@
     const { __ } = wp.i18n;
     const { registerBlockType } = wp.blocks;
     const { InspectorControls, InnerBlocks, useBlockProps } = wp.blockEditor;
-    const { PanelBody, TextControl } = wp.components;
+    const { PanelBody, TextControl, SelectControl, RangeControl } = wp.components;
     const { createElement, Fragment } = wp.element;
+
+    var transitionOptions = [
+        { label: 'Fade', value: 'fade' },
+        { label: 'Fade Up', value: 'fadeUp' },
+        { label: 'Fade Down', value: 'fadeDown' },
+        { label: 'Fade Left', value: 'fadeLeft' },
+        { label: 'Fade Right', value: 'fadeRight' },
+        { label: 'Scale In', value: 'scaleIn' },
+        { label: 'Slide Up', value: 'slideUp' },
+        { label: 'Slide Left', value: 'slideLeft' },
+        { label: 'Slide Right', value: 'slideRight' },
+        { label: 'Flip Y (3D)', value: 'flipY' },
+        { label: 'Back Out (rebote)', value: 'backOut' },
+        { label: 'Blur Focus', value: 'blurFocus' },
+        { label: 'Clip Reveal', value: 'clipReveal' },
+        { label: 'Rotate In', value: 'rotateIn' }
+    ];
 
     registerBlockType('bootstrap-theme/bs-split-carousel', {
         apiVersion: 3,
@@ -21,6 +38,22 @@
             interval: {
                 type: 'string',
                 default: '5000'
+            },
+            leftTransition: {
+                type: 'string',
+                default: 'fade'
+            },
+            rightTransition: {
+                type: 'string',
+                default: 'fade'
+            },
+            transitionDuration: {
+                type: 'number',
+                default: 0.6
+            },
+            staggerDelay: {
+                type: 'number',
+                default: 0.15
             }
         },
         
@@ -46,6 +79,37 @@
                             value: attributes.interval,
                             type: 'number',
                             onChange: (value) => setAttributes({ interval: value })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Left Column Transition', 'ileben-landing'),
+                            help: __('Animation for the text column', 'ileben-landing'),
+                            value: attributes.leftTransition,
+                            options: transitionOptions,
+                            onChange: (value) => setAttributes({ leftTransition: value })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Right Column Transition', 'ileben-landing'),
+                            help: __('Animation for the image column', 'ileben-landing'),
+                            value: attributes.rightTransition,
+                            options: transitionOptions,
+                            onChange: (value) => setAttributes({ rightTransition: value })
+                        }),
+                        createElement(RangeControl, {
+                            label: __('Animation Duration (s)', 'ileben-landing'),
+                            value: attributes.transitionDuration,
+                            min: 0.2,
+                            max: 2,
+                            step: 0.1,
+                            onChange: (value) => setAttributes({ transitionDuration: value })
+                        }),
+                        createElement(RangeControl, {
+                            label: __('Stagger Delay (s)', 'ileben-landing'),
+                            help: __('Delay between left and right column animations', 'ileben-landing'),
+                            value: attributes.staggerDelay,
+                            min: 0,
+                            max: 1,
+                            step: 0.05,
+                            onChange: (value) => setAttributes({ staggerDelay: value })
                         })
                     )
                 ),

@@ -7,6 +7,7 @@ vendor/
 build/
 tmp/
 temp/
+dist/
 
 # Archivos de entorno y credenciales
 .env
@@ -44,11 +45,9 @@ debug-acf.php
 /.qwen
 QWEN.md
 .agents/skills.json
-/.qwen
 .qwen/settings.json
 /.agents
 /graphify-out
 .github/settings.json
-/dist
-/dist
 /dist/.vite
+/dist

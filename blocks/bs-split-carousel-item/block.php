@@ -47,7 +47,7 @@ function bootstrap_theme_render_bs_split_carousel_item_block($attributes, $conte
 ?>
     <div class="<?php echo esc_attr($class_string); ?>">
         <div class="row g-0 align-items-center h-100 position-relative">
-            
+
             <div class="col-12 col-md-5 split-text-col position-relative z-1">
                 <div class="split-text-card box-shadow-1" style="<?php echo esc_attr($bg_style); ?>">
                     <div class="split-text-content">
@@ -55,10 +55,10 @@ function bootstrap_theme_render_bs_split_carousel_item_block($attributes, $conte
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-12 col-md-7 split-image-col position-absolute end-0 top-0 h-100 z-2 d-none d-md-block">
                 <?php if ($mainImageId) : ?>
-                    <?php echo wp_get_attachment_image($mainImageId, 'full', false, array('class' => 'w-100 h-100 object-fit-cover mt-4')); ?>
+                    <?php echo wp_get_attachment_image($mainImageId, 'full', false, array('class' => 'w-100 h-100 object-fit-cover img')); ?>
                 <?php else : ?>
                     <div class="placeholder-img w-100 h-100 bg-light d-flex align-items-center justify-content-center">
                         <span class="text-muted">Main Image Placeholder</span>

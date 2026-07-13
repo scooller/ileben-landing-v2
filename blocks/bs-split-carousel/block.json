@@ -16,5 +16,31 @@
         "html": false,
         "anchor": true,
         "customClassName": true
+    },
+    "attributes": {
+        "carouselId": {
+            "type": "string",
+            "default": ""
+        },
+        "interval": {
+            "type": "string",
+            "default": "5000"
+        },
+        "leftTransition": {
+            "type": "string",
+            "default": "fade"
+        },
+        "rightTransition": {
+            "type": "string",
+            "default": "fade"
+        },
+        "transitionDuration": {
+            "type": "number",
+            "default": 0.6
+        },
+        "staggerDelay": {
+            "type": "number",
+            "default": 0.15
+        }
     }
 }

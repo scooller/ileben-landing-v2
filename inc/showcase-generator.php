@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Generador de Página Showcase para revisión de bloques.
  */
@@ -288,6 +289,47 @@ function ileben_handle_generate_showcase()
 <!-- /wp:paragraph --></div></div></div>
 <!-- /wp:bootstrap-theme/bs-carousel-item -->
 <!-- /wp:bootstrap-theme/bs-carousel -->
+<!-- /wp:bootstrap-theme/bs-column -->
+
+<!-- wp:bootstrap-theme/bs-column {"columnsMd":12,"marginTop":"mt-5"} -->
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Split Carousel (GSAP Transitions)</h4>
+<!-- /wp:heading -->
+<!-- wp:bootstrap-theme/bs-split-carousel {"carouselId":"split-carousel-showcase","interval":"5000","leftTransition":"fadeLeft","rightTransition":"fadeRight","transitionDuration":0.6,"staggerDelay":0.15} -->
+<!-- wp:bootstrap-theme/bs-split-carousel-item {"active":true,"mainImageId":0} -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">PUERTO VARAS</h3>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"lead text-muted"} -->
+<p class="lead text-muted">Departamentos con vista al lago Llanquihue</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Proyecto inmobiliario de lujo en el sur de Chile, con amplias superficies y terminaciones de alta calidad.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:bootstrap-theme/bs-split-carousel-item -->
+<!-- wp:bootstrap-theme/bs-split-carousel-item {"active":false} -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">PUCON</h3>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"lead text-muted"} -->
+<p class="lead text-muted">Vive frente al volcán</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Apartamentos modernos con vista panorámica al Volcán Villarrica y acceso directo a la playa.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:bootstrap-theme/bs-split-carousel-item -->
+<!-- wp:bootstrap-theme/bs-split-carousel-item {"active":false} -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">SANTIAGO</h3>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"lead text-muted"} -->
+<p class="lead text-muted">Diseño urbano contemporáneo</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Departamentos de 2 y 3 ambientes en el corazón del barrio Lastarria, cerca de metro y servicios.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:bootstrap-theme/bs-split-carousel-item -->
+<!-- /wp:bootstrap-theme/bs-split-carousel -->
 <!-- /wp:bootstrap-theme/bs-column -->
 
 <!-- wp:bootstrap-theme/bs-column {"columnsMd":6} -->
