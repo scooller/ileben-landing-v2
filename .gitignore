@@ -46,3 +46,9 @@ QWEN.md
 .agents/skills.json
 /.qwen
 .qwen/settings.json
+/.agents
+/graphify-out
+.github/settings.json
+/dist
+/dist
+/dist/.vite

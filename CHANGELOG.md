@@ -2,6 +2,11 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [Unreleased]
+
+### Added
+- Nuevo bloque `bs-split-carousel` y `bs-split-carousel-item` para sliders con diseño dividido (texto a la izquierda superpuesto y gran imagen a la derecha), con soporte para imagen de fondo en la tarjeta de texto y uso de Gutenberg InnerBlocks para total libertad de diseño.
+
 ## [0.1.16] - 2026-07-07
 
 ### ✨ Mejoras y Nuevas Funciones

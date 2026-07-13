@@ -1,0 +1,98 @@
+/* Split Carousel Block */
+.bs-split-carousel {
+    position: relative;
+    padding-bottom: 3rem; // Space for indicators
+
+    .carousel-inner {
+        position: relative;
+        z-index: 1;
+        overflow: visible; // allow shadow to show if needed
+    }
+
+    .carousel-item {
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .split-text-card {
+        background-color: #fff;
+        padding: 3rem 2rem;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* Default overlapping margin to overlap right column image slightly */
+        margin-right: -2rem;
+        position: relative;
+        z-index: 2;
+
+        /* Ensures content is above background image if any */
+        .split-text-content {
+            position: relative;
+            z-index: 3;
+        }
+    }
+
+    .split-image-col {
+        // img {
+        //     width: 100%;
+        //     height: 100%;
+        //     object-fit: cover;
+        // }
+    }
+
+    .split-carousel-indicators {
+        position: absolute;
+        bottom: 4rem;
+        left: 16%;
+        right: auto;
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+        z-index: 5;
+
+        button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ccc;
+            border: none;
+            margin: 0 4px;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+
+            &.active {
+                opacity: 1;
+                background-color: #2B4A5F; // Primary dark color from screenshot
+            }
+        }
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .bs-split-carousel {
+        .split-text-card {
+            margin-right: 0;
+            margin-bottom: -2rem;
+            /* Overlap image below instead of right */
+            min-height: 300px;
+            padding: 2rem 1.5rem;
+        }
+
+        .split-image-col-mobile {
+            img {
+                border-radius: 4px;
+            }
+        }
+
+        .split-carousel-indicators {
+            position: relative;
+            bottom: auto;
+            margin-top: 1rem;
+            margin-left: 0;
+            justify-content: center;
+        }
+    }
+}

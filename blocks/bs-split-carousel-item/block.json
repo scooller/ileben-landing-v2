@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "bootstrap-theme/bs-split-carousel-item",
+    "title": "Split Carousel Item",
+    "category": "ileben-landing",
+    "parent": ["bootstrap-theme/bs-split-carousel"],
+    "icon": "format-image",
+    "description": "A single slide for the split carousel",
+    "textdomain": "ileben-landing",
+    "supports": {
+        "html": false,
+        "customClassName": true
+    }
+}

@@ -72,6 +72,8 @@ function bootstrap_theme_block_editor_assets()
         'bs-card',
         'bs-carousel',
         'bs-carousel-item',
+        'bs-split-carousel',
+        'bs-split-carousel-item',
         'bs-column',
         'bs-container',
         'bs-divider',
