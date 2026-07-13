@@ -180,7 +180,7 @@ function bootstrap_theme_render_bs_plantas_showcase($attributes, $content, $bloc
     ksort($bano_choices, SORT_NATURAL);
 
     $instance_id = function_exists('wp_unique_id') ? wp_unique_id('plantas-showcase-') : uniqid('plantas-showcase-');
-    
+
     $slider_image_type = isset($attributes['sliderImageType']) ? $attributes['sliderImageType'] : 'portada';
 
     // Build JSON payload for JS
@@ -244,7 +244,7 @@ function bootstrap_theme_render_bs_plantas_showcase($attributes, $content, $bloc
                 <div class="row g-4 bs-plantas-showcase-grid">
                     <div class="col-12 col-lg-6">
                         <div id="<?php echo esc_attr($instance_id); ?>-carousel" class="carousel slide" data-bs-ride="false">
-                            <div class="carousel-inner rounded"></div>
+                            <div class="carousel-inner rounded box-shadow-5"></div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#<?php echo esc_attr($instance_id); ?>-carousel" data-bs-slide="prev"><i class="fa-solid fa-angle-left"></i></button>
                             <button class="carousel-control-next" type="button" data-bs-target="#<?php echo esc_attr($instance_id); ?>-carousel" data-bs-slide="next"><i class="fa-solid fa-angle-right"></i></button>
                         </div>
@@ -252,33 +252,33 @@ function bootstrap_theme_render_bs_plantas_showcase($attributes, $content, $bloc
 
                     <div class="col-12 col-lg-6 d-flex align-items-center">
                         <div class="w-100">
-                            <p class="text-muted small mb-2" data-field="descripcion"></p>
+                            <p class="text-muted mb-2" data-field="descripcion"></p>
                             <div class="row g-2">
                                 <div class="col-6">
-                                    <span class="d-block small text-muted fw-medium mb-1"><i class="fa-regular fa-building"></i> Planta</span>
-                                    <span class="d-block fw-semibold" data-field="nombre"></span>
+                                    <span class="d-block text-muted fw-medium mb-1"><i class="fa-regular fa-building"></i> Planta</span>
+                                    <span class="d-block fs-3 fw-semibold" data-field="nombre"></span>
                                 </div>
                                 <div class="col-6">
-                                    <span class="d-block small text-muted fw-medium mb-1"><i class="fa-solid fa-restroom"></i> Dorm + Baño</span>
-                                    <span class="d-block fw-semibold" data-field="dorm_bano"></span>
+                                    <span class="d-block text-muted fw-medium mb-1"><i class="fa-solid fa-restroom"></i> Dorm + Baño</span>
+                                    <span class="d-block fs-3 fw-semibold" data-field="dorm_bano"></span>
                                 </div>
                                 <div class="col-12">
                                     <hr class="my-2">
                                 </div>
                                 <div class="col-6">
-                                    <span class="d-block small text-muted fw-medium mb-1"><i class="fa-solid fa-compass"></i> Orientación</span>
-                                    <span class="d-block fw-semibold" data-field="orientacion"></span>
+                                    <span class="d-block text-muted fw-medium mb-1"><i class="fa-solid fa-compass"></i> Orientación</span>
+                                    <span class="d-block fs-3 fw-semibold" data-field="orientacion"></span>
                                 </div>
                                 <div class="col-6">
-                                    <span class="d-block small text-muted fw-medium mb-1"><i class="fa-solid fa-ruler-combined"></i> Superficie total</span>
-                                    <span class="d-block fw-semibold" data-field="superficie_total"></span>
+                                    <span class="d-block text-muted fw-medium mb-1"><i class="fa-solid fa-ruler-combined"></i> Superficie total</span>
+                                    <span class="d-block fs-3 fw-semibold" data-field="superficie_total"></span>
                                 </div>
                                 <div class="col-12">
                                     <hr class="my-2">
                                 </div>
                                 <div class="col-6">
                                     <span class="d-block small text-muted fw-medium mb-1"><i class="fa-solid fa-dollar-sign"></i> Precio</span>
-                                    <span class="d-block fs-4 fw-bold" data-field="precio_final"></span>
+                                    <h2 class="d-block fw-bold" data-field="precio_final"></h2>
                                 </div>
                                 <div class="col-6 text-end d-flex align-items-end justify-content-end">
                                     <div class="btn-group" role="group" aria-label="Acciones">

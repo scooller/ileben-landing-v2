@@ -355,8 +355,17 @@ add_action('admin_init', function () {
 
     $sync_results = [];
 
+    // 1. Sincronizar site-config (RRSS, logos, tipografías)
+    if (function_exists('ileben_theme_sync_rrss')) {
+        $sync_results['site_config'] = ileben_theme_sync_rrss();
+    }
+
+    // 2. Sincronizar Plantas
     if (function_exists('ileben_theme_sync_plantas')) {
-        $sync_results = ileben_theme_sync_plantas();
+        $plantas_result = ileben_theme_sync_plantas();
+        foreach (['success', 'created', 'updated', 'deleted', 'errors'] as $k) {
+            $sync_results[$k] = isset($plantas_result[$k]) ? $plantas_result[$k] : [];
+        }
     }
 
     // Guardar resultados en transient para mostrar en admin_notices
@@ -386,6 +395,30 @@ add_action('admin_notices', function () {
 
     $messages = [];
 
+    // Site-config (logos, tipografías, RRSS)
+    $site_config = isset($results['site_config']) ? $results['site_config'] : [];
+    if (!empty($site_config['success']) && !empty($site_config['synced'])) {
+        $labels = [
+            'logo'              => 'Logo',
+            'logo_dark'         => 'Logo Dark',
+            'google_font_family' => 'Tipografía (familia)',
+            'font_family_body'  => 'Tipografía (nombre)',
+            'facebook'          => 'Facebook',
+            'instagram'         => 'Instagram',
+            'linkedin'          => 'LinkedIn',
+        ];
+        $labels_synced = array_map(function ($k) use ($labels) {
+            return $labels[$k] ?? $k;
+        }, $site_config['synced']);
+        $messages[] = '✅ Configuración: ' . implode(', ', $labels_synced) . '.';
+    }
+    if (!empty($site_config['errors'])) {
+        foreach ($site_config['errors'] as $err) {
+            $messages[] = '⚠️ Config: ' . $err;
+        }
+    }
+
+    // Plantas
     if (!empty($results['success'])) {
         $plantas_msgs = [];
         if (!empty($results['created'])) {
@@ -409,11 +442,11 @@ add_action('admin_notices', function () {
     }
 
     if (empty($messages)) {
-        $messages[] = '⚠️ No se realizó ninguna sincronización de plantas.';
+        $messages[] = '⚠️ No se realizó ninguna sincronización.';
     }
 
-    $has_errors   = !empty($results['errors']);
-    $has_success  = !empty($results['success']);
+    $has_errors   = !empty($results['errors']) || !empty($site_config['errors']);
+    $has_success  = !empty($results['success']) || !empty($site_config['success']);
     $type = $has_errors ? ($has_success ? 'warning' : 'error') : 'success';
 
     printf(

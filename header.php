@@ -29,16 +29,40 @@ if (!defined('ABSPATH')) {
     } ?>
     <?php wp_body_open(); ?>
     <header id="site-header" class="site-header d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 fixed-top top-0 shadow-sm">
-        <div class="col-md-5 col-3 mb-2 mb-md-0 px-3">
+        <div class="col-md-5 col-3 mb-2 mb-md-0 px-3 logo-menu">
             <?php
-            wp_nav_menu([
-                'theme_location'  => 'header-menu',
-                'menu_class'      => 'navbar-nav ms-auto text-center',
-                'container'       => false,
-                'fallback_cb'     => false,
-                'depth'           => 2,
-                'walker'          => new WP_Bootstrap_Navwalker(),
-            ]);
+            if (has_nav_menu('header-menu')) {
+                wp_nav_menu([
+                    'theme_location'  => 'header-menu',
+                    'menu_class'      => 'navbar-nav ms-auto text-center',
+                    'container'       => false,
+                    'fallback_cb'     => false,
+                    'depth'           => 2,
+                    'walker'          => new WP_Bootstrap_Navwalker(),
+                ]);
+            } else {
+                $api_logo     = function_exists('get_field') ? get_field('api_logo', 'option') : '';
+                $api_logo_dark = function_exists('get_field') ? get_field('api_logo_dark', 'option') : '';
+
+                if ($api_logo) {
+                    $api_logo = esc_url($api_logo);
+                }
+                if ($api_logo_dark) {
+                    $api_logo_dark = esc_url($api_logo_dark);
+                }
+
+                if ($api_logo || $api_logo_dark) {
+                    $home_url = esc_url(home_url('/'));
+                    echo '<a class="navbar-brand api-logo" href="' . $home_url . '">';
+                    if ($api_logo) {
+                        echo '<img src="' . $api_logo . '" alt="' . esc_attr(get_bloginfo('name')) . '" class="img-fluid logo-light" />';
+                    }
+                    if ($api_logo_dark) {
+                        echo '<img src="' . $api_logo_dark . '" alt="' . esc_attr(get_bloginfo('name')) . '" class="img-fluid logo-dark" />';
+                    }
+                    echo '</a>';
+                }
+            }
             ?>
         </div>
         <div class="col-md-2 col-6 mb-2 mb-md-0 text-center">

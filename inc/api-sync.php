@@ -496,6 +496,34 @@ function ileben_theme_sideload_image($url)
 }
 
 /**
+ * Obtiene y cachea la configuración del sitio desde /site-config de la API.
+ *
+ * @param bool $force_refresh Saltar el cache.
+ * @return array|false Config data o false en caso de fallo.
+ */
+function ileben_theme_get_site_config($force_refresh = false)
+{
+    $cache_key  = 'ileben_site_config';
+    $cache_time = HOUR_IN_SECONDS;
+
+    if (!$force_refresh) {
+        $cached = get_transient($cache_key);
+        if (is_array($cached)) {
+            return $cached;
+        }
+    }
+
+    $response = ileben_theme_api_request('site-config');
+
+    if (is_wp_error($response) || !is_array($response)) {
+        return false;
+    }
+
+    set_transient($cache_key, $response, $cache_time);
+    return $response;
+}
+
+/**
  * Sincroniza las RRSS desde /site-config de la API hacia los campos ACF.
  *
  * @return array Resultado con claves: success, synced, errors.
@@ -512,15 +540,8 @@ function ileben_theme_sync_rrss()
         return $result;
     }
 
+    // Sincronizar RRSS desde site-config
     $social = isset($response['social']) && is_array($response['social']) ? $response['social'] : [];
-
-    if (empty($social)) {
-        $result['errors'][] = 'site-config no contiene datos de redes sociales.';
-        error_log('[iLeben Sync RRSS] ' . $result['errors'][0]);
-        return $result;
-    }
-
-    // Mapeo: clave API → campo ACF
     $map = [
         'facebook'  => 'social_facebook',
         'instagram' => 'social_instagram',
@@ -533,6 +554,47 @@ function ileben_theme_sync_rrss()
             update_field($acf_field, esc_url_raw($value), 'option');
             $result['synced'][] = $api_key;
         }
+    }
+
+    // Sincronizar logos desde site-config (download → attachment ID)
+    $logo_fields = [
+        'logo'      => 'api_logo',
+        'logo_dark' => 'api_logo_dark',
+    ];
+    foreach ($logo_fields as $api_key => $acf_field) {
+        $value = isset($response[$api_key]) ? trim((string) $response[$api_key]) : '';
+        if ($value !== '') {
+            $attach_id = ileben_theme_sideload_image(esc_url_raw($value));
+            if (!is_wp_error($attach_id)) {
+                update_field($acf_field, $attach_id, 'option');
+                $result['synced'][] = $api_key;
+            } else {
+                $result['errors'][] = sprintf('No se pudo descargar %s: %s', $api_key, $attach_id->get_error_message());
+            }
+        }
+    }
+
+    // Sincronizar tipografías desde site-config
+    // google_fonts_stylesheet → extraer query param → google_font_family
+    $stylesheet = isset($response['google_fonts_stylesheet']) ? trim((string) $response['google_fonts_stylesheet']) : '';
+    if ($stylesheet !== '') {
+        $parsed = wp_parse_url($stylesheet, PHP_URL_QUERY);
+        if ($parsed) {
+            // Remover &display=swap si existe (el theme lo agrega automáticamente)
+            $parsed = preg_replace('/&?display=[^&]+/', '', $parsed);
+            $parsed = trim($parsed, '&');
+            if ($parsed !== '') {
+                update_field('google_font_family', $parsed, 'option');
+                $result['synced'][] = 'google_font_family';
+            }
+        }
+    }
+
+    // font_family_body → google_font_name
+    $font_body = isset($response['font_family_body']) ? trim((string) $response['font_family_body']) : '';
+    if ($font_body !== '') {
+        update_field('google_font_name', $font_body, 'option');
+        $result['synced'][] = 'font_family_body';
     }
 
     $result['success'] = true;
