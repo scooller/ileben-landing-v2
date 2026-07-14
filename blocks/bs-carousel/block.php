@@ -57,12 +57,24 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
         $data_attrs .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
     }
 
+    // Count carousel items from rendered content to generate indicators
+    $item_count = 0;
+    $has_active = false;
+    if (!empty($content)) {
+        $item_count = preg_match_all('/carousel-item(?:\s|"|\')/', $content);
+        $has_active = strpos($content, 'carousel-item active') !== false;
+    }
+
     ob_start();
 ?>
     <div class="<?php echo esc_attr($class_string); ?>" id="<?php echo esc_attr($carouselId); ?>" <?php echo $data_attrs; ?>>
 
-        <?php if ($indicators) : ?>
-            <div class="carousel-indicators" id="<?php echo esc_attr($carouselId); ?>-indicators"></div>
+        <?php if ($indicators && $item_count > 0) : ?>
+            <div class="carousel-indicators">
+                <?php for ($i = 0; $i < $item_count; $i++) : ?>
+                    <button type="button" data-bs-target="#<?php echo esc_attr($carouselId); ?>" data-bs-slide-to="<?php echo $i; ?>" <?php echo ($i === 0 && !$has_active) || ($i === 0 && $has_active) ? ' class="active" aria-current="true"' : ''; ?> aria-label="Slide <?php echo $i + 1; ?>"></button>
+                <?php endfor; ?>
+            </div>
         <?php endif; ?>
 
         <div class="carousel-inner h-100">

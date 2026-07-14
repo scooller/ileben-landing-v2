@@ -1,4 +1,6 @@
 import '../scss/main.scss';
+// Bootstrap JS bundle (modal, carousel, dropdown, collapse, offcanvas, tab, toast, tooltip, popover, scrollspy)
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { initRouter } from './router';
 import { initPreloader } from './preloader';
 import { initLazyload } from './lazyload';

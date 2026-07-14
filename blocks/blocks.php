@@ -72,6 +72,7 @@ function bootstrap_theme_block_editor_assets()
         'bs-card',
         'bs-carousel',
         'bs-carousel-item',
+        'bs-collapse',
         'bs-split-carousel',
         'bs-split-carousel-item',
         'bs-column',
@@ -90,6 +91,7 @@ function bootstrap_theme_block_editor_assets()
         'bs-pagination',
         'bs-pagination-item',
         'bs-parallax',
+        'bs-popover',
         'bs-progress',
         'bs-row',
         'bs-spinner',
@@ -98,6 +100,7 @@ function bootstrap_theme_block_editor_assets()
         'bs-tab-pane',
         'bs-tabs',
         'bs-toast',
+        'bs-tooltip',
         'bs-video',
         'bs-iframe',
         'bs-plantas-slider',
@@ -111,7 +114,9 @@ function bootstrap_theme_block_editor_assets()
         'bs-interactive-masterplan',
         'bs-masterplan-hotspot',
         'bs-construction-progress-v2',
-        'bs-construction-stage'
+        'bs-construction-stage',
+        'bs-counter-card',
+        'bs-card-group'
     ];
 
     // Add WooCommerce blocks only if WooCommerce is active
@@ -194,19 +199,20 @@ function bootstrap_theme_block_editor_assets()
     wp_add_inline_script('wp-blocks', 'window.BOOTSTRAP_THEME_PLANTAS_CATEGORIAS = ' . wp_json_encode($categorias_array) . ';', 'before');
 
     // Enqueue Bootstrap CSS for block editor (same as frontend)
+    // Enqueue Bootstrap CSS for block editor (uses centralized version)
     wp_enqueue_style(
         'bootstrap-editor',
-        'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css',
+        ILEBEN_BS_CSS_URL,
         array(),
-        '5.3.2'
+        ILEBEN_BS_VERSION
     );
 
-    // Enqueue FontAwesome for block editor
+    // Enqueue FontAwesome for block editor (uses centralized version)
     wp_enqueue_style(
         'font-awesome-editor',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css',
+        ILEBEN_FA_URL,
         array(),
-        '6.6.0'
+        ILEBEN_FA_VERSION
     );
 
     // Enqueue master block definitions (JS registers all block types for inserter)

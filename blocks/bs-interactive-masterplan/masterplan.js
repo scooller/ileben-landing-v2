@@ -43,11 +43,16 @@ export function initInteractiveMasterplan(PopoverClass) {
     }
   });
 
-  // GSAP Animation: Aparecer y desaparecer (Pulse effect)
+  // GSAP Animation: only for hotspots that have a pulse animation enabled
   if (window.gsap) {
-    window.gsap.fromTo(hotspots, 
-      { opacity: 0.2 }, 
-      { opacity: 1, duration: 1.2, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: { each: 0.15, from: "random" } }
+    const animatedHotspots = Array.from(hotspots).filter(
+      btn => !btn.classList.contains('bs-hotspot-pulse-none')
     );
+    if (animatedHotspots.length) {
+      window.gsap.fromTo(animatedHotspots, 
+        { }, 
+        { duration: 1.2, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: { each: 0.15, from: "random" } }
+      );
+    }
   }
 }

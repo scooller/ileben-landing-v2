@@ -25,7 +25,8 @@
             image: { type: 'object', default: null },
             top: { type: 'number', default: 50 },
             left: { type: 'number', default: 50 },
-            iconClass: { type: 'string', default: 'fa-solid fa-plus' }
+            iconClass: { type: 'string', default: 'fa-solid fa-plus' },
+            pulseAnimation: { type: 'string', default: 'none' }
         },
         edit: function(props) {
             const { attributes, setAttributes } = props;
@@ -112,6 +113,18 @@
                             value: attributes.iconClass,
                             help: __('Ej: fa-solid fa-plus, fa-solid fa-location-dot', 'ileben-landing'),
                             onChange: (val) => setAttributes({ iconClass: val })
+                        }),
+                        createElement(SelectControl, {
+                            label: __('Animación del Hotspot', 'ileben-landing'),
+                            value: attributes.pulseAnimation,
+                            options: [
+                                { label: 'Sin animación', value: 'none' },
+                                { label: 'Pulse (escala)', value: 'scale' },
+                                { label: 'Ping (anillo expansivo)', value: 'ping' },
+                                { label: 'Bounce (rebote)', value: 'bounce' },
+                                { label: 'Glow (brillo)', value: 'glow' }
+                            ],
+                            onChange: (val) => setAttributes({ pulseAnimation: val })
                         }),
                         createElement('p', { className: 'components-base-control__help' }, __('También puedes arrastrar el punto directamente en la imagen.', 'ileben-landing')),
                         createElement(RangeControl, {

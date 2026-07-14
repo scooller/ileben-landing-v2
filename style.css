@@ -3,11 +3,11 @@ Theme Name: Leben
 Theme URI: https://ileben.cl
 Author: ileben.cl
 Author URI: https://ileben.cl
-Description: Landing theme optimized for mobile-first with Bootstrap 5, GSAP, Swiper, Fancybox, lazy media, iframe facades, and preloader. Localizado para español (Chile) - es_CL.
-Version: 0.1.16
+Description: Mobile-first landing theme with Bootstrap 5 (CSS + JS bundle), GSAP animations, Swiper.js, Fancybox, Font Awesome 7, Select2, lazy media, iframe facades, and preloader. Localizado para español (Chile) - es_CL.
+Version: 0.1.17
 Text Domain: ileben-landing
 Domain Path: /languages
 Requires at least: 6.0
-Tested up to: 6.4
+Tested up to: 7.0.1
 Requires PHP: 8.3
 */

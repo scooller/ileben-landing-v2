@@ -103,12 +103,14 @@
       object-fit: cover;
     }
   }
-  .card-body{
-    background-color: var(--bs-body-bg);
+}
+
+/* Card Group container */
+.bs-card-group {
+  // When using row-cols layout, .card children size automatically
+  &.row > .card {
+    height: 100%;
   }
-  --bs-card-color: var(--bs-body-color);
-  --bs-card-bg: var(--bs-body-bg);
-  --bs-card-title-color: var(--bs-body-color);
 }
 
 .toast.cf7-field-toast{

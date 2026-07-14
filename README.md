@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.15  
+**Versión:** 0.1.16  
 **Compatibilidad:** PHP 8.3+, WordPress 6.0+ (tested 6.4), ACF Pro
 
 ---
@@ -11,10 +11,12 @@ Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing
 ## 🎯 Características
 
 - **Mobile-first design** – Optimizado para dispositivos móviles desde el inicio
-- **Bootstrap 5** – Framework CSS moderno con componentes personalizables
+- **Bootstrap 5** – Framework CSS responsive, **JS bundle incluido** (modal, carousel, dropdown, collapse, offcanvas, tab, toast, tooltip, popover, scrollspy)
 - **GSAP** – Animaciones suaves y de alto rendimiento
 - **Swiper.js** – Carouseles y sliders responsive
 - **Fancybox** – Galerías de imágenes elegantes con modal lightbox
+- **Font Awesome 7** – Íconos vectoriales (CDN, versión centralizada)
+- **Select2** – Selectores enriquecidos para filtros
 - **Bloque bs-plantas-slider** – Slider con filtros en cliente (dormitorios/baños), Fancybox, navegación, paginación múltiple y efectos Swiper
 - **Preloader** – Cargador de sitio visible antes del renderizado inicial
 - **Lazy Loading** – Carga perezosa de imágenes con IntersectionObserver fallback
@@ -307,11 +309,16 @@ npm run build:back-css
 
 ## 📦 Dependencias principales
 
-### Dependencies
-- **bootstrap** (^5.3) – Framework CSS responsive y componentes
+### Dependencies (npm / Vite bundle)
+- **bootstrap** (^5.3) – Framework CSS responsive + **JS bundle** (modal, carousel, tabs, etc.)
 - **gsap** (^3.14) – Animaciones de alto rendimiento
 - **swiper** (^12.0) – Carouseles y sliders modernos
 - **@fancyapps/ui** (^6.1) – Galerías lightbox con Fancybox
+
+### CDN (versiones centralizadas en `functions.php`)
+- **Font Awesome** 7.2.0 (`ILEBEN_FA_VERSION`) – Íconos
+- **Bootstrap CSS** 5.3.3 (`ILEBEN_BS_VERSION`) – Solo para editor Gutenberg
+- **Select2** 4.1.0-rc.0 (`ILEBEN_SELECT2_VERSION`) – Filtros de plantas showcase
 
 ### DevDependencies
 - **vite** (^5.4.8) – Bundler moderno ultra-rápido
@@ -465,7 +472,7 @@ El tema incluye una amplia colección de bloques personalizados (basados en Boot
 - **bs-collapse**
 - **bs-modal**, **bs-offcanvas**
 - **bs-dropdown**, **bs-dropdown-item**, **bs-dropdown-divider**
-- **bs-tabs**, **bs-tab-pane**, **bs-navs-tabs**
+- **bs-tabs**, **bs-tab-pane**
 - **bs-popover**, **bs-tooltip**, **bs-toast**
 - **bs-scrollspy**
 

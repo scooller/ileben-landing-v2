@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Block: Masterplan Hotspot
  */
@@ -15,11 +16,12 @@ function bootstrap_theme_render_bs_masterplan_hotspot($attributes, $content, $bl
     $description = isset($attributes['description']) ? $attributes['description'] : '';
     $status = isset($attributes['status']) ? $attributes['status'] : 'disponible';
     $link = isset($attributes['link']) ? $attributes['link'] : '';
-    
+
     $image = isset($attributes['image']) ? $attributes['image'] : null;
     $imageUrl = !empty($image) ? esc_url($image['url']) : '';
     $iconClass = isset($attributes['iconClass']) ? $attributes['iconClass'] : 'fa-solid fa-plus';
-    
+    $pulseAnimation = isset($attributes['pulseAnimation']) ? $attributes['pulseAnimation'] : 'none';
+
     // Definir color por estado
     $btnClass = 'btn-primary';
     $statusColor = '#0d6efd';
@@ -45,7 +47,7 @@ function bootstrap_theme_render_bs_masterplan_hotspot($attributes, $content, $bl
     }
     $popover_content .= '<button type="button" class="btn-close ms-2 bs-hotspot-close" aria-label="Close" style="font-size: 0.75rem;"></button>';
     $popover_content .= '</div>';
-    
+
     $popover_content .= '<div class="toast-body text-start">';
     if (!empty($imageUrl)) {
         $popover_content .= '<img src="' . esc_url($imageUrl) . '" class="img-fluid mb-2 rounded" style="max-height: 120px; object-fit: cover; width: 100%;" alt="' . esc_attr($title) . '">';
@@ -59,16 +61,16 @@ function bootstrap_theme_render_bs_masterplan_hotspot($attributes, $content, $bl
     $popover_content .= '</div>';
 
     ob_start();
-    ?>
-    <button type="button" 
-            class="bs-hotspot-btn btn btn-sm rounded-circle position-absolute p-0 shadow-sm <?php echo esc_attr($btnClass); ?> <?php echo isset($attributes['className']) ? esc_attr($attributes['className']) : ''; ?>" 
-            style="top: <?php echo esc_attr($top); ?>%; left: <?php echo esc_attr($left); ?>%; width: 28px; height: 28px; transform: translate(-50%, -50%); z-index: 10;"
-            data-bs-placement="top"
-            data-bs-custom-class="bs-hotspot-popover"
-            data-bs-content="<?php echo esc_attr($popover_content); ?>">
+?>
+    <button type="button"
+        class="bs-hotspot-btn btn btn-sm rounded-circle position-absolute p-0 shadow-sm <?php echo esc_attr($btnClass); ?> bs-hotspot-pulse-<?php echo esc_attr($pulseAnimation); ?> <?php echo isset($attributes['className']) ? esc_attr($attributes['className']) : ''; ?>"
+        style="top: <?php echo esc_attr($top); ?>%; left: <?php echo esc_attr($left); ?>%; width: 28px; height: 28px; transform: translate(-50%, -50%); z-index: 10;"
+        data-bs-placement="top"
+        data-bs-custom-class="bs-hotspot-popover"
+        data-bs-content="<?php echo esc_attr($popover_content); ?>">
         <i class="<?php echo esc_attr($iconClass); ?> small"></i>
     </button>
-    <?php
+<?php
     return ob_get_clean();
 }
 
@@ -86,6 +88,7 @@ function bootstrap_theme_register_bs_masterplan_hotspot()
             'top' => array('type' => 'number', 'default' => 50),
             'left' => array('type' => 'number', 'default' => 50),
             'iconClass' => array('type' => 'string', 'default' => 'fa-solid fa-plus'),
+            'pulseAnimation' => array('type' => 'string', 'default' => 'none'),
         )
     ));
 }

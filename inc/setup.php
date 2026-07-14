@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Theme setup and supports.
  */
@@ -12,7 +13,7 @@ add_action('after_setup_theme', function () {
     add_theme_support('post-thumbnails');
     add_theme_support('editor-styles');
     add_editor_style([
-        'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css',
+        ILEBEN_BS_CSS_URL,
         'dist/assets/editor.css'
     ]);
     add_theme_support('responsive-embeds');
@@ -37,12 +38,12 @@ add_action('after_setup_theme', function () {
 
     // Add support for editor color palette from ACF Options (with caching)
     // Cache colors for 1 hour to avoid repeated database queries
-    $colors = ileben_get_cached_template_data('editor_colors', function() {
+    $colors = ileben_get_cached_template_data('editor_colors', function () {
         // Helper function to safely get ACF field with fallback and cache
-        $get_color = function($field_name, $default) {
+        $get_color = function ($field_name, $default) {
             return ileben_get_cached_color($field_name, $default);
         };
-        
+
         return [
             // Base colors
             'base' => [
@@ -111,8 +112,8 @@ add_action('after_setup_theme', function () {
             ],
         ];
     }, 3600 * 2); // Cache for 2 hours
-    
-    
+
+
     $color_palette = [];
     foreach ($colors as $group => $colors) {
         foreach ($colors as $name => $color) {
@@ -127,24 +128,23 @@ add_action('after_setup_theme', function () {
     add_theme_support('editor-color-palette', $color_palette);
 
     //custom theme font sizes rem
-    add_theme_support( 'custom-font-sizes', [
+    add_theme_support('custom-font-sizes', [
         'small' => 12,
         'medium' => 16,
         'large' => 20,
         'x-large' => 24,
     ]);
-    add_theme_support( 'custom-units', 'rem', 'px' );
-    
+    add_theme_support('custom-units', 'rem', 'px');
 });
 
 /**
  * Campos personalizados para ítems de menú: icono FontAwesome, botón y estilo Bootstrap
  */
-add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $args) {
+add_filter('wp_nav_menu_item_custom_fields', function ($item_id, $item, $depth, $args) {
     // Icono FontAwesome
     $icon = get_post_meta($item_id, '_menu_item_fa_icon', true);
     ob_start();
-    ?>
+?>
     <p class="field-fa-icon description description-wide">
         <label for="edit-menu-item-fa-icon-<?php echo esc_attr($item_id); ?>">
             <?php echo esc_html__('Icono FontAwesome (ej: fa-home)', 'ileben-landing'); ?><br />
@@ -153,7 +153,9 @@ add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $
         <br><a href="https://fontawesome.com/icons" target="_blank" rel="noopener" style="font-size:13px;"><?php echo esc_html__('Ver todos los iconos FontAwesome', 'ileben-landing'); ?></a>
         <?php if ($icon) : ?>
             <span style="display:inline-block;margin-left:10px;vertical-align:middle;">
-                <svg class="icon"><use xlink:href="#<?php echo esc_attr($icon); ?>"></use></svg>
+                <svg class="icon">
+                    <use xlink:href="#<?php echo esc_attr($icon); ?>"></use>
+                </svg>
             </span>
         <?php endif; ?>
     </p>
@@ -164,7 +166,7 @@ add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $
     ?>
     <p class="field-is-button description description-wide">
         <label for="edit-menu-item-is-button-<?php echo esc_attr($item_id); ?>">
-            <input type="checkbox" id="edit-menu-item-is-button-<?php echo esc_attr($item_id); ?>" name="menu-item-is-button[<?php echo esc_attr($item_id); ?>]" value="1"<?php checked($is_button, '1'); ?> />
+            <input type="checkbox" id="edit-menu-item-is-button-<?php echo esc_attr($item_id); ?>" name="menu-item-is-button[<?php echo esc_attr($item_id); ?>]" value="1" <?php checked($is_button, '1'); ?> />
             <?php echo esc_html__('Mostrar como botón Bootstrap', 'ileben-landing'); ?>
         </label>
     </p>
@@ -198,7 +200,7 @@ add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $
             <select id="edit-menu-item-button-style-<?php echo esc_attr($item_id); ?>" name="menu-item-button-style[<?php echo esc_attr($item_id); ?>]">
                 <option value=""><?php echo esc_html__('(Sin estilo)', 'ileben-landing'); ?></option>
                 <?php foreach ($styles as $class => $label) : ?>
-                    <option value="<?php echo esc_attr($class); ?>"<?php selected($button_style, $class); ?>><?php echo esc_html($label); ?></option>
+                    <option value="<?php echo esc_attr($class); ?>" <?php selected($button_style, $class); ?>><?php echo esc_html($label); ?></option>
                 <?php endforeach; ?>
             </select>
         </label>
@@ -208,13 +210,13 @@ add_filter('wp_nav_menu_item_custom_fields', function($item_id, $item, $depth, $
             </span>
         <?php endif; ?>
     </p>
-    <?php
+<?php
 
     echo ob_get_clean();
 }, 10, 4);
 
 // Guardar los campos personalizados
-add_action('wp_update_nav_menu_item', function($menu_id, $menu_item_db_id, $args) {
+add_action('wp_update_nav_menu_item', function ($menu_id, $menu_item_db_id, $args) {
     // Icono FontAwesome
     $icon = isset($_POST['menu-item-fa-icon'][$menu_item_db_id]) ? sanitize_text_field($_POST['menu-item-fa-icon'][$menu_item_db_id]) : '';
     update_post_meta($menu_item_db_id, '_menu_item_fa_icon', $icon);

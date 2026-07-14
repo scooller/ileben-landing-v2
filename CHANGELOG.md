@@ -6,6 +6,37 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
 ### Added
 - Nuevo bloque `bs-split-carousel` y `bs-split-carousel-item` para sliders con diseño dividido (texto a la izquierda superpuesto y gran imagen a la derecha), con soporte para imagen de fondo en la tarjeta de texto y uso de Gutenberg InnerBlocks para total libertad de diseño.
+- Nuevo bloque `bs-counter-card`: tarjeta con número animado (count-up) al hacer scroll, con prefijo, sufijo, título, subtítulo y modo de color (`text-bg-*`, `border-*`, `border+text`).
+- Nuevo bloque `bs-card-group`: contenedor para tarjetas con dos modos de layout (`row` con `row-cols-*` y `gutters`, o `card-group` nativo de Bootstrap).
+- **Bootstrap JS bundle** ahora incluido en el bundle de Vite (`bootstrap/dist/js/bootstrap.bundle.min.js`). Los componentes interactivos (modal, carousel, dropdown, collapse, offcanvas, tab, toast, tooltip, popover, scrollspy) funcionan sin necesidad de cargar JS adicional.
+- **Carousel con indicadores**: `bs-carousel` ahora genera botones indicadores reales desde el contenido renderizado, no un div vacío. Corrige `TypeError: Cannot read properties of null` de Bootstrap JS.
+- **Sección de Íconos Font Awesome** en el showcase con enlace a la documentación y ejemplos de estilos (solid, regular, brands) y tamaños.
+- **Sección de Counter Cards y Card Groups** en el showcase.
+- **Sección de componentes interactivos extra** en el showcase: Collapse, Dropdown, Popover, Tooltip, Toast, Video, Parallax.
+- Animación de pulso para `bs-masterplan-hotspot` con 5 opciones: none, scale, ping, bounce, glow.
+
+### Changed
+- **Versiones centralizadas:** Todas las librerías CDN ahora usan constantes únicas en `functions.php`:
+  - Font Awesome `7.2.0` (`ILEBEN_FA_VERSION`)
+  - Bootstrap `5.3.3` (`ILEBEN_BS_VERSION`)
+  - Select2 `4.1.0-rc.0` (`ILEBEN_SELECT2_VERSION`)
+- **Bootstrap JS:** Incluido en el bundle Vite en vez de CDN separado.
+- **Carousel:** Corregidos atributos del showcase (`columnsMd`→`colMd`, `marginTop`→`className`).
+- **Preload LCP:** Removido `crossorigin="anonymous"` del preload de imágenes de carrusel para coincidir con el modo de credenciales de CSS background-image.
+- **Logos desde API:** Nuevos campos ACF `api_logo` y `api_logo_dark` (tipo imagen) en el tab **General** de Opciones del Tema. Cuando no existe menú asignado a `header-menu`, se muestra automáticamente el logo desde la configuración de la API, con soporte light/dark.
+- **Sincronización ampliada:** El botón "Sincronizar" ahora descarga logos y sincroniza tipografías desde `/site-config`:
+  - `google_fonts_stylesheet` → `google_font_family` (tab Personalización).
+  - `font_family_body` → `google_font_name` (tab Personalización).
+  - `logo` y `logo_dark` → se descargan y guardan como attachment en la Media Library.
+
+### Changed
+- **Logos desde API:** Nuevos campos ACF `api_logo` y `api_logo_dark` (tipo imagen) en el tab **General** de Opciones del Tema. Cuando no existe menú asignado a `header-menu`, se muestra automáticamente el logo desde la configuración de la API, con soporte light/dark.
+- **Sincronización ampliada:** El botón "Sincronizar" ahora descarga logos y sincroniza tipografías desde `/site-config`:
+  - `google_fonts_stylesheet` ��� `google_font_family` (tab Personalización).
+  - `font_family_body` → `google_font_name` (tab Personalización).
+  - `logo` y `logo_dark` → se descargan y guardan como attachment en la Media Library.
+- **Mensajes de sincronización:** El `admin_notices` ahora muestra los resultados de logos, tipografías y RRSS además de las plantas.
+- **Header:** `header.php` usa `has_nav_menu()` para detectar si existe el menú antes de renderizar; si no existe, muestra el logo de la API en `.logo-menu`.
 
 ## [0.1.16] - 2026-07-07
 

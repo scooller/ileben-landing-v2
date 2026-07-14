@@ -12,6 +12,17 @@ if (!defined('ABSPATH')) {
 define('ILEBEN_THEME_DIR', get_template_directory());
 define('ILEBEN_THEME_URI', get_template_directory_uri());
 
+// Centralized library versions — single source of truth
+define('ILEBEN_FA_VERSION', '7.2.0');
+define('ILEBEN_FA_URL', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@' . ILEBEN_FA_VERSION . '/css/all.min.css');
+
+define('ILEBEN_BS_VERSION', '5.3.3');
+define('ILEBEN_BS_CSS_URL', 'https://cdn.jsdelivr.net/npm/bootstrap@' . ILEBEN_BS_VERSION . '/dist/css/bootstrap.min.css');
+
+define('ILEBEN_SELECT2_VERSION', '4.1.0-rc.0');
+define('ILEBEN_SELECT2_CSS_URL', 'https://cdn.jsdelivr.net/npm/select2@' . ILEBEN_SELECT2_VERSION . '/dist/css/select2.min.css');
+define('ILEBEN_SELECT2_JS_URL', 'https://cdn.jsdelivr.net/npm/select2@' . ILEBEN_SELECT2_VERSION . '/dist/js/select2.min.js');
+
 /**
  * Initialize theme constants after ACF is ready
  */

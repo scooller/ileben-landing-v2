@@ -165,6 +165,9 @@ add_action('wp_enqueue_scripts', function () {
             ];
             wp_localize_script('ileben-main', 'ILEBEN_SWIPER', $swiper_config);
 
+            // Pass Font Awesome URL to JS async loader (single source of truth)
+            wp_localize_script('ileben-main', 'ILEBEN_FA', ['url' => ILEBEN_FA_URL]);
+
             // Localize GSAP config from ACF Options
             $gsap_config = [
                 'enableGsap' => (bool) get_field('enable_gsap', 'option'),
@@ -208,13 +211,12 @@ add_action('wp_enqueue_scripts', function () {
     $google_url = 'https://fonts.googleapis.com/css2?' . $family . '&display=swap';
     wp_enqueue_style('ileben-google-fonts', $google_url, [], null);
 
-    // Font Awesome frontend fallback: ensure icons always render
-    // (async loader in JS can still run, but will detect existing stylesheet)
-    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css', [], '7.0.1');
+    // Font Awesome frontend (single source of truth: ILEBEN_FA_URL)
+    wp_enqueue_style('font-awesome', ILEBEN_FA_URL, [], ILEBEN_FA_VERSION);
 
     // Select2 for enhanced form-select dropdowns (plantas showcase filters)
-    wp_enqueue_style('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', [], '4.1.0-rc.0');
-    wp_enqueue_script('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', ['jquery'], '4.1.0-rc.0', true);
+    wp_enqueue_style('select2', ILEBEN_SELECT2_CSS_URL, [], ILEBEN_SELECT2_VERSION);
+    wp_enqueue_script('select2', ILEBEN_SELECT2_JS_URL, ['jquery'], ILEBEN_SELECT2_VERSION, true);
 
     // Theme base stylesheet
     wp_enqueue_style('ileben-theme-style', ILEBEN_THEME_URI . '/style.css', [], ILEBEN_THEME_VERSION);
@@ -229,7 +231,7 @@ add_action('enqueue_block_assets', function () {
     }
 
     // Load Font Awesome in editor iframe so icon blocks render correctly.
-    wp_enqueue_style('font-awesome-editor', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', [], '6.4.0');
+    wp_enqueue_style('font-awesome-editor', ILEBEN_FA_URL, [], ILEBEN_FA_VERSION);
 
     $editor_css = ILEBEN_THEME_URI . '/dist/assets/editor.css';
     if (file_exists(ILEBEN_THEME_DIR . '/dist/assets/editor.css')) {
@@ -524,7 +526,7 @@ add_action('wp_head', function () {
             // Sanitize and output preload
             $image_url = esc_url($image_url);
     ?>
-            <link rel="preload" as="image" href="<?php echo $image_url; ?>" fetchpriority="high" crossorigin="anonymous" />
+            <link rel="preload" as="image" href="<?php echo $image_url; ?>" fetchpriority="high" />
     <?php
         }
         echo ob_get_clean();

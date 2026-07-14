@@ -118,7 +118,7 @@
 
             const dropdownClasses = [
                 attributes.direction === 'down' ? 'dropdown' : `drop${attributes.direction}`,
-                attributes.direction === 'down' && 'btn-group'
+                attributes.split ? 'btn-group' : ''
             ].filter(Boolean).join(' ');
 
             const buttonClasses = [
