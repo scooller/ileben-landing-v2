@@ -73,16 +73,34 @@ async function init() {
     const hasCarousels = document.querySelectorAll('.carousel').length > 0;
     const hasCollapse = document.querySelectorAll('[data-bs-toggle="collapse"]').length > 0;
     const hasTabs = document.querySelectorAll('[data-bs-toggle="pill"], [data-bs-toggle="tab"]').length > 0;
+    const hasPopovers = document.querySelectorAll('[data-bs-toggle="popover"]').length > 0;
+    const hasTooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]').length > 0;
 
-    if (hasCarousels || hasCollapse || hasTabs) {
+    if (hasCarousels || hasCollapse || hasTabs || hasPopovers || hasTooltips) {
       const bootstrapImports = [];
       if (hasCarousels) bootstrapImports.push(import('bootstrap/js/dist/carousel'));
       if (hasCollapse) bootstrapImports.push(import('bootstrap/js/dist/collapse'));
       if (hasTabs) bootstrapImports.push(import('bootstrap/js/dist/tab'));
+      if (hasPopovers) bootstrapImports.push(import('bootstrap/js/dist/popover'));
+      if (hasTooltips) bootstrapImports.push(import('bootstrap/js/dist/tooltip'));
 
-      if (bootstrapImports.length > 0) {
-        Promise.all(bootstrapImports);
-      }
+      Promise.all(bootstrapImports).then((modules) => {
+        // Bootstrap auto-initializes via data-bs-toggle for popover/tooltip when imported as side-effect
+        // But to be safe, explicitly enable all popover/tooltip elements
+        let moduleIndex = 0;
+        if (hasCarousels) moduleIndex++;
+        if (hasCollapse) moduleIndex++;
+        if (hasTabs) moduleIndex++;
+        if (hasPopovers) {
+          const Popover = modules[moduleIndex].default;
+          document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => new Popover(el));
+          moduleIndex++;
+        }
+        if (hasTooltips) {
+          const Tooltip = modules[moduleIndex].default;
+          document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new Tooltip(el));
+        }
+      });
     }
 
     // Initialize Split Carousel transitions if GSAP is available

@@ -6,7 +6,7 @@
     const { __ } = wp.i18n;
     const { registerBlockType } = wp.blocks;
     const { InspectorControls, useBlockProps } = wp.blockEditor;
-    const { PanelBody, TextControl, SelectControl } = wp.components;
+    const { PanelBody, TextControl, SelectControl, ToggleControl } = wp.components;
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-popover', {
@@ -25,6 +25,9 @@
             element: { type: 'string', default: 'button' },
             elementText: { type: 'string', default: __('Click me', 'ileben-landing') },
             variant: { type: 'string', default: 'btn-danger' },
+            html: { type: 'boolean', default: false },
+            customClass: { type: 'string', default: '' },
+            dismissable: { type: 'boolean', default: false },
             className: { type: 'string', default: '' }
         },
 
@@ -62,6 +65,25 @@
                 { label: __('Dark', 'ileben-landing'), value: 'btn-dark' }
             ];
 
+            // Normalize variant for preview
+            const variantClass = attributes.variant && attributes.variant.indexOf('btn-') === 0
+                ? attributes.variant
+                : 'btn-' + attributes.variant;
+
+            // Build preview data attributes
+            const effectiveTrigger = attributes.dismissable ? 'focus' : attributes.trigger;
+            const previewAttrs = {
+                'data-bs-toggle': 'popover',
+                'data-bs-placement': attributes.placement,
+                'data-bs-trigger': effectiveTrigger,
+                'data-bs-title': attributes.title,
+                'data-bs-content': attributes.content
+            };
+            if (attributes.html) previewAttrs['data-bs-html'] = 'true';
+            if (attributes.customClass) previewAttrs['data-bs-custom-class'] = attributes.customClass;
+
+            const previewElement = attributes.element === 'link' ? 'a' : attributes.element;
+
             return createElement(Fragment, null,
                 createElement(InspectorControls, null,
                     createElement(PanelBody, { title: __('Popover Content', 'ileben-landing') },
@@ -74,6 +96,11 @@
                             label: __('Content', 'ileben-landing'),
                             value: attributes.content,
                             onChange: (val) => setAttributes({ content: val })
+                        }),
+                        createElement(ToggleControl, {
+                            label: __('Allow HTML in content', 'ileben-landing'),
+                            checked: attributes.html,
+                            onChange: (val) => setAttributes({ html: val })
                         })
                     ),
                     createElement(PanelBody, { title: __('Placement & Trigger', 'ileben-landing'), initialOpen: false },
@@ -87,7 +114,13 @@
                             label: __('Trigger', 'ileben-landing'),
                             value: attributes.trigger,
                             options: triggerOptions,
-                            onChange: (val) => setAttributes({ trigger: val })
+                            onChange: (val) => setAttributes({ trigger: val }),
+                            help: attributes.dismissable ? 'Overridden by dismissable mode (focus).' : ''
+                        }),
+                        createElement(ToggleControl, {
+                            label: __('Dismiss on next click', 'ileben-landing'),
+                            checked: attributes.dismissable,
+                            onChange: (val) => setAttributes({ dismissable: val })
                         })
                     ),
                     createElement(PanelBody, { title: __('Element', 'ileben-landing'), initialOpen: false },
@@ -108,13 +141,22 @@
                             options: variantOptions,
                             onChange: (val) => setAttributes({ variant: val })
                         })
+                    ),
+                    createElement(PanelBody, { title: __('Advanced', 'ileben-landing'), initialOpen: false },
+                        createElement(TextControl, {
+                            label: __('Custom popover class', 'ileben-landing'),
+                            value: attributes.customClass,
+                            help: __('CSS class added to the popover element (data-bs-custom-class).', 'ileben-landing'),
+                            onChange: (val) => setAttributes({ customClass: val })
+                        })
                     )
                 ),
                 createElement('div', blockProps,
-                    createElement(attributes.element === 'link' ? 'a' : attributes.element, {
-                        className: attributes.element === 'button' ? `btn ${attributes.variant}` : '',
+                    createElement(previewElement, {
+                        className: attributes.element === 'button' ? `btn ${variantClass}` : '',
                         href: attributes.element === 'link' ? '#' : undefined,
-                        onClick: (e) => e.preventDefault()
+                        onClick: (e) => e.preventDefault(),
+                        ...previewAttrs
                     }, attributes.elementText)
                 )
             );

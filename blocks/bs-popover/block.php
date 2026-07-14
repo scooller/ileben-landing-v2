@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bootstrap Popover Block
  * 
@@ -12,7 +13,8 @@ if (!defined('ABSPATH')) {
 /**
  * Render Bootstrap Popover Block
  */
-function bootstrap_theme_render_bs_popover_block($attributes, $content, $block) {
+function bootstrap_theme_render_bs_popover_block($attributes, $content, $block)
+{
     $title = $attributes['title'] ?? __('Popover title', 'ileben-landing');
     $content_text = $attributes['content'] ?? __('Popover content', 'ileben-landing');
     $placement = $attributes['placement'] ?? 'right';
@@ -20,22 +22,35 @@ function bootstrap_theme_render_bs_popover_block($attributes, $content, $block) 
     $element = $attributes['element'] ?? 'button';
     $elementText = $attributes['elementText'] ?? __('Click me', 'ileben-landing');
     $variant = $attributes['variant'] ?? 'btn-danger';
-    
+    $html = $attributes['html'] ?? false;
+    $custom_class = $attributes['customClass'] ?? '';
+    $dismissable = $attributes['dismissable'] ?? false;
+
+    // Normalize variant — ensure btn- prefix
+    if ($element === 'button' && strpos($variant, 'btn-') !== 0) {
+        $variant = 'btn-' . $variant;
+    }
+
+    // Trigger override for dismissable popovers (Bootstrap dismiss-on-next-click)
+    if ($dismissable) {
+        $trigger = 'focus';
+    }
+
     // Build element classes
     $element_classes = array();
-    
+
     if ($element === 'button') {
         $element_classes[] = 'btn';
         $element_classes[] = $variant;
     } elseif ($element === 'link') {
         $element_classes[] = 'text-decoration-none';
     }
-    
+
     // Add custom CSS classes from Advanced panel
     $element_classes = bootstrap_theme_add_custom_classes($element_classes, $attributes, $block);
-    
+
     $element_class_string = implode(' ', array_unique($element_classes));
-    
+
     $popover_data = array(
         'data-bs-toggle' => 'popover',
         'data-bs-placement' => $placement,
@@ -43,25 +58,41 @@ function bootstrap_theme_render_bs_popover_block($attributes, $content, $block) 
         'data-bs-title' => $title,
         'data-bs-content' => $content_text
     );
-    
+
+    if ($html) {
+        $popover_data['data-bs-html'] = 'true';
+    }
+
+    if (!empty($custom_class)) {
+        $popover_data['data-bs-custom-class'] = $custom_class;
+    }
+
     $data_attrs = '';
     foreach ($popover_data as $key => $value) {
         $data_attrs .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
     }
-    
+
+    // Dismissable buttons need tabindex for focus trigger
+    $tabindex = ($dismissable && $element === 'button') ? ' tabindex="0"' : '';
+
     ob_start();
-    ?>
-    <?php switch ($element) :
+?>
+    <?php switch ($element):
         case 'button': ?>
-            <button type="button" class="<?php echo esc_attr($element_class_string); ?>"<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo esc_html($elementText); ?></button>
+            <button type="button" class="<?php echo esc_attr($element_class_string); ?>" <?php echo $tabindex; ?><?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                                                                                                    ?>><?php echo esc_html($elementText); ?></button>
             <?php break; ?>
-        <?php case 'link': ?>
-            <a href="#" class="<?php echo esc_attr($element_class_string); ?>" tabindex="0"<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo esc_html($elementText); ?></a>
+        <?php
+        case 'link': ?>
+            <a href="#" class="<?php echo esc_attr($element_class_string); ?>" tabindex="0" <?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                                                                            ?>><?php echo esc_html($elementText); ?></a>
             <?php break; ?>
-        <?php default: ?>
-            <span class="<?php echo esc_attr($element_class_string); ?>" tabindex="0"<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo esc_html($elementText); ?></span>
+        <?php
+        default: ?>
+            <span class="<?php echo esc_attr($element_class_string); ?>" tabindex="0" <?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                                                                                        ?>><?php echo esc_html($elementText); ?></span>
     <?php endswitch; ?>
-    <?php
+<?php
 
     return ob_get_clean();
 }
@@ -69,7 +100,8 @@ function bootstrap_theme_render_bs_popover_block($attributes, $content, $block) 
 /**
  * Register Bootstrap Popover Block
  */
-function bootstrap_theme_register_bs_popover_block() {
+function bootstrap_theme_register_bs_popover_block()
+{
     register_block_type('bootstrap-theme/bs-popover', array(
         'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_popover_block',
@@ -101,6 +133,18 @@ function bootstrap_theme_register_bs_popover_block() {
             'variant' => array(
                 'type' => 'string',
                 'default' => 'btn-danger'
+            ),
+            'html' => array(
+                'type' => 'boolean',
+                'default' => false
+            ),
+            'customClass' => array(
+                'type' => 'string',
+                'default' => ''
+            ),
+            'dismissable' => array(
+                'type' => 'boolean',
+                'default' => false
             ),
             'className' => array(
                 'type' => 'string',

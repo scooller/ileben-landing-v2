@@ -42,6 +42,13 @@ function bootstrap_theme_render_bs_dropdown_block($attributes, $content, $block)
         case 'start':
             $wrapper_classes[] = 'dropstart';
             break;
+        case 'center':
+            $wrapper_classes[] = 'dropdown-center';
+            break;
+        case 'up-center':
+            $wrapper_classes[] = 'dropup-center';
+            $wrapper_classes[] = 'dropup';
+            break;
         default:
             $wrapper_classes[] = 'dropdown';
             break;
@@ -70,7 +77,7 @@ function bootstrap_theme_render_bs_dropdown_block($attributes, $content, $block)
             </button>
         <?php endif; ?>
 
-        <ul class="dropdown-menu <?php echo esc_attr($alignment); ?> <?php echo $dark ? 'dropdown-menu-dark' : ''; ?>" aria-labelledby="<?php echo esc_attr($dropdownId); ?>">
+        <ul class="dropdown-menu <?php echo esc_attr($alignment); ?>"<?php echo $dark ? ' data-bs-theme="dark"' : ''; ?> aria-labelledby="<?php echo esc_attr($dropdownId); ?>">
             <?php if (!empty($content)) : ?>
                 <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
                 ?>

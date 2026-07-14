@@ -54,6 +54,14 @@
                 type: 'boolean',
                 default: false
             },
+            dropdownId: {
+                type: 'string',
+                default: ''
+            },
+            className: {
+                type: 'string',
+                default: ''
+            },
             preview: {
                 type: 'boolean',
                 default: false
@@ -88,7 +96,13 @@
                 { label: 'Light', value: 'light' },
                 { label: 'Dark', value: 'dark' },
                 { label: 'Outline Primary', value: 'outline-primary' },
-                { label: 'Outline Secondary', value: 'outline-secondary' }
+                { label: 'Outline Secondary', value: 'outline-secondary' },
+                { label: 'Outline Success', value: 'outline-success' },
+                { label: 'Outline Danger', value: 'outline-danger' },
+                { label: 'Outline Warning', value: 'outline-warning' },
+                { label: 'Outline Info', value: 'outline-info' },
+                { label: 'Outline Light', value: 'outline-light' },
+                { label: 'Outline Dark', value: 'outline-dark' }
             ];
 
             const sizeOptions = [
@@ -101,7 +115,9 @@
                 { label: 'Down', value: 'down' },
                 { label: 'Up', value: 'up' },
                 { label: 'Start', value: 'start' },
-                { label: 'End', value: 'end' }
+                { label: 'End', value: 'end' },
+                { label: 'Center (Down)', value: 'center' },
+                { label: 'Up Center', value: 'up-center' }
             ];
 
             const alignmentOptions = [
@@ -117,7 +133,10 @@
             ];
 
             const dropdownClasses = [
-                attributes.direction === 'down' ? 'dropdown' : `drop${attributes.direction}`,
+                attributes.direction === 'down' ? 'dropdown'
+                    : attributes.direction === 'center' ? 'dropdown-center'
+                    : attributes.direction === 'up-center' ? 'dropup-center dropup'
+                    : `drop${attributes.direction}`,
                 attributes.split ? 'btn-group' : ''
             ].filter(Boolean).join(' ');
 
@@ -130,9 +149,11 @@
 
             const menuClasses = [
                 'dropdown-menu',
-                attributes.alignment,
-                attributes.dark ? 'dropdown-menu-dark' : ''
+                attributes.alignment
             ].filter(Boolean).join(' ');
+
+            const menuAttrs = {};
+            if (attributes.dark) menuAttrs['data-bs-theme'] = 'dark';
             
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
@@ -174,7 +195,7 @@
                         }),
                         createElement(ToggleControl, {
                             label: __('Dark Menu', 'ileben-landing'),
-                            help: __('Use dark theme for dropdown menu', 'ileben-landing'),
+                            help: __('Use data-bs-theme="dark" for dark menu (replaces deprecated dropdown-menu-dark)', 'ileben-landing'),
                             checked: attributes.dark,
                             onChange: (value) => setAttributes({ dark: value })
                         }),
@@ -202,6 +223,7 @@
                                 type: 'button',
                                 className: `btn btn-${attributes.buttonVariant} ${attributes.size} dropdown-toggle dropdown-toggle-split`.trim(),
                                 'data-bs-toggle': 'dropdown',
+                                'data-bs-auto-close': attributes.autoClose,
                                 'aria-expanded': 'false'
                             },
                                 createElement('span', { className: 'visually-hidden' }, __('Toggle Dropdown', 'ileben-landing'))
@@ -211,6 +233,7 @@
                             className: buttonClasses,
                             type: 'button',
                             'data-bs-toggle': 'dropdown',
+                            'data-bs-auto-close': attributes.autoClose,
                             'aria-expanded': 'false'
                         }, attributes.buttonText),
                     
@@ -223,7 +246,8 @@
                         ),
                         createElement('ul', {
                             className: `${menuClasses} show position-static`,
-                            style: { display: 'block' }
+                            style: { display: 'block' },
+                            ...menuAttrs
                         },
                             createElement(InnerBlocks, {
                                 allowedBlocks: ['bootstrap-theme/bs-dropdown-item', 'bootstrap-theme/bs-dropdown-divider'],
