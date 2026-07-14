@@ -723,9 +723,7 @@ function ileben_handle_generate_showcase()
 <h4 class="wp-block-heading">Dropdown</h4>
 <!-- /wp:heading -->
 
-<!-- wp:bootstrap-theme/bs-dropdown -->
-<!-- wp:bootstrap-theme/bs-button {"text":"Dropdown","variant":"secondary"} /-->
-
+<!-- wp:bootstrap-theme/bs-dropdown {"buttonText":"Dropdown Básico","buttonVariant":"secondary"} -->
 <!-- wp:bootstrap-theme/bs-dropdown-item {"text":"Acción 1","className":"dropdown-item"} -->
 <li class="wp-block-bootstrap-theme-bs-dropdown-item dropdown-item"><a class="dropdown-item" href="#"><span>Acción 1</span></a></li>
 <!-- /wp:bootstrap-theme/bs-dropdown-item -->
@@ -736,6 +734,33 @@ function ileben_handle_generate_showcase()
 
 <!-- wp:bootstrap-theme/bs-dropdown-item {"text":"Acción 2","className":"dropdown-item"} -->
 <li class="wp-block-bootstrap-theme-bs-dropdown-item dropdown-item"><a class="dropdown-item" href="#"><span>Acción 2</span></a></li>
+<!-- /wp:bootstrap-theme/bs-dropdown-item -->
+<!-- /wp:bootstrap-theme/bs-dropdown -->
+
+<!-- wp:bootstrap-theme/bs-dropdown {"buttonText":"Split Danger","buttonVariant":"danger","split":true} -->
+<!-- wp:bootstrap-theme/bs-dropdown-item {"text":"Editar","className":"dropdown-item"} -->
+<li class="wp-block-bootstrap-theme-bs-dropdown-item dropdown-item"><a class="dropdown-item" href="#"><span>Editar</span></a></li>
+<!-- /wp:bootstrap-theme/bs-dropdown-item -->
+<!-- wp:bootstrap-theme/bs-dropdown-item {"text":"Eliminar","className":"dropdown-item"} -->
+<li class="wp-block-bootstrap-theme-bs-dropdown-item dropdown-item"><a class="dropdown-item" href="#"><span>Eliminar</span></a></li>
+<!-- /wp:bootstrap-theme/bs-dropdown-item -->
+<!-- /wp:bootstrap-theme/bs-dropdown -->
+
+<!-- wp:bootstrap-theme/bs-dropdown {"buttonText":"Outline Info Dropup","buttonVariant":"outline-info","direction":"up"} -->
+<!-- wp:bootstrap-theme/bs-dropdown-item {"text":"Opción A","className":"dropdown-item"} -->
+<li class="wp-block-bootstrap-theme-bs-dropdown-item dropdown-item"><a class="dropdown-item" href="#"><span>Opción A</span></a></li>
+<!-- /wp:bootstrap-theme/bs-dropdown-item -->
+<!-- wp:bootstrap-theme/bs-dropdown-item {"text":"Opción B","className":"dropdown-item"} -->
+<li class="wp-block-bootstrap-theme-bs-dropdown-item dropdown-item"><a class="dropdown-item" href="#"><span>Opción B</span></a></li>
+<!-- /wp:bootstrap-theme/bs-dropdown-item -->
+<!-- /wp:bootstrap-theme/bs-dropdown -->
+
+<!-- wp:bootstrap-theme/bs-dropdown {"buttonText":"Dark Menu","buttonVariant":"dark","dark":true} -->
+<!-- wp:bootstrap-theme/bs-dropdown-item {"text":"Modo oscuro","className":"dropdown-item"} -->
+<li class="wp-block-bootstrap-theme-bs-dropdown-item dropdown-item"><a class="dropdown-item" href="#"><span>Modo oscuro</span></a></li>
+<!-- /wp:bootstrap-theme/bs-dropdown-item -->
+<!-- wp:bootstrap-theme/bs-dropdown-item {"text":"data-bs-theme","className":"dropdown-item"} -->
+<li class="wp-block-bootstrap-theme-bs-dropdown-item dropdown-item"><a class="dropdown-item" href="#"><span>data-bs-theme</span></a></li>
 <!-- /wp:bootstrap-theme/bs-dropdown-item -->
 <!-- /wp:bootstrap-theme/bs-dropdown -->
 <!-- /wp:bootstrap-theme/bs-column -->
@@ -752,6 +777,8 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-tooltip {"text":"Tooltip derecho","placement":"right","elementText":"Hover Right","variant":"btn-info"} /-->
 
 <!-- wp:bootstrap-theme/bs-tooltip {"text":"Tooltip inferior","placement":"bottom","elementText":"Hover Bottom","variant":"btn-warning"} /-->
+
+<!-- wp:bootstrap-theme/bs-tooltip {"text":"Tooltip izquierdo","placement":"left","elementText":"Hover Left","variant":"btn-success"} /-->
 <!-- /wp:bootstrap-theme/bs-column -->
 
 <!-- wp:bootstrap-theme/bs-column -->
@@ -761,7 +788,13 @@ function ileben_handle_generate_showcase()
 
 <!-- wp:bootstrap-theme/bs-popover {"title":"Título Popover","elementText":"Click para Popover","variant":"btn-primary"} /-->
 
-<!-- wp:bootstrap-theme/bs-popover {"title":"Popover Izquierda","placement":"left","elementText":"Popover Left","variant":"btn-success"} /-->
+<!-- wp:bootstrap-theme/bs-popover {"title":"Popover Izquierda","content":"Contenido del popover a la izquierda.","placement":"left","elementText":"Popover Left","variant":"btn-success"} /-->
+
+<!-- wp:bootstrap-theme/bs-popover {"title":"Popover Superior","content":"Este popover aparece arriba.","placement":"top","elementText":"Popover Top","variant":"btn-info"} /-->
+
+<!-- wp:bootstrap-theme/bs-popover {"title":"Popover Dismissable","content":"Click fuera para cerrar (trigger focus).","dismissable":true,"placement":"bottom","elementText":"Dismissable","variant":"btn-warning"} /-->
+
+<!-- wp:bootstrap-theme/bs-popover {"title":"Popover con HTML","content":"<strong>Negrita</strong> y <em>cursiva</em>","html":true,"placement":"right","elementText":"HTML Content","variant":"btn-dark","customClass":"popover-custom-showcase"} /-->
 <!-- /wp:bootstrap-theme/bs-column -->
 <!-- /wp:bootstrap-theme/bs-row -->
 

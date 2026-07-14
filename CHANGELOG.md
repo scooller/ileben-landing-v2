@@ -5,34 +5,40 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [Unreleased]
 
 ### Added
+- **`bs-popover` mejorado** con atributos de Bootstrap 5.3: `html` (contenido HTML), `customClass` (`data-bs-custom-class`), y `dismissable` (dismiss-on-next-click con `trigger=focus`).
+- **`bs-dropdown` mejorado** con nuevas direcciones centradas: `dropdown-center` y `dropup-center` (BS 5.3).
+- **Inicialización automática de Popover y Tooltip** en `main.js`: cualquier elemento con `data-bs-toggle="popover"` o `data-bs-toggle="tooltip"` se inicializa al cargar la página (lazy-loaded).
+- **`bs-tabs` + `bs-tab-pane`**: Nuevo sistema de pestañas que reemplaza al obsoleto `bs-navs-tabs` (que no tenía registro de cliente). El bloque `bs-tabs` genera la navegación `ul.nav.nav-tabs` automáticamente desde los atributos de los `bs-tab-pane` hijos.
 - Nuevo bloque `bs-split-carousel` y `bs-split-carousel-item` para sliders con diseño dividido (texto a la izquierda superpuesto y gran imagen a la derecha), con soporte para imagen de fondo en la tarjeta de texto y uso de Gutenberg InnerBlocks para total libertad de diseño.
 - Nuevo bloque `bs-counter-card`: tarjeta con número animado (count-up) al hacer scroll, con prefijo, sufijo, título, subtítulo y modo de color (`text-bg-*`, `border-*`, `border+text`).
 - Nuevo bloque `bs-card-group`: contenedor para tarjetas con dos modos de layout (`row` con `row-cols-*` y `gutters`, o `card-group` nativo de Bootstrap).
 - **Bootstrap JS bundle** ahora incluido en el bundle de Vite (`bootstrap/dist/js/bootstrap.bundle.min.js`). Los componentes interactivos (modal, carousel, dropdown, collapse, offcanvas, tab, toast, tooltip, popover, scrollspy) funcionan sin necesidad de cargar JS adicional.
 - **Carousel con indicadores**: `bs-carousel` ahora genera botones indicadores reales desde el contenido renderizado, no un div vacío. Corrige `TypeError: Cannot read properties of null` de Bootstrap JS.
 - **Sección de Íconos Font Awesome** en el showcase con enlace a la documentación y ejemplos de estilos (solid, regular, brands) y tamaños.
+- **Showcase actualizado:** Dropdowns con variantes outline y modo oscuro; Popovers con HTML, dismissable y placement variado; Tooltips con 3 posiciones.
 - **Sección de Counter Cards y Card Groups** en el showcase.
 - **Sección de componentes interactivos extra** en el showcase: Collapse, Dropdown, Popover, Tooltip, Toast, Video, Parallax.
 - Animación de pulso para `bs-masterplan-hotspot` con 5 opciones: none, scale, ping, bounce, glow.
 
 ### Changed
 - **Versiones centralizadas:** Todas las librerías CDN ahora usan constantes únicas en `functions.php`:
-  - Font Awesome `7.2.0` (`ILEBEN_FA_VERSION`)
+  - Font Awesome `7.2.0` (`ILEBEN_FA_VERSION`) — migrado de cdnjs a jsdelivr (corrige errores WOFF2/OTS en Chrome).
   - Bootstrap `5.3.3` (`ILEBEN_BS_VERSION`)
   - Select2 `4.1.0-rc.0` (`ILEBEN_SELECT2_VERSION`)
 - **Bootstrap JS:** Incluido en el bundle Vite en vez de CDN separado.
 - **Carousel:** Corregidos atributos del showcase (`columnsMd`→`colMd`, `marginTop`→`className`).
 - **Preload LCP:** Removido `crossorigin="anonymous"` del preload de imágenes de carrusel para coincidir con el modo de credenciales de CSS background-image.
+- **Font Awesome:** Migrado de cdnjs a jsdelivr — cdnjs servía las fuentes woff2 con `application/octet-stream` causando errores de decodificación UTF-8 en Chrome.
+- **Variantes de botón normalizadas:** `bs-dropdown`, `bs-collapse` y `bs-popover` ahora garantizan el prefijo `btn-` en las variantes (antes `"secondary"` generaba `class="btn secondary"`).
+- **`bs-dropdown` dark mode:** Reemplazada la clase obsoleta `.dropdown-menu-dark` por `data-bs-theme="dark"` (recomendado en BS 5.3.0).
+- **`bs-dropdown` variantes:** Añadidas todas las variantes outline (outline-success, outline-danger, etc.).
+- **`bs-dropdown` preview:** Ahora muestra `data-bs-auto-close` en el editor.
+- **`bs-collapse` ID estable:** Movido `setAttributes` a `useEffect` con `[clientId]` para evitar warnings de React.
+- **`bs-popover` preview:** Ahora muestra todos los atributos `data-bs-*` en el editor.
+- **Eliminado `bs-navs-tabs`** — consolidado en `bs-tabs` + `bs-tab-pane` con `block.php` y `editor.js` completos.
 - **Logos desde API:** Nuevos campos ACF `api_logo` y `api_logo_dark` (tipo imagen) en el tab **General** de Opciones del Tema. Cuando no existe menú asignado a `header-menu`, se muestra automáticamente el logo desde la configuración de la API, con soporte light/dark.
 - **Sincronización ampliada:** El botón "Sincronizar" ahora descarga logos y sincroniza tipografías desde `/site-config`:
   - `google_fonts_stylesheet` → `google_font_family` (tab Personalización).
-  - `font_family_body` → `google_font_name` (tab Personalización).
-  - `logo` y `logo_dark` → se descargan y guardan como attachment en la Media Library.
-
-### Changed
-- **Logos desde API:** Nuevos campos ACF `api_logo` y `api_logo_dark` (tipo imagen) en el tab **General** de Opciones del Tema. Cuando no existe menú asignado a `header-menu`, se muestra automáticamente el logo desde la configuración de la API, con soporte light/dark.
-- **Sincronización ampliada:** El botón "Sincronizar" ahora descarga logos y sincroniza tipografías desde `/site-config`:
-  - `google_fonts_stylesheet` ��� `google_font_family` (tab Personalización).
   - `font_family_body` → `google_font_name` (tab Personalización).
   - `logo` y `logo_dark` → se descargan y guardan como attachment en la Media Library.
 - **Mensajes de sincronización:** El `admin_notices` ahora muestra los resultados de logos, tipografías y RRSS además de las plantas.
