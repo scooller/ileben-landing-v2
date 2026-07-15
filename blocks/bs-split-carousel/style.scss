@@ -20,7 +20,8 @@
     }
 
     .split-text-card {
-        background-color: #fff;        
+        background-color: var(--bs-body-bg);
+        color: var(--bs-body-color);        
         min-height: 400px;
         display: flex;
         flex-direction: column;

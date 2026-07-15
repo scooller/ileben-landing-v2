@@ -4,6 +4,17 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
 ## [Unreleased]
 
+### Fixed
+- **Tooltip `data-bs-html`**: El atributo `data-bs-html` usaba el booleano PHP `true` que se imprimía como `1`, causando `TypeError: Option "html" provided type "number" but expected type "boolean"` que rompía toda la cadena de inicialización de componentes Bootstrap.
+- **Dropdown no cerraba**: Triple inicialización de Bootstrap Dropdown (bundle completo + módulos individuales + `new Dropdown()`) causaba handlers duplicados que impedían cerrar el dropdown al hacer click de nuevo. Solucionado eliminando el `bootstrap.bundle.min.js` y usando solo módulos individuales de `bootstrap/js/dist/*` con `getOrCreateInstance`.
+- **Toast no se inicializaba**: El bloque toast no estaba incluido en la inicialización diferida de componentes Bootstrap en `main.js`.
+
+### Changed
+- **Arquitectura Bootstrap JS refactorizada**: Eliminado `import 'bootstrap/dist/js/bootstrap.bundle.min.js'` (bundle completo). Ahora se importan módulos individuales (`bootstrap/js/dist/dropdown`, `collapse`, `tab`, `carousel`, `modal`, `offcanvas`, `scrollspy`) en el top-level de `main.js`, permitiendo que el data-api de Bootstrap registre los event listeners una sola vez. Tooltip, popover y toast se inicializan manualmente con lazy-load (solo cuando existen en la página).
+- **`nav.js`**: Cambiado `new Dropdown()` / `new Collapse()` → `getOrCreateInstance()` para evitar crear instancias duplicadas sobre elementos que ya tienen data-api.
+- **`main.js` deferred init**: Eliminada la inicialización manual redundante de dropdown/collapse/tab/carousel (ya funcionan via data-api). Añadido `.catch()` al `Promise.all()` para que un error de un componente no mate toda la cadena.
+- **Tamaño del bundle JS**: Reducido de 577KB a 514KB (−63KB, −11%) al eliminar el bundle duplicado.
+
 ### Added
 - **`bs-popover` mejorado** con atributos de Bootstrap 5.3: `html` (contenido HTML), `customClass` (`data-bs-custom-class`), y `dismissable` (dismiss-on-next-click con `trigger=focus`).
 - **`bs-dropdown` mejorado** con nuevas direcciones centradas: `dropdown-center` y `dropup-center` (BS 5.3).
@@ -12,7 +23,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 - Nuevo bloque `bs-split-carousel` y `bs-split-carousel-item` para sliders con diseño dividido (texto a la izquierda superpuesto y gran imagen a la derecha), con soporte para imagen de fondo en la tarjeta de texto y uso de Gutenberg InnerBlocks para total libertad de diseño.
 - Nuevo bloque `bs-counter-card`: tarjeta con número animado (count-up) al hacer scroll, con prefijo, sufijo, título, subtítulo y modo de color (`text-bg-*`, `border-*`, `border+text`).
 - Nuevo bloque `bs-card-group`: contenedor para tarjetas con dos modos de layout (`row` con `row-cols-*` y `gutters`, o `card-group` nativo de Bootstrap).
-- **Bootstrap JS bundle** ahora incluido en el bundle de Vite (`bootstrap/dist/js/bootstrap.bundle.min.js`). Los componentes interactivos (modal, carousel, dropdown, collapse, offcanvas, tab, toast, tooltip, popover, scrollspy) funcionan sin necesidad de cargar JS adicional.
+- **Bootstrap JS bundle** incluido en el bundle de Vite. Los componentes interactivos (modal, carousel, dropdown, collapse, offcanvas, tab, toast, tooltip, popover, scrollspy) funcionan sin necesidad de cargar JS adicional. *(Nota: posteriormente refactorizado a módulos individuales — ver [Unreleased].)*
 - **Carousel con indicadores**: `bs-carousel` ahora genera botones indicadores reales desde el contenido renderizado, no un div vacío. Corrige `TypeError: Cannot read properties of null` de Bootstrap JS.
 - **Sección de Íconos Font Awesome** en el showcase con enlace a la documentación y ejemplos de estilos (solid, regular, brands) y tamaños.
 - **Showcase actualizado:** Dropdowns con variantes outline y modo oscuro; Popovers con HTML, dismissable y placement variado; Tooltips con 3 posiciones.
@@ -25,7 +36,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
   - Font Awesome `7.2.0` (`ILEBEN_FA_VERSION`) — migrado de cdnjs a jsdelivr (corrige errores WOFF2/OTS en Chrome).
   - Bootstrap `5.3.3` (`ILEBEN_BS_VERSION`)
   - Select2 `4.1.0-rc.0` (`ILEBEN_SELECT2_VERSION`)
-- **Bootstrap JS:** Incluido en el bundle Vite en vez de CDN separado.
+- **Bootstrap JS:** Incluido en el bundle Vite en vez de CDN separado. *(Nota: posteriormente refactorizado a módulos individuales — ver [Unreleased].)*
 - **Carousel:** Corregidos atributos del showcase (`columnsMd`→`colMd`, `marginTop`→`className`).
 - **Preload LCP:** Removido `crossorigin="anonymous"` del preload de imágenes de carrusel para coincidir con el modo de credenciales de CSS background-image.
 - **Font Awesome:** Migrado de cdnjs a jsdelivr — cdnjs servía las fuentes woff2 con `application/octet-stream` causando errores de decodificación UTF-8 en Chrome.

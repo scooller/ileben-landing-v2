@@ -23,6 +23,8 @@ function bootstrap_theme_render_bs_split_carousel_item_block($attributes, $conte
     $active = $to_bool($attributes['active'] ?? null, false);
     $bgImageId = $attributes['bgImageId'] ?? 0;
     $mainImageId = $attributes['mainImageId'] ?? 0;
+    $mainImageUrl = $attributes['mainImageUrl'] ?? '';
+    $mainImageAlt = $attributes['mainImageAlt'] ?? '';
     $className = $attributes['className'] ?? '';
 
     $classes = array('carousel-item', 'bs-split-carousel-item');
@@ -59,6 +61,8 @@ function bootstrap_theme_render_bs_split_carousel_item_block($attributes, $conte
             <div class="col-12 col-md-7 split-image-col position-absolute end-0 top-0 h-100 z-2 d-none d-md-block">
                 <?php if ($mainImageId) : ?>
                     <?php echo wp_get_attachment_image($mainImageId, 'full', false, array('class' => 'w-100 h-100 object-fit-cover img')); ?>
+                <?php elseif ($mainImageUrl) : ?>
+                    <img src="<?php echo esc_url($mainImageUrl); ?>" alt="<?php echo esc_attr($mainImageAlt); ?>" class="w-100 h-100 object-fit-cover img">
                 <?php else : ?>
                     <div class="placeholder-img w-100 h-100 bg-light d-flex align-items-center justify-content-center">
                         <span class="text-muted">Main Image Placeholder</span>
@@ -70,6 +74,8 @@ function bootstrap_theme_render_bs_split_carousel_item_block($attributes, $conte
             <div class="col-12 split-image-col-mobile d-md-none mt-3">
                 <?php if ($mainImageId) : ?>
                     <?php echo wp_get_attachment_image($mainImageId, 'full', false, array('class' => 'w-100 h-auto img-fluid')); ?>
+                <?php elseif ($mainImageUrl) : ?>
+                    <img src="<?php echo esc_url($mainImageUrl); ?>" alt="<?php echo esc_attr($mainImageAlt); ?>" class="w-100 h-auto img-fluid">
                 <?php endif; ?>
             </div>
 
@@ -96,6 +102,14 @@ function bootstrap_theme_register_bs_split_carousel_item_block()
             'mainImageId' => array(
                 'type' => 'number',
                 'default' => 0
+            ),
+            'mainImageUrl' => array(
+                'type' => 'string',
+                'default' => ''
+            ),
+            'mainImageAlt' => array(
+                'type' => 'string',
+                'default' => ''
             ),
             'className' => array(
                 'type' => 'string',

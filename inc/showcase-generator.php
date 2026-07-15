@@ -172,7 +172,422 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">2. Navegación y Listas</h2>
+<h2 class="wp-block-heading">2. Tipografías y Tamaños</h2>
+<!-- /wp:heading -->
+<!-- /wp:bootstrap-theme/bs-column -->
+<!-- /wp:bootstrap-theme/bs-row -->
+
+<!-- wp:bootstrap-theme/bs-row -->
+<!-- wp:bootstrap-theme/bs-column -->
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Headings</h4>
+<!-- /wp:heading -->
+
+<!-- wp:heading -->
+<h1 class="wp-block-heading">h1. Bootstrap heading</h1>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">h2. Bootstrap heading</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">h3. Bootstrap heading</h3>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">h4. Bootstrap heading</h4>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":5} -->
+<h5 class="wp-block-heading">h5. Bootstrap heading</h5>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":6} -->
+<h6 class="wp-block-heading">h6. Bootstrap heading</h6>
+<!-- /wp:heading -->
+<!-- /wp:bootstrap-theme/bs-column -->
+
+<!-- wp:bootstrap-theme/bs-column -->
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Display Headings</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="display-1">Display 1</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="display-2">Display 2</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="display-3">Display 3</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="display-4">Display 4</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="display-5">Display 5</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="display-6">Display 6</p>
+<!-- /wp:paragraph -->
+<!-- /wp:bootstrap-theme/bs-column -->
+
+<!-- wp:bootstrap-theme/bs-column -->
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Utilidades de texto</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="lead">Este es un párrafo <code>.lead</code> — texto destacado más grande.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="text-muted">Este es texto <code>.text-muted</code> — texto secundario atenuado.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="fst-italic">Texto en <code>.fst-italic</code> — cursiva.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="fw-bold">Texto en <code>.fw-bold</code> — negrita.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="fw-light">Texto en <code>.fw-light</code> — peso ligero.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="text-lowercase">Texto en <code>.text-lowercase</code> — minúsculas.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="text-uppercase">Texto en <code>.text-uppercase</code> — mayúsculas.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="text-capitalize">Texto en <code>.text-capitalize</code> — capitalizado.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Texto <mark>resaltado con mark</mark> y <small>pequeño con small</small> y <s>tachado con s</s> y <u>subrayado con u</u>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Blockquote</h4>
+<!-- /wp:heading -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p>Una cita conocida envuelta en un elemento blockquote.</p></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Listas</h4>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li>Lista desordenada — elemento 1</li>
+<li>Lista desordenada — elemento 2</li>
+<li>Lista desordenada — elemento 3</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<li>Lista ordenada — elemento 1</li>
+<li>Lista ordenada — elemento 2</li>
+<li>Lista ordenada — elemento 3</li>
+</ol>
+<!-- /wp:list -->
+<!-- /wp:bootstrap-theme/bs-column -->
+<!-- /wp:bootstrap-theme/bs-row -->
+<!-- /wp:bootstrap-theme/bs-container -->
+
+<!-- wp:bootstrap-theme/bs-divider /-->
+
+<!-- wp:bootstrap-theme/bs-container -->
+<!-- wp:bootstrap-theme/bs-row -->
+<!-- wp:bootstrap-theme/bs-column -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">3. Colores y Variables CSS</h2>
+<!-- /wp:heading -->
+<!-- /wp:bootstrap-theme/bs-column -->
+<!-- /wp:bootstrap-theme/bs-row -->
+
+<!-- wp:html -->
+<div class="ileben-css-vars-showcase">
+<style>
+.ileben-css-vars-showcase .vars-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem;margin:1rem 0 2rem}
+.ileben-css-vars-showcase .vars-group-title{font-size:1.1rem;font-weight:700;margin:1.5rem 0 .5rem;padding-bottom:.25rem;border-bottom:2px solid var(--bs-border-color)}
+.ileben-css-vars-showcase .var-item{display:flex;align-items:center;gap:.5rem;padding:.4rem .6rem;border-radius:var(--bs-border-radius);background:var(--bs-tertiary-bg);font-size:.85rem}
+.ileben-css-vars-showcase .var-swatch{width:1.5rem;height:1.5rem;border-radius:.25rem;border:1px solid var(--bs-border-color);flex-shrink:0}
+.ileben-css-vars-showcase .var-swatch.na{background:repeating-linear-gradient(45deg,#ccc,#ccc 4px,#eee 4px,#eee 8px);opacity:.5}
+.ileben-css-vars-showcase .var-name{font-family:monospace;font-size:.8rem;color:var(--bs-secondary-color)}
+.ileben-css-vars-showcase .var-value{font-family:monospace;font-size:.75rem;color:var(--bs-secondary-color);margin-left:auto}
+.ileben-css-vars-showcase .mode-switch{margin-bottom:1rem}
+.ileben-css-vars-showcase .featured-section{margin-bottom:2rem;padding:1.5rem;background:var(--bs-body-bg);border:1px solid var(--bs-border-color);border-radius:var(--bs-border-radius-lg)}
+.ileben-css-vars-showcase .featured-title{font-size:1.25rem;font-weight:700;margin-bottom:1rem;color:var(--bs-primary)}
+.ileben-css-vars-showcase .featured-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:1rem}
+.ileben-css-vars-showcase .featured-item{text-align:center}
+.ileben-css-vars-showcase .featured-swatch{width:100%;height:80px;border-radius:.5rem;border:1px solid var(--bs-border-color);margin-bottom:.5rem;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.7rem;padding:.25rem;overflow:hidden}
+.ileben-css-vars-showcase .featured-name{font-family:monospace;font-size:.75rem;font-weight:600;color:var(--bs-secondary-color);word-break:break-all}
+.ileben-css-vars-showcase .shadow-demo{padding:1.5rem;margin:.5rem 0;border-radius:var(--bs-border-radius);background:var(--bs-tertiary-bg)}
+.ileben-css-vars-showcase .gray-scale-row{display:flex;gap:.5rem;margin-bottom:.5rem}
+.ileben-css-vars-showcase .gray-scale-item{flex:1;padding:.75rem .5rem;text-align:center;border-radius:.25rem;font-family:monospace;font-size:.7rem;color:#000}
+[data-bs-theme="dark"] .ileben-css-vars-showcase .gray-scale-item{color:#fff}
+</style>
+
+<div class="mode-switch">
+<button class="btn btn-sm btn-outline-primary active" onclick="document.documentElement.setAttribute('data-bs-theme','light');this.classList.add('active');this.nextElementSibling.classList.remove('active')">Light</button>
+<button class="btn btn-sm btn-outline-primary" onclick="document.documentElement.setAttribute('data-bs-theme','dark');this.classList.add('active');this.previousElementSibling.classList.remove('active')">Dark</button>
+</div>
+
+<div id="ileben-featured-vars"></div>
+
+<script>
+(function(){
+const featuredGroups = {
+  title: 'Variables CSS Destacadas (ACF + Bootstrap)',
+  sections: [
+    {
+      title: '🎨 Colores Base (Bootstrap)',
+      description: 'Colores semánticos principales de Bootstrap 5.3',
+      type: 'color-swatches',
+      vars: [
+        {var: '--bs-blue', name: 'Blue'},
+        {var: '--bs-indigo', name: 'Indigo'},
+        {var: '--bs-purple', name: 'Purple'},
+        {var: '--bs-pink', name: 'Pink'},
+        {var: '--bs-red', name: 'Red'},
+        {var: '--bs-orange', name: 'Orange'},
+        {var: '--bs-yellow', name: 'Yellow'},
+        {var: '--bs-green', name: 'Green'},
+        {var: '--bs-teal', name: 'Teal'},
+        {var: '--bs-cyan', name: 'Cyan'}
+      ]
+    },
+    {
+      title: '⬛ Escala de Grises',
+      description: 'Gradación completa de grises desde claro hasta oscuro',
+      type: 'gray-scale',
+      vars: [
+        {var: '--bs-gray-100', name: '100'},
+        {var: '--bs-gray-200', name: '200'},
+        {var: '--bs-gray-300', name: '300'},
+        {var: '--bs-gray-400', name: '400'},
+        {var: '--bs-gray-500', name: '500'},
+        {var: '--bs-gray-600', name: '600'},
+        {var: '--bs-gray-700', name: '700'},
+        {var: '--bs-gray-800', name: '800'},
+        {var: '--bs-gray-900', name: '900'}
+      ]
+    },
+    {
+      title: '🌤️ Box Shadows (ACF)',
+      description: 'Sombras configuradas desde ACF Pro - Opciones del tema',
+      type: 'shadows',
+      vars: [
+        {var: '--bs-box-shadow', name: 'Normal'},
+        {var: '--bs-box-shadow-sm', name: 'Pequeña'},
+        {var: '--bs-box-shadow-lg', name: 'Grande'}
+      ]
+    }
+  ]
+};
+
+function renderFeatured(){
+  const root=getComputedStyle(document.documentElement);
+  let html='<div class="featured-section">';
+  html+='<div class="featured-title">'+featuredGroups.title+'</div>';
+  
+  featuredGroups.sections.forEach(section=>{
+    html+='<div style="margin:1.5rem 0 1rem"><h5 style="font-weight:600;margin-bottom:.25rem">'+section.title+'</h5>';
+    html+='<small class="text-muted">'+section.description+'</small></div>';
+    
+    if(section.type==='color-swatches'){
+      html+='<div class="featured-grid">';
+      section.vars.forEach(item=>{
+        let val=root.getPropertyValue(item.var).trim();
+        if(!val) val='transparent';
+        html+='<div class="featured-item">';
+        html+='<div class="featured-swatch" style="background:'+val+'">'+item.var.replace('--bs-','')+'</div>';
+        html+='<div class="featured-name">'+item.name+'</div>';
+        html+='</div>';
+      });
+      html+='</div>';
+    }
+    else if(section.type==='gray-scale'){
+      html+='<div class="gray-scale-row">';
+      section.vars.forEach(item=>{
+        let val=root.getPropertyValue(item.var).trim();
+        if(!val) val='#ccc';
+        const textColor=item.var.includes('800')||item.var.includes('900')?'#fff':'#000';
+        html+='<div class="gray-scale-item" style="background:'+val+';color:'+textColor+'">';
+        html+='<div style="font-size:1rem;font-weight:700">'+item.name+'</div>';
+        html+='<div style="font-size:.6rem;margin-top:.25rem;opacity:.8">'+val+'</div>';
+        html+='</div>';
+      });
+      html+='</div>';
+      html+='<div style="margin-top:.5rem;font-size:.75rem;color:var(--bs-secondary-color)">';
+      html+='Variable RGB: <code>--bs-gray-dark-rgb</code> = <span style="font-family:monospace">'+root.getPropertyValue('--bs-gray-dark-rgb').trim()+'</span>';
+      html+='</div>';
+    }
+    else if(section.type==='shadows'){
+      section.vars.forEach(item=>{
+        let val=root.getPropertyValue(item.var).trim();
+        if(!val) val='none';
+        html+='<div class="shadow-demo" style="box-shadow:'+val+'">';
+        html+='<div style="font-family:monospace;font-size:.85rem;font-weight:600;color:var(--bs-secondary-color)">'+item.var+'</div>';
+        html+='<div style="font-size:.75rem;color:var(--bs-secondary-color);margin-top:.25rem">'+item.name+'</div>';
+        html+='<div style="font-size:.7rem;color:var(--bs-tertiary-color);margin-top:.5rem;font-family:monospace">'+val+'</div>';
+        html+='</div>';
+      });
+    }
+  });
+  
+  html+='</div>';
+  document.getElementById('ileben-featured-vars').innerHTML=html;
+}
+renderFeatured();
+})();
+</script>
+
+<div id="ileben-vars-render"></div>
+
+<script>
+(function(){
+const groups = [
+{title:'Theme Colors', vars:['--bs-primary','--bs-secondary','--bs-success','--bs-info','--bs-warning','--bs-danger','--bs-light','--bs-dark']},
+{title:'Theme Colors RGB', vars:['--bs-primary-rgb','--bs-secondary-rgb','--bs-success-rgb','--bs-info-rgb','--bs-warning-rgb','--bs-danger-rgb','--bs-light-rgb','--bs-dark-rgb']},
+{title:'Subtle / Emphasis (v5.3)', vars:['--bs-primary-bg-subtle','--bs-primary-border-subtle','--bs-primary-text-emphasis','--bs-secondary-bg-subtle','--bs-secondary-border-subtle','--bs-secondary-text-emphasis','--bs-success-bg-subtle','--bs-success-border-subtle','--bs-success-text-emphasis','--bs-danger-bg-subtle','--bs-danger-border-subtle','--bs-danger-text-emphasis','--bs-warning-bg-subtle','--bs-warning-border-subtle','--bs-warning-text-emphasis','--bs-info-bg-subtle','--bs-info-border-subtle','--bs-info-text-emphasis']},
+{title:'Body', vars:['--bs-body-color','--bs-body-bg','--bs-body-color-rgb','--bs-body-bg-rgb','--bs-emphasis-color','--bs-secondary-color','--bs-secondary-bg','--bs-tertiary-color','--bs-tertiary-bg']},
+{title:'Links', vars:['--bs-link-color','--bs-link-hover-color','--bs-link-color-rgb','--bs-link-hover-color-rgb']},
+{title:'Border', vars:['--bs-border-color','--bs-border-width','--bs-border-style','--bs-border-radius','--bs-border-radius-sm','--bs-border-radius-lg','--bs-border-radius-xl']},
+{title:'Focus Ring', vars:['--bs-focus-ring-width','--bs-focus-ring-opacity','--bs-focus-ring-color']},
+{title:'Tipografía', vars:['--bs-body-font-family','--bs-body-font-size','--bs-body-font-weight','--bs-heading-color']},
+];
+
+function isColor(val){return /^#|rgba?\(|hsla?|var\(--bs-/.test(val)}
+function render(){
+const root=getComputedStyle(document.documentElement);
+let html='';
+groups.forEach(g=>{
+  html+='<div class="vars-group-title">'+g.title+'</div><div class="vars-grid">';
+  g.vars.forEach(v=>{
+    let val=root.getPropertyValue(v).trim();
+    if(!val) val='<em>unset</em>';
+    const swatchClass=isColor(val)?'':' na';
+    const bgStyle=val.startsWith('#')||val.startsWith('rgb')||val.startsWith('var(')?' style="background:'+val+'"':'';
+    html+='<div class="var-item"><span class="var-swatch'+swatchClass+'"'+bgStyle+'></span><span class="var-name">'+v+'</span><span class="var-value">'+val+'</span></div>';
+  });
+  html+='</div>';
+});
+document.getElementById('ileben-vars-render').innerHTML=html;
+}
+render();
+document.querySelectorAll('.mode-switch button').forEach(b=>{
+  b.addEventListener('click',()=>{setTimeout(renderFeatured,50);setTimeout(render,100);});
+});
+})();
+</script>
+</div>
+<!-- /wp:html -->
+
+<!-- wp:bootstrap-theme/bs-row -->
+<!-- wp:bootstrap-theme/bs-column -->
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Utilidades de Color</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Backgrounds (<code>.bg-*</code>):</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:html -->
+<div class="d-flex flex-wrap gap-2 mb-4">
+<span class="badge bg-primary">bg-primary</span>
+<span class="badge bg-secondary">bg-secondary</span>
+<span class="badge bg-success">bg-success</span>
+<span class="badge bg-info">bg-info</span>
+<span class="badge bg-warning">bg-warning</span>
+<span class="badge bg-danger">bg-danger</span>
+<span class="badge bg-light">bg-light</span>
+<span class="badge bg-dark">bg-dark</span>
+</div>
+<div class="d-flex flex-wrap gap-2 mb-4">
+<span class="badge bg-primary-subtle text-primary-emphasis">bg-primary-subtle</span>
+<span class="badge bg-secondary-subtle text-secondary-emphasis">bg-secondary-subtle</span>
+<span class="badge bg-success-subtle text-success-emphasis">bg-success-subtle</span>
+<span class="badge bg-info-subtle text-info-emphasis">bg-info-subtle</span>
+<span class="badge bg-warning-subtle text-warning-emphasis">bg-warning-subtle</span>
+<span class="badge bg-danger-subtle text-danger-emphasis">bg-danger-subtle</span>
+</div>
+<!-- /wp:html -->
+
+<!-- wp:paragraph -->
+<p>Text (<code>.text-*</code>):</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:html -->
+<div class="d-flex flex-wrap gap-2 mb-4">
+<span class="badge text-primary">text-primary</span>
+<span class="badge text-secondary">text-secondary</span>
+<span class="badge text-success">text-success</span>
+<span class="badge text-info">text-info</span>
+<span class="badge text-warning">text-warning</span>
+<span class="badge text-danger">text-danger</span>
+<span class="badge text-light bg-dark">text-light</span>
+<span class="badge text-dark">text-dark</span>
+</div>
+<div class="d-flex flex-wrap gap-2 mb-4">
+<span class="badge text-primary-emphasis">text-primary-emphasis</span>
+<span class="badge text-secondary-emphasis">text-secondary-emphasis</span>
+<span class="badge text-success-emphasis">text-success-emphasis</span>
+<span class="badge text-info-emphasis">text-info-emphasis</span>
+<span class="badge text-warning-emphasis">text-warning-emphasis</span>
+<span class="badge text-danger-emphasis">text-danger-emphasis</span>
+</div>
+<!-- /wp:html -->
+
+<!-- wp:paragraph -->
+<p>Borders (<code>.border-*</code>):</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:html -->
+<div class="d-flex flex-wrap gap-2 mb-4">
+<div class="p-2 border border-primary rounded">border-primary</div>
+<div class="p-2 border border-secondary rounded">border-secondary</div>
+<div class="p-2 border border-success rounded">border-success</div>
+<div class="p-2 border border-info rounded">border-info</div>
+<div class="p-2 border border-warning rounded">border-warning</div>
+<div class="p-2 border border-danger rounded">border-danger</div>
+<div class="p-2 border border-primary-subtle rounded">border-primary-subtle</div>
+<div class="p-2 border border-success-subtle rounded">border-success-subtle</div>
+</div>
+<!-- /wp:html -->
+<!-- /wp:bootstrap-theme/bs-column -->
+<!-- /wp:bootstrap-theme/bs-row -->
+<!-- /wp:bootstrap-theme/bs-container -->
+<!-- wp:bootstrap-theme/bs-container -->
+<!-- wp:html -->
+<div class="alert alert-primary" role="alert">mas info en <a href="https://getbootstrap.com/docs/5.3/customize/color/" target="_blank" class="alert-link">aquí</a></div>
+<!-- /wp:html -->
+<!-- /wp:bootstrap-theme/bs-container -->
+
+<!-- wp:bootstrap-theme/bs-divider /-->
+
+<!-- wp:bootstrap-theme/bs-container -->
+<!-- wp:bootstrap-theme/bs-row -->
+<!-- wp:bootstrap-theme/bs-column -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">4. Navegación y Listas</h2>
 <!-- /wp:heading -->
 <!-- /wp:bootstrap-theme/bs-column -->
 
@@ -242,7 +657,7 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">3. Interacción y Acordeones</h2>
+<h2 class="wp-block-heading">5. Interacción y Acordeones</h2>
 <!-- /wp:heading -->
 
 <!-- wp:bootstrap-theme/bs-accordion {"accordionId":"accordion-showcase"} -->
@@ -268,7 +683,7 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">4. Tabs / Pestañas</h2>
+<h2 class="wp-block-heading">6. Tabs / Pestañas</h2>
 <!-- /wp:heading -->
 
 <!-- wp:bootstrap-theme/bs-tabs {"tabsId":"tabs-showcase"} -->
@@ -294,7 +709,7 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column {"colMd":"12"} -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">5. Carruseles, Galerías e Iframe</h2>
+<h2 class="wp-block-heading">7. Carruseles, Galerías e Iframe</h2>
 <!-- /wp:heading -->
 <!-- /wp:bootstrap-theme/bs-column -->
 
@@ -305,15 +720,21 @@ function ileben_handle_generate_showcase()
 
 <!-- wp:bootstrap-theme/bs-carousel {"carouselId":"carousel-b30d7420-ca1c-4633-9a65-b88f8b0dccea"} -->
 <!-- wp:bootstrap-theme/bs-carousel-item {"active":true,"backgroundImage":{"id":999,"url":"https://placehold.co/1200x600/eeeeee/999999.jpg?text=Slide+1","alt":"Slide 1"}} -->
-<div class="wp-block-bootstrap-theme-bs-carousel-item carousel-item active" style="min-height:400px;--carousel-bg-desktop:url(https://placehold.co/1200x600/eeeeee/999999.jpg?text=Slide+1)"><div class="d-flex align-items-center justify-content-center h-100" style="background-color:rgba(0,0,0,0.3);color:white"><div class="carousel-caption"><!-- wp:paragraph -->
+<!-- wp:paragraph -->
 <p>Item 1</p>
-<!-- /wp:paragraph --></div></div></div>
+<!-- /wp:paragraph -->
 <!-- /wp:bootstrap-theme/bs-carousel-item -->
 
 <!-- wp:bootstrap-theme/bs-carousel-item {"backgroundImage":{"id":998,"url":"https://placehold.co/1200x600/cccccc/666666.jpg?text=Slide+2","alt":"Slide 2"}} -->
-<div class="wp-block-bootstrap-theme-bs-carousel-item carousel-item" style="min-height:400px;--carousel-bg-desktop:url(https://placehold.co/1200x600/cccccc/666666.jpg?text=Slide+2)"><div class="d-flex align-items-center justify-content-center h-100" style="background-color:rgba(0,0,0,0.3);color:white"><div class="carousel-caption"><!-- wp:paragraph -->
+<!-- wp:paragraph -->
 <p>Item 2</p>
-<!-- /wp:paragraph --></div></div></div>
+<!-- /wp:paragraph -->
+<!-- /wp:bootstrap-theme/bs-carousel-item -->
+
+<!-- wp:bootstrap-theme/bs-carousel-item {"backgroundImage":{"id":997,"url":"https://placehold.co/1200x600/bbbbbb/777777.jpg?text=Slide+3","alt":"Slide 3"}} -->
+<!-- wp:paragraph -->
+<p>Item 3</p>
+<!-- /wp:paragraph -->
 <!-- /wp:bootstrap-theme/bs-carousel-item -->
 <!-- /wp:bootstrap-theme/bs-carousel -->
 <!-- /wp:bootstrap-theme/bs-column -->
@@ -324,7 +745,7 @@ function ileben_handle_generate_showcase()
 <!-- /wp:heading -->
 
 <!-- wp:bootstrap-theme/bs-split-carousel {"carouselId":"split-carousel-showcase","leftTransition":"fadeLeft","rightTransition":"fadeRight"} -->
-<!-- wp:bootstrap-theme/bs-split-carousel-item {"active":true} -->
+<!-- wp:bootstrap-theme/bs-split-carousel-item {"active":true,"mainImageUrl":"https://placehold.co/800x600/6366f1/ffffff.jpg?text=PUERTO+VARAS","mainImageAlt":"Puerto Varas"} -->
 <!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">PUERTO VARAS</h3>
 <!-- /wp:heading -->
@@ -338,7 +759,7 @@ function ileben_handle_generate_showcase()
 <!-- /wp:paragraph -->
 <!-- /wp:bootstrap-theme/bs-split-carousel-item -->
 
-<!-- wp:bootstrap-theme/bs-split-carousel-item -->
+<!-- wp:bootstrap-theme/bs-split-carousel-item {"mainImageUrl":"https://placehold.co/800x600/10b981/ffffff.jpg?text=PUCON","mainImageAlt":"Pucon"} -->
 <!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">PUCON</h3>
 <!-- /wp:heading -->
@@ -352,7 +773,7 @@ function ileben_handle_generate_showcase()
 <!-- /wp:paragraph -->
 <!-- /wp:bootstrap-theme/bs-split-carousel-item -->
 
-<!-- wp:bootstrap-theme/bs-split-carousel-item -->
+<!-- wp:bootstrap-theme/bs-split-carousel-item {"mainImageUrl":"https://placehold.co/800x600/f59e0b/ffffff.jpg?text=SANTIAGO","mainImageAlt":"Santiago"} -->
 <!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">SANTIAGO</h3>
 <!-- /wp:heading -->
@@ -392,7 +813,7 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">6. Elementos de Interfaz (Modales, Spinners)</h2>
+<h2 class="wp-block-heading">8. Elementos de Interfaz (Modales, Spinners)</h2>
 <!-- /wp:heading -->
 <!-- /wp:bootstrap-theme/bs-column -->
 
@@ -426,7 +847,7 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">7. Barras de Progreso (Progress)</h2>
+<h2 class="wp-block-heading">9. Barras de Progreso (Progress)</h2>
 <!-- /wp:heading -->
 
 <!-- wp:bootstrap-theme/bs-progress {"value":25,"variant":"success"} /-->
@@ -446,7 +867,7 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">8. Sistema de Grillas (Row y Columns)</h2>
+<h2 class="wp-block-heading">10. Sistema de Grillas (Row y Columns)</h2>
 <!-- /wp:heading -->
 <!-- /wp:bootstrap-theme/bs-column -->
 <!-- /wp:bootstrap-theme/bs-row -->
@@ -492,7 +913,7 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">9. Bloques Inmobiliarios Avanzados</h2>
+<h2 class="wp-block-heading">11. Bloques Inmobiliarios Avanzados</h2>
 <!-- /wp:heading -->
 <!-- /wp:bootstrap-theme/bs-column -->
 <!-- /wp:bootstrap-theme/bs-row -->
@@ -523,7 +944,7 @@ function ileben_handle_generate_showcase()
 <h3 class="wp-block-heading">Masterplan Interactivo</h3>
 <!-- /wp:heading -->
 
-<!-- wp:bootstrap-theme/bs-interactive-masterplan -->
+<!-- wp:bootstrap-theme/bs-interactive-masterplan {"masterplanImage":{"id":0,"url":"https://placehold.co/1200x800/e2e8f0/94a3b8.png?text=Masterplan","alt":"Masterplan Placeholder"}} -->
 <!-- wp:bootstrap-theme/bs-masterplan-hotspot /-->
 <!-- /wp:bootstrap-theme/bs-interactive-masterplan -->
 <!-- /wp:bootstrap-theme/bs-column -->
@@ -608,7 +1029,7 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">10. Íconos Font Awesome</h2>
+<h2 class="wp-block-heading">12. Íconos Font Awesome</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -666,7 +1087,7 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">11. Counter Cards</h2>
+<h2 class="wp-block-heading">13. Counter Cards</h2>
 <!-- /wp:heading -->
 <!-- /wp:bootstrap-theme/bs-column -->
 <!-- /wp:bootstrap-theme/bs-row -->
@@ -698,7 +1119,7 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">12. Componentes Interactivos</h2>
+<h2 class="wp-block-heading">14. Componentes Interactivos</h2>
 <!-- /wp:heading -->
 <!-- /wp:bootstrap-theme/bs-column -->
 <!-- /wp:bootstrap-theme/bs-row -->
@@ -829,8 +1250,10 @@ function ileben_handle_generate_showcase()
 <!-- wp:bootstrap-theme/bs-row -->
 <!-- wp:bootstrap-theme/bs-column -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">13. Parallax</h2>
+<h2 class="wp-block-heading">15. Parallax</h2>
 <!-- /wp:heading -->
+<!-- /wp:bootstrap-theme/bs-column -->
+<!-- /wp:bootstrap-theme/bs-row -->
 
 <!-- wp:bootstrap-theme/bs-parallax {"parallaxSpeed":0.3} -->
 <!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
@@ -838,11 +1261,9 @@ function ileben_handle_generate_showcase()
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
-<p class="has-text-align-center">Configura la imagen de fondo en el inspector del bloque.</p>
+<p class="has-text-align-center">Configura la imagen de fondo del bloque bs-container en el inspector del bloque.</p>
 <!-- /wp:paragraph -->
 <!-- /wp:bootstrap-theme/bs-parallax -->
-<!-- /wp:bootstrap-theme/bs-column -->
-<!-- /wp:bootstrap-theme/bs-row -->
 <!-- /wp:bootstrap-theme/bs-container -->
 HTML;
 

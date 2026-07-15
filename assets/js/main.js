@@ -1,6 +1,12 @@
 import '../scss/main.scss';
-// Bootstrap JS bundle (modal, carousel, dropdown, collapse, offcanvas, tab, toast, tooltip, popover, scrollspy)
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// Import individual Bootstrap modules (NOT the bundle — avoids duplicate data-api listeners)
+import 'bootstrap/js/dist/dropdown';
+import 'bootstrap/js/dist/collapse';
+import 'bootstrap/js/dist/tab';
+import 'bootstrap/js/dist/carousel';
+import 'bootstrap/js/dist/modal';
+import 'bootstrap/js/dist/offcanvas';
+import 'bootstrap/js/dist/scrollspy';
 import { initRouter } from './router';
 import { initPreloader } from './preloader';
 import { initLazyload } from './lazyload';
@@ -69,28 +75,20 @@ async function init() {
       });
     }
 
-    // Defer Bootstrap components (only load if needed)
-    const hasCarousels = document.querySelectorAll('.carousel').length > 0;
-    const hasCollapse = document.querySelectorAll('[data-bs-toggle="collapse"]').length > 0;
-    const hasTabs = document.querySelectorAll('[data-bs-toggle="pill"], [data-bs-toggle="tab"]').length > 0;
+    // Defer Bootstrap components that need manual initialization (tooltip, popover, toast)
+    // Dropdown, collapse, tab, carousel work via data-api automatically from top-level imports
     const hasPopovers = document.querySelectorAll('[data-bs-toggle="popover"]').length > 0;
     const hasTooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]').length > 0;
+    const hasToasts = document.querySelectorAll('.toast').length > 0;
 
-    if (hasCarousels || hasCollapse || hasTabs || hasPopovers || hasTooltips) {
+    if (hasPopovers || hasTooltips || hasToasts) {
       const bootstrapImports = [];
-      if (hasCarousels) bootstrapImports.push(import('bootstrap/js/dist/carousel'));
-      if (hasCollapse) bootstrapImports.push(import('bootstrap/js/dist/collapse'));
-      if (hasTabs) bootstrapImports.push(import('bootstrap/js/dist/tab'));
       if (hasPopovers) bootstrapImports.push(import('bootstrap/js/dist/popover'));
       if (hasTooltips) bootstrapImports.push(import('bootstrap/js/dist/tooltip'));
+      if (hasToasts) bootstrapImports.push(import('bootstrap/js/dist/toast'));
 
       Promise.all(bootstrapImports).then((modules) => {
-        // Bootstrap auto-initializes via data-bs-toggle for popover/tooltip when imported as side-effect
-        // But to be safe, explicitly enable all popover/tooltip elements
         let moduleIndex = 0;
-        if (hasCarousels) moduleIndex++;
-        if (hasCollapse) moduleIndex++;
-        if (hasTabs) moduleIndex++;
         if (hasPopovers) {
           const Popover = modules[moduleIndex].default;
           document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => new Popover(el));
@@ -99,8 +97,13 @@ async function init() {
         if (hasTooltips) {
           const Tooltip = modules[moduleIndex].default;
           document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new Tooltip(el));
+          moduleIndex++;
         }
-      });
+        if (hasToasts) {
+          const Toast = modules[moduleIndex].default;
+          document.querySelectorAll('.toast').forEach(el => new Toast(el));
+        }
+      }).catch(err => console.error('Bootstrap component init error:', err));
     }
 
     // Initialize Split Carousel transitions if GSAP is available

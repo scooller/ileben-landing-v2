@@ -194,7 +194,7 @@
                         className: 'd-flex align-items-center justify-content-center h-100',
                         style: { 
                             backgroundColor: editorBackgroundImage ? 'rgba(0,0,0,0.3)' : 'transparent',
-                            color: editorBackgroundImage ? 'white' : 'inherit'
+                            color: editorBackgroundImage ? 'inherit' : 'inherit'
                         }
                     },
                         createElement('div', { className: 'text-center' },
@@ -207,62 +207,8 @@
             );
         },
 
-        save: function(props) {
-            const { attributes } = props;
-            const blockProps = useBlockProps.save();
-            
-            const itemClasses = `carousel-item${attributes.active ? ' active' : ''}`;
-            
-            const itemStyle = {
-                minHeight: '400px'
-            };
-
-            if (attributes.backgroundImage) {
-                itemStyle['--carousel-bg-desktop'] = `url(${attributes.backgroundImage.url})`;
-            }
-
-            if (attributes.backgroundImageMobile) {
-                itemStyle['--carousel-bg-mobile'] = `url(${attributes.backgroundImageMobile.url})`;
-            }
-
-            if (!attributes.backgroundImage && attributes.backgroundImageMobile) {
-                itemStyle['--carousel-bg-desktop'] = `url(${attributes.backgroundImageMobile.url})`;
-            }
-
-            const innerContent = createElement('div', {
-                className: 'd-flex align-items-center justify-content-center h-100',
-                style: { 
-                    backgroundColor: (attributes.backgroundImage || attributes.backgroundImageMobile) ? 'rgba(0,0,0,0.3)' : 'transparent',
-                    color: (attributes.backgroundImage || attributes.backgroundImageMobile) ? 'white' : 'inherit'
-                }
-            },
-                createElement('div', { className: 'carousel-caption' },
-                    createElement(InnerBlocks.Content)
-                )
-            );
-
-            // Render as link if link attribute is set, otherwise as div
-            if (attributes.link) {
-                return createElement('a',
-                    Object.assign({}, blockProps, {
-                        href: attributes.link,
-                        target: attributes.target || '_self',
-                        className: [blockProps.className, itemClasses].filter(Boolean).join(' '),
-                        style: itemStyle,
-                        'data-bs-interval': attributes.interval || undefined
-                    }),
-                    innerContent
-                );
-            } else {
-                return createElement('div',
-                    Object.assign({}, blockProps, {
-                        className: [blockProps.className, itemClasses].filter(Boolean).join(' '),
-                        style: itemStyle,
-                        'data-bs-interval': attributes.interval || undefined
-                    }),
-                    innerContent
-                );
-            }
+        save: function() {
+            return createElement(InnerBlocks.Content);
         }
     });
 

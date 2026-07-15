@@ -105,7 +105,7 @@ $widths: 25, 50, 75, 100;
 }
 [data-bs-theme=dark] {
   .d-light { display: none; }
-  .text-muted { color: var(--bs-secondary-bg) !important; }
+  .text-muted { color: var(--bs-tertiary-color) !important; }
   .form-control{
     color: var(--bs-white);
     &::placeholder {

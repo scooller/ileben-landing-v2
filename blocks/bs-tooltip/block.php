@@ -40,7 +40,7 @@ function bootstrap_theme_render_bs_tooltip_block($attributes, $content, $block)
     $tooltip_data = array(
         'data-bs-toggle' => 'tooltip',
         'data-bs-placement' => $placement,
-        'data-bs-html' => true,
+        'data-bs-html' => 'true',
         'data-bs-title' => $text
     );
 

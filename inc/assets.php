@@ -399,6 +399,30 @@ add_action('wp_enqueue_scripts', function () {
     --bs-body-font-weight: <?php echo $font_weight; ?>;
     }
     <?php
+    // Bootstrap 5.3 subtle/emphasis variants for theme colors
+    foreach ($colors['theme-colors'] as $theme => $value) :
+        $base = $value ?: '#0d6efd';
+        $text_emphasis = ileben_adjust_color($base, 0.6);
+        $bg_subtle = ileben_adjust_color($base, 1.88);
+        $border_subtle = ileben_adjust_color($base, 1.65);
+    ?>
+        :root {
+        --bs-<?php echo $theme; ?>-text-emphasis: <?php echo $text_emphasis; ?>;
+        --bs-<?php echo $theme; ?>-bg-subtle: <?php echo $bg_subtle; ?>;
+        --bs-<?php echo $theme; ?>-border-subtle: <?php echo $border_subtle; ?>;
+        }
+    <?php endforeach; ?>
+    <?php
+    // Link RGB variants + heading color
+    $link_color = $colors['link-colors']['link-color'] ?: '#0d6efd';
+    $link_hover = $colors['link-colors']['link-hover-color'] ?: '#0a58ca';
+    ?>
+    :root {
+    --bs-link-color-rgb: <?php echo ileben_rgb_string($link_color); ?>;
+    --bs-link-hover-color-rgb: <?php echo ileben_rgb_string($link_hover); ?>;
+    --bs-heading-color: var(--bs-emphasis-color);
+    }
+    <?php
     // Btns colors
     foreach ($colors['theme-colors'] as $theme => $value) :
         $base = $value ?: '#0d6efd';
@@ -408,17 +432,6 @@ add_action('wp_enqueue_scripts', function () {
         $active_border = ileben_adjust_color($base, 0.87);
         $focus_rgb = ileben_rgb_string($base, 1.3);
     ?>
-        .btn-<?php echo $theme; ?> {
-        --bs-btn-bg: <?php echo $base; ?>;
-        --bs-btn-border-color: <?php echo $base; ?>;
-        --bs-btn-hover-bg: <?php echo $hover_bg; ?>;
-        --bs-btn-hover-border-color: <?php echo $hover_border; ?>;
-        --bs-btn-focus-shadow-rgb: <?php echo $focus_rgb; ?>;
-        --bs-btn-active-bg: <?php echo $active_bg; ?>;
-        --bs-btn-active-border-color: <?php echo $active_border; ?>;
-        --bs-btn-disabled-bg: <?php echo $base; ?>;
-        --bs-btn-disabled-border-color: <?php echo $base; ?>;
-        }
         .btn-<?php echo $theme; ?> {
         --bs-btn-bg: <?php echo $base; ?>;
         --bs-btn-border-color: <?php echo $base; ?>;
@@ -470,9 +483,32 @@ add_action('wp_enqueue_scripts', function () {
     --bs-nav-link-hover-color: var(--bs-link-hover-color);
     }
 
-    /* Dark mode support */
-    [data-bs-theme=dark]{--bs-body-color:var(--bs-white);--bs-body-color-rgb:var(--bs-light-rgb);--bs-body-bg:var(--bs-dark);--bs-body-bg-rgb:var(--bs-dark-rgb);}
-    [data-bs-theme=light]{--bs-body-color:var(--bs-black);--bs-body-color-rgb:var(--bs-dark-rgb);--bs-body-bg:var(--bs-light);--bs-body-bg-rgb:var(--bs-light-rgb);}
+    /* Dark mode support — swap body colors, keep ACF theme colors intact */
+    [data-bs-theme=dark]{
+    --bs-body-color: var(--bs-gray-300);
+    --bs-body-color-rgb: var(--bs-gray-300-rgb);
+    --bs-body-bg: var(--bs-gray-900);
+    --bs-body-bg-rgb: var(--bs-gray-900-rgb);
+    --bs-border-color: var(--bs-gray-800);
+    --bs-secondary-color: var(--bs-gray-300);
+    --bs-secondary-color-rgb: var(--bs-gray-300-rgb);
+    --bs-secondary-bg: var(--bs-gray-800);
+    --bs-tertiary-color: var(--bs-gray-400);
+    --bs-tertiary-color-rgb: var(--bs-gray-400-rgb);
+    --bs-tertiary-bg: var(--bs-gray-800);
+    --bs-emphasis-color: var(--bs-white);
+    --bs-emphasis-color-rgb: var(--bs-white-rgb);
+    --bs-link-color: var(--bs-primary-text-emphasis);
+    --bs-link-hover-color: var(--bs-primary-text-emphasis);
+    }
+    [data-bs-theme=light]{
+    --bs-body-color: var(--bs-gray-900);
+    --bs-body-color-rgb: var(--bs-gray-900-rgb);
+    --bs-body-bg: var(--bs-white);
+    --bs-body-bg-rgb: var(--bs-white-rgb);
+    --bs-emphasis-color: var(--bs-black);
+    --bs-emphasis-color-rgb: var(--bs-black-rgb);
+    }
     @media (max-width:768px){html{font-size: <?php echo $font_size_mobile; ?>;}}
     <?php
     $css = ob_get_clean();

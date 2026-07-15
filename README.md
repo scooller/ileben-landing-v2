@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.17  
+**Versión:** 0.1.18  
 **Compatibilidad:** PHP 8.3+, WordPress 6.0+ (tested 6.4), ACF Pro
 
 ---
@@ -11,13 +11,13 @@ Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing
 ## 🎯 Características
 
 - **Mobile-first design** – Optimizado para dispositivos móviles desde el inicio
-- **Bootstrap 5** – Framework CSS responsive, **JS bundle incluido** (modal, carousel, dropdown, collapse, offcanvas, tab, toast, tooltip, popover, scrollspy)
+- **Bootstrap 5** – Framework CSS responsive, **módulos JS individuales vía Vite** (dropdown, collapse, tab, carousel, modal, offcanvas, scrollspy + tooltip, popover, toast con lazy-load)
 - **GSAP** – Animaciones suaves y de alto rendimiento
 - **Swiper.js** – Carouseles y sliders responsive
 - **Fancybox** – Galerías de imágenes elegantes con modal lightbox
 - **Font Awesome 7** – Íconos vectoriales (CDN jsdelivr, versión centralizada)
 - **Select2** – Selectores enriquecidos para filtros
-- **Bloques Bootstrap interactivos** – Dropdown (direcciones centradas, variantes outline, modo oscuro `data-bs-theme`), Popover (HTML, dismissable, `data-bs-custom-class`), Tooltip, Collapse, Tabs, Toast — inicialización JS automática vía `data-bs-toggle`
+- **Bloques Bootstrap interactivos** – Dropdown (direcciones centradas, variantes outline, modo oscuro `data-bs-theme`), Popover (HTML, dismissable, `data-bs-custom-class`), Tooltip, Collapse, Tabs, Toast — inicialización JS automática vía `data-bs-toggle` (data-api) + inicialización manual con `getOrCreateInstance` para componentes sin data-api
 - **bs-split-carousel** – Slider con diseño dividido (texto + imagen grande)
 - **Bloque bs-plantas-slider** – Slider con filtros en cliente (dormitorios/baños), Fancybox, navegación, paginación múltiple y efectos Swiper
 - **Preloader** – Cargador de sitio visible antes del renderizado inicial
@@ -65,7 +65,7 @@ ileben-landing-v2/
 │   │   ├── preloader.js                  # Control del cargador inicial
 │   │   ├── lazyload.js                   # IntersectionObserver para imágenes
 │   │   ├── facade.js                     # Click-to-load para iframes (Bootstrap placeholders)
-│   │   ├── nav.js                        # Bootstrap navbar toggles y dropdowns
+│   │   ├── nav.js                        # Bootstrap navbar toggles y dropdowns (getOrCreateInstance)
 │   │   ├── sliders.js                    # Inicialización Swiper
 │   │   └── fancybox.js                   # Inicialización Fancybox
 │   └── images/

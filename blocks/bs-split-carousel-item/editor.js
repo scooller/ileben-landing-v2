@@ -33,6 +33,10 @@
             mainImageUrl: {
                 type: 'string',
                 default: ''
+            },
+            mainImageAlt: {
+                type: 'string',
+                default: ''
             }
         },
         
@@ -45,7 +49,7 @@
             };
             
             const onSelectMainImage = (media) => {
-                setAttributes({ mainImageId: media.id, mainImageUrl: media.url });
+                setAttributes({ mainImageId: media.id, mainImageUrl: media.url, mainImageAlt: media.alt || '' });
             };
 
             const bgStyle = attributes.bgImageUrl ? { backgroundImage: `url(${attributes.bgImageUrl})` } : {};

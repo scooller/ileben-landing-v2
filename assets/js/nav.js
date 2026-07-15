@@ -1,5 +1,6 @@
-import Collapse from 'bootstrap/js/dist/collapse';
+// Bootstrap modules already imported in main.js — use getInstance/getOrCreateInstance
 import Dropdown from 'bootstrap/js/dist/dropdown';
+import Collapse from 'bootstrap/js/dist/collapse';
 
 function getHeaderOffset() {
   const header = document.getElementById('site-header');
@@ -80,14 +81,14 @@ export function initNav() {
 
   navbars.forEach((navbar) => {
     navbar.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
-      new Dropdown(toggle);
+      Dropdown.getOrCreateInstance(toggle);
     });
   });
 
   const toggler = document.querySelector('[data-bs-toggle="collapse"][data-bs-target="#primaryMenu"]');
   const menu = document.getElementById('primaryMenu');
   if (toggler && menu) {
-    new Collapse(menu, { toggle: false });
+    Collapse.getOrCreateInstance(menu, { toggle: false });
     menu.addEventListener('click', (event) => {
       const target = event.target;
       if (target && target.closest('a')) {

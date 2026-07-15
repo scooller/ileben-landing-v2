@@ -15,6 +15,7 @@
         description: __('Container with parallax scroll effect - use this to wrap elements', 'ileben-landing'),
         icon: 'format-image',
         category: 'ileben-landing',
+        parent: ['bootstrap-theme/bs-container'],
         keywords: [__('parallax'), __('container'), __('scroll'), __('effect')],
         
         attributes: {

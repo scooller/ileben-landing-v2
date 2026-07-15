@@ -1,12 +1,12 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
-    "name": "bootstrap-theme/bs-split-carousel-item",
-    "title": "Split Carousel Item",
+    "name": "bootstrap-theme/bs-carousel-item",
+    "title": "Bootstrap Carousel Item",
     "category": "ileben-landing",
-    "parent": ["bootstrap-theme/bs-split-carousel"],
+    "parent": ["bootstrap-theme/bs-carousel"],
     "icon": "format-image",
-    "description": "A single slide for the split carousel",
+    "description": "Individual slide within a Bootstrap carousel",
     "textdomain": "ileben-landing",
     "supports": {
         "html": false,
@@ -17,21 +17,25 @@
             "type": "boolean",
             "default": false
         },
-        "bgImageId": {
-            "type": "number",
-            "default": 0
+        "backgroundImage": {
+            "type": "object",
+            "default": null
         },
-        "mainImageId": {
-            "type": "number",
-            "default": 0
+        "backgroundImageMobile": {
+            "type": "object",
+            "default": null
         },
-        "mainImageUrl": {
+        "interval": {
             "type": "string",
             "default": ""
         },
-        "mainImageAlt": {
+        "link": {
             "type": "string",
             "default": ""
+        },
+        "target": {
+            "type": "string",
+            "default": "_self"
         }
     }
 }
