@@ -73,21 +73,21 @@
                             onChange: (v)=> setAttributes({useThemeDefaults: v})
                         }),
                         createElement(RangeControl, {
-                            label: __('Products per row', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Products per row', 'ileben-landing'),
                             min: 1, max: 12, value: attributes.productsPerRow,
                             onChange: (v)=> setAttributes({productsPerRow: v}),
                             help: attributes.useThemeDefaults ? __('Theme default will be used (this value is ignored)', 'ileben-landing') : '',
                             disabled: attributes.useThemeDefaults
                         }),
                         createElement(RangeControl, {
-                            label: __('Products per row (mobile)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Products per row (mobile)', 'ileben-landing'),
                             min: 1, max: 6, value: attributes.productsPerRowMobile,
                             onChange: (v)=> setAttributes({productsPerRowMobile: v}),
                             help: attributes.useThemeDefaults ? __('Theme default will be used (this value is ignored)', 'ileben-landing') : __('For small screens. Recommended: 1 or 2', 'ileben-landing'),
                             disabled: attributes.useThemeDefaults
                         }),
                         createElement(RangeControl, {
-                            label: __('Products per page', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Products per page', 'ileben-landing'),
                             min: 1, max: 100, value: attributes.productsPerPage,
                             onChange: (v)=> setAttributes({productsPerPage: v}),
                             help: attributes.useThemeDefaults ? __('Theme default will be used (this value is ignored)', 'ileben-landing') : '',
@@ -95,13 +95,13 @@
                         }),
                         !attributes.useThemeDefaults && createElement(Fragment, {},
                             createElement(SelectControl, {
-                                label: __('Default order by', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Default order by', 'ileben-landing'),
                                 value: attributes.defaultOrderby,
                                 options: orderbyOptions,
                                 onChange: (v)=> setAttributes({defaultOrderby: v})
                             }),
                             createElement(SelectControl, {
-                                label: __('Default order', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Default order', 'ileben-landing'),
                                 value: attributes.defaultOrder,
                                 options: orderOptions,
                                 onChange: (v)=> setAttributes({defaultOrder: v})

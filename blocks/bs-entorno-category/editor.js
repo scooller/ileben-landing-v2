@@ -28,7 +28,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Configuración de Categoría', 'ileben-landing'), initialOpen: true },
                         createElement(TextControl, {
-                            label: __('Nombre de la Categoría', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Nombre de la Categoría', 'ileben-landing'),
                             value: attributes.title,
                             onChange: (val) => setAttributes({ title: val })
                         })

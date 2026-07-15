@@ -84,19 +84,19 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Row Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Gutters', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Gutters', 'ileben-landing'),
                             value: attributes.gutters,
                             options: gutterOptions,
                             onChange: (value) => setAttributes({ gutters: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Justify Content', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Justify Content', 'ileben-landing'),
                             value: attributes.justifyContent,
                             options: justifyOptions,
                             onChange: (value) => setAttributes({ justifyContent: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Align Items', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Align Items', 'ileben-landing'),
                             value: attributes.alignItems,
                             options: alignOptions,
                             onChange: (value) => setAttributes({ alignItems: value })

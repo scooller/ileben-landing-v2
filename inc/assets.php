@@ -511,9 +511,44 @@ add_action('wp_enqueue_scripts', function () {
     }
     @media (max-width:768px){html{font-size: <?php echo $font_size_mobile; ?>;}}
     <?php
+    $body_bg_light = get_field('body_bg_image', 'option');
+    $body_bg_dark = get_field('body_bg_image_dark', 'option');
+    $bg_size = get_field('body_bg_size', 'option') ?: 'cover';
+    $bg_position = get_field('body_bg_position', 'option') ?: 'center';
+    $bg_repeat = get_field('body_bg_repeat', 'option') ?: 'no-repeat';
+    $bg_attachment = get_field('body_bg_attachment', 'option') ?: 'fixed';
+    if ($body_bg_light) : ?>
+        [data-bs-theme=light] body {
+        background-image: url('<?php echo esc_url($body_bg_light); ?>');
+        background-size: <?php echo esc_attr($bg_size); ?>;
+        background-attachment: <?php echo esc_attr($bg_attachment); ?>;
+        background-position: <?php echo esc_attr($bg_position); ?>;
+        background-repeat: <?php echo esc_attr($bg_repeat); ?>;
+        }
+    <?php endif;
+    if ($body_bg_dark) : ?>
+        [data-bs-theme=dark] body {
+        background-image: url('<?php echo esc_url($body_bg_dark); ?>');
+        background-size: <?php echo esc_attr($bg_size); ?>;
+        background-attachment: <?php echo esc_attr($bg_attachment); ?>;
+        background-position: <?php echo esc_attr($bg_position); ?>;
+        background-repeat: <?php echo esc_attr($bg_repeat); ?>;
+        }
+        <?php endif;
     $css = ob_get_clean();
     wp_add_inline_style('ileben-theme-style', $css);
 }, 20);
+
+/**
+ * Add body class when glass class is enabled.
+ */
+add_filter('body_class', function ($classes) {
+    if (get_field('enable_glass_class', 'option')) {
+        $classes[] = 'glass-active';
+    }
+    return $classes;
+});
+
 /**
  * Preload LCP (Largest Contentful Paint) images from Bootstrap carousel blocks
  * Improves LCP by making carousel background images discoverable in HTML
@@ -561,7 +596,7 @@ add_action('wp_head', function () {
         foreach (array_unique($carousel_urls) as $image_url) {
             // Sanitize and output preload
             $image_url = esc_url($image_url);
-    ?>
+        ?>
             <link rel="preload" as="image" href="<?php echo $image_url; ?>" fetchpriority="high" />
     <?php
         }

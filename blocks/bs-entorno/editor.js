@@ -44,7 +44,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Configuración del Mapa', 'ileben-landing'), initialOpen: true },
                         createElement(SelectControl, {
-                            label: __('Tipo de Mapa', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Tipo de Mapa', 'ileben-landing'),
                             value: attributes.mapType,
                             options: [
                                 { label: __('Iframe (Google Maps, etc)', 'ileben-landing'), value: 'iframe' },
@@ -53,7 +53,7 @@
                             onChange: (val) => setAttributes({ mapType: val })
                         }),
                         attributes.mapType === 'iframe' && createElement(TextControl, {
-                            label: __('URL del Iframe (src)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('URL del Iframe (src)', 'ileben-landing'),
                             value: attributes.mapIframeUrl,
                             onChange: (val) => setAttributes({ mapIframeUrl: val }),
                             help: __('Pega la URL de Google Maps (la que va dentro de src="...").', 'ileben-landing')

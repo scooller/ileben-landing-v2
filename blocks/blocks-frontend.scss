@@ -381,14 +381,12 @@
 
 /* === Asesores Block === */
 .bs-asesor-card {
-    backdrop-filter: blur(4px);
     background-color: inherit !important;
     box-shadow: 0 0.35rem 0.8rem rgba(var(--bs-dark-rgb), 0.05);
     transition: transform 0.8s ease, box-shadow 0.2s ease;
 
     &:hover {
         transform: scale(1.025);
-        backdrop-filter: blur(6px);
         box-shadow: 0 0.75rem 1.4rem rgba(var(--bs-dark-rgb), 0.08);
     }
 

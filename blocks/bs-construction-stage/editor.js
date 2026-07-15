@@ -47,7 +47,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Configuración de la Etapa', 'ileben-landing'), initialOpen: true },
                         createElement(SelectControl, {
-                            label: __('Estado', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Estado', 'ileben-landing'),
                             value: attributes.status,
                             options: [
                                 { label: __('Pendiente', 'ileben-landing'), value: 'pending' },
@@ -57,7 +57,7 @@
                             onChange: (val) => setAttributes({ status: val })
                         }),
                         attributes.status !== 'completed' && createElement(RangeControl, {
-                            label: __('Porcentaje de Avance', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Porcentaje de Avance', 'ileben-landing'),
                             value: attributes.percentage,
                             onChange: (val) => setAttributes({ percentage: val }),
                             min: 0,

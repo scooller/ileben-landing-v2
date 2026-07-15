@@ -41,19 +41,19 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Iframe Settings', 'ileben-landing'), initialOpen: true },
                         createElement(TextControl, {
-                            label: __('Embed URL', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Embed URL', 'ileben-landing'),
                             value: attributes.embedUrl,
                             onChange: (value) => setAttributes({ embedUrl: value }),
                             placeholder: 'https://www.youtube.com/embed/VIDEO_ID'
                         }),
                         createElement(TextControl, {
-                            label: __('Title (accessibility)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Title (accessibility)', 'ileben-landing'),
                             value: attributes.title,
                             onChange: (value) => setAttributes({ title: value }),
                             placeholder: __('Contenido incrustado', 'ileben-landing')
                         }),
                         createElement(SelectControl, {
-                            label: __('Ratio', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Ratio', 'ileben-landing'),
                             value: attributes.ratio,
                             options: ratioOptions,
                             onChange: (value) => setAttributes({ ratio: value })
@@ -64,7 +64,7 @@
                             onChange: (value) => setAttributes({ allowFullscreen: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Loading', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Loading', 'ileben-landing'),
                             value: attributes.loading,
                             options: [
                                 { label: 'lazy', value: 'lazy' },

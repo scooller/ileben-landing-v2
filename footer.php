@@ -72,6 +72,7 @@ if (!defined('ABSPATH')) {
     </div>
 </footer>
 
+<?php if (get_field('enable_glass_class', 'option')) : ?>
 <!-- BlurBar: progressive blur effect at bottom of screen -->
 <div class="blur-bar" aria-hidden="true">
     <div class="blur-bar__layer"></div>
@@ -83,6 +84,7 @@ if (!defined('ABSPATH')) {
     <div class="blur-bar__layer"></div>
     <div class="blur-bar__layer"></div>
 </div>
+<?php endif; ?>
 <script>
     var $ = jQuery.noConflict();
     <?php if (function_exists('the_field')) {

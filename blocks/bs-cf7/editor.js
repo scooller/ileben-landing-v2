@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Bootstrap CF7 Block Editor
  */
 
@@ -147,13 +147,13 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Form Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Contact Form', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Contact Form', 'ileben-landing'),
                             value: attributes.formId,
                             options: formOptions,
                             onChange: (value) => setAttributes({ formId: parseInt(value, 10) || 0 })
                         }),
                         createElement(TextControl, {
-                            label: __('Form ID (manual fallback)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Form ID (manual fallback)', 'ileben-landing'),
                             value: attributes.formId || '',
                             onChange: (value) => setAttributes({ formId: parseInt(value, 10) || 0 }),
                             help: __('If the list is empty, type the form ID manually.', 'ileben-landing')
@@ -161,20 +161,20 @@
                     ),
                     createElement(PanelBody, { title: __('Animation', 'ileben-landing'), initialOpen: false },
                         createElement(SelectControl, {
-                            label: __('Animation Type', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Animation Type', 'ileben-landing'),
                             value: attributes.animationType || '',
                             options: animationTypes,
                             onChange: (value) => setAttributes({ animationType: value })
                         }),
                         attributes.animationType && createElement(Fragment, null,
                             createElement(SelectControl, {
-                                label: __('Trigger', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Trigger', 'ileben-landing'),
                                 value: attributes.animationTrigger || 'on-load',
                                 options: animationTriggers,
                                 onChange: (value) => setAttributes({ animationTrigger: value })
                             }),
                             createElement(RangeControl, {
-                                label: __('Duration (s)', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Duration (s)', 'ileben-landing'),
                                 value: attributes.animationDuration || 0.6,
                                 min: 0.1,
                                 max: 3,
@@ -182,7 +182,7 @@
                                 onChange: (value) => setAttributes({ animationDuration: value })
                             }),
                             createElement(RangeControl, {
-                                label: __('Delay (s)', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Delay (s)', 'ileben-landing'),
                                 value: attributes.animationDelay || 0,
                                 min: 0,
                                 max: 5,
@@ -190,19 +190,19 @@
                                 onChange: (value) => setAttributes({ animationDelay: value })
                             }),
                             createElement(SelectControl, {
-                                label: __('Easing', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Easing', 'ileben-landing'),
                                 value: attributes.animationEase || 'power2.inOut',
                                 options: easeOptions,
                                 onChange: (value) => setAttributes({ animationEase: value })
                             }),
                             attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
-                                label: __('Scroll Start', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Scroll Start', 'ileben-landing'),
                                 value: attributes.animationScrollStart || 'top 70%',
                                 onChange: (value) => setAttributes({ animationScrollStart: value }),
                                 help: __('Ej: "top 70%", "top center", "top bottom"', 'ileben-landing')
                             }),
                             attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
-                                label: __('Scroll End', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Scroll End', 'ileben-landing'),
                                 value: attributes.animationScrollEnd || 'top 10%',
                                 onChange: (value) => setAttributes({ animationScrollEnd: value }),
                                 help: __('Ej: "top 10%", "bottom center"', 'ileben-landing')

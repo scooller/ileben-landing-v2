@@ -74,12 +74,12 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Tabs Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Tabs ID', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Tabs ID', 'ileben-landing'),
                             value: attributes.tabsId,
                             onChange: (value) => setAttributes({ tabsId: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Variant', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ variant: value })

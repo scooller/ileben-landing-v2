@@ -76,7 +76,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Alert Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Alert Style', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Alert Style', 'ileben-landing'),
                             value: attributes.variant,
                             options: [
                                 { label: 'Primary', value: 'primary' },
@@ -98,7 +98,7 @@
                             onChange: (value) => setAttributes({ dismissible: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Alert Heading', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Alert Heading', 'ileben-landing'),
                             value: attributes.heading,
                             ...NEXT_TEXT_PROPS,
                             onChange: (value) => setAttributes({ heading: value })

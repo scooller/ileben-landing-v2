@@ -1,26 +1,56 @@
 /**
- * Parallax Styles
+ * Parallax Styles — Layered GSAP ScrollTrigger
+ * Background layer moves at different speed than content layer.
  */
 
-/* Parallax container styles */
+/* Container — clips overflow, establishes positioning context */
+.bs-parallax-container,
 [data-parallax="true"] {
-    --parallax-y: 0px;
-    will-change: transform;
-    backface-visibility: hidden;
-    perspective: 1000px;
-    
-    /* Apply parallax transform using CSS variable */
-    transform: translate3d(0, var(--parallax-y), 0);
+    position: relative;
+    overflow: hidden;
 }
 
-/* Smooth transitions for parallax */
-[data-parallax="true"] {
-    transition: --parallax-y 0.1s ease-out;
+/* Background layer — oversized top/bottom for parallax movement room */
+.bs-parallax-bg,
+[data-parallax-bg="true"] {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    right: 0;
+    bottom: -20%;
+    width: 100%;
+    z-index: 0;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Media elements inside background layer */
+.bs-parallax-video,
+.bs-parallax-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Overlay layer */
+.bs-parallax-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Content layer — stays in place, above background */
+.bs-parallax-content,
+[data-parallax-content="true"] {
+    position: relative;
+    z-index: 2;
 }
 
 /* Optimize for mobile */
 @include media-breakpoint-down(md) {
-    [data-parallax="true"] {
+    [data-parallax-bg="true"] {
         will-change: auto;
     }
 }

@@ -68,7 +68,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Tab Pane Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Tab Title', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Tab Title', 'ileben-landing'),
                             value: attributes.title,
                             onChange: (value) => setAttributes({ title: value })
                         }),
@@ -85,7 +85,7 @@
                             onChange: (value) => setAttributes({ fade: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Pane ID', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Pane ID', 'ileben-landing'),
                             value: attributes.paneId,
                             onChange: (value) => setAttributes({ paneId: value })
                         })

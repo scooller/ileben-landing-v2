@@ -5,7 +5,7 @@
  */
 
 if (!defined('ABSPATH')) {
-    exit;
+  exit;
 }
 
 /**
@@ -13,24 +13,24 @@ if (!defined('ABSPATH')) {
  */
 function ileben_add_showcase_admin_bar_node($wp_admin_bar)
 {
-    // Solo visible para administradores/editores
-    if (!current_user_can('edit_pages')) {
-        return;
-    }
+  // Solo visible para administradores/editores
+  if (!current_user_can('edit_pages')) {
+    return;
+  }
 
-    $url = wp_nonce_url(
-        admin_url('admin-post.php?action=ileben_generate_showcase'),
-        'ileben_generate_showcase_action'
-    );
+  $url = wp_nonce_url(
+    admin_url('admin-post.php?action=ileben_generate_showcase'),
+    'ileben_generate_showcase_action'
+  );
 
-    $wp_admin_bar->add_node([
-        'id'    => 'ileben-showcase-generator',
-        'title' => '<span class="ab-icon" style="margin-top: 2px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="20" height="20" fill="currentColor"><!--!Font Awesome Free v7.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M64 96c0-35.3 28.7-64 64-64l384 0c35.3 0 64 28.7 64 64l0 240-64 0 0-240-384 0 0 240-64 0 0-240zM0 403.2C0 392.6 8.6 384 19.2 384l601.6 0c10.6 0 19.2 8.6 19.2 19.2 0 42.4-34.4 76.8-76.8 76.8L76.8 480C34.4 480 0 445.6 0 403.2zM281 209l-31 31 31 31c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-48-48c-9.4-9.4-9.4-24.6 0-33.9l48-48c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM393 175l48 48c9.4 9.4 9.4 24.6 0 33.9l-48 48c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l31-31-31-31c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/></svg></span> ' . __('Generar Showcase', 'ileben-landing'),
-        'href'  => $url,
-        'meta'  => [
-            'title' => __('Crea una página en borrador con todos los bloques', 'ileben-landing'),
-        ]
-    ]);
+  $wp_admin_bar->add_node([
+    'id'    => 'ileben-showcase-generator',
+    'title' => '<span class="ab-icon" style="margin-top: 2px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="20" height="20" fill="currentColor"><!--!Font Awesome Free v7.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M64 96c0-35.3 28.7-64 64-64l384 0c35.3 0 64 28.7 64 64l0 240-64 0 0-240-384 0 0 240-64 0 0-240zM0 403.2C0 392.6 8.6 384 19.2 384l601.6 0c10.6 0 19.2 8.6 19.2 19.2 0 42.4-34.4 76.8-76.8 76.8L76.8 480C34.4 480 0 445.6 0 403.2zM281 209l-31 31 31 31c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-48-48c-9.4-9.4-9.4-24.6 0-33.9l48-48c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM393 175l48 48c9.4 9.4 9.4 24.6 0 33.9l-48 48c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l31-31-31-31c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/></svg></span> ' . __('Generar Showcase', 'ileben-landing'),
+    'href'  => $url,
+    'meta'  => [
+      'title' => __('Crea una página en borrador con todos los bloques', 'ileben-landing'),
+    ]
+  ]);
 }
 add_action('admin_bar_menu', 'ileben_add_showcase_admin_bar_node', 999);
 
@@ -39,13 +39,13 @@ add_action('admin_bar_menu', 'ileben_add_showcase_admin_bar_node', 999);
  */
 function ileben_handle_generate_showcase()
 {
-    if (!current_user_can('edit_pages')) {
-        wp_die(__('No tienes permisos para realizar esta acción.', 'ileben-landing'));
-    }
+  if (!current_user_can('edit_pages')) {
+    wp_die(__('No tienes permisos para realizar esta acción.', 'ileben-landing'));
+  }
 
-    check_admin_referer('ileben_generate_showcase_action');
+  check_admin_referer('ileben_generate_showcase_action');
 
-    $content = <<<HTML
+  $content = <<<HTML
 <!-- wp:spacer {"height":"10rem"} -->
 <div style="height:10rem" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
@@ -1255,32 +1255,74 @@ document.querySelectorAll('.mode-switch button').forEach(b=>{
 <!-- /wp:bootstrap-theme/bs-column -->
 <!-- /wp:bootstrap-theme/bs-row -->
 
-<!-- wp:bootstrap-theme/bs-parallax {"parallaxSpeed":0.3} -->
+<!-- wp:bootstrap-theme/bs-parallax {"parallaxSpeed":0.3,"bgImageUrl":"https://placehold.co/1920x1080/1a1a2e/e94560.jpg?text=Parallax+1","overlayColor":"#000000","overlayOpacity":40,"height":50} -->
 <!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
-<h2 class="wp-block-heading has-text-align-center">Parallax con Imagen de Fondo</h2>
+<h2 class="wp-block-heading has-text-align-center text-white">Parallax Básico (speed 0.3)</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
-<p class="has-text-align-center">Configura la imagen de fondo del bloque bs-container en el inspector del bloque.</p>
+<p class="has-text-align-center text-white">Overlay negro 40% · 50dvh de altura · imagen de fondo</p>
+<!-- /wp:paragraph -->
+<!-- /wp:bootstrap-theme/bs-parallax -->
+
+<!-- wp:spacer {"height":"3rem"} -->
+<div style="height:3rem" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:bootstrap-theme/bs-parallax {"parallaxSpeed":0.6,"parallaxContent":true,"bgImageUrl":"https://placehold.co/1920x1080/0f3460/e94560.jpg?text=Parallax+2","overlayColor":"#0f3460","overlayOpacity":25,"height":60} -->
+<!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
+<h2 class="wp-block-heading has-text-align-center text-white">Parallax con Content Move (speed 0.6)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
+<p class="has-text-align-center text-white">El contenido se mueve a velocidad diferente que el fondo · overlay 25%</p>
+<!-- /wp:paragraph -->
+<!-- /wp:bootstrap-theme/bs-parallax -->
+
+<!-- wp:spacer {"height":"3rem"} -->
+<div style="height:3rem" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:bootstrap-theme/bs-parallax {"parallaxSpeed":0.8,"bgImageUrl":"https://placehold.co/1920x1080/16213e/e94560.jpg?text=Parallax+3","overlayColor":"#16213e","overlayOpacity":30,"height":40} -->
+<!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
+<h2 class="wp-block-heading has-text-align-center text-white">Parallax Rápido (speed 0.8)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
+<p class="has-text-align-center text-white">Efecto de profundidad acelerado · 40dvh</p>
+<!-- /wp:paragraph -->
+<!-- /wp:bootstrap-theme/bs-parallax -->
+
+<!-- wp:spacer {"height":"3rem"} -->
+<div style="height:3rem" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:bootstrap-theme/bs-parallax {"parallaxSpeed":0.5,"enableParallax":false,"bgImageUrl":"https://placehold.co/1920x1080/533483/e94560.jpg?text=Sin+Parallax","overlayColor":"#533483","overlayOpacity":20,"height":35} -->
+<!-- wp:heading {"style":{"typography":{"textAlign":"center"}}} -->
+<h2 class="wp-block-heading has-text-align-center text-white">Sin Parallax (disableParallax)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
+<p class="has-text-align-center text-white">Imagen fija sin efecto scroll · solo overlay</p>
 <!-- /wp:paragraph -->
 <!-- /wp:bootstrap-theme/bs-parallax -->
 <!-- /wp:bootstrap-theme/bs-container -->
 HTML;
 
-    // Crear la página en estado borrador
-    $post_id = wp_insert_post([
-        'post_title'   => 'Showcase de Bloques - ' . date('d/m/Y H:i'),
-        'post_content' => $content,
-        'post_status'  => 'draft',
-        'post_type'    => 'page',
-    ]);
+  // Crear la página en estado borrador
+  $post_id = wp_insert_post([
+    'post_title'   => 'Showcase de Bloques - ' . date('d/m/Y H:i'),
+    'post_content' => $content,
+    'post_status'  => 'draft',
+    'post_type'    => 'page',
+  ]);
 
-    if (!is_wp_error($post_id)) {
-        // Redirigir al editor de la nueva página
-        wp_redirect(get_edit_post_link($post_id, 'raw'));
-        exit;
-    } else {
-        wp_die(__('Error al crear la página showcase.', 'ileben-landing'));
-    }
+  if (!is_wp_error($post_id)) {
+    // Redirigir al editor de la nueva página
+    wp_redirect(get_edit_post_link($post_id, 'raw'));
+    exit;
+  } else {
+    wp_die(__('Error al crear la página showcase.', 'ileben-landing'));
+  }
 }
 add_action('admin_post_ileben_generate_showcase', 'ileben_handle_generate_showcase');

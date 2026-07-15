@@ -157,21 +157,21 @@
                     wp.element.createElement(InspectorControls, {},
                         wp.element.createElement(PanelBody, { title: __('Diseño', 'bootstrap-theme'), initialOpen: true },
                             wp.element.createElement(RangeControl, {
-                                label: __('Columnas en MD', 'bootstrap-theme'),
+                                __next40pxDefaultSize: true, label: __('Columnas en MD', 'bootstrap-theme'),
                                 min: 1,
                                 max: 4,
                                 value: columnsMd,
                                 onChange: (value) => setAttributes({ columnsMd: value || 1 })
                             }),
                             wp.element.createElement(RangeControl, {
-                                label: __('Columnas en LG', 'bootstrap-theme'),
+                                __next40pxDefaultSize: true, label: __('Columnas en LG', 'bootstrap-theme'),
                                 min: 1,
                                 max: 4,
                                 value: columnsLg,
                                 onChange: (value) => setAttributes({ columnsLg: value || 1 })
                             }),
                             wp.element.createElement(SelectControl, {
-                                label: __('Distribución', 'bootstrap-theme'),
+                                __next40pxDefaultSize: true, label: __('Distribución', 'bootstrap-theme'),
                                 value: layout,
                                 options: [
                                     { label: __('Horizontal (foto + datos)', 'bootstrap-theme'), value: 'horizontal' },
@@ -180,7 +180,7 @@
                                 onChange: (value) => setAttributes({ layout: value })
                             }),
                             wp.element.createElement(SelectControl, {
-                                label: __('Avatar', 'bootstrap-theme'),
+                                __next40pxDefaultSize: true, label: __('Avatar', 'bootstrap-theme'),
                                 value: avatarShape,
                                 options: [
                                     { label: __('Completa (card)', 'bootstrap-theme'), value: 'card' },
@@ -206,7 +206,7 @@
                                 onChange: (value) => setAttributes({ showEmail: value })
                             }),
                             wp.element.createElement(SelectControl, {
-                                label: __('Contenido a mostrar', 'bootstrap-theme'),
+                                __next40pxDefaultSize: true, label: __('Contenido a mostrar', 'bootstrap-theme'),
                                 value: contentMode,
                                 options: [
                                     { label: __('Texto y botones', 'bootstrap-theme'), value: 'both' },
@@ -216,7 +216,7 @@
                                 onChange: (value) => setAttributes({ contentMode: value })
                             }),
                             wp.element.createElement(SelectControl, {
-                                label: __('Código QR', 'bootstrap-theme'),
+                                __next40pxDefaultSize: true, label: __('Código QR', 'bootstrap-theme'),
                                 value: attributes.qrType || 'none',
                                 options: [
                                     { label: __('Sin QR', 'bootstrap-theme'), value: 'none' },
@@ -226,7 +226,7 @@
                                 onChange: (value) => setAttributes({ qrType: value })
                             }),
                             wp.element.createElement(SelectControl, {
-                                label: __('Orden de asesores', 'bootstrap-theme'),
+                                __next40pxDefaultSize: true, label: __('Orden de asesores', 'bootstrap-theme'),
                                 value: attributes.orderBy || 'default',
                                 options: [
                                     { label: __('Establecido en opciones', 'bootstrap-theme'), value: 'default' },
@@ -239,7 +239,7 @@
                         ),
                         wp.element.createElement(PanelBody, { title: __('Animación', 'bootstrap-theme'), initialOpen: false },
                             wp.element.createElement(SelectControl, {
-                                label: __('Tipo de animación', 'bootstrap-theme'),
+                                __next40pxDefaultSize: true, label: __('Tipo de animación', 'bootstrap-theme'),
                                 value: animationType,
                                 options: animationTypes,
                                 onChange: (value) => {
@@ -255,13 +255,13 @@
                             }),
                             animationType && wp.element.createElement(Fragment, null,
                                 wp.element.createElement(SelectControl, {
-                                    label: __('Disparador', 'bootstrap-theme'),
+                                    __next40pxDefaultSize: true, label: __('Disparador', 'bootstrap-theme'),
                                     value: attributes.animationTrigger,
                                     options: animationTriggers,
                                     onChange: (value) => setAttributes({ animationTrigger: value })
                                 }),
                                 wp.element.createElement(RangeControl, {
-                                    label: __('Duración (s)', 'bootstrap-theme'),
+                                    __next40pxDefaultSize: true, label: __('Duración (s)', 'bootstrap-theme'),
                                     value: attributes.animationDuration,
                                     min: 0.1,
                                     max: 3,
@@ -269,7 +269,7 @@
                                     onChange: (value) => setAttributes({ animationDuration: value })
                                 }),
                                 wp.element.createElement(RangeControl, {
-                                    label: __('Delay (s)', 'bootstrap-theme'),
+                                    __next40pxDefaultSize: true, label: __('Delay (s)', 'bootstrap-theme'),
                                     value: attributes.animationDelay,
                                     min: 0,
                                     max: 5,
@@ -277,7 +277,7 @@
                                     onChange: (value) => setAttributes({ animationDelay: value })
                                 }),
                                 wp.element.createElement(SelectControl, {
-                                    label: __('Easing', 'bootstrap-theme'),
+                                    __next40pxDefaultSize: true, label: __('Easing', 'bootstrap-theme'),
                                     value: attributes.animationEase,
                                     options: easeOptions,
                                     onChange: (value) => setAttributes({ animationEase: value })

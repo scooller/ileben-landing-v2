@@ -110,7 +110,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Toast Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Toast ID', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Toast ID', 'ileben-landing'),
                             value: attributes.toastId,
                             onChange: (value) => setAttributes({ toastId: value })
                         }),
@@ -125,13 +125,13 @@
                             onChange: (value) => setAttributes({ showCloseButton: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Color Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Color Variant', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Position', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Position', 'ileben-landing'),
                             value: attributes.position,
                             options: positionOptions,
                             onChange: (value) => setAttributes({ position: value })
@@ -143,7 +143,7 @@
                             onChange: (value) => setAttributes({ autohide: value })
                         }),
                         attributes.autohide && createElement(RangeControl, {
-                            label: __('Delay (ms)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Delay (ms)', 'ileben-landing'),
                             value: attributes.delay,
                             onChange: (value) => setAttributes({ delay: value }),
                             min: 1000,

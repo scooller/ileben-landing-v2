@@ -95,7 +95,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Dropdown Item Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Type', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Type', 'ileben-landing'),
                             value: attributes.type,
                             options: typeOptions,
                             onChange: (value) => setAttributes({ type: value })
@@ -113,7 +113,7 @@
                             onChange: (value) => setAttributes({ disabled: value })
                         }),
                         attributes.type === 'link' && !attributes.disabled && createElement(TextControl, {
-                            label: __('Link URL', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Link URL', 'ileben-landing'),
                             value: attributes.href,
                             onChange: (value) => setAttributes({ href: value }),
                             placeholder: __('https://example.com', 'ileben-landing')

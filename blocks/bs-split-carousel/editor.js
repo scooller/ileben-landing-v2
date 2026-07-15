@@ -69,33 +69,33 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Carousel Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Carousel ID', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Carousel ID', 'ileben-landing'),
                             value: attributes.carouselId,
                             onChange: (value) => setAttributes({ carouselId: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Interval (ms)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Interval (ms)', 'ileben-landing'),
                             help: __('Time between slides in milliseconds', 'ileben-landing'),
                             value: attributes.interval,
                             type: 'number',
                             onChange: (value) => setAttributes({ interval: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Left Column Transition', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Left Column Transition', 'ileben-landing'),
                             help: __('Animation for the text column', 'ileben-landing'),
                             value: attributes.leftTransition,
                             options: transitionOptions,
                             onChange: (value) => setAttributes({ leftTransition: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Right Column Transition', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Right Column Transition', 'ileben-landing'),
                             help: __('Animation for the image column', 'ileben-landing'),
                             value: attributes.rightTransition,
                             options: transitionOptions,
                             onChange: (value) => setAttributes({ rightTransition: value })
                         }),
                         createElement(RangeControl, {
-                            label: __('Animation Duration (s)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Animation Duration (s)', 'ileben-landing'),
                             value: attributes.transitionDuration,
                             min: 0.2,
                             max: 2,
@@ -103,7 +103,7 @@
                             onChange: (value) => setAttributes({ transitionDuration: value })
                         }),
                         createElement(RangeControl, {
-                            label: __('Stagger Delay (s)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Stagger Delay (s)', 'ileben-landing'),
                             help: __('Delay between left and right column animations', 'ileben-landing'),
                             value: attributes.staggerDelay,
                             min: 0,

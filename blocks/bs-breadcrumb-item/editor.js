@@ -74,7 +74,7 @@
                             onChange: (value) => setAttributes({ active: value })
                         }),
                         !attributes.active && createElement(TextControl, {
-                            label: __('Link URL', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Link URL', 'ileben-landing'),
                             value: attributes.href,
                             onChange: (value) => setAttributes({ href: value }),
                             placeholder: __('https://example.com', 'ileben-landing')

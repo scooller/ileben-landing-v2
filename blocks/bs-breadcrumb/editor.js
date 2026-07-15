@@ -60,7 +60,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Breadcrumb Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Custom Separator', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Custom Separator', 'ileben-landing'),
                             help: __('Leave empty for default separator', 'ileben-landing'),
                             value: attributes.separator,
                             onChange: (value) => setAttributes({ separator: value }),

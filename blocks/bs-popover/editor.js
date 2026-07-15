@@ -88,12 +88,12 @@
                 createElement(InspectorControls, null,
                     createElement(PanelBody, { title: __('Popover Content', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Title', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Title', 'ileben-landing'),
                             value: attributes.title,
                             onChange: (val) => setAttributes({ title: val })
                         }),
                         createElement(TextControl, {
-                            label: __('Content', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Content', 'ileben-landing'),
                             value: attributes.content,
                             onChange: (val) => setAttributes({ content: val })
                         }),
@@ -105,13 +105,13 @@
                     ),
                     createElement(PanelBody, { title: __('Placement & Trigger', 'ileben-landing'), initialOpen: false },
                         createElement(SelectControl, {
-                            label: __('Placement', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Placement', 'ileben-landing'),
                             value: attributes.placement,
                             options: placementOptions,
                             onChange: (val) => setAttributes({ placement: val })
                         }),
                         createElement(SelectControl, {
-                            label: __('Trigger', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Trigger', 'ileben-landing'),
                             value: attributes.trigger,
                             options: triggerOptions,
                             onChange: (val) => setAttributes({ trigger: val }),
@@ -125,18 +125,18 @@
                     ),
                     createElement(PanelBody, { title: __('Element', 'ileben-landing'), initialOpen: false },
                         createElement(SelectControl, {
-                            label: __('Element Type', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Element Type', 'ileben-landing'),
                             value: attributes.element,
                             options: elementOptions,
                             onChange: (val) => setAttributes({ element: val })
                         }),
                         createElement(TextControl, {
-                            label: __('Element Text', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Element Text', 'ileben-landing'),
                             value: attributes.elementText,
                             onChange: (val) => setAttributes({ elementText: val })
                         }),
                         attributes.element === 'button' && createElement(SelectControl, {
-                            label: __('Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Variant', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (val) => setAttributes({ variant: val })
@@ -144,7 +144,7 @@
                     ),
                     createElement(PanelBody, { title: __('Advanced', 'ileben-landing'), initialOpen: false },
                         createElement(TextControl, {
-                            label: __('Custom popover class', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Custom popover class', 'ileben-landing'),
                             value: attributes.customClass,
                             help: __('CSS class added to the popover element (data-bs-custom-class).', 'ileben-landing'),
                             onChange: (val) => setAttributes({ customClass: val })

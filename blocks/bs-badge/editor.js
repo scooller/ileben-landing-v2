@@ -81,7 +81,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Badge Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Variant', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ variant: value })
@@ -93,7 +93,7 @@
                             onChange: (value) => setAttributes({ pill: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Size', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })

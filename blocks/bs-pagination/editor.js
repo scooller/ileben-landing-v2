@@ -109,19 +109,19 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Pagination Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Size', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Alignment', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Alignment', 'ileben-landing'),
                             value: attributes.alignment,
                             options: alignmentOptions,
                             onChange: (value) => setAttributes({ alignment: value })
                         }),
                         createElement(RangeControl, {
-                            label: __('Preview Pages', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Preview Pages', 'ileben-landing'),
                             help: __('Number of pages to show in preview', 'ileben-landing'),
                             value: attributes.totalPages,
                             onChange: (value) => setAttributes({ totalPages: value }),

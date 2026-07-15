@@ -69,7 +69,7 @@
                             onChange: (value) => setAttributes({ isOpen: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Item ID', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Item ID', 'ileben-landing'),
                             value: attributes.itemId,
                             onChange: (value) => setAttributes({ itemId: value })
                         })

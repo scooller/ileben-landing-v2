@@ -87,7 +87,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Steps Settings', 'ileben-landing') },
                         totalSteps > 0 && createElement(RangeControl, {
-                            label: __('Current Step', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Current Step', 'ileben-landing'),
                             value: Math.min(attributes.currentStep, totalSteps),
                             onChange: (value) => setAttributes({ currentStep: value }),
                             min: 1,
@@ -95,7 +95,7 @@
                             help: __('Select which step is currently active', 'ileben-landing')
                         }),
                         createElement(SelectControl, {
-                            label: __('Color Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Color Variant', 'ileben-landing'),
                             value: attributes.colorVariant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ colorVariant: value })

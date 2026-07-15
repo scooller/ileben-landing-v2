@@ -132,43 +132,43 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Divider Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Text', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Text', 'ileben-landing'),
                             value: attributes.text,
                             onChange: (value) => setAttributes({ text: value }),
                             help: __('Optional text to display.', 'ileben-landing')
                         }),
                         createElement(TextControl, {
-                            label: __('Icon Class (FontAwesome)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Icon Class (FontAwesome)', 'ileben-landing'),
                             value: attributes.icon,
                             onChange: (value) => setAttributes({ icon: value }),
                             help: __('e.g., fa-solid fa-star', 'ileben-landing')
                         }),
                         createElement(SelectControl, {
-                            label: __('Alignment', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Alignment', 'ileben-landing'),
                             value: attributes.align,
                             options: alignments,
                             onChange: (value) => setAttributes({ align: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Line Style', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Line Style', 'ileben-landing'),
                             value: attributes.variant,
                             options: variants,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Line Color', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Line Color', 'ileben-landing'),
                             value: attributes.color,
                             options: colors,
                             onChange: (value) => setAttributes({ color: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Text/Icon Color', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Text/Icon Color', 'ileben-landing'),
                             value: attributes.textColor,
                             options: colors,
                             onChange: (value) => setAttributes({ textColor: value })
                         }),
                         createElement(RangeControl, {
-                            label: __('Vertical Margin (my-*)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Vertical Margin (my-*)', 'ileben-landing'),
                             value: parseInt(attributes.marginY),
                             onChange: (value) => setAttributes({ marginY: value.toString() }),
                             min: 0,

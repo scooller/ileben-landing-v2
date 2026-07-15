@@ -102,7 +102,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Pagination Item Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Type', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Type', 'ileben-landing'),
                             value: attributes.type,
                             options: typeOptions,
                             onChange: (value) => {
@@ -125,7 +125,7 @@
                             onChange: (value) => setAttributes({ disabled: value })
                         }),
                         !attributes.disabled && createElement(TextControl, {
-                            label: __('Link URL', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Link URL', 'ileben-landing'),
                             value: attributes.href,
                             onChange: (value) => setAttributes({ href: value }),
                             placeholder: __('https://example.com', 'ileben-landing')

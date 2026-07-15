@@ -68,20 +68,20 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Layout', 'ileben-landing'), initialOpen: true },
                         createElement(SelectControl, {
-                            label: __('Tipo de layout', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Tipo de layout', 'ileben-landing'),
                             value: attributes.layout,
                             options: layoutOptions,
                             onChange: (v) => setAttributes({ layout: v }),
                         }),
                         attributes.layout === 'row' && createElement(Fragment, {},
                             createElement(SelectControl, {
-                                label: __('Columnas por fila', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Columnas por fila', 'ileben-landing'),
                                 value: attributes.rowCols,
                                 options: rowColsOptions,
                                 onChange: (v) => setAttributes({ rowCols: v }),
                             }),
                             createElement(SelectControl, {
-                                label: __('Espaciado (gutters)', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Espaciado (gutters)', 'ileben-landing'),
                                 value: attributes.gutters,
                                 options: gutterOptions,
                                 onChange: (v) => setAttributes({ gutters: v }),

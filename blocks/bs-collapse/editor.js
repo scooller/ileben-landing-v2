@@ -56,12 +56,12 @@
                 createElement(InspectorControls, null,
                     createElement(PanelBody, { title: __('Button', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Button Text', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Button Text', 'ileben-landing'),
                             value: attributes.buttonText,
                             onChange: (val) => setAttributes({ buttonText: val })
                         }),
                         createElement(SelectControl, {
-                            label: __('Button Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Button Variant', 'ileben-landing'),
                             value: attributes.buttonVariant,
                             options: variantOptions,
                             onChange: (val) => setAttributes({ buttonVariant: val })

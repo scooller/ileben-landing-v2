@@ -45,25 +45,25 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Configuración de Columnas', 'ileben-landing'), initialOpen: true },
                         createElement(TextControl, {
-                            label: __('Título del Bloque (Opcional)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Título del Bloque (Opcional)', 'ileben-landing'),
                             value: attributes.title,
                             onChange: (val) => setAttributes({ title: val })
                         }),
                         createElement('h4', { style: { marginTop: '1rem' } }, __('Columnas por fila', 'ileben-landing')),
                         createElement(SelectControl, {
-                            label: __('Móvil', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Móvil', 'ileben-landing'),
                             value: attributes.colsMobile,
                             options: [ { label: '1', value: '1' }, { label: '2', value: '2' }, { label: '3', value: '3' } ],
                             onChange: (val) => setAttributes({ colsMobile: val })
                         }),
                         createElement(SelectControl, {
-                            label: __('Tablet', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Tablet', 'ileben-landing'),
                             value: attributes.colsTablet,
                             options: [ { label: '2', value: '2' }, { label: '3', value: '3' }, { label: '4', value: '4' } ],
                             onChange: (val) => setAttributes({ colsTablet: val })
                         }),
                         createElement(SelectControl, {
-                            label: __('Escritorio', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Escritorio', 'ileben-landing'),
                             value: attributes.colsDesktop,
                             options: [ { label: '2', value: '2' }, { label: '3', value: '3' }, { label: '4', value: '4' }, { label: '5', value: '5' }, { label: '6', value: '6' } ],
                             onChange: (val) => setAttributes({ colsDesktop: val })

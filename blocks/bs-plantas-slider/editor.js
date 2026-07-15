@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Block Editor: Plantas Slider
  */
 
@@ -67,7 +67,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Configuración', 'ileben-landing'), initialOpen: true },
                         createElement(RangeControl, {
-                            label: __('Máximo de posts (-1 = todos)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Máximo de posts (-1 = todos)', 'ileben-landing'),
                             value: attributes.postsPerPage,
                             onChange: (value) => setAttributes({ postsPerPage: value }),
                             min: -1,
@@ -75,19 +75,19 @@
                         }),
                         createElement('h4', { style: { marginTop: '1rem', marginBottom: '0.5rem' } }, __('Slides por Viewport', 'ileben-landing')),
                         createElement(TextControl, {
-                            label: __('Mobile (< 768px)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Mobile (< 768px)', 'ileben-landing'),
                             value: attributes.slidesPerViewMobile,
                             onChange: (value) => setAttributes({ slidesPerViewMobile: value }),
                             placeholder: '1'
                         }),
                         createElement(TextControl, {
-                            label: __('Tablet (768px - 1023px)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Tablet (768px - 1023px)', 'ileben-landing'),
                             value: attributes.slidesPerViewTablet,
                             onChange: (value) => setAttributes({ slidesPerViewTablet: value }),
                             placeholder: '1.5'
                         }),
                         createElement(TextControl, {
-                            label: __('Desktop (>= 1024px)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Desktop (>= 1024px)', 'ileben-landing'),
                             value: attributes.slidesPerViewDesktop,
                             onChange: (value) => setAttributes({ slidesPerViewDesktop: value }),
                             placeholder: '3'
@@ -98,12 +98,12 @@
                             onChange: (value) => setAttributes({ showThumbnail: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Texto botón cotizador', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Texto botón cotizador', 'ileben-landing'),
                             value: attributes.buttonLabel,
                             onChange: (value) => setAttributes({ buttonLabel: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Texto botón desactivado', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Texto botón desactivado', 'ileben-landing'),
                             value: attributes.disabledButtonLabel,
                             onChange: (value) => setAttributes({ disabledButtonLabel: value })
                         }),
@@ -114,7 +114,7 @@
                             onChange: (value) => setAttributes({ navigationArrows: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Tipo de paginación', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Tipo de paginación', 'ileben-landing'),
                             value: attributes.paginationType,
                             options: [
                                 { label: __('Sin paginación', 'ileben-landing'), value: 'none' },
@@ -127,7 +127,7 @@
                         }),
                         createElement('h4', { style: { marginTop: '1rem', marginBottom: '0.5rem' } }, __('Efecto', 'ileben-landing')),
                         createElement(SelectControl, {
-                            label: __('Tipo de efecto', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Tipo de efecto', 'ileben-landing'),
                             value: attributes.effect,
                             options: [
                                 { label: __('Slide (defecto)', 'ileben-landing'), value: 'slide' },
@@ -165,7 +165,7 @@
                             onChange: (value) => setAttributes({ showAdvancedFilters: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Dormitorios', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Dormitorios', 'ileben-landing'),
                             value: attributes.filterDormitorio,
                             options: [{ label: __('-- Sin filtro --', 'ileben-landing'), value: '' }].concat(
                                 dorms.map((item) => ({ label: item, value: item }))
@@ -173,7 +173,7 @@
                             onChange: (value) => setAttributes({ filterDormitorio: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Baños', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Baños', 'ileben-landing'),
                             value: attributes.filterBano,
                             options: [{ label: __('-- Sin filtro --', 'ileben-landing'), value: '' }].concat(
                                 banos.map((item) => ({ label: item, value: item }))
@@ -181,7 +181,7 @@
                             onChange: (value) => setAttributes({ filterBano: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Categoría', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Categoría', 'ileben-landing'),
                             value: attributes.filterCategoria,
                             options: [{ label: __('-- Sin filtro --', 'ileben-landing'), value: '' }].concat(
                                 (window.BOOTSTRAP_THEME_PLANTAS_CATEGORIAS || []).map((cat) => ({ label: cat.name, value: cat.slug }))

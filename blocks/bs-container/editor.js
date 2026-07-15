@@ -315,13 +315,13 @@
                             onChange: (value) => setAttributes({ fluid: value })
                         }),
                         !attributes.fluid && createElement(SelectControl, {
-                            label: __('Container Type', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Container Type', 'ileben-landing'),
                             value: attributes.type,
                             options: containerTypes,
                             onChange: (value) => setAttributes({ type: value })
                         }),
                         !attributes.fluid && createElement(SelectControl, {
-                            label: __('Breakpoint', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Breakpoint', 'ileben-landing'),
                             help: __('Container breakpoint responsive', 'ileben-landing'),
                             value: attributes.breakpoint || '',
                             options: [
@@ -335,7 +335,7 @@
                             onChange: (value) => setAttributes({ breakpoint: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Background Color', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Background Color', 'ileben-landing'),
                             help: __('Bootstrap background color utility class', 'ileben-landing'),
                             value: attributes.backgroundColor || '',
                             options: [
@@ -354,7 +354,7 @@
                             onChange: (value) => setAttributes({ backgroundColor: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Text Color', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Text Color', 'ileben-landing'),
                             help: __('Bootstrap text color utility class', 'ileben-landing'),
                             value: attributes.textColor || '',
                             options: [
@@ -373,13 +373,13 @@
                             onChange: (value) => setAttributes({ textColor: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Padding', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Padding', 'ileben-landing'),
                             help: __('Bootstrap padding utility classes (e.g., p-3, py-4, px-5)', 'ileben-landing'),
                             value: attributes.padding || '',
                             onChange: (value) => setAttributes({ padding: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Margin', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Margin', 'ileben-landing'),
                             help: __('Bootstrap margin utility classes (e.g., m-3, my-4, mx-auto)', 'ileben-landing'),
                             value: attributes.margin || '',
                             onChange: (value) => setAttributes({ margin: value })
@@ -392,7 +392,7 @@
                     ),
                     createElement(PanelBody, { title: __('Background', 'ileben-landing'), initialOpen: false },
                         createElement(SelectControl, {
-                            label: __('Background Type', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Background Type', 'ileben-landing'),
                             value: attributes.bgType,
                             options: bgTypeOptions,
                             onChange: (value) => setAttributes({ bgType: value })
@@ -409,7 +409,7 @@
                         }),
                         attributes.bgType === 'gradient' && createElement(Fragment, {},
                             createElement(SelectControl, {
-                                label: __('Direction', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Direction', 'ileben-landing'),
                                 value: attributes.bgGradientDirection,
                                 options: gradientDirections,
                                 onChange: (value) => setAttributes({ bgGradientDirection: value })
@@ -444,7 +444,7 @@
                                 createElement(Button, { variant: 'secondary', onClick: () => setAttributes({ bgImageID: 0, bgImageURL: '' }) }, __('Remove image', 'ileben-landing'))
                             ),
                             createElement(SelectControl, {
-                                label: __('Size', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Size', 'ileben-landing'),
                                 value: attributes.bgImageSize,
                                 options: [
                                     { label: 'Cover', value: 'cover' },
@@ -454,7 +454,7 @@
                                 onChange: (value) => setAttributes({ bgImageSize: value })
                             }),
                             createElement(SelectControl, {
-                                label: __('Position', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Position', 'ileben-landing'),
                                 value: attributes.bgImagePosition,
                                 options: [
                                     { label: 'Center Center', value: 'center center' },
@@ -466,7 +466,7 @@
                                 onChange: (value) => setAttributes({ bgImagePosition: value })
                             }),
                             createElement(SelectControl, {
-                                label: __('Repeat', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Repeat', 'ileben-landing'),
                                 value: attributes.bgImageRepeat,
                                 options: [
                                     { label: 'No repeat', value: 'no-repeat' },
@@ -477,7 +477,7 @@
                                 onChange: (value) => setAttributes({ bgImageRepeat: value })
                             }),
                             createElement(SelectControl, {
-                                label: __('Attachment', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Attachment', 'ileben-landing'),
                                 value: attributes.bgImageAttachment,
                                 options: [
                                     { label: 'Scroll', value: 'scroll' },
@@ -509,25 +509,25 @@
                             onChange: (value) => setAttributes({ swiperAutoplay: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Slides per view', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Slides per view', 'ileben-landing'),
                             value: attributes.swiperSlidesPerView,
                             onChange: (value) => setAttributes({ swiperSlidesPerView: value }),
                             placeholder: '1.1'
                         }),
                         createElement(TextControl, {
-                            label: __('Space between (px)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Space between (px)', 'ileben-landing'),
                             value: attributes.swiperSpaceBetween,
                             onChange: (value) => setAttributes({ swiperSpaceBetween: value }),
                             placeholder: '16'
                         }),
                         createElement(TextControl, {
-                            label: __('Speed (ms)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Speed (ms)', 'ileben-landing'),
                             value: attributes.swiperSpeed,
                             onChange: (value) => setAttributes({ swiperSpeed: value }),
                             placeholder: '500'
                         }),
                         createElement(TextControl, {
-                            label: __('Autoplay delay (ms)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Autoplay delay (ms)', 'ileben-landing'),
                             value: attributes.swiperAutoplayDelay,
                             onChange: (value) => setAttributes({ swiperAutoplayDelay: value }),
                             placeholder: '4000'
@@ -538,7 +538,7 @@
                         { title: __('Animation', 'ileben-landing'), initialOpen: false },
                         
                         createElement(SelectControl, {
-                            label: __('Animation Type', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Animation Type', 'ileben-landing'),
                             value: animationType,
                             options: animationTypes,
                             onChange: (value) => setAttributes({ animationType: value })
@@ -549,14 +549,14 @@
                             null,
 
                             createElement(SelectControl, {
-                                label: __('Trigger', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Trigger', 'ileben-landing'),
                                 value: attributes.animationTrigger,
                                 options: animationTriggers,
                                 onChange: (value) => setAttributes({ animationTrigger: value })
                             }),
 
                             createElement(RangeControl, {
-                                label: __('Duration (seconds)', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Duration (seconds)', 'ileben-landing'),
                                 value: attributes.animationDuration,
                                 min: 0.1,
                                 max: 3,
@@ -565,7 +565,7 @@
                             }),
 
                             createElement(RangeControl, {
-                                label: __('Delay (seconds)', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Delay (seconds)', 'ileben-landing'),
                                 value: attributes.animationDelay,
                                 min: 0,
                                 max: 5,
@@ -574,21 +574,21 @@
                             }),
 
                             createElement(SelectControl, {
-                                label: __('Easing', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Easing', 'ileben-landing'),
                                 value: attributes.animationEase,
                                 options: easeOptions,
                                 onChange: (value) => setAttributes({ animationEase: value })
                             }),
 
                             attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
-                                label: __('Scroll Start', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Scroll Start', 'ileben-landing'),
                                 value: attributes.animationScrollStart || 'top 70%',
                                 onChange: (value) => setAttributes({ animationScrollStart: value }),
                                 help: __('Ej: "top 70%", "top center", "top bottom"', 'ileben-landing')
                             }),
 
                             attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
-                                label: __('Scroll End', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Scroll End', 'ileben-landing'),
                                 value: attributes.animationScrollEnd || 'top 10%',
                                 onChange: (value) => setAttributes({ animationScrollEnd: value }),
                                 help: __('Ej: "top 10%", "bottom center"', 'ileben-landing')

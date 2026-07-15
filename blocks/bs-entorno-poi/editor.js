@@ -30,7 +30,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Configuración del Punto', 'ileben-landing'), initialOpen: true },
                         createElement(TextControl, {
-                            label: __('Ícono (FontAwesome)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Ícono (FontAwesome)', 'ileben-landing'),
                             value: attributes.icon,
                             onChange: (val) => setAttributes({ icon: val }),
                             help: 'Ej: fa-solid fa-tree'

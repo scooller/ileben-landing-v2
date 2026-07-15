@@ -93,13 +93,13 @@
                             onChange: (value) => setAttributes({ vertical: value })
                         }),
                         !attributes.toolbar && createElement(SelectControl, {
-                            label: __('Size', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
                         }),
                         createElement(TextControl, {
-                            label: __('ARIA Label', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('ARIA Label', 'ileben-landing'),
                             help: __('Accessibility label for the button group', 'ileben-landing'),
                             value: attributes.ariaLabel,
                             onChange: (value) => setAttributes({ ariaLabel: value })

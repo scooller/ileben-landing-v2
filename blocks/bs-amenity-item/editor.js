@@ -41,7 +41,7 @@
                             onChange: (val) => setAttributes({ iconType: val })
                         }),
                         attributes.iconType === 'icon' && createElement(TextControl, {
-                            label: __('Ícono (FontAwesome)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Ícono (FontAwesome)', 'ileben-landing'),
                             value: attributes.icon,
                             onChange: (val) => setAttributes({ icon: val }),
                             help: 'Ej: fa-solid fa-swimming-pool'

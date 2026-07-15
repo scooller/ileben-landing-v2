@@ -120,18 +120,18 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Offcanvas Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Offcanvas ID', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Offcanvas ID', 'ileben-landing'),
                             value: attributes.offcanvasId,
                             onChange: (value) => setAttributes({ offcanvasId: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Placement', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Placement', 'ileben-landing'),
                             value: attributes.placement,
                             options: placementOptions,
                             onChange: (value) => setAttributes({ placement: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Backdrop', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Backdrop', 'ileben-landing'),
                             value: attributes.backdrop,
                             options: backdropOptions,
                             onChange: (value) => setAttributes({ backdrop: value })
@@ -161,12 +161,12 @@
                     ),
                     createElement(PanelBody, { title: __('Trigger Button', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Button Text', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Button Text', 'ileben-landing'),
                             value: attributes.buttonText,
                             onChange: (value) => setAttributes({ buttonText: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Button Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Button Variant', 'ileben-landing'),
                             value: attributes.buttonVariant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ buttonVariant: value })

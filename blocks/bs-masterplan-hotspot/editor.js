@@ -93,12 +93,12 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Configuración del Punto', 'ileben-landing'), initialOpen: true },
                         createElement(TextControl, {
-                            label: __('Título / Número', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Título / Número', 'ileben-landing'),
                             value: attributes.title,
                             onChange: (val) => setAttributes({ title: val })
                         }),
                         createElement(SelectControl, {
-                            label: __('Estado', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Estado', 'ileben-landing'),
                             value: attributes.status,
                             options: [
                                 { label: '- Sin estado -', value: 'sin_estado' },
@@ -109,13 +109,13 @@
                             onChange: (val) => setAttributes({ status: val })
                         }),
                         createElement(TextControl, {
-                            label: __('Clase de Icono (FontAwesome)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Clase de Icono (FontAwesome)', 'ileben-landing'),
                             value: attributes.iconClass,
                             help: __('Ej: fa-solid fa-plus, fa-solid fa-location-dot', 'ileben-landing'),
                             onChange: (val) => setAttributes({ iconClass: val })
                         }),
                         createElement(SelectControl, {
-                            label: __('Animación del Hotspot', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Animación del Hotspot', 'ileben-landing'),
                             value: attributes.pulseAnimation,
                             options: [
                                 { label: 'Sin animación', value: 'none' },
@@ -128,7 +128,7 @@
                         }),
                         createElement('p', { className: 'components-base-control__help' }, __('También puedes arrastrar el punto directamente en la imagen.', 'ileben-landing')),
                         createElement(RangeControl, {
-                            label: __('Posición Top (%)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Posición Top (%)', 'ileben-landing'),
                             value: attributes.top,
                             onChange: (val) => setAttributes({ top: val }),
                             min: 0,
@@ -136,7 +136,7 @@
                             step: 0.1
                         }),
                         createElement(RangeControl, {
-                            label: __('Posición Left (%)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Posición Left (%)', 'ileben-landing'),
                             value: attributes.left,
                             onChange: (val) => setAttributes({ left: val }),
                             min: 0,
@@ -144,12 +144,12 @@
                             step: 0.1
                         }),
                         createElement(TextControl, {
-                            label: __('Descripción', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Descripción', 'ileben-landing'),
                             value: attributes.description,
                             onChange: (val) => setAttributes({ description: val })
                         }),
                         createElement(TextControl, {
-                            label: __('Link Botón (Opcional)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Link Botón (Opcional)', 'ileben-landing'),
                             value: attributes.link,
                             onChange: (val) => setAttributes({ link: val })
                         }),

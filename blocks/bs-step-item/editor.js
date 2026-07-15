@@ -139,7 +139,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Step Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Step Title', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Step Title', 'ileben-landing'),
                             value: attributes.title,
                             onChange: (value) => setAttributes({ title: value })
                         })
@@ -147,7 +147,7 @@
                     // Animation Panel
                     createElement(PanelBody, { title: __('Animation', 'ileben-landing'), initialOpen: false },
                         createElement(SelectControl, {
-                            label: __('Animation Type', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Animation Type', 'ileben-landing'),
                             value: animationType,
                             options: animationTypes,
                             onChange: (value) => {
@@ -171,13 +171,13 @@
                         }),
                         animationType && createElement(Fragment, null,
                             createElement(SelectControl, {
-                                label: __('Trigger', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Trigger', 'ileben-landing'),
                                 value: attributes.animationTrigger,
                                 options: animationTriggers,
                                 onChange: (value) => setAttributes({ animationTrigger: value })
                             }),
                             createElement(RangeControl, {
-                                label: __('Duration (seconds)', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Duration (seconds)', 'ileben-landing'),
                                 value: attributes.animationDuration,
                                 min: 0.1,
                                 max: 3,
@@ -185,7 +185,7 @@
                                 onChange: (value) => setAttributes({ animationDuration: value })
                             }),
                             createElement(RangeControl, {
-                                label: __('Delay (seconds)', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Delay (seconds)', 'ileben-landing'),
                                 value: attributes.animationDelay,
                                 min: 0,
                                 max: 5,
@@ -193,19 +193,19 @@
                                 onChange: (value) => setAttributes({ animationDelay: value })
                             }),
                             createElement(SelectControl, {
-                                label: __('Easing', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Easing', 'ileben-landing'),
                                 value: attributes.animationEase,
                                 options: easeOptions,
                                 onChange: (value) => setAttributes({ animationEase: value })
                             }),
                             attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
-                                label: __('Scroll Start', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Scroll Start', 'ileben-landing'),
                                 value: attributes.animationScrollStart || 'top 70%',
                                 onChange: (value) => setAttributes({ animationScrollStart: value }),
                                 help: __('Ej: "top 70%", "top center", "top bottom"', 'ileben-landing')
                             }),
                             attributes.animationTrigger === 'on-scroll' && createElement(TextControl, {
-                                label: __('Scroll End', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Scroll End', 'ileben-landing'),
                                 value: attributes.animationScrollEnd || 'top 10%',
                                 onChange: (value) => setAttributes({ animationScrollEnd: value }),
                                 help: __('Ej: "top 10%", "bottom center"', 'ileben-landing')

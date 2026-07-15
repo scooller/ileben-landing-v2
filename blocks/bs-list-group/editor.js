@@ -78,7 +78,7 @@
                             onChange: (value) => setAttributes({ flush: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Layout', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Layout', 'ileben-landing'),
                             value: attributes.horizontal,
                             options: horizontalOptions,
                             onChange: (value) => setAttributes({ horizontal: value })

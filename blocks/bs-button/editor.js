@@ -62,18 +62,18 @@
 
             const settingsPanel = createElement(PanelBody, { title: __('Button Settings', 'ileben-landing') },
                 createElement(TextControl, {
-                    label: __('Button Text', 'ileben-landing'),
+                    __next40pxDefaultSize: true, label: __('Button Text', 'ileben-landing'),
                     value: attributes.text,
                     onChange: (value) => setAttributes({ text: value })
                 }),
                 createElement(SelectControl, {
-                    label: __('Button Style', 'ileben-landing'),
+                    __next40pxDefaultSize: true, label: __('Button Style', 'ileben-landing'),
                     value: attributes.variant,
                     options: buttonVariants,
                     onChange: (value) => setAttributes({ variant: value })
                 }),
                 createElement(SelectControl, {
-                    label: __('Button Size', 'ileben-landing'),
+                    __next40pxDefaultSize: true, label: __('Button Size', 'ileben-landing'),
                     value: attributes.size,
                     options: buttonSizes,
                     onChange: (value) => setAttributes({ size: value })
@@ -84,7 +84,7 @@
                     onChange: (value) => setAttributes({ outline: value })
                 }),
                 createElement(TextControl, {
-                    label: __('Link URL', 'ileben-landing'),
+                    __next40pxDefaultSize: true, label: __('Link URL', 'ileben-landing'),
                     value: attributes.link,
                     onChange: (value) => setAttributes({ link: value })
                 }),
@@ -102,13 +102,13 @@
 
             const iconPanel = createElement(PanelBody, { title: __('Icon', 'ileben-landing'), initialOpen: false },
                 createElement(TextControl, {
-                    label: __('Font Awesome classes', 'ileben-landing'),
+                    __next40pxDefaultSize: true, label: __('Font Awesome classes', 'ileben-landing'),
                     help: __('Ejemplo: fa-solid fa-car (solo clases del icono)', 'ileben-landing'),
                     value: attributes.icon,
                     onChange: (value) => setAttributes({ icon: value })
                 }),
                 createElement(SelectControl, {
-                    label: __('Icon position', 'ileben-landing'),
+                    __next40pxDefaultSize: true, label: __('Icon position', 'ileben-landing'),
                     value: attributes.iconPosition,
                     options: [
                         { label: __('Before text', 'ileben-landing'), value: 'left' },

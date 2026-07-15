@@ -32,10 +32,79 @@
   height: 40px;
   @include media-breakpoint-down(md) { height: 20px; }
 }
+body.glass-active .card, .glass{
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+[data-bs-theme="dark"] body.glass-active .card,
+body.glass-active[data-bs-theme="dark"] .card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
 
+/* Glassmorphism for Bootstrap overlay components */
+body.glass-active {
+  .modal-content,
+  .offcanvas,
+  .dropdown-menu,
+  .popover,
+  .toast {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  .list-group-item,
+  .accordion-item,
+  .accordion-button:not(.collapsed) {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .nav-tabs .nav-link {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .input-group-text {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Dark mode variants */
+[data-bs-theme="dark"] body.glass-active,
+body.glass-active[data-bs-theme="dark"] {
+  .modal-content,
+  .offcanvas,
+  .dropdown-menu,
+  .popover,
+  .toast {
+    background: rgba(0, 0, 0, 0.35);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  .list-group-item,
+  .accordion-item,
+  .accordion-button:not(.collapsed) {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .nav-tabs .nav-link {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .input-group-text {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+#site-header:not(.glass) {
+  background-color: rgba(var(--bs-body-bg-rgb), 1);
+}
 #site-header {
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, .2);
   img.custom-logo {
     width: auto;
     height: 100px;
@@ -44,7 +113,7 @@
   a.custom-logo-link { display: inline-block; width: 151px; }
   div[class^="col-"] { z-index: 2; }
 
-  &::after {
+  &.glass::after {
     content: '';
     position: absolute; top: 0; left: 0;
     width: 100%; height: 100%;
@@ -56,7 +125,7 @@
   }
 
   @include media-breakpoint-down(md) {
-    .navbar-collapse {
+    &.glass .navbar-collapse {
       background: rgba(var(--bs-light-rgb), 0.8);
       backdrop-filter: blur(10px);
       position: fixed; left: 0; right: 0;

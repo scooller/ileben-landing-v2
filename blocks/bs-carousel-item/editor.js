@@ -168,13 +168,13 @@
                             )
                         ),
                         createElement(TextControl, {
-                            label: __('Link URL', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Link URL', 'ileben-landing'),
                             help: __('Optional URL to make the entire slide clickable', 'ileben-landing'),
                             value: attributes.link || '',
                             onChange: (value) => setAttributes({ link: value })
                         }),
                         attributes.link && createElement(SelectControl, {
-                            label: __('Link Target', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Link Target', 'ileben-landing'),
                             value: attributes.target || '_self',
                             options: [
                                 { label: __('Same Window', 'ileben-landing'), value: '_self' },

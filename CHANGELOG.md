@@ -4,6 +4,17 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
 ## [Unreleased]
 
+### Added
+- **Glass Class toggle (`enable_glass_class`)**: Nuevo campo ACF en tab Personalización. Cuando está activado (default), el header usa la clase `.glass` (blur + translúcido + gradiente `::after`) y se renderiza el blur-bar del footer. Cuando está desactivado, el header usa color plano sólido (`#site-header:not(.glass)`) y el blur-bar no se renderiza.
+- **Glassmorphism para componentes Bootstrap**: Cuando el toggle glass está activo, se añade `body.glass-active` y todos los componentes Bootstrap reciben efecto glass: `.card`, `.modal-content`, `.offcanvas`, `.dropdown-menu`, `.popover`, `.toast`, `.list-group-item`, `.accordion-item`, `.nav-tabs .nav-link`, `.input-group-text`. Incluye variantes dark mode.
+- **Imagen de fondo del body (light/dark)**: Nuevos campos ACF en tab Personalización — `body_bg_image` (modo light) y `body_bg_image_dark` (modo dark) — con 4 selects compartidos para configurar `background-size`, `background-position`, `background-repeat` y `background-attachment`. El CSS inline se genera solo si hay imagen configurada.
+- **Showcase de Parallax actualizado**: 4 variantes demostrando todas las opciones del bloque `bs-parallax`: básico (speed 0.3), content move (speed 0.6), rápido (speed 0.8), y sin parallax (disabled). Todas con overlay, imágenes de fondo y textos blancos.
+
+### Changed
+- **Header condicional**: `header.php` ahora genera la clase `glass` dinámicamente según el ACF toggle, en vez de estar hardcoded.
+- **Footer condicional**: El `blur-bar` del footer se renderiza solo cuando el toggle glass está activo.
+- **SCSS `_components.scss`**: Gradiente `::after` y blur móvil del header ahora usan `&.glass` en vez de aplicarse siempre. Eliminado `backdrop-filter` directo de `#site-header` (ahora viene de la clase `.glass`).
+
 ### Fixed
 - **Tooltip `data-bs-html`**: El atributo `data-bs-html` usaba el booleano PHP `true` que se imprimía como `1`, causando `TypeError: Option "html" provided type "number" but expected type "boolean"` que rompía toda la cadena de inicialización de componentes Bootstrap.
 - **Dropdown no cerraba**: Triple inicialización de Bootstrap Dropdown (bundle completo + módulos individuales + `new Dropdown()`) causaba handlers duplicados que impedían cerrar el dropdown al hacer click de nuevo. Solucionado eliminando el `bootstrap.bundle.min.js` y usando solo módulos individuales de `bootstrap/js/dist/*` con `getOrCreateInstance`.

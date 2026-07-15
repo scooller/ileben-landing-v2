@@ -111,12 +111,12 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Modal Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Modal ID', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Modal ID', 'ileben-landing'),
                             value: attributes.modalId,
                             onChange: (value) => setAttributes({ modalId: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Size', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
@@ -138,7 +138,7 @@
                             onChange: (value) => setAttributes({ staticBackdrop: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Backdrop', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Backdrop', 'ileben-landing'),
                             help: __('Backdrop behavior', 'ileben-landing'),
                             value: attributes.backdrop || 'true',
                             options: [
@@ -149,7 +149,7 @@
                             onChange: (value) => setAttributes({ backdrop: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Keyboard', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Keyboard', 'ileben-landing'),
                             help: __('Close modal with Escape key', 'ileben-landing'),
                             value: attributes.keyboard || 'true',
                             options: [
@@ -161,12 +161,12 @@
                     ),
                     createElement(PanelBody, { title: __('Trigger Button', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Button Text', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Button Text', 'ileben-landing'),
                             value: attributes.buttonText,
                             onChange: (value) => setAttributes({ buttonText: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Button Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Button Variant', 'ileben-landing'),
                             value: attributes.buttonVariant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ buttonVariant: value })

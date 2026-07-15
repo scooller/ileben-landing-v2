@@ -83,7 +83,7 @@
                             onChange: (value) => setAttributes({ flush: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Accordion ID', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Accordion ID', 'ileben-landing'),
                             value: attributes.accordionId,
                             onChange: (value) => setAttributes({ accordionId: value })
                         })

@@ -88,7 +88,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Carousel Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Carousel ID', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Carousel ID', 'ileben-landing'),
                             value: attributes.carouselId,
                             onChange: (value) => setAttributes({ carouselId: value })
                         }),
@@ -105,13 +105,13 @@
                             onChange: (value) => setAttributes({ indicators: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Auto Play', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Auto Play', 'ileben-landing'),
                             value: attributes.ride,
                             options: rideOptions,
                             onChange: (value) => setAttributes({ ride: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Interval (ms)', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Interval (ms)', 'ileben-landing'),
                             help: __('Time between slides in milliseconds', 'ileben-landing'),
                             value: attributes.interval,
                             type: 'number',

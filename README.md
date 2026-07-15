@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.18  
+**Versión:** 0.1.19  
 **Compatibilidad:** PHP 8.3+, WordPress 6.0+ (tested 6.4), ACF Pro
 
 ---
@@ -27,6 +27,8 @@ Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing
 - **ACF Pro** – Opciones de tema (JSON), colores, tipografía, sociales y selector claro/oscuro
 - **Build optimizado con Vite** – Bundling de assets con hashing automático y sourcemaps
 - **Variables Bootstrap vía ACF** – Personaliza colores, tipografía, bordes, sombras y focus-ring desde el admin
+- **Glassmorphism opcional** – Toggle ACF `enable_glass_class` activa efecto glass en header, blur-bar del footer, y todos los componentes Bootstrap (cards, modals, dropdowns, popovers, etc.) con soporte dark mode
+- **Imagen de fondo configurable** – Campos ACF separados para light/dark con control de size, position, repeat y attachment
 - **SCSS mínimo** – Solo `assets/scss/main.scss`; el theming se controla por CSS variables
 
 ---

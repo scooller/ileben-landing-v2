@@ -42,7 +42,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Configuración', 'ileben-landing'), initialOpen: true },
                         createElement(SelectControl, {
-                            label: __('Máximo de columnas', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Máximo de columnas', 'ileben-landing'),
                             value: attributes.cols,
                             options: [
                                 { label: '2', value: '2' },

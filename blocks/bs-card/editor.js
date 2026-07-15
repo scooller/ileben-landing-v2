@@ -202,12 +202,12 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Card Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Card Title', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Card Title', 'ileben-landing'),
                             value: attributes.title || '',
                             onChange: (value) => setAttributes({ title: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Card Subtitle', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Card Subtitle', 'ileben-landing'),
                             value: attributes.subtitle || '',
                             onChange: (value) => setAttributes({ subtitle: value })
                         }),
@@ -230,13 +230,13 @@
                             onChange: (value) => setAttributes({ imageFull: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Link URL', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Link URL', 'ileben-landing'),
                             help: __('URL a la que enlaza la tarjeta completa', 'ileben-landing'),
                             value: attributes.link || '',
                             onChange: (value) => setAttributes({ link: value })
                         }),
                         attributes.link && createElement(SelectControl, {
-                            label: __('Link Target', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Link Target', 'ileben-landing'),
                             value: attributes.target || '_self',
                             options: [
                                 { label: __('Same Window', 'ileben-landing'), value: '_self' },
@@ -245,7 +245,7 @@
                             onChange: (value) => setAttributes({ target: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Variant', 'ileben-landing'),
                             help: __('Estilo de la tarjeta', 'ileben-landing'),
                             value: attributes.variant || '',
                             options: [
@@ -268,7 +268,7 @@
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Text Alignment', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Text Alignment', 'ileben-landing'),
                             value: attributes.textAlign || '',
                             options: [
                                 { label: __('Default', 'ileben-landing'), value: '' },
@@ -281,19 +281,19 @@
                     ),
                     createElement(PanelBody, { title: __('CSS Classes', 'ileben-landing'), initialOpen: false },
                         createElement(TextControl, {
-                            label: __('Card Body Extra Classes', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Card Body Extra Classes', 'ileben-landing'),
                             help: __('Agregar clases al card-body', 'ileben-landing'),
                             value: attributes.bodyClasses || '',
                             onChange: (value) => setAttributes({ bodyClasses: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Title Extra Classes', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Title Extra Classes', 'ileben-landing'),
                             help: __('Agregar clases al card-title', 'ileben-landing'),
                             value: attributes.titleClasses || '',
                             onChange: (value) => setAttributes({ titleClasses: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Text Extra Classes', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Text Extra Classes', 'ileben-landing'),
                             help: __('Agregar clases al card-text', 'ileben-landing'),
                             value: attributes.textClasses || '',
                             onChange: (value) => setAttributes({ textClasses: value })
@@ -304,7 +304,7 @@
                         { title: __('Animation', 'ileben-landing'), initialOpen: false },
                         
                         createElement(SelectControl, {
-                            label: __('Animation Type', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Animation Type', 'ileben-landing'),
                             value: animationType,
                             options: animationTypes,
                             onChange: (value) => setAttributes({ animationType: value })
@@ -315,14 +315,14 @@
                             null,
 
                             createElement(SelectControl, {
-                                label: __('Trigger', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Trigger', 'ileben-landing'),
                                 value: attributes.animationTrigger || 'on-load',
                                 options: animationTriggers,
                                 onChange: (value) => setAttributes({ animationTrigger: value })
                             }),
 
                             createElement(RangeControl, {
-                                label: __('Duration (seconds)', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Duration (seconds)', 'ileben-landing'),
                                 value: attributes.animationDuration || 0.6,
                                 min: 0.1,
                                 max: 3,
@@ -331,7 +331,7 @@
                             }),
 
                             createElement(RangeControl, {
-                                label: __('Delay (seconds)', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Delay (seconds)', 'ileben-landing'),
                                 value: attributes.animationDelay || 0,
                                 min: 0,
                                 max: 5,
@@ -340,7 +340,7 @@
                             }),
 
                             createElement(SelectControl, {
-                                label: __('Easing', 'ileben-landing'),
+                                __next40pxDefaultSize: true, label: __('Easing', 'ileben-landing'),
                                 value: attributes.animationEase || 'power2.inOut',
                                 options: easeOptions,
                                 onChange: (value) => setAttributes({ animationEase: value })

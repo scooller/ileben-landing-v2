@@ -159,30 +159,30 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Dropdown Settings', 'ileben-landing') },
                         createElement(TextControl, {
-                            label: __('Button Text', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Button Text', 'ileben-landing'),
                             value: attributes.buttonText,
                             onChange: (value) => setAttributes({ buttonText: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Button Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Button Variant', 'ileben-landing'),
                             value: attributes.buttonVariant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ buttonVariant: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Size', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Direction', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Direction', 'ileben-landing'),
                             value: attributes.direction,
                             options: directionOptions,
                             onChange: (value) => setAttributes({ direction: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Menu Alignment', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Menu Alignment', 'ileben-landing'),
                             value: attributes.alignment,
                             options: alignmentOptions,
                             onChange: (value) => setAttributes({ alignment: value })
@@ -200,7 +200,7 @@
                             onChange: (value) => setAttributes({ dark: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Auto Close', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Auto Close', 'ileben-landing'),
                             help: __('Configure when dropdown closes', 'ileben-landing'),
                             value: attributes.autoClose,
                             options: autoCloseOptions,

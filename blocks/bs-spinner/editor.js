@@ -94,19 +94,19 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Spinner Settings', 'ileben-landing') },
                         createElement(SelectControl, {
-                            label: __('Type', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Type', 'ileben-landing'),
                             value: attributes.type,
                             options: typeOptions,
                             onChange: (value) => setAttributes({ type: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Color', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Color', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(SelectControl, {
-                            label: __('Size', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Size', 'ileben-landing'),
                             value: attributes.size,
                             options: sizeOptions,
                             onChange: (value) => setAttributes({ size: value })
@@ -124,7 +124,7 @@
                             onChange: (value) => setAttributes({ showLabel: value })
                         }),
                         attributes.showLabel && createElement(TextControl, {
-                            label: __('Label Text', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Label Text', 'ileben-landing'),
                             value: attributes.label,
                             onChange: (value) => setAttributes({ label: value }),
                             placeholder: __('Loading...', 'ileben-landing')

@@ -68,7 +68,7 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Configuración', 'ileben-landing'), initialOpen: true },
                         createElement(SelectControl, {
-                            label: __('Tipo de visualización', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Tipo de visualización', 'ileben-landing'),
                             value: displayType,
                             options: [
                                 { label: __('Radio Buttons', 'ileben-landing'), value: 'radio' },
@@ -78,7 +78,7 @@
                             help: __('Cómo mostrar las opciones de envío', 'ileben-landing')
                         }),
                         createElement(TextControl, {
-                            label: __('Título', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Título', 'ileben-landing'),
                             value: title,
                             onChange: (value) => setAttributes({ title: value }),
                             help: __('Título que aparece sobre los métodos de envío', 'ileben-landing')

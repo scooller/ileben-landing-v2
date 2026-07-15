@@ -32,6 +32,14 @@ export default defineConfig({
     port: 5173,
     strictPort: true
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        quietDeps: true,
+        silenceDeprecations: ['legacy-js-api', 'import', 'if-function', 'global-builtin', 'color-functions'],
+      }
+    }
+  },
   resolve: {
     alias: {
       '@scss': path.resolve(__dirname, 'assets/scss'),

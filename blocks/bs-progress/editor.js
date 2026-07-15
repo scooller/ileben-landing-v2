@@ -99,28 +99,28 @@
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Progress Settings', 'ileben-landing') },
                         createElement(RangeControl, {
-                            label: __('Current Value', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Current Value', 'ileben-landing'),
                             value: attributes.value,
                             onChange: (value) => setAttributes({ value: value }),
                             min: attributes.min,
                             max: attributes.max
                         }),
                         createElement(RangeControl, {
-                            label: __('Minimum Value', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Minimum Value', 'ileben-landing'),
                             value: attributes.min,
                             onChange: (value) => setAttributes({ min: value }),
                             min: 0,
                             max: attributes.max - 1
                         }),
                         createElement(RangeControl, {
-                            label: __('Maximum Value', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Maximum Value', 'ileben-landing'),
                             value: attributes.max,
                             onChange: (value) => setAttributes({ max: value }),
                             min: attributes.min + 1,
                             max: 1000
                         }),
                         createElement(SelectControl, {
-                            label: __('Color Variant', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Color Variant', 'ileben-landing'),
                             value: attributes.variant,
                             options: variantOptions,
                             onChange: (value) => setAttributes({ variant: value })
@@ -144,13 +144,13 @@
                             onChange: (value) => setAttributes({ showLabel: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Custom Label', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Custom Label', 'ileben-landing'),
                             help: __('Leave empty to show percentage', 'ileben-landing'),
                             value: attributes.label,
                             onChange: (value) => setAttributes({ label: value })
                         }),
                         createElement(TextControl, {
-                            label: __('Height', 'ileben-landing'),
+                            __next40pxDefaultSize: true, label: __('Height', 'ileben-landing'),
                             help: __('CSS height value (e.g., 20px, 1.5rem)', 'ileben-landing'),
                             value: attributes.height,
                             onChange: (value) => setAttributes({ height: value })
