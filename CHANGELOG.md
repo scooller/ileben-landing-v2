@@ -4,6 +4,8 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
 ## [Unreleased]
 
+## [0.1.19] - 2026-07-17
+
 ### Added
 - **Glass Class toggle (`enable_glass_class`)**: Nuevo campo ACF en tab Personalización. Cuando está activado (default), el header usa la clase `.glass` (blur + translúcido + gradiente `::after`) y se renderiza el blur-bar del footer. Cuando está desactivado, el header usa color plano sólido (`#site-header:not(.glass)`) y el blur-bar no se renderiza.
 - **Glassmorphism para componentes Bootstrap**: Cuando el toggle glass está activo, se añade `body.glass-active` y todos los componentes Bootstrap reciben efecto glass: `.card`, `.modal-content`, `.offcanvas`, `.dropdown-menu`, `.popover`, `.toast`, `.list-group-item`, `.accordion-item`, `.nav-tabs .nav-link`, `.input-group-text`. Incluye variantes dark mode.

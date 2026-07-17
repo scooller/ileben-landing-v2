@@ -51,3 +51,6 @@ QWEN.md
 .github/settings.json
 /dist/.vite
 /dist
+/.github
+/.qwen
+/.agents
