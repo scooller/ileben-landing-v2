@@ -32,11 +32,11 @@
             },
             parallaxStart: {
                 type: 'string',
-                default: 'top center'
+                default: 'top bottom'
             },
             parallaxEnd: {
                 type: 'string',
-                default: 'bottom center'
+                default: 'bottom top'
             },
             preview: {
                 type: 'boolean',

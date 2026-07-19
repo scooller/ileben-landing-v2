@@ -27,8 +27,8 @@ function bootstrap_theme_render_bs_parallax_block($attributes, $content, $block)
     $parallax_content = $to_bool($attributes['parallaxContent'] ?? null, false);
     $show_markers = $to_bool($attributes['showMarkers'] ?? null, false);
     $parallax_speed = $attributes['parallaxSpeed'] ?? 0.5;
-    $parallax_start = $attributes['parallaxStart'] ?? 'top center';
-    $parallax_end = $attributes['parallaxEnd'] ?? 'bottom center';
+    $parallax_start = $attributes['parallaxStart'] ?? 'top bottom';
+    $parallax_end = $attributes['parallaxEnd'] ?? 'bottom top';
     $bg_image_url = $attributes['bgImageUrl'] ?? '';
     $bg_video_url = $attributes['bgVideoUrl'] ?? '';
     $overlay_color = $attributes['overlayColor'] ?? '';
@@ -104,11 +104,11 @@ function bootstrap_theme_register_bs_parallax_block()
             ),
             'parallaxStart' => array(
                 'type' => 'string',
-                'default' => 'top center'
+                'default' => 'top bottom'
             ),
             'parallaxEnd' => array(
                 'type' => 'string',
-                'default' => 'bottom center'
+                'default' => 'bottom top'
             ),
             'className' => array(
                 'type' => 'string',
