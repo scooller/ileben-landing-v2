@@ -12,8 +12,12 @@ a {
   text-decoration: none;
 }
 
-.dvh-100 {
-  height: 100dvh;
+/* dvh (10,15,20,25,30...100) */
+$dvh: 10;
+@for $i from 1 through 10 {
+  .dvh-#{$i * $dvh} {
+    height: #{$i * $dvh}dvh;
+  }
 }
 
 .wp-block-image:not(.img-fit) img {
