@@ -615,10 +615,6 @@
                         style: Object.assign({}, blockProps.style || {}, buildStyle())
                     }),
                     createElement(InnerBlocks, {
-                        allowedBlocks: [
-                            'bootstrap-theme/bs-row',
-                            'bootstrap-theme/bs-parallax'
-                        ],
                         placeholder: __('Add content to container...', 'ileben-landing')
                     })
                 )

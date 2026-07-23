@@ -34,6 +34,9 @@ function bootstrap_theme_render_bs_parallax_block($attributes, $content, $block)
     $overlay_color = $attributes['overlayColor'] ?? '';
     $overlay_opacity = isset($attributes['overlayOpacity']) ? floatval($attributes['overlayOpacity']) : 0;
     $min_height = $attributes['height'] ?? 25;
+    $enable_blur = $to_bool($attributes['enableBlur'] ?? null, true);
+    $bg_size = $attributes['bgSize'] ?? 'cover';
+    $bg_position = $attributes['bgPosition'] ?? 'center center';
 
     // Build parallax data attributes
     $parallax_attrs = '';
@@ -43,6 +46,7 @@ function bootstrap_theme_render_bs_parallax_block($attributes, $content, $block)
             $parallax_attrs .= ' data-parallax-markers="true"';
         }
     }
+    $parallax_attrs .= $enable_blur ? ' data-parallax-blur="true"' : ' data-parallax-blur="false"';
 
     // Get custom classes
     $classes = array('bs-parallax-container');
@@ -56,6 +60,9 @@ function bootstrap_theme_render_bs_parallax_block($attributes, $content, $block)
     // Build inline height style
     $container_style = 'height:' . esc_attr($min_height) . 'dvh;';
 
+    // Background image inline style
+    $bg_image_style = 'background-image:url(\'' . esc_url($bg_image_url) . '\');background-size:' . esc_attr($bg_size) . ';background-position:' . esc_attr($bg_position) . ';background-repeat:no-repeat;';
+
     ob_start();
 ?>
     <div class="<?php echo esc_attr(implode(' ', $classes)); ?>" style="<?php echo esc_attr($container_style); ?>" <?php echo $parallax_attrs; ?>>
@@ -66,7 +73,7 @@ function bootstrap_theme_render_bs_parallax_block($attributes, $content, $block)
                         <source src="<?php echo esc_url($bg_video_url); ?>" type="video/mp4">
                     </video>
                 <?php elseif ($bg_image_url) : ?>
-                    <div class="bs-parallax-image" style="background-image:url('<?php echo esc_url($bg_image_url); ?>');"></div>
+                    <div class="bs-parallax-image<?php echo $enable_blur ? ' has-blur' : ''; ?>" style="<?php echo esc_attr($bg_image_style); ?>"></div>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
@@ -141,6 +148,18 @@ function bootstrap_theme_register_bs_parallax_block()
             'showMarkers' => array(
                 'type' => 'boolean',
                 'default' => false
+            ),
+            'enableBlur' => array(
+                'type' => 'boolean',
+                'default' => true
+            ),
+            'bgSize' => array(
+                'type' => 'string',
+                'default' => 'cover'
+            ),
+            'bgPosition' => array(
+                'type' => 'string',
+                'default' => 'center center'
             )
         )
     ));

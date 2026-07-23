@@ -6,7 +6,7 @@
     const { __ } = wp.i18n;
     const { registerBlockType } = wp.blocks;
     const { InspectorControls, InnerBlocks, useBlockProps, MediaUpload } = wp.blockEditor;
-    const { PanelBody, RangeControl, ToggleControl, TextControl } = wp.components;
+    const { PanelBody, RangeControl, ToggleControl, TextControl, SelectControl } = wp.components;
     const { createElement, Fragment } = wp.element;
 
     registerBlockType('bootstrap-theme/bs-parallax', {
@@ -69,6 +69,18 @@
             showMarkers: {
                 type: 'boolean',
                 default: false
+            },
+            enableBlur: {
+                type: 'boolean',
+                default: true
+            },
+            bgSize: {
+                type: 'string',
+                default: 'cover'
+            },
+            bgPosition: {
+                type: 'string',
+                default: 'center center'
             }
         },
         example: {
@@ -180,6 +192,43 @@
                             help: __('URL de video MP4. Sobrescribe la imagen si ambos existen.', 'ileben-landing'),
                             value: attributes.bgVideoUrl,
                             onChange: (value) => setAttributes({ bgVideoUrl: value })
+                        }),
+                        attributes.bgImageUrl && createElement(SelectControl, {
+                            __next40pxDefaultSize: true, label: __('Background Size', 'ileben-landing'),
+                            value: attributes.bgSize || 'cover',
+                            options: [
+                                { label: __('Cover', 'ileben-landing'), value: 'cover' },
+                                { label: __('Contain', 'ileben-landing'), value: 'contain' },
+                                { label: __('Auto', 'ileben-landing'), value: 'auto' },
+                                { label: __('100% 100%', 'ileben-landing'), value: '100% 100%' }
+                            ],
+                            onChange: (value) => setAttributes({ bgSize: value })
+                        }),
+                        attributes.bgImageUrl && createElement(SelectControl, {
+                            __next40pxDefaultSize: true, label: __('Background Position', 'ileben-landing'),
+                            value: attributes.bgPosition || 'center center',
+                            options: [
+                                { label: __('Center Center', 'ileben-landing'), value: 'center center' },
+                                { label: __('Center Top', 'ileben-landing'), value: 'center top' },
+                                { label: __('Center Bottom', 'ileben-landing'), value: 'center bottom' },
+                                { label: __('Left Top', 'ileben-landing'), value: 'left top' },
+                                { label: __('Left Center', 'ileben-landing'), value: 'left center' },
+                                { label: __('Left Bottom', 'ileben-landing'), value: 'left bottom' },
+                                { label: __('Right Top', 'ileben-landing'), value: 'right top' },
+                                { label: __('Right Center', 'ileben-landing'), value: 'right center' },
+                                { label: __('Right Bottom', 'ileben-landing'), value: 'right bottom' }
+                            ],
+                            onChange: (value) => setAttributes({ bgPosition: value })
+                        })
+                    ),
+
+                    createElement(PanelBody,
+                        { title: __('Blur Effect', 'ileben-landing'), initialOpen: false },
+                        createElement(ToggleControl, {
+                            label: __('Enable Blur', 'ileben-landing'),
+                            help: __('Aplica un efecto blur al background del parallax', 'ileben-landing'),
+                            checked: attributes.enableBlur,
+                            onChange: (value) => setAttributes({ enableBlur: value })
                         })
                     ),
 
@@ -206,6 +255,7 @@
                     Object.assign({}, blockProps, {
                         'data-parallax': attributes.enableParallax ? 'true' : 'false',
                         'data-parallax-markers': attributes.showMarkers ? 'true' : 'false',
+                        'data-parallax-blur': attributes.enableBlur ? 'true' : 'false',
                         className: ['bs-parallax-container', blockProps.className, attributes.className].filter(Boolean).join(' '),
                         style: {
                             ...blockProps.style,
@@ -228,8 +278,15 @@
                             }, createElement('source', { src: attributes.bgVideoUrl }))
                         : attributes.bgImageUrl ?
                             createElement('div', {
-                                className: 'bs-parallax-image',
-                                style: { width: '100%', height: '100%', backgroundImage: 'url(' + attributes.bgImageUrl + ')', backgroundSize: 'cover', backgroundPosition: 'center' }
+                                className: 'bs-parallax-image' + (attributes.enableBlur ? ' has-blur' : ''),
+                                style: {
+                                    width: '100%',
+                                    height: '100%',
+                                    backgroundImage: 'url(' + attributes.bgImageUrl + ')',
+                                    backgroundSize: attributes.bgSize || 'cover',
+                                    backgroundPosition: attributes.bgPosition || 'center center',
+                                    backgroundRepeat: 'no-repeat'
+                                }
                             })
                         :
                             createElement('div', {

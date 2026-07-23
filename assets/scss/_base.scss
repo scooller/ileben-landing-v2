@@ -13,10 +13,11 @@ a {
 }
 
 /* dvh (10,15,20,25,30...100) */
-$dvh: 10;
-@for $i from 1 through 10 {
-  .dvh-#{$i * $dvh} {
-    height: #{$i * $dvh}dvh;
+@for $i from 10 through 100 {
+  @if $i % 5 == 0 {
+    .dvh-#{$i} {
+      height: #{$i}dvh;
+    }
   }
 }
 

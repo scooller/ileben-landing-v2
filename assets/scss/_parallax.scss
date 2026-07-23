@@ -31,7 +31,15 @@
     height: 100%;
     object-fit: contain;
     display: block;
-    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Blur effect — applies to the background image layer */
+.bs-parallax-image.has-blur {
+    filter: blur(8px);
+    transform: scale(1.1); /* prevents edge gaps from blur */
 }
 
 /* Overlay layer */

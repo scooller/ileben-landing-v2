@@ -107,21 +107,24 @@ function initParallax() {
             }
         );
 
-        // Blur: blurry → sharp (centered) → blurry
-        const blurPx = 8;
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: element, start: 'top bottom', end: 'bottom top',
-                scrub: true, invalidateOnRefresh: true
-            }
-        })
-        .fromTo(bgElement,
-            { filter: `blur(${blurPx}px)` },
-            { filter: 'blur(0px)', duration: 0.5, ease: 'none' }
-        )
-        .to(bgElement,
-            { filter: `blur(${blurPx}px)`, duration: 0.5, ease: 'none' }
-        );
+        // Blur: blurry → sharp (centered) → blurry (only if enabled)
+        const enableBlur = element.getAttribute('data-parallax-blur') !== 'false';
+        if (enableBlur) {
+            const blurPx = 8;
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: element, start: 'top bottom', end: 'bottom top',
+                    scrub: true, invalidateOnRefresh: true
+                }
+            })
+            .fromTo(bgElement,
+                { filter: `blur(${blurPx}px)` },
+                { filter: 'blur(0px)', duration: 0.5, ease: 'none' }
+            )
+            .to(bgElement,
+                { filter: `blur(${blurPx}px)`, duration: 0.5, ease: 'none' }
+            );
+        }
 
         // Content parallax (layered depth)
         const contentElement = element.querySelector('[data-parallax-content-move="true"]');
