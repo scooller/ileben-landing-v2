@@ -4,7 +4,7 @@ Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing
 
 **Autor:** [ileben.cl](https://ileben.cl)  
 **Versión:** 0.1.19  
-**Compatibilidad:** PHP 8.3+, WordPress 6.0+ (tested 6.4), ACF Pro
+**Compatibilidad:** PHP 8.3+, WordPress 7.0+ (tested 7.1.4), ACF Pro
 
 ---
 
@@ -108,17 +108,20 @@ npm run dev
 
 1. **Activa el tema** desde Apariencia → Temas
 2. **Logo del sitio:**
-  - Personalizar → Identidad del sitio → Logo
-  - El tema soporta custom-logo y lo renderiza fluido
-3. **Asigna un menú:**
+
+- Personalizar → Identidad del sitio → Logo
+- El tema soporta custom-logo y lo renderiza fluido
+
+1. **Asigna un menú:**
    - Ve a Apariencia → Menús
    - Crea o edita un menú
    - Asígnalo a "Primary Menu"
-4. **Opciones del tema (ACF):**
-  - Campos gestionados vía JSON en acf-json/ (sin redundancia en PHP)
-  - Branding: Google Font, colores primario/secundario
-  - Social: Facebook, Instagram, LinkedIn, WhatsApp (+56)
-  - Selector de tema: mostrar/ocultar switcher y tema por defecto (auto/claro/oscuro)
+2. **Opciones del tema (ACF):**
+
+- Campos gestionados vía JSON en acf-json/ (sin redundancia en PHP)
+- Branding: Google Font, colores primario/secundario
+- Social: Facebook, Instagram, LinkedIn, WhatsApp (+56)
+- Selector de tema: mostrar/ocultar switcher y tema por defecto (auto/claro/oscuro)
 
 ---
 
@@ -133,15 +136,19 @@ El tema incluye un **GitHub Theme Updater** que permite actualizar el theme dire
 Si acabas de publicar un release y no aparece la actualización, usa estas URLs:
 
 **Ver estado del updater:**
+
 ```
 https://tu-sitio.com/wp-admin/themes.php?ileben_debug_updater=1
 ```
+
 Muestra: versión actual, última versión en GitHub, si hay actualización disponible, estado del caché, etc.
 
 **Forzar verificación inmediata:**
+
 ```
 https://tu-sitio.com/wp-admin/themes.php?ileben_force_update=1
 ```
+
 Limpia el caché y fuerza a WordPress a verificar actualizaciones inmediatamente.
 
 ### 📋 Cómo Funciona
@@ -163,6 +170,7 @@ Version: X.Y.Z
 ```
 
 En `style.css`:
+
 ```css
 /*
 Theme Name: ileben-landing-v2
@@ -172,6 +180,7 @@ Version: X.Y.Z
 ```
 
 En `functions.php`:
+
 ```php
 define('ILEBEN_THEME_VERSION', 'X.Y.Z');
 ```
@@ -190,13 +199,14 @@ git push origin main
 
 #### Paso 3: Crear Release en GitHub
 
-1. Ve a https://github.com/scooller/ileben-landing-v2/releases
+1. Ve a <https://github.com/scooller/ileben-landing-v2/releases>
 2. Clic en **"Create a new release"**
 3. Completa los campos:
-  - **Tag version:** `vX.Y.Z` (IMPORTANTE: debe coincidir con Version en style.css)
-  - **Release title:** `Version X.Y.Z`
-   - **Description:** (opcional) Describe los cambios realizados
-   - **Publish release:** Clic en botón
+
+- **Tag version:** `vX.Y.Z` (IMPORTANTE: debe coincidir con Version en style.css)
+- **Release title:** `Version X.Y.Z`
+- **Description:** (opcional) Describe los cambios realizados
+- **Publish release:** Clic en botón
 
 #### Paso 4: Verificar en WordPress
 
@@ -268,6 +278,7 @@ Si el repositorio es privado:
    - Crea un token con permisos `repo`
 
 2. En `inc/github-updater.php`, agrega tu token:
+
 ```php
 private $github_token = 'ghp_xxxxxxxxxxxxxxxxxxxxx';
 ```
@@ -284,10 +295,12 @@ private $github_token = 'ghp_xxxxxxxxxxxxxxxxxxxxx';
 ### 🚀 Tips Adicionales
 
 **Para acelerar la verificación durante desarrollo:**
+
 - Elimina el transient en WordPress: `Plugins → Database → wp_transients` (busca `ileben_theme_update_check`)
 - O accede a Apariencia → Temas y WordPress verificará inmediatamente
 
 **Cambios sin publicar Release:**
+
 - Los cambios en `main` NO generan actualización hasta que crees un Release
 - Esto te permite mergear código sin afectar usuarios en producción
 
@@ -314,17 +327,20 @@ npm run build:back-css
 ## 📦 Dependencias principales
 
 ### Dependencies (npm / Vite bundle)
+
 - **bootstrap** (^5.3) – Framework CSS responsive + **JS bundle** (modal, carousel, tabs, etc.)
 - **gsap** (^3.14) – Animaciones de alto rendimiento
 - **swiper** (^12.0) – Carouseles y sliders modernos
 - **@fancyapps/ui** (^6.1) – Galerías lightbox con Fancybox
 
 ### CDN (versiones centralizadas en `functions.php`)
+
 - **Font Awesome** 7.2.0 (`ILEBEN_FA_VERSION`) – Íconos
 - **Bootstrap CSS** 5.3.3 (`ILEBEN_BS_VERSION`) – Solo para editor Gutenberg
 - **Select2** 4.1.0-rc.0 (`ILEBEN_SELECT2_VERSION`) – Filtros de plantas showcase
 
 ### DevDependencies
+
 - **vite** (^5.4.8) – Bundler moderno ultra-rápido
 - **sass** (^1.79.4) – Preprocesador SCSS
 - **autoprefixer** (^10.4.20) – Prefijos CSS automáticos
@@ -339,6 +355,7 @@ npm run build:back-css
 El tema expone las variables de Bootstrap 5.3 como CSS variables en `:root`, configurables desde el admin (ACF → Opciones de tema → "Colores y Extras BS"). Esto evita modificar Sass y permite theming instantáneo.
 
 Categorías disponibles:
+
 - Colores Base: `--bs-blue`, `--bs-indigo`, `--bs-purple`, `--bs-pink`, `--bs-red`, `--bs-orange`, `--bs-yellow`, `--bs-green`, `--bs-teal`, `--bs-cyan`, `--bs-gray`, `--bs-gray-dark`, `--bs-black`, `--bs-white`
 - Escala de grises: `--bs-gray-100` … `--bs-gray-900`
 - Temáticos: `--bs-primary`, `--bs-secondary`, `--bs-success`, `--bs-info`, `--bs-warning`, `--bs-danger`, `--bs-light`, `--bs-dark`
@@ -368,6 +385,7 @@ Fondo → Tipo: selecciona `None`, `Solid`, `Gradient` o `Image`.
 - `Image`: selector de imagen y ajustes `Size` (cover/contain/auto), `Position`, `Repeat`, `Attachment`.
 
 Notas:
+
 - El bloque renderiza estilos en línea seguros para el fondo.
 - Al activar Swiper, el JS normaliza la estructura interna y aplica configuración combinando globales + overrides del bloque.
 
@@ -392,16 +410,19 @@ Usa los helpers directamente en el editor clásico o bloques de shortcode.
 ```
 
 Notas:
+
 - `id` debe ser el ID de adjunto de la imagen en WordPress.
 - Los atributos `class`, `alt`, `width`, `height`, `loading` son opcionales.
 - `ratio` se mapea a utilidades Bootstrap (ej: 16x9, 4x3, 1x1).
 
 Configura la fuente en ACF Opciones con el valor por defecto:
+
 ```
 Open Sans:wght@400;600;700
 ```
 
 O cualquier otra familia de Google Fonts con sus pesos:
+
 ```
 Poppins:300,400,500,600,700
 Merriweather:400,700
@@ -451,16 +472,19 @@ Se renderiza automáticamente en `front-page.php`. El loader se oculta cuando la
 El tema incluye una amplia colección de bloques personalizados (basados en Bootstrap 5) ubicados en la carpeta `blocks/`. Estos bloques permiten construir interfaces complejas directamente desde el editor de WordPress.
 
 ### Layout & Contenedores
+
 - **bs-container**: Contenedor principal (soporta fondo, Swiper, etc.)
 - **bs-row**: Fila Bootstrap
 - **bs-column**: Columna Bootstrap
 
 ### Navegación
+
 - **bs-navbar**, **bs-menu**
 - **bs-breadcrumb**, **bs-breadcrumb-item**
 - **bs-pagination**, **bs-pagination-item**
 
 ### Componentes Básicos
+
 - **bs-button**, **bs-button-group**, **bs-close-button**
 - **bs-card**
 - **bs-badge**
@@ -472,6 +496,7 @@ El tema incluye una amplia colección de bloques personalizados (basados en Boot
 - **bs-list-group**, **bs-list-group-item**
 
 ### Interacción & Modales
+
 - **bs-accordion**, **bs-accordion-item**
 - **bs-collapse**
 - **bs-modal**, **bs-offcanvas**
@@ -481,6 +506,7 @@ El tema incluye una amplia colección de bloques personalizados (basados en Boot
 - **bs-scrollspy**
 
 ### Media & Sliders
+
 - **bs-carousel**, **bs-carousel-item**
 - **bs-gallery**
 - **bs-iframe**
@@ -489,12 +515,14 @@ El tema incluye una amplia colección de bloques personalizados (basados en Boot
 - **bs-placeholders**
 
 ### Componentes Especializados
+
 - **bs-plantas-slider**: Slider avanzado con filtros en cliente (dormitorios/baños), Fancybox, navegación y paginación
 - **bs-plantas-showcase**: Showcase de plantas inmobiliarias
 - **bs-asesores**: Listado de asesores/equipo
 - **bs-steps**, **bs-step-item**: Componente de pasos/progreso
 
 ### Integraciones (CF7 & WooCommerce)
+
 - **bs-cf7**: Renderiza formularios de Contact Form 7
 - **bs-wc-products**: Listado de productos WooCommerce
 - **bs-cart**: Componente de carrito
@@ -509,12 +537,14 @@ El tema incluye un sistema completo de animaciones GSAP integrado en los bloques
 ### Bloques con Soporte de Animaciones
 
 #### ✅ **bs-card** – Tarjetas animadas
+
 - Tipos de animación: Fade, Slide, Scale, Rotate, Bounce, Elastic, Flip, Pulse
 - Triggers: On Load, On Scroll, On Hover, On Click
 - Configuración: Duration, Delay, Easing, Distance, Rotation, Scale, Parallax Speed
 - Ideal para: Cards en galería, portafolio, listados de productos
 
-#### 📦 Próximos (Usar template en `blocks/animation-controls.js`):
+#### 📦 Próximos (Usar template en `blocks/animation-controls.js`)
+
 - **bs-container** – Contenedores fluidos
 - **bs-column** – Columnas Bootstrap
 - **bs-list-group** – Listas con items
@@ -579,6 +609,7 @@ Distance: 40px
 Todos los bloques deben usar `ob_start()` / `ob_get_clean()` en sus funciones `render_callback`. **No usar concatenación de strings** (`$output .= '<...'`).
 
 **✅ Correcto:**
+
 ```php
 function bootstrap_theme_render_bs_ejemplo_block( $attributes, $content ) {
     $class = 'ejemplo';
@@ -599,6 +630,7 @@ function bootstrap_theme_render_bs_ejemplo_block( $attributes, $content ) {
 ```
 
 **❌ Incorrecto:**
+
 ```php
 function bootstrap_theme_render_bs_ejemplo_block( $attributes, $content ) {
     $output  = '<div class="ejemplo">';
@@ -611,7 +643,7 @@ function bootstrap_theme_render_bs_ejemplo_block( $attributes, $content ) {
 ### Reglas de Escaping
 
 | Contexto | Función |
-|---|---|
+| --- | --- |
 | Atributo HTML (texto plano) | `esc_attr()` |
 | Contenido HTML visible | `esc_html()` |
 | URL en `href`/`src` | `esc_url()` |
@@ -644,22 +676,27 @@ return ob_get_clean();
 ---
 
 ## ⚡ Optimizaciones de rendimiento
+
 - **Preloader visible** – Mejora la percepción de velocidad
 - **Lazy loading nativo** – `loading="lazy"` en imágenes + IntersectionObserver fallback
 - **Bundle optimizado** – Vite genera chunks con hashing automático
 - **CSS variables** – Theming instantáneo sin recompilar Sass
 - **Animaciones GSAP** – GPU-aceleradas para mejor rendimiento
+
 ---
 
 ## 🔗 ACF Pro Integration
+
  Loader (preloader del sitio):
 
 Campos gestionados vía JSON en `acf-json/` y consumidos con `get_field('...', 'option')`.
 
 ### Group: Opciones de Tema
+
 ---
 
 El tema está listo para:
+
 - Extender con nuevas secciones
 - Integrar con WooCommerce (con actualizaciones)
 - Agregar más campos ACF según necesidad

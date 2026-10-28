@@ -29,11 +29,12 @@ function ileben_cf7_step_break_tag($tag)
 {
     $label = '';
 
-    if (is_object($tag) && isset($tag->values[0])) {
-        $label = $tag->values[0];
-    } elseif (is_array($tag) && isset($tag['values'][0])) {
-        $label = $tag['values'][0];
+    if (is_object($tag)) {
+        $label = !empty($tag->values[0]) ? $tag->values[0] : (!empty($tag->name) ? $tag->name : '');
+    } elseif (is_array($tag)) {
+        $label = !empty($tag['values'][0]) ? $tag['values'][0] : (!empty($tag['name']) ? $tag['name'] : '');
     }
+    $label = trim($label, " \"'");
 
     $label = esc_attr($label);
 
