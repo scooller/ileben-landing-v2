@@ -4,31 +4,41 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
 ## [Unreleased]
 
+### Added
+
+- **Script de empaquetado `build-zip.bat`**: Script batch para Windows que compila los assets con Vite/Sass (`npm run build:all`) y empaqueta el tema en un archivo `.zip` (`ileben-landing-v2.zip` y copia versionada) listo para producción con únicamente los archivos y módulos esenciales de WordPress (excluyendo `node_modules`, `.git`, `.agents`, `.vscode`, `graphify-out`, código fuente SCSS/JS sin compilar, y archivos dev).
+- **Comando npm `npm run zip`**: Añadido a `package.json` para disparar el empaquetado directamente desde la terminal.
+
 ## [0.1.19] - 2026-07-17
 
 ### Added
+
 - **Glass Class toggle (`enable_glass_class`)**: Nuevo campo ACF en tab Personalización. Cuando está activado (default), el header usa la clase `.glass` (blur + translúcido + gradiente `::after`) y se renderiza el blur-bar del footer. Cuando está desactivado, el header usa color plano sólido (`#site-header:not(.glass)`) y el blur-bar no se renderiza.
 - **Glassmorphism para componentes Bootstrap**: Cuando el toggle glass está activo, se añade `body.glass-active` y todos los componentes Bootstrap reciben efecto glass: `.card`, `.modal-content`, `.offcanvas`, `.dropdown-menu`, `.popover`, `.toast`, `.list-group-item`, `.accordion-item`, `.nav-tabs .nav-link`, `.input-group-text`. Incluye variantes dark mode.
 - **Imagen de fondo del body (light/dark)**: Nuevos campos ACF en tab Personalización — `body_bg_image` (modo light) y `body_bg_image_dark` (modo dark) — con 4 selects compartidos para configurar `background-size`, `background-position`, `background-repeat` y `background-attachment`. El CSS inline se genera solo si hay imagen configurada.
 - **Showcase de Parallax actualizado**: 4 variantes demostrando todas las opciones del bloque `bs-parallax`: básico (speed 0.3), content move (speed 0.6), rápido (speed 0.8), y sin parallax (disabled). Todas con overlay, imágenes de fondo y textos blancos.
 
 ### Changed
+
 - **Header condicional**: `header.php` ahora genera la clase `glass` dinámicamente según el ACF toggle, en vez de estar hardcoded.
 - **Footer condicional**: El `blur-bar` del footer se renderiza solo cuando el toggle glass está activo.
 - **SCSS `_components.scss`**: Gradiente `::after` y blur móvil del header ahora usan `&.glass` en vez de aplicarse siempre. Eliminado `backdrop-filter` directo de `#site-header` (ahora viene de la clase `.glass`).
 
 ### Fixed
+
 - **Tooltip `data-bs-html`**: El atributo `data-bs-html` usaba el booleano PHP `true` que se imprimía como `1`, causando `TypeError: Option "html" provided type "number" but expected type "boolean"` que rompía toda la cadena de inicialización de componentes Bootstrap.
 - **Dropdown no cerraba**: Triple inicialización de Bootstrap Dropdown (bundle completo + módulos individuales + `new Dropdown()`) causaba handlers duplicados que impedían cerrar el dropdown al hacer click de nuevo. Solucionado eliminando el `bootstrap.bundle.min.js` y usando solo módulos individuales de `bootstrap/js/dist/*` con `getOrCreateInstance`.
 - **Toast no se inicializaba**: El bloque toast no estaba incluido en la inicialización diferida de componentes Bootstrap en `main.js`.
 
 ### Changed
+
 - **Arquitectura Bootstrap JS refactorizada**: Eliminado `import 'bootstrap/dist/js/bootstrap.bundle.min.js'` (bundle completo). Ahora se importan módulos individuales (`bootstrap/js/dist/dropdown`, `collapse`, `tab`, `carousel`, `modal`, `offcanvas`, `scrollspy`) en el top-level de `main.js`, permitiendo que el data-api de Bootstrap registre los event listeners una sola vez. Tooltip, popover y toast se inicializan manualmente con lazy-load (solo cuando existen en la página).
 - **`nav.js`**: Cambiado `new Dropdown()` / `new Collapse()` → `getOrCreateInstance()` para evitar crear instancias duplicadas sobre elementos que ya tienen data-api.
 - **`main.js` deferred init**: Eliminada la inicialización manual redundante de dropdown/collapse/tab/carousel (ya funcionan via data-api). Añadido `.catch()` al `Promise.all()` para que un error de un componente no mate toda la cadena.
 - **Tamaño del bundle JS**: Reducido de 577KB a 514KB (−63KB, −11%) al eliminar el bundle duplicado.
 
 ### Added
+
 - **`bs-popover` mejorado** con atributos de Bootstrap 5.3: `html` (contenido HTML), `customClass` (`data-bs-custom-class`), y `dismissable` (dismiss-on-next-click con `trigger=focus`).
 - **`bs-dropdown` mejorado** con nuevas direcciones centradas: `dropdown-center` y `dropup-center` (BS 5.3).
 - **Inicialización automática de Popover y Tooltip** en `main.js`: cualquier elemento con `data-bs-toggle="popover"` o `data-bs-toggle="tooltip"` se inicializa al cargar la página (lazy-loaded).
@@ -45,6 +55,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 - Animación de pulso para `bs-masterplan-hotspot` con 5 opciones: none, scale, ping, bounce, glow.
 
 ### Changed
+
 - **Versiones centralizadas:** Todas las librerías CDN ahora usan constantes únicas en `functions.php`:
   - Font Awesome `7.2.0` (`ILEBEN_FA_VERSION`) — migrado de cdnjs a jsdelivr (corrige errores WOFF2/OTS en Chrome).
   - Bootstrap `5.3.3` (`ILEBEN_BS_VERSION`)
@@ -71,11 +82,12 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.16] - 2026-07-07
 
 ### ✨ Mejoras y Nuevas Funciones
+
 - **Generador de Componentes (Showcase):**
   - Arreglados los componentes Modales y Offcanvas para su correcto funcionamiento.
   - Agregados ejemplos de todos los tipos de Barras de Progreso (Progress bars).
   - Agregados ejemplos del sistema de grillas (Rows y Columns) similar a la documentación oficial de Bootstrap.
-- **bs-masterplan-hotspot:** 
+- **bs-masterplan-hotspot:**
   - Nuevo estado "-sin estado-" para limpiar estados asignados.
   - Nueva opción para personalizar el ícono (FontAwesome) de cada punto (hotspot) desde el inspector.
   - Animación sutil de "pulso" agregada con GSAP a los botones de ubicación.
@@ -84,7 +96,8 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.15] - 2026-07-07
 
 ### ✨ Mejoras y Nuevas Funciones
-- **bs-masterplan-hotspot:** 
+
+- **bs-masterplan-hotspot:**
   - Soporte completo para tooltips interactivos con contenido.
   - Se puede asignar una imagen a mostrar en el admin/frontend.
   - El tooltip ahora cuenta con un botón de cierre en la cabecera.
@@ -102,6 +115,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.14] - 2026-03-16
 
 ### ⚡ Carga de Assets
+
 - **Resolución por manifest de Vite:** `inc/assets.php` ahora resuelve CSS/JS desde `dist/.vite/manifest.json` para una carga determinista de archivos hasheados.
 - **Helpers nuevos:** se agregan `ileben_get_vite_manifest()` y `ileben_find_manifest_asset()` para leer y consultar el manifest con cache por request.
 - **Compatibilidad mantenida:** `ileben_find_asset()` queda como fallback si no existe manifest o falta una entrada.
@@ -109,6 +123,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.12] - 2026-03-11
 
 ### 🎬 Animaciones y ScrollTrigger
+
 - **Scroll Trigger Parámetros Editables:** Agregados controles en editor Gutenberg para ajustar `start`, `end` y debug markers de ScrollTrigger.
   - Nuevos campos en todos los bloques con soporte de animaciones (bs-column, bs-asesores, bs-card, bs-cf7, bs-fa-icon, bs-container, bs-list-group-item, bs-step-item, bs-divider, bs-plantas-slider).
   - Defaults: `start: 'top 70%'`, `end: 'top 10%'`, `markers: false`.
@@ -130,6 +145,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
   - Limpieza adecuada de timers en cleanup/resize handlers.
 
 ### 🔧 Cambios Técnicos
+
 - **inc/animations.php:** Condicional de enqueue de GSAP/ScrollTrigger basada en `enable_gsap` ACF.
 - **assets/js/main.js:** Gating de import de parallax y GSAP lazy-loading por configuración global.
 - **assets/js/animations.js:** Métodos `refreshScrollTrigger()` y `scheduleScrollTriggerRefresh()` para refrescos diferidos.
@@ -137,6 +153,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.11] - 2026-02-11
 
 ### 🔄 Sistema de Actualizaciones
+
 - **GitHub Theme Updater:** Correcciones para instalaciones desde zipball.
   - Resolucion de estructura de carpetas para `style.css`.
   - Renombrado del tema al slug correcto despues de instalar.
@@ -148,6 +165,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.10] - 2026-01-28
 
 ### 🎨 Bloques de Gutenberg
+
 - **Revisión de sincronización:** Auditoría completa de sincronización entre `block.php` y `editor.js`.
   - bs-button, bs-card, bs-column, bs-accordion, bs-carousel, bs-alert, bs-parallax, bs-gallery, bs-iframe: ✅ Sincronizados correctamente.
   - **bs-container:** Agregados controles faltantes (breakpoint, backgroundColor, textColor, padding, margin).
@@ -168,12 +186,14 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
   - Compatibilidad total con bootstrap carousel de HTML.
 
 ### 🔧 Cambios
+
 - **Validación de bloques:** Corrección de discrepancias en validación (itemClasses, minHeight, carousel-caption).
 - **Sincronización uniforme:** Todos los bloques principales ahora tienen sincronización verificada entre PHP y JS.
 
 ## [0.1.10] - 2026-01-14
 
 ### 🔄 Sistema de Actualizaciones
+
 - **GitHub Theme Updater:** Nuevo sistema de actualizaciones automáticas desde GitHub Releases.
   - Implementada clase `Ileben_GitHub_Theme_Updater` en `inc/github-updater.php`.
   - WordPress detecta automáticamente nuevas versiones en GitHub Releases.
@@ -183,6 +203,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
   - Versionado semántico sincronizado con tags de Git (v0.1.10, etc.).
 
 ### 🛡️ Seguridad y Robustez
+
 - **ACF Pro Dependency Check:** Sistema robusto de verificación de ACF Pro.
   - Aviso prominente en admin si ACF no está instalado.
   - Aviso de advertencia si solo está ACF gratuito (se requiere PRO).
@@ -196,14 +217,17 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
   - `inc/setup.php`: Función helper `$get_color()` con fallbacks seguros.
 
 ### 🔧 Cambios
+
 - **Version estática:** Cambio de `ILEBEN_THEME_VERSION` de random a '0.1.9' para versionado correcto.
 - **Actualización de versión:** Sincronización entre `style.css` y `functions.php`.
 - **Documentación extendida:** README.md incluye sección completa sobre flujo de actualizaciones.
 
 ### 📚 Archivos nuevos
+
 - `inc/github-updater.php`: Clase principal para verificar y aplicar actualizaciones desde GitHub.
 
 ### 📚 Archivos modificados
+
 - `functions.php`: Incluido github-updater.php, versión estática.
 - `header.php`: Protegida llamada a the_field().
 - `footer.php`: Protegidas llamadas a get_field() y the_field().
@@ -213,6 +237,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 - `README.md`: Sección completa sobre GitHub Theme Updater y flujo de deployment.
 
 ### 📋 Próximas Mejoras
+
 - [ ] Integración de CI/CD para compilación automática en deployment.
 - [ ] Sistema de rollback automático en caso de error.
 - [ ] Notificaciones por email de actualizaciones disponibles.
@@ -222,6 +247,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.9] - 2026-01-14
 
 ### 🔧 Optimizaciones
+
 - **Build system:** Integración de `blocks-frontend.scss` en el CSS principal.
   - El archivo `blocks-frontend.scss` ahora se importa en `assets/scss/main.scss`.
   - Se compila junto con el resto de estilos en un solo archivo `dist/assets/style-*.css`.
@@ -235,6 +261,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
   - Mayor flexibilidad en layouts responsive.
 
 ### 📚 Archivos modificados
+
 - `assets/scss/main.scss`: Importado `../../blocks/blocks-frontend`.
 - `assets/scss/_swiper.scss`: Agregado `mask-image` para fade gradient horizontal.
 - `assets/js/parallax.js`: Selector actualizado a `.container, .container-fluid`.
@@ -244,6 +271,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.8] - 2026-01-08
 
 ### ✨ Nuevas funciones
+
 - **Animaciones en bloques:** Sistema de animaciones extendido a múltiples bloques.
   - Bloque `bs-column`: Soporte para animaciones (tipo, trigger, duración, delay, easing).
   - Bloque `bs-step-item`: Animaciones por item en pasos.
@@ -252,11 +280,13 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
   - Trigger `on-scroll`: Soporte de delay con ScrollTrigger de GSAP.
 
 ### 🔧 Cambios
+
 - **Función helper `bootstrap_theme_get_animation_attributes()`:** Ahora siempre emite valores por defecto para trigger, duración, delay y easing cuando se establece el tipo de animación.
 - **Animaciones en scroll:** Modificada función `animateOnScroll()` en `assets/js/animations.js` para soportar delay explícito en configuración GSAP.
 - **Renderizado dinámico:** Bloque `bs-list-group` ahora renderiza sus items internos dinámicamente para preservar atributos de animación.
 
 ### 📚 Archivos modificados
+
 - `inc/blocks-helpers.php`: Mejorada lógica de `bootstrap_theme_get_animation_attributes()`.
 - `blocks/bs-column/editor.js` y `blocks/bs-column/block.php`: Añadido soporte de animaciones.
 - `blocks/bs-step-item/editor.js`: Panel de animación para items.
@@ -269,6 +299,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.7] - 2026-01-06
 
 ### ✨ Nuevas funciones
+
 - **Bloque bs-asesores:** Nuevo bloque dinámico que carga asesores desde ACF options.
   - Configuración de columnas por breakpoint (MD/LG).
   - Layout horizontal (foto + datos) o vertical (foto arriba).
@@ -284,6 +315,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
   - Toggle para activar/desactivar animación.
 
 ### 🔧 Cambios
+
 - **ACF Options:** Eliminados campos WhatsApp del tab "Asesores y RRSS".
   - Removido subcampo "Texto Whatsapp" del repeater de asesores.
   - Removido campo global "WhatsApp" de redes sociales.
@@ -292,11 +324,13 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
   - Opcional para personalizar logo en pie de página.
 
 ### 📚 Archivos nuevos
+
 - `blocks/bs-asesores/block.php`: Renderizado dinámico del bloque.
 - `blocks/bs-asesores/editor.js`: Controles y preview del editor.
 - CSS: Estilos para `.bs-asesor-card` y `.bs-asesor-avatar` en blocks-frontend.css y blocks-editor.css.
 
 ### 📚 Archivos modificados
+
 - `blocks/bs-steps/steps-animation.js`: Reescrito para usar GSAP y cálculo DOM preciso.
 - `blocks/blocks.php`: Registrado bs-asesores en $blocks_with_editors.
 - `acf-json/group_ileben_options.json`: Estructura actualizada con nuevo campo footer_logo.
@@ -304,17 +338,20 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.6] - 2025-01-01
 
 ### 🔧 Cambios
+
 - **ACF Options:** Reorganización de campos en "Configuración del tema".
   - Nuevo tab "Footer" con campos: "Texto Legal Footer" y "Código Extra" (movido desde General).
   - Eliminados campos "Teléfono" y "Correo" del tab General.
   - El código extra ahora se gestiona exclusivamente desde el tab Footer.
 
 ### 📚 Archivos modificados
+
 - `acf-json/group_ileben_options.json`: Estructura actualizada de tabs y campos.
 
 ## [0.1.5] - 2025-12-31
 
 ### ✨ Nuevas funciones
+
 - **CF7 Multistep:** Sistema completo de formularios multipaso con Contact Form 7.
   - Parsing robusto de marcadores `[step_break label="Paso X"]` incluso cuando están envueltos en `<p>` u otros elementos.
   - Validación por campo con toasts de Bootstrap personalizables (mensaje configurable desde ACF).
@@ -328,11 +365,13 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
   - Todos los elementos visuales respetan configuración ACF (toggles para títulos, barra de progreso, indicador de pasos).
 
 ### 🔧 Correcciones
+
 - **CF7 Config:** Corregido casting de booleans desde ACF para evitar que valores vacíos (`''`) se interpreten como `true`.
 - **CF7 Indicador:** Cuando el modo de título es "número", solo se muestra el círculo con número, sin etiqueta adicional.
 - **CF7 Estilos:** Migración completa de estilos inline a SCSS (`_cf7.scss`) para mejor mantenimiento.
 
 ### 📚 Archivos modificados
+
 - `assets/js/cf7-bootstrap.js`: Parser de pasos, validación, animaciones, indicador y barra de progreso.
 - `assets/scss/_cf7.scss`: Estilos completos para multistep (animaciones, indicador, progress bar, toasts).
 - `inc/assets.php`: Localización de configuración CF7 desde ACF a JavaScript.
@@ -341,9 +380,11 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.4] - 2025-12-17
 
 ### 🔧 Correcciones
+
 - Bloque `bs-container`: el anclaje se guarda correctamente; se eliminó un registro duplicado en `blocks/blocks.js` y se añadió soporte explícito de `anchor` en PHP y editor.
 
 ### ✨ Nuevas funciones
+
 - GSAP: pestaña en opciones del tema (ACF JSON) para habilitar GSAP y plugins.
 - Inicializador `assets/js/gsap-loader.js` e importación en `assets/js/main.js`.
 - `inc/assets.php`: se expone `window.ILEBEN_GSAP` con configuración desde ACF; los scripts de footer (`extra_code`) pueden usar `gsap` y `ScrollTrigger`.
@@ -351,50 +392,59 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.3] - 2025-12-16
 
 ### ✨ Nuevas funciones
+
 - Bloque `bs-plantas-slider`: slider con filtros en cliente (dormitorios/baños), Fancybox, navegación, paginaciones múltiples (bullets, fraction, progressbar, scrollbar, none), efectos Swiper (slide, fade, cube, coverflow, flip, cards) y slides per view por viewport (mobile/tablet/desktop).
 - Filtrado instantáneo sin AJAX usando `data-dorm`/`data-bano`, con alerta de "sin resultados" y re-render de Swiper.
 
 ### 🔧 Cambios
+
 - Build dividido: `npm run build` (frontend Vite) y `npm run build:back-css` (Sass para editor) generan `dist/assets/style-*.css`, `main-*.js` y `editor.css`.
 - `inc/assets.php` ahora encola `editor.css` directamente en Gutenberg.
 
 ## [0.1.2] - 2025-12-16
 
 ### ✨ Nuevas funciones
+
 - Bloque `bs-container`: Opción de Fondo → Tipo "Imagen" con selector, tamaño, posición, repetición y attachment. Renderiza estilos en línea validados.
 - Swiper: Configuración global desde ACF (tab "Otros") y overrides por bloque en `bs-container` (paginación, navegación, loop, speed, autoplay, delay, slidesPerView, spaceBetween).
- - Shortcodes: `[lazy_image]` para imágenes con lazyload basado en placeholder y `[iframe_facade]` para facades de iframes.
- - Shortcode adicional: `[loader]` para renderizar el preloader del sitio en cualquier contenido.
+- Shortcodes: `[lazy_image]` para imágenes con lazyload basado en placeholder y `[iframe_facade]` para facades de iframes.
+- Shortcode adicional: `[loader]` para renderizar el preloader del sitio en cualquier contenido.
 
 ### 🔧 Correcciones
+
 - Editor (`blocks/bs-container/editor.js`): Limpieza de paneles; controles de imagen movidos a "Background". Arreglo de arrays y imports para eliminar errores de sintaxis.
 - JS (`assets/js/sliders.js`): Corrección de precedencia al combinar `??` y `||` en merges de configuración.
 
 ### 📚 Docs
+
 - README: Instrucciones para usar `bs-container` como Swiper y cómo configurar Fondo → Imagen.
- - README: Sección de Shortcodes con ejemplos de `[lazy_image]`, `[iframe_facade]` y `[loader]`.
- - Licencia: Aclarado en README el uso de GNU GPL v3.0.
+- README: Sección de Shortcodes con ejemplos de `[lazy_image]`, `[iframe_facade]` y `[loader]`.
+- Licencia: Aclarado en README el uso de GNU GPL v3.0.
 
 ## [0.1.1] - 2025-12-16
 
 ### ✨ Mejoras
+
 - ACF: Renombrado tab principal a "Colores y Extras BS" y añadido sub-tabs para organizar variables.
 - ACF: Nuevos campos para controlar variables de Bootstrap 5.3:
-	- Colores base, grises, temáticos y sistema.
-	- Bordes y radios (`--bs-border-width`, `--bs-border-style`, `--bs-border-radius` y variantes).
-	- Sombras (`--bs-box-shadow`, `--bs-box-shadow-sm`, `--bs-box-shadow-lg`, `--bs-box-shadow-inset`).
-	- Focus ring (`--bs-focus-ring-width`, `--bs-focus-ring-opacity`, `--bs-focus-ring-color`).
+ 	- Colores base, grises, temáticos y sistema.
+ 	- Bordes y radios (`--bs-border-width`, `--bs-border-style`, `--bs-border-radius` y variantes).
+ 	- Sombras (`--bs-box-shadow`, `--bs-box-shadow-sm`, `--bs-box-shadow-lg`, `--bs-box-shadow-inset`).
+ 	- Focus ring (`--bs-focus-ring-width`, `--bs-focus-ring-opacity`, `--bs-focus-ring-color`).
 - PHP: `inc/assets.php` ahora inyecta todas las variables anteriores como CSS variables en `:root` usando valores ACF.
 - Tipografía: mantiene `--bs-body-font-family`, `--bs-body-font-size`, `--bs-body-font-weight` desde ACF (con ajuste móvil).
 
 ### 🧹 Limpieza
+
 - SCSS: Eliminada la estructura modular (base, utilities, layout, components, pages). Se mantiene únicamente `assets/scss/main.scss`.
 - Theming: Personalización de Bootstrap ahora vía ACF (CSS variables) en lugar de Sass.
 
 ### 🔧 JavaScript
+
 - `assets/js/router.js`: Removida importación y llamada a `animations`. Las animaciones se gestionan externamente.
 
 ### 📚 Docs
+
 - README: Actualizado para reflejar ACF como fuente de theming, categorías de variables y estructura SCSS simplificada.
 
 ## [0.1.0] - 2025-12-15
@@ -402,6 +452,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ### ✨ Características iniciales
 
 #### Core del Tema
+
 - Tema WordPress móvil-first con soporte PHP 8.2+
 - Plantillas base: header.php, footer.php, index.php, front-page.php
 - Estructura modular con archivos en `inc/` para setup, assets, ACF e helpers
@@ -409,12 +460,14 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 - Soporte de miniaturas de entrada: banner (1600x900), banner_mobile (900x1200)
 
 #### Build & Assets
+
 - Configuración Vite para bundling JS/SCSS con manifest.json
 - PostCSS + Autoprefixer para compatibilidad CSS cross-browser
 - Enqueue inteligente de assets via `ileben_theme_manifest()` helper
 - Soporte dinámico de Google Fonts desde ACF Options
 
 #### Estilos (SCSS)
+
 - Sistema de variables modular (colores, tipografía, breakpoints)
 - Estructura escalable: base, utilities, layout, components, pages
 - Integración Bootstrap 5 (partial imports para tree-shake)
@@ -423,6 +476,7 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 - Soporte para temas oscuro/claro vía CSS variables
 
 #### JavaScript
+
 - Entry point `main.js` con carga de módulos
 - **Router**: navegación por body class para rutas específicas
 - **Preloader**: overlay visible durante carga, ocultamiento automático + failsafe (5s)
@@ -434,12 +488,14 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 - **Animations**: GSAP para animaciones suaves (banner fade-in)
 
 #### ACF Pro Integration
+
 - Sincronización JSON automática en `acf-json/`
 - Field Group: Banner Landing (título, texto, CTA, imagen)
 - Field Group: Theme Options (Google Font, colores primario/secundario)
 - Helpers en `template-tags.php` para integración fluida
 
 #### Helpers PHP
+
 - `ileben_lazy_image()` – Carga perezosa de imágenes con placeholders
 - `ileben_iframe_facade()` – Facade de iframe click-to-load
 - `ileben_render_loader()` – Renderización del cargador inicial
@@ -448,20 +504,24 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 - `ileben_asset_css_list()` – Listado de CSS importados
 
 #### Imágenes & Placeholders
+
 - SVG placeholders para imágenes y iframes
 - Base lista para blade masks y blur effects
 
 #### Template Parts
+
 - `template-parts/header/navbar.php` – Navegación Bootstrap con responsive toggle
 - `template-parts/banner/main-banner.php` – Banner principal ACF-driven
 - Base lista para secciones flexibles
 
 #### npm Scripts
+
 - `npm run dev` – Vite dev server con watch
 - `npm run build` – Compilación optimizada para producción
 - `npm run preview` – Vista previa local del build
 
 #### Documentación
+
 - README.md completo con guía de instalación y personalización
 - CHANGELOG.md para tracking de cambios
 - Código bien comentado y estructura auto-explicativa

@@ -10,7 +10,8 @@
     "build:back-css": "sass --quiet assets/scss/editor.scss dist/assets/editor.css",
     "build:css": "sass --quiet assets/scss/main.scss dist/assets/main.css && postcss dist/assets/main.css -o dist/assets/main.css",
     "build:all": "npm run build && npm run build:back-css",
-    "i18n:pot": "wp-pot --domain ileben-landing --src . --dest languages/ileben-landing.pot --ignore node_modules,dist,vendor"
+    "i18n:pot": "wp-pot --domain ileben-landing --src . --dest languages/ileben-landing.pot --ignore node_modules,dist,vendor",
+    "zip": "build-zip.bat"
   },
   "dependencies": {
     "@fancyapps/ui": "^6.1",
