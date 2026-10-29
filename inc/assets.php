@@ -540,11 +540,17 @@ add_action('wp_enqueue_scripts', function () {
 }, 20);
 
 /**
- * Add body class when glass class is enabled.
+ * Add body class when glass class or navbar padding is enabled.
  */
 add_filter('body_class', function ($classes) {
-    if (get_field('enable_glass_class', 'option')) {
-        $classes[] = 'glass-active';
+    if (function_exists('get_field')) {
+        if (get_field('enable_glass_class', 'option')) {
+            $classes[] = 'glass-active';
+        }
+        $navbar_over = get_field('navbar_over_content', 'option');
+        if ($navbar_over === false || $navbar_over === 0 || $navbar_over === '0') {
+            $classes[] = 'has-navbar-padding';
+        }
     }
     return $classes;
 });

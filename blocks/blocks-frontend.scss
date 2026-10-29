@@ -443,3 +443,28 @@
         transition: color 0.2s ease;
     }
 }
+
+/* Responsive Image Block (bs-image) */
+.wp-block-bootstrap-theme-bs-image {
+    display: block;
+    margin-bottom: 1rem;
+
+    picture {
+        display: inline-block;
+        max-width: 100%;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    &.text-center picture {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &.text-end picture {
+        margin-left: auto;
+    }
+}

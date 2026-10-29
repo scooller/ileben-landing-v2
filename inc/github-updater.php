@@ -26,6 +26,13 @@ class Ileben_GitHub_Theme_Updater {
     private $cache_hours = 12;
     
     public function __construct() {
+        if (function_exists('get_template')) {
+            $template = get_template();
+            if (!empty($template)) {
+                $this->theme_slug = $template;
+            }
+        }
+
         // Hook para verificar actualizaciones
         add_filter('pre_set_site_transient_update_themes', array($this, 'check_for_updates'));
         
@@ -230,73 +237,30 @@ class Ileben_GitHub_Theme_Updater {
         $this->debug_log('Opciones: ' . json_encode($options));
         
         // Solo para actualizaciones de temas
-        if ($options['action'] === 'update' && $options['type'] === 'theme') {
-            $this->debug_log('Es una actualización de tema');
+        if (isset($options['action']) && $options['action'] === 'update' && isset($options['type']) && $options['type'] === 'theme') {
+            $updated_themes = isset($options['themes']) ? (array) $options['themes'] : (isset($options['theme']) ? array($options['theme']) : array());
             
-            // Si se actualizó nuestro tema
-            if (isset($options['themes']) && in_array($this->theme_slug, $options['themes'])) {
-                $this->debug_log('✓ Nuestro tema fue actualizado');
+            if (in_array($this->theme_slug, $updated_themes, true)) {
+                $this->debug_log('✓ Nuestro tema fue actualizado exitosamente: ' . $this->theme_slug);
                 
-                // Esperar a que se estabilice el filesystem
-                sleep(2);
-                
-                // Obtener rutas
-                $theme_dir = WP_CONTENT_DIR . '/themes/' . $this->theme_slug . '/';
-                $upgrade_dir = WP_CONTENT_DIR . '/upgrade/';
-                
-                $this->debug_log('Tema dir: ' . $theme_dir);
-                $this->debug_log('Upgrade dir: ' . $upgrade_dir);
-                
-                // Buscar la carpeta temporal de upgrade más reciente
-                if (is_dir($upgrade_dir)) {
-                    $dirs = glob($upgrade_dir . 'ileben-landing-v2-*', GLOB_ONLYDIR);
-                    if ($dirs) {
-                        usort($dirs, function($a, $b) {
-                            return filemtime($b) - filemtime($a);
-                        });
-                        $latest_temp = $dirs[0];
-                        $this->debug_log('Última carpeta temp encontrada: ' . $latest_temp);
-                        
-                        // Buscar la subcarpeta dentro
-                        $subfolder = glob($latest_temp . '/ileben-landing-v2-*', GLOB_ONLYDIR);
-                        if ($subfolder) {
-                            $source = $subfolder[0];
-                            $this->debug_log('Subcarpeta encontrada: ' . $source);
-                            
-                            // Mostrar el contenido
-                            if (file_exists($source . '/style.css')) {
-                                $content = file_get_contents($source . '/style.css', false, null, 0, 1500);
-                                if (preg_match('/Version:\s*(.+?)[\r\n]/i', $content, $matches)) {
-                                    $temp_version = trim($matches[1]);
-                                    $this->debug_log('Versión en carpeta temp: ' . $temp_version);
-                                    
-                                    // Copiar desde temp a destino final
-                                    $this->debug_log('Copiando de temp a destino final...');
-                                    $this->copy_dir($source, $theme_dir);
-                                    $this->debug_log('✓ Copia completada');
-                                    
-                                    // Verificar destino final
-                                    if (file_exists($theme_dir . 'style.css')) {
-                                        $final_content = file_get_contents($theme_dir . 'style.css', false, null, 0, 1500);
-                                        if (preg_match('/Version:\s*(.+?)[\r\n]/i', $final_content, $matches)) {
-                                            $final_version = trim($matches[1]);
-                                            $this->debug_log('✓ Versión final en destino: ' . $final_version);
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                // Asegurar que el tema activo coincida con el slug
+                if (function_exists('get_stylesheet') && function_exists('switch_theme')) {
+                    $active_stylesheet = get_stylesheet();
+                    if ($active_stylesheet !== $this->theme_slug && get_template() === $this->theme_slug) {
+                        switch_theme($this->theme_slug);
+                        $this->debug_log('✓ Tema activo reafirmado a: ' . $this->theme_slug);
                     }
                 }
-                
-                // Limpiar caché último
+
+                // Limpiar caché de actualizaciones y de temas
                 self::clear_cache();
-                $this->debug_log('Caché limpiado');
+                if (function_exists('wp_clean_themes_cache')) {
+                    wp_clean_themes_cache();
+                }
+                $this->debug_log('✓ Caché de temas limpiado');
             } else {
-                $this->debug_log('Nuestro tema no estaba en la lista: ' . json_encode($options['themes']));
+                $this->debug_log('Nuestro tema no estaba en la lista: ' . json_encode($updated_themes));
             }
-        } else {
-            $this->debug_log('No es una actualización de tema (action=' . $options['action'] . ', type=' . $options['type'] . ')');
         }
         
         $this->debug_log('====== FIN FINALIZACION DE ACTUALIZACIÓN ======');
@@ -438,10 +402,27 @@ class Ileben_GitHub_Theme_Updater {
         
         $this->debug_log('✓ Versión válida encontrada: ' . $version);
         
-        // Obtener URL del ZIP (usa zipball_url)
-        $zip_url = $release['zipball_url'];
-        
-        $this->debug_log('URL del ZIP: ' . $zip_url);
+        // Obtener URL del ZIP (preferir asset .zip compilado, fallback a zipball_url)
+        $zip_url = '';
+        if (!empty($release['assets']) && is_array($release['assets'])) {
+            foreach ($release['assets'] as $asset) {
+                if (!empty($asset['browser_download_url']) && preg_match('/\.zip$/i', $asset['name'])) {
+                    if (strpos($asset['name'], $this->theme_slug) !== false) {
+                        $zip_url = $asset['browser_download_url'];
+                        $this->debug_log('✓ Usando asset .zip del release: ' . $asset['name']);
+                        break;
+                    }
+                    if (empty($zip_url)) {
+                        $zip_url = $asset['browser_download_url'];
+                    }
+                }
+            }
+        }
+
+        if (empty($zip_url) && !empty($release['zipball_url'])) {
+            $zip_url = $release['zipball_url'];
+            $this->debug_log('Usando zipball_url de GitHub: ' . $zip_url);
+        }
         
         $return_data = array(
             'theme' => $this->theme_slug,
@@ -538,38 +519,61 @@ class Ileben_GitHub_Theme_Updater {
             WP_Filesystem();
         }
         
-        // Detectar la estructura: puede ser style.css en raíz O en una subfolder
-        $has_style_at_root = $wp_filesystem->is_file($source . 'style.css');
-        
-        $subfolder = null;
-        if (!$has_style_at_root) {
-            // Buscar subfolder con style.css
-            $files = $wp_filesystem->dirlist($source);
-            foreach ($files as $name => $file_data) {
-                if ($file_data['type'] === 'd' && $wp_filesystem->is_file($source . $name . '/style.css')) {
-                    $subfolder = $name;
-                    $this->debug_log('Subfolder encontrada: ' . $name);
-                    break;
+        $source_path = trailingslashit($source);
+
+        // 1. Detectar la carpeta real donde está style.css (raíz o subcarpeta)
+        $theme_dir = $source_path;
+        if (!$wp_filesystem->is_file($theme_dir . 'style.css')) {
+            $files = $wp_filesystem->dirlist($theme_dir);
+            if ($files) {
+                foreach ($files as $name => $file_data) {
+                    if ($file_data['type'] === 'd' && $wp_filesystem->is_file($theme_dir . $name . '/style.css')) {
+                        $theme_dir = $theme_dir . $name . '/';
+                        $this->debug_log('Subfolder con style.css encontrada: ' . $name);
+                        break;
+                    }
                 }
             }
-        } else {
-            $this->debug_log('✓ style.css en raíz');
         }
-        
-        // Verificar que encontramos el theme en algún lugar
-        if (!$has_style_at_root && !$subfolder) {
-            $this->debug_log('ERROR: No se encontró style.css');
-            return $source;
+
+        if (!$wp_filesystem->is_file($theme_dir . 'style.css')) {
+            $this->debug_log('ERROR: No se encontró style.css en el paquete');
+            return new WP_Error(
+                'theme_no_style_css',
+                __('No se encontró style.css en el paquete de actualización.', 'ileben-landing')
+            );
         }
-        
-        // Si hay subfolder con style.css, usarla como source (sin renombrar aqui)
-        if ($subfolder) {
-            $new_source = rtrim($source, '/') . '/' . $subfolder . '/';
-            $this->debug_log('Usando subfolder como source: ' . $new_source);
-            return $new_source;
+
+        // 2. Comprobar si el nombre de la carpeta coincide con el slug del tema
+        $current_folder_name = basename(untrailingslashit($theme_dir));
+        $parent_dir = trailingslashit(dirname(untrailingslashit($theme_dir)));
+        $correct_source = $parent_dir . $this->theme_slug . '/';
+
+        if ($current_folder_name === $this->theme_slug) {
+            $this->debug_log('✓ El source ya tiene el slug correcto: ' . $theme_dir);
+            return $theme_dir;
         }
-        
-        $this->debug_log('Retornando source final: ' . $source);
+
+        // 3. Renombrar en la carpeta temporal de upgrade para que WordPress instale directamente como $this->theme_slug
+        $this->debug_log('Renombrando carpeta de "' . $current_folder_name . '" a "' . $this->theme_slug . '"');
+        if ($wp_filesystem->is_dir($correct_source)) {
+            $wp_filesystem->delete($correct_source, true);
+        }
+
+        if ($wp_filesystem->move($theme_dir, $correct_source, true)) {
+            $this->debug_log('✓ Carpeta renombrada exitosamente a: ' . $correct_source);
+            return $correct_source;
+        }
+
+        // Fallback en caso de que move falle
+        if ($wp_filesystem->mkdir($correct_source)) {
+            $this->copy_dir(untrailingslashit($theme_dir), untrailingslashit($correct_source));
+            $this->delete_directory(untrailingslashit($theme_dir));
+            $this->debug_log('✓ Carpeta copiada exitosamente a: ' . $correct_source);
+            return $correct_source;
+        }
+
+        $this->debug_log('ERROR: No se pudo renombrar la carpeta temporal a: ' . $this->theme_slug);
         return $source;
     }
     

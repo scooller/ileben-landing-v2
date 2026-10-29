@@ -2,12 +2,17 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
-## [Unreleased]
+## [0.1.20] - 2026-10-29
 
 ### Added
 
-- **Script de empaquetado `build-zip.bat`**: Script batch para Windows que compila los assets con Vite/Sass (`npm run build:all`) y empaqueta el tema en un archivo `.zip` (`ileben-landing-v2.zip` y copia versionada) listo para producción con únicamente los archivos y módulos esenciales de WordPress (excluyendo `node_modules`, `.git`, `.agents`, `.vscode`, `graphify-out`, código fuente SCSS/JS sin compilar, y archivos dev).
-- **Comando npm `npm run zip`**: Añadido a `package.json` para disparar el empaquetado directamente desde la terminal.
+- **Bloque `bs-image` (Bootstrap Responsive Image)**: Nuevo bloque Gutenberg que permite seleccionar imágenes independientes para desktop y mobile utilizando el elemento nativo `<picture>` y `<source media="(max-width: ...)">`. Incluye soporte completo de clases Bootstrap (`img-fluid`, esquinas redondeadas, sombras, alineación), link opcional y suite completa de animaciones GSAP.
+- **Opciones ACF de Navbar**: Nuevos campos en *Personalización* (`navbar_over_content` y `navbar_padding_top`) para controlar si el navbar flota por encima del contenido o si se añade padding-top automático/personalizado al body.
+
+### Fixed
+
+- **GitHub Theme Updater**: Corregido renombrado de carpeta temporal en `upgrader_source_selection` para evitar que el tema se renombre con hash de GitHub al actualizar. Añadido soporte prioritario para descargar archivos `.zip` compilados de Release Assets.
+- **Documentación de empaquetado**: Añadidas instrucciones en `README.md` y `GITHUB_UPDATER.md` para el comando `npm run zip`.
 
 ## [0.1.19] - 2026-07-17
 

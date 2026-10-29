@@ -103,6 +103,7 @@ function bootstrap_theme_block_editor_assets()
         'bs-tooltip',
         'bs-video',
         'bs-iframe',
+        'bs-image',
         'bs-plantas-slider',
         'bs-plantas-showcase',
         'bs-cf7',

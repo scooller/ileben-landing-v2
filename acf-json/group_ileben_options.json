@@ -302,6 +302,53 @@
             "ui_off_text": "Desactivado"
         },
         {
+            "key": "field_navbar_over_content",
+            "label": "Navbar por encima del contenido",
+            "name": "navbar_over_content",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Activado: El navbar flota por encima del contenido (comportamiento actual). Desactivado: Se añade padding superior para que el contenido no quede tapado por el navbar.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Por encima",
+            "ui_off_text": "Con padding"
+        },
+        {
+            "key": "field_navbar_padding_top",
+            "label": "Padding Superior del Navbar (px)",
+            "name": "navbar_padding_top",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Opcional. Valor en píxeles del padding-top. Déjalo vacío para calcularlo automáticamente según la altura real del navbar.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_navbar_over_content",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 0,
+            "max": 500,
+            "step": 1,
+            "placeholder": "Auto"
+        },
+        {
             "key": "field_body_bg_image",
             "label": "Imagen de Fondo (Light)",
             "name": "body_bg_image",

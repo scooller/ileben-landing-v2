@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.19  
+**Versión:** 0.1.20  
 **Compatibilidad:** PHP 8.3+, WordPress 7.0+ (tested 7.1.4), ACF Pro
 
 ---
@@ -102,6 +102,9 @@ npm run build:all
 
 # (Opcional) Modo desarrollo con watch
 npm run dev
+
+# Generar archivo .zip para producción
+npm run zip
 ```
 
 ### 3. Configuración en WordPress
@@ -703,6 +706,28 @@ El tema está listo para:
 - Crear versiones personalizadas por cliente
 
 Para cambios en el build, edita `vite.config.js` y `postcss.config.js`.
+
+---
+
+## 📦 Empaquetado y Distribución (.zip)
+
+Para empaquetar el tema en un archivo `.zip` limpio y optimizado para producción (sin `node_modules`, `.git`, `.vscode` ni archivos fuente innecesarios):
+
+```bash
+# Opción 1: Mediante npm (compila con build:all y empaqueta)
+npm run zip
+
+# Opción 2: Ejecutando directamente el script batch en Windows
+build-zip.bat
+```
+
+### Opciones avanzadas del script (`build-zip.bat`):
+
+- **`build-zip.bat --no-build`**: Empaqueta usando los archivos ya compilados existentes en `dist/` sin volver a ejecutar `npm run build:all`.
+- **`build-zip.bat --no-pause`**: Omite la pausa final al terminar (ideal para automatizaciones o CI/CD).
+- **`build-zip.bat --help`**: Muestra la ayuda y lista de exclusiones.
+
+El archivo generado será `ileben-landing-v2.zip` en la raíz del tema, listo para instalar o actualizar desde **WordPress Admin → Apariencia → Temas → Añadir nuevo → Subir tema**.
 
 ---
 

@@ -76,6 +76,15 @@ function initSmoothScrollAnchors() {
 }
 
 export function initNav() {
+  const header = document.getElementById('site-header');
+  if (header) {
+    const syncHeaderHeight = () => {
+      document.documentElement.style.setProperty('--site-header-height', `${header.offsetHeight}px`);
+    };
+    syncHeaderHeight();
+    window.addEventListener('resize', syncHeaderHeight, { passive: true });
+  }
+
   const navbars = document.querySelectorAll('.navbar');
   if (!navbars.length) return;
 

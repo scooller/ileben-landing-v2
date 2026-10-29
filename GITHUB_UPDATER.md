@@ -18,8 +18,12 @@ Version: 0.1.14  <-- Aumentar este número
 ### 2. Commit y push a GitHub
 
 ```bash
+# 1. Generar el zip de producción con assets compilados
+npm run zip
+
+# 2. Commit y push a GitHub
 git add .
-git commit -m "Bump version to 0.1.14"
+git commit -m "Bump version to 0.1.19"
 git push origin main
 ```
 
@@ -27,10 +31,11 @@ git push origin main
 
 1. Ve a tu repositorio: `https://github.com/scooller/ileben-landing-v2`
 2. Click en "Releases" → "Draft a new release"
-3. **Tag version:** `v0.1.14` (debe coincidir con la versión de style.css)
-4. **Release title:** `Version 0.1.14`
-5. **Description:** Describe los cambios
-6. Click en "Publish release"
+3. **Tag version:** `v0.1.19` (debe coincidir con la versión de style.css)
+4. **Release title:** `Version 0.1.19`
+5. **Attach binaries by dropping them here:** Arrastra y adjunta el archivo `ileben-landing-v2.zip` (o `ileben-landing-v2-v0.1.19.zip`) generado con `npm run zip`
+6. **Description:** Describe los cambios
+7. Click en "Publish release"
 
 ### 4. WordPress detectará la actualización
 
