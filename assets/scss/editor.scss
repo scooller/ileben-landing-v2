@@ -604,3 +604,9 @@ $sizes: 1rem, 2rem, 3rem, 4rem, 5rem, 6rem, 7rem, 8rem, 9rem, 10rem;
         position: static !important; /* Forces the nearest relative ancestor to be the canvas */
     }
 }
+
+/* List group borderless */
+.editor-styles-wrapper .list-group-borderless,
+.editor-styles-wrapper .list-group-borderless > .list-group-item {
+    border: none !important;
+}

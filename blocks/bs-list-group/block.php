@@ -16,6 +16,7 @@ if (!defined('ABSPATH')) {
 function bootstrap_theme_render_bs_list_group_block($attributes, $content, $block)
 {
     $flush = $attributes['flush'] ?? false;
+    $border = $attributes['border'] ?? true;
     $numbered = $attributes['numbered'] ?? false;
     $horizontal = $attributes['horizontal'] ?? '';
 
@@ -24,6 +25,10 @@ function bootstrap_theme_render_bs_list_group_block($attributes, $content, $bloc
 
     if ($flush) {
         $classes[] = 'list-group-flush';
+    }
+
+    if (!$border) {
+        $classes[] = 'list-group-borderless';
     }
 
     if ($numbered) {
@@ -73,6 +78,10 @@ function bootstrap_theme_register_bs_list_group_block()
             'flush' => array(
                 'type' => 'boolean',
                 'default' => false
+            ),
+            'border' => array(
+                'type' => 'boolean',
+                'default' => true
             ),
             'numbered' => array(
                 'type' => 'boolean',

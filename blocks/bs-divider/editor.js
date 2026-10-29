@@ -17,6 +17,7 @@
         category: 'ileben-landing',
         keywords: [ __('divider'), __('separator'), __('line'), __('hr') ],
         attributes: {
+            displayType: { type: 'string', default: 'line' },
             text: { type: 'string', default: '' },
             icon: { type: 'string', default: '' },
             align: { type: 'string', default: 'center' },
@@ -48,6 +49,11 @@
             const { attributes, setAttributes } = props;
             const blockProps = useBlockProps();
 
+            const displayTypes = [
+                { label: __('Línea', 'ileben-landing'), value: 'line' },
+                { label: __('Fondo sólido', 'ileben-landing'), value: 'solid' }
+            ];
+
             const colors = [
                 { label: 'Primary', value: 'primary' },
                 { label: 'Secondary', value: 'secondary' },
@@ -74,6 +80,28 @@
 
             // Render Preview
             const renderDivider = () => {
+                if (attributes.displayType === 'solid') {
+                    let justify = 'justify-content-center';
+                    if (attributes.align === 'start') justify = 'justify-content-start';
+                    if (attributes.align === 'end') justify = 'justify-content-end';
+
+                    const contentEls = [];
+                    if (attributes.icon) {
+                        contentEls.push(createElement('i', { 
+                            className: `${attributes.icon} ${attributes.text ? 'me-2' : ''}`,
+                            key: 'icon'
+                        }));
+                    }
+                    if (attributes.text) {
+                        contentEls.push(attributes.text);
+                    }
+
+                    return createElement('div', { 
+                        className: `d-flex align-items-center ${justify} w-100 py-2 px-3 bg-${attributes.color} text-${attributes.textColor} my-${attributes.marginY}`,
+                        style: { minHeight: '38px' }
+                    }, createElement('span', { className: 'fw-bold' }, contentEls.length > 0 ? contentEls : ' '));
+                }
+
                 const lineStyle = {
                     borderTopStyle: attributes.variant,
                     flexGrow: 1
@@ -131,6 +159,12 @@
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
                     createElement(PanelBody, { title: __('Divider Settings', 'ileben-landing') },
+                        createElement(SelectControl, {
+                            __next40pxDefaultSize: true, label: __('Tipo', 'ileben-landing'),
+                            value: attributes.displayType || 'line',
+                            options: displayTypes,
+                            onChange: (value) => setAttributes({ displayType: value })
+                        }),
                         createElement(TextControl, {
                             __next40pxDefaultSize: true, label: __('Text', 'ileben-landing'),
                             value: attributes.text,
@@ -149,14 +183,15 @@
                             options: alignments,
                             onChange: (value) => setAttributes({ align: value })
                         }),
-                        createElement(SelectControl, {
+                        attributes.displayType !== 'solid' && createElement(SelectControl, {
                             __next40pxDefaultSize: true, label: __('Line Style', 'ileben-landing'),
                             value: attributes.variant,
                             options: variants,
                             onChange: (value) => setAttributes({ variant: value })
                         }),
                         createElement(SelectControl, {
-                            __next40pxDefaultSize: true, label: __('Line Color', 'ileben-landing'),
+                            __next40pxDefaultSize: true, 
+                            label: attributes.displayType === 'solid' ? __('Color de fondo', 'ileben-landing') : __('Line Color', 'ileben-landing'),
                             value: attributes.color,
                             options: colors,
                             onChange: (value) => setAttributes({ color: value })

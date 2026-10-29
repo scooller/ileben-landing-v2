@@ -203,6 +203,16 @@ body.glass-active[data-bs-theme="dark"] {
 }
 
 /* Lists */
+.list-group-borderless,
+.list-group-flush.list-group-borderless {
+  --bs-list-group-border-width: 0;
+  border: none;
+
+  & > .list-group-item {
+    border: none;
+  }
+}
+
 .list-group-unstyled {
   border-radius: 0;
   --bs-list-group-font-size: 0.8rem;

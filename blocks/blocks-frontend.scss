@@ -94,7 +94,7 @@
             margin-bottom: 1rem;
         }
     }
-    
+
     .wp-block-bootstrap-theme-bs-button {
         .btn {
             width: 100%;
@@ -105,8 +105,15 @@
 
 /* Animaciones suaves */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Estilos para impresión */
@@ -118,7 +125,7 @@
             color: #000 !important;
         }
     }
-    
+
     .wp-block-bootstrap-theme-bs-modal {
         display: none !important;
     }
@@ -191,6 +198,7 @@
     }
 
     &:hover {
+
         .carousel-control-prev,
         .carousel-control-next {
             opacity: 0.8;
@@ -234,11 +242,15 @@
 }
 
 @keyframes progressBarAnimation {
-    from { width: 0%; }
+    from {
+        width: 0%;
+    }
 }
 
 @keyframes progress-bar-stripes {
-    0% { background-position-x: 1rem; }
+    0% {
+        background-position-x: 1rem;
+    }
 }
 
 /* Bootstrap Spinner Block */
@@ -259,18 +271,22 @@
 }
 
 @keyframes spinner-border {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes spinner-grow {
     0% {
         transform: scale(0);
     }
+
     50% {
         opacity: 1;
         transform: none;
     }
 }
+
 /* SplitText Animation Support */
 .word-anim,
 .char-anim {
@@ -330,39 +346,73 @@
 
 /* Animaciones de hotspot */
 .bs-hotspot-pulse-scale {
-  animation: hotspot-scale 2s ease-in-out infinite;
+    animation: hotspot-scale 2s ease-in-out infinite;
 }
+
 .bs-hotspot-pulse-ping::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background-color: inherit;
-  animation: hotspot-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-  z-index: -1;
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: inherit;
+    animation: hotspot-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    z-index: -1;
 }
+
 .bs-hotspot-pulse-bounce {
-  animation: hotspot-bounce 1s ease-in-out infinite;
+    animation: hotspot-bounce 1s ease-in-out infinite;
 }
+
 .bs-hotspot-pulse-glow {
-  animation: hotspot-glow 2s ease-in-out infinite;
+    animation: hotspot-glow 2s ease-in-out infinite;
 }
 
 @keyframes hotspot-scale {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.25); }
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.25);
+    }
 }
+
 @keyframes hotspot-ping {
-  0% { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(2.5); opacity: 0; }
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
 }
+
 @keyframes hotspot-bounce {
-  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
-  50% { transform: translate(-50%, -50%) translateY(-6px); }
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) translateY(0);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(-6px);
+    }
 }
+
 @keyframes hotspot-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(13, 110, 253, 0); }
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(13, 110, 253, 0);
+    }
 }
 
 .bs-hotspot-popover {
@@ -371,7 +421,7 @@
         color: #fff;
         border-bottom: none;
         padding-right: 0.75rem;
-        
+
         /* Ajustar icono cerrar */
         .btn-close {
             filter: var(--bs-btn-close-white-filter);
@@ -412,6 +462,7 @@
         }
     }
 }
+
 // .row.min-height {
 //     min-height: 40rem;
 // }
@@ -419,23 +470,26 @@
 //     min-height: 100%;
 // }
 
-/* Carrousel */  
-.carousel.slide{
+/* Carrousel */
+.carousel.slide {
     .carousel-item {
-        .d-flex{
+        .d-flex {
             background-size: cover;
             background-position: center;
             background-image: var(--carousel-bg-desktop);
+
             @include media-breakpoint-down(md) {
-                background-image: var(--carousel-bg-mobile, var(--carousel-bg-desktop));          
+                background-image: var(--carousel-bg-mobile, var(--carousel-bg-desktop));
             }
         }
     }
-    .carousel-caption{
+
+    .carousel-caption {
         width: 100%;
         left: 0;
         right: 0;
     }
+
     .carousel-control-prev i,
     .carousel-control-next i {
         font-size: 4rem;
@@ -452,11 +506,13 @@
     picture {
         display: inline-block;
         max-width: 100%;
+        width: 100%;
     }
 
     img {
         max-width: 100%;
         height: auto;
+        width: 100%;
     }
 
     &.text-center picture {
@@ -467,4 +523,4 @@
     &.text-end picture {
         margin-left: auto;
     }
-}
+}

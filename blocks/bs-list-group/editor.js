@@ -22,6 +22,10 @@
                 type: 'boolean',
                 default: false
             },
+            border: {
+                type: 'boolean',
+                default: true
+            },
             horizontal: {
                 type: 'string',
                 default: ''
@@ -63,6 +67,7 @@
             const listClasses = [
                 'list-group',
                 attributes.flush ? 'list-group-flush' : '',
+                attributes.border === false ? 'list-group-borderless' : '',
                 attributes.horizontal ? `list-group-${attributes.horizontal}` : '',
                 attributes.numbered ? 'list-group-numbered' : ''
             ].filter(Boolean).join(' ');
@@ -76,6 +81,14 @@
                             help: __('Remove borders and rounded corners', 'ileben-landing'),
                             checked: attributes.flush,
                             onChange: (value) => setAttributes({ flush: value })
+                        }),
+                        createElement(ToggleControl, {
+                            label: __('Bordes', 'ileben-landing'),
+                            help: (attributes.border !== false) 
+                                ? __('Muestra los bordes en la lista y elementos', 'ileben-landing') 
+                                : __('Sin bordes en la lista ni entre elementos', 'ileben-landing'),
+                            checked: attributes.border !== false,
+                            onChange: (value) => setAttributes({ border: value })
                         }),
                         createElement(SelectControl, {
                             __next40pxDefaultSize: true, label: __('Layout', 'ileben-landing'),

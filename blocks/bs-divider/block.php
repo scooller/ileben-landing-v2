@@ -13,6 +13,7 @@ if (!defined('ABSPATH')) {
  * Render Bootstrap Divider Block
  */
 function bootstrap_theme_render_bs_divider_block($attributes, $content, $block) {
+    $displayType   = $attributes['displayType'] ?? 'line';
     $text          = $attributes['text'] ?? '';
     $icon          = $attributes['icon'] ?? '';
     $align         = $attributes['align'] ?? 'center'; // start, center, end
@@ -23,6 +24,52 @@ function bootstrap_theme_render_bs_divider_block($attributes, $content, $block) 
     
     // Get animation data attributes
     $animation_attrs = bootstrap_theme_get_animation_attributes($attributes, $block);
+
+    // Solid background mode
+    if ($displayType === 'solid') {
+        $justify = 'justify-content-center';
+        if ($align === 'start') {
+            $justify = 'justify-content-start';
+        } elseif ($align === 'end') {
+            $justify = 'justify-content-end';
+        }
+
+        $wrapper_classes = [
+            'd-flex',
+            'align-items-center',
+            $justify,
+            'w-100',
+            'py-2',
+            'px-3',
+            'bg-' . $color,
+            'text-' . $textColor,
+        ];
+        if (!empty($marginY)) {
+            $wrapper_classes[] = 'my-' . $marginY;
+        }
+        if (!empty($attributes['className'])) {
+            $wrapper_classes[] = $attributes['className'];
+        }
+
+        $inner_content = '';
+        if (!empty($icon)) {
+            $tokens = preg_split('/\s+/', (string) $icon, -1, PREG_SPLIT_NO_EMPTY);
+            $tokens = array_filter($tokens, function($t){ return preg_match('/^fa[\-a-z0-9]+$/i', $t); });
+            $icon_class = trim(implode(' ', $tokens));
+            $icon_margin = (!empty($text)) ? 'me-2' : '';
+            $inner_content .= '<i class="' . esc_attr($icon_class . ' ' . $icon_margin) . '"></i>';
+        }
+        if (!empty($text)) {
+            $inner_content .= esc_html($text);
+        }
+
+        return sprintf(
+            '<div class="%s"%s><span class="fw-bold">%s</span></div>',
+            esc_attr(implode(' ', $wrapper_classes)),
+            $animation_attrs,
+            $inner_content
+        );
+    }
     
     // Classes for the wrapper
     $wrapper_classes = ['d-flex', 'align-items-center'];
@@ -121,6 +168,7 @@ function bootstrap_theme_register_bs_divider_block() {
         'api_version' => 3,
         'render_callback' => 'bootstrap_theme_render_bs_divider_block',
         'attributes' => array(
+            'displayType' => array('type' => 'string', 'default' => 'line'),
             'text' => array('type' => 'string', 'default' => ''),
             'icon' => array('type' => 'string', 'default' => ''),
             'align' => array('type' => 'string', 'default' => 'center'),

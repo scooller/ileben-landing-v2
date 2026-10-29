@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.20  
+**Versión:** 0.1.21  
 **Compatibilidad:** PHP 8.3+, WordPress 7.0+ (tested 7.1.4), ACF Pro
 
 ---
@@ -728,6 +728,32 @@ build-zip.bat
 - **`build-zip.bat --help`**: Muestra la ayuda y lista de exclusiones.
 
 El archivo generado será `ileben-landing-v2.zip` en la raíz del tema, listo para instalar o actualizar desde **WordPress Admin → Apariencia → Temas → Añadir nuevo → Subir tema**.
+
+---
+
+## 📌 Nota sobre Bootstrap 6 y Futura Migración
+
+Actualmente el tema utiliza **Bootstrap 5.3.3**. Se evaluó la versión **Bootstrap 6.0** (actualmente en fase **Alpha**) y se determinó **no migrar** hasta que alcance release candidate/estable y se planifique una refactorización mayor por los siguientes cambios disruptivos:
+
+### Puntos clave para una futura migración:
+
+1. **Reescritura de Markup en Bloques y Templates (Breaking Change masivo):**
+   - **Sintaxis responsive con prefijo:** Bootstrap 6 adopta la convención estilo Tailwind (`col-md-6` → `md:col-6`, `d-none d-md-flex` → `d-none md:d-flex`, `container-sm` → `sm:container`, `navbar-expand-lg` → `lg:navbar-expand`).
+   - Requiere actualizar el render PHP de los más de 60 bloques Gutenberg y ejecutar un script de migración para el contenido ya guardado en la base de datos de WordPress.
+2. **Modales y Offcanvas nativos (`<dialog>`):**
+   - Los modales y drawers ahora utilizan el elemento nativo `<dialog class="dialog">` y `<dialog class="drawer">`, eliminando los wrappers `.modal-dialog` y `.modal-content`.
+   - Atributos renombrados a `data-bs-toggle="dialog"` y `data-bs-toggle="drawer"`.
+3. **Nuevo sistema de tokens `.theme-*`:**
+   - Desaparecen las clases por componente como `.btn-primary` o `.badge.bg-primary`; se reemplazan por `.theme-{name}` composable vía CSS Custom Properties.
+4. **Arquitectura SCSS (Dart Sass):**
+   - Fin definitivo de `@import`; exige `@use "bootstrap/scss/bootstrap"`.
+   - Eliminado `_variables.scss` (reestructurado en `_config.scss` y `_colors.scss`).
+   - Nuevos breakpoints: `lg` (1024px), `xl` (1280px), `2xl` (1536px).
+5. **JavaScript y Dependencias:**
+   - ESM-only: No existe más bundle UMD ni objeto global `window.bootstrap`.
+   - Se reemplaza `@popperjs/core` por `@floating-ui/dom`.
+6. **Requisitos de Navegador:**
+   - Exige navegadores modernos (Chrome 130+, Safari 18+, Firefox 132+) al depender estrictamente de `<dialog>`, `:has()`, `light-dark()` y container queries sin polyfills.
 
 ---
 

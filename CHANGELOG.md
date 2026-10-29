@@ -2,6 +2,14 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.21] - 2026-10-29
+
+### Added
+
+- **Bloque `bs-divider`**: Nueva opción de tipo de visualización (`displayType`) para alternar entre línea estándar y fondo sólido (barra/ribbon). Reutiliza selector de color para fondo o línea y color de texto/icono.
+- **Bloque `bs-list-group`**: Nuevo control de alternancia de bordes (`border`) y clase utilitaria `.list-group-borderless` que permite eliminar bordes perimetrales e interiores entre ítems (incluso combinada con `.list-group-flush`).
+- **Documentación Bootstrap 6**: Añadida sección en `README.md` con evaluación técnica detallada de cambios disruptivos y hoja de ruta para futura migración cuando alcance release estable.
+
 ## [0.1.20] - 2026-10-29
 
 ### Added
