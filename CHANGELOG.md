@@ -2,6 +2,11 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.22] - 2026-11-02
+
+### Added
+- **Fallback a plugin `ileben_plantas`**: Función unificada `ileben_get_plantas_data()` en `inc/cpt-plantas.php`. Los bloques `bs-plantas-slider` y `bs-plantas-showcase` consultan el CPT `plantas`, y si no existen registros publicados, toman automáticamente como fallback las plantas gestionadas por el plugin `ileben_plantas` (vía `Ileben_Api_Repository` o tabla directa `wp_ileben_plantas`).
+
 ## [0.1.21] - 2026-10-29
 
 ### Added

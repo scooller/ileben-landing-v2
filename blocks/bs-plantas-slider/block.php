@@ -57,110 +57,33 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
     $dorm_choices = function_exists('ileben_build_choices_from_options_repeater') ? ileben_build_choices_from_options_repeater('dormitorios') : [];
     $bano_choices = function_exists('ileben_build_choices_from_options_repeater') ? ileben_build_choices_from_options_repeater('banos') : [];
 
-    $args = array(
-        'post_type' => 'plantas',
-        'post_status' => 'publish',
-        'posts_per_page' => $posts_per_page,
-        'orderby' => 'menu_order',
-        'order' => 'ASC',
-    );
+    // Obtener datos normalizados: CPT 'plantas' con fallback a plugin ileben_plantas
+    $plantas_data = function_exists('ileben_get_plantas_data') ? ileben_get_plantas_data([
+        'posts_per_page'        => $posts_per_page,
+        'filter_categoria'      => $filterCategoria,
+        'button_label'          => $buttonLabel,
+        'disabled_button_label' => $disabledButtonLabel,
+    ]) : [];
 
-    // Aplicar filtro de categoría si está seleccionado (solo en backend/bloque)
-    if (!empty($filterCategoria)) {
-        $terms = strpos($filterCategoria, ',') !== false ? array_map('trim', explode(',', $filterCategoria)) : $filterCategoria;
-        $args['tax_query'] = array(
-            array(
-                'taxonomy' => 'categoria_planta',
-                'field' => 'slug',
-                'terms' => $terms,
-            ),
-        );
-    }
-
-    // No aplicar filtros en el backend, se filtrarán en el frontend con JS
-    $q = new WP_Query($args);
-    if (!$q->have_posts()) {
+    if (empty($plantas_data)) {
         $is_rendering = false;
         return '';
     }
 
-    // ── Pre-load all post data + ACF fields in a SINGLE pass ──
-    // This avoids redundant get_field()/DB calls during the render loop.
-    $plantas_data = [];
     $piso_choices = [];
     $orientacion_choices = [];
 
-    foreach ($q->posts as $post) {
-        $pid = $post->ID;
-        $gf = function_exists('get_field');
+    foreach ($plantas_data as $p) {
+        $planta_piso = $p['piso'];
+        $planta_orientacion = $p['orientacion'];
 
-        $cotizador_activo_raw = $gf ? get_field('cotizador_activo', $pid) : null;
-        $link_cotizador       = $gf ? get_field('link_cotizador', $pid) : '';
-
-        // Fallback: si el link de cotización está vacío, usar el link global de las opciones del tema
-        if (empty($link_cotizador)) {
-            $global_cotiza_url = $gf ? get_field('api_cotiza_url', 'option') : '';
-            if (empty($global_cotiza_url)) {
-                $global_cotiza_url = get_option('options_api_cotiza_url', '');
-            }
-            if (!empty($global_cotiza_url)) {
-                $link_cotizador = $global_cotiza_url;
-            }
-        }
-
-        // Anexar Salesforce Product ID a la URL de cotización
-        $salesforce_id = $gf ? get_field('planta_salesforce_id', $pid) : '';
-        if (!empty($salesforce_id) && !empty($link_cotizador)) {
-            $link_cotizador = add_query_arg('id', $salesforce_id, $link_cotizador);
-        }
-
-        // Anexar parámetros UTM desde cookies (set by utm-tag-leben plugin)
-        if (!empty($link_cotizador) && function_exists('ileben_append_utm_params')) {
-            $link_cotizador = ileben_append_utm_params($link_cotizador);
-        }
-        $planta_dorm          = $gf ? get_field('planta_dormitorio', $pid) : '';
-        $planta_bano          = $gf ? get_field('planta_bano', $pid) : '';
-        $planta_img_front     = $gf ? get_field('planta_imagen_front', $pid) : '';
-        $planta_img_back      = $gf ? get_field('planta_imagen_back', $pid) : '';
-        $planta_piso          = $gf ? get_field('planta_piso', $pid) : '';
-        $planta_orientacion   = $gf ? get_field('planta_orientacion', $pid) : '';
-        $planta_precio_final  = $gf ? get_field('planta_precio_final', $pid) : '';
-        $planta_superficie    = $gf ? get_field('planta_superficie_total', $pid) : '';
-
-        // Collect filter choices during the same loop
         if ($planta_piso !== '' && $planta_piso !== null && !isset($piso_choices[$planta_piso])) {
             $piso_choices[$planta_piso] = 'Piso ' . $planta_piso;
         }
         if ($planta_orientacion !== '' && $planta_orientacion !== null && !isset($orientacion_choices[$planta_orientacion])) {
             $orientacion_choices[$planta_orientacion] = $planta_orientacion;
         }
-
-        $thumb_id = get_post_thumbnail_id($pid);
-        $plantas_data[] = [
-            'id'                  => $pid,
-            'title'               => get_the_title($pid),
-            'content'             => wpautop(wp_kses_post($post->post_content)),
-            'cotizador_activo'    => is_null($cotizador_activo_raw) ? true : (bool)$cotizador_activo_raw,
-            'link_cotizador'      => $link_cotizador,
-            'dorm'                => $planta_dorm,
-            'bano'                => $planta_bano,
-            'dorm_num'            => explode(' ', $planta_dorm)[0],
-            'bano_num'            => explode(' ', $planta_bano)[0],
-            'img_front'           => $planta_img_front,
-            'img_back'            => $planta_img_back,
-            'piso'                => $planta_piso,
-            'orientacion'         => $planta_orientacion,
-            'precio_final'        => $planta_precio_final,
-            'superficie_total'    => $planta_superficie,
-            'has_thumbnail'       => !empty($thumb_id),
-            'thumb_html'          => !empty($thumb_id) ? get_the_post_thumbnail($pid, 'medium', ['class' => 'img-fluid w-100']) : '',
-            'thumb_full_url'      => !empty($thumb_id) ? wp_get_attachment_image_url($thumb_id, 'full') : '',
-        ];
     }
-    wp_reset_postdata();
-
-    // Liberar la memoria del WP_Query (ya tenemos todo en $plantas_data)
-    unset($q);
 
     ksort($piso_choices, SORT_NUMERIC);
     ksort($orientacion_choices);
