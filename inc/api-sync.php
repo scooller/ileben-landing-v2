@@ -231,6 +231,14 @@ function ileben_theme_sync_to_plugin()
 
     $api_client->save_settings($merged);
 
+    // Disparar sincronización del plugin (plantas y site_config en la BD del plugin)
+    if (class_exists('Ileben_Api_Admin') && class_exists('Ileben_Api_Repository')) {
+        $admin = new Ileben_Api_Admin(new Ileben_Api_Repository(), $api_client);
+        if (method_exists($admin, 'run_sync')) {
+            $admin->run_sync();
+        }
+    }
+
     return true;
 }
 

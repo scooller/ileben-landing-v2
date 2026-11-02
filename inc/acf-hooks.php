@@ -368,6 +368,11 @@ add_action('admin_init', function () {
         }
     }
 
+    // 3. Sincronizar con el plugin ileben_plantas si esta activo
+    if (function_exists('ileben_theme_sync_to_plugin')) {
+        ileben_theme_sync_to_plugin();
+    }
+
     // Guardar resultados en transient para mostrar en admin_notices
     set_transient('ileben_sync_plantas_results', $sync_results, 60);
 

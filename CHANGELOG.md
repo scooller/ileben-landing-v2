@@ -2,6 +2,11 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.23] - 2026-11-02
+
+### Added
+- **Sincronización real con plugin iLeben Plantas**: Al activar 'Sincronizar con el plugin iLeben Plantas' (api_sync_plugin) en Opciones del Tema o al presionar 'Sincronizar Plantas desde API', se dispara inmediatamente la sincronización completa del plugin (Ileben_Api_Admin->run_sync()), descargando y actualizando las plantas y configuracion de sitio en la base de datos del plugin.
+
 ## [0.1.22] - 2026-11-02
 
 ### Added
