@@ -91,6 +91,12 @@ function ileben_get_plantas_data($options = array()) {
     if (empty($global_cotiza_url)) {
         $global_cotiza_url = (string) get_option('options_api_cotiza_url', '');
     }
+    if (empty($global_cotiza_url)) {
+        $plugin_settings = get_option('ileben_api_settings', []);
+        if (!empty($plugin_settings['cotiza_url'])) {
+            $global_cotiza_url = (string) $plugin_settings['cotiza_url'];
+        }
+    }
 
     // 1. Intentar CPT 'plantas'
     $args = array(

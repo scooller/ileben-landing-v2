@@ -5,6 +5,8 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 ## [0.1.22] - 2026-11-02
 
 ### Added
+- **Selector de tipo de imagen en `bs-plantas-slider`**: Añadido atributo `sliderImageType` ('portada' o 'interior') en el bloque y editor para elegir entre la foto frontal y la interior/reverso de la planta.
+- **Fallback de URL Cotizar por defecto**: Si no hay URL definida en Opciones del Tema (`api_cotiza_url`), se toma como fallback automático la URL configurada en los ajustes del plugin `ileben_plantas` (`cotiza_url` en `ileben_api_settings`).
 - **Fallback a plugin `ileben_plantas`**: Función unificada `ileben_get_plantas_data()` en `inc/cpt-plantas.php`. Los bloques `bs-plantas-slider` y `bs-plantas-showcase` consultan el CPT `plantas`, y si no existen registros publicados, toman automáticamente como fallback las plantas gestionadas por el plugin `ileben_plantas` (vía `Ileben_Api_Repository` o tabla directa `wp_ileben_plantas`).
 
 ## [0.1.21] - 2026-10-29

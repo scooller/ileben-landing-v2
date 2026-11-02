@@ -37,6 +37,7 @@
             filterPiso: { type: 'string', default: '' },
             filterOrientacion: { type: 'string', default: '' },
             filterCategoria: { type: 'string', default: '' },
+            sliderImageType: { type: 'string', default: 'portada' },
             // Animation attributes
             animationType: { type: 'string' },
             animationTrigger: { type: 'string' },
@@ -96,6 +97,16 @@
                             label: __('Mostrar imagen destacada', 'ileben-landing'),
                             checked: !!attributes.showThumbnail,
                             onChange: (value) => setAttributes({ showThumbnail: value })
+                        }),
+                        createElement(SelectControl, {
+                            __next40pxDefaultSize: true,
+                            label: __('Imagen a mostrar en el slider', 'ileben-landing'),
+                            value: attributes.sliderImageType || 'portada',
+                            options: [
+                                { label: __('Imagen de Portada (Front)', 'ileben-landing'), value: 'portada' },
+                                { label: __('Imagen Interior (Back)', 'ileben-landing'), value: 'interior' }
+                            ],
+                            onChange: (value) => setAttributes({ sliderImageType: value })
                         }),
                         createElement(TextControl, {
                             __next40pxDefaultSize: true, label: __('Texto botón cotizador', 'ileben-landing'),

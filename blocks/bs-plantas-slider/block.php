@@ -49,6 +49,7 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
     $filterPiso = isset($_GET['planta_piso']) ? sanitize_text_field(wp_unslash($_GET['planta_piso'])) : (isset($attributes['filterPiso']) ? trim((string)$attributes['filterPiso']) : '');
     $filterOrientacion = isset($_GET['planta_orientacion']) ? sanitize_text_field(wp_unslash($_GET['planta_orientacion'])) : (isset($attributes['filterOrientacion']) ? trim((string)$attributes['filterOrientacion']) : '');
     $filterCategoria = isset($attributes['filterCategoria']) ? trim((string)$attributes['filterCategoria']) : '';
+    $slider_image_type = isset($attributes['sliderImageType']) ? $attributes['sliderImageType'] : 'portada';
 
     // Advanced filters toggle
     $showAdvancedFilters = !empty($attributes['showAdvancedFilters']);
@@ -189,18 +190,19 @@ function bootstrap_theme_render_bs_plantas_slider($attributes, $content, $block)
                         $planta_precio_final = $p['precio_final'];
                         $planta_superficie_total = $p['superficie_total'];
 
-                        // Resolver thumbnail
+                        // Resolver thumbnail segun tipo de imagen seleccionado (portada o interior/back)
                         $thumb_html = '';
                         $full_url   = '';
-                        if ($p['has_thumbnail']) {
-                            $full_url = $p['thumb_full_url'];
+                        $chosen_img = ($slider_image_type === 'interior')
+                            ? (!empty($planta_img_back) ? $planta_img_back : (!empty($planta_img_front) ? $planta_img_front : $p['thumb_full_url']))
+                            : (!empty($planta_img_front) ? $planta_img_front : (!empty($planta_img_back) ? $planta_img_back : $p['thumb_full_url']));
+
+                        if (!empty($chosen_img)) {
+                            $full_url   = $chosen_img;
+                            $thumb_html = '<img src="' . esc_url($chosen_img) . '" class="img-fluid w-100" alt="' . esc_attr($p['title']) . '" loading="lazy" />';
+                        } elseif ($p['has_thumbnail']) {
+                            $full_url   = $p['thumb_full_url'];
                             $thumb_html = $p['thumb_html'];
-                        } elseif (!empty($planta_img_back)) {
-                            $full_url = $planta_img_back;
-                            $thumb_html = '<img src="' . esc_url($planta_img_back) . '" class="img-fluid w-100" alt="' . esc_attr($p['title']) . '" loading="lazy" />';
-                        } elseif (!empty($planta_img_front)) {
-                            $full_url = $planta_img_front;
-                            $thumb_html = '<img src="' . esc_url($planta_img_front) . '" class="img-fluid w-100" alt="' . esc_attr($p['title']) . '" loading="lazy" />';
                         }
 
                         $titulo = esc_html($p['title']);
@@ -289,6 +291,7 @@ function bootstrap_theme_register_bs_plantas_slider()
             'filterPiso' => array('type' => 'string', 'default' => ''),
             'filterOrientacion' => array('type' => 'string', 'default' => ''),
             'filterCategoria' => array('type' => 'string', 'default' => ''),
+            'sliderImageType' => array('type' => 'string', 'default' => 'portada'),
             // Animation attributes
             'animationType' => array('type' => 'string'),
             'animationTrigger' => array('type' => 'string'),
