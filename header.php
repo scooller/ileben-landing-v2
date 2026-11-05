@@ -28,8 +28,8 @@ if (!defined('ABSPATH')) {
         ileben_render_loader();
     } ?>
     <?php wp_body_open(); ?>
-    <?php 
-    $glass_class = get_field('enable_glass_class', 'option') ? 'glass' : ''; 
+    <?php
+    $glass_class = get_field('enable_glass_class', 'option') ? 'glass' : '';
     $navbar_over = function_exists('get_field') ? get_field('navbar_over_content', 'option') : null;
     if ($navbar_over === false || $navbar_over === 0 || $navbar_over === '0') {
         $custom_padding = get_field('navbar_padding_top', 'option');
@@ -38,20 +38,21 @@ if (!defined('ABSPATH')) {
         }
     }
     ?>
-    <header id="site-header" class="site-header <?php echo esc_attr($glass_class); ?> d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 fixed-top top-0 shadow-sm">
+    <header id="site-header"
+        class="site-header <?php echo esc_attr($glass_class); ?> d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 fixed-top top-0 shadow-sm">
         <div class="col-md-5 col-3 mb-2 mb-md-0 px-3 logo-menu">
             <?php
             if (has_nav_menu('header-menu')) {
                 wp_nav_menu([
-                    'theme_location'  => 'header-menu',
-                    'menu_class'      => 'navbar-nav ms-auto text-center',
-                    'container'       => false,
-                    'fallback_cb'     => false,
-                    'depth'           => 2,
-                    'walker'          => new WP_Bootstrap_Navwalker(),
+                    'theme_location' => 'header-menu',
+                    'menu_class' => 'navbar-nav logo-menu',
+                    'container' => false,
+                    'fallback_cb' => false,
+                    'depth' => 2,
+                    'walker' => new WP_Bootstrap_Navwalker(),
                 ]);
             } else {
-                $api_logo     = function_exists('get_field') ? get_field('api_logo', 'option') : '';
+                $api_logo = function_exists('get_field') ? get_field('api_logo', 'option') : '';
                 $api_logo_dark = function_exists('get_field') ? get_field('api_logo_dark', 'option') : '';
 
                 if ($api_logo) {
@@ -76,15 +77,15 @@ if (!defined('ABSPATH')) {
             ?>
         </div>
         <div class="col-md-2 col-6 mb-2 mb-md-0 text-center">
-            <?php if (get_field('mostrar_logonombre', 'option')) : ?>
+            <?php if (get_field('mostrar_logonombre', 'option')): ?>
                 <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
                     <?php
                     if (function_exists('the_custom_logo') && has_custom_logo()) {
                         the_custom_logo();
                     } else {
-                    ?>
+                        ?>
                         <h1 class="site-title m-0"><?php bloginfo('name'); ?></h1>
-                    <?php
+                        <?php
                     }
                     ?>
                 </a>
