@@ -346,6 +346,16 @@ body.glass-active[data-bs-theme="dark"] {
   z-index: 5;
   scale: 1;
 
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+
+  i {
+    font-size: 2rem;
+  }
+
   &:hover {
     transition: all ease-in 0.3s;
     scale: 1.3;
