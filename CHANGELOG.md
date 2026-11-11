@@ -2,6 +2,12 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.24] - 2026-11-11
+
+### Added
+- **Fuente independiente para títulos (Google Fonts)**: Nuevo campo ACF `google_font_name_title` en Opciones del Tema para configurar familia tipográfica específica para títulos, inyectando variables CSS `--bs-font-family-title-*` y `--bs-body-font-title-family`.
+- **Estilo de lista con divisor vertical**: Nueva clase utilitaria `.list-group-flush.list-group-vertical-border` en SCSS para separar ítems con línea divisoria vertical.
+
 ## [0.1.23] - 2026-11-02
 
 ### Added

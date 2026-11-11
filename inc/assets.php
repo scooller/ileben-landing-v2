@@ -351,6 +351,7 @@ add_action('wp_enqueue_scripts', function () {
 
     // Typography
     $fonts_name = get_field('google_font_name', 'option') ? explode(';', get_field('google_font_name', 'option')) : array('"Open Sans", sans-serif');
+    $fonts_title_name = get_field('google_font_name_title', 'option') ? explode(';', get_field('google_font_name_title', 'option')) : $fonts_name;
     $font_size = get_field('body_font_size', 'option') ?: '1rem';
     $font_size_mobile = get_field('body_font_size_mobile', 'option') ?: '14px';
     $font_weight = get_field('body_font_weight', 'option') ?: '400';
@@ -394,7 +395,11 @@ add_action('wp_enqueue_scripts', function () {
     <?php foreach ($fonts_name as $i => $font): ?>
         --bs-font-family-<?php echo $i + 1; ?>: <?php echo $font; ?>;
     <?php endforeach; ?>
+    <?php foreach ($fonts_title_name as $i => $font): ?>
+        --bs-font-family-title-<?php echo $i + 1; ?>: <?php echo $font; ?>;
+    <?php endforeach; ?>
     --bs-body-font-family: var(--bs-font-family-1);
+    --bs-body-font-title-family: var(--bs-font-family-title-1);
     --bs-body-font-size: <?php echo $font_size; ?>;
     --bs-body-font-weight: <?php echo $font_weight; ?>;
     }

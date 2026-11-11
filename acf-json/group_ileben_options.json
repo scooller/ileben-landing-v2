@@ -558,8 +558,28 @@
         },
         {
             "key": "field_google_font_name",
-            "label": "Nombre Google Font",
+            "label": "Nombre Google Font (Body)",
             "name": "google_font_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Ejemplo: \"Open Sans\", sans-serif\", se puede separar múltiples fuentes con ;",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "\"Open Sans\", sans-serif",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_google_font_name_title",
+            "label": "Nombre Google Font (Titulos)",
+            "name": "google_font_name_title",
             "aria-label": "",
             "type": "text",
             "instructions": "Ejemplo: \"Open Sans\", sans-serif\", se puede separar múltiples fuentes con ;",
