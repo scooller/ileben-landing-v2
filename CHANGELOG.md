@@ -2,6 +2,14 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.25] - 2026-11-12
+
+### Added
+- **Bootstrap Carousel Item**: Campo opcional para el caption de cada diapositiva, compatible con el contenido de bloques existente.
+
+### Changed
+- **Bootstrap Carousel**: Estilo actualizado para los controles de navegación.
+
 ## [0.1.24] - 2026-11-11
 
 ### Added

@@ -35,6 +35,10 @@
                 type: 'string',
                 default: ''
             },
+            caption: {
+                type: 'string',
+                default: ''
+            },
             link: {
                 type: 'string',
                 default: ''
@@ -168,6 +172,11 @@
                             )
                         ),
                         createElement(TextControl, {
+                            __next40pxDefaultSize: true, label: __('Caption', 'ileben-landing'),
+                            value: attributes.caption || '',
+                            onChange: (value) => setAttributes({ caption: value })
+                        }),
+                        createElement(TextControl, {
                             __next40pxDefaultSize: true, label: __('Link URL', 'ileben-landing'),
                             help: __('Optional URL to make the entire slide clickable', 'ileben-landing'),
                             value: attributes.link || '',
@@ -198,6 +207,7 @@
                         }
                     },
                         createElement('div', { className: 'text-center' },
+                            attributes.caption && createElement('p', {}, attributes.caption),
                             createElement(InnerBlocks, {
                                 placeholder: __('Add slide content (text, image, etc)...', 'ileben-landing')
                             })

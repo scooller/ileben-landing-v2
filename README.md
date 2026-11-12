@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.21  
+**Versión:** 0.1.25<br>
 **Compatibilidad:** PHP 8.3+, WordPress 7.0+ (tested 7.1.4), ACF Pro
 
 ---
@@ -18,6 +18,7 @@ Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing
 - **Font Awesome 7** – Íconos vectoriales (CDN jsdelivr, versión centralizada)
 - **Select2** – Selectores enriquecidos para filtros
 - **Bloques Bootstrap interactivos** – Dropdown (direcciones centradas, variantes outline, modo oscuro `data-bs-theme`), Popover (HTML, dismissable, `data-bs-custom-class`), Tooltip, Collapse, Tabs, Toast — inicialización JS automática vía `data-bs-toggle` (data-api) + inicialización manual con `getOrCreateInstance` para componentes sin data-api
+- **Bootstrap Carousel Item** – Caption opcional editable por diapositiva, además de su contenido de bloques.
 - **bs-split-carousel** – Slider con diseño dividido (texto + imagen grande)
 - **Bloque bs-plantas-slider** – Slider con filtros en cliente (dormitorios/baños), Fancybox, navegación, paginación múltiple y efectos Swiper
 - **Preloader** – Cargador de sitio visible antes del renderizado inicial

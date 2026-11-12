@@ -19,6 +19,7 @@ function bootstrap_theme_render_bs_carousel_item_block($attributes, $content)
     $backgroundImage = $attributes['backgroundImage'] ?? null;
     $backgroundImageMobile = $attributes['backgroundImageMobile'] ?? null;
     $interval = $attributes['interval'] ?? '';
+    $caption = $attributes['caption'] ?? '';
     $link = $attributes['link'] ?? '';
     $target = $attributes['target'] ?? '_self';
     $className = $attributes['className'] ?? '';
@@ -60,6 +61,9 @@ function bootstrap_theme_render_bs_carousel_item_block($attributes, $content)
     <div class="<?php echo esc_attr($class_string); ?>" <?php echo $style_string ? ' style="' . esc_attr($style_string) . '"' : ''; ?><?php echo $data_attrs; ?>>
         <div class="d-flex align-items-center justify-content-center h-100">
             <div class="carousel-caption">
+                <?php if ($caption !== '') : ?>
+                    <p><?php echo esc_html($caption); ?></p>
+                <?php endif; ?>
                 <?php echo $content; ?>
             </div>
         </div>
@@ -94,6 +98,10 @@ function bootstrap_theme_register_bs_carousel_item_block()
                 'default' => null
             ),
             'interval' => array(
+                'type' => 'string',
+                'default' => ''
+            ),
+            'caption' => array(
                 'type' => 'string',
                 'default' => ''
             ),

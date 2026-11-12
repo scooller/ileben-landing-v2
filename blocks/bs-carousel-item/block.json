@@ -29,6 +29,10 @@
             "type": "string",
             "default": ""
         },
+        "caption": {
+            "type": "string",
+            "default": ""
+        },
         "link": {
             "type": "string",
             "default": ""
