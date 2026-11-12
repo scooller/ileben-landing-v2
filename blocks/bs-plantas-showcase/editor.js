@@ -44,7 +44,8 @@
             animationParallaxSpeed: { type: 'number' },
             animationHoverEffect: { type: 'string' },
             animationMobileEnabled: { type: 'boolean' },
-            sliderImageType: { type: 'string', default: 'portada' }
+            sliderImageType: { type: 'string', default: 'portada' },
+            priceType: { type: 'string', default: 'final' }
         },
         edit: function (props) {
             var atts = props.attributes;
@@ -99,6 +100,18 @@
                         ],
                         onChange: function (val) {
                             setAttributes({ sliderImageType: val });
+                        }
+                    }),
+                    el(SelectControl, {
+                        label: __('Precio a mostrar', 'ileben-landing'),
+                        value: atts.priceType || 'final',
+                        options: [
+                            { label: __('Precio Final', 'ileben-landing'), value: 'final' },
+                            { label: __('Precio Lista', 'ileben-landing'), value: 'lista' },
+                            { label: __('Precio Base', 'ileben-landing'), value: 'base' }
+                        ],
+                        onChange: function (val) {
+                            setAttributes({ priceType: val });
                         }
                     })
                 )

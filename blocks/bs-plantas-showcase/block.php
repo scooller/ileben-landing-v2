@@ -70,6 +70,8 @@ function bootstrap_theme_render_bs_plantas_showcase($attributes, $content, $bloc
 
     $slider_image_type = isset($attributes['sliderImageType']) ? $attributes['sliderImageType'] : 'portada';
 
+    $price_type = isset($attributes['priceType']) && in_array($attributes['priceType'], ['final', 'lista', 'base'], true) ? $attributes['priceType'] : 'final';
+
     // Build JSON payload for JS
     $json_payload = wp_json_encode(array_values($plantas_data));
 
@@ -78,6 +80,7 @@ function bootstrap_theme_render_bs_plantas_showcase($attributes, $content, $bloc
     <div class="bs-plantas-showcase card shadow-sm position-relative overflow-hidden" id="<?php echo esc_attr($instance_id); ?>" <?php echo $animation_attrs; ?>
         data-showcase-instance="<?php echo esc_attr($instance_id); ?>"
         data-image-type="<?php echo esc_attr($slider_image_type); ?>"
+        data-price-type="<?php echo esc_attr($price_type); ?>"
         data-fancybox-group="<?php echo esc_attr($instance_id); ?>">
 
         <div class="position-absolute top-50 start-50 translate-middle z-3 bg-white bg-opacity-85 rounded px-3 py-2 d-flex align-items-center gap-2 bs-plantas-showcase-loader" aria-hidden="true">
@@ -211,6 +214,7 @@ function bootstrap_theme_register_bs_plantas_showcase()
             'showFilters'           => array('type' => 'boolean', 'default' => true),
             'filterCategoria'       => array('type' => 'string', 'default' => ''),
             'sliderImageType'       => array('type' => 'string', 'default' => 'portada'),
+            'priceType'             => array('type' => 'string', 'default' => 'final'),
             // Animation
             'animationType'         => array('type' => 'string'),
             'animationTrigger'      => array('type' => 'string'),

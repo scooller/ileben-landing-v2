@@ -108,7 +108,8 @@
                 fields.superficie_total.innerHTML = formatArea(item.superficie_total);
             }
             if (fields.precio_final) {
-                fields.precio_final.textContent = formatPrice(item.precio_final);
+                var pt = wrapper.getAttribute('data-price-type') || 'final';
+                fields.precio_final.textContent = formatPrice(item['precio_' + pt] || item.precio_final);
             }
 
             // Cotizar button
