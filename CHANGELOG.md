@@ -2,6 +2,11 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.26] - 2026-11-16
+
+### Fixed
+- **Galería**: El tamaño de thumbnail seleccionado limita las dimensiones visibles de cada imagen; el lightbox sigue mostrando el original.
+
 ## [0.1.25] - 2026-11-12
 
 ### Added

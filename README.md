@@ -3,7 +3,7 @@
 Tema de WordPress moderno y optimizado para mobile-first, diseñado para landing pages de alto rendimiento.
 
 **Autor:** [ileben.cl](https://ileben.cl)  
-**Versión:** 0.1.25<br>
+**Versión:** 0.1.26<br>
 **Compatibilidad:** PHP 8.3+, WordPress 7.0+ (tested 7.1.4), ACF Pro
 
 ---
@@ -512,7 +512,7 @@ El tema incluye una amplia colección de bloques personalizados (basados en Boot
 ### Media & Sliders
 
 - **bs-carousel**, **bs-carousel-item**
-- **bs-gallery**
+- **bs-gallery**: Usa el tamaño de thumbnail elegido como límite visual en la galería; el lightbox abre la imagen completa. Los tamaños dependen de las miniaturas disponibles en WordPress.
 - **bs-iframe**
 - **bs-video**
 - **bs-parallax**

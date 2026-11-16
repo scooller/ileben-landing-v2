@@ -154,9 +154,11 @@ function ileben_render_bs_gallery($attributes, $content, $block)
 
                 // Estilos de grid sin forzar relación de aspecto
                 $figure_style = sprintf(
-                    'grid-column: span %d; grid-row: span %d;',
+                    'grid-column: span %d; grid-row: span %d; max-width: %dpx; max-height: %dpx;',
                     $img_column_span,
-                    $img_row_span
+                    $img_row_span,
+                    $img_src[1],
+                    $img_src[2]
                 );
 
                 // Build item classes y estilos para Grid

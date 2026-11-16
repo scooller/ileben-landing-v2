@@ -488,6 +488,14 @@
         width: 100%;
         left: 0;
         right: 0;
+        width: 100%;
+        background-color: rgba(var(--bs-dark-rgb), 0.5);
+        bottom: 0;
+        color: rgba(var(--bs-light-rgb), 1);
+        padding: 10px 0;
+        p{
+            margin-bottom: 0;
+        }
     }
 
     .carousel-control-prev,

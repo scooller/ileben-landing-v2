@@ -44,7 +44,7 @@
                 const newImages = media.map(img => ({
                     id: img.id,
                     url: img.url,
-                    thumbnailSize: 'medium', // Valor por defecto
+                    thumbnailSize: 'medio', // Valor por defecto
                     columnSpan: 1, // Cuántas columnas ocupa
                     rowSpan: 1, // Cuántas filas ocupa
                     customCaption: '', // Caption personalizado opcional
@@ -194,7 +194,7 @@
                             ),
                             el(SelectControl, {
                                 label: __('Tamaño de thumbnail', 'ileben-landing'),
-                                value: attributes.images[selectedImageIndex].thumbnailSize || 'medium',
+                                value: attributes.images[selectedImageIndex].thumbnailSize === 'medium' ? 'medio' : (attributes.images[selectedImageIndex].thumbnailSize || 'medio'),
                                 options: sizeOptions,
                                 onChange: (value) => updateImageProperty(selectedImageIndex, 'thumbnailSize', value)
                             }),
