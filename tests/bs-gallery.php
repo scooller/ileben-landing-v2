@@ -26,18 +26,18 @@ function wp_get_attachment_image_src($id, $size)
 require __DIR__ . '/../blocks/bs-gallery/block.php';
 
 foreach ([
-    'thumb' => ['thumbnail', 150, 150],
-    'medio' => ['medium', 300, 200],
-    'medium' => ['medium', 300, 200],
-    'largo' => ['large', 1024, 683],
-    'completo' => ['full', 2400, 1600],
-] as $selected => [$size, $width, $height]) {
+    'thumb' => 'thumbnail',
+    'medio' => 'medium',
+    'medium' => 'medium',
+    'largo' => 'large',
+    'completo' => 'full',
+] as $selected => $size) {
     foreach ([true, false] as $lightbox) {
         $html = ileben_render_bs_gallery([
-            'images' => [['id' => 1, 'thumbnailSize' => $selected]],
+            'images' => [['id' => 1, 'thumbnailSize' => $selected, 'columnSpan' => 2, 'rowSpan' => 2]],
             'lightbox' => $lightbox,
         ], '', null);
-        if (strpos($html, "max-width: {$width}px; max-height: {$height}px;") === false ||
+        if (strpos($html, 'style="grid-column: span 2; grid-row: span 2;"') === false ||
             strpos($html, "src=\"https://example.test/{$size}.jpg\"") === false ||
             (strpos($html, 'href="https://example.test/full.jpg"') !== false) !== $lightbox) {
             throw new RuntimeException("Gallery rendering failed for {$selected}.");

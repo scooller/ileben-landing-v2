@@ -2,6 +2,11 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [0.1.27] - 2026-11-16
+
+### Fixed
+- **Galería**: Restaurado el mosaico sin limitar las celdas al tamaño del thumbnail seleccionado.
+
 ## [0.1.26] - 2026-11-16
 
 ### Fixed
