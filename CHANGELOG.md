@@ -2,7 +2,7 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
-## [Unreleased]
+## [0.1.29] - 2026-11-18
 
 ### Fixed
 - **Bootstrap Carousel**: Solucionada la ampliación/zoom de la primera imagen al avanzar reutilizando el motor Swiper de `bs-plantas-slider` (desplazamiento suave 1 a 1 sin deformación).
