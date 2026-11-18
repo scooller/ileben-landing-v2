@@ -2,7 +2,7 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
-## [Unreleased]
+## [0.1.28] - 2026-11-18
 
 ### Added
 - **Bootstrap Carousel**: Opción `items` (1 a 4, por defecto 1) para mostrar múltiples items simultáneos en desktop y 1 en mobile, avanzando de 1 en 1 de forma continua.
