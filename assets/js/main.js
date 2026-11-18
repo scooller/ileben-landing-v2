@@ -46,6 +46,7 @@ async function init() {
   const runDeferred = () => {
     initFancybox();
     initSliders();
+    initMultiItemCarousels();
     initPlantasSlider();
     initPlantasFilter();
     initRutValidation();
@@ -148,4 +149,45 @@ if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {
     // Font Awesome is loaded inline in assets.php defer script
   }, { once: true });
+}
+
+export function initMultiItemCarousels() {
+  const carousels = document.querySelectorAll('.carousel.carousel-multiple[data-bs-items]');
+  carousels.forEach((carousel) => {
+    const itemsCount = parseInt(carousel.dataset.bsItems, 10);
+    if (!itemsCount || itemsCount <= 1) return;
+
+    const items = Array.from(carousel.querySelectorAll('.carousel-item'));
+    if (items.length <= 1) return;
+
+    items.forEach((el, index) => {
+      if (el.dataset.multiCloned) return;
+      el.dataset.multiCloned = 'true';
+
+      for (let i = 1; i < itemsCount; i++) {
+        const nextIndex = (index + i) % items.length;
+        const nextItem = items[nextIndex];
+        const firstChild = nextItem ? nextItem.firstElementChild : null;
+        if (firstChild) {
+          const cloneChild = firstChild.cloneNode(true);
+          if (nextItem.style.cssText) {
+            cloneChild.style.cssText = (cloneChild.style.cssText ? cloneChild.style.cssText + ';' : '') + nextItem.style.cssText;
+          }
+          cloneChild.setAttribute('aria-hidden', 'true');
+
+          const parentLink = nextItem.closest('a') || nextItem.querySelector('a.stretched-link');
+          if (parentLink && parentLink.href) {
+            const a = document.createElement('a');
+            a.href = parentLink.href;
+            a.target = parentLink.target || '_self';
+            if (parentLink.rel) a.rel = parentLink.rel;
+            a.appendChild(cloneChild);
+            el.appendChild(a);
+          } else {
+            el.appendChild(cloneChild);
+          }
+        }
+      }
+    });
+  });
 }

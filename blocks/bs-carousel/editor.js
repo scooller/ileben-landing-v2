@@ -18,6 +18,10 @@
         keywords: [__('carousel'), __('slider'), __('bootstrap')],
         
         attributes: {
+            items: {
+                type: 'number',
+                default: 1
+            },
             carouselId: {
                 type: 'string',
                 default: ''
@@ -82,7 +86,9 @@
             const carouselClasses = [
                 'carousel',
                 'slide',
-                attributes.fade ? 'carousel-fade' : ''
+                (attributes.fade && (!attributes.items || attributes.items === 1)) ? 'carousel-fade' : '',
+                attributes.items > 1 ? 'carousel-multiple' : '',
+                attributes.items > 1 ? `carousel-items-${attributes.items}` : ''
             ].filter(Boolean).join(' ');
             return createElement(Fragment, {},
                 createElement(InspectorControls, {},
@@ -91,6 +97,19 @@
                             __next40pxDefaultSize: true, label: __('Carousel ID', 'ileben-landing'),
                             value: attributes.carouselId,
                             onChange: (value) => setAttributes({ carouselId: value })
+                        }),
+                        createElement(SelectControl, {
+                            __next40pxDefaultSize: true,
+                            label: __('Items per slide', 'ileben-landing'),
+                            help: __('Items visible on desktop (1 on mobile, slides 1-by-1)', 'ileben-landing'),
+                            value: attributes.items || 1,
+                            options: [
+                                { label: '1', value: 1 },
+                                { label: '2', value: 2 },
+                                { label: '3', value: 3 },
+                                { label: '4', value: 4 }
+                            ],
+                            onChange: (value) => setAttributes({ items: parseInt(value, 10) })
                         }),
                         createElement(ToggleControl, {
                             label: __('Show Controls', 'ileben-landing'),
@@ -141,6 +160,7 @@
                     Object.assign({}, blockProps, { 
                         className: `${carouselClasses} ${blockProps.className || ''}`.trim(),
                         id: attributes.carouselId,
+                        'data-bs-items': (attributes.items && attributes.items > 1) ? attributes.items.toString() : undefined,
                         'data-bs-ride': attributes.ride,
                         'data-bs-interval': attributes.interval,
                         'data-bs-wrap': attributes.wrap.toString(),

@@ -32,12 +32,18 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
     $wrap = $to_bool($attributes['wrap'] ?? null, true);
     $fade = $to_bool($attributes['fade'] ?? null, false);
     $touch = $to_bool($attributes['touch'] ?? null, true);
+    $items = isset($attributes['items']) ? max(1, min(4, intval($attributes['items']))) : 1;
 
     // Build carousel classes
     $classes = array('carousel', 'slide');
 
-    if ($fade) {
+    if ($fade && $items === 1) {
         $classes[] = 'carousel-fade';
+    }
+
+    if ($items > 1) {
+        $classes[] = 'carousel-multiple';
+        $classes[] = 'carousel-items-' . $items;
     }
 
     // Add custom CSS classes from Advanced panel
@@ -51,6 +57,10 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
         'data-bs-wrap' => $wrap ? 'true' : 'false',
         'data-bs-touch' => $touch ? 'true' : 'false'
     );
+
+    if ($items > 1) {
+        $carousel_data['data-bs-items'] = $items;
+    }
 
     $data_attrs = '';
     foreach ($carousel_data as $key => $value) {
@@ -118,6 +128,10 @@ function bootstrap_theme_register_bs_carousel_block()
             'html' => true,
         ),
         'attributes' => array(
+            'items' => array(
+                'type' => 'number',
+                'default' => 1
+            ),
             'carouselId' => array(
                 'type' => 'string',
                 'default' => ''

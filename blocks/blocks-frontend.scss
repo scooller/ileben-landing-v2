@@ -525,6 +525,49 @@
     }
 }
 
+/* Multi-item carousel (bs-carousel) */
+.carousel.carousel-multiple {
+    @include media-breakpoint-down(md) {
+        .carousel-inner .carousel-item > *:not(:first-child) {
+            display: none !important;
+        }
+        .carousel-inner .carousel-item > *:first-child {
+            display: flex !important;
+            width: 100%;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        &.carousel-items-2 { --bs-carousel-slide-w: 50%; }
+        &.carousel-items-3 { --bs-carousel-slide-w: 33.333333%; }
+        &.carousel-items-4 { --bs-carousel-slide-w: 25%; }
+
+        .carousel-inner {
+            .carousel-item.active,
+            .carousel-item-next,
+            .carousel-item-prev {
+                display: flex;
+            }
+            .carousel-item > * {
+                flex: 0 0 var(--bs-carousel-slide-w, 100%);
+                max-width: var(--bs-carousel-slide-w, 100%);
+            }
+            .carousel-item-end.active,
+            .carousel-item-next {
+                transform: translateX(var(--bs-carousel-slide-w, 100%));
+            }
+            .carousel-item-start.active,
+            .carousel-item-prev {
+                transform: translateX(calc(-1 * var(--bs-carousel-slide-w, 100%)));
+            }
+            .carousel-item-end,
+            .carousel-item-start {
+                transform: translateX(0);
+            }
+        }
+    }
+}
+
 /* Responsive Image Block (bs-image) */
 .wp-block-bootstrap-theme-bs-image {
     display: block;
