@@ -2,6 +2,11 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [Unreleased]
+
+### Changed
+- **Bootstrap Carousel Item**: Renderizado de imágenes mediante etiqueta `<img>` semántica directa (con `<picture>` opcional para mobile) en lugar de estilo `background-image`, garantizando proporciones naturales, soporte responsive y visibilidad correcta de todos los slides en el carrusel.
+
 ## [0.1.29] - 2026-11-18
 
 ### Fixed

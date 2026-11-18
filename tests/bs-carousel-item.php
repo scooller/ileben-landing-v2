@@ -5,6 +5,7 @@ function add_action($hook, $callback) {}
 function esc_attr($value) { return htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); }
 function esc_html($value) { return htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); }
 function esc_url($value) { return esc_attr($value); }
+function __($text, $domain = '') { return $text; }
 function register_block_type($name, $settings) { $GLOBALS['block_settings'] = $settings; }
 
 require __DIR__ . '/../blocks/bs-carousel-item/block.php';
