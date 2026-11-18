@@ -30,13 +30,8 @@ export function initSliders() {
   const sliders = document.querySelectorAll('.js-swiper');
   sliders.forEach((container) => {
     // Skip plantas sliders (they're handled by initPlantasSlider)
-    let parent = container.parentElement;
-    while (parent) {
-      if (parent.querySelector('.bs-plantas-filters')) {
-        return; // Skip this container
-      }
-      parent = parent.parentElement;
-    }
+    // (also covers bs-gallery-slider, which reuses the same container class)
+    if (container.closest('.bs-plantas-slider-container')) return;
     ensureSwiperStructure(container);
 
     const ds = container.dataset;
@@ -46,16 +41,16 @@ export function initSliders() {
 
     const localNav = readBool(ds.swiperNavigation);
     const enableNav = localNav !== undefined ? localNav : !!globals.enableNavigation;
-    const nav = enableNav ? {
-      nextEl: container.querySelector('.swiper-button-next, .carousel-control-next') || (sliderId ? `.swiper-button-next-${sliderId}` : undefined),
-      prevEl: container.querySelector('.swiper-button-prev, .carousel-control-prev') || (sliderId ? `.swiper-button-prev-${sliderId}` : undefined),
-    } : undefined;
+    const nextEl = container.querySelector('.swiper-button-next, .carousel-control-next');
+    const prevEl = container.querySelector('.swiper-button-prev, .carousel-control-prev');
+    const nav = (enableNav && nextEl && prevEl) ? { nextEl, prevEl } : undefined;
 
     const localPag = readBool(ds.swiperPagination);
     const enablePag = localPag !== undefined ? localPag : !!globals.enablePagination;
     const indicators = container.querySelector('.carousel-indicators');
-    const pagination = enablePag ? {
-      el: indicators || (sliderId ? `.swiper-pagination-${sliderId}` : container.querySelector('.swiper-pagination')),
+    const pagEl = (indicators && indicators.children.length) ? indicators : container.querySelector('.swiper-pagination');
+    const pagination = (enablePag && pagEl) ? {
+      el: pagEl,
       clickable: true,
       bulletClass: 'carousel-indicator-btn',
       bulletActiveClass: 'active'

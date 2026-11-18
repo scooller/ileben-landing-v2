@@ -4,6 +4,12 @@ Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
 ## [Unreleased]
 
+### Added
+- 2026-11-18: Nuevo bloque `bs-gallery-slider`: slider de imágenes con caption por imagen, reutilizando markup/estilos/JS de `bs-plantas-slider`; opción Fancybox, slides por viewport, flechas, paginación y loop.
+
+### Fixed
+- 2026-11-18: `sliders.js` ya no pasa `navigation`/`pagination` a Swiper si los elementos no existen (error `reading 'el'`); se omiten los contenedores `.bs-plantas-slider-container`.
+
 ### Changed
 - **Bootstrap Carousel Item**: Renderizado de imágenes mediante etiqueta `<img>` semántica directa (con `<picture>` opcional para mobile) en lugar de estilo `background-image`, garantizando proporciones naturales, soporte responsive y visibilidad correcta de todos los slides en el carrusel.
 

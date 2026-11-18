@@ -83,6 +83,7 @@ function bootstrap_theme_block_editor_assets()
         'bs-dropdown-item',
         'bs-fa-icon',
         'bs-gallery',
+        'bs-gallery-slider',
         'bs-list-group',
         'bs-list-group-item',
         'bs-menu',
