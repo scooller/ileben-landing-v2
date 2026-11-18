@@ -33,6 +33,10 @@
             "type": "string",
             "default": ""
         },
+        "fancybox": {
+            "type": "boolean",
+            "default": false
+        },
         "link": {
             "type": "string",
             "default": ""

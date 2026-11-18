@@ -39,6 +39,10 @@
                 type: 'string',
                 default: ''
             },
+            fancybox: {
+                type: 'boolean',
+                default: false
+            },
             link: {
                 type: 'string',
                 default: ''
@@ -175,6 +179,12 @@
                             __next40pxDefaultSize: true, label: __('Caption', 'ileben-landing'),
                             value: attributes.caption || '',
                             onChange: (value) => setAttributes({ caption: value })
+                        }),
+                        createElement(ToggleControl, {
+                            label: __('Abrir en Fancybox', 'ileben-landing'),
+                            help: __('Abre la imagen en lightbox Fancybox al hacer clic', 'ileben-landing'),
+                            checked: attributes.fancybox || false,
+                            onChange: (value) => setAttributes({ fancybox: value })
                         }),
                         createElement(TextControl, {
                             __next40pxDefaultSize: true, label: __('Link URL', 'ileben-landing'),

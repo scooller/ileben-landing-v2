@@ -22,9 +22,10 @@ function bootstrap_theme_render_bs_carousel_item_block($attributes, $content)
     $caption = $attributes['caption'] ?? '';
     $link = $attributes['link'] ?? '';
     $target = $attributes['target'] ?? '_self';
+    $fancybox = !empty($attributes['fancybox']);
     $className = $attributes['className'] ?? '';
 
-    $classes = array('wp-block-bootstrap-theme-bs-carousel-item', 'carousel-item');
+    $classes = array('wp-block-bootstrap-theme-bs-carousel-item', 'carousel-item', 'swiper-slide');
     if ($active) {
         $classes[] = 'active';
     }
@@ -35,8 +36,9 @@ function bootstrap_theme_render_bs_carousel_item_block($attributes, $content)
 
     // Build inline style from background images
     $style_parts = array();
-    if ($backgroundImage && isset($backgroundImage['url']) && $backgroundImage['url']) {
-        $style_parts[] = '--carousel-bg-desktop:url(' . esc_url($backgroundImage['url']) . ')';
+    $imageUrl = ($backgroundImage && isset($backgroundImage['url'])) ? $backgroundImage['url'] : '';
+    if ($imageUrl) {
+        $style_parts[] = '--carousel-bg-desktop:url(' . esc_url($imageUrl) . ')';
         $style_parts[] = 'min-height:400px';
     }
     if ($backgroundImageMobile && isset($backgroundImageMobile['url']) && $backgroundImageMobile['url']) {
@@ -52,24 +54,32 @@ function bootstrap_theme_render_bs_carousel_item_block($attributes, $content)
 
     ob_start();
 
-    // Optional link wrapper
+    // Optional link wrapper (custom link or Fancybox gallery)
     if ($link) {
         echo '<a href="' . esc_url($link) . '" target="' . esc_attr($target) . '"' .
             ($target === '_blank' ? ' rel="noopener noreferrer"' : '') . '>';
+    } elseif ($fancybox && $imageUrl) {
+        echo '<a href="' . esc_url($imageUrl) . '" data-fancybox="carousel-gallery" data-caption="' . esc_attr($caption) . '">';
     }
 ?>
     <div class="<?php echo esc_attr($class_string); ?>" <?php echo $style_string ? ' style="' . esc_attr($style_string) . '"' : ''; ?><?php echo $data_attrs; ?>>
         <div class="d-flex align-items-center justify-content-center h-100">
-            <div class="carousel-caption">
-                <?php if ($caption !== '') : ?>
-                    <p><?php echo esc_html($caption); ?></p>
-                <?php endif; ?>
-                <?php echo $content; ?>
-            </div>
+            <?php
+            $has_caption = $caption !== '';
+            $has_content = !empty(trim(strip_tags($content, '<img><svg><video><audio><picture><button><input><form>')));
+            if ($has_caption || $has_content) :
+            ?>
+                <div class="carousel-caption">
+                    <?php if ($has_caption) : ?>
+                        <p><?php echo esc_html($caption); ?></p>
+                    <?php endif; ?>
+                    <?php echo $content; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 <?php
-    if ($link) {
+    if ($link || ($fancybox && $imageUrl)) {
         echo '</a>';
     }
 
@@ -104,6 +114,10 @@ function bootstrap_theme_register_bs_carousel_item_block()
             'caption' => array(
                 'type' => 'string',
                 'default' => ''
+            ),
+            'fancybox' => array(
+                'type' => 'boolean',
+                'default' => false
             ),
             'link' => array(
                 'type' => 'string',

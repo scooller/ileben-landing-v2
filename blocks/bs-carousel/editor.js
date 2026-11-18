@@ -22,6 +22,10 @@
                 type: 'number',
                 default: 1
             },
+            fancybox: {
+                type: 'boolean',
+                default: false
+            },
             carouselId: {
                 type: 'string',
                 default: ''
@@ -110,6 +114,12 @@
                                 { label: '4', value: 4 }
                             ],
                             onChange: (value) => setAttributes({ items: parseInt(value, 10) })
+                        }),
+                        createElement(ToggleControl, {
+                            label: __('Abrir en Fancybox (Galería)', 'ileben-landing'),
+                            help: __('Abre las imágenes en una galería Fancybox al hacer clic', 'ileben-landing'),
+                            checked: attributes.fancybox || false,
+                            onChange: (value) => setAttributes({ fancybox: value })
                         }),
                         createElement(ToggleControl, {
                             label: __('Show Controls', 'ileben-landing'),

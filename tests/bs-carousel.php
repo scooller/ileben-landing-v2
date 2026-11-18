@@ -26,10 +26,21 @@ if (strpos($default_render, 'carousel-multiple') !== false || strpos($default_re
     throw new RuntimeException('Default items = 1 should not have carousel-multiple or data-bs-items.');
 }
 
-// Test multiple items = 3
+// Test multiple items = 3 (Swiper-powered)
 $multi_render = bootstrap_theme_render_bs_carousel_block(['items' => 3], $content, []);
-if (strpos($multi_render, 'carousel-multiple') === false || strpos($multi_render, 'carousel-items-3') === false || strpos($multi_render, 'data-bs-items="3"') === false) {
-    throw new RuntimeException('Items = 3 should include carousel-multiple, carousel-items-3, and data-bs-items="3".');
+if (strpos($multi_render, 'carousel-multiple') === false || 
+    strpos($multi_render, 'carousel-items-3') === false || 
+    strpos($multi_render, 'swiper') === false || 
+    strpos($multi_render, 'js-swiper') === false ||
+    strpos($multi_render, 'swiper-wrapper') === false ||
+    strpos($multi_render, 'data-swiper-slides-desktop="3"') === false) {
+    throw new RuntimeException('Items = 3 should include Swiper classes and attributes.');
+}
+
+// Test fancybox option
+$fancy_render = bootstrap_theme_render_bs_carousel_block(['items' => 3, 'fancybox' => true], $content, []);
+if (strpos($fancy_render, 'has-fancybox') === false || strpos($fancy_render, 'data-fancybox-gallery') === false) {
+    throw new RuntimeException('Fancybox option should include has-fancybox and data-fancybox-gallery.');
 }
 
 // Test clamping

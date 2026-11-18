@@ -33,6 +33,7 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
     $fade = $to_bool($attributes['fade'] ?? null, false);
     $touch = $to_bool($attributes['touch'] ?? null, true);
     $items = isset($attributes['items']) ? max(1, min(4, intval($attributes['items']))) : 1;
+    $fancybox = $to_bool($attributes['fancybox'] ?? null, false);
 
     // Build carousel classes
     $classes = array('carousel', 'slide');
@@ -44,6 +45,12 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
     if ($items > 1) {
         $classes[] = 'carousel-multiple';
         $classes[] = 'carousel-items-' . $items;
+        $classes[] = 'swiper';
+        $classes[] = 'js-swiper';
+    }
+
+    if ($fancybox) {
+        $classes[] = 'has-fancybox';
     }
 
     // Add custom CSS classes from Advanced panel
@@ -51,15 +58,32 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
 
     $class_string = implode(' ', array_unique($classes));
 
-    $carousel_data = array(
-        'data-bs-ride' => $ride,
-        'data-bs-interval' => $interval,
-        'data-bs-wrap' => $wrap ? 'true' : 'false',
-        'data-bs-touch' => $touch ? 'true' : 'false'
-    );
+    $carousel_data = array();
 
     if ($items > 1) {
-        $carousel_data['data-bs-items'] = $items;
+        // Swiper configuration for multi-item slider (reusing plantas-slider pattern)
+        $carousel_data['data-slider-id'] = $carouselId;
+        $carousel_data['data-swiper-slides'] = (string)$items;
+        $carousel_data['data-swiper-slides-mobile'] = '1';
+        $carousel_data['data-swiper-slides-desktop'] = (string)$items;
+        $carousel_data['data-swiper-loop'] = $wrap ? 'true' : 'false';
+        $carousel_data['data-swiper-navigation'] = $controls ? 'true' : 'false';
+        $carousel_data['data-swiper-pagination'] = $indicators ? 'true' : 'false';
+        $carousel_data['data-swiper-autoplay'] = $ride === 'carousel' ? 'true' : 'false';
+        $carousel_data['data-swiper-autoplay-delay'] = (string)$interval;
+        if ($fancybox) {
+            $carousel_data['data-carousel-fancybox'] = 'true';
+            $carousel_data['data-fancybox-gallery'] = $carouselId;
+        }
+    } else {
+        $carousel_data['data-bs-ride'] = $ride;
+        $carousel_data['data-bs-interval'] = $interval;
+        $carousel_data['data-bs-wrap'] = $wrap ? 'true' : 'false';
+        $carousel_data['data-bs-touch'] = $touch ? 'true' : 'false';
+        if ($fancybox) {
+            $carousel_data['data-carousel-fancybox'] = 'true';
+            $carousel_data['data-fancybox-gallery'] = $carouselId;
+        }
     }
 
     $data_attrs = '';
@@ -87,7 +111,14 @@ function bootstrap_theme_render_bs_carousel_block($attributes, $content, $block)
             </div>
         <?php endif; ?>
 
-        <div class="carousel-inner h-100">
+        <?php
+        $inner_classes = array('carousel-inner', 'h-100');
+        if ($items > 1) {
+            $inner_classes[] = 'swiper-wrapper';
+        }
+        $inner_class_string = implode(' ', $inner_classes);
+        ?>
+        <div class="<?php echo esc_attr($inner_class_string); ?>">
             <?php if (!empty($content)) : ?>
                 <?php echo $content; ?>
             <?php else : ?>
@@ -131,6 +162,10 @@ function bootstrap_theme_register_bs_carousel_block()
             'items' => array(
                 'type' => 'number',
                 'default' => 1
+            ),
+            'fancybox' => array(
+                'type' => 'boolean',
+                'default' => false
             ),
             'carouselId' => array(
                 'type' => 'string',

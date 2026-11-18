@@ -23,4 +23,20 @@ if (substr_count($empty, '<p>') !== 1 || strpos($empty, $content) === false || s
     strpos($zero, '<p>0</p>') === false) {
     throw new RuntimeException('Caption rendering failed.');
 }
-echo "Carousel caption checks passed.\n";
+
+// Test empty caption and empty content: carousel-caption div must NOT be rendered
+$no_caption = bootstrap_theme_render_bs_carousel_item_block([], '');
+if (strpos($no_caption, 'carousel-caption') !== false) {
+    throw new RuntimeException('carousel-caption div must not be rendered when caption and content are empty.');
+}
+
+// Test fancybox on item
+$fancy_item = bootstrap_theme_render_bs_carousel_item_block([
+    'fancybox' => true,
+    'backgroundImage' => ['url' => 'https://example.com/img.jpg']
+], '');
+if (strpos($fancy_item, 'data-fancybox="carousel-gallery"') === false) {
+    throw new RuntimeException('Item with fancybox enabled must render data-fancybox link.');
+}
+
+echo "Carousel caption and fancybox checks passed.\n";

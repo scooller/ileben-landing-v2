@@ -2,6 +2,15 @@
 
 Todos los cambios relevantes en el tema ileben-landing-v2 se documentan aquí.
 
+## [Unreleased]
+
+### Fixed
+- **Bootstrap Carousel**: Solucionada la ampliación/zoom de la primera imagen al avanzar reutilizando el motor Swiper de `bs-plantas-slider` (desplazamiento suave 1 a 1 sin deformación).
+- **Bootstrap Carousel Item**: Ocultado el contenedor `.carousel-caption` cuando el caption y el contenido interno están vacíos (elimina barra oscura vacía).
+
+### Added
+- **Bootstrap Carousel / Item**: Opción `fancybox` para abrir las imágenes de los slides en lightbox Fancybox como galería al hacer clic.
+
 ## [0.1.28] - 2026-11-18
 
 ### Added

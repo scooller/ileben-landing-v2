@@ -47,15 +47,18 @@ export function initSliders() {
     const localNav = readBool(ds.swiperNavigation);
     const enableNav = localNav !== undefined ? localNav : !!globals.enableNavigation;
     const nav = enableNav ? {
-      nextEl: sliderId ? `.swiper-button-next-${sliderId}` : container.querySelector('.swiper-button-next'),
-      prevEl: sliderId ? `.swiper-button-prev-${sliderId}` : container.querySelector('.swiper-button-prev'),
+      nextEl: container.querySelector('.swiper-button-next, .carousel-control-next') || (sliderId ? `.swiper-button-next-${sliderId}` : undefined),
+      prevEl: container.querySelector('.swiper-button-prev, .carousel-control-prev') || (sliderId ? `.swiper-button-prev-${sliderId}` : undefined),
     } : undefined;
 
     const localPag = readBool(ds.swiperPagination);
     const enablePag = localPag !== undefined ? localPag : !!globals.enablePagination;
+    const indicators = container.querySelector('.carousel-indicators');
     const pagination = enablePag ? {
-      el: sliderId ? `.swiper-pagination-${sliderId}` : container.querySelector('.swiper-pagination'),
+      el: indicators || (sliderId ? `.swiper-pagination-${sliderId}` : container.querySelector('.swiper-pagination')),
       clickable: true,
+      bulletClass: 'carousel-indicator-btn',
+      bulletActiveClass: 'active'
     } : undefined;
 
     const localAutoplay = readBool(ds.swiperAutoplay);
@@ -65,17 +68,54 @@ export function initSliders() {
       disableOnInteraction: false,
     } : false;
 
+    // Viewport-specific slides per view (reusing plantas-slider pattern)
+    const baseSlides = readNum(ds.swiperSlides) ?? Number(globals.slidesPerView) ?? 1;
+    const mobileSlides = readNum(ds.swiperSlidesMobile) ?? baseSlides;
+    const desktopSlides = readNum(ds.swiperSlidesDesktop) ?? baseSlides;
+    const tabletSlides = readNum(ds.swiperSlidesTablet) ?? (desktopSlides > 1 ? Math.min(2, desktopSlides) : 1);
+
+    const breakpoints = (ds.swiperSlidesMobile || ds.swiperSlidesDesktop) ? {
+      768: { slidesPerView: tabletSlides },
+      1024: { slidesPerView: desktopSlides }
+    } : defaultBreakpoints;
+
+    const spaceBetween = readNum(ds.swiperSpace) ?? (container.classList.contains('carousel') ? 0 : Number(globals.spaceBetween) || 16);
+
     const config = {
       modules: [Navigation, Pagination, Scrollbar, EffectFade, EffectCube, EffectCoverflow, EffectFlip, EffectCards],
-      slidesPerView: (readNum(ds.swiperSlides) ?? Number(globals.slidesPerView)) || 1.1,
-      spaceBetween: (readNum(ds.swiperSpace) ?? Number(globals.spaceBetween)) || 16,
+      slidesPerView: mobileSlides,
+      spaceBetween,
       loop: (readBool(ds.swiperLoop) ?? !!globals.loop),
       speed: (readNum(ds.swiperSpeed) ?? Number(globals.speed)) || 500,
-      breakpoints: defaultBreakpoints,
+      breakpoints,
       navigation: nav,
       pagination,
       autoplay,
     };
+
+    // Fancybox gallery overlay for carousel slides
+    if (readBool(ds.carouselFancybox) || container.classList.contains('has-fancybox')) {
+      const galleryId = ds.sliderId || 'carousel-gallery';
+      container.querySelectorAll('.swiper-slide, .carousel-item').forEach((slide) => {
+        if (!slide.querySelector('a[data-fancybox]')) {
+          const bgUrl = slide.style.getPropertyValue('--carousel-bg-desktop')
+            ? slide.style.getPropertyValue('--carousel-bg-desktop').replace(/^url\(["']?|["']?\)$/g, '').trim()
+            : null;
+          if (bgUrl) {
+            slide.style.cursor = 'pointer';
+            const caption = slide.querySelector('.carousel-caption p')?.textContent || '';
+            const link = document.createElement('a');
+            link.href = bgUrl;
+            link.dataset.fancybox = `gallery-${galleryId}`;
+            if (caption) link.dataset.caption = caption;
+            link.className = 'carousel-fancybox-overlay position-absolute top-0 start-0 w-100 h-100';
+            link.style.zIndex = '2';
+            link.setAttribute('aria-label', caption || 'Ver imagen');
+            slide.appendChild(link);
+          }
+        }
+      });
+    }
 
     // eslint-disable-next-line no-new
     new Swiper(container, config);
